@@ -6,7 +6,7 @@
 ### Gradle
 
 ```groovy
-implementation 'dev.hathora.cloud_api:Hathora-Cloud:1.0.1'
+implementation 'dev.hathora.cloud_api:Hathora-Cloud:1.1.0'
 ```
 <!-- End SDK Installation -->
 
