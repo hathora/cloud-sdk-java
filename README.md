@@ -6,12 +6,14 @@
 ### Gradle
 
 ```groovy
-implementation 'dev.hathora.cloud_api:Hathora-Cloud:1.8.0'
+implementation 'dev.hathora.cloud_api:Hathora-Cloud:1.9.0'
 ```
 <!-- End SDK Installation -->
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
+
+
 ```java
 package hello.world;
 
