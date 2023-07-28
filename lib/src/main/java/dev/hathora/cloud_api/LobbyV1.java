@@ -35,7 +35,7 @@ public class LobbyV1 {
         req.setMethod("POST");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0.9, application/json;q=0.7, application/json;q=0.6, application/json;q=0.4, application/json;q=0.3, application/json;q=0");
+        req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         java.util.List<NameValuePair> queryParams = dev.hathora.cloud_api.utils.Utils.getQueryParams(dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedRequest.class, request, null);
         if (queryParams != null) {
@@ -129,7 +129,7 @@ public class LobbyV1 {
         req.setMethod("POST");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0.9, application/json;q=0.7, application/json;q=0.6, application/json;q=0.4, application/json;q=0.3, application/json;q=0");
+        req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         java.util.List<NameValuePair> queryParams = dev.hathora.cloud_api.utils.Utils.getQueryParams(dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedRequest.class, request, null);
         if (queryParams != null) {
@@ -223,7 +223,7 @@ public class LobbyV1 {
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0.7, application/json;q=0");
+        req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         java.util.List<NameValuePair> queryParams = dev.hathora.cloud_api.utils.Utils.getQueryParams(dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedRequest.class, request, null);
         if (queryParams != null) {
