@@ -26,7 +26,7 @@ public class RoomV1 {
      * @param security the security details to use for authentication
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse createRoomDeprecated(dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedRequest request, dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedSecurity security) throws Exception {
@@ -105,7 +105,7 @@ public class RoomV1 {
      * @param security the security details to use for authentication
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse destroyRoomDeprecated(dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedRequest request, dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedSecurity security) throws Exception {
@@ -154,7 +154,7 @@ public class RoomV1 {
      * @param security the security details to use for authentication
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse getActiveRoomsForProcessDeprecated(dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedRequest request, dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedSecurity security) throws Exception {
@@ -201,7 +201,7 @@ public class RoomV1 {
      * @param request the request object containing all of the parameters for the API call
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse getConnectionInfoDeprecated(dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedRequest request) throws Exception {
@@ -262,7 +262,7 @@ public class RoomV1 {
      * @param security the security details to use for authentication
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse getInactiveRoomsForProcessDeprecated(dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedRequest request, dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedSecurity security) throws Exception {
@@ -310,7 +310,7 @@ public class RoomV1 {
      * @param security the security details to use for authentication
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse getRoomInfoDeprecated(dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedRequest request, dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedSecurity security) throws Exception {
@@ -358,7 +358,7 @@ public class RoomV1 {
      * @param security the security details to use for authentication
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse suspendRoomDeprecated(dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedRequest request, dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedSecurity security) throws Exception {

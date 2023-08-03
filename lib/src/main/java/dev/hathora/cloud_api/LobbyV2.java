@@ -128,7 +128,7 @@ public class LobbyV2 {
      * @param request the request object containing all of the parameters for the API call
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.CreateLocalLobbyResponse createLocalLobby(dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequest request) throws Exception {
@@ -228,7 +228,7 @@ public class LobbyV2 {
      * @param request the request object containing all of the parameters for the API call
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.CreatePrivateLobbyResponse createPrivateLobby(dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequest request) throws Exception {
@@ -328,7 +328,7 @@ public class LobbyV2 {
      * @param request the request object containing all of the parameters for the API call
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.CreatePublicLobbyResponse createPublicLobby(dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequest request) throws Exception {

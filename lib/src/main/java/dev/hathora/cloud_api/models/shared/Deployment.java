@@ -50,7 +50,7 @@ public class Deployment {
     }
     
     /**
-     * @deprecated this field will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("containerPort")
     @Deprecated
@@ -172,7 +172,7 @@ public class Deployment {
     }
     
     /**
-     * @deprecated this field will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("transportType")
     @Deprecated

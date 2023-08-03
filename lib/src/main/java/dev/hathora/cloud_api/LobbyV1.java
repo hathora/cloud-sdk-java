@@ -24,7 +24,7 @@ public class LobbyV1 {
      * @param request the request object containing all of the parameters for the API call
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedResponse createPrivateLobbyDeprecated(dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedRequest request) throws Exception {
@@ -118,7 +118,7 @@ public class LobbyV1 {
      * @param request the request object containing all of the parameters for the API call
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedResponse createPublicLobbyDeprecated(dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedRequest request) throws Exception {
@@ -212,7 +212,7 @@ public class LobbyV1 {
      * @param request the request object containing all of the parameters for the API call
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedResponse listActivePublicLobbiesDeprecated(dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedRequest request) throws Exception {
