@@ -41,7 +41,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.hathora'
             artifactId = 'cloud-api'
-            version = '1.14.0'
+            version = '1.15.0'
 
             from components.java
 

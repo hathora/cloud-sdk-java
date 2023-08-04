@@ -2,13 +2,13 @@ configVersion: 1.0.0
 management:
   docChecksum: 5d493c13d7ba103babf8acc1a95da638
   docVersion: 0.0.1
-  speakeasyVersion: 1.68.1
-  generationVersion: 2.77.1
+  speakeasyVersion: 1.68.3
+  generationVersion: 2.81.1
 generation:
   sdkClassName: SDK
   singleTagPerOp: false
 java:
-  version: 1.14.0
+  version: 1.15.0
   artifactID: cloud-api
   companyEmail: info@mycompany.com
   companyName: My Company
