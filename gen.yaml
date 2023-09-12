@@ -5,8 +5,13 @@ management:
   speakeasyVersion: 1.74.15
   generationVersion: 2.88.2
 generation:
-  sdkClassName: SDK
+  comments:
+    disableComments: false
+    omitDescriptionIfSummaryPresent: false
+  baseServerURL: ""
+  sdkClassName: Hathora-Cloud
   singleTagPerOp: false
+  tagNamespacingDisabled: false
 features:
   java:
     core: 2.83.1
