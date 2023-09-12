@@ -37,11 +37,11 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            CreateLobbyRequest req = new CreateLobbyRequest(                new CreateLobbyRequest(                new LobbyInitialConfig();, Region.TOKYO, LobbyVisibility.PRIVATE_);, "app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
-                roomId = "2swovpy1fnunu";
-            }};            
-
-            CreateLobbyResponse res = sdk.lobbyV2.createLobby(req);
+            CreateLobbyResponse res = sdk.lobbyV2.createLobby(new CreateLobbyRequest(                new LobbyInitialConfig();, Region.TOKYO, LobbyVisibility.PRIVATE_) {{
+                initialConfig = new LobbyInitialConfig() {{}};
+                region = Region.FRANKFURT;
+                visibility = LobbyVisibility.PRIVATE_;
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.lobby != null) {
                 // handle response
@@ -55,9 +55,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                   | [dev.hathora.cloud_api.models.operations.CreateLobbyRequest](../../models/operations/CreateLobbyRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         | Example                                                                                             |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `createLobbyRequest`                                                                                | [dev.hathora.cloud_api.models.shared.CreateLobbyRequest](../../models/shared/CreateLobbyRequest.md) | :heavy_check_mark:                                                                                  | N/A                                                                                                 |                                                                                                     |
+| `appId`                                                                                             | *String*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                            |
+| `roomId`                                                                                            | *String*                                                                                            | :heavy_minus_sign:                                                                                  | N/A                                                                                                 | 2swovpy1fnunu                                                                                       |
 
 
 ### Response
@@ -87,11 +89,10 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            CreateLocalLobbyRequest req = new CreateLocalLobbyRequest(                new CreateLocalLobbyRequestBody(                new LobbyInitialConfig();, Region.WASHINGTON_DC);, "app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
-                roomId = "2swovpy1fnunu";
-            }};            
-
-            CreateLocalLobbyResponse res = sdk.lobbyV2.createLocalLobby(req);
+            CreateLocalLobbyResponse res = sdk.lobbyV2.createLocalLobby(new CreateLocalLobbyRequestBody(                new LobbyInitialConfig();, Region.FRANKFURT) {{
+                initialConfig = new LobbyInitialConfig() {{}};
+                region = Region.SYDNEY;
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.lobby != null) {
                 // handle response
@@ -105,9 +106,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                             | [dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequest](../../models/operations/CreateLocalLobbyRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
+| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   | Example                                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `requestBody`                                                                                                                 | [dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequestBody](../../models/operations/CreateLocalLobbyRequestBody.md) | :heavy_check_mark:                                                                                                            | N/A                                                                                                                           |                                                                                                                               |
+| `appId`                                                                                                                       | *String*                                                                                                                      | :heavy_check_mark:                                                                                                            | N/A                                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                      |
+| `roomId`                                                                                                                      | *String*                                                                                                                      | :heavy_minus_sign:                                                                                                            | N/A                                                                                                                           | 2swovpy1fnunu                                                                                                                 |
 
 
 ### Response
@@ -137,11 +140,10 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            CreatePrivateLobbyRequest req = new CreatePrivateLobbyRequest(                new CreatePrivateLobbyRequestBody(                new LobbyInitialConfig();, Region.SYDNEY);, "app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
-                roomId = "2swovpy1fnunu";
-            }};            
-
-            CreatePrivateLobbyResponse res = sdk.lobbyV2.createPrivateLobby(req);
+            CreatePrivateLobbyResponse res = sdk.lobbyV2.createPrivateLobby(new CreatePrivateLobbyRequestBody(                new LobbyInitialConfig();, Region.TOKYO) {{
+                initialConfig = new LobbyInitialConfig() {{}};
+                region = Region.MUMBAI;
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.lobby != null) {
                 // handle response
@@ -155,9 +157,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                 | [dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequest](../../models/operations/CreatePrivateLobbyRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
+| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       | Example                                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `requestBody`                                                                                                                     | [dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequestBody](../../models/operations/CreatePrivateLobbyRequestBody.md) | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               |                                                                                                                                   |
+| `appId`                                                                                                                           | *String*                                                                                                                          | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                          |
+| `roomId`                                                                                                                          | *String*                                                                                                                          | :heavy_minus_sign:                                                                                                                | N/A                                                                                                                               | 2swovpy1fnunu                                                                                                                     |
 
 
 ### Response
@@ -187,11 +191,10 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            CreatePublicLobbyRequest req = new CreatePublicLobbyRequest(                new CreatePublicLobbyRequestBody(                new LobbyInitialConfig();, Region.SYDNEY);, "app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
-                roomId = "2swovpy1fnunu";
-            }};            
-
-            CreatePublicLobbyResponse res = sdk.lobbyV2.createPublicLobby(req);
+            CreatePublicLobbyResponse res = sdk.lobbyV2.createPublicLobby(new CreatePublicLobbyRequestBody(                new LobbyInitialConfig();, Region.WASHINGTON_DC) {{
+                initialConfig = new LobbyInitialConfig() {{}};
+                region = Region.SINGAPORE;
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.lobby != null) {
                 // handle response
@@ -205,9 +208,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                               | [dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequest](../../models/operations/CreatePublicLobbyRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| Parameter                                                                                                                       | Type                                                                                                                            | Required                                                                                                                        | Description                                                                                                                     | Example                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `requestBody`                                                                                                                   | [dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequestBody](../../models/operations/CreatePublicLobbyRequestBody.md) | :heavy_check_mark:                                                                                                              | N/A                                                                                                                             |                                                                                                                                 |
+| `appId`                                                                                                                         | *String*                                                                                                                        | :heavy_check_mark:                                                                                                              | N/A                                                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                        |
+| `roomId`                                                                                                                        | *String*                                                                                                                        | :heavy_minus_sign:                                                                                                              | N/A                                                                                                                             | 2swovpy1fnunu                                                                                                                   |
 
 
 ### Response
@@ -234,9 +239,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetLobbyInfoRequest req = new GetLobbyInfoRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");            
-
-            GetLobbyInfoResponse res = sdk.lobbyV2.getLobbyInfo(req);
+            GetLobbyInfoResponse res = sdk.lobbyV2.getLobbyInfo("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.lobby != null) {
                 // handle response
@@ -250,9 +253,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                     | [dev.hathora.cloud_api.models.operations.GetLobbyInfoRequest](../../models/operations/GetLobbyInfoRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
 
 
 ### Response
@@ -280,11 +284,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            ListActivePublicLobbiesRequest req = new ListActivePublicLobbiesRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
-                region = Region.SAO_PAULO;
-            }};            
-
-            ListActivePublicLobbiesResponse res = sdk.lobbyV2.listActivePublicLobbies(req);
+            ListActivePublicLobbiesResponse res = sdk.lobbyV2.listActivePublicLobbies("app-af469a92-5b45-4565-b3c4-b79878de67d2", Region.TOKYO);
 
             if (res.lobbies != null) {
                 // handle response
@@ -298,9 +298,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                           | Type                                                                                                                                | Required                                                                                                                            | Description                                                                                                                         |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                           | [dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesRequest](../../models/operations/ListActivePublicLobbiesRequest.md) | :heavy_check_mark:                                                                                                                  | The request object to use for the request.                                                                                          |
+| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             | Example                                                                                 |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `appId`                                                                                 | *String*                                                                                | :heavy_check_mark:                                                                      | N/A                                                                                     | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                |
+| `region`                                                                                | [dev.hathora.cloud_api.models.shared.Region](../../models/shared/Region.md)             | :heavy_minus_sign:                                                                      | Region to filter by. If omitted, active public lobbies in all regions will be returned. |                                                                                         |
 
 
 ### Response
@@ -330,11 +331,11 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            SetLobbyStateRequest req = new SetLobbyStateRequest(                new SetLobbyStateRequest(                new SetLobbyStateRequestState(););, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");            
-
-            SetLobbyStateResponse res = sdk.lobbyV2.setLobbyState(req, new SetLobbyStateSecurity("molestiae") {{
+            SetLobbyStateResponse res = sdk.lobbyV2.setLobbyState(new SetLobbyStateSecurity("officia") {{
                 auth0 = "";
-            }});
+            }}, new SetLobbyStateRequest(                new SetLobbyStateRequestState();) {{
+                state = new SetLobbyStateRequestState() {{}};
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.lobby != null) {
                 // handle response
@@ -348,10 +349,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [dev.hathora.cloud_api.models.operations.SetLobbyStateRequest](../../models/operations/SetLobbyStateRequest.md)   | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
-| `security`                                                                                                        | [dev.hathora.cloud_api.models.operations.SetLobbyStateSecurity](../../models/operations/SetLobbyStateSecurity.md) | :heavy_check_mark:                                                                                                | The security requirements to use for the request.                                                                 |
+| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       | Example                                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                        | [dev.hathora.cloud_api.models.operations.SetLobbyStateSecurity](../../models/operations/SetLobbyStateSecurity.md) | :heavy_check_mark:                                                                                                | The security requirements to use for the request.                                                                 |                                                                                                                   |
+| `setLobbyStateRequest`                                                                                            | [dev.hathora.cloud_api.models.shared.SetLobbyStateRequest](../../models/shared/SetLobbyStateRequest.md)           | :heavy_check_mark:                                                                                                | N/A                                                                                                               |                                                                                                                   |
+| `appId`                                                                                                           | *String*                                                                                                          | :heavy_check_mark:                                                                                                | N/A                                                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                          |
+| `roomId`                                                                                                          | *String*                                                                                                          | :heavy_check_mark:                                                                                                | N/A                                                                                                               | 2swovpy1fnunu                                                                                                     |
 
 
 ### Response

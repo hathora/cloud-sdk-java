@@ -85,12 +85,14 @@ public class AppV1 {
 
     /**
      * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.DeleteAppResponse deleteApp(dev.hathora.cloud_api.models.operations.DeleteAppRequest request, dev.hathora.cloud_api.models.operations.DeleteAppSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.DeleteAppResponse deleteApp(dev.hathora.cloud_api.models.operations.DeleteAppSecurity security, String appId) throws Exception {
+        dev.hathora.cloud_api.models.operations.DeleteAppRequest request = new dev.hathora.cloud_api.models.operations.DeleteAppRequest(appId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.DeleteAppRequest.class, baseUrl, "/apps/v1/delete/{appId}", request, null);
         
@@ -133,12 +135,14 @@ public class AppV1 {
 
     /**
      * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetAppInfoResponse getAppInfo(dev.hathora.cloud_api.models.operations.GetAppInfoRequest request, dev.hathora.cloud_api.models.operations.GetAppInfoSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetAppInfoResponse getAppInfo(dev.hathora.cloud_api.models.operations.GetAppInfoSecurity security, String appId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetAppInfoRequest request = new dev.hathora.cloud_api.models.operations.GetAppInfoRequest(appId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetAppInfoRequest.class, baseUrl, "/apps/v1/info/{appId}", request, null);
         
@@ -219,12 +223,15 @@ public class AppV1 {
 
     /**
      * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appConfig
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.UpdateAppResponse updateApp(dev.hathora.cloud_api.models.operations.UpdateAppRequest request, dev.hathora.cloud_api.models.operations.UpdateAppSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.UpdateAppResponse updateApp(dev.hathora.cloud_api.models.operations.UpdateAppSecurity security, dev.hathora.cloud_api.models.shared.AppConfig appConfig, String appId) throws Exception {
+        dev.hathora.cloud_api.models.operations.UpdateAppRequest request = new dev.hathora.cloud_api.models.operations.UpdateAppRequest(appConfig, appId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.UpdateAppRequest.class, baseUrl, "/apps/v1/update/{appId}", request, null);
         

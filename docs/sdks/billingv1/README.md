@@ -24,7 +24,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetBalanceResponse res = sdk.billingV1.getBalance(new GetBalanceSecurity("suscipit") {{
+            GetBalanceResponse res = sdk.billingV1.getBalance(new GetBalanceSecurity("ipsa") {{
                 auth0 = "";
             }});
 
@@ -67,7 +67,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetInvoicesResponse res = sdk.billingV1.getInvoices(new GetInvoicesSecurity("iure") {{
+            GetInvoicesResponse res = sdk.billingV1.getInvoices(new GetInvoicesSecurity("delectus") {{
                 auth0 = "";
             }});
 
@@ -110,7 +110,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetPaymentMethodResponse res = sdk.billingV1.getPaymentMethod(new GetPaymentMethodSecurity("magnam") {{
+            GetPaymentMethodResponse res = sdk.billingV1.getPaymentMethod(new GetPaymentMethodSecurity("tempora") {{
                 auth0 = "";
             }});
 
@@ -154,9 +154,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            dev.hathora.cloud_api.models.shared.CustomerPortalUrl req = new CustomerPortalUrl("debitis");            
+            dev.hathora.cloud_api.models.shared.CustomerPortalUrl req = new CustomerPortalUrl("suscipit");            
 
-            InitStripeCustomerPortalUrlResponse res = sdk.billingV1.initStripeCustomerPortalUrl(req, new InitStripeCustomerPortalUrlSecurity("ipsa") {{
+            InitStripeCustomerPortalUrlResponse res = sdk.billingV1.initStripeCustomerPortalUrl(req, new InitStripeCustomerPortalUrlSecurity("molestiae") {{
                 auth0 = "";
             }});
 

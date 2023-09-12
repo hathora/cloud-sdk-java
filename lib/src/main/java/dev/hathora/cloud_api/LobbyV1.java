@@ -21,13 +21,54 @@ public class LobbyV1 {
 	}
 
     /**
-     * @param request the request object containing all of the parameters for the API call
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedResponse createPrivateLobbyDeprecated(dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedResponse createPrivateLobbyDeprecated(String appId) throws Exception {
+        return this.createPrivateLobbyDeprecated(appId, null, null);
+    }
+
+    /**
+     * @param appId
+     * @param region Available regions to request a game server.
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedResponse createPrivateLobbyDeprecated(String appId, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
+        return this.createPrivateLobbyDeprecated(appId, null, region);
+    }
+
+    /**
+     * @param appId
+     * @param local
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedResponse createPrivateLobbyDeprecated(String appId, Boolean local) throws Exception {
+        return this.createPrivateLobbyDeprecated(appId, local, null);
+    }
+
+    /**
+     * @param appId
+     * @param local
+     * @param region Available regions to request a game server.
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedResponse createPrivateLobbyDeprecated(String appId, Boolean local, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
+        dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedRequest(appId);
+        request.local=local;
+        request.region=region;
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedRequest.class, baseUrl, "/lobby/v1/{appId}/create/private", request, null);
         
@@ -115,13 +156,54 @@ public class LobbyV1 {
     }
 
     /**
-     * @param request the request object containing all of the parameters for the API call
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedResponse createPublicLobbyDeprecated(dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedResponse createPublicLobbyDeprecated(String appId) throws Exception {
+        return this.createPublicLobbyDeprecated(appId, null, null);
+    }
+
+    /**
+     * @param appId
+     * @param region Available regions to request a game server.
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedResponse createPublicLobbyDeprecated(String appId, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
+        return this.createPublicLobbyDeprecated(appId, null, region);
+    }
+
+    /**
+     * @param appId
+     * @param local
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedResponse createPublicLobbyDeprecated(String appId, Boolean local) throws Exception {
+        return this.createPublicLobbyDeprecated(appId, local, null);
+    }
+
+    /**
+     * @param appId
+     * @param local
+     * @param region Available regions to request a game server.
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedResponse createPublicLobbyDeprecated(String appId, Boolean local, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
+        dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedRequest(appId);
+        request.local=local;
+        request.region=region;
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedRequest.class, baseUrl, "/lobby/v1/{appId}/create/public", request, null);
         
@@ -209,13 +291,54 @@ public class LobbyV1 {
     }
 
     /**
-     * @param request the request object containing all of the parameters for the API call
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedResponse listActivePublicLobbiesDeprecated(dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedResponse listActivePublicLobbiesDeprecated(String appId) throws Exception {
+        return this.listActivePublicLobbiesDeprecated(appId, null, null);
+    }
+
+    /**
+     * @param appId
+     * @param region Available regions to request a game server.
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedResponse listActivePublicLobbiesDeprecated(String appId, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
+        return this.listActivePublicLobbiesDeprecated(appId, null, region);
+    }
+
+    /**
+     * @param appId
+     * @param local
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedResponse listActivePublicLobbiesDeprecated(String appId, Boolean local) throws Exception {
+        return this.listActivePublicLobbiesDeprecated(appId, local, null);
+    }
+
+    /**
+     * @param appId
+     * @param local
+     * @param region Available regions to request a game server.
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedResponse listActivePublicLobbiesDeprecated(String appId, Boolean local, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
+        dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedRequest(appId);
+        request.local=local;
+        request.region=region;
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedRequest.class, baseUrl, "/lobby/v1/{appId}/list", request, null);
         

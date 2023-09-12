@@ -27,9 +27,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            LoginAnonymousRequest req = new LoginAnonymousRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2");            
-
-            LoginAnonymousResponse res = sdk.authV1.loginAnonymous(req);
+            LoginAnonymousResponse res = sdk.authV1.loginAnonymous("app-af469a92-5b45-4565-b3c4-b79878de67d2");
 
             if (res.loginResponse != null) {
                 // handle response
@@ -43,9 +41,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [dev.hathora.cloud_api.models.operations.LoginAnonymousRequest](../../models/operations/LoginAnonymousRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
 
 ### Response
@@ -71,9 +69,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            LoginGoogleRequest req = new LoginGoogleRequest(                new LoginGoogleRequest("error");, "app-af469a92-5b45-4565-b3c4-b79878de67d2");            
-
-            LoginGoogleResponse res = sdk.authV1.loginGoogle(req);
+            LoginGoogleResponse res = sdk.authV1.loginGoogle(new LoginGoogleRequest("iure") {{
+                idToken = "suscipit";
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
 
             if (res.loginResponse != null) {
                 // handle response
@@ -87,9 +85,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                   | [dev.hathora.cloud_api.models.operations.LoginGoogleRequest](../../models/operations/LoginGoogleRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         | Example                                                                                             |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `loginGoogleRequest`                                                                                | [dev.hathora.cloud_api.models.shared.LoginGoogleRequest](../../models/shared/LoginGoogleRequest.md) | :heavy_check_mark:                                                                                  | N/A                                                                                                 |                                                                                                     |
+| `appId`                                                                                             | *String*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                            |
 
 
 ### Response
@@ -115,9 +114,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            LoginNicknameRequest req = new LoginNicknameRequest(                new LoginNicknameRequest("deserunt");, "app-af469a92-5b45-4565-b3c4-b79878de67d2");            
-
-            LoginNicknameResponse res = sdk.authV1.loginNickname(req);
+            LoginNicknameResponse res = sdk.authV1.loginNickname(new LoginNicknameRequest("debitis") {{
+                nickname = "magnam";
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
 
             if (res.loginResponse != null) {
                 // handle response
@@ -131,9 +130,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [dev.hathora.cloud_api.models.operations.LoginNicknameRequest](../../models/operations/LoginNicknameRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             | Example                                                                                                 |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `loginNicknameRequest`                                                                                  | [dev.hathora.cloud_api.models.shared.LoginNicknameRequest](../../models/shared/LoginNicknameRequest.md) | :heavy_check_mark:                                                                                      | N/A                                                                                                     |                                                                                                         |
+| `appId`                                                                                                 | *String*                                                                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                |
 
 
 ### Response

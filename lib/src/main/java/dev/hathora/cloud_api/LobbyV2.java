@@ -27,11 +27,27 @@ public class LobbyV2 {
 
     /**
      * Create a new [lobby](https://hathora.dev/docs/concepts/hathora-entities#lobby) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param request the request object containing all of the parameters for the API call
+     * @param createLobbyRequest
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.CreateLobbyResponse createLobby(dev.hathora.cloud_api.models.operations.CreateLobbyRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreateLobbyResponse createLobby(dev.hathora.cloud_api.models.shared.CreateLobbyRequest createLobbyRequest, String appId) throws Exception {
+        return this.createLobby(createLobbyRequest, appId, null);
+    }
+
+    /**
+     * Create a new [lobby](https://hathora.dev/docs/concepts/hathora-entities#lobby) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * @param createLobbyRequest
+     * @param appId
+     * @param roomId
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     */
+    public dev.hathora.cloud_api.models.operations.CreateLobbyResponse createLobby(dev.hathora.cloud_api.models.shared.CreateLobbyRequest createLobbyRequest, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.CreateLobbyRequest request = new dev.hathora.cloud_api.models.operations.CreateLobbyRequest(createLobbyRequest, appId);
+        request.roomId=roomId;
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.CreateLobbyRequest.class, baseUrl, "/lobby/v2/{appId}/create", request, null);
         
@@ -125,13 +141,30 @@ public class LobbyV2 {
     }
 
     /**
-     * @param request the request object containing all of the parameters for the API call
+     * @param requestBody
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.CreateLocalLobbyResponse createLocalLobby(dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreateLocalLobbyResponse createLocalLobby(dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequestBody requestBody, String appId) throws Exception {
+        return this.createLocalLobby(requestBody, appId, null);
+    }
+
+    /**
+     * @param requestBody
+     * @param appId
+     * @param roomId
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.CreateLocalLobbyResponse createLocalLobby(dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequestBody requestBody, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequest request = new dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequest(requestBody, appId);
+        request.roomId=roomId;
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequest.class, baseUrl, "/lobby/v2/{appId}/create/local", request, null);
         
@@ -225,13 +258,30 @@ public class LobbyV2 {
     }
 
     /**
-     * @param request the request object containing all of the parameters for the API call
+     * @param requestBody
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.CreatePrivateLobbyResponse createPrivateLobby(dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreatePrivateLobbyResponse createPrivateLobby(dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequestBody requestBody, String appId) throws Exception {
+        return this.createPrivateLobby(requestBody, appId, null);
+    }
+
+    /**
+     * @param requestBody
+     * @param appId
+     * @param roomId
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.CreatePrivateLobbyResponse createPrivateLobby(dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequestBody requestBody, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequest request = new dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequest(requestBody, appId);
+        request.roomId=roomId;
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequest.class, baseUrl, "/lobby/v2/{appId}/create/private", request, null);
         
@@ -325,13 +375,30 @@ public class LobbyV2 {
     }
 
     /**
-     * @param request the request object containing all of the parameters for the API call
+     * @param requestBody
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.CreatePublicLobbyResponse createPublicLobby(dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreatePublicLobbyResponse createPublicLobby(dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequestBody requestBody, String appId) throws Exception {
+        return this.createPublicLobby(requestBody, appId, null);
+    }
+
+    /**
+     * @param requestBody
+     * @param appId
+     * @param roomId
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.CreatePublicLobbyResponse createPublicLobby(dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequestBody requestBody, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequest request = new dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequest(requestBody, appId);
+        request.roomId=roomId;
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequest.class, baseUrl, "/lobby/v2/{appId}/create/public", request, null);
         
@@ -426,11 +493,14 @@ public class LobbyV2 {
 
     /**
      * Get details for an existing [lobby](https://hathora.dev/docs/concepts/hathora-entities#lobby) using `appId` and `roomId`.
-     * @param request the request object containing all of the parameters for the API call
+     * @param appId
+     * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetLobbyInfoResponse getLobbyInfo(dev.hathora.cloud_api.models.operations.GetLobbyInfoRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetLobbyInfoResponse getLobbyInfo(String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetLobbyInfoRequest request = new dev.hathora.cloud_api.models.operations.GetLobbyInfoRequest(appId, roomId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetLobbyInfoRequest.class, baseUrl, "/lobby/v2/{appId}/info/{roomId}", request, null);
         
@@ -471,11 +541,25 @@ public class LobbyV2 {
 
     /**
      * Get all active [lobbies](https://hathora.dev/docs/concepts/hathora-entities#lobby) for a given [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a `region`.
-     * @param request the request object containing all of the parameters for the API call
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesResponse listActivePublicLobbies(dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesResponse listActivePublicLobbies(String appId) throws Exception {
+        return this.listActivePublicLobbies(appId, null);
+    }
+
+    /**
+     * Get all active [lobbies](https://hathora.dev/docs/concepts/hathora-entities#lobby) for a given [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a `region`.
+     * @param appId
+     * @param region Available regions to request a game server.
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     */
+    public dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesResponse listActivePublicLobbies(String appId, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
+        dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesRequest request = new dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesRequest(appId);
+        request.region=region;
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesRequest.class, baseUrl, "/lobby/v2/{appId}/list/public", request, null);
         
@@ -515,12 +599,16 @@ public class LobbyV2 {
 
     /**
      * Set the state of a [lobby](https://hathora.dev/docs/concepts/hathora-entities#lobby) using `appId` and `roomId`. State is intended to be set by the server and must be smaller than 1MB.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param setLobbyStateRequest
+     * @param appId
+     * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.SetLobbyStateResponse setLobbyState(dev.hathora.cloud_api.models.operations.SetLobbyStateRequest request, dev.hathora.cloud_api.models.operations.SetLobbyStateSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.SetLobbyStateResponse setLobbyState(dev.hathora.cloud_api.models.operations.SetLobbyStateSecurity security, dev.hathora.cloud_api.models.shared.SetLobbyStateRequest setLobbyStateRequest, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.SetLobbyStateRequest request = new dev.hathora.cloud_api.models.operations.SetLobbyStateRequest(setLobbyStateRequest, appId, roomId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.SetLobbyStateRequest.class, baseUrl, "/lobby/v2/{appId}/setState/{roomId}", request, null);
         

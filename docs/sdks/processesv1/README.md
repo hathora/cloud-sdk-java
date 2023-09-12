@@ -30,11 +30,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetProcessInfoRequest req = new GetProcessInfoRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");            
-
-            GetProcessInfoResponse res = sdk.processesV1.getProcessInfo(req, new GetProcessInfoSecurity("commodi") {{
+            GetProcessInfoResponse res = sdk.processesV1.getProcessInfo(new GetProcessInfoSecurity("esse") {{
                 auth0 = "";
-            }});
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");
 
             if (res.process != null) {
                 // handle response
@@ -48,10 +46,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                           | [dev.hathora.cloud_api.models.operations.GetProcessInfoRequest](../../models/operations/GetProcessInfoRequest.md)   | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
-| `security`                                                                                                          | [dev.hathora.cloud_api.models.operations.GetProcessInfoSecurity](../../models/operations/GetProcessInfoSecurity.md) | :heavy_check_mark:                                                                                                  | The security requirements to use for the request.                                                                   |
+| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         | Example                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                          | [dev.hathora.cloud_api.models.operations.GetProcessInfoSecurity](../../models/operations/GetProcessInfoSecurity.md) | :heavy_check_mark:                                                                                                  | The security requirements to use for the request.                                                                   |                                                                                                                     |
+| `appId`                                                                                                             | *String*                                                                                                            | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                            |
+| `processId`                                                                                                         | *String*                                                                                                            | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 | cbfcddd2-0006-43ae-996c-995fff7bed2e                                                                                |
 
 
 ### Response
@@ -80,13 +79,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetRunningProcessesRequest req = new GetRunningProcessesRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
-                region = Region.FRANKFURT;
-            }};            
-
-            GetRunningProcessesResponse res = sdk.processesV1.getRunningProcesses(req, new GetRunningProcessesSecurity("modi") {{
+            GetRunningProcessesResponse res = sdk.processesV1.getRunningProcesses(new GetRunningProcessesSecurity("ipsum") {{
                 auth0 = "";
-            }});
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", Region.MUMBAI);
 
             if (res.processWithRooms != null) {
                 // handle response
@@ -100,10 +95,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                     | [dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest](../../models/operations/GetRunningProcessesRequest.md)   | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
-| `security`                                                                                                                    | [dev.hathora.cloud_api.models.operations.GetRunningProcessesSecurity](../../models/operations/GetRunningProcessesSecurity.md) | :heavy_check_mark:                                                                                                            | The security requirements to use for the request.                                                                             |
+| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   | Example                                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                                    | [dev.hathora.cloud_api.models.operations.GetRunningProcessesSecurity](../../models/operations/GetRunningProcessesSecurity.md) | :heavy_check_mark:                                                                                                            | The security requirements to use for the request.                                                                             |                                                                                                                               |
+| `appId`                                                                                                                       | *String*                                                                                                                      | :heavy_check_mark:                                                                                                            | N/A                                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                      |
+| `region`                                                                                                                      | [dev.hathora.cloud_api.models.shared.Region](../../models/shared/Region.md)                                                   | :heavy_minus_sign:                                                                                                            | Available regions to request a game server.                                                                                   |                                                                                                                               |
 
 
 ### Response
@@ -132,13 +128,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetStoppedProcessesRequest req = new GetStoppedProcessesRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
-                region = Region.WASHINGTON_DC;
-            }};            
-
-            GetStoppedProcessesResponse res = sdk.processesV1.getStoppedProcesses(req, new GetStoppedProcessesSecurity("impedit") {{
+            GetStoppedProcessesResponse res = sdk.processesV1.getStoppedProcesses(new GetStoppedProcessesSecurity("aspernatur") {{
                 auth0 = "";
-            }});
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", Region.SEATTLE);
 
             if (res.processes != null) {
                 // handle response
@@ -152,10 +144,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                     | [dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest](../../models/operations/GetStoppedProcessesRequest.md)   | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
-| `security`                                                                                                                    | [dev.hathora.cloud_api.models.operations.GetStoppedProcessesSecurity](../../models/operations/GetStoppedProcessesSecurity.md) | :heavy_check_mark:                                                                                                            | The security requirements to use for the request.                                                                             |
+| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   | Example                                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                                    | [dev.hathora.cloud_api.models.operations.GetStoppedProcessesSecurity](../../models/operations/GetStoppedProcessesSecurity.md) | :heavy_check_mark:                                                                                                            | The security requirements to use for the request.                                                                             |                                                                                                                               |
+| `appId`                                                                                                                       | *String*                                                                                                                      | :heavy_check_mark:                                                                                                            | N/A                                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                      |
+| `region`                                                                                                                      | [dev.hathora.cloud_api.models.shared.Region](../../models/shared/Region.md)                                                   | :heavy_minus_sign:                                                                                                            | Available regions to request a game server.                                                                                   |                                                                                                                               |
 
 
 ### Response

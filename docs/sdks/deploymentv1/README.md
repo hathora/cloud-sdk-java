@@ -35,33 +35,32 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            CreateDeploymentRequest req = new CreateDeploymentRequest(                new DeploymentConfig(4000,                 new dev.hathora.cloud_api.models.shared.DeploymentConfigEnv[]{{
-                                                add(new DeploymentConfigEnv("EULA", "TRUE") {{
-                                                    name = "EULA";
-                                                    value = "TRUE";
-                                                }}),
-                                                add(new DeploymentConfigEnv("EULA", "TRUE") {{
-                                                    name = "EULA";
-                                                    value = "TRUE";
-                                                }}),
-                                            }}, PlanName.TINY, 3, TransportType.UDP) {{
-                                additionalContainerPorts = new dev.hathora.cloud_api.models.shared.ContainerPort[]{{
-                                    add(new ContainerPort("default", 8000, TransportType.TLS) {{
-                                        name = "default";
-                                        port = 8000;
-                                        transportType = TransportType.TLS;
-                                    }}),
-                                    add(new ContainerPort("default", 8000, TransportType.UDP) {{
-                                        name = "default";
-                                        port = 8000;
-                                        transportType = TransportType.TCP;
-                                    }}),
-                                }};
-                            }};, "app-af469a92-5b45-4565-b3c4-b79878de67d2", 1);            
-
-            CreateDeploymentResponse res = sdk.deploymentV1.createDeployment(req, new CreateDeploymentSecurity("veritatis") {{
+            CreateDeploymentResponse res = sdk.deploymentV1.createDeployment(new CreateDeploymentSecurity("deserunt") {{
                 auth0 = "";
-            }});
+            }}, new DeploymentConfig(4000,                 new dev.hathora.cloud_api.models.shared.DeploymentConfigEnv[]{{
+                                add(new DeploymentConfigEnv("EULA", "TRUE") {{
+                                    name = "EULA";
+                                    value = "TRUE";
+                                }}),
+                            }}, PlanName.TINY, 3, TransportType.TLS) {{
+                additionalContainerPorts = new dev.hathora.cloud_api.models.shared.ContainerPort[]{{
+                    add(new ContainerPort("default", 8000, TransportType.UDP) {{
+                        name = "default";
+                        port = 8000;
+                        transportType = TransportType.TCP;
+                    }}),
+                }};
+                containerPort = 4000;
+                env = new dev.hathora.cloud_api.models.shared.DeploymentConfigEnv[]{{
+                    add(new DeploymentConfigEnv("EULA", "TRUE") {{
+                        name = "EULA";
+                        value = "TRUE";
+                    }}),
+                }};
+                planName = PlanName.TINY;
+                roomsPerProcess = 3;
+                transportType = TransportType.TLS;
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", 1);
 
             if (res.deployment != null) {
                 // handle response
@@ -75,10 +74,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                               | [dev.hathora.cloud_api.models.operations.CreateDeploymentRequest](../../models/operations/CreateDeploymentRequest.md)   | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
-| `security`                                                                                                              | [dev.hathora.cloud_api.models.operations.CreateDeploymentSecurity](../../models/operations/CreateDeploymentSecurity.md) | :heavy_check_mark:                                                                                                      | The security requirements to use for the request.                                                                       |
+| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             | Example                                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                              | [dev.hathora.cloud_api.models.operations.CreateDeploymentSecurity](../../models/operations/CreateDeploymentSecurity.md) | :heavy_check_mark:                                                                                                      | The security requirements to use for the request.                                                                       |                                                                                                                         |
+| `deploymentConfig`                                                                                                      | [dev.hathora.cloud_api.models.shared.DeploymentConfig](../../models/shared/DeploymentConfig.md)                         | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |                                                                                                                         |
+| `appId`                                                                                                                 | *String*                                                                                                                | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                |
+| `buildId`                                                                                                               | *Integer*                                                                                                               | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     | 1                                                                                                                       |
 
 
 ### Response
@@ -106,11 +107,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetDeploymentInfoRequest req = new GetDeploymentInfoRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", 1);            
-
-            GetDeploymentInfoResponse res = sdk.deploymentV1.getDeploymentInfo(req, new GetDeploymentInfoSecurity("deserunt") {{
+            GetDeploymentInfoResponse res = sdk.deploymentV1.getDeploymentInfo(new GetDeploymentInfoSecurity("quo") {{
                 auth0 = "";
-            }});
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", 1);
 
             if (res.deployment != null) {
                 // handle response
@@ -124,10 +123,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                 | [dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest](../../models/operations/GetDeploymentInfoRequest.md)   | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
-| `security`                                                                                                                | [dev.hathora.cloud_api.models.operations.GetDeploymentInfoSecurity](../../models/operations/GetDeploymentInfoSecurity.md) | :heavy_check_mark:                                                                                                        | The security requirements to use for the request.                                                                         |
+| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               | Example                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                                | [dev.hathora.cloud_api.models.operations.GetDeploymentInfoSecurity](../../models/operations/GetDeploymentInfoSecurity.md) | :heavy_check_mark:                                                                                                        | The security requirements to use for the request.                                                                         |                                                                                                                           |
+| `appId`                                                                                                                   | *String*                                                                                                                  | :heavy_check_mark:                                                                                                        | N/A                                                                                                                       | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                  |
+| `deploymentId`                                                                                                            | *Integer*                                                                                                                 | :heavy_check_mark:                                                                                                        | N/A                                                                                                                       | 1                                                                                                                         |
 
 
 ### Response
@@ -155,11 +155,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetDeploymentsRequest req = new GetDeploymentsRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2");            
-
-            GetDeploymentsResponse res = sdk.deploymentV1.getDeployments(req, new GetDeploymentsSecurity("perferendis") {{
+            GetDeploymentsResponse res = sdk.deploymentV1.getDeployments(new GetDeploymentsSecurity("odit") {{
                 auth0 = "";
-            }});
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
 
             if (res.deployments != null) {
                 // handle response
@@ -173,10 +171,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                           | [dev.hathora.cloud_api.models.operations.GetDeploymentsRequest](../../models/operations/GetDeploymentsRequest.md)   | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
-| `security`                                                                                                          | [dev.hathora.cloud_api.models.operations.GetDeploymentsSecurity](../../models/operations/GetDeploymentsSecurity.md) | :heavy_check_mark:                                                                                                  | The security requirements to use for the request.                                                                   |
+| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         | Example                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                          | [dev.hathora.cloud_api.models.operations.GetDeploymentsSecurity](../../models/operations/GetDeploymentsSecurity.md) | :heavy_check_mark:                                                                                                  | The security requirements to use for the request.                                                                   |                                                                                                                     |
+| `appId`                                                                                                             | *String*                                                                                                            | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                            |
 
 
 ### Response

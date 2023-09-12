@@ -30,17 +30,15 @@ public class Application {
                 .build();
 
             GetMetricsRequest req = new GetMetricsRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e") {{
-                end = 6399.21d;
+                end = 4736d;
                 metrics = new dev.hathora.cloud_api.models.shared.MetricName[]{{
-                    add(MetricName.CPU),
-                    add(MetricName.RATE_EGRESS),
-                    add(MetricName.TOTAL_EGRESS),
+                    add(MetricName.MEMORY),
                 }};
-                start = 7586.16d;
-                step = 521848;
+                start = 1863.32d;
+                step = 774234;
             }};            
 
-            GetMetricsResponse res = sdk.metricsV1.getMetrics(req, new GetMetricsSecurity("beatae") {{
+            GetMetricsResponse res = sdk.metricsV1.getMetrics(req, new GetMetricsSecurity("cum") {{
                 auth0 = "";
             }});
 
