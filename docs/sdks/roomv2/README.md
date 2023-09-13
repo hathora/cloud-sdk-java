@@ -36,13 +36,11 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            CreateRoomRequest req = new CreateRoomRequest(                new CreateRoomRequest(Region.SINGAPORE);, "app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
-                roomId = "2swovpy1fnunu";
-            }};            
-
-            CreateRoomResponse res = sdk.roomV2.createRoom(req, new CreateRoomSecurity("sed") {{
+            CreateRoomResponse res = sdk.roomV2.createRoom(new CreateRoomSecurity("saepe") {{
                 auth0 = "";
-            }});
+            }}, new CreateRoomRequest(Region.FRANKFURT) {{
+                region = Region.SINGAPORE;
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.connectionInfoV2 != null) {
                 // handle response
@@ -56,10 +54,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                   | [dev.hathora.cloud_api.models.operations.CreateRoomRequest](../../models/operations/CreateRoomRequest.md)   | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
-| `security`                                                                                                  | [dev.hathora.cloud_api.models.operations.CreateRoomSecurity](../../models/operations/CreateRoomSecurity.md) | :heavy_check_mark:                                                                                          | The security requirements to use for the request.                                                           |
+| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 | Example                                                                                                     |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                  | [dev.hathora.cloud_api.models.operations.CreateRoomSecurity](../../models/operations/CreateRoomSecurity.md) | :heavy_check_mark:                                                                                          | The security requirements to use for the request.                                                           |                                                                                                             |
+| `createRoomRequest`                                                                                         | [dev.hathora.cloud_api.models.shared.CreateRoomRequest](../../models/shared/CreateRoomRequest.md)           | :heavy_check_mark:                                                                                          | N/A                                                                                                         |                                                                                                             |
+| `appId`                                                                                                     | *String*                                                                                                    | :heavy_check_mark:                                                                                          | N/A                                                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                    |
+| `roomId`                                                                                                    | *String*                                                                                                    | :heavy_minus_sign:                                                                                          | N/A                                                                                                         | 2swovpy1fnunu                                                                                               |
 
 
 ### Response
@@ -87,11 +87,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            DestroyRoomRequest req = new DestroyRoomRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");            
-
-            DestroyRoomResponse res = sdk.roomV2.destroyRoom(req, new DestroyRoomSecurity("iste") {{
+            DestroyRoomResponse res = sdk.roomV2.destroyRoom(new DestroyRoomSecurity("corporis") {{
                 auth0 = "";
-            }});
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.statusCode == 200) {
                 // handle response
@@ -105,10 +103,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                     | [dev.hathora.cloud_api.models.operations.DestroyRoomRequest](../../models/operations/DestroyRoomRequest.md)   | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
-| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.DestroyRoomSecurity](../../models/operations/DestroyRoomSecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |
+| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   | Example                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.DestroyRoomSecurity](../../models/operations/DestroyRoomSecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |                                                                                                               |
+| `appId`                                                                                                       | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                      |
+| `roomId`                                                                                                      | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | 2swovpy1fnunu                                                                                                 |
 
 
 ### Response
@@ -136,11 +135,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetActiveRoomsForProcessRequest req = new GetActiveRoomsForProcessRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");            
-
-            GetActiveRoomsForProcessResponse res = sdk.roomV2.getActiveRoomsForProcess(req, new GetActiveRoomsForProcessSecurity("dolor") {{
+            GetActiveRoomsForProcessResponse res = sdk.roomV2.getActiveRoomsForProcess(new GetActiveRoomsForProcessSecurity("iste") {{
                 auth0 = "";
-            }});
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");
 
             if (res.roomWithoutAllocations != null) {
                 // handle response
@@ -154,10 +151,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                               | Type                                                                                                                                    | Required                                                                                                                                | Description                                                                                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                               | [dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest](../../models/operations/GetActiveRoomsForProcessRequest.md)   | :heavy_check_mark:                                                                                                                      | The request object to use for the request.                                                                                              |
-| `security`                                                                                                                              | [dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessSecurity](../../models/operations/GetActiveRoomsForProcessSecurity.md) | :heavy_check_mark:                                                                                                                      | The security requirements to use for the request.                                                                                       |
+| Parameter                                                                                                                               | Type                                                                                                                                    | Required                                                                                                                                | Description                                                                                                                             | Example                                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                                              | [dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessSecurity](../../models/operations/GetActiveRoomsForProcessSecurity.md) | :heavy_check_mark:                                                                                                                      | The security requirements to use for the request.                                                                                       |                                                                                                                                         |
+| `appId`                                                                                                                                 | *String*                                                                                                                                | :heavy_check_mark:                                                                                                                      | N/A                                                                                                                                     | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                |
+| `processId`                                                                                                                             | *String*                                                                                                                                | :heavy_check_mark:                                                                                                                      | N/A                                                                                                                                     | cbfcddd2-0006-43ae-996c-995fff7bed2e                                                                                                    |
 
 
 ### Response
@@ -184,9 +182,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetConnectionInfoRequest req = new GetConnectionInfoRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");            
-
-            GetConnectionInfoResponse res = sdk.roomV2.getConnectionInfo(req);
+            GetConnectionInfoResponse res = sdk.roomV2.getConnectionInfo("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.connectionInfoV2 != null) {
                 // handle response
@@ -200,9 +196,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                               | [dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest](../../models/operations/GetConnectionInfoRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
 
 
 ### Response
@@ -230,11 +227,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetInactiveRoomsForProcessRequest req = new GetInactiveRoomsForProcessRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");            
-
-            GetInactiveRoomsForProcessResponse res = sdk.roomV2.getInactiveRoomsForProcess(req, new GetInactiveRoomsForProcessSecurity("natus") {{
+            GetInactiveRoomsForProcessResponse res = sdk.roomV2.getInactiveRoomsForProcess(new GetInactiveRoomsForProcessSecurity("iure") {{
                 auth0 = "";
-            }});
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");
 
             if (res.roomWithoutAllocations != null) {
                 // handle response
@@ -248,10 +243,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                   | Type                                                                                                                                        | Required                                                                                                                                    | Description                                                                                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                                   | [dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest](../../models/operations/GetInactiveRoomsForProcessRequest.md)   | :heavy_check_mark:                                                                                                                          | The request object to use for the request.                                                                                                  |
-| `security`                                                                                                                                  | [dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessSecurity](../../models/operations/GetInactiveRoomsForProcessSecurity.md) | :heavy_check_mark:                                                                                                                          | The security requirements to use for the request.                                                                                           |
+| Parameter                                                                                                                                   | Type                                                                                                                                        | Required                                                                                                                                    | Description                                                                                                                                 | Example                                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                                                  | [dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessSecurity](../../models/operations/GetInactiveRoomsForProcessSecurity.md) | :heavy_check_mark:                                                                                                                          | The security requirements to use for the request.                                                                                           |                                                                                                                                             |
+| `appId`                                                                                                                                     | *String*                                                                                                                                    | :heavy_check_mark:                                                                                                                          | N/A                                                                                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                    |
+| `processId`                                                                                                                                 | *String*                                                                                                                                    | :heavy_check_mark:                                                                                                                          | N/A                                                                                                                                         | cbfcddd2-0006-43ae-996c-995fff7bed2e                                                                                                        |
 
 
 ### Response
@@ -279,11 +275,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetRoomInfoRequest req = new GetRoomInfoRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");            
-
-            GetRoomInfoResponse res = sdk.roomV2.getRoomInfo(req, new GetRoomInfoSecurity("laboriosam") {{
+            GetRoomInfoResponse res = sdk.roomV2.getRoomInfo(new GetRoomInfoSecurity("saepe") {{
                 auth0 = "";
-            }});
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.room != null) {
                 // handle response
@@ -297,10 +291,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                     | [dev.hathora.cloud_api.models.operations.GetRoomInfoRequest](../../models/operations/GetRoomInfoRequest.md)   | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
-| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.GetRoomInfoSecurity](../../models/operations/GetRoomInfoSecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |
+| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   | Example                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.GetRoomInfoSecurity](../../models/operations/GetRoomInfoSecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |                                                                                                               |
+| `appId`                                                                                                       | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                      |
+| `roomId`                                                                                                      | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | 2swovpy1fnunu                                                                                                 |
 
 
 ### Response
@@ -328,11 +323,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            SuspendRoomRequest req = new SuspendRoomRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");            
-
-            SuspendRoomResponse res = sdk.roomV2.suspendRoom(req, new SuspendRoomSecurity("hic") {{
+            SuspendRoomResponse res = sdk.roomV2.suspendRoom(new SuspendRoomSecurity("quidem") {{
                 auth0 = "";
-            }});
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.statusCode == 200) {
                 // handle response
@@ -346,10 +339,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                     | [dev.hathora.cloud_api.models.operations.SuspendRoomRequest](../../models/operations/SuspendRoomRequest.md)   | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
-| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.SuspendRoomSecurity](../../models/operations/SuspendRoomSecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |
+| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   | Example                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.SuspendRoomSecurity](../../models/operations/SuspendRoomSecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |                                                                                                               |
+| `appId`                                                                                                       | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                      |
+| `roomId`                                                                                                      | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | 2swovpy1fnunu                                                                                                 |
 
 
 ### Response

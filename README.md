@@ -7,13 +7,12 @@
    <a href="https://discord.com/invite/hathora"><img src="https://img.shields.io/static/v1?label=Discord&message=Join&color=7289da&style=for-the-badge" /></a>
 </div>
 <!-- Start SDK Installation -->
-
 ## SDK Installation
 
 ### Gradle
 
 ```groovy
-implementation 'dev.hathora.cloud_api:Hathora-Cloud:1.18.0'
+implementation 'dev.hathora.cloud_api:Hathora-Cloud:1.19.0'
 ```
 <!-- End SDK Installation -->
 

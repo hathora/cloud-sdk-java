@@ -6,9 +6,6 @@ package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * VerificationEmailResponse - Ok
- */
 
 public class VerificationEmailResponse {
     @JsonProperty("status")

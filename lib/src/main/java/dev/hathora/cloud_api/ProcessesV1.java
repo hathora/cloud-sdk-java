@@ -26,12 +26,15 @@ public class ProcessesV1 {
 
     /**
      * Get details for an existing [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
+     * @param processId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetProcessInfoResponse getProcessInfo(dev.hathora.cloud_api.models.operations.GetProcessInfoRequest request, dev.hathora.cloud_api.models.operations.GetProcessInfoSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetProcessInfoResponse getProcessInfo(dev.hathora.cloud_api.models.operations.GetProcessInfoSecurity security, String appId, String processId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetProcessInfoRequest request = new dev.hathora.cloud_api.models.operations.GetProcessInfoRequest(appId, processId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetProcessInfoRequest.class, baseUrl, "/processes/v1/{appId}/info/{processId}", request, null);
         
@@ -73,12 +76,27 @@ public class ProcessesV1 {
 
     /**
      * Returns an array of active [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse getRunningProcesses(dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest request, dev.hathora.cloud_api.models.operations.GetRunningProcessesSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse getRunningProcesses(dev.hathora.cloud_api.models.operations.GetRunningProcessesSecurity security, String appId) throws Exception {
+        return this.getRunningProcesses(security, appId, null);
+    }
+
+    /**
+     * Returns an array of active [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
+     * @param security the security details to use for authentication
+     * @param appId
+     * @param region Available regions to request a game server.
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     */
+    public dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse getRunningProcesses(dev.hathora.cloud_api.models.operations.GetRunningProcessesSecurity security, String appId, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest request = new dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest(appId);
+        request.region=region;
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest.class, baseUrl, "/processes/v1/{appId}/list/running", request, null);
         
@@ -126,12 +144,27 @@ public class ProcessesV1 {
 
     /**
      * Returns an array of stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse getStoppedProcesses(dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest request, dev.hathora.cloud_api.models.operations.GetStoppedProcessesSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse getStoppedProcesses(dev.hathora.cloud_api.models.operations.GetStoppedProcessesSecurity security, String appId) throws Exception {
+        return this.getStoppedProcesses(security, appId, null);
+    }
+
+    /**
+     * Returns an array of stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
+     * @param security the security details to use for authentication
+     * @param appId
+     * @param region Available regions to request a game server.
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     */
+    public dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse getStoppedProcesses(dev.hathora.cloud_api.models.operations.GetStoppedProcessesSecurity security, String appId, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest request = new dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest(appId);
+        request.region=region;
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest.class, baseUrl, "/processes/v1/{appId}/list/stopped", request, null);
         

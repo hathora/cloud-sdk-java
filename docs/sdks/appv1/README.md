@@ -88,11 +88,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            DeleteAppRequest req = new DeleteAppRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2");            
-
-            DeleteAppResponse res = sdk.appV1.deleteApp(req, new DeleteAppSecurity("unde") {{
+            DeleteAppResponse res = sdk.appV1.deleteApp(new DeleteAppSecurity("unde") {{
                 auth0 = "";
-            }});
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
 
             if (res.statusCode == 200) {
                 // handle response
@@ -106,10 +104,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                 | [dev.hathora.cloud_api.models.operations.DeleteAppRequest](../../models/operations/DeleteAppRequest.md)   | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
-| `security`                                                                                                | [dev.hathora.cloud_api.models.operations.DeleteAppSecurity](../../models/operations/DeleteAppSecurity.md) | :heavy_check_mark:                                                                                        | The security requirements to use for the request.                                                         |
+| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               | Example                                                                                                   |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                | [dev.hathora.cloud_api.models.operations.DeleteAppSecurity](../../models/operations/DeleteAppSecurity.md) | :heavy_check_mark:                                                                                        | The security requirements to use for the request.                                                         |                                                                                                           |
+| `appId`                                                                                                   | *String*                                                                                                  | :heavy_check_mark:                                                                                        | N/A                                                                                                       | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                  |
 
 
 ### Response
@@ -137,11 +135,9 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            GetAppInfoRequest req = new GetAppInfoRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2");            
-
-            GetAppInfoResponse res = sdk.appV1.getAppInfo(req, new GetAppInfoSecurity("nulla") {{
+            GetAppInfoResponse res = sdk.appV1.getAppInfo(new GetAppInfoSecurity("nulla") {{
                 auth0 = "";
-            }});
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
 
             if (res.application != null) {
                 // handle response
@@ -155,10 +151,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                   | [dev.hathora.cloud_api.models.operations.GetAppInfoRequest](../../models/operations/GetAppInfoRequest.md)   | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
-| `security`                                                                                                  | [dev.hathora.cloud_api.models.operations.GetAppInfoSecurity](../../models/operations/GetAppInfoSecurity.md) | :heavy_check_mark:                                                                                          | The security requirements to use for the request.                                                           |
+| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 | Example                                                                                                     |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                  | [dev.hathora.cloud_api.models.operations.GetAppInfoSecurity](../../models/operations/GetAppInfoSecurity.md) | :heavy_check_mark:                                                                                          | The security requirements to use for the request.                                                           |                                                                                                             |
+| `appId`                                                                                                     | *String*                                                                                                    | :heavy_check_mark:                                                                                          | N/A                                                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                    |
 
 
 ### Response
@@ -235,15 +231,22 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            UpdateAppRequest req = new UpdateAppRequest(                new AppConfig("minecraft",                 new AppConfigAuthConfiguration() {{
-                                                anonymous = new RecordStringNever();;
-                                                google = new AppConfigAuthConfigurationGoogle("illum");;
-                                                nickname = new RecordStringNever();;
-                                            }};);, "app-af469a92-5b45-4565-b3c4-b79878de67d2");            
-
-            UpdateAppResponse res = sdk.appV1.updateApp(req, new UpdateAppSecurity("vel") {{
+            UpdateAppResponse res = sdk.appV1.updateApp(new UpdateAppSecurity("illum") {{
                 auth0 = "";
-            }});
+            }}, new AppConfig("minecraft",                 new AppConfigAuthConfiguration() {{
+                                anonymous = new RecordStringNever();;
+                                google = new AppConfigAuthConfigurationGoogle("deserunt");;
+                                nickname = new RecordStringNever();;
+                            }};) {{
+                appName = "minecraft";
+                authConfiguration = new AppConfigAuthConfiguration() {{
+                    anonymous = new RecordStringNever() {{}};
+                    google = new AppConfigAuthConfigurationGoogle("error") {{
+                        clientId = "vel";
+                    }};
+                    nickname = new RecordStringNever() {{}};
+                }};
+            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
 
             if (res.application != null) {
                 // handle response
@@ -257,10 +260,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                 | [dev.hathora.cloud_api.models.operations.UpdateAppRequest](../../models/operations/UpdateAppRequest.md)   | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
-| `security`                                                                                                | [dev.hathora.cloud_api.models.operations.UpdateAppSecurity](../../models/operations/UpdateAppSecurity.md) | :heavy_check_mark:                                                                                        | The security requirements to use for the request.                                                         |
+| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               | Example                                                                                                   |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                | [dev.hathora.cloud_api.models.operations.UpdateAppSecurity](../../models/operations/UpdateAppSecurity.md) | :heavy_check_mark:                                                                                        | The security requirements to use for the request.                                                         |                                                                                                           |
+| `appConfig`                                                                                               | [dev.hathora.cloud_api.models.shared.AppConfig](../../models/shared/AppConfig.md)                         | :heavy_check_mark:                                                                                        | N/A                                                                                                       |                                                                                                           |
+| `appId`                                                                                                   | *String*                                                                                                  | :heavy_check_mark:                                                                                        | N/A                                                                                                       | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                  |
 
 
 ### Response

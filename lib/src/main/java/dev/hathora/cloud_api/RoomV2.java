@@ -26,12 +26,29 @@ public class RoomV2 {
 
     /**
      * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId` and `region`.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param createRoomRequest
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.CreateRoomResponse createRoom(dev.hathora.cloud_api.models.operations.CreateRoomRequest request, dev.hathora.cloud_api.models.operations.CreateRoomSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreateRoomResponse createRoom(dev.hathora.cloud_api.models.operations.CreateRoomSecurity security, dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId) throws Exception {
+        return this.createRoom(security, createRoomRequest, appId, null);
+    }
+
+    /**
+     * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId` and `region`.
+     * @param security the security details to use for authentication
+     * @param createRoomRequest
+     * @param appId
+     * @param roomId
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     */
+    public dev.hathora.cloud_api.models.operations.CreateRoomResponse createRoom(dev.hathora.cloud_api.models.operations.CreateRoomSecurity security, dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.CreateRoomRequest request = new dev.hathora.cloud_api.models.operations.CreateRoomRequest(createRoomRequest, appId);
+        request.roomId=roomId;
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.CreateRoomRequest.class, baseUrl, "/rooms/v2/{appId}/create", request, null);
         
@@ -105,12 +122,15 @@ public class RoomV2 {
 
     /**
      * Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`. All associated metadata is deleted.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
+     * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.DestroyRoomResponse destroyRoom(dev.hathora.cloud_api.models.operations.DestroyRoomRequest request, dev.hathora.cloud_api.models.operations.DestroyRoomSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.DestroyRoomResponse destroyRoom(dev.hathora.cloud_api.models.operations.DestroyRoomSecurity security, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.DestroyRoomRequest request = new dev.hathora.cloud_api.models.operations.DestroyRoomRequest(appId, roomId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.DestroyRoomRequest.class, baseUrl, "/rooms/v2/{appId}/destroy/{roomId}", request, null);
         
@@ -153,12 +173,15 @@ public class RoomV2 {
 
     /**
      * Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
+     * @param processId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse getActiveRoomsForProcess(dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest request, dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse getActiveRoomsForProcess(dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessSecurity security, String appId, String processId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest request = new dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest(appId, processId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest.class, baseUrl, "/rooms/v2/{appId}/list/{processId}/active", request, null);
         
@@ -200,11 +223,14 @@ public class RoomV2 {
 
     /**
      * Get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`. Clients can call this endpoint without authentication.
-     * @param request the request object containing all of the parameters for the API call
+     * @param appId
+     * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse getConnectionInfo(dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse getConnectionInfo(String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest request = new dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest(appId, roomId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest.class, baseUrl, "/rooms/v2/{appId}/connectioninfo/{roomId}", request, null);
         
@@ -259,12 +285,15 @@ public class RoomV2 {
 
     /**
      * Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
+     * @param processId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest request, dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessSecurity security, String appId, String processId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest request = new dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest(appId, processId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest.class, baseUrl, "/rooms/v2/{appId}/list/{processId}/inactive", request, null);
         
@@ -306,12 +335,15 @@ public class RoomV2 {
 
     /**
      * Get details for an existing [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
+     * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetRoomInfoResponse getRoomInfo(dev.hathora.cloud_api.models.operations.GetRoomInfoRequest request, dev.hathora.cloud_api.models.operations.GetRoomInfoSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetRoomInfoResponse getRoomInfo(dev.hathora.cloud_api.models.operations.GetRoomInfoSecurity security, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetRoomInfoRequest request = new dev.hathora.cloud_api.models.operations.GetRoomInfoRequest(appId, roomId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetRoomInfoRequest.class, baseUrl, "/rooms/v2/{appId}/info/{roomId}", request, null);
         
@@ -353,12 +385,15 @@ public class RoomV2 {
 
     /**
      * Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`. The room is unallocated from the process but can be rescheduled later using the same `roomId`.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
+     * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.SuspendRoomResponse suspendRoom(dev.hathora.cloud_api.models.operations.SuspendRoomRequest request, dev.hathora.cloud_api.models.operations.SuspendRoomSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.SuspendRoomResponse suspendRoom(dev.hathora.cloud_api.models.operations.SuspendRoomSecurity security, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.SuspendRoomRequest request = new dev.hathora.cloud_api.models.operations.SuspendRoomRequest(appId, roomId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.SuspendRoomRequest.class, baseUrl, "/rooms/v2/{appId}/suspend/{roomId}", request, null);
         

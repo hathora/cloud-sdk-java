@@ -22,14 +22,32 @@ public class RoomV1 {
 	}
 
     /**
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param createRoomRequest
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse createRoomDeprecated(dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedRequest request, dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse createRoomDeprecated(dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedSecurity security, dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId) throws Exception {
+        return this.createRoomDeprecated(security, createRoomRequest, appId, null);
+    }
+
+    /**
+     * @param security the security details to use for authentication
+     * @param createRoomRequest
+     * @param appId
+     * @param roomId
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse createRoomDeprecated(dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedSecurity security, dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedRequest(createRoomRequest, appId);
+        request.roomId=roomId;
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedRequest.class, baseUrl, "/rooms/v1/{appId}/create", request, null);
         
@@ -101,14 +119,17 @@ public class RoomV1 {
     }
 
     /**
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
+     * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse destroyRoomDeprecated(dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedRequest request, dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse destroyRoomDeprecated(dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedSecurity security, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedRequest(appId, roomId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedRequest.class, baseUrl, "/rooms/v1/{appId}/destroy/{roomId}", request, null);
         
@@ -150,14 +171,17 @@ public class RoomV1 {
     }
 
     /**
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
+     * @param processId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse getActiveRoomsForProcessDeprecated(dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedRequest request, dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse getActiveRoomsForProcessDeprecated(dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedSecurity security, String appId, String processId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedRequest(appId, processId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedRequest.class, baseUrl, "/rooms/v1/{appId}/list/{processId}/active", request, null);
         
@@ -198,13 +222,16 @@ public class RoomV1 {
     }
 
     /**
-     * @param request the request object containing all of the parameters for the API call
+     * @param appId
+     * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse getConnectionInfoDeprecated(dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse getConnectionInfoDeprecated(String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedRequest(appId, roomId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedRequest.class, baseUrl, "/rooms/v1/{appId}/connectioninfo/{roomId}", request, null);
         
@@ -258,14 +285,17 @@ public class RoomV1 {
     }
 
     /**
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
+     * @param processId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse getInactiveRoomsForProcessDeprecated(dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedRequest request, dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse getInactiveRoomsForProcessDeprecated(dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedSecurity security, String appId, String processId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedRequest(appId, processId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedRequest.class, baseUrl, "/rooms/v1/{appId}/list/{processId}/inactive", request, null);
         
@@ -306,14 +336,17 @@ public class RoomV1 {
     }
 
     /**
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
+     * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse getRoomInfoDeprecated(dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedRequest request, dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse getRoomInfoDeprecated(dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedSecurity security, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedRequest(appId, roomId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedRequest.class, baseUrl, "/rooms/v1/{appId}/info/{roomId}", request, null);
         
@@ -354,14 +387,17 @@ public class RoomV1 {
     }
 
     /**
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
+     * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse suspendRoomDeprecated(dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedRequest request, dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse suspendRoomDeprecated(dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedSecurity security, String appId, String roomId) throws Exception {
+        dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedRequest(appId, roomId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedRequest.class, baseUrl, "/rooms/v1/{appId}/suspend/{roomId}", request, null);
         

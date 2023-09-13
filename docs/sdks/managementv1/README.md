@@ -21,7 +21,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            dev.hathora.cloud_api.models.shared.VerificationEmailRequest req = new VerificationEmailRequest("nam");            
+            dev.hathora.cloud_api.models.shared.VerificationEmailRequest req = new VerificationEmailRequest("commodi");            
 
             SendVerificationEmailResponse res = sdk.managementV1.sendVerificationEmail(req);
 

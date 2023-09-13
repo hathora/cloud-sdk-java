@@ -23,7 +23,9 @@ public class AuthV1 {
 		this.sdkConfiguration = sdkConfiguration;
 	}
 
-    public dev.hathora.cloud_api.models.operations.LoginAnonymousResponse loginAnonymous(dev.hathora.cloud_api.models.operations.LoginAnonymousRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.LoginAnonymousResponse loginAnonymous(String appId) throws Exception {
+        dev.hathora.cloud_api.models.operations.LoginAnonymousRequest request = new dev.hathora.cloud_api.models.operations.LoginAnonymousRequest(appId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.LoginAnonymousRequest.class, baseUrl, "/auth/v1/{appId}/login/anonymous", request, null);
         
@@ -62,7 +64,9 @@ public class AuthV1 {
         return res;
     }
 
-    public dev.hathora.cloud_api.models.operations.LoginGoogleResponse loginGoogle(dev.hathora.cloud_api.models.operations.LoginGoogleRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.LoginGoogleResponse loginGoogle(dev.hathora.cloud_api.models.shared.LoginGoogleRequest loginGoogleRequest, String appId) throws Exception {
+        dev.hathora.cloud_api.models.operations.LoginGoogleRequest request = new dev.hathora.cloud_api.models.operations.LoginGoogleRequest(loginGoogleRequest, appId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.LoginGoogleRequest.class, baseUrl, "/auth/v1/{appId}/login/google", request, null);
         
@@ -113,7 +117,9 @@ public class AuthV1 {
         return res;
     }
 
-    public dev.hathora.cloud_api.models.operations.LoginNicknameResponse loginNickname(dev.hathora.cloud_api.models.operations.LoginNicknameRequest request) throws Exception {
+    public dev.hathora.cloud_api.models.operations.LoginNicknameResponse loginNickname(dev.hathora.cloud_api.models.shared.LoginNicknameRequest loginNicknameRequest, String appId) throws Exception {
+        dev.hathora.cloud_api.models.operations.LoginNicknameRequest request = new dev.hathora.cloud_api.models.operations.LoginNicknameRequest(loginNicknameRequest, appId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.LoginNicknameRequest.class, baseUrl, "/auth/v1/{appId}/login/nickname", request, null);
         

@@ -33,11 +33,11 @@ public class Application {
 
             GetLogsForAppRequest req = new GetLogsForAppRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
                 follow = false;
-                region = Region.TOKYO;
-                tailLines = 800911;
+                region = Region.MUMBAI;
+                tailLines = 143353;
             }};            
 
-            GetLogsForAppResponse res = sdk.logV1.getLogsForApp(req, new GetLogsForAppSecurity("esse") {{
+            GetLogsForAppResponse res = sdk.logV1.getLogsForApp(req, new GetLogsForAppSecurity("deleniti") {{
                 auth0 = "";
             }});
 
@@ -86,10 +86,10 @@ public class Application {
 
             GetLogsForDeploymentRequest req = new GetLogsForDeploymentRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", 1) {{
                 follow = false;
-                tailLines = 520478;
+                tailLines = 944669;
             }};            
 
-            GetLogsForDeploymentResponse res = sdk.logV1.getLogsForDeployment(req, new GetLogsForDeploymentSecurity("porro") {{
+            GetLogsForDeploymentResponse res = sdk.logV1.getLogsForDeployment(req, new GetLogsForDeploymentSecurity("optio") {{
                 auth0 = "";
             }});
 
@@ -138,10 +138,10 @@ public class Application {
 
             GetLogsForProcessRequest req = new GetLogsForProcessRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e") {{
                 follow = false;
-                tailLines = 678880;
+                tailLines = 521848;
             }};            
 
-            GetLogsForProcessResponse res = sdk.logV1.getLogsForProcess(req, new GetLogsForProcessSecurity("dicta") {{
+            GetLogsForProcessResponse res = sdk.logV1.getLogsForProcess(req, new GetLogsForProcessSecurity("beatae") {{
                 auth0 = "";
             }});
 

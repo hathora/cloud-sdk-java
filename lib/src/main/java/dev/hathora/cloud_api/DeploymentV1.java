@@ -26,12 +26,16 @@ public class DeploymentV1 {
 
     /**
      * Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) and [build](https://hathora.dev/docs/concepts/hathora-entities#build).
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param deploymentConfig User specified deployment configuration for your application at runtime.
+     * @param appId
+     * @param buildId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.CreateDeploymentResponse createDeployment(dev.hathora.cloud_api.models.operations.CreateDeploymentRequest request, dev.hathora.cloud_api.models.operations.CreateDeploymentSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreateDeploymentResponse createDeployment(dev.hathora.cloud_api.models.operations.CreateDeploymentSecurity security, dev.hathora.cloud_api.models.shared.DeploymentConfig deploymentConfig, String appId, Integer buildId) throws Exception {
+        dev.hathora.cloud_api.models.operations.CreateDeploymentRequest request = new dev.hathora.cloud_api.models.operations.CreateDeploymentRequest(deploymentConfig, appId, buildId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.CreateDeploymentRequest.class, baseUrl, "/deployments/v1/{appId}/create/{buildId}", request, null);
         
@@ -92,12 +96,15 @@ public class DeploymentV1 {
 
     /**
      * Get details for an existing [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) using `appId`.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
+     * @param deploymentId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse getDeploymentInfo(dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest request, dev.hathora.cloud_api.models.operations.GetDeploymentInfoSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse getDeploymentInfo(dev.hathora.cloud_api.models.operations.GetDeploymentInfoSecurity security, String appId, Integer deploymentId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest request = new dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest(appId, deploymentId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest.class, baseUrl, "/deployments/v1/{appId}/info/{deploymentId}", request, null);
         
@@ -139,12 +146,14 @@ public class DeploymentV1 {
 
     /**
      * Returns an array of [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param request the request object containing all of the parameters for the API call
      * @param security the security details to use for authentication
+     * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetDeploymentsResponse getDeployments(dev.hathora.cloud_api.models.operations.GetDeploymentsRequest request, dev.hathora.cloud_api.models.operations.GetDeploymentsSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetDeploymentsResponse getDeployments(dev.hathora.cloud_api.models.operations.GetDeploymentsSecurity security, String appId) throws Exception {
+        dev.hathora.cloud_api.models.operations.GetDeploymentsRequest request = new dev.hathora.cloud_api.models.operations.GetDeploymentsRequest(appId);
+        
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetDeploymentsRequest.class, baseUrl, "/deployments/v1/{appId}/list", request, null);
         

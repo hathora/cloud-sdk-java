@@ -26,12 +26,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            CreatePrivateLobbyDeprecatedRequest req = new CreatePrivateLobbyDeprecatedRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
-                local = false;
-                region = Region.LONDON;
-            }};            
-
-            CreatePrivateLobbyDeprecatedResponse res = sdk.lobbyV1.createPrivateLobbyDeprecated(req);
+            CreatePrivateLobbyDeprecatedResponse res = sdk.lobbyV1.createPrivateLobbyDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", false, Region.SYDNEY);
 
             if (res.roomId != null) {
                 // handle response
@@ -45,9 +40,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                     | Type                                                                                                                                          | Required                                                                                                                                      | Description                                                                                                                                   |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                                     | [dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedRequest](../../models/operations/CreatePrivateLobbyDeprecatedRequest.md) | :heavy_check_mark:                                                                                                                            | The request object to use for the request.                                                                                                    |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `appId`                                                                     | *String*                                                                    | :heavy_check_mark:                                                          | N/A                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                    |
+| `local`                                                                     | *Boolean*                                                                   | :heavy_minus_sign:                                                          | N/A                                                                         |                                                                             |
+| `region`                                                                    | [dev.hathora.cloud_api.models.shared.Region](../../models/shared/Region.md) | :heavy_minus_sign:                                                          | Available regions to request a game server.                                 |                                                                             |
 
 
 ### Response
@@ -75,12 +72,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            CreatePublicLobbyDeprecatedRequest req = new CreatePublicLobbyDeprecatedRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
-                local = false;
-                region = Region.SYDNEY;
-            }};            
-
-            CreatePublicLobbyDeprecatedResponse res = sdk.lobbyV1.createPublicLobbyDeprecated(req);
+            CreatePublicLobbyDeprecatedResponse res = sdk.lobbyV1.createPublicLobbyDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", false, Region.SYDNEY);
 
             if (res.roomId != null) {
                 // handle response
@@ -94,9 +86,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                   | Type                                                                                                                                        | Required                                                                                                                                    | Description                                                                                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                                   | [dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedRequest](../../models/operations/CreatePublicLobbyDeprecatedRequest.md) | :heavy_check_mark:                                                                                                                          | The request object to use for the request.                                                                                                  |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `appId`                                                                     | *String*                                                                    | :heavy_check_mark:                                                          | N/A                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                    |
+| `local`                                                                     | *Boolean*                                                                   | :heavy_minus_sign:                                                          | N/A                                                                         |                                                                             |
+| `region`                                                                    | [dev.hathora.cloud_api.models.shared.Region](../../models/shared/Region.md) | :heavy_minus_sign:                                                          | Available regions to request a game server.                                 |                                                                             |
 
 
 ### Response
@@ -124,12 +118,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .build();
 
-            ListActivePublicLobbiesDeprecatedRequest req = new ListActivePublicLobbiesDeprecatedRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
-                local = false;
-                region = Region.SAO_PAULO;
-            }};            
-
-            ListActivePublicLobbiesDeprecatedResponse res = sdk.lobbyV1.listActivePublicLobbiesDeprecated(req);
+            ListActivePublicLobbiesDeprecatedResponse res = sdk.lobbyV1.listActivePublicLobbiesDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", false, Region.SAO_PAULO);
 
             if (res.lobbies != null) {
                 // handle response
@@ -143,9 +132,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                               | Type                                                                                                                                                    | Required                                                                                                                                                | Description                                                                                                                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                                               | [dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedRequest](../../models/operations/ListActivePublicLobbiesDeprecatedRequest.md) | :heavy_check_mark:                                                                                                                                      | The request object to use for the request.                                                                                                              |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `appId`                                                                     | *String*                                                                    | :heavy_check_mark:                                                          | N/A                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                    |
+| `local`                                                                     | *Boolean*                                                                   | :heavy_minus_sign:                                                          | N/A                                                                         |                                                                             |
+| `region`                                                                    | [dev.hathora.cloud_api.models.shared.Region](../../models/shared/Region.md) | :heavy_minus_sign:                                                          | Available regions to request a game server.                                 |                                                                             |
 
 
 ### Response
