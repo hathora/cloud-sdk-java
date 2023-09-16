@@ -10,7 +10,7 @@ import dev.hathora.cloud_api.utils.SpeakeasyHTTPClient;
 /**
  * Hathora Cloud API: Welcome to the Hathora Cloud API documentation! Learn how to use the Hathora Cloud APIs to build and scale your game servers globally.
  */
-public class SDK {
+public class HathoraCloud {
 	/**
 	 * SERVERS contains the list of server urls available to the SDK.
 	 */
@@ -122,7 +122,7 @@ public class SDK {
 		 * @return The SDK instance.
 		 * @throws Exception Thrown if the SDK could not be built.
 		 */
-		public SDK build() throws Exception {
+		public HathoraCloud build() throws Exception {
 			if (this.sdkConfiguration.defaultClient == null) {
 				this.sdkConfiguration.defaultClient = new SpeakeasyHTTPClient();
 			}
@@ -140,7 +140,7 @@ public class SDK {
 				this.sdkConfiguration.serverUrl = this.sdkConfiguration.serverUrl.substring(0, this.sdkConfiguration.serverUrl.length() - 1);
 			}
 			
-			return new SDK(this.sdkConfiguration);
+			return new HathoraCloud(this.sdkConfiguration);
 		}
 	}
 
@@ -152,7 +152,7 @@ public class SDK {
 		return new Builder();
 	}
 
-	private SDK(SDKConfiguration sdkConfiguration) throws Exception {
+	private HathoraCloud(SDKConfiguration sdkConfiguration) throws Exception {
 		this.sdkConfiguration = sdkConfiguration;
 		
 		this.appV1 = new AppV1(this.sdkConfiguration);

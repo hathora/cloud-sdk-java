@@ -1,4 +1,4 @@
-# processesV1
+# ProcessesV1
 
 ## Overview
 
@@ -19,7 +19,7 @@ Get details for an existing [process](https://hathora.dev/docs/concepts/hathora-
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetProcessInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetProcessInfoResponse;
 import dev.hathora.cloud_api.models.operations.GetProcessInfoSecurity;
@@ -27,7 +27,7 @@ import dev.hathora.cloud_api.models.operations.GetProcessInfoSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetProcessInfoResponse res = sdk.processesV1.getProcessInfo(new GetProcessInfoSecurity("esse") {{
@@ -67,7 +67,7 @@ Returns an array of active [process](https://hathora.dev/docs/concepts/hathora-e
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest;
 import dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse;
 import dev.hathora.cloud_api.models.operations.GetRunningProcessesSecurity;
@@ -76,7 +76,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetRunningProcessesResponse res = sdk.processesV1.getRunningProcesses(new GetRunningProcessesSecurity("ipsum") {{
@@ -116,7 +116,7 @@ Returns an array of stopped [process](https://hathora.dev/docs/concepts/hathora-
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest;
 import dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse;
 import dev.hathora.cloud_api.models.operations.GetStoppedProcessesSecurity;
@@ -125,7 +125,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetStoppedProcessesResponse res = sdk.processesV1.getStoppedProcesses(new GetStoppedProcessesSecurity("aspernatur") {{

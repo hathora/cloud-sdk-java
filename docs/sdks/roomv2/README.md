@@ -1,4 +1,4 @@
-# roomV2
+# RoomV2
 
 ## Overview
 
@@ -23,7 +23,7 @@ Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreateRoomRequest;
 import dev.hathora.cloud_api.models.operations.CreateRoomResponse;
 import dev.hathora.cloud_api.models.operations.CreateRoomSecurity;
@@ -33,7 +33,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             CreateRoomResponse res = sdk.roomV2.createRoom(new CreateRoomSecurity("saepe") {{
@@ -76,7 +76,7 @@ Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room) using 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.DestroyRoomRequest;
 import dev.hathora.cloud_api.models.operations.DestroyRoomResponse;
 import dev.hathora.cloud_api.models.operations.DestroyRoomSecurity;
@@ -84,7 +84,7 @@ import dev.hathora.cloud_api.models.operations.DestroyRoomSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             DestroyRoomResponse res = sdk.roomV2.destroyRoom(new DestroyRoomSecurity("corporis") {{
@@ -124,7 +124,7 @@ Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest;
 import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse;
 import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessSecurity;
@@ -132,7 +132,7 @@ import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetActiveRoomsForProcessResponse res = sdk.roomV2.getActiveRoomsForProcess(new GetActiveRoomsForProcessSecurity("iste") {{
@@ -172,14 +172,14 @@ Get connection details to a [room](https://hathora.dev/docs/concepts/hathora-ent
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetConnectionInfoResponse res = sdk.roomV2.getConnectionInfo("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
@@ -216,7 +216,7 @@ Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest;
 import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse;
 import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessSecurity;
@@ -224,7 +224,7 @@ import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessSecurit
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetInactiveRoomsForProcessResponse res = sdk.roomV2.getInactiveRoomsForProcess(new GetInactiveRoomsForProcessSecurity("iure") {{
@@ -264,7 +264,7 @@ Get details for an existing [room](https://hathora.dev/docs/concepts/hathora-ent
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetRoomInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetRoomInfoResponse;
 import dev.hathora.cloud_api.models.operations.GetRoomInfoSecurity;
@@ -272,7 +272,7 @@ import dev.hathora.cloud_api.models.operations.GetRoomInfoSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetRoomInfoResponse res = sdk.roomV2.getRoomInfo(new GetRoomInfoSecurity("saepe") {{
@@ -312,7 +312,7 @@ Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room) using 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.SuspendRoomRequest;
 import dev.hathora.cloud_api.models.operations.SuspendRoomResponse;
 import dev.hathora.cloud_api.models.operations.SuspendRoomSecurity;
@@ -320,7 +320,7 @@ import dev.hathora.cloud_api.models.operations.SuspendRoomSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             SuspendRoomResponse res = sdk.roomV2.suspendRoom(new SuspendRoomSecurity("quidem") {{

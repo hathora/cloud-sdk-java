@@ -1,4 +1,4 @@
-# lobbyV2
+# LobbyV2
 
 ## Overview
 
@@ -23,7 +23,7 @@ Create a new [lobby](https://hathora.dev/docs/concepts/hathora-entities#lobby) f
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreateLobbyRequest;
 import dev.hathora.cloud_api.models.operations.CreateLobbyResponse;
 import dev.hathora.cloud_api.models.shared.CreateLobbyRequest;
@@ -34,7 +34,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             CreateLobbyResponse res = sdk.lobbyV2.createLobby(new CreateLobbyRequest(                new LobbyInitialConfig();, Region.TOKYO, LobbyVisibility.PRIVATE_) {{
@@ -76,7 +76,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequest;
 import dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequestBody;
 import dev.hathora.cloud_api.models.operations.CreateLocalLobbyResponse;
@@ -86,7 +86,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             CreateLocalLobbyResponse res = sdk.lobbyV2.createLocalLobby(new CreateLocalLobbyRequestBody(                new LobbyInitialConfig();, Region.FRANKFURT) {{
@@ -127,7 +127,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequest;
 import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequestBody;
 import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyResponse;
@@ -137,7 +137,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             CreatePrivateLobbyResponse res = sdk.lobbyV2.createPrivateLobby(new CreatePrivateLobbyRequestBody(                new LobbyInitialConfig();, Region.TOKYO) {{
@@ -178,7 +178,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequest;
 import dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequestBody;
 import dev.hathora.cloud_api.models.operations.CreatePublicLobbyResponse;
@@ -188,7 +188,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             CreatePublicLobbyResponse res = sdk.lobbyV2.createPublicLobby(new CreatePublicLobbyRequestBody(                new LobbyInitialConfig();, Region.WASHINGTON_DC) {{
@@ -229,14 +229,14 @@ Get details for an existing [lobby](https://hathora.dev/docs/concepts/hathora-en
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetLobbyInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetLobbyInfoResponse;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetLobbyInfoResponse res = sdk.lobbyV2.getLobbyInfo("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
@@ -273,7 +273,7 @@ Get all active [lobbies](https://hathora.dev/docs/concepts/hathora-entities#lobb
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesRequest;
 import dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesResponse;
 import dev.hathora.cloud_api.models.shared.Region;
@@ -281,7 +281,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             ListActivePublicLobbiesResponse res = sdk.lobbyV2.listActivePublicLobbies("app-af469a92-5b45-4565-b3c4-b79878de67d2", Region.TOKYO);
@@ -318,7 +318,7 @@ Set the state of a [lobby](https://hathora.dev/docs/concepts/hathora-entities#lo
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.SetLobbyStateRequest;
 import dev.hathora.cloud_api.models.operations.SetLobbyStateResponse;
 import dev.hathora.cloud_api.models.operations.SetLobbyStateSecurity;
@@ -328,7 +328,7 @@ import dev.hathora.cloud_api.models.shared.SetLobbyStateRequestState;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             SetLobbyStateResponse res = sdk.lobbyV2.setLobbyState(new SetLobbyStateSecurity("officia") {{

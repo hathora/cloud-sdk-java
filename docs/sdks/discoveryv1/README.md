@@ -1,4 +1,4 @@
-# discoveryV1
+# DiscoveryV1
 
 ## Overview
 
@@ -17,13 +17,13 @@ Returns an array of all regions with a host and port that a client can directly 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetPingServiceEndpointsResponse;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetPingServiceEndpointsResponse res = sdk.discoveryV1.getPingServiceEndpoints();

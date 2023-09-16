@@ -1,4 +1,4 @@
-# appV1
+# AppV1
 
 ## Overview
 
@@ -21,7 +21,7 @@ Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#ap
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreateAppResponse;
 import dev.hathora.cloud_api.models.operations.CreateAppSecurity;
 import dev.hathora.cloud_api.models.shared.AppConfig;
@@ -32,7 +32,7 @@ import dev.hathora.cloud_api.models.shared.RecordStringNever;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             dev.hathora.cloud_api.models.shared.AppConfig req = new AppConfig("minecraft",                 new AppConfigAuthConfiguration() {{
@@ -77,7 +77,7 @@ Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#appli
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.DeleteAppRequest;
 import dev.hathora.cloud_api.models.operations.DeleteAppResponse;
 import dev.hathora.cloud_api.models.operations.DeleteAppSecurity;
@@ -85,7 +85,7 @@ import dev.hathora.cloud_api.models.operations.DeleteAppSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             DeleteAppResponse res = sdk.appV1.deleteApp(new DeleteAppSecurity("unde") {{
@@ -124,7 +124,7 @@ Get details for an [application](https://hathora.dev/docs/concepts/hathora-entit
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetAppInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetAppInfoResponse;
 import dev.hathora.cloud_api.models.operations.GetAppInfoSecurity;
@@ -132,7 +132,7 @@ import dev.hathora.cloud_api.models.operations.GetAppInfoSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetAppInfoResponse res = sdk.appV1.getAppInfo(new GetAppInfoSecurity("nulla") {{
@@ -171,14 +171,14 @@ Returns an unsorted list of your organization’s [applications](https://hathora
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetAppsResponse;
 import dev.hathora.cloud_api.models.operations.GetAppsSecurity;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetAppsResponse res = sdk.appV1.getApps(new GetAppsSecurity("corrupti") {{
@@ -216,7 +216,7 @@ Update data for an existing [application](https://hathora.dev/docs/concepts/hath
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.UpdateAppRequest;
 import dev.hathora.cloud_api.models.operations.UpdateAppResponse;
 import dev.hathora.cloud_api.models.operations.UpdateAppSecurity;
@@ -228,7 +228,7 @@ import dev.hathora.cloud_api.models.shared.RecordStringNever;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             UpdateAppResponse res = sdk.appV1.updateApp(new UpdateAppSecurity("illum") {{

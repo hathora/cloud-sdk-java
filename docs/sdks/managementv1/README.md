@@ -1,4 +1,4 @@
-# managementV1
+# ManagementV1
 
 ### Available Operations
 
@@ -11,14 +11,14 @@
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.SendVerificationEmailResponse;
 import dev.hathora.cloud_api.models.shared.VerificationEmailRequest;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             dev.hathora.cloud_api.models.shared.VerificationEmailRequest req = new VerificationEmailRequest("commodi");            

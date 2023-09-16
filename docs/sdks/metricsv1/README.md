@@ -1,4 +1,4 @@
-# metricsV1
+# MetricsV1
 
 ## Overview
 
@@ -17,7 +17,7 @@ Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetMetricsRequest;
 import dev.hathora.cloud_api.models.operations.GetMetricsResponse;
 import dev.hathora.cloud_api.models.operations.GetMetricsSecurity;
@@ -26,7 +26,7 @@ import dev.hathora.cloud_api.models.shared.MetricName;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetMetricsRequest req = new GetMetricsRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e") {{

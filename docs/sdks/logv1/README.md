@@ -1,4 +1,4 @@
-# logV1
+# LogV1
 
 ## Overview
 
@@ -19,7 +19,7 @@ Returns a stream of logs for an [application](https://hathora.dev/docs/concepts/
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetLogsForAppRequest;
 import dev.hathora.cloud_api.models.operations.GetLogsForAppResponse;
 import dev.hathora.cloud_api.models.operations.GetLogsForAppSecurity;
@@ -28,7 +28,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetLogsForAppRequest req = new GetLogsForAppRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
@@ -73,7 +73,7 @@ Returns a stream of logs for a [deployment](https://hathora.dev/docs/concepts/ha
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetLogsForDeploymentRequest;
 import dev.hathora.cloud_api.models.operations.GetLogsForDeploymentResponse;
 import dev.hathora.cloud_api.models.operations.GetLogsForDeploymentSecurity;
@@ -81,7 +81,7 @@ import dev.hathora.cloud_api.models.operations.GetLogsForDeploymentSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetLogsForDeploymentRequest req = new GetLogsForDeploymentRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", 1) {{
@@ -125,7 +125,7 @@ Returns a stream of logs for a [process](https://hathora.dev/docs/concepts/hatho
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetLogsForProcessRequest;
 import dev.hathora.cloud_api.models.operations.GetLogsForProcessResponse;
 import dev.hathora.cloud_api.models.operations.GetLogsForProcessSecurity;
@@ -133,7 +133,7 @@ import dev.hathora.cloud_api.models.operations.GetLogsForProcessSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetLogsForProcessRequest req = new GetLogsForProcessRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e") {{

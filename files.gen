@@ -13,7 +13,7 @@ lib/src/main/java/dev/hathora/cloud_api/MetricsV1.java
 lib/src/main/java/dev/hathora/cloud_api/ProcessesV1.java
 lib/src/main/java/dev/hathora/cloud_api/RoomV1.java
 lib/src/main/java/dev/hathora/cloud_api/RoomV2.java
-lib/src/main/java/dev/hathora/cloud_api/SDK.java
+lib/src/main/java/dev/hathora/cloud_api/HathoraCloud.java
 .gitattributes
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
@@ -246,7 +246,7 @@ lib/src/main/java/dev/hathora/cloud_api/models/shared/Room.java
 lib/src/main/java/dev/hathora/cloud_api/models/shared/RoomAllocation.java
 lib/src/main/java/dev/hathora/cloud_api/models/shared/ConnectionInfoV2Status.java
 lib/src/main/java/dev/hathora/cloud_api/models/shared/ConnectionInfoV2.java
-docs/sdks/sdk/README.md
+docs/sdks/hathoracloud/README.md
 docs/sdks/appv1/README.md
 docs/sdks/authv1/README.md
 docs/sdks/billingv1/README.md

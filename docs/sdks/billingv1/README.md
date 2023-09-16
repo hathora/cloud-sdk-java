@@ -1,4 +1,4 @@
-# billingV1
+# BillingV1
 
 ### Available Operations
 
@@ -14,14 +14,14 @@
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetBalanceResponse;
 import dev.hathora.cloud_api.models.operations.GetBalanceSecurity;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetBalanceResponse res = sdk.billingV1.getBalance(new GetBalanceSecurity("ipsa") {{
@@ -57,14 +57,14 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetInvoicesResponse;
 import dev.hathora.cloud_api.models.operations.GetInvoicesSecurity;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetInvoicesResponse res = sdk.billingV1.getInvoices(new GetInvoicesSecurity("delectus") {{
@@ -100,14 +100,14 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse;
 import dev.hathora.cloud_api.models.operations.GetPaymentMethodSecurity;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetPaymentMethodResponse res = sdk.billingV1.getPaymentMethod(new GetPaymentMethodSecurity("tempora") {{
@@ -143,7 +143,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse;
 import dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlSecurity;
 import dev.hathora.cloud_api.models.shared.CustomerPortalUrl;
@@ -151,7 +151,7 @@ import dev.hathora.cloud_api.models.shared.CustomerPortalUrl;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             dev.hathora.cloud_api.models.shared.CustomerPortalUrl req = new CustomerPortalUrl("suscipit");            

@@ -1,4 +1,4 @@
-# buildV1
+# BuildV1
 
 ## Overview
 
@@ -21,7 +21,7 @@ Generate a new `buildId` for an existing [application](https://hathora.dev/docs/
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreateBuildRequest;
 import dev.hathora.cloud_api.models.operations.CreateBuildResponse;
 import dev.hathora.cloud_api.models.operations.CreateBuildSecurity;
@@ -29,7 +29,7 @@ import dev.hathora.cloud_api.models.operations.CreateBuildSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             CreateBuildResponse res = sdk.buildV1.createBuild(new CreateBuildSecurity("minus") {{
@@ -68,7 +68,7 @@ Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build) for a
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.DeleteBuildRequest;
 import dev.hathora.cloud_api.models.operations.DeleteBuildResponse;
 import dev.hathora.cloud_api.models.operations.DeleteBuildSecurity;
@@ -76,7 +76,7 @@ import dev.hathora.cloud_api.models.operations.DeleteBuildSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             DeleteBuildResponse res = sdk.buildV1.deleteBuild(new DeleteBuildSecurity("placeat") {{
@@ -116,7 +116,7 @@ Get details for an existing [build](https://hathora.dev/docs/concepts/hathora-en
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetBuildInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetBuildInfoResponse;
 import dev.hathora.cloud_api.models.operations.GetBuildInfoSecurity;
@@ -124,7 +124,7 @@ import dev.hathora.cloud_api.models.operations.GetBuildInfoSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetBuildInfoResponse res = sdk.buildV1.getBuildInfo(new GetBuildInfoSecurity("voluptatum") {{
@@ -164,7 +164,7 @@ Returns an array of [build](https://hathora.dev/docs/concepts/hathora-entities#b
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetBuildsRequest;
 import dev.hathora.cloud_api.models.operations.GetBuildsResponse;
 import dev.hathora.cloud_api.models.operations.GetBuildsSecurity;
@@ -172,7 +172,7 @@ import dev.hathora.cloud_api.models.operations.GetBuildsSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetBuildsResponse res = sdk.buildV1.getBuilds(new GetBuildsSecurity("iusto") {{
@@ -211,7 +211,7 @@ Provide a tarball that will generate a container image for an existing [applicat
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.RunBuildRequest;
 import dev.hathora.cloud_api.models.operations.RunBuildRequestBody;
 import dev.hathora.cloud_api.models.operations.RunBuildRequestBodyFile;
@@ -221,7 +221,7 @@ import dev.hathora.cloud_api.models.operations.RunBuildSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             RunBuildResponse res = sdk.buildV1.runBuild(new RunBuildSecurity("excepturi") {{

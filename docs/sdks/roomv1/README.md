@@ -1,4 +1,4 @@
-# roomV1
+# RoomV1
 
 ### Available Operations
 
@@ -19,7 +19,7 @@
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse;
 import dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedSecurity;
@@ -29,7 +29,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             CreateRoomDeprecatedResponse res = sdk.roomV1.createRoomDeprecated(new CreateRoomDeprecatedSecurity("ad") {{
@@ -72,7 +72,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse;
 import dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedSecurity;
@@ -80,7 +80,7 @@ import dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             DestroyRoomDeprecatedResponse res = sdk.roomV1.destroyRoomDeprecated(new DestroyRoomDeprecatedSecurity("iste") {{
@@ -120,7 +120,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse;
 import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedSecurity;
@@ -128,7 +128,7 @@ import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecate
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetActiveRoomsForProcessDeprecatedResponse res = sdk.roomV1.getActiveRoomsForProcessDeprecated(new GetActiveRoomsForProcessDeprecatedSecurity("dolor") {{
@@ -168,14 +168,14 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetConnectionInfoDeprecatedResponse res = sdk.roomV1.getConnectionInfoDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
@@ -212,7 +212,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse;
 import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedSecurity;
@@ -220,7 +220,7 @@ import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDepreca
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetInactiveRoomsForProcessDeprecatedResponse res = sdk.roomV1.getInactiveRoomsForProcessDeprecated(new GetInactiveRoomsForProcessDeprecatedSecurity("natus") {{
@@ -260,7 +260,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse;
 import dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedSecurity;
@@ -268,7 +268,7 @@ import dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetRoomInfoDeprecatedResponse res = sdk.roomV1.getRoomInfoDeprecated(new GetRoomInfoDeprecatedSecurity("laboriosam") {{
@@ -308,7 +308,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse;
 import dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedSecurity;
@@ -316,7 +316,7 @@ import dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             SuspendRoomDeprecatedResponse res = sdk.roomV1.suspendRoomDeprecated(new SuspendRoomDeprecatedSecurity("hic") {{

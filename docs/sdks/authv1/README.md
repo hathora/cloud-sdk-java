@@ -1,4 +1,4 @@
-# authV1
+# AuthV1
 
 ## Overview
 
@@ -17,14 +17,14 @@ Operations that allow you to configure authentication for your [applications](ht
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.LoginAnonymousRequest;
 import dev.hathora.cloud_api.models.operations.LoginAnonymousResponse;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             LoginAnonymousResponse res = sdk.authV1.loginAnonymous("app-af469a92-5b45-4565-b3c4-b79878de67d2");
@@ -58,7 +58,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.LoginGoogleRequest;
 import dev.hathora.cloud_api.models.operations.LoginGoogleResponse;
 import dev.hathora.cloud_api.models.shared.LoginGoogleRequest;
@@ -66,7 +66,7 @@ import dev.hathora.cloud_api.models.shared.LoginGoogleRequest;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             LoginGoogleResponse res = sdk.authV1.loginGoogle(new LoginGoogleRequest("iure") {{
@@ -103,7 +103,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.LoginNicknameRequest;
 import dev.hathora.cloud_api.models.operations.LoginNicknameResponse;
 import dev.hathora.cloud_api.models.shared.LoginNicknameRequest;
@@ -111,7 +111,7 @@ import dev.hathora.cloud_api.models.shared.LoginNicknameRequest;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             LoginNicknameResponse res = sdk.authV1.loginNickname(new LoginNicknameRequest("debitis") {{

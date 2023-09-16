@@ -1,4 +1,4 @@
-# deploymentV1
+# DeploymentV1
 
 ## Overview
 
@@ -19,7 +19,7 @@ Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#dep
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreateDeploymentRequest;
 import dev.hathora.cloud_api.models.operations.CreateDeploymentResponse;
 import dev.hathora.cloud_api.models.operations.CreateDeploymentSecurity;
@@ -32,7 +32,7 @@ import dev.hathora.cloud_api.models.shared.TransportType;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             CreateDeploymentResponse res = sdk.deploymentV1.createDeployment(new CreateDeploymentSecurity("deserunt") {{
@@ -96,7 +96,7 @@ Get details for an existing [deployment](https://hathora.dev/docs/concepts/hatho
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse;
 import dev.hathora.cloud_api.models.operations.GetDeploymentInfoSecurity;
@@ -104,7 +104,7 @@ import dev.hathora.cloud_api.models.operations.GetDeploymentInfoSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetDeploymentInfoResponse res = sdk.deploymentV1.getDeploymentInfo(new GetDeploymentInfoSecurity("quo") {{
@@ -144,7 +144,7 @@ Returns an array of [deployment](https://hathora.dev/docs/concepts/hathora-entit
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetDeploymentsRequest;
 import dev.hathora.cloud_api.models.operations.GetDeploymentsResponse;
 import dev.hathora.cloud_api.models.operations.GetDeploymentsSecurity;
@@ -152,7 +152,7 @@ import dev.hathora.cloud_api.models.operations.GetDeploymentsSecurity;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             GetDeploymentsResponse res = sdk.deploymentV1.getDeployments(new GetDeploymentsSecurity("odit") {{

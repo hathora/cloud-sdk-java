@@ -1,4 +1,4 @@
-# lobbyV1
+# LobbyV1
 
 ### Available Operations
 
@@ -15,7 +15,7 @@
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.Region;
@@ -23,7 +23,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             CreatePrivateLobbyDeprecatedResponse res = sdk.lobbyV1.createPrivateLobbyDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", false, Region.SYDNEY);
@@ -61,7 +61,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.Region;
@@ -69,7 +69,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             CreatePublicLobbyDeprecatedResponse res = sdk.lobbyV1.createPublicLobbyDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", false, Region.SYDNEY);
@@ -107,7 +107,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.Region;
@@ -115,7 +115,7 @@ import dev.hathora.cloud_api.models.shared.Region;
 public class Application {
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
                 .build();
 
             ListActivePublicLobbiesDeprecatedResponse res = sdk.lobbyV1.listActivePublicLobbiesDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", false, Region.SAO_PAULO);

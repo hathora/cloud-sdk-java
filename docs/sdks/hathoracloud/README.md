@@ -1,4 +1,4 @@
-# SDK
+# HathoraCloud SDK
 
 ## Overview
 
