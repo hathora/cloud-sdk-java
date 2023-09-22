@@ -13,15 +13,19 @@ package hello.world;
 
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.SendVerificationEmailResponse;
+import dev.hathora.cloud_api.models.shared.Security;
 import dev.hathora.cloud_api.models.shared.VerificationEmailRequest;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("dolor") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            dev.hathora.cloud_api.models.shared.VerificationEmailRequest req = new VerificationEmailRequest("commodi");            
+            dev.hathora.cloud_api.models.shared.VerificationEmailRequest req = new VerificationEmailRequest("natus");            
 
             SendVerificationEmailResponse res = sdk.managementV1.sendVerificationEmail(req);
 

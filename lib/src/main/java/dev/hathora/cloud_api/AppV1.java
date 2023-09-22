@@ -27,11 +27,10 @@ public class AppV1 {
     /**
      * Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @param request the request object containing all of the parameters for the API call
-     * @param security the security details to use for authentication
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.CreateAppResponse createApp(dev.hathora.cloud_api.models.shared.AppConfig request, dev.hathora.cloud_api.models.operations.CreateAppSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreateAppResponse createApp(dev.hathora.cloud_api.models.shared.AppConfig request) throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(baseUrl, "/apps/v1/create");
         
@@ -47,7 +46,7 @@ public class AppV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -85,12 +84,11 @@ public class AppV1 {
 
     /**
      * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
-     * @param security the security details to use for authentication
      * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.DeleteAppResponse deleteApp(dev.hathora.cloud_api.models.operations.DeleteAppSecurity security, String appId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.DeleteAppResponse deleteApp(String appId) throws Exception {
         dev.hathora.cloud_api.models.operations.DeleteAppRequest request = new dev.hathora.cloud_api.models.operations.DeleteAppRequest(appId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -103,7 +101,7 @@ public class AppV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -135,12 +133,11 @@ public class AppV1 {
 
     /**
      * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param security the security details to use for authentication
      * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetAppInfoResponse getAppInfo(dev.hathora.cloud_api.models.operations.GetAppInfoSecurity security, String appId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetAppInfoResponse getAppInfo(String appId) throws Exception {
         dev.hathora.cloud_api.models.operations.GetAppInfoRequest request = new dev.hathora.cloud_api.models.operations.GetAppInfoRequest(appId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -153,7 +150,7 @@ public class AppV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -184,11 +181,10 @@ public class AppV1 {
 
     /**
      * Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
-     * @param security the security details to use for authentication
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetAppsResponse getApps(dev.hathora.cloud_api.models.operations.GetAppsSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetAppsResponse getApps() throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(baseUrl, "/apps/v1/list");
         
@@ -199,7 +195,7 @@ public class AppV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -223,13 +219,12 @@ public class AppV1 {
 
     /**
      * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param security the security details to use for authentication
      * @param appConfig
      * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.UpdateAppResponse updateApp(dev.hathora.cloud_api.models.operations.UpdateAppSecurity security, dev.hathora.cloud_api.models.shared.AppConfig appConfig, String appId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.UpdateAppResponse updateApp(dev.hathora.cloud_api.models.shared.AppConfig appConfig, String appId) throws Exception {
         dev.hathora.cloud_api.models.operations.UpdateAppRequest request = new dev.hathora.cloud_api.models.operations.UpdateAppRequest(appConfig, appId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -247,7 +242,7 @@ public class AppV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 

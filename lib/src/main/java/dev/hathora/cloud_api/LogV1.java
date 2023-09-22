@@ -24,11 +24,10 @@ public class LogV1 {
     /**
      * Returns a stream of logs for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @param request the request object containing all of the parameters for the API call
-     * @param security the security details to use for authentication
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetLogsForAppResponse getLogsForApp(dev.hathora.cloud_api.models.operations.GetLogsForAppRequest request, dev.hathora.cloud_api.models.operations.GetLogsForAppSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetLogsForAppResponse getLogsForApp(dev.hathora.cloud_api.models.operations.GetLogsForAppRequest request) throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetLogsForAppRequest.class, baseUrl, "/logs/v1/{appId}/all", request, null);
         
@@ -45,7 +44,7 @@ public class LogV1 {
             }
         }
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -76,11 +75,10 @@ public class LogV1 {
     /**
      * Returns a stream of logs for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) using `appId` and `deploymentId`.
      * @param request the request object containing all of the parameters for the API call
-     * @param security the security details to use for authentication
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetLogsForDeploymentResponse getLogsForDeployment(dev.hathora.cloud_api.models.operations.GetLogsForDeploymentRequest request, dev.hathora.cloud_api.models.operations.GetLogsForDeploymentSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetLogsForDeploymentResponse getLogsForDeployment(dev.hathora.cloud_api.models.operations.GetLogsForDeploymentRequest request) throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetLogsForDeploymentRequest.class, baseUrl, "/logs/v1/{appId}/deployment/{deploymentId}", request, null);
         
@@ -97,7 +95,7 @@ public class LogV1 {
             }
         }
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -128,11 +126,10 @@ public class LogV1 {
     /**
      * Returns a stream of logs for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
      * @param request the request object containing all of the parameters for the API call
-     * @param security the security details to use for authentication
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetLogsForProcessResponse getLogsForProcess(dev.hathora.cloud_api.models.operations.GetLogsForProcessRequest request, dev.hathora.cloud_api.models.operations.GetLogsForProcessSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetLogsForProcessResponse getLogsForProcess(dev.hathora.cloud_api.models.operations.GetLogsForProcessRequest request) throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetLogsForProcessRequest.class, baseUrl, "/logs/v1/{appId}/process/{processId}", request, null);
         
@@ -149,7 +146,7 @@ public class LogV1 {
             }
         }
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 

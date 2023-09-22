@@ -1,4 +1,4 @@
-# GetInvoicesSecurity
+# Security
 
 
 ## Fields

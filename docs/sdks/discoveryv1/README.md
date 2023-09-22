@@ -19,11 +19,15 @@ package hello.world;
 
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetPingServiceEndpointsResponse;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("quod") {{
+                    auth0 = "";
+                }})
                 .build();
 
             GetPingServiceEndpointsResponse res = sdk.discoveryV1.getPingServiceEndpoints();

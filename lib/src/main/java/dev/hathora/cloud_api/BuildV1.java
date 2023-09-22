@@ -26,12 +26,11 @@ public class BuildV1 {
 
     /**
      * Generate a new `buildId` for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. You need `buildId` to run a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
-     * @param security the security details to use for authentication
      * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.CreateBuildResponse createBuild(dev.hathora.cloud_api.models.operations.CreateBuildSecurity security, String appId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreateBuildResponse createBuild(String appId) throws Exception {
         dev.hathora.cloud_api.models.operations.CreateBuildRequest request = new dev.hathora.cloud_api.models.operations.CreateBuildRequest(appId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -44,7 +43,7 @@ public class BuildV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -82,13 +81,12 @@ public class BuildV1 {
 
     /**
      * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId` and `buildId`.
-     * @param security the security details to use for authentication
      * @param appId
      * @param buildId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.DeleteBuildResponse deleteBuild(dev.hathora.cloud_api.models.operations.DeleteBuildSecurity security, String appId, Integer buildId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.DeleteBuildResponse deleteBuild(String appId, Integer buildId) throws Exception {
         dev.hathora.cloud_api.models.operations.DeleteBuildRequest request = new dev.hathora.cloud_api.models.operations.DeleteBuildRequest(appId, buildId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -101,7 +99,7 @@ public class BuildV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -140,13 +138,12 @@ public class BuildV1 {
 
     /**
      * Get details for an existing [build](https://hathora.dev/docs/concepts/hathora-entities#build) using `appId` and `buildId`.
-     * @param security the security details to use for authentication
      * @param appId
      * @param buildId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetBuildInfoResponse getBuildInfo(dev.hathora.cloud_api.models.operations.GetBuildInfoSecurity security, String appId, Integer buildId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetBuildInfoResponse getBuildInfo(String appId, Integer buildId) throws Exception {
         dev.hathora.cloud_api.models.operations.GetBuildInfoRequest request = new dev.hathora.cloud_api.models.operations.GetBuildInfoRequest(appId, buildId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -159,7 +156,7 @@ public class BuildV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -190,12 +187,11 @@ public class BuildV1 {
 
     /**
      * Returns an array of [build](https://hathora.dev/docs/concepts/hathora-entities#build) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param security the security details to use for authentication
      * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetBuildsResponse getBuilds(dev.hathora.cloud_api.models.operations.GetBuildsSecurity security, String appId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetBuildsResponse getBuilds(String appId) throws Exception {
         dev.hathora.cloud_api.models.operations.GetBuildsRequest request = new dev.hathora.cloud_api.models.operations.GetBuildsRequest(appId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -208,7 +204,7 @@ public class BuildV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -239,14 +235,13 @@ public class BuildV1 {
 
     /**
      * Provide a tarball that will generate a container image for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Pass in `buildId` generated from Create Build.
-     * @param security the security details to use for authentication
      * @param requestBody
      * @param appId
      * @param buildId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.RunBuildResponse runBuild(dev.hathora.cloud_api.models.operations.RunBuildSecurity security, dev.hathora.cloud_api.models.operations.RunBuildRequestBody requestBody, String appId, Integer buildId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.RunBuildResponse runBuild(dev.hathora.cloud_api.models.operations.RunBuildRequestBody requestBody, String appId, Integer buildId) throws Exception {
         dev.hathora.cloud_api.models.operations.RunBuildRequest request = new dev.hathora.cloud_api.models.operations.RunBuildRequest(requestBody, appId, buildId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -264,7 +259,7 @@ public class BuildV1 {
         req.addHeader("Accept", "application/json;q=1, text/plain;q=0");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 

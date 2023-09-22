@@ -20,7 +20,7 @@ public class BillingV1 {
 		this.sdkConfiguration = sdkConfiguration;
 	}
 
-    public dev.hathora.cloud_api.models.operations.GetBalanceResponse getBalance(dev.hathora.cloud_api.models.operations.GetBalanceSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetBalanceResponse getBalance() throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(baseUrl, "/billing/v1/balance");
         
@@ -31,7 +31,7 @@ public class BillingV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -60,7 +60,7 @@ public class BillingV1 {
         return res;
     }
 
-    public dev.hathora.cloud_api.models.operations.GetInvoicesResponse getInvoices(dev.hathora.cloud_api.models.operations.GetInvoicesSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetInvoicesResponse getInvoices() throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(baseUrl, "/billing/v1/invoices");
         
@@ -71,7 +71,7 @@ public class BillingV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -100,7 +100,7 @@ public class BillingV1 {
         return res;
     }
 
-    public dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse getPaymentMethod(dev.hathora.cloud_api.models.operations.GetPaymentMethodSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse getPaymentMethod() throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(baseUrl, "/billing/v1/paymentmethod");
         
@@ -111,7 +111,7 @@ public class BillingV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -147,7 +147,7 @@ public class BillingV1 {
         return res;
     }
 
-    public dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(dev.hathora.cloud_api.models.shared.CustomerPortalUrl request, dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(dev.hathora.cloud_api.models.shared.CustomerPortalUrl request) throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(baseUrl, "/billing/v1/customerportalurl");
         
@@ -163,7 +163,7 @@ public class BillingV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 

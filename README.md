@@ -12,40 +12,39 @@
 ### Gradle
 
 ```groovy
-implementation 'dev.hathora.cloud_api:Hathora-Cloud:1.19.2'
+implementation 'dev.hathora.cloud_api:Hathora-Cloud:1.20.0'
 ```
 <!-- End SDK Installation -->
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
-
-
 ```java
 package hello.world;
 
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreateAppResponse;
-import dev.hathora.cloud_api.models.operations.CreateAppSecurity;
 import dev.hathora.cloud_api.models.shared.AppConfig;
 import dev.hathora.cloud_api.models.shared.AppConfigAuthConfiguration;
 import dev.hathora.cloud_api.models.shared.AppConfigAuthConfigurationGoogle;
 import dev.hathora.cloud_api.models.shared.RecordStringNever;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("distinctio") {{
+                    auth0 = "";
+                }})
                 .build();
 
             dev.hathora.cloud_api.models.shared.AppConfig req = new AppConfig("minecraft",                 new AppConfigAuthConfiguration() {{
                                 anonymous = new RecordStringNever();;
-                                google = new AppConfigAuthConfigurationGoogle("corrupti");;
+                                google = new AppConfigAuthConfigurationGoogle("quibusdam");;
                                 nickname = new RecordStringNever();;
                             }};);            
 
-            CreateAppResponse res = sdk.appV1.createApp(req, new CreateAppSecurity("provident") {{
-                auth0 = "";
-            }});
+            CreateAppResponse res = sdk.appV1.createApp(req);
 
             if (res.application != null) {
                 // handle response
@@ -157,6 +156,18 @@ public class Application {
 * [getRoomInfo](docs/sdks/roomv2/README.md#getroominfo) - Get details for an existing [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`.
 * [suspendRoom](docs/sdks/roomv2/README.md#suspendroom) - Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`. The room is unallocated from the process but can be rescheduled later using the same `roomId`.
 <!-- End SDK Available Operations -->
+
+
+
+<!-- Start Dev Containers -->
+
+
+
+<!-- End Dev Containers -->
+
+<!-- Placeholder for Future Speakeasy SDK Sections -->
+
+
 
 ### Maturity
 

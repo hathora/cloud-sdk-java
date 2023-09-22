@@ -86,6 +86,16 @@ public class HathoraCloud {
 		}
 		
 		/**
+		 * Configures the SDK to use the provided security details.
+		 * @param security The security details to use for all requests.
+		 * @return The builder instance.
+		 */
+		public Builder setSecurity(dev.hathora.cloud_api.models.shared.Security security) {
+			this.sdkConfiguration.security = security;
+			return this;
+		}
+		
+		/**
 		 * Allows the overriding of the default server URL.
 		 * @param serverUrl The server URL to use for all requests.
 		 * @return The builder instance.
@@ -125,6 +135,10 @@ public class HathoraCloud {
 		public HathoraCloud build() throws Exception {
 			if (this.sdkConfiguration.defaultClient == null) {
 				this.sdkConfiguration.defaultClient = new SpeakeasyHTTPClient();
+			}
+			
+			if (this.sdkConfiguration.security != null) {
+				this.sdkConfiguration.securityClient = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, this.sdkConfiguration.security);
 			}
 			
 			if (this.sdkConfiguration.securityClient == null) {

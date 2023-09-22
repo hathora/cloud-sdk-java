@@ -26,20 +26,21 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreateRoomRequest;
 import dev.hathora.cloud_api.models.operations.CreateRoomResponse;
-import dev.hathora.cloud_api.models.operations.CreateRoomSecurity;
 import dev.hathora.cloud_api.models.shared.CreateRoomRequest;
 import dev.hathora.cloud_api.models.shared.Region;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("explicabo") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            CreateRoomResponse res = sdk.roomV2.createRoom(new CreateRoomSecurity("saepe") {{
-                auth0 = "";
-            }}, new CreateRoomRequest(Region.FRANKFURT) {{
-                region = Region.SINGAPORE;
+            CreateRoomResponse res = sdk.roomV2.createRoom(new CreateRoomRequest(Region.LONDON) {{
+                region = Region.TOKYO;
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.connectionInfoV2 != null) {
@@ -54,12 +55,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 | Example                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                  | [dev.hathora.cloud_api.models.operations.CreateRoomSecurity](../../models/operations/CreateRoomSecurity.md) | :heavy_check_mark:                                                                                          | The security requirements to use for the request.                                                           |                                                                                                             |
-| `createRoomRequest`                                                                                         | [dev.hathora.cloud_api.models.shared.CreateRoomRequest](../../models/shared/CreateRoomRequest.md)           | :heavy_check_mark:                                                                                          | N/A                                                                                                         |                                                                                                             |
-| `appId`                                                                                                     | *String*                                                                                                    | :heavy_check_mark:                                                                                          | N/A                                                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                    |
-| `roomId`                                                                                                    | *String*                                                                                                    | :heavy_minus_sign:                                                                                          | N/A                                                                                                         | 2swovpy1fnunu                                                                                               |
+| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       | Example                                                                                           |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `createRoomRequest`                                                                               | [dev.hathora.cloud_api.models.shared.CreateRoomRequest](../../models/shared/CreateRoomRequest.md) | :heavy_check_mark:                                                                                | N/A                                                                                               |                                                                                                   |
+| `appId`                                                                                           | *String*                                                                                          | :heavy_check_mark:                                                                                | N/A                                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                          |
+| `roomId`                                                                                          | *String*                                                                                          | :heavy_minus_sign:                                                                                | N/A                                                                                               | 2swovpy1fnunu                                                                                     |
 
 
 ### Response
@@ -79,17 +79,18 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.DestroyRoomRequest;
 import dev.hathora.cloud_api.models.operations.DestroyRoomResponse;
-import dev.hathora.cloud_api.models.operations.DestroyRoomSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("omnis") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            DestroyRoomResponse res = sdk.roomV2.destroyRoom(new DestroyRoomSecurity("corporis") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
+            DestroyRoomResponse res = sdk.roomV2.destroyRoom("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.statusCode == 200) {
                 // handle response
@@ -103,11 +104,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   | Example                                                                                                       |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.DestroyRoomSecurity](../../models/operations/DestroyRoomSecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |                                                                                                               |
-| `appId`                                                                                                       | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                      |
-| `roomId`                                                                                                      | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | 2swovpy1fnunu                                                                                                 |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
 
 
 ### Response
@@ -127,17 +127,18 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest;
 import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse;
-import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("nemo") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            GetActiveRoomsForProcessResponse res = sdk.roomV2.getActiveRoomsForProcess(new GetActiveRoomsForProcessSecurity("iste") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");
+            GetActiveRoomsForProcessResponse res = sdk.roomV2.getActiveRoomsForProcess("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");
 
             if (res.roomWithoutAllocations != null) {
                 // handle response
@@ -151,11 +152,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                               | Type                                                                                                                                    | Required                                                                                                                                | Description                                                                                                                             | Example                                                                                                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                              | [dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessSecurity](../../models/operations/GetActiveRoomsForProcessSecurity.md) | :heavy_check_mark:                                                                                                                      | The security requirements to use for the request.                                                                                       |                                                                                                                                         |
-| `appId`                                                                                                                                 | *String*                                                                                                                                | :heavy_check_mark:                                                                                                                      | N/A                                                                                                                                     | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                |
-| `processId`                                                                                                                             | *String*                                                                                                                                | :heavy_check_mark:                                                                                                                      | N/A                                                                                                                                     | cbfcddd2-0006-43ae-996c-995fff7bed2e                                                                                                    |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `processId`                              | *String*                                 | :heavy_check_mark:                       | N/A                                      | cbfcddd2-0006-43ae-996c-995fff7bed2e     |
 
 
 ### Response
@@ -175,11 +175,15 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("minima") {{
+                    auth0 = "";
+                }})
                 .build();
 
             GetConnectionInfoResponse res = sdk.roomV2.getConnectionInfo("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
@@ -219,17 +223,18 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest;
 import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse;
-import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("excepturi") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            GetInactiveRoomsForProcessResponse res = sdk.roomV2.getInactiveRoomsForProcess(new GetInactiveRoomsForProcessSecurity("iure") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");
+            GetInactiveRoomsForProcessResponse res = sdk.roomV2.getInactiveRoomsForProcess("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");
 
             if (res.roomWithoutAllocations != null) {
                 // handle response
@@ -243,11 +248,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                   | Type                                                                                                                                        | Required                                                                                                                                    | Description                                                                                                                                 | Example                                                                                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                  | [dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessSecurity](../../models/operations/GetInactiveRoomsForProcessSecurity.md) | :heavy_check_mark:                                                                                                                          | The security requirements to use for the request.                                                                                           |                                                                                                                                             |
-| `appId`                                                                                                                                     | *String*                                                                                                                                    | :heavy_check_mark:                                                                                                                          | N/A                                                                                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                    |
-| `processId`                                                                                                                                 | *String*                                                                                                                                    | :heavy_check_mark:                                                                                                                          | N/A                                                                                                                                         | cbfcddd2-0006-43ae-996c-995fff7bed2e                                                                                                        |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `processId`                              | *String*                                 | :heavy_check_mark:                       | N/A                                      | cbfcddd2-0006-43ae-996c-995fff7bed2e     |
 
 
 ### Response
@@ -267,17 +271,18 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetRoomInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetRoomInfoResponse;
-import dev.hathora.cloud_api.models.operations.GetRoomInfoSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("accusantium") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            GetRoomInfoResponse res = sdk.roomV2.getRoomInfo(new GetRoomInfoSecurity("saepe") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
+            GetRoomInfoResponse res = sdk.roomV2.getRoomInfo("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.room != null) {
                 // handle response
@@ -291,11 +296,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   | Example                                                                                                       |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.GetRoomInfoSecurity](../../models/operations/GetRoomInfoSecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |                                                                                                               |
-| `appId`                                                                                                       | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                      |
-| `roomId`                                                                                                      | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | 2swovpy1fnunu                                                                                                 |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
 
 
 ### Response
@@ -315,17 +319,18 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.SuspendRoomRequest;
 import dev.hathora.cloud_api.models.operations.SuspendRoomResponse;
-import dev.hathora.cloud_api.models.operations.SuspendRoomSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("iure") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            SuspendRoomResponse res = sdk.roomV2.suspendRoom(new SuspendRoomSecurity("quidem") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
+            SuspendRoomResponse res = sdk.roomV2.suspendRoom("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.statusCode == 200) {
                 // handle response
@@ -339,11 +344,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   | Example                                                                                                       |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.SuspendRoomSecurity](../../models/operations/SuspendRoomSecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |                                                                                                               |
-| `appId`                                                                                                       | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                      |
-| `roomId`                                                                                                      | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | 2swovpy1fnunu                                                                                                 |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
 
 
 ### Response

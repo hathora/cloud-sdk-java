@@ -22,24 +22,25 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetLogsForAppRequest;
 import dev.hathora.cloud_api.models.operations.GetLogsForAppResponse;
-import dev.hathora.cloud_api.models.operations.GetLogsForAppSecurity;
 import dev.hathora.cloud_api.models.shared.Region;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("excepturi") {{
+                    auth0 = "";
+                }})
                 .build();
 
             GetLogsForAppRequest req = new GetLogsForAppRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
                 follow = false;
-                region = Region.MUMBAI;
-                tailLines = 143353;
+                region = Region.WASHINGTON_DC;
+                tailLines = 18789;
             }};            
 
-            GetLogsForAppResponse res = sdk.logV1.getLogsForApp(req, new GetLogsForAppSecurity("deleniti") {{
-                auth0 = "";
-            }});
+            GetLogsForAppResponse res = sdk.logV1.getLogsForApp(req);
 
             if (res.getLogsForApp200TextPlainByteString != null) {
                 // handle response
@@ -53,10 +54,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [dev.hathora.cloud_api.models.operations.GetLogsForAppRequest](../../models/operations/GetLogsForAppRequest.md)   | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
-| `security`                                                                                                        | [dev.hathora.cloud_api.models.operations.GetLogsForAppSecurity](../../models/operations/GetLogsForAppSecurity.md) | :heavy_check_mark:                                                                                                | The security requirements to use for the request.                                                                 |
+| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                       | [dev.hathora.cloud_api.models.operations.GetLogsForAppRequest](../../models/operations/GetLogsForAppRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
 
 
 ### Response
@@ -76,22 +76,23 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetLogsForDeploymentRequest;
 import dev.hathora.cloud_api.models.operations.GetLogsForDeploymentResponse;
-import dev.hathora.cloud_api.models.operations.GetLogsForDeploymentSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("ad") {{
+                    auth0 = "";
+                }})
                 .build();
 
             GetLogsForDeploymentRequest req = new GetLogsForDeploymentRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", 1) {{
                 follow = false;
-                tailLines = 944669;
+                tailLines = 617636;
             }};            
 
-            GetLogsForDeploymentResponse res = sdk.logV1.getLogsForDeployment(req, new GetLogsForDeploymentSecurity("optio") {{
-                auth0 = "";
-            }});
+            GetLogsForDeploymentResponse res = sdk.logV1.getLogsForDeployment(req);
 
             if (res.getLogsForDeployment200TextPlainByteString != null) {
                 // handle response
@@ -105,10 +106,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                       | Type                                                                                                                            | Required                                                                                                                        | Description                                                                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                       | [dev.hathora.cloud_api.models.operations.GetLogsForDeploymentRequest](../../models/operations/GetLogsForDeploymentRequest.md)   | :heavy_check_mark:                                                                                                              | The request object to use for the request.                                                                                      |
-| `security`                                                                                                                      | [dev.hathora.cloud_api.models.operations.GetLogsForDeploymentSecurity](../../models/operations/GetLogsForDeploymentSecurity.md) | :heavy_check_mark:                                                                                                              | The security requirements to use for the request.                                                                               |
+| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                     | [dev.hathora.cloud_api.models.operations.GetLogsForDeploymentRequest](../../models/operations/GetLogsForDeploymentRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
 
 
 ### Response
@@ -128,22 +128,23 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetLogsForProcessRequest;
 import dev.hathora.cloud_api.models.operations.GetLogsForProcessResponse;
-import dev.hathora.cloud_api.models.operations.GetLogsForProcessSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("sed") {{
+                    auth0 = "";
+                }})
                 .build();
 
             GetLogsForProcessRequest req = new GetLogsForProcessRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e") {{
                 follow = false;
-                tailLines = 521848;
+                tailLines = 612096;
             }};            
 
-            GetLogsForProcessResponse res = sdk.logV1.getLogsForProcess(req, new GetLogsForProcessSecurity("beatae") {{
-                auth0 = "";
-            }});
+            GetLogsForProcessResponse res = sdk.logV1.getLogsForProcess(req);
 
             if (res.getLogsForProcess200TextPlainByteString != null) {
                 // handle response
@@ -157,10 +158,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                 | [dev.hathora.cloud_api.models.operations.GetLogsForProcessRequest](../../models/operations/GetLogsForProcessRequest.md)   | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
-| `security`                                                                                                                | [dev.hathora.cloud_api.models.operations.GetLogsForProcessSecurity](../../models/operations/GetLogsForProcessSecurity.md) | :heavy_check_mark:                                                                                                        | The security requirements to use for the request.                                                                         |
+| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                               | [dev.hathora.cloud_api.models.operations.GetLogsForProcessRequest](../../models/operations/GetLogsForProcessRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
 
 
 ### Response

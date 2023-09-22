@@ -30,16 +30,20 @@ import dev.hathora.cloud_api.models.shared.CreateLobbyRequest;
 import dev.hathora.cloud_api.models.shared.LobbyInitialConfig;
 import dev.hathora.cloud_api.models.shared.LobbyVisibility;
 import dev.hathora.cloud_api.models.shared.Region;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("officia") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            CreateLobbyResponse res = sdk.lobbyV2.createLobby(new CreateLobbyRequest(                new LobbyInitialConfig();, Region.TOKYO, LobbyVisibility.PRIVATE_) {{
+            CreateLobbyResponse res = sdk.lobbyV2.createLobby(new CreateLobbyRequest(                new LobbyInitialConfig();, Region.WASHINGTON_DC, LobbyVisibility.PRIVATE_) {{
                 initialConfig = new LobbyInitialConfig() {{}};
-                region = Region.FRANKFURT;
+                region = Region.MUMBAI;
                 visibility = LobbyVisibility.PRIVATE_;
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
@@ -82,16 +86,20 @@ import dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequestBody;
 import dev.hathora.cloud_api.models.operations.CreateLocalLobbyResponse;
 import dev.hathora.cloud_api.models.shared.LobbyInitialConfig;
 import dev.hathora.cloud_api.models.shared.Region;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("deleniti") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            CreateLocalLobbyResponse res = sdk.lobbyV2.createLocalLobby(new CreateLocalLobbyRequestBody(                new LobbyInitialConfig();, Region.FRANKFURT) {{
+            CreateLocalLobbyResponse res = sdk.lobbyV2.createLocalLobby(new CreateLocalLobbyRequestBody(                new LobbyInitialConfig();, Region.TOKYO) {{
                 initialConfig = new LobbyInitialConfig() {{}};
-                region = Region.SYDNEY;
+                region = Region.SAO_PAULO;
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.lobby != null) {
@@ -133,16 +141,20 @@ import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequestBody;
 import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyResponse;
 import dev.hathora.cloud_api.models.shared.LobbyInitialConfig;
 import dev.hathora.cloud_api.models.shared.Region;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("totam") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            CreatePrivateLobbyResponse res = sdk.lobbyV2.createPrivateLobby(new CreatePrivateLobbyRequestBody(                new LobbyInitialConfig();, Region.TOKYO) {{
+            CreatePrivateLobbyResponse res = sdk.lobbyV2.createPrivateLobby(new CreatePrivateLobbyRequestBody(                new LobbyInitialConfig();, Region.FRANKFURT) {{
                 initialConfig = new LobbyInitialConfig() {{}};
-                region = Region.MUMBAI;
+                region = Region.WASHINGTON_DC;
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.lobby != null) {
@@ -184,16 +196,20 @@ import dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequestBody;
 import dev.hathora.cloud_api.models.operations.CreatePublicLobbyResponse;
 import dev.hathora.cloud_api.models.shared.LobbyInitialConfig;
 import dev.hathora.cloud_api.models.shared.Region;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("molestiae") {{
+                    auth0 = "";
+                }})
                 .build();
 
             CreatePublicLobbyResponse res = sdk.lobbyV2.createPublicLobby(new CreatePublicLobbyRequestBody(                new LobbyInitialConfig();, Region.WASHINGTON_DC) {{
                 initialConfig = new LobbyInitialConfig() {{}};
-                region = Region.SINGAPORE;
+                region = Region.CHICAGO;
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.lobby != null) {
@@ -232,11 +248,15 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetLobbyInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetLobbyInfoResponse;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("impedit") {{
+                    auth0 = "";
+                }})
                 .build();
 
             GetLobbyInfoResponse res = sdk.lobbyV2.getLobbyInfo("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
@@ -277,14 +297,18 @@ import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesRequest;
 import dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesResponse;
 import dev.hathora.cloud_api.models.shared.Region;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("cum") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            ListActivePublicLobbiesResponse res = sdk.lobbyV2.listActivePublicLobbies("app-af469a92-5b45-4565-b3c4-b79878de67d2", Region.TOKYO);
+            ListActivePublicLobbiesResponse res = sdk.lobbyV2.listActivePublicLobbies("app-af469a92-5b45-4565-b3c4-b79878de67d2", Region.FRANKFURT);
 
             if (res.lobbies != null) {
                 // handle response
@@ -321,7 +345,7 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.SetLobbyStateRequest;
 import dev.hathora.cloud_api.models.operations.SetLobbyStateResponse;
-import dev.hathora.cloud_api.models.operations.SetLobbyStateSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 import dev.hathora.cloud_api.models.shared.SetLobbyStateRequest;
 import dev.hathora.cloud_api.models.shared.SetLobbyStateRequestState;
 
@@ -329,11 +353,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("ipsum") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            SetLobbyStateResponse res = sdk.lobbyV2.setLobbyState(new SetLobbyStateSecurity("officia") {{
-                auth0 = "";
-            }}, new SetLobbyStateRequest(                new SetLobbyStateRequestState();) {{
+            SetLobbyStateResponse res = sdk.lobbyV2.setLobbyState(new SetLobbyStateRequest(                new SetLobbyStateRequestState();) {{
                 state = new SetLobbyStateRequestState() {{}};
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
@@ -349,12 +374,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       | Example                                                                                                           |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                        | [dev.hathora.cloud_api.models.operations.SetLobbyStateSecurity](../../models/operations/SetLobbyStateSecurity.md) | :heavy_check_mark:                                                                                                | The security requirements to use for the request.                                                                 |                                                                                                                   |
-| `setLobbyStateRequest`                                                                                            | [dev.hathora.cloud_api.models.shared.SetLobbyStateRequest](../../models/shared/SetLobbyStateRequest.md)           | :heavy_check_mark:                                                                                                | N/A                                                                                                               |                                                                                                                   |
-| `appId`                                                                                                           | *String*                                                                                                          | :heavy_check_mark:                                                                                                | N/A                                                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                          |
-| `roomId`                                                                                                          | *String*                                                                                                          | :heavy_check_mark:                                                                                                | N/A                                                                                                               | 2swovpy1fnunu                                                                                                     |
+| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             | Example                                                                                                 |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `setLobbyStateRequest`                                                                                  | [dev.hathora.cloud_api.models.shared.SetLobbyStateRequest](../../models/shared/SetLobbyStateRequest.md) | :heavy_check_mark:                                                                                      | N/A                                                                                                     |                                                                                                         |
+| `appId`                                                                                                 | *String*                                                                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                |
+| `roomId`                                                                                                | *String*                                                                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     | 2swovpy1fnunu                                                                                           |
 
 
 ### Response

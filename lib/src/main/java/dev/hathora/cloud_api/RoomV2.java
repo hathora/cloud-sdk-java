@@ -26,26 +26,24 @@ public class RoomV2 {
 
     /**
      * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId` and `region`.
-     * @param security the security details to use for authentication
      * @param createRoomRequest
      * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.CreateRoomResponse createRoom(dev.hathora.cloud_api.models.operations.CreateRoomSecurity security, dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId) throws Exception {
-        return this.createRoom(security, createRoomRequest, appId, null);
+    public dev.hathora.cloud_api.models.operations.CreateRoomResponse createRoom(dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId) throws Exception {
+        return this.createRoom(createRoomRequest, appId, null);
     }
 
     /**
      * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId` and `region`.
-     * @param security the security details to use for authentication
      * @param createRoomRequest
      * @param appId
      * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.CreateRoomResponse createRoom(dev.hathora.cloud_api.models.operations.CreateRoomSecurity security, dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId, String roomId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreateRoomResponse createRoom(dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId, String roomId) throws Exception {
         dev.hathora.cloud_api.models.operations.CreateRoomRequest request = new dev.hathora.cloud_api.models.operations.CreateRoomRequest(createRoomRequest, appId);
         request.roomId=roomId;
         
@@ -70,7 +68,7 @@ public class RoomV2 {
             }
         }
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -122,13 +120,12 @@ public class RoomV2 {
 
     /**
      * Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`. All associated metadata is deleted.
-     * @param security the security details to use for authentication
      * @param appId
      * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.DestroyRoomResponse destroyRoom(dev.hathora.cloud_api.models.operations.DestroyRoomSecurity security, String appId, String roomId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.DestroyRoomResponse destroyRoom(String appId, String roomId) throws Exception {
         dev.hathora.cloud_api.models.operations.DestroyRoomRequest request = new dev.hathora.cloud_api.models.operations.DestroyRoomRequest(appId, roomId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -141,7 +138,7 @@ public class RoomV2 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -173,13 +170,12 @@ public class RoomV2 {
 
     /**
      * Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
-     * @param security the security details to use for authentication
      * @param appId
      * @param processId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse getActiveRoomsForProcess(dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessSecurity security, String appId, String processId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse getActiveRoomsForProcess(String appId, String processId) throws Exception {
         dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest request = new dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest(appId, processId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -192,7 +188,7 @@ public class RoomV2 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -241,7 +237,8 @@ public class RoomV2 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = this.sdkConfiguration.defaultClient;
+        HTTPClient client = this.sdkConfiguration.securityClient;
+        
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -285,13 +282,12 @@ public class RoomV2 {
 
     /**
      * Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
-     * @param security the security details to use for authentication
      * @param appId
      * @param processId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessSecurity security, String appId, String processId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(String appId, String processId) throws Exception {
         dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest request = new dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest(appId, processId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -304,7 +300,7 @@ public class RoomV2 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -335,13 +331,12 @@ public class RoomV2 {
 
     /**
      * Get details for an existing [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`.
-     * @param security the security details to use for authentication
      * @param appId
      * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetRoomInfoResponse getRoomInfo(dev.hathora.cloud_api.models.operations.GetRoomInfoSecurity security, String appId, String roomId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetRoomInfoResponse getRoomInfo(String appId, String roomId) throws Exception {
         dev.hathora.cloud_api.models.operations.GetRoomInfoRequest request = new dev.hathora.cloud_api.models.operations.GetRoomInfoRequest(appId, roomId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -354,7 +349,7 @@ public class RoomV2 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -385,13 +380,12 @@ public class RoomV2 {
 
     /**
      * Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`. The room is unallocated from the process but can be rescheduled later using the same `roomId`.
-     * @param security the security details to use for authentication
      * @param appId
      * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.SuspendRoomResponse suspendRoom(dev.hathora.cloud_api.models.operations.SuspendRoomSecurity security, String appId, String roomId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.SuspendRoomResponse suspendRoom(String appId, String roomId) throws Exception {
         dev.hathora.cloud_api.models.operations.SuspendRoomRequest request = new dev.hathora.cloud_api.models.operations.SuspendRoomRequest(appId, roomId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -404,7 +398,7 @@ public class RoomV2 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 

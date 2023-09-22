@@ -24,17 +24,18 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.CreateBuildRequest;
 import dev.hathora.cloud_api.models.operations.CreateBuildResponse;
-import dev.hathora.cloud_api.models.operations.CreateBuildSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("nisi") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            CreateBuildResponse res = sdk.buildV1.createBuild(new CreateBuildSecurity("minus") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
+            CreateBuildResponse res = sdk.buildV1.createBuild("app-af469a92-5b45-4565-b3c4-b79878de67d2");
 
             if (res.build != null) {
                 // handle response
@@ -48,10 +49,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   | Example                                                                                                       |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.CreateBuildSecurity](../../models/operations/CreateBuildSecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |                                                                                                               |
-| `appId`                                                                                                       | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                      |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
 
 ### Response
@@ -71,17 +71,18 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.DeleteBuildRequest;
 import dev.hathora.cloud_api.models.operations.DeleteBuildResponse;
-import dev.hathora.cloud_api.models.operations.DeleteBuildSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("recusandae") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            DeleteBuildResponse res = sdk.buildV1.deleteBuild(new DeleteBuildSecurity("placeat") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", 1);
+            DeleteBuildResponse res = sdk.buildV1.deleteBuild("app-af469a92-5b45-4565-b3c4-b79878de67d2", 1);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -95,11 +96,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   | Example                                                                                                       |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.DeleteBuildSecurity](../../models/operations/DeleteBuildSecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |                                                                                                               |
-| `appId`                                                                                                       | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                      |
-| `buildId`                                                                                                     | *Integer*                                                                                                     | :heavy_check_mark:                                                                                            | N/A                                                                                                           | 1                                                                                                             |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `buildId`                                | *Integer*                                | :heavy_check_mark:                       | N/A                                      | 1                                        |
 
 
 ### Response
@@ -119,17 +119,18 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetBuildInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetBuildInfoResponse;
-import dev.hathora.cloud_api.models.operations.GetBuildInfoSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("temporibus") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            GetBuildInfoResponse res = sdk.buildV1.getBuildInfo(new GetBuildInfoSecurity("voluptatum") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", 1);
+            GetBuildInfoResponse res = sdk.buildV1.getBuildInfo("app-af469a92-5b45-4565-b3c4-b79878de67d2", 1);
 
             if (res.build != null) {
                 // handle response
@@ -143,11 +144,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     | Example                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                      | [dev.hathora.cloud_api.models.operations.GetBuildInfoSecurity](../../models/operations/GetBuildInfoSecurity.md) | :heavy_check_mark:                                                                                              | The security requirements to use for the request.                                                               |                                                                                                                 |
-| `appId`                                                                                                         | *String*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                        |
-| `buildId`                                                                                                       | *Integer*                                                                                                       | :heavy_check_mark:                                                                                              | N/A                                                                                                             | 1                                                                                                               |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `buildId`                                | *Integer*                                | :heavy_check_mark:                       | N/A                                      | 1                                        |
 
 
 ### Response
@@ -167,17 +167,18 @@ package hello.world;
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetBuildsRequest;
 import dev.hathora.cloud_api.models.operations.GetBuildsResponse;
-import dev.hathora.cloud_api.models.operations.GetBuildsSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("ab") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            GetBuildsResponse res = sdk.buildV1.getBuilds(new GetBuildsSecurity("iusto") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
+            GetBuildsResponse res = sdk.buildV1.getBuilds("app-af469a92-5b45-4565-b3c4-b79878de67d2");
 
             if (res.builds != null) {
                 // handle response
@@ -191,10 +192,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               | Example                                                                                                   |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                | [dev.hathora.cloud_api.models.operations.GetBuildsSecurity](../../models/operations/GetBuildsSecurity.md) | :heavy_check_mark:                                                                                        | The security requirements to use for the request.                                                         |                                                                                                           |
-| `appId`                                                                                                   | *String*                                                                                                  | :heavy_check_mark:                                                                                        | N/A                                                                                                       | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                  |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
 
 ### Response
@@ -216,20 +216,21 @@ import dev.hathora.cloud_api.models.operations.RunBuildRequest;
 import dev.hathora.cloud_api.models.operations.RunBuildRequestBody;
 import dev.hathora.cloud_api.models.operations.RunBuildRequestBodyFile;
 import dev.hathora.cloud_api.models.operations.RunBuildResponse;
-import dev.hathora.cloud_api.models.operations.RunBuildSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("quis") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            RunBuildResponse res = sdk.buildV1.runBuild(new RunBuildSecurity("excepturi") {{
-                auth0 = "";
-            }}, new RunBuildRequestBody(                new RunBuildRequestBodyFile("quis".getBytes(), "veritatis");) {{
-                file = new RunBuildRequestBodyFile("temporibus".getBytes(), "ab") {{
-                    content = "nisi".getBytes();
-                    file = "recusandae";
+            RunBuildResponse res = sdk.buildV1.runBuild(new RunBuildRequestBody(                new RunBuildRequestBodyFile("repellendus".getBytes(), "sapiente");) {{
+                file = new RunBuildRequestBodyFile("perferendis".getBytes(), "ipsam") {{
+                    content = "veritatis".getBytes();
+                    file = "deserunt";
                 }};
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", 1);
 
@@ -247,7 +248,6 @@ public class Application {
 
 | Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   | Example                                                                                                       |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.RunBuildSecurity](../../models/operations/RunBuildSecurity.md)       | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |                                                                                                               |
 | `requestBody`                                                                                                 | [dev.hathora.cloud_api.models.operations.RunBuildRequestBody](../../models/operations/RunBuildRequestBody.md) | :heavy_check_mark:                                                                                            | N/A                                                                                                           |                                                                                                               |
 | `appId`                                                                                                       | *String*                                                                                                      | :heavy_check_mark:                                                                                            | N/A                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                      |
 | `buildId`                                                                                                     | *Integer*                                                                                                     | :heavy_check_mark:                                                                                            | N/A                                                                                                           | 1                                                                                                             |

@@ -77,7 +77,8 @@ public class LobbyV2 {
             }
         }
         
-        HTTPClient client = this.sdkConfiguration.defaultClient;
+        HTTPClient client = this.sdkConfiguration.securityClient;
+        
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -194,7 +195,8 @@ public class LobbyV2 {
             }
         }
         
-        HTTPClient client = this.sdkConfiguration.defaultClient;
+        HTTPClient client = this.sdkConfiguration.securityClient;
+        
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -311,7 +313,8 @@ public class LobbyV2 {
             }
         }
         
-        HTTPClient client = this.sdkConfiguration.defaultClient;
+        HTTPClient client = this.sdkConfiguration.securityClient;
+        
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -428,7 +431,8 @@ public class LobbyV2 {
             }
         }
         
-        HTTPClient client = this.sdkConfiguration.defaultClient;
+        HTTPClient client = this.sdkConfiguration.securityClient;
+        
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -511,7 +515,8 @@ public class LobbyV2 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = this.sdkConfiguration.defaultClient;
+        HTTPClient client = this.sdkConfiguration.securityClient;
+        
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -576,7 +581,8 @@ public class LobbyV2 {
             }
         }
         
-        HTTPClient client = this.sdkConfiguration.defaultClient;
+        HTTPClient client = this.sdkConfiguration.securityClient;
+        
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -599,14 +605,13 @@ public class LobbyV2 {
 
     /**
      * Set the state of a [lobby](https://hathora.dev/docs/concepts/hathora-entities#lobby) using `appId` and `roomId`. State is intended to be set by the server and must be smaller than 1MB.
-     * @param security the security details to use for authentication
      * @param setLobbyStateRequest
      * @param appId
      * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.SetLobbyStateResponse setLobbyState(dev.hathora.cloud_api.models.operations.SetLobbyStateSecurity security, dev.hathora.cloud_api.models.shared.SetLobbyStateRequest setLobbyStateRequest, String appId, String roomId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.SetLobbyStateResponse setLobbyState(dev.hathora.cloud_api.models.shared.SetLobbyStateRequest setLobbyStateRequest, String appId, String roomId) throws Exception {
         dev.hathora.cloud_api.models.operations.SetLobbyStateRequest request = new dev.hathora.cloud_api.models.operations.SetLobbyStateRequest(setLobbyStateRequest, appId, roomId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -624,7 +629,7 @@ public class LobbyV2 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 

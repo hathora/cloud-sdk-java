@@ -26,13 +26,12 @@ public class ProcessesV1 {
 
     /**
      * Get details for an existing [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
-     * @param security the security details to use for authentication
      * @param appId
      * @param processId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetProcessInfoResponse getProcessInfo(dev.hathora.cloud_api.models.operations.GetProcessInfoSecurity security, String appId, String processId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetProcessInfoResponse getProcessInfo(String appId, String processId) throws Exception {
         dev.hathora.cloud_api.models.operations.GetProcessInfoRequest request = new dev.hathora.cloud_api.models.operations.GetProcessInfoRequest(appId, processId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -45,7 +44,7 @@ public class ProcessesV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -76,24 +75,22 @@ public class ProcessesV1 {
 
     /**
      * Returns an array of active [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
-     * @param security the security details to use for authentication
      * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse getRunningProcesses(dev.hathora.cloud_api.models.operations.GetRunningProcessesSecurity security, String appId) throws Exception {
-        return this.getRunningProcesses(security, appId, null);
+    public dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse getRunningProcesses(String appId) throws Exception {
+        return this.getRunningProcesses(appId, null);
     }
 
     /**
      * Returns an array of active [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
-     * @param security the security details to use for authentication
      * @param appId
      * @param region Available regions to request a game server.
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse getRunningProcesses(dev.hathora.cloud_api.models.operations.GetRunningProcessesSecurity security, String appId, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse getRunningProcesses(String appId, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
         dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest request = new dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest(appId);
         request.region=region;
         
@@ -113,7 +110,7 @@ public class ProcessesV1 {
             }
         }
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -144,24 +141,22 @@ public class ProcessesV1 {
 
     /**
      * Returns an array of stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
-     * @param security the security details to use for authentication
      * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse getStoppedProcesses(dev.hathora.cloud_api.models.operations.GetStoppedProcessesSecurity security, String appId) throws Exception {
-        return this.getStoppedProcesses(security, appId, null);
+    public dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse getStoppedProcesses(String appId) throws Exception {
+        return this.getStoppedProcesses(appId, null);
     }
 
     /**
      * Returns an array of stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
-     * @param security the security details to use for authentication
      * @param appId
      * @param region Available regions to request a game server.
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse getStoppedProcesses(dev.hathora.cloud_api.models.operations.GetStoppedProcessesSecurity security, String appId, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse getStoppedProcesses(String appId, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
         dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest request = new dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest(appId);
         request.region=region;
         
@@ -181,7 +176,7 @@ public class ProcessesV1 {
             }
         }
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 

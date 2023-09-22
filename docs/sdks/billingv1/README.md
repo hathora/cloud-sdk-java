@@ -16,17 +16,18 @@ package hello.world;
 
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetBalanceResponse;
-import dev.hathora.cloud_api.models.operations.GetBalanceSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("minus") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            GetBalanceResponse res = sdk.billingV1.getBalance(new GetBalanceSecurity("ipsa") {{
-                auth0 = "";
-            }});
+            GetBalanceResponse res = sdk.billingV1.getBalance();
 
             if (res.getBalance200ApplicationJSONDoubleNumber != null) {
                 // handle response
@@ -37,12 +38,6 @@ public class Application {
     }
 }
 ```
-
-### Parameters
-
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                  | [dev.hathora.cloud_api.models.operations.GetBalanceSecurity](../../models/operations/GetBalanceSecurity.md) | :heavy_check_mark:                                                                                          | The security requirements to use for the request.                                                           |
 
 
 ### Response
@@ -59,17 +54,18 @@ package hello.world;
 
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetInvoicesResponse;
-import dev.hathora.cloud_api.models.operations.GetInvoicesSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("placeat") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            GetInvoicesResponse res = sdk.billingV1.getInvoices(new GetInvoicesSecurity("delectus") {{
-                auth0 = "";
-            }});
+            GetInvoicesResponse res = sdk.billingV1.getInvoices();
 
             if (res.invoices != null) {
                 // handle response
@@ -80,12 +76,6 @@ public class Application {
     }
 }
 ```
-
-### Parameters
-
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                    | [dev.hathora.cloud_api.models.operations.GetInvoicesSecurity](../../models/operations/GetInvoicesSecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |
 
 
 ### Response
@@ -102,17 +92,18 @@ package hello.world;
 
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse;
-import dev.hathora.cloud_api.models.operations.GetPaymentMethodSecurity;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("voluptatum") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            GetPaymentMethodResponse res = sdk.billingV1.getPaymentMethod(new GetPaymentMethodSecurity("tempora") {{
-                auth0 = "";
-            }});
+            GetPaymentMethodResponse res = sdk.billingV1.getPaymentMethod();
 
             if (res.paymentMethod != null) {
                 // handle response
@@ -123,12 +114,6 @@ public class Application {
     }
 }
 ```
-
-### Parameters
-
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                              | [dev.hathora.cloud_api.models.operations.GetPaymentMethodSecurity](../../models/operations/GetPaymentMethodSecurity.md) | :heavy_check_mark:                                                                                                      | The security requirements to use for the request.                                                                       |
 
 
 ### Response
@@ -145,20 +130,21 @@ package hello.world;
 
 import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse;
-import dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlSecurity;
 import dev.hathora.cloud_api.models.shared.CustomerPortalUrl;
+import dev.hathora.cloud_api.models.shared.Security;
 
 public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
+                .setSecurity(new Security("iusto") {{
+                    auth0 = "";
+                }})
                 .build();
 
-            dev.hathora.cloud_api.models.shared.CustomerPortalUrl req = new CustomerPortalUrl("suscipit");            
+            dev.hathora.cloud_api.models.shared.CustomerPortalUrl req = new CustomerPortalUrl("excepturi");            
 
-            InitStripeCustomerPortalUrlResponse res = sdk.billingV1.initStripeCustomerPortalUrl(req, new InitStripeCustomerPortalUrlSecurity("molestiae") {{
-                auth0 = "";
-            }});
+            InitStripeCustomerPortalUrlResponse res = sdk.billingV1.initStripeCustomerPortalUrl(req);
 
             if (res.initStripeCustomerPortalUrl200ApplicationJSONString != null) {
                 // handle response
@@ -172,10 +158,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                     | Type                                                                                                                                          | Required                                                                                                                                      | Description                                                                                                                                   |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                                     | [dev.hathora.cloud_api.models.shared.CustomerPortalUrl](../../models/shared/CustomerPortalUrl.md)                                             | :heavy_check_mark:                                                                                                                            | The request object to use for the request.                                                                                                    |
-| `security`                                                                                                                                    | [dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlSecurity](../../models/operations/InitStripeCustomerPortalUrlSecurity.md) | :heavy_check_mark:                                                                                                                            | The security requirements to use for the request.                                                                                             |
+| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `request`                                                                                         | [dev.hathora.cloud_api.models.shared.CustomerPortalUrl](../../models/shared/CustomerPortalUrl.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
 
 
 ### Response

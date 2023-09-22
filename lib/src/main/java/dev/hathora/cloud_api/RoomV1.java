@@ -22,7 +22,6 @@ public class RoomV1 {
 	}
 
     /**
-     * @param security the security details to use for authentication
      * @param createRoomRequest
      * @param appId
      * @return the response from the API call
@@ -30,12 +29,11 @@ public class RoomV1 {
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse createRoomDeprecated(dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedSecurity security, dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId) throws Exception {
-        return this.createRoomDeprecated(security, createRoomRequest, appId, null);
+    public dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse createRoomDeprecated(dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId) throws Exception {
+        return this.createRoomDeprecated(createRoomRequest, appId, null);
     }
 
     /**
-     * @param security the security details to use for authentication
      * @param createRoomRequest
      * @param appId
      * @param roomId
@@ -44,7 +42,7 @@ public class RoomV1 {
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse createRoomDeprecated(dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedSecurity security, dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId, String roomId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse createRoomDeprecated(dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId, String roomId) throws Exception {
         dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedRequest(createRoomRequest, appId);
         request.roomId=roomId;
         
@@ -69,7 +67,7 @@ public class RoomV1 {
             }
         }
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -119,7 +117,6 @@ public class RoomV1 {
     }
 
     /**
-     * @param security the security details to use for authentication
      * @param appId
      * @param roomId
      * @return the response from the API call
@@ -127,7 +124,7 @@ public class RoomV1 {
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse destroyRoomDeprecated(dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedSecurity security, String appId, String roomId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse destroyRoomDeprecated(String appId, String roomId) throws Exception {
         dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedRequest(appId, roomId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -140,7 +137,7 @@ public class RoomV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -171,7 +168,6 @@ public class RoomV1 {
     }
 
     /**
-     * @param security the security details to use for authentication
      * @param appId
      * @param processId
      * @return the response from the API call
@@ -179,7 +175,7 @@ public class RoomV1 {
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse getActiveRoomsForProcessDeprecated(dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedSecurity security, String appId, String processId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse getActiveRoomsForProcessDeprecated(String appId, String processId) throws Exception {
         dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedRequest(appId, processId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -192,7 +188,7 @@ public class RoomV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -242,7 +238,8 @@ public class RoomV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = this.sdkConfiguration.defaultClient;
+        HTTPClient client = this.sdkConfiguration.securityClient;
+        
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -285,7 +282,6 @@ public class RoomV1 {
     }
 
     /**
-     * @param security the security details to use for authentication
      * @param appId
      * @param processId
      * @return the response from the API call
@@ -293,7 +289,7 @@ public class RoomV1 {
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse getInactiveRoomsForProcessDeprecated(dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedSecurity security, String appId, String processId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse getInactiveRoomsForProcessDeprecated(String appId, String processId) throws Exception {
         dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedRequest(appId, processId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -306,7 +302,7 @@ public class RoomV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -336,7 +332,6 @@ public class RoomV1 {
     }
 
     /**
-     * @param security the security details to use for authentication
      * @param appId
      * @param roomId
      * @return the response from the API call
@@ -344,7 +339,7 @@ public class RoomV1 {
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse getRoomInfoDeprecated(dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedSecurity security, String appId, String roomId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse getRoomInfoDeprecated(String appId, String roomId) throws Exception {
         dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedRequest(appId, roomId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -357,7 +352,7 @@ public class RoomV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -387,7 +382,6 @@ public class RoomV1 {
     }
 
     /**
-     * @param security the security details to use for authentication
      * @param appId
      * @param roomId
      * @return the response from the API call
@@ -395,7 +389,7 @@ public class RoomV1 {
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse suspendRoomDeprecated(dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedSecurity security, String appId, String roomId) throws Exception {
+    public dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse suspendRoomDeprecated(String appId, String roomId) throws Exception {
         dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedRequest request = new dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedRequest(appId, roomId);
         
         String baseUrl = this.sdkConfiguration.serverUrl;
@@ -408,7 +402,7 @@ public class RoomV1 {
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 

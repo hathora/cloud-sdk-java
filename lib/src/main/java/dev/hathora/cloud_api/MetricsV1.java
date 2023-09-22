@@ -26,11 +26,10 @@ public class MetricsV1 {
     /**
      * Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
      * @param request the request object containing all of the parameters for the API call
-     * @param security the security details to use for authentication
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetMetricsResponse getMetrics(dev.hathora.cloud_api.models.operations.GetMetricsRequest request, dev.hathora.cloud_api.models.operations.GetMetricsSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetMetricsResponse getMetrics(dev.hathora.cloud_api.models.operations.GetMetricsRequest request) throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
         String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetMetricsRequest.class, baseUrl, "/metrics/v1/{appId}/process/{processId}", request, null);
         
@@ -47,7 +46,7 @@ public class MetricsV1 {
             }
         }
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = this.sdkConfiguration.securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
