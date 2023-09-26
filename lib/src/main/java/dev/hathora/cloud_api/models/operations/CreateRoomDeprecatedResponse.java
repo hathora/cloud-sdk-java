@@ -9,6 +9,9 @@ import java.net.http.HttpResponse;
 
 
 public class CreateRoomDeprecatedResponse {
+    /**
+     * HTTP response content type for this operation
+     */
     
     public String contentType;
 
@@ -57,6 +60,9 @@ public class CreateRoomDeprecatedResponse {
         return this;
     }
     
+    /**
+     * HTTP response status code for this operation
+     */
     
     public Integer statusCode;
 
@@ -65,6 +71,9 @@ public class CreateRoomDeprecatedResponse {
         return this;
     }
     
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
     
     public HttpResponse<byte[]> rawResponse;
 
