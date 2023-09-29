@@ -35,13 +35,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("explicabo") {{
+                .setSecurity(new Security("Polestar") {{
                     auth0 = "";
                 }})
                 .build();
 
-            CreateRoomResponse res = sdk.roomV2.createRoom(new CreateRoomRequest(Region.LONDON) {{
-                region = Region.TOKYO;
+            CreateRoomResponse res = sdk.roomV2.createRoom(new CreateRoomRequest(Region.WASHINGTON_DC) {{
+                region = Region.FRANKFURT;
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.connectionInfoV2 != null) {
@@ -86,7 +86,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("omnis") {{
+                .setSecurity(new Security("Nissan") {{
                     auth0 = "";
                 }})
                 .build();
@@ -134,7 +134,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("nemo") {{
+                .setSecurity(new Security("Refined") {{
                     auth0 = "";
                 }})
                 .build();
@@ -182,7 +182,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("minima") {{
+                .setSecurity(new Security("withdrawal") {{
                     auth0 = "";
                 }})
                 .build();
@@ -230,7 +230,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("excepturi") {{
+                .setSecurity(new Security("Islands") {{
                     auth0 = "";
                 }})
                 .build();
@@ -278,7 +278,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("accusantium") {{
+                .setSecurity(new Security("kite") {{
                     auth0 = "";
                 }})
                 .build();
@@ -326,7 +326,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("iure") {{
+                .setSecurity(new Security("Berkshire") {{
                     auth0 = "";
                 }})
                 .build();

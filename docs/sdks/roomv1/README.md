@@ -31,13 +31,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("architecto") {{
+                .setSecurity(new Security("District") {{
                     auth0 = "";
                 }})
                 .build();
 
-            CreateRoomDeprecatedResponse res = sdk.roomV1.createRoomDeprecated(new CreateRoomRequest(Region.SAO_PAULO) {{
-                region = Region.SEATTLE;
+            CreateRoomDeprecatedResponse res = sdk.roomV1.createRoomDeprecated(new CreateRoomRequest(Region.SEATTLE) {{
+                region = Region.SINGAPORE;
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.roomId != null) {
@@ -82,7 +82,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("est") {{
+                .setSecurity(new Security("Jersey") {{
                     auth0 = "";
                 }})
                 .build();
@@ -130,7 +130,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("mollitia") {{
+                .setSecurity(new Security("variety") {{
                     auth0 = "";
                 }})
                 .build();
@@ -178,7 +178,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("laborum") {{
+                .setSecurity(new Security("radian") {{
                     auth0 = "";
                 }})
                 .build();
@@ -226,7 +226,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("dolores") {{
+                .setSecurity(new Security("Paraguay") {{
                     auth0 = "";
                 }})
                 .build();
@@ -274,7 +274,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("dolorem") {{
+                .setSecurity(new Security("consent") {{
                     auth0 = "";
                 }})
                 .build();
@@ -322,7 +322,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("corporis") {{
+                .setSecurity(new Security("feed") {{
                     auth0 = "";
                 }})
                 .build();

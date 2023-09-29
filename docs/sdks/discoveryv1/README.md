@@ -26,7 +26,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("quod") {{
+                .setSecurity(new Security("Implementation") {{
                     auth0 = "";
                 }})
                 .build();

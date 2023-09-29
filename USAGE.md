@@ -16,14 +16,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("corrupti") {{
+                .setSecurity(new Security("newton") {{
                     auth0 = "";
                 }})
                 .build();
 
             dev.hathora.cloud_api.models.shared.AppConfig req = new AppConfig("minecraft",                 new AppConfigAuthConfiguration() {{
                                 anonymous = new RecordStringNever();;
-                                google = new AppConfigAuthConfigurationGoogle("provident");;
+                                google = new AppConfigAuthConfigurationGoogle("Representative");;
                                 nickname = new RecordStringNever();;
                             }};);            
 

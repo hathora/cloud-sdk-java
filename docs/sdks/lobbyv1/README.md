@@ -26,12 +26,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("esse") {{
+                .setSecurity(new Security("hybrid") {{
                     auth0 = "";
                 }})
                 .build();
 
-            CreatePrivateLobbyDeprecatedResponse res = sdk.lobbyV1.createPrivateLobbyDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", false, Region.MUMBAI);
+            CreatePrivateLobbyDeprecatedResponse res = sdk.lobbyV1.createPrivateLobbyDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", false, Region.FRANKFURT);
 
             if (res.roomId != null) {
                 // handle response
@@ -76,12 +76,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("porro") {{
+                .setSecurity(new Security("Riel") {{
                     auth0 = "";
                 }})
                 .build();
 
-            CreatePublicLobbyDeprecatedResponse res = sdk.lobbyV1.createPublicLobbyDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", false, Region.SINGAPORE);
+            CreatePublicLobbyDeprecatedResponse res = sdk.lobbyV1.createPublicLobbyDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", false, Region.FRANKFURT);
 
             if (res.roomId != null) {
                 // handle response
@@ -126,12 +126,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("dicta") {{
+                .setSecurity(new Security("plum") {{
                     auth0 = "";
                 }})
                 .build();
 
-            ListActivePublicLobbiesDeprecatedResponse res = sdk.lobbyV1.listActivePublicLobbiesDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", false, Region.TOKYO);
+            ListActivePublicLobbiesDeprecatedResponse res = sdk.lobbyV1.listActivePublicLobbiesDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", false, Region.SYDNEY);
 
             if (res.lobbies != null) {
                 // handle response

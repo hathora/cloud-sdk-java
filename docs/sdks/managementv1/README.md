@@ -21,12 +21,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("dolor") {{
+                .setSecurity(new Security("lux") {{
                     auth0 = "";
                 }})
                 .build();
 
-            dev.hathora.cloud_api.models.shared.VerificationEmailRequest req = new VerificationEmailRequest("natus");            
+            dev.hathora.cloud_api.models.shared.VerificationEmailRequest req = new VerificationEmailRequest("Accounts");            
 
             SendVerificationEmailResponse res = sdk.managementV1.sendVerificationEmail(req);
 

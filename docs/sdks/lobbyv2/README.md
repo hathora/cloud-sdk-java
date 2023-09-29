@@ -37,14 +37,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("officia") {{
+                .setSecurity(new Security("West") {{
                     auth0 = "";
                 }})
                 .build();
 
-            CreateLobbyResponse res = sdk.lobbyV2.createLobby(new CreateLobbyRequest(                new LobbyInitialConfig();, Region.WASHINGTON_DC, LobbyVisibility.PRIVATE_) {{
+            CreateLobbyResponse res = sdk.lobbyV2.createLobby(new CreateLobbyRequest(                new LobbyInitialConfig();, Region.CHICAGO, LobbyVisibility.PRIVATE_) {{
                 initialConfig = new LobbyInitialConfig() {{}};
-                region = Region.MUMBAI;
+                region = Region.SAO_PAULO;
                 visibility = LobbyVisibility.PRIVATE_;
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
@@ -93,14 +93,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("deleniti") {{
+                .setSecurity(new Security("foolishly") {{
                     auth0 = "";
                 }})
                 .build();
 
-            CreateLocalLobbyResponse res = sdk.lobbyV2.createLocalLobby(new CreateLocalLobbyRequestBody(                new LobbyInitialConfig();, Region.TOKYO) {{
+            CreateLocalLobbyResponse res = sdk.lobbyV2.createLocalLobby(new CreateLocalLobbyRequestBody(                new LobbyInitialConfig();, Region.WASHINGTON_DC) {{
                 initialConfig = new LobbyInitialConfig() {{}};
-                region = Region.SAO_PAULO;
+                region = Region.MUMBAI;
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.lobby != null) {
@@ -148,14 +148,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("totam") {{
+                .setSecurity(new Security("innovative") {{
                     auth0 = "";
                 }})
                 .build();
 
-            CreatePrivateLobbyResponse res = sdk.lobbyV2.createPrivateLobby(new CreatePrivateLobbyRequestBody(                new LobbyInitialConfig();, Region.FRANKFURT) {{
+            CreatePrivateLobbyResponse res = sdk.lobbyV2.createPrivateLobby(new CreatePrivateLobbyRequestBody(                new LobbyInitialConfig();, Region.TOKYO) {{
                 initialConfig = new LobbyInitialConfig() {{}};
-                region = Region.WASHINGTON_DC;
+                region = Region.MUMBAI;
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.lobby != null) {
@@ -203,14 +203,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("molestiae") {{
+                .setSecurity(new Security("evenly") {{
                     auth0 = "";
                 }})
                 .build();
 
-            CreatePublicLobbyResponse res = sdk.lobbyV2.createPublicLobby(new CreatePublicLobbyRequestBody(                new LobbyInitialConfig();, Region.WASHINGTON_DC) {{
+            CreatePublicLobbyResponse res = sdk.lobbyV2.createPublicLobby(new CreatePublicLobbyRequestBody(                new LobbyInitialConfig();, Region.SINGAPORE) {{
                 initialConfig = new LobbyInitialConfig() {{}};
-                region = Region.CHICAGO;
+                region = Region.SINGAPORE;
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
 
             if (res.lobby != null) {
@@ -255,7 +255,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("impedit") {{
+                .setSecurity(new Security("indigo") {{
                     auth0 = "";
                 }})
                 .build();
@@ -304,12 +304,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("cum") {{
+                .setSecurity(new Security("West") {{
                     auth0 = "";
                 }})
                 .build();
 
-            ListActivePublicLobbiesResponse res = sdk.lobbyV2.listActivePublicLobbies("app-af469a92-5b45-4565-b3c4-b79878de67d2", Region.FRANKFURT);
+            ListActivePublicLobbiesResponse res = sdk.lobbyV2.listActivePublicLobbies("app-af469a92-5b45-4565-b3c4-b79878de67d2", Region.CHICAGO);
 
             if (res.lobbies != null) {
                 // handle response
@@ -354,7 +354,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("ipsum") {{
+                .setSecurity(new Security("Diesel") {{
                     auth0 = "";
                 }})
                 .build();

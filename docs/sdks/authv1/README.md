@@ -27,7 +27,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("magnam") {{
+                .setSecurity(new Security("deposit") {{
                     auth0 = "";
                 }})
                 .build();
@@ -73,13 +73,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("debitis") {{
+                .setSecurity(new Security("Views") {{
                     auth0 = "";
                 }})
                 .build();
 
-            LoginGoogleResponse res = sdk.authV1.loginGoogle(new LoginGoogleRequest("delectus") {{
-                idToken = "ipsa";
+            LoginGoogleResponse res = sdk.authV1.loginGoogle(new LoginGoogleRequest("Global") {{
+                idToken = "navigating facere";
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
 
             if (res.loginResponse != null) {
@@ -122,13 +122,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("tempora") {{
+                .setSecurity(new Security("Health") {{
                     auth0 = "";
                 }})
                 .build();
 
-            LoginNicknameResponse res = sdk.authV1.loginNickname(new LoginNicknameRequest("molestiae") {{
-                nickname = "suscipit";
+            LoginNicknameResponse res = sdk.authV1.loginNickname(new LoginNicknameRequest("Massachusetts") {{
+                nickname = "Latin functionalities Northeast";
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
 
             if (res.loginResponse != null) {

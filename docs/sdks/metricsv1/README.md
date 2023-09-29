@@ -28,18 +28,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("laboriosam") {{
+                .setSecurity(new Security("override") {{
                     auth0 = "";
                 }})
                 .build();
 
             GetMetricsRequest req = new GetMetricsRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e") {{
-                end = 9437.49d;
+                end = 4311.13d;
                 metrics = new dev.hathora.cloud_api.models.shared.MetricName[]{{
-                    add(MetricName.TOTAL_EGRESS),
+                    add(MetricName.MEMORY),
                 }};
-                start = 6818.2d;
-                step = 449950;
+                start = 2713.56d;
+                step = 406495;
             }};            
 
             GetMetricsResponse res = sdk.metricsV1.getMetrics(req);

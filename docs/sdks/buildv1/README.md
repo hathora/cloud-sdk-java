@@ -31,7 +31,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("nisi") {{
+                .setSecurity(new Security("array") {{
                     auth0 = "";
                 }})
                 .build();
@@ -78,7 +78,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("recusandae") {{
+                .setSecurity(new Security("Crew") {{
                     auth0 = "";
                 }})
                 .build();
@@ -126,7 +126,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("temporibus") {{
+                .setSecurity(new Security("Home") {{
                     auth0 = "";
                 }})
                 .build();
@@ -174,7 +174,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("ab") {{
+                .setSecurity(new Security("Response") {{
                     auth0 = "";
                 }})
                 .build();
@@ -223,15 +223,15 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("quis") {{
+                .setSecurity(new Security("maxime") {{
                     auth0 = "";
                 }})
                 .build();
 
-            RunBuildResponse res = sdk.buildV1.runBuild(new RunBuildRequestBody(                new RunBuildRequestBodyFile("repellendus".getBytes(), "sapiente");) {{
-                file = new RunBuildRequestBodyFile("perferendis".getBytes(), "ipsam") {{
-                    content = "veritatis".getBytes();
-                    file = "deserunt";
+            RunBuildResponse res = sdk.buildV1.runBuild(new RunBuildRequestBody(                new RunBuildRequestBodyFile("LzrEDiK{7x".getBytes(), "database");) {{
+                file = new RunBuildRequestBodyFile("V`[RS\"$mQF".getBytes(), "purple") {{
+                    content = "kktj?kA=\{".getBytes();
+                    file = "Mini optimize West";
                 }};
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", 1);
 

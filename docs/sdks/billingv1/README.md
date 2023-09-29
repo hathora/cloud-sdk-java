@@ -23,7 +23,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("minus") {{
+                .setSecurity(new Security("West") {{
                     auth0 = "";
                 }})
                 .build();
@@ -61,7 +61,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("placeat") {{
+                .setSecurity(new Security("popcorn") {{
                     auth0 = "";
                 }})
                 .build();
@@ -99,7 +99,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("voluptatum") {{
+                .setSecurity(new Security("Palladium") {{
                     auth0 = "";
                 }})
                 .build();
@@ -138,12 +138,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("iusto") {{
+                .setSecurity(new Security("strategic") {{
                     auth0 = "";
                 }})
                 .build();
 
-            dev.hathora.cloud_api.models.shared.CustomerPortalUrl req = new CustomerPortalUrl("excepturi");            
+            dev.hathora.cloud_api.models.shared.CustomerPortalUrl req = new CustomerPortalUrl("meter");            
 
             InitStripeCustomerPortalUrlResponse res = sdk.billingV1.initStripeCustomerPortalUrl(req);
 

@@ -29,7 +29,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("corporis") {{
+                .setSecurity(new Security("sky") {{
                     auth0 = "";
                 }})
                 .build();
@@ -78,12 +78,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("iste") {{
+                .setSecurity(new Security("male") {{
                     auth0 = "";
                 }})
                 .build();
 
-            GetRunningProcessesResponse res = sdk.processesV1.getRunningProcesses("app-af469a92-5b45-4565-b3c4-b79878de67d2", Region.FRANKFURT);
+            GetRunningProcessesResponse res = sdk.processesV1.getRunningProcesses("app-af469a92-5b45-4565-b3c4-b79878de67d2", Region.TOKYO);
 
             if (res.processWithRooms != null) {
                 // handle response
@@ -127,7 +127,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("saepe") {{
+                .setSecurity(new Security("Polestar") {{
                     auth0 = "";
                 }})
                 .build();

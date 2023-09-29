@@ -34,7 +34,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("quo") {{
+                .setSecurity(new Security("protocol") {{
                     auth0 = "";
                 }})
                 .build();
@@ -46,7 +46,7 @@ public class Application {
                                 }}),
                             }}, PlanName.TINY, 3, TransportType.TLS) {{
                 additionalContainerPorts = new dev.hathora.cloud_api.models.shared.ContainerPort[]{{
-                    add(new ContainerPort("default", 8000, TransportType.TLS) {{
+                    add(new ContainerPort("default", 8000, TransportType.TCP) {{
                         name = "default";
                         port = 8000;
                         transportType = TransportType.TCP;
@@ -61,7 +61,7 @@ public class Application {
                 }};
                 planName = PlanName.TINY;
                 roomsPerProcess = 3;
-                transportType = TransportType.TLS;
+                transportType = TransportType.TCP;
             }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", 1);
 
             if (res.deployment != null) {
@@ -106,7 +106,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("molestiae") {{
+                .setSecurity(new Security("Neptunium") {{
                     auth0 = "";
                 }})
                 .build();
@@ -154,7 +154,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("quod") {{
+                .setSecurity(new Security("Bicycle") {{
                     auth0 = "";
                 }})
                 .build();

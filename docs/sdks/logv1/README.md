@@ -30,15 +30,15 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("excepturi") {{
+                .setSecurity(new Security("Senior") {{
                     auth0 = "";
                 }})
                 .build();
 
             GetLogsForAppRequest req = new GetLogsForAppRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2") {{
                 follow = false;
-                region = Region.WASHINGTON_DC;
-                tailLines = 18789;
+                region = Region.LONDON;
+                tailLines = 21485;
             }};            
 
             GetLogsForAppResponse res = sdk.logV1.getLogsForApp(req);
@@ -83,14 +83,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("ad") {{
+                .setSecurity(new Security("Nicaragua") {{
                     auth0 = "";
                 }})
                 .build();
 
             GetLogsForDeploymentRequest req = new GetLogsForDeploymentRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", 1) {{
                 follow = false;
-                tailLines = 617636;
+                tailLines = 87591;
             }};            
 
             GetLogsForDeploymentResponse res = sdk.logV1.getLogsForDeployment(req);
@@ -135,14 +135,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("sed") {{
+                .setSecurity(new Security("firewall") {{
                     auth0 = "";
                 }})
                 .build();
 
             GetLogsForProcessRequest req = new GetLogsForProcessRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e") {{
                 follow = false;
-                tailLines = 612096;
+                tailLines = 467208;
             }};            
 
             GetLogsForProcessResponse res = sdk.logV1.getLogsForProcess(req);

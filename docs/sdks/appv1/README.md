@@ -34,14 +34,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("unde") {{
+                .setSecurity(new Security("newton") {{
                     auth0 = "";
                 }})
                 .build();
 
             dev.hathora.cloud_api.models.shared.AppConfig req = new AppConfig("minecraft",                 new AppConfigAuthConfiguration() {{
                                 anonymous = new RecordStringNever();;
-                                google = new AppConfigAuthConfigurationGoogle("nulla");;
+                                google = new AppConfigAuthConfigurationGoogle("Representative");;
                                 nickname = new RecordStringNever();;
                             }};);            
 
@@ -87,7 +87,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("corrupti") {{
+                .setSecurity(new Security("Legacy") {{
                     auth0 = "";
                 }})
                 .build();
@@ -134,7 +134,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("illum") {{
+                .setSecurity(new Security("voluptas") {{
                     auth0 = "";
                 }})
                 .build();
@@ -180,7 +180,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("vel") {{
+                .setSecurity(new Security("Van") {{
                     auth0 = "";
                 }})
                 .build();
@@ -225,21 +225,21 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .setSecurity(new Security("error") {{
+                .setSecurity(new Security("Keyboard") {{
                     auth0 = "";
                 }})
                 .build();
 
             UpdateAppResponse res = sdk.appV1.updateApp(new AppConfig("minecraft",                 new AppConfigAuthConfiguration() {{
                                 anonymous = new RecordStringNever();;
-                                google = new AppConfigAuthConfigurationGoogle("iure");;
+                                google = new AppConfigAuthConfigurationGoogle("reboot");;
                                 nickname = new RecordStringNever();;
                             }};) {{
                 appName = "minecraft";
                 authConfiguration = new AppConfigAuthConfiguration() {{
                     anonymous = new RecordStringNever() {{}};
-                    google = new AppConfigAuthConfigurationGoogle("suscipit") {{
-                        clientId = "deserunt";
+                    google = new AppConfigAuthConfigurationGoogle("hmph") {{
+                        clientId = "sensor Rock";
                     }};
                     nickname = new RecordStringNever() {{}};
                 }};
