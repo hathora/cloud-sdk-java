@@ -6,18 +6,17 @@ package dev.hathora.cloud_api.utils;
 
 import java.lang.reflect.Field;
 
-public class HeaderMetadata extends Metadata {
-    public String style = "simple";
-    public boolean explode;
-    public String name;
+class HeaderMetadata {
 
-    // headerParam:style=simple,explode=false,name=apiID
-    public static HeaderMetadata parse(Field field) throws IllegalArgumentException, IllegalAccessException {
-        HeaderMetadata result = new HeaderMetadata();
-        result = (HeaderMetadata) parse("header", result, field);
-        return result;
-    }
+    String style = "simple";
+    boolean explode;
+    String name;
 
     private HeaderMetadata() {
+    }
+
+    // headerParam:style=simple,explode=false,name=apiID
+    static HeaderMetadata parse(Field field) throws IllegalArgumentException, IllegalAccessException {
+        return Metadata.parse("header", new HeaderMetadata(), field);
     }
 }

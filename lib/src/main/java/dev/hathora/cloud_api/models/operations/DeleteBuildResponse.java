@@ -4,61 +4,208 @@
 
 package dev.hathora.cloud_api.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 
 
 public class DeleteBuildResponse {
-    
-    public String contentType;
 
+    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
+
+    /**
+     * HTTP response content type for this operation
+     */
+    private String contentType;
+
+    /**
+     * HTTP response status code for this operation
+     */
+    private int statusCode;
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    private HttpResponse<InputStream> rawResponse;
+
+    public DeleteBuildResponse(
+            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(apiError, "apiError");
+        Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(statusCode, "statusCode");
+        Utils.checkNotNull(rawResponse, "rawResponse");
+        this.apiError = apiError;
+        this.contentType = contentType;
+        this.statusCode = statusCode;
+        this.rawResponse = rawResponse;
+    }
+
+    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
+        return apiError;
+    }
+
+    /**
+     * HTTP response content type for this operation
+     */
+    public String contentType() {
+        return contentType;
+    }
+
+    /**
+     * HTTP response status code for this operation
+     */
+    public int statusCode() {
+        return statusCode;
+    }
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public HttpResponse<InputStream> rawResponse() {
+        return rawResponse;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    public DeleteBuildResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
+        Utils.checkNotNull(apiError, "apiError");
+        this.apiError = Optional.ofNullable(apiError);
+        return this;
+    }
+    
+    public DeleteBuildResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
+        Utils.checkNotNull(apiError, "apiError");
+        this.apiError = apiError;
+        return this;
+    }
+
+    /**
+     * HTTP response content type for this operation
+     */
     public DeleteBuildResponse withContentType(String contentType) {
+        Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
     }
-    
-    
-    public String deleteBuild404ApplicationJSONString;
 
-    public DeleteBuildResponse withDeleteBuild404ApplicationJSONString(String deleteBuild404ApplicationJSONString) {
-        this.deleteBuild404ApplicationJSONString = deleteBuild404ApplicationJSONString;
-        return this;
-    }
-    
-    
-    public String deleteBuild422ApplicationJSONString;
-
-    public DeleteBuildResponse withDeleteBuild422ApplicationJSONString(String deleteBuild422ApplicationJSONString) {
-        this.deleteBuild422ApplicationJSONString = deleteBuild422ApplicationJSONString;
-        return this;
-    }
-    
-    
-    public String deleteBuild500ApplicationJSONString;
-
-    public DeleteBuildResponse withDeleteBuild500ApplicationJSONString(String deleteBuild500ApplicationJSONString) {
-        this.deleteBuild500ApplicationJSONString = deleteBuild500ApplicationJSONString;
-        return this;
-    }
-    
-    
-    public Integer statusCode;
-
-    public DeleteBuildResponse withStatusCode(Integer statusCode) {
+    /**
+     * HTTP response status code for this operation
+     */
+    public DeleteBuildResponse withStatusCode(int statusCode) {
+        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
-    
-    
-    public HttpResponse<byte[]> rawResponse;
 
-    public DeleteBuildResponse withRawResponse(HttpResponse<byte[]> rawResponse) {
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public DeleteBuildResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
     }
     
-    public DeleteBuildResponse(@JsonProperty("ContentType") String contentType, @JsonProperty("StatusCode") Integer statusCode) {
-        this.contentType = contentType;
-        this.statusCode = statusCode;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        DeleteBuildResponse other = (DeleteBuildResponse) o;
+        return 
+            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
+            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
+            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            apiError,
+            contentType,
+            statusCode,
+            rawResponse);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(DeleteBuildResponse.class,
+                "apiError", apiError,
+                "contentType", contentType,
+                "statusCode", statusCode,
+                "rawResponse", rawResponse);
+    }
+    
+    public final static class Builder {
+ 
+        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
+ 
+        private String contentType;
+ 
+        private Integer statusCode;
+ 
+        private HttpResponse<InputStream> rawResponse;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
+            Utils.checkNotNull(apiError, "apiError");
+            this.apiError = Optional.ofNullable(apiError);
+            return this;
+        }
+        
+        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
+            Utils.checkNotNull(apiError, "apiError");
+            this.apiError = apiError;
+            return this;
+        }
+
+        /**
+         * HTTP response content type for this operation
+         */
+        public Builder contentType(String contentType) {
+            Utils.checkNotNull(contentType, "contentType");
+            this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * HTTP response status code for this operation
+         */
+        public Builder statusCode(int statusCode) {
+            Utils.checkNotNull(statusCode, "statusCode");
+            this.statusCode = statusCode;
+            return this;
+        }
+
+        /**
+         * Raw HTTP response; suitable for custom response parsing
+         */
+        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
+            Utils.checkNotNull(rawResponse, "rawResponse");
+            this.rawResponse = rawResponse;
+            return this;
+        }        
+        
+        public DeleteBuildResponse build() {
+            return new DeleteBuildResponse(
+                apiError,
+                contentType,
+                statusCode,
+                rawResponse);
+        }
+    }
 }
+

@@ -4,48 +4,226 @@
 
 package dev.hathora.cloud_api.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 
 
 public class GetPingServiceEndpointsResponse {
-    
-    public String contentType;
 
-    public GetPingServiceEndpointsResponse withContentType(String contentType) {
+    /**
+     * HTTP response content type for this operation
+     */
+    private String contentType;
+
+    /**
+     * Ok
+     */
+    private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse>> discoveryResponse;
+
+    /**
+     * HTTP response status code for this operation
+     */
+    private int statusCode;
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    private HttpResponse<InputStream> rawResponse;
+
+    public GetPingServiceEndpointsResponse(
+            String contentType,
+            Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse>> discoveryResponse,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(discoveryResponse, "discoveryResponse");
+        Utils.checkNotNull(statusCode, "statusCode");
+        Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
+        this.discoveryResponse = discoveryResponse;
+        this.statusCode = statusCode;
+        this.rawResponse = rawResponse;
+    }
+
+    /**
+     * HTTP response content type for this operation
+     */
+    public String contentType() {
+        return contentType;
+    }
+
+    /**
+     * Ok
+     */
+    public Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse>> discoveryResponse() {
+        return discoveryResponse;
+    }
+
+    /**
+     * HTTP response status code for this operation
+     */
+    public int statusCode() {
+        return statusCode;
+    }
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public HttpResponse<InputStream> rawResponse() {
+        return rawResponse;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * HTTP response content type for this operation
+     */
+    public GetPingServiceEndpointsResponse withContentType(String contentType) {
+        Utils.checkNotNull(contentType, "contentType");
+        this.contentType = contentType;
+        return this;
+    }
+
+    /**
+     * Ok
+     */
+    public GetPingServiceEndpointsResponse withDiscoveryResponse(java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse> discoveryResponse) {
+        Utils.checkNotNull(discoveryResponse, "discoveryResponse");
+        this.discoveryResponse = Optional.ofNullable(discoveryResponse);
         return this;
     }
     
     /**
      * Ok
      */
-    
-    public dev.hathora.cloud_api.models.shared.DiscoveryResponse[] discoveryResponse;
-
-    public GetPingServiceEndpointsResponse withDiscoveryResponse(dev.hathora.cloud_api.models.shared.DiscoveryResponse[] discoveryResponse) {
+    public GetPingServiceEndpointsResponse withDiscoveryResponse(Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse>> discoveryResponse) {
+        Utils.checkNotNull(discoveryResponse, "discoveryResponse");
         this.discoveryResponse = discoveryResponse;
         return this;
     }
-    
-    
-    public Integer statusCode;
 
-    public GetPingServiceEndpointsResponse withStatusCode(Integer statusCode) {
+    /**
+     * HTTP response status code for this operation
+     */
+    public GetPingServiceEndpointsResponse withStatusCode(int statusCode) {
+        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
-    
-    
-    public HttpResponse<byte[]> rawResponse;
 
-    public GetPingServiceEndpointsResponse withRawResponse(HttpResponse<byte[]> rawResponse) {
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public GetPingServiceEndpointsResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
     }
     
-    public GetPingServiceEndpointsResponse(@JsonProperty("ContentType") String contentType, @JsonProperty("StatusCode") Integer statusCode) {
-        this.contentType = contentType;
-        this.statusCode = statusCode;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetPingServiceEndpointsResponse other = (GetPingServiceEndpointsResponse) o;
+        return 
+            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
+            java.util.Objects.deepEquals(this.discoveryResponse, other.discoveryResponse) &&
+            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            contentType,
+            discoveryResponse,
+            statusCode,
+            rawResponse);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(GetPingServiceEndpointsResponse.class,
+                "contentType", contentType,
+                "discoveryResponse", discoveryResponse,
+                "statusCode", statusCode,
+                "rawResponse", rawResponse);
+    }
+    
+    public final static class Builder {
+ 
+        private String contentType;
+ 
+        private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse>> discoveryResponse = Optional.empty();
+ 
+        private Integer statusCode;
+ 
+        private HttpResponse<InputStream> rawResponse;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        /**
+         * HTTP response content type for this operation
+         */
+        public Builder contentType(String contentType) {
+            Utils.checkNotNull(contentType, "contentType");
+            this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder discoveryResponse(java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse> discoveryResponse) {
+            Utils.checkNotNull(discoveryResponse, "discoveryResponse");
+            this.discoveryResponse = Optional.ofNullable(discoveryResponse);
+            return this;
+        }
+        
+        /**
+         * Ok
+         */
+        public Builder discoveryResponse(Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse>> discoveryResponse) {
+            Utils.checkNotNull(discoveryResponse, "discoveryResponse");
+            this.discoveryResponse = discoveryResponse;
+            return this;
+        }
+
+        /**
+         * HTTP response status code for this operation
+         */
+        public Builder statusCode(int statusCode) {
+            Utils.checkNotNull(statusCode, "statusCode");
+            this.statusCode = statusCode;
+            return this;
+        }
+
+        /**
+         * Raw HTTP response; suitable for custom response parsing
+         */
+        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
+            Utils.checkNotNull(rawResponse, "rawResponse");
+            this.rawResponse = rawResponse;
+            return this;
+        }        
+        
+        public GetPingServiceEndpointsResponse build() {
+            return new GetPingServiceEndpointsResponse(
+                contentType,
+                discoveryResponse,
+                statusCode,
+                rawResponse);
+        }
+    }
 }
+

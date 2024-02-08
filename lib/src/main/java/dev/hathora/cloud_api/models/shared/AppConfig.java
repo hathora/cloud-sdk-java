@@ -5,30 +5,130 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
 
 public class AppConfig {
+
     /**
      * Readable name for an application. Must be unique within an organization.
      */
     @JsonProperty("appName")
-    public String appName;
+    private String appName;
 
-    public AppConfig withAppName(String appName) {
-        this.appName = appName;
-        return this;
-    }
-    
+    /**
+     * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     */
     @JsonProperty("authConfiguration")
-    public AppConfigAuthConfiguration authConfiguration;
+    private AuthConfiguration authConfiguration;
 
-    public AppConfig withAuthConfiguration(AppConfigAuthConfiguration authConfiguration) {
+    public AppConfig(
+            @JsonProperty("appName") String appName,
+            @JsonProperty("authConfiguration") AuthConfiguration authConfiguration) {
+        Utils.checkNotNull(appName, "appName");
+        Utils.checkNotNull(authConfiguration, "authConfiguration");
+        this.appName = appName;
+        this.authConfiguration = authConfiguration;
+    }
+
+    /**
+     * Readable name for an application. Must be unique within an organization.
+     */
+    public String appName() {
+        return appName;
+    }
+
+    /**
+     * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     */
+    public AuthConfiguration authConfiguration() {
+        return authConfiguration;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * Readable name for an application. Must be unique within an organization.
+     */
+    public AppConfig withAppName(String appName) {
+        Utils.checkNotNull(appName, "appName");
+        this.appName = appName;
+        return this;
+    }
+
+    /**
+     * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     */
+    public AppConfig withAuthConfiguration(AuthConfiguration authConfiguration) {
+        Utils.checkNotNull(authConfiguration, "authConfiguration");
         this.authConfiguration = authConfiguration;
         return this;
     }
     
-    public AppConfig(@JsonProperty("appName") String appName, @JsonProperty("authConfiguration") AppConfigAuthConfiguration authConfiguration) {
-        this.appName = appName;
-        this.authConfiguration = authConfiguration;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AppConfig other = (AppConfig) o;
+        return 
+            java.util.Objects.deepEquals(this.appName, other.appName) &&
+            java.util.Objects.deepEquals(this.authConfiguration, other.authConfiguration);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            appName,
+            authConfiguration);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(AppConfig.class,
+                "appName", appName,
+                "authConfiguration", authConfiguration);
+    }
+    
+    public final static class Builder {
+ 
+        private String appName;
+ 
+        private AuthConfiguration authConfiguration;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        /**
+         * Readable name for an application. Must be unique within an organization.
+         */
+        public Builder appName(String appName) {
+            Utils.checkNotNull(appName, "appName");
+            this.appName = appName;
+            return this;
+        }
+
+        /**
+         * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+         */
+        public Builder authConfiguration(AuthConfiguration authConfiguration) {
+            Utils.checkNotNull(authConfiguration, "authConfiguration");
+            this.authConfiguration = authConfiguration;
+            return this;
+        }        
+        
+        public AppConfig build() {
+            return new AppConfig(
+                appName,
+                authConfiguration);
+        }
+    }
 }
+

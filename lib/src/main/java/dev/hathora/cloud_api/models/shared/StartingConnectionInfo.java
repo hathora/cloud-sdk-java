@@ -5,33 +5,122 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
-/**
- * StartingConnectionInfo - Connection information to the default port.
- */
 
 public class StartingConnectionInfo {
+
     /**
-     * Unique identifier to a game session or match. Use either a system generated ID or pass in your own.
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
      */
     @JsonProperty("roomId")
-    public String roomId;
+    private String roomId;
 
+    @JsonProperty("status")
+    private StartingConnectionInfoStatus status;
+
+    public StartingConnectionInfo(
+            @JsonProperty("roomId") String roomId,
+            @JsonProperty("status") StartingConnectionInfoStatus status) {
+        Utils.checkNotNull(roomId, "roomId");
+        Utils.checkNotNull(status, "status");
+        this.roomId = roomId;
+        this.status = status;
+    }
+
+    /**
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
+     */
+    public String roomId() {
+        return roomId;
+    }
+
+    public StartingConnectionInfoStatus status() {
+        return status;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
+     */
     public StartingConnectionInfo withRoomId(String roomId) {
+        Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;
     }
-    
-    @JsonProperty("status")
-    public StartingConnectionInfoStatus status;
 
     public StartingConnectionInfo withStatus(StartingConnectionInfoStatus status) {
+        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
     
-    public StartingConnectionInfo(@JsonProperty("roomId") String roomId, @JsonProperty("status") StartingConnectionInfoStatus status) {
-        this.roomId = roomId;
-        this.status = status;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StartingConnectionInfo other = (StartingConnectionInfo) o;
+        return 
+            java.util.Objects.deepEquals(this.roomId, other.roomId) &&
+            java.util.Objects.deepEquals(this.status, other.status);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            roomId,
+            status);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(StartingConnectionInfo.class,
+                "roomId", roomId,
+                "status", status);
+    }
+    
+    public final static class Builder {
+ 
+        private String roomId;
+ 
+        private StartingConnectionInfoStatus status;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        /**
+         * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+         * Note: error will be returned if `roomId` is not globally unique.
+         */
+        public Builder roomId(String roomId) {
+            Utils.checkNotNull(roomId, "roomId");
+            this.roomId = roomId;
+            return this;
+        }
+
+        public Builder status(StartingConnectionInfoStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }        
+        
+        public StartingConnectionInfo build() {
+            return new StartingConnectionInfo(
+                roomId,
+                status);
+        }
+    }
 }
+

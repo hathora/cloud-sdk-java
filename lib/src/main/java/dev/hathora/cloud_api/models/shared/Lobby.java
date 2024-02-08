@@ -9,108 +9,69 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import dev.hathora.cloud_api.utils.DateTimeDeserializer;
-import dev.hathora.cloud_api.utils.DateTimeSerializer;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 
 /**
  * Lobby - A lobby object allows you to store and manage metadata for your rooms.
  */
 
 public class Lobby {
+
     /**
      * System generated unique identifier for an application.
      */
     @JsonProperty("appId")
-    public String appId;
+    private String appId;
 
-    public Lobby withAppId(String appId) {
-        this.appId = appId;
-        return this;
-    }
-    
     /**
      * When the lobby was created.
      */
-    @JsonSerialize(using = DateTimeSerializer.class)
-    @JsonDeserialize(using = DateTimeDeserializer.class)
     @JsonProperty("createdAt")
-    public OffsetDateTime createdAt;
+    private OffsetDateTime createdAt;
 
-    public Lobby withCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-        return this;
-    }
-    
     /**
      * Email address for the user that created the lobby.
      */
     @JsonProperty("createdBy")
-    public String createdBy;
+    private String createdBy;
 
-    public Lobby withCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-        return this;
-    }
-    
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
     @JsonProperty("initialConfig")
-    public LobbyInitialConfig initialConfig;
+    private LobbyInitialConfig initialConfig;
 
-    public Lobby withInitialConfig(LobbyInitialConfig initialConfig) {
-        this.initialConfig = initialConfig;
-        return this;
-    }
-    
     /**
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("local")
     @Deprecated
-    public Boolean local;
+    private boolean local;
 
-    @Deprecated
-    public Lobby withLocal(Boolean local) {
-        this.local = local;
-        return this;
-    }
-    
-    /**
-     * Available regions to request a game server.
-     */
     @JsonProperty("region")
-    public Region region;
+    private Region region;
 
-    public Lobby withRegion(Region region) {
-        this.region = region;
-        return this;
-    }
-    
     /**
-     * Unique identifier to a game session or match. Use either a system generated ID or pass in your own.
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
      */
     @JsonProperty("roomId")
-    public String roomId;
+    private String roomId;
 
-    public Lobby withRoomId(String roomId) {
-        this.roomId = roomId;
-        return this;
-    }
-    
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("shortCode")
+    private Optional<? extends String> shortCode;
+
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
-    public LobbyState state;
+    private Optional<? extends State> state;
 
-    public Lobby withState(LobbyState state) {
-        this.state = state;
-        return this;
-    }
-    
     /**
      * Types of lobbies a player can create.
      * 
@@ -121,14 +82,29 @@ public class Lobby {
      * `local`: for testing with a server running locally
      */
     @JsonProperty("visibility")
-    public LobbyVisibility visibility;
+    private LobbyVisibility visibility;
 
-    public Lobby withVisibility(LobbyVisibility visibility) {
-        this.visibility = visibility;
-        return this;
-    }
-    
-    public Lobby(@JsonProperty("appId") String appId, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("createdBy") String createdBy, @JsonProperty("initialConfig") LobbyInitialConfig initialConfig, @JsonProperty("local") Boolean local, @JsonProperty("region") Region region, @JsonProperty("roomId") String roomId, @JsonProperty("visibility") LobbyVisibility visibility) {
+    public Lobby(
+            @JsonProperty("appId") String appId,
+            @JsonProperty("createdAt") OffsetDateTime createdAt,
+            @JsonProperty("createdBy") String createdBy,
+            @JsonProperty("initialConfig") LobbyInitialConfig initialConfig,
+            @JsonProperty("local") boolean local,
+            @JsonProperty("region") Region region,
+            @JsonProperty("roomId") String roomId,
+            @JsonProperty("shortCode") Optional<? extends String> shortCode,
+            @JsonProperty("state") Optional<? extends State> state,
+            @JsonProperty("visibility") LobbyVisibility visibility) {
+        Utils.checkNotNull(appId, "appId");
+        Utils.checkNotNull(createdAt, "createdAt");
+        Utils.checkNotNull(createdBy, "createdBy");
+        Utils.checkNotNull(initialConfig, "initialConfig");
+        Utils.checkNotNull(local, "local");
+        Utils.checkNotNull(region, "region");
+        Utils.checkNotNull(roomId, "roomId");
+        Utils.checkNotNull(shortCode, "shortCode");
+        Utils.checkNotNull(state, "state");
+        Utils.checkNotNull(visibility, "visibility");
         this.appId = appId;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
@@ -136,6 +112,393 @@ public class Lobby {
         this.local = local;
         this.region = region;
         this.roomId = roomId;
+        this.shortCode = shortCode;
+        this.state = state;
         this.visibility = visibility;
-  }
+    }
+
+    /**
+     * System generated unique identifier for an application.
+     */
+    public String appId() {
+        return appId;
+    }
+
+    /**
+     * When the lobby was created.
+     */
+    public OffsetDateTime createdAt() {
+        return createdAt;
+    }
+
+    /**
+     * Email address for the user that created the lobby.
+     */
+    public String createdBy() {
+        return createdBy;
+    }
+
+    /**
+     * User input to initialize the game state. Object must be smaller than 64KB.
+     */
+    public LobbyInitialConfig initialConfig() {
+        return initialConfig;
+    }
+
+    /**
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public boolean local() {
+        return local;
+    }
+
+    public Region region() {
+        return region;
+    }
+
+    /**
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
+     */
+    public String roomId() {
+        return roomId;
+    }
+
+    public Optional<? extends String> shortCode() {
+        return shortCode;
+    }
+
+    /**
+     * JSON blob to store metadata for a room. Must be smaller than 1MB.
+     */
+    public Optional<? extends State> state() {
+        return state;
+    }
+
+    /**
+     * Types of lobbies a player can create.
+     * 
+     * `private`: the player who created the room must share the roomId with their friends
+     * 
+     * `public`: visible in the public lobby list, anyone can join
+     * 
+     * `local`: for testing with a server running locally
+     */
+    public LobbyVisibility visibility() {
+        return visibility;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * System generated unique identifier for an application.
+     */
+    public Lobby withAppId(String appId) {
+        Utils.checkNotNull(appId, "appId");
+        this.appId = appId;
+        return this;
+    }
+
+    /**
+     * When the lobby was created.
+     */
+    public Lobby withCreatedAt(OffsetDateTime createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    /**
+     * Email address for the user that created the lobby.
+     */
+    public Lobby withCreatedBy(String createdBy) {
+        Utils.checkNotNull(createdBy, "createdBy");
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    /**
+     * User input to initialize the game state. Object must be smaller than 64KB.
+     */
+    public Lobby withInitialConfig(LobbyInitialConfig initialConfig) {
+        Utils.checkNotNull(initialConfig, "initialConfig");
+        this.initialConfig = initialConfig;
+        return this;
+    }
+
+    /**
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public Lobby withLocal(boolean local) {
+        Utils.checkNotNull(local, "local");
+        this.local = local;
+        return this;
+    }
+
+    public Lobby withRegion(Region region) {
+        Utils.checkNotNull(region, "region");
+        this.region = region;
+        return this;
+    }
+
+    /**
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
+     */
+    public Lobby withRoomId(String roomId) {
+        Utils.checkNotNull(roomId, "roomId");
+        this.roomId = roomId;
+        return this;
+    }
+
+    public Lobby withShortCode(String shortCode) {
+        Utils.checkNotNull(shortCode, "shortCode");
+        this.shortCode = Optional.ofNullable(shortCode);
+        return this;
+    }
+    
+    public Lobby withShortCode(Optional<? extends String> shortCode) {
+        Utils.checkNotNull(shortCode, "shortCode");
+        this.shortCode = shortCode;
+        return this;
+    }
+
+    /**
+     * JSON blob to store metadata for a room. Must be smaller than 1MB.
+     */
+    public Lobby withState(State state) {
+        Utils.checkNotNull(state, "state");
+        this.state = Optional.ofNullable(state);
+        return this;
+    }
+    
+    /**
+     * JSON blob to store metadata for a room. Must be smaller than 1MB.
+     */
+    public Lobby withState(Optional<? extends State> state) {
+        Utils.checkNotNull(state, "state");
+        this.state = state;
+        return this;
+    }
+
+    /**
+     * Types of lobbies a player can create.
+     * 
+     * `private`: the player who created the room must share the roomId with their friends
+     * 
+     * `public`: visible in the public lobby list, anyone can join
+     * 
+     * `local`: for testing with a server running locally
+     */
+    public Lobby withVisibility(LobbyVisibility visibility) {
+        Utils.checkNotNull(visibility, "visibility");
+        this.visibility = visibility;
+        return this;
+    }
+    
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Lobby other = (Lobby) o;
+        return 
+            java.util.Objects.deepEquals(this.appId, other.appId) &&
+            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
+            java.util.Objects.deepEquals(this.createdBy, other.createdBy) &&
+            java.util.Objects.deepEquals(this.initialConfig, other.initialConfig) &&
+            java.util.Objects.deepEquals(this.local, other.local) &&
+            java.util.Objects.deepEquals(this.region, other.region) &&
+            java.util.Objects.deepEquals(this.roomId, other.roomId) &&
+            java.util.Objects.deepEquals(this.shortCode, other.shortCode) &&
+            java.util.Objects.deepEquals(this.state, other.state) &&
+            java.util.Objects.deepEquals(this.visibility, other.visibility);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            appId,
+            createdAt,
+            createdBy,
+            initialConfig,
+            local,
+            region,
+            roomId,
+            shortCode,
+            state,
+            visibility);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(Lobby.class,
+                "appId", appId,
+                "createdAt", createdAt,
+                "createdBy", createdBy,
+                "initialConfig", initialConfig,
+                "local", local,
+                "region", region,
+                "roomId", roomId,
+                "shortCode", shortCode,
+                "state", state,
+                "visibility", visibility);
+    }
+    
+    public final static class Builder {
+ 
+        private String appId;
+ 
+        private OffsetDateTime createdAt;
+ 
+        private String createdBy;
+ 
+        private LobbyInitialConfig initialConfig;
+ 
+        @Deprecated
+        private Boolean local;
+ 
+        private Region region;
+ 
+        private String roomId;
+ 
+        private Optional<? extends String> shortCode = Optional.empty();
+ 
+        private Optional<? extends State> state = Optional.empty();
+ 
+        private LobbyVisibility visibility;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        /**
+         * System generated unique identifier for an application.
+         */
+        public Builder appId(String appId) {
+            Utils.checkNotNull(appId, "appId");
+            this.appId = appId;
+            return this;
+        }
+
+        /**
+         * When the lobby was created.
+         */
+        public Builder createdAt(OffsetDateTime createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        /**
+         * Email address for the user that created the lobby.
+         */
+        public Builder createdBy(String createdBy) {
+            Utils.checkNotNull(createdBy, "createdBy");
+            this.createdBy = createdBy;
+            return this;
+        }
+
+        /**
+         * User input to initialize the game state. Object must be smaller than 64KB.
+         */
+        public Builder initialConfig(LobbyInitialConfig initialConfig) {
+            Utils.checkNotNull(initialConfig, "initialConfig");
+            this.initialConfig = initialConfig;
+            return this;
+        }
+
+        /**
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
+        public Builder local(boolean local) {
+            Utils.checkNotNull(local, "local");
+            this.local = local;
+            return this;
+        }
+
+        public Builder region(Region region) {
+            Utils.checkNotNull(region, "region");
+            this.region = region;
+            return this;
+        }
+
+        /**
+         * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+         * Note: error will be returned if `roomId` is not globally unique.
+         */
+        public Builder roomId(String roomId) {
+            Utils.checkNotNull(roomId, "roomId");
+            this.roomId = roomId;
+            return this;
+        }
+
+        public Builder shortCode(String shortCode) {
+            Utils.checkNotNull(shortCode, "shortCode");
+            this.shortCode = Optional.ofNullable(shortCode);
+            return this;
+        }
+        
+        public Builder shortCode(Optional<? extends String> shortCode) {
+            Utils.checkNotNull(shortCode, "shortCode");
+            this.shortCode = shortCode;
+            return this;
+        }
+
+        /**
+         * JSON blob to store metadata for a room. Must be smaller than 1MB.
+         */
+        public Builder state(State state) {
+            Utils.checkNotNull(state, "state");
+            this.state = Optional.ofNullable(state);
+            return this;
+        }
+        
+        /**
+         * JSON blob to store metadata for a room. Must be smaller than 1MB.
+         */
+        public Builder state(Optional<? extends State> state) {
+            Utils.checkNotNull(state, "state");
+            this.state = state;
+            return this;
+        }
+
+        /**
+         * Types of lobbies a player can create.
+         * 
+         * `private`: the player who created the room must share the roomId with their friends
+         * 
+         * `public`: visible in the public lobby list, anyone can join
+         * 
+         * `local`: for testing with a server running locally
+         */
+        public Builder visibility(LobbyVisibility visibility) {
+            Utils.checkNotNull(visibility, "visibility");
+            this.visibility = visibility;
+            return this;
+        }        
+        
+        public Lobby build() {
+            return new Lobby(
+                appId,
+                createdAt,
+                createdBy,
+                initialConfig,
+                local,
+                region,
+                roomId,
+                shortCode,
+                state,
+                visibility);
+        }
+    }
 }
+

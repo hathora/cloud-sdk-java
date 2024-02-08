@@ -1,13 +1,12 @@
 # Region
 
-Available regions to request a game server.
-
 
 ## Values
 
 | Name            | Value           |
 | --------------- | --------------- |
 | `SEATTLE`       | Seattle         |
+| `LOS_ANGELES`   | Los_Angeles     |
 | `WASHINGTON_DC` | Washington_DC   |
 | `CHICAGO`       | Chicago         |
 | `LONDON`        | London          |

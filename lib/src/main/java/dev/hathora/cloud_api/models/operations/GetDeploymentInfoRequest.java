@@ -4,29 +4,120 @@
 
 package dev.hathora.cloud_api.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
+import java.util.Optional;
 
 
 public class GetDeploymentInfoRequest {
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    public String appId;
+    private Optional<? extends String> appId;
+
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=deploymentId")
+    private int deploymentId;
+
+    public GetDeploymentInfoRequest(
+            Optional<? extends String> appId,
+            int deploymentId) {
+        Utils.checkNotNull(appId, "appId");
+        Utils.checkNotNull(deploymentId, "deploymentId");
+        this.appId = appId;
+        this.deploymentId = deploymentId;
+    }
+
+    public Optional<? extends String> appId() {
+        return appId;
+    }
+
+    public int deploymentId() {
+        return deploymentId;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
 
     public GetDeploymentInfoRequest withAppId(String appId) {
-        this.appId = appId;
+        Utils.checkNotNull(appId, "appId");
+        this.appId = Optional.ofNullable(appId);
         return this;
     }
     
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=deploymentId")
-    public Integer deploymentId;
+    public GetDeploymentInfoRequest withAppId(Optional<? extends String> appId) {
+        Utils.checkNotNull(appId, "appId");
+        this.appId = appId;
+        return this;
+    }
 
-    public GetDeploymentInfoRequest withDeploymentId(Integer deploymentId) {
+    public GetDeploymentInfoRequest withDeploymentId(int deploymentId) {
+        Utils.checkNotNull(deploymentId, "deploymentId");
         this.deploymentId = deploymentId;
         return this;
     }
     
-    public GetDeploymentInfoRequest(@JsonProperty("appId") String appId, @JsonProperty("deploymentId") Integer deploymentId) {
-        this.appId = appId;
-        this.deploymentId = deploymentId;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetDeploymentInfoRequest other = (GetDeploymentInfoRequest) o;
+        return 
+            java.util.Objects.deepEquals(this.appId, other.appId) &&
+            java.util.Objects.deepEquals(this.deploymentId, other.deploymentId);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            appId,
+            deploymentId);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(GetDeploymentInfoRequest.class,
+                "appId", appId,
+                "deploymentId", deploymentId);
+    }
+    
+    public final static class Builder {
+ 
+        private Optional<? extends String> appId = Optional.empty();
+ 
+        private Integer deploymentId;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder appId(String appId) {
+            Utils.checkNotNull(appId, "appId");
+            this.appId = Optional.ofNullable(appId);
+            return this;
+        }
+        
+        public Builder appId(Optional<? extends String> appId) {
+            Utils.checkNotNull(appId, "appId");
+            this.appId = appId;
+            return this;
+        }
+
+        public Builder deploymentId(int deploymentId) {
+            Utils.checkNotNull(deploymentId, "deploymentId");
+            this.deploymentId = deploymentId;
+            return this;
+        }        
+        
+        public GetDeploymentInfoRequest build() {
+            return new GetDeploymentInfoRequest(
+                appId,
+                deploymentId);
+        }
+    }
 }
+

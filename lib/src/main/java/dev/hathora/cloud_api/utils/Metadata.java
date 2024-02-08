@@ -8,8 +8,13 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Metadata {
-    protected static Object parse(String name, Object metadata, Field field)
+final class Metadata {
+
+    private Metadata() {
+        // prevent instantiation
+    }
+
+    static <T> T parse(String name, T metadata, Field field)
             throws IllegalArgumentException, IllegalAccessException {
         SpeakeasyMetadata md = field.getAnnotation(SpeakeasyMetadata.class);
         if (md == null) {
@@ -51,7 +56,7 @@ public class Metadata {
                 values.put(key, val);
             }
 
-            Field[] fields = metadata.getClass().getFields();
+            Field[] fields = metadata.getClass().getDeclaredFields();
 
             for (Field f : fields) {
                 f.setAccessible(true);
@@ -73,6 +78,6 @@ public class Metadata {
             return null;
         }
 
-        return metadata;
+        return (T) metadata;
     }
 }

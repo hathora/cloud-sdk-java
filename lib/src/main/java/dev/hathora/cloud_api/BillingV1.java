@@ -4,190 +4,286 @@
 
 package dev.hathora.cloud_api;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.hathora.cloud_api.models.errors.SDKError;
+import dev.hathora.cloud_api.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_api.utils.HTTPClient;
 import dev.hathora.cloud_api.utils.HTTPRequest;
 import dev.hathora.cloud_api.utils.JSON;
 import dev.hathora.cloud_api.utils.SerializedBody;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
-public class BillingV1 {
-	
-	private SDKConfiguration sdkConfiguration;
+public class BillingV1 implements
+            MethodCallGetBalance,
+            MethodCallGetInvoices,
+            MethodCallGetPaymentMethod,
+            MethodCallInitStripeCustomerPortalUrl {
+    
+    private final SDKConfiguration sdkConfiguration;
 
-	public BillingV1(SDKConfiguration sdkConfiguration) {
-		this.sdkConfiguration = sdkConfiguration;
-	}
+    BillingV1(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
+    }
+    public dev.hathora.cloud_api.models.operations.GetBalanceRequestBuilder getBalance() {
+        return new dev.hathora.cloud_api.models.operations.GetBalanceRequestBuilder(this);
+    }
 
-    public dev.hathora.cloud_api.models.operations.GetBalanceResponse getBalance(dev.hathora.cloud_api.models.operations.GetBalanceSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetBalanceResponse getBalanceDirect() throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(baseUrl, "/billing/v1/balance");
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                baseUrl,
+                "/billing/v1/balance");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.GetBalanceResponse res = new dev.hathora.cloud_api.models.operations.GetBalanceResponse(contentType, httpRes.statusCode()) {{
-            getBalance200ApplicationJSONDoubleNumber = null;
-            getBalance404ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.GetBalanceResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.GetBalanceResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.GetBalanceResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                Double out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), Double.class);
-                res.getBalance200ApplicationJSONDoubleNumber = out;
+                double out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<Double>() {});
+                res.withNumber(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getBalance404ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
-    public dev.hathora.cloud_api.models.operations.GetInvoicesResponse getInvoices(dev.hathora.cloud_api.models.operations.GetInvoicesSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetInvoicesRequestBuilder getInvoices() {
+        return new dev.hathora.cloud_api.models.operations.GetInvoicesRequestBuilder(this);
+    }
+
+    public dev.hathora.cloud_api.models.operations.GetInvoicesResponse getInvoicesDirect() throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(baseUrl, "/billing/v1/invoices");
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                baseUrl,
+                "/billing/v1/invoices");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.GetInvoicesResponse res = new dev.hathora.cloud_api.models.operations.GetInvoicesResponse(contentType, httpRes.statusCode()) {{
-            invoices = null;
-            getInvoices404ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.GetInvoicesResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.GetInvoicesResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.GetInvoicesResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.Invoice[] out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.Invoice[].class);
-                res.invoices = out;
+                java.util.List<dev.hathora.cloud_api.models.shared.Invoice> out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<java.util.List<dev.hathora.cloud_api.models.shared.Invoice>>() {});
+                res.withClasses(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getInvoices404ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
-    public dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse getPaymentMethod(dev.hathora.cloud_api.models.operations.GetPaymentMethodSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.GetPaymentMethodRequestBuilder getPaymentMethod() {
+        return new dev.hathora.cloud_api.models.operations.GetPaymentMethodRequestBuilder(this);
+    }
+
+    public dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse getPaymentMethodDirect() throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(baseUrl, "/billing/v1/paymentmethod");
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                baseUrl,
+                "/billing/v1/paymentmethod");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse res = new dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse(contentType, httpRes.statusCode()) {{
-            paymentMethod = null;
-            getPaymentMethod404ApplicationJSONString = null;
-            getPaymentMethod500ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.PaymentMethod out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.PaymentMethod.class);
-                res.paymentMethod = out;
+                dev.hathora.cloud_api.models.shared.PaymentMethod out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.PaymentMethod>() {});
+                res.withPaymentMethod(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404 || httpRes.statusCode() == 500) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getPaymentMethod404ApplicationJSONString = out;
-            }
-        }
-        else if (httpRes.statusCode() == 500) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getPaymentMethod500ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
-    public dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(dev.hathora.cloud_api.models.shared.CustomerPortalUrl request, dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlSecurity security) throws Exception {
+    public dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlRequestBuilder initStripeCustomerPortalUrl() {
+        return new dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlRequestBuilder(this);
+    }
+
+    public dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(
+            dev.hathora.cloud_api.models.shared.CustomerPortalUrl request) throws Exception {
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(baseUrl, "/billing/v1/customerportalurl");
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                baseUrl,
+                "/billing/v1/customerportalurl");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("POST");
         req.setURL(url);
-        SerializedBody serializedRequestBody = dev.hathora.cloud_api.utils.Utils.serializeRequestBody(request, "request", "json");
+        SerializedBody serializedRequestBody = dev.hathora.cloud_api.utils.Utils.serializeRequestBody(
+                request, "request", "json", false);
         if (serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse res = new dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse(contentType, httpRes.statusCode()) {{
-            initStripeCustomerPortalUrl200ApplicationJSONString = null;
-            initStripeCustomerPortalUrl404ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.initStripeCustomerPortalUrl200ApplicationJSONString = out;
+                String out = Utils.toUtf8AndClose(httpRes.body());
+                res.withRes(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.initStripeCustomerPortalUrl404ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
+
 }

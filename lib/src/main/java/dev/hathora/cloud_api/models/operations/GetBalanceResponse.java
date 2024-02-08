@@ -4,56 +4,265 @@
 
 package dev.hathora.cloud_api.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 
 
 public class GetBalanceResponse {
-    
-    public String contentType;
 
-    public GetBalanceResponse withContentType(String contentType) {
+    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
+
+    /**
+     * HTTP response content type for this operation
+     */
+    private String contentType;
+
+    /**
+     * HTTP response status code for this operation
+     */
+    private int statusCode;
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    private HttpResponse<InputStream> rawResponse;
+
+    /**
+     * Ok
+     */
+    private Optional<? extends Double> number;
+
+    public GetBalanceResponse(
+            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse,
+            Optional<? extends Double> number) {
+        Utils.checkNotNull(apiError, "apiError");
+        Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(statusCode, "statusCode");
+        Utils.checkNotNull(rawResponse, "rawResponse");
+        Utils.checkNotNull(number, "number");
+        this.apiError = apiError;
         this.contentType = contentType;
+        this.statusCode = statusCode;
+        this.rawResponse = rawResponse;
+        this.number = number;
+    }
+
+    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
+        return apiError;
+    }
+
+    /**
+     * HTTP response content type for this operation
+     */
+    public String contentType() {
+        return contentType;
+    }
+
+    /**
+     * HTTP response status code for this operation
+     */
+    public int statusCode() {
+        return statusCode;
+    }
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public HttpResponse<InputStream> rawResponse() {
+        return rawResponse;
+    }
+
+    /**
+     * Ok
+     */
+    public Optional<? extends Double> number() {
+        return number;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    public GetBalanceResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
+        Utils.checkNotNull(apiError, "apiError");
+        this.apiError = Optional.ofNullable(apiError);
+        return this;
+    }
+    
+    public GetBalanceResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
+        Utils.checkNotNull(apiError, "apiError");
+        this.apiError = apiError;
+        return this;
+    }
+
+    /**
+     * HTTP response content type for this operation
+     */
+    public GetBalanceResponse withContentType(String contentType) {
+        Utils.checkNotNull(contentType, "contentType");
+        this.contentType = contentType;
+        return this;
+    }
+
+    /**
+     * HTTP response status code for this operation
+     */
+    public GetBalanceResponse withStatusCode(int statusCode) {
+        Utils.checkNotNull(statusCode, "statusCode");
+        this.statusCode = statusCode;
+        return this;
+    }
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public GetBalanceResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(rawResponse, "rawResponse");
+        this.rawResponse = rawResponse;
+        return this;
+    }
+
+    /**
+     * Ok
+     */
+    public GetBalanceResponse withNumber(double number) {
+        Utils.checkNotNull(number, "number");
+        this.number = Optional.ofNullable(number);
         return this;
     }
     
     /**
      * Ok
      */
-    
-    public Double getBalance200ApplicationJSONDoubleNumber;
-
-    public GetBalanceResponse withGetBalance200ApplicationJSONDoubleNumber(Double getBalance200ApplicationJSONDoubleNumber) {
-        this.getBalance200ApplicationJSONDoubleNumber = getBalance200ApplicationJSONDoubleNumber;
+    public GetBalanceResponse withNumber(Optional<? extends Double> number) {
+        Utils.checkNotNull(number, "number");
+        this.number = number;
         return this;
     }
     
-    
-    public String getBalance404ApplicationJSONString;
-
-    public GetBalanceResponse withGetBalance404ApplicationJSONString(String getBalance404ApplicationJSONString) {
-        this.getBalance404ApplicationJSONString = getBalance404ApplicationJSONString;
-        return this;
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetBalanceResponse other = (GetBalanceResponse) o;
+        return 
+            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
+            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
+            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            java.util.Objects.deepEquals(this.number, other.number);
     }
     
-    
-    public Integer statusCode;
-
-    public GetBalanceResponse withStatusCode(Integer statusCode) {
-        this.statusCode = statusCode;
-        return this;
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            apiError,
+            contentType,
+            statusCode,
+            rawResponse,
+            number);
     }
     
-    
-    public HttpResponse<byte[]> rawResponse;
-
-    public GetBalanceResponse withRawResponse(HttpResponse<byte[]> rawResponse) {
-        this.rawResponse = rawResponse;
-        return this;
+    @Override
+    public String toString() {
+        return Utils.toString(GetBalanceResponse.class,
+                "apiError", apiError,
+                "contentType", contentType,
+                "statusCode", statusCode,
+                "rawResponse", rawResponse,
+                "number", number);
     }
     
-    public GetBalanceResponse(@JsonProperty("ContentType") String contentType, @JsonProperty("StatusCode") Integer statusCode) {
-        this.contentType = contentType;
-        this.statusCode = statusCode;
-  }
+    public final static class Builder {
+ 
+        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
+ 
+        private String contentType;
+ 
+        private Integer statusCode;
+ 
+        private HttpResponse<InputStream> rawResponse;
+ 
+        private Optional<? extends Double> number = Optional.empty();  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
+            Utils.checkNotNull(apiError, "apiError");
+            this.apiError = Optional.ofNullable(apiError);
+            return this;
+        }
+        
+        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
+            Utils.checkNotNull(apiError, "apiError");
+            this.apiError = apiError;
+            return this;
+        }
+
+        /**
+         * HTTP response content type for this operation
+         */
+        public Builder contentType(String contentType) {
+            Utils.checkNotNull(contentType, "contentType");
+            this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * HTTP response status code for this operation
+         */
+        public Builder statusCode(int statusCode) {
+            Utils.checkNotNull(statusCode, "statusCode");
+            this.statusCode = statusCode;
+            return this;
+        }
+
+        /**
+         * Raw HTTP response; suitable for custom response parsing
+         */
+        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
+            Utils.checkNotNull(rawResponse, "rawResponse");
+            this.rawResponse = rawResponse;
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder number(double number) {
+            Utils.checkNotNull(number, "number");
+            this.number = Optional.ofNullable(number);
+            return this;
+        }
+        
+        /**
+         * Ok
+         */
+        public Builder number(Optional<? extends Double> number) {
+            Utils.checkNotNull(number, "number");
+            this.number = number;
+            return this;
+        }        
+        
+        public GetBalanceResponse build() {
+            return new GetBalanceResponse(
+                apiError,
+                contentType,
+                statusCode,
+                rawResponse,
+                number);
+        }
+    }
 }
+

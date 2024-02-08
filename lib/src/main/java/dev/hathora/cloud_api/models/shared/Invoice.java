@@ -7,8 +7,8 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import dev.hathora.cloud_api.utils.DateTimeDeserializer;
-import dev.hathora.cloud_api.utils.DateTimeSerializer;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.time.OffsetDateTime;
 
 /**
@@ -16,71 +16,241 @@ import java.time.OffsetDateTime;
  */
 
 public class Invoice {
-    @JsonProperty("amountDue")
-    public Double amountDue;
 
-    public Invoice withAmountDue(Double amountDue) {
+    @JsonProperty("amountDue")
+    private double amountDue;
+
+    @JsonProperty("dueDate")
+    private OffsetDateTime dueDate;
+
+    @JsonProperty("id")
+    private String id;
+
+    @JsonProperty("month")
+    private double month;
+
+    @JsonProperty("pdfUrl")
+    private String pdfUrl;
+
+    @JsonProperty("status")
+    private InvoiceStatus status;
+
+    @JsonProperty("year")
+    private double year;
+
+    public Invoice(
+            @JsonProperty("amountDue") double amountDue,
+            @JsonProperty("dueDate") OffsetDateTime dueDate,
+            @JsonProperty("id") String id,
+            @JsonProperty("month") double month,
+            @JsonProperty("pdfUrl") String pdfUrl,
+            @JsonProperty("status") InvoiceStatus status,
+            @JsonProperty("year") double year) {
+        Utils.checkNotNull(amountDue, "amountDue");
+        Utils.checkNotNull(dueDate, "dueDate");
+        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(month, "month");
+        Utils.checkNotNull(pdfUrl, "pdfUrl");
+        Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(year, "year");
+        this.amountDue = amountDue;
+        this.dueDate = dueDate;
+        this.id = id;
+        this.month = month;
+        this.pdfUrl = pdfUrl;
+        this.status = status;
+        this.year = year;
+    }
+
+    public double amountDue() {
+        return amountDue;
+    }
+
+    public OffsetDateTime dueDate() {
+        return dueDate;
+    }
+
+    public String id() {
+        return id;
+    }
+
+    public double month() {
+        return month;
+    }
+
+    public String pdfUrl() {
+        return pdfUrl;
+    }
+
+    public InvoiceStatus status() {
+        return status;
+    }
+
+    public double year() {
+        return year;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    public Invoice withAmountDue(double amountDue) {
+        Utils.checkNotNull(amountDue, "amountDue");
         this.amountDue = amountDue;
         return this;
     }
-    
-    @JsonSerialize(using = DateTimeSerializer.class)
-    @JsonDeserialize(using = DateTimeDeserializer.class)
-    @JsonProperty("dueDate")
-    public OffsetDateTime dueDate;
 
     public Invoice withDueDate(OffsetDateTime dueDate) {
+        Utils.checkNotNull(dueDate, "dueDate");
         this.dueDate = dueDate;
         return this;
     }
-    
-    @JsonProperty("id")
-    public String id;
 
     public Invoice withId(String id) {
+        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
-    
-    @JsonProperty("month")
-    public Double month;
 
-    public Invoice withMonth(Double month) {
+    public Invoice withMonth(double month) {
+        Utils.checkNotNull(month, "month");
         this.month = month;
         return this;
     }
-    
-    @JsonProperty("pdfUrl")
-    public String pdfUrl;
 
     public Invoice withPdfUrl(String pdfUrl) {
+        Utils.checkNotNull(pdfUrl, "pdfUrl");
         this.pdfUrl = pdfUrl;
         return this;
     }
-    
-    @JsonProperty("status")
-    public InvoiceStatus status;
 
     public Invoice withStatus(InvoiceStatus status) {
+        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
-    
-    @JsonProperty("year")
-    public Double year;
 
-    public Invoice withYear(Double year) {
+    public Invoice withYear(double year) {
+        Utils.checkNotNull(year, "year");
         this.year = year;
         return this;
     }
     
-    public Invoice(@JsonProperty("amountDue") Double amountDue, @JsonProperty("dueDate") OffsetDateTime dueDate, @JsonProperty("id") String id, @JsonProperty("month") Double month, @JsonProperty("pdfUrl") String pdfUrl, @JsonProperty("status") InvoiceStatus status, @JsonProperty("year") Double year) {
-        this.amountDue = amountDue;
-        this.dueDate = dueDate;
-        this.id = id;
-        this.month = month;
-        this.pdfUrl = pdfUrl;
-        this.status = status;
-        this.year = year;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Invoice other = (Invoice) o;
+        return 
+            java.util.Objects.deepEquals(this.amountDue, other.amountDue) &&
+            java.util.Objects.deepEquals(this.dueDate, other.dueDate) &&
+            java.util.Objects.deepEquals(this.id, other.id) &&
+            java.util.Objects.deepEquals(this.month, other.month) &&
+            java.util.Objects.deepEquals(this.pdfUrl, other.pdfUrl) &&
+            java.util.Objects.deepEquals(this.status, other.status) &&
+            java.util.Objects.deepEquals(this.year, other.year);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            amountDue,
+            dueDate,
+            id,
+            month,
+            pdfUrl,
+            status,
+            year);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(Invoice.class,
+                "amountDue", amountDue,
+                "dueDate", dueDate,
+                "id", id,
+                "month", month,
+                "pdfUrl", pdfUrl,
+                "status", status,
+                "year", year);
+    }
+    
+    public final static class Builder {
+ 
+        private Double amountDue;
+ 
+        private OffsetDateTime dueDate;
+ 
+        private String id;
+ 
+        private Double month;
+ 
+        private String pdfUrl;
+ 
+        private InvoiceStatus status;
+ 
+        private Double year;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder amountDue(double amountDue) {
+            Utils.checkNotNull(amountDue, "amountDue");
+            this.amountDue = amountDue;
+            return this;
+        }
+
+        public Builder dueDate(OffsetDateTime dueDate) {
+            Utils.checkNotNull(dueDate, "dueDate");
+            this.dueDate = dueDate;
+            return this;
+        }
+
+        public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = id;
+            return this;
+        }
+
+        public Builder month(double month) {
+            Utils.checkNotNull(month, "month");
+            this.month = month;
+            return this;
+        }
+
+        public Builder pdfUrl(String pdfUrl) {
+            Utils.checkNotNull(pdfUrl, "pdfUrl");
+            this.pdfUrl = pdfUrl;
+            return this;
+        }
+
+        public Builder status(InvoiceStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+        public Builder year(double year) {
+            Utils.checkNotNull(year, "year");
+            this.year = year;
+            return this;
+        }        
+        
+        public Invoice build() {
+            return new Invoice(
+                amountDue,
+                dueDate,
+                id,
+                month,
+                pdfUrl,
+                status,
+                year);
+        }
+    }
 }
+

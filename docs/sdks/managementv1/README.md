@@ -1,4 +1,5 @@
-# managementV1
+# ManagementV1
+(*managementV1()*)
 
 ### Available Operations
 
@@ -11,23 +12,41 @@
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.SendVerificationEmailResponse;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
 import dev.hathora.cloud_api.models.shared.VerificationEmailRequest;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            dev.hathora.cloud_api.models.shared.VerificationEmailRequest req = new VerificationEmailRequest("commodi");            
+            VerificationEmailRequest req = VerificationEmailRequest.builder()
+                .userId("string")
+                .build();
 
-            SendVerificationEmailResponse res = sdk.managementV1.sendVerificationEmail(req);
+            SendVerificationEmailResponse res = sdk.managementV1().sendVerificationEmail()
+                .request(req)
+                .call();
 
-            if (res.verificationEmailResponse != null) {
+            if (res.verificationEmailResponse().isPresent()) {
                 // handle response
             }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -44,5 +63,9 @@ public class Application {
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.SendVerificationEmailResponse](../../models/operations/SendVerificationEmailResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.SendVerificationEmailResponse>](../../models/operations/SendVerificationEmailResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |

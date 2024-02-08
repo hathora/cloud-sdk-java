@@ -4,142 +4,498 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import dev.hathora.cloud_api.utils.DateTimeDeserializer;
-import dev.hathora.cloud_api.utils.DateTimeSerializer;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 
 /**
  * ApplicationWithDeployment - An application object is the top level namespace for the game server.
  */
 
 public class ApplicationWithDeployment {
+
     /**
      * System generated unique identifier for an application.
      */
     @JsonProperty("appId")
-    public String appId;
+    private String appId;
 
-    public ApplicationWithDeployment withAppId(String appId) {
-        this.appId = appId;
-        return this;
-    }
-    
     /**
      * Readable name for an application. Must be unique within an organization.
      */
     @JsonProperty("appName")
-    public String appName;
+    private String appName;
 
-    public ApplicationWithDeployment withAppName(String appName) {
-        this.appName = appName;
-        return this;
-    }
-    
     /**
      * Secret that is used for identity and access management.
      */
     @JsonProperty("appSecret")
-    public String appSecret;
+    private String appSecret;
 
-    public ApplicationWithDeployment withAppSecret(String appSecret) {
-        this.appSecret = appSecret;
-        return this;
-    }
-    
     /**
-     * Used to authenticate player requests. Use your own authentication or Hathora's Auth Client.
+     * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
     @JsonProperty("authConfiguration")
-    public ApplicationWithDeploymentAuthConfiguration authConfiguration;
+    private AuthConfiguration authConfiguration;
 
-    public ApplicationWithDeployment withAuthConfiguration(ApplicationWithDeploymentAuthConfiguration authConfiguration) {
-        this.authConfiguration = authConfiguration;
-        return this;
-    }
-    
     /**
      * When the application was created.
      */
-    @JsonSerialize(using = DateTimeSerializer.class)
-    @JsonDeserialize(using = DateTimeDeserializer.class)
     @JsonProperty("createdAt")
-    public OffsetDateTime createdAt;
+    private OffsetDateTime createdAt;
 
-    public ApplicationWithDeployment withCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-        return this;
-    }
-    
     /**
      * Email address for the user that deleted the application.
      */
     @JsonProperty("createdBy")
-    public String createdBy;
+    private String createdBy;
 
-    public ApplicationWithDeployment withCreatedBy(String createdBy) {
+    /**
+     * When the application was deleted.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("deletedAt")
+    private Optional<? extends OffsetDateTime> deletedAt;
+
+    /**
+     * Email address for the user that deleted the application.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("deletedBy")
+    private Optional<? extends String> deletedBy;
+
+    /**
+     * Deployment is a versioned configuration for a build that describes runtime behavior.
+     */
+    @JsonProperty("deployment")
+    private Deployment deployment;
+
+    /**
+     * System generated unique identifier for an organization.
+     */
+    @JsonProperty("orgId")
+    private String orgId;
+
+    public ApplicationWithDeployment(
+            @JsonProperty("appId") String appId,
+            @JsonProperty("appName") String appName,
+            @JsonProperty("appSecret") String appSecret,
+            @JsonProperty("authConfiguration") AuthConfiguration authConfiguration,
+            @JsonProperty("createdAt") OffsetDateTime createdAt,
+            @JsonProperty("createdBy") String createdBy,
+            @JsonProperty("deletedAt") Optional<? extends OffsetDateTime> deletedAt,
+            @JsonProperty("deletedBy") Optional<? extends String> deletedBy,
+            @JsonProperty("deployment") Deployment deployment,
+            @JsonProperty("orgId") String orgId) {
+        Utils.checkNotNull(appId, "appId");
+        Utils.checkNotNull(appName, "appName");
+        Utils.checkNotNull(appSecret, "appSecret");
+        Utils.checkNotNull(authConfiguration, "authConfiguration");
+        Utils.checkNotNull(createdAt, "createdAt");
+        Utils.checkNotNull(createdBy, "createdBy");
+        Utils.checkNotNull(deletedAt, "deletedAt");
+        Utils.checkNotNull(deletedBy, "deletedBy");
+        Utils.checkNotNull(deployment, "deployment");
+        Utils.checkNotNull(orgId, "orgId");
+        this.appId = appId;
+        this.appName = appName;
+        this.appSecret = appSecret;
+        this.authConfiguration = authConfiguration;
+        this.createdAt = createdAt;
         this.createdBy = createdBy;
+        this.deletedAt = deletedAt;
+        this.deletedBy = deletedBy;
+        this.deployment = deployment;
+        this.orgId = orgId;
+    }
+
+    /**
+     * System generated unique identifier for an application.
+     */
+    public String appId() {
+        return appId;
+    }
+
+    /**
+     * Readable name for an application. Must be unique within an organization.
+     */
+    public String appName() {
+        return appName;
+    }
+
+    /**
+     * Secret that is used for identity and access management.
+     */
+    public String appSecret() {
+        return appSecret;
+    }
+
+    /**
+     * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     */
+    public AuthConfiguration authConfiguration() {
+        return authConfiguration;
+    }
+
+    /**
+     * When the application was created.
+     */
+    public OffsetDateTime createdAt() {
+        return createdAt;
+    }
+
+    /**
+     * Email address for the user that deleted the application.
+     */
+    public String createdBy() {
+        return createdBy;
+    }
+
+    /**
+     * When the application was deleted.
+     */
+    public Optional<? extends OffsetDateTime> deletedAt() {
+        return deletedAt;
+    }
+
+    /**
+     * Email address for the user that deleted the application.
+     */
+    public Optional<? extends String> deletedBy() {
+        return deletedBy;
+    }
+
+    /**
+     * Deployment is a versioned configuration for a build that describes runtime behavior.
+     */
+    public Deployment deployment() {
+        return deployment;
+    }
+
+    /**
+     * System generated unique identifier for an organization.
+     */
+    public String orgId() {
+        return orgId;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * System generated unique identifier for an application.
+     */
+    public ApplicationWithDeployment withAppId(String appId) {
+        Utils.checkNotNull(appId, "appId");
+        this.appId = appId;
+        return this;
+    }
+
+    /**
+     * Readable name for an application. Must be unique within an organization.
+     */
+    public ApplicationWithDeployment withAppName(String appName) {
+        Utils.checkNotNull(appName, "appName");
+        this.appName = appName;
+        return this;
+    }
+
+    /**
+     * Secret that is used for identity and access management.
+     */
+    public ApplicationWithDeployment withAppSecret(String appSecret) {
+        Utils.checkNotNull(appSecret, "appSecret");
+        this.appSecret = appSecret;
+        return this;
+    }
+
+    /**
+     * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     */
+    public ApplicationWithDeployment withAuthConfiguration(AuthConfiguration authConfiguration) {
+        Utils.checkNotNull(authConfiguration, "authConfiguration");
+        this.authConfiguration = authConfiguration;
+        return this;
+    }
+
+    /**
+     * When the application was created.
+     */
+    public ApplicationWithDeployment withCreatedAt(OffsetDateTime createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    /**
+     * Email address for the user that deleted the application.
+     */
+    public ApplicationWithDeployment withCreatedBy(String createdBy) {
+        Utils.checkNotNull(createdBy, "createdBy");
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    /**
+     * When the application was deleted.
+     */
+    public ApplicationWithDeployment withDeletedAt(OffsetDateTime deletedAt) {
+        Utils.checkNotNull(deletedAt, "deletedAt");
+        this.deletedAt = Optional.ofNullable(deletedAt);
         return this;
     }
     
     /**
      * When the application was deleted.
      */
-    @JsonSerialize(using = DateTimeSerializer.class)
-    @JsonDeserialize(using = DateTimeDeserializer.class)
-    @JsonProperty("deletedAt")
-    public OffsetDateTime deletedAt;
-
-    public ApplicationWithDeployment withDeletedAt(OffsetDateTime deletedAt) {
+    public ApplicationWithDeployment withDeletedAt(Optional<? extends OffsetDateTime> deletedAt) {
+        Utils.checkNotNull(deletedAt, "deletedAt");
         this.deletedAt = deletedAt;
+        return this;
+    }
+
+    /**
+     * Email address for the user that deleted the application.
+     */
+    public ApplicationWithDeployment withDeletedBy(String deletedBy) {
+        Utils.checkNotNull(deletedBy, "deletedBy");
+        this.deletedBy = Optional.ofNullable(deletedBy);
         return this;
     }
     
     /**
      * Email address for the user that deleted the application.
      */
-    @JsonProperty("deletedBy")
-    public String deletedBy;
-
-    public ApplicationWithDeployment withDeletedBy(String deletedBy) {
+    public ApplicationWithDeployment withDeletedBy(Optional<? extends String> deletedBy) {
+        Utils.checkNotNull(deletedBy, "deletedBy");
         this.deletedBy = deletedBy;
         return this;
     }
-    
+
     /**
      * Deployment is a versioned configuration for a build that describes runtime behavior.
      */
-    @JsonProperty("deployment")
-    public Deployment deployment;
-
     public ApplicationWithDeployment withDeployment(Deployment deployment) {
+        Utils.checkNotNull(deployment, "deployment");
         this.deployment = deployment;
         return this;
     }
-    
+
     /**
      * System generated unique identifier for an organization.
      */
-    @JsonProperty("orgId")
-    public String orgId;
-
     public ApplicationWithDeployment withOrgId(String orgId) {
+        Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
     
-    public ApplicationWithDeployment(@JsonProperty("appId") String appId, @JsonProperty("appName") String appName, @JsonProperty("appSecret") String appSecret, @JsonProperty("authConfiguration") ApplicationWithDeploymentAuthConfiguration authConfiguration, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("createdBy") String createdBy, @JsonProperty("deletedAt") OffsetDateTime deletedAt, @JsonProperty("deletedBy") String deletedBy, @JsonProperty("deployment") Deployment deployment, @JsonProperty("orgId") String orgId) {
-        this.appId = appId;
-        this.appName = appName;
-        this.appSecret = appSecret;
-        this.authConfiguration = authConfiguration;
-        this.createdAt = createdAt;
-        this.createdBy = createdBy;
-        this.deletedAt = deletedAt;
-        this.deletedBy = deletedBy;
-        this.deployment = deployment;
-        this.orgId = orgId;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ApplicationWithDeployment other = (ApplicationWithDeployment) o;
+        return 
+            java.util.Objects.deepEquals(this.appId, other.appId) &&
+            java.util.Objects.deepEquals(this.appName, other.appName) &&
+            java.util.Objects.deepEquals(this.appSecret, other.appSecret) &&
+            java.util.Objects.deepEquals(this.authConfiguration, other.authConfiguration) &&
+            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
+            java.util.Objects.deepEquals(this.createdBy, other.createdBy) &&
+            java.util.Objects.deepEquals(this.deletedAt, other.deletedAt) &&
+            java.util.Objects.deepEquals(this.deletedBy, other.deletedBy) &&
+            java.util.Objects.deepEquals(this.deployment, other.deployment) &&
+            java.util.Objects.deepEquals(this.orgId, other.orgId);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            appId,
+            appName,
+            appSecret,
+            authConfiguration,
+            createdAt,
+            createdBy,
+            deletedAt,
+            deletedBy,
+            deployment,
+            orgId);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(ApplicationWithDeployment.class,
+                "appId", appId,
+                "appName", appName,
+                "appSecret", appSecret,
+                "authConfiguration", authConfiguration,
+                "createdAt", createdAt,
+                "createdBy", createdBy,
+                "deletedAt", deletedAt,
+                "deletedBy", deletedBy,
+                "deployment", deployment,
+                "orgId", orgId);
+    }
+    
+    public final static class Builder {
+ 
+        private String appId;
+ 
+        private String appName;
+ 
+        private String appSecret;
+ 
+        private AuthConfiguration authConfiguration;
+ 
+        private OffsetDateTime createdAt;
+ 
+        private String createdBy;
+ 
+        private Optional<? extends OffsetDateTime> deletedAt = Optional.empty();
+ 
+        private Optional<? extends String> deletedBy = Optional.empty();
+ 
+        private Deployment deployment;
+ 
+        private String orgId;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        /**
+         * System generated unique identifier for an application.
+         */
+        public Builder appId(String appId) {
+            Utils.checkNotNull(appId, "appId");
+            this.appId = appId;
+            return this;
+        }
+
+        /**
+         * Readable name for an application. Must be unique within an organization.
+         */
+        public Builder appName(String appName) {
+            Utils.checkNotNull(appName, "appName");
+            this.appName = appName;
+            return this;
+        }
+
+        /**
+         * Secret that is used for identity and access management.
+         */
+        public Builder appSecret(String appSecret) {
+            Utils.checkNotNull(appSecret, "appSecret");
+            this.appSecret = appSecret;
+            return this;
+        }
+
+        /**
+         * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+         */
+        public Builder authConfiguration(AuthConfiguration authConfiguration) {
+            Utils.checkNotNull(authConfiguration, "authConfiguration");
+            this.authConfiguration = authConfiguration;
+            return this;
+        }
+
+        /**
+         * When the application was created.
+         */
+        public Builder createdAt(OffsetDateTime createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        /**
+         * Email address for the user that deleted the application.
+         */
+        public Builder createdBy(String createdBy) {
+            Utils.checkNotNull(createdBy, "createdBy");
+            this.createdBy = createdBy;
+            return this;
+        }
+
+        /**
+         * When the application was deleted.
+         */
+        public Builder deletedAt(OffsetDateTime deletedAt) {
+            Utils.checkNotNull(deletedAt, "deletedAt");
+            this.deletedAt = Optional.ofNullable(deletedAt);
+            return this;
+        }
+        
+        /**
+         * When the application was deleted.
+         */
+        public Builder deletedAt(Optional<? extends OffsetDateTime> deletedAt) {
+            Utils.checkNotNull(deletedAt, "deletedAt");
+            this.deletedAt = deletedAt;
+            return this;
+        }
+
+        /**
+         * Email address for the user that deleted the application.
+         */
+        public Builder deletedBy(String deletedBy) {
+            Utils.checkNotNull(deletedBy, "deletedBy");
+            this.deletedBy = Optional.ofNullable(deletedBy);
+            return this;
+        }
+        
+        /**
+         * Email address for the user that deleted the application.
+         */
+        public Builder deletedBy(Optional<? extends String> deletedBy) {
+            Utils.checkNotNull(deletedBy, "deletedBy");
+            this.deletedBy = deletedBy;
+            return this;
+        }
+
+        /**
+         * Deployment is a versioned configuration for a build that describes runtime behavior.
+         */
+        public Builder deployment(Deployment deployment) {
+            Utils.checkNotNull(deployment, "deployment");
+            this.deployment = deployment;
+            return this;
+        }
+
+        /**
+         * System generated unique identifier for an organization.
+         */
+        public Builder orgId(String orgId) {
+            Utils.checkNotNull(orgId, "orgId");
+            this.orgId = orgId;
+            return this;
+        }        
+        
+        public ApplicationWithDeployment build() {
+            return new ApplicationWithDeployment(
+                appId,
+                appName,
+                appSecret,
+                authConfiguration,
+                createdAt,
+                createdBy,
+                deletedAt,
+                deletedBy,
+                deployment,
+                orgId);
+        }
+    }
 }
+

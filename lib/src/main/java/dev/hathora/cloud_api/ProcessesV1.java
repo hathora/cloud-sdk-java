@@ -4,209 +4,299 @@
 
 package dev.hathora.cloud_api;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.hathora.cloud_api.models.errors.SDKError;
+import dev.hathora.cloud_api.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_api.utils.HTTPClient;
 import dev.hathora.cloud_api.utils.HTTPRequest;
 import dev.hathora.cloud_api.utils.JSON;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import org.apache.http.NameValuePair;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
- * Operations to get data on active and stopped [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
+ * Deprecated. Use [ProcessesV2](https://hathora.dev/api#tag/ProcessesV2).
  */
-public class ProcessesV1 {
-	
-	private SDKConfiguration sdkConfiguration;
+public class ProcessesV1 implements
+            MethodCallGetProcessInfoDeprecated,
+            MethodCallGetRunningProcesses,
+            MethodCallGetStoppedProcesses {
+    
+    private final SDKConfiguration sdkConfiguration;
 
-	public ProcessesV1(SDKConfiguration sdkConfiguration) {
-		this.sdkConfiguration = sdkConfiguration;
-	}
+    ProcessesV1(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
+    }
+    public dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedRequestBuilder getProcessInfoDeprecated() {
+        return new dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedRequestBuilder(this);
+    }
 
     /**
-     * Get details for an existing [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
-     * @param security the security details to use for authentication
+     * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param appId
      * @param processId
      * @return the response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public dev.hathora.cloud_api.models.operations.GetProcessInfoResponse getProcessInfo(dev.hathora.cloud_api.models.operations.GetProcessInfoSecurity security, String appId, String processId) throws Exception {
-        dev.hathora.cloud_api.models.operations.GetProcessInfoRequest request = new dev.hathora.cloud_api.models.operations.GetProcessInfoRequest(appId, processId);
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse getProcessInfoDeprecated(
+            Optional<? extends String> appId,
+            String processId) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedRequest request = 
+            dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedRequest
+                .builder()
+                .appId(appId)
+                .processId(processId)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetProcessInfoRequest.class, baseUrl, "/processes/v1/{appId}/info/{processId}", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedRequest.class, 
+                baseUrl, 
+                "/processes/v1/{appId}/info/{processId}", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.GetProcessInfoResponse res = new dev.hathora.cloud_api.models.operations.GetProcessInfoResponse(contentType, httpRes.statusCode()) {{
-            process = null;
-            getProcessInfo404ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.Process out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.Process.class);
-                res.process = out;
+                dev.hathora.cloud_api.models.shared.Process out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.Process>() {});
+                res.withProcess(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404 || httpRes.statusCode() == 500) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getProcessInfo404ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
-    /**
-     * Returns an array of active [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
-     * @param security the security details to use for authentication
-     * @param appId
-     * @return the response from the API call
-     * @throws Exception if the API call fails
-     */
-    public dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse getRunningProcesses(dev.hathora.cloud_api.models.operations.GetRunningProcessesSecurity security, String appId) throws Exception {
-        return this.getRunningProcesses(security, appId, null);
+    public dev.hathora.cloud_api.models.operations.GetRunningProcessesRequestBuilder getRunningProcesses() {
+        return new dev.hathora.cloud_api.models.operations.GetRunningProcessesRequestBuilder(this);
     }
 
     /**
-     * Returns an array of active [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
-     * @param security the security details to use for authentication
+     * Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
      * @param appId
-     * @param region Available regions to request a game server.
+     * @param region
      * @return the response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse getRunningProcesses(dev.hathora.cloud_api.models.operations.GetRunningProcessesSecurity security, String appId, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
-        dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest request = new dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest(appId);
-        request.region=region;
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse getRunningProcesses(
+            Optional<? extends String> appId,
+            Optional<? extends dev.hathora.cloud_api.models.shared.Region> region) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest request = 
+            dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest
+                .builder()
+                .appId(appId)
+                .region(region)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest.class, baseUrl, "/processes/v1/{appId}/list/running", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest.class, 
+                baseUrl, 
+                "/processes/v1/{appId}/list/running", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
-        java.util.List<NameValuePair> queryParams = dev.hathora.cloud_api.utils.Utils.getQueryParams(dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest.class, request, null);
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
+        java.util.List<NameValuePair> queryParams = dev.hathora.cloud_api.utils.Utils.getQueryParams(
+                dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest.class, request, this.sdkConfiguration.globals);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
                 req.addQueryParam(queryParam);
             }
         }
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse res = new dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse(contentType, httpRes.statusCode()) {{
-            processWithRooms = null;
-            getRunningProcesses404ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.ProcessWithRooms[] out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.ProcessWithRooms[].class);
-                res.processWithRooms = out;
+                java.util.List<dev.hathora.cloud_api.models.shared.ProcessWithRooms> out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<java.util.List<dev.hathora.cloud_api.models.shared.ProcessWithRooms>>() {});
+                res.withClasses(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getRunningProcesses404ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
-    /**
-     * Returns an array of stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
-     * @param security the security details to use for authentication
-     * @param appId
-     * @return the response from the API call
-     * @throws Exception if the API call fails
-     */
-    public dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse getStoppedProcesses(dev.hathora.cloud_api.models.operations.GetStoppedProcessesSecurity security, String appId) throws Exception {
-        return this.getStoppedProcesses(security, appId, null);
+    public dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequestBuilder getStoppedProcesses() {
+        return new dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequestBuilder(this);
     }
 
     /**
-     * Returns an array of stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
-     * @param security the security details to use for authentication
+     * Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
      * @param appId
-     * @param region Available regions to request a game server.
+     * @param region
      * @return the response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse getStoppedProcesses(dev.hathora.cloud_api.models.operations.GetStoppedProcessesSecurity security, String appId, dev.hathora.cloud_api.models.shared.Region region) throws Exception {
-        dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest request = new dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest(appId);
-        request.region=region;
+    @Deprecated
+    public dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse getStoppedProcesses(
+            Optional<? extends String> appId,
+            Optional<? extends dev.hathora.cloud_api.models.shared.Region> region) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest request = 
+            dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest
+                .builder()
+                .appId(appId)
+                .region(region)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest.class, baseUrl, "/processes/v1/{appId}/list/stopped", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest.class, 
+                baseUrl, 
+                "/processes/v1/{appId}/list/stopped", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
-        java.util.List<NameValuePair> queryParams = dev.hathora.cloud_api.utils.Utils.getQueryParams(dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest.class, request, null);
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
+        java.util.List<NameValuePair> queryParams = dev.hathora.cloud_api.utils.Utils.getQueryParams(
+                dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest.class, request, this.sdkConfiguration.globals);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
                 req.addQueryParam(queryParam);
             }
         }
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse res = new dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse(contentType, httpRes.statusCode()) {{
-            processes = null;
-            getStoppedProcesses404ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.Process[] out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.Process[].class);
-                res.processes = out;
+                java.util.List<dev.hathora.cloud_api.models.shared.Process> out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<java.util.List<dev.hathora.cloud_api.models.shared.Process>>() {});
+                res.withClasses(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getStoppedProcesses404ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
+
 }

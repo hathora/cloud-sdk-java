@@ -5,51 +5,177 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
 /**
- * ExposedPort - Connection information to an exposed port on an active process.
+ * ExposedPort - Connection details for an active process.
  */
 
 public class ExposedPort {
+
     @JsonProperty("host")
-    public String host;
+    private String host;
 
-    public ExposedPort withHost(String host) {
-        this.host = host;
-        return this;
-    }
-    
     @JsonProperty("name")
-    public String name;
+    private String name;
 
-    public ExposedPort withName(String name) {
-        this.name = name;
-        return this;
-    }
-    
     @JsonProperty("port")
-    public Double port;
+    private int port;
 
-    public ExposedPort withPort(Double port) {
-        this.port = port;
-        return this;
-    }
-    
     /**
      * Transport type specifies the underlying communication protocol to the exposed port.
      */
     @JsonProperty("transportType")
-    public TransportType transportType;
+    private TransportType transportType;
 
-    public ExposedPort withTransportType(TransportType transportType) {
-        this.transportType = transportType;
-        return this;
-    }
-    
-    public ExposedPort(@JsonProperty("host") String host, @JsonProperty("name") String name, @JsonProperty("port") Double port, @JsonProperty("transportType") TransportType transportType) {
+    public ExposedPort(
+            @JsonProperty("host") String host,
+            @JsonProperty("name") String name,
+            @JsonProperty("port") int port,
+            @JsonProperty("transportType") TransportType transportType) {
+        Utils.checkNotNull(host, "host");
+        Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(port, "port");
+        Utils.checkNotNull(transportType, "transportType");
         this.host = host;
         this.name = name;
         this.port = port;
         this.transportType = transportType;
-  }
+    }
+
+    public String host() {
+        return host;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    public int port() {
+        return port;
+    }
+
+    /**
+     * Transport type specifies the underlying communication protocol to the exposed port.
+     */
+    public TransportType transportType() {
+        return transportType;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    public ExposedPort withHost(String host) {
+        Utils.checkNotNull(host, "host");
+        this.host = host;
+        return this;
+    }
+
+    public ExposedPort withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
+        return this;
+    }
+
+    public ExposedPort withPort(int port) {
+        Utils.checkNotNull(port, "port");
+        this.port = port;
+        return this;
+    }
+
+    /**
+     * Transport type specifies the underlying communication protocol to the exposed port.
+     */
+    public ExposedPort withTransportType(TransportType transportType) {
+        Utils.checkNotNull(transportType, "transportType");
+        this.transportType = transportType;
+        return this;
+    }
+    
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ExposedPort other = (ExposedPort) o;
+        return 
+            java.util.Objects.deepEquals(this.host, other.host) &&
+            java.util.Objects.deepEquals(this.name, other.name) &&
+            java.util.Objects.deepEquals(this.port, other.port) &&
+            java.util.Objects.deepEquals(this.transportType, other.transportType);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            host,
+            name,
+            port,
+            transportType);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(ExposedPort.class,
+                "host", host,
+                "name", name,
+                "port", port,
+                "transportType", transportType);
+    }
+    
+    public final static class Builder {
+ 
+        private String host;
+ 
+        private String name;
+ 
+        private Integer port;
+ 
+        private TransportType transportType;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder host(String host) {
+            Utils.checkNotNull(host, "host");
+            this.host = host;
+            return this;
+        }
+
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
+            return this;
+        }
+
+        public Builder port(int port) {
+            Utils.checkNotNull(port, "port");
+            this.port = port;
+            return this;
+        }
+
+        /**
+         * Transport type specifies the underlying communication protocol to the exposed port.
+         */
+        public Builder transportType(TransportType transportType) {
+            Utils.checkNotNull(transportType, "transportType");
+            this.transportType = transportType;
+            return this;
+        }        
+        
+        public ExposedPort build() {
+            return new ExposedPort(
+                host,
+                name,
+                port,
+                transportType);
+        }
+    }
 }
+

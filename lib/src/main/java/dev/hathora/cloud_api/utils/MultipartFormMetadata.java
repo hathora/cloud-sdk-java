@@ -6,19 +6,18 @@ package dev.hathora.cloud_api.utils;
 
 import java.lang.reflect.Field;
 
-public class MultipartFormMetadata extends Metadata {
-    public boolean file;
-    public boolean content;
-    public boolean json;
-    public String name;
+class MultipartFormMetadata {
 
-    // multipartForm:name=file
-    public static MultipartFormMetadata parse(Field field) throws IllegalArgumentException, IllegalAccessException {
-        MultipartFormMetadata result = new MultipartFormMetadata();
-        result = (MultipartFormMetadata) parse("multipartForm", result, field);
-        return result;
-    }
+    boolean file;
+    boolean content;
+    boolean json;
+    String name;
 
     private MultipartFormMetadata() {
+    }
+
+    // multipartForm:name=file
+    static MultipartFormMetadata parse(Field field) throws IllegalArgumentException, IllegalAccessException {
+        return Metadata.parse("multipartForm", new MultipartFormMetadata(), field);
     }
 }

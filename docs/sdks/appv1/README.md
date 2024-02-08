@@ -1,4 +1,5 @@
-# appV1
+# AppV1
+(*appV1()*)
 
 ## Overview
 
@@ -21,33 +22,53 @@ Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#ap
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.CreateAppResponse;
-import dev.hathora.cloud_api.models.operations.CreateAppSecurity;
+import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.AppConfig;
-import dev.hathora.cloud_api.models.shared.AppConfigAuthConfiguration;
-import dev.hathora.cloud_api.models.shared.AppConfigAuthConfigurationGoogle;
+import dev.hathora.cloud_api.models.shared.AuthConfiguration;
+import dev.hathora.cloud_api.models.shared.Google;
 import dev.hathora.cloud_api.models.shared.RecordStringNever;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            dev.hathora.cloud_api.models.shared.AppConfig req = new AppConfig("minecraft",                 new AppConfigAuthConfiguration() {{
-                                anonymous = new RecordStringNever();;
-                                google = new AppConfigAuthConfigurationGoogle("distinctio");;
-                                nickname = new RecordStringNever();;
-                            }};);            
+            AppConfig req = AppConfig.builder()
+                .appName("minecraft")
+                .authConfiguration(AuthConfiguration.builder()
+                        .anonymous(RecordStringNever.builder()
+                            .build())
+                        .google(Google.builder()
+                            .clientId("string")
+                            .build())
+                        .nickname(RecordStringNever.builder()
+                            .build())
+                        .build())
+                .build();
 
-            CreateAppResponse res = sdk.appV1.createApp(req, new CreateAppSecurity("quibusdam") {{
-                auth0 = "";
-            }});
+            CreateAppResponse res = sdk.appV1().createApp()
+                .request(req)
+                .call();
 
-            if (res.application != null) {
+            if (res.application().isPresent()) {
                 // handle response
             }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -57,16 +78,19 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                 | [dev.hathora.cloud_api.models.shared.AppConfig](../../models/shared/AppConfig.md)                         | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
-| `security`                                                                                                | [dev.hathora.cloud_api.models.operations.CreateAppSecurity](../../models/operations/CreateAppSecurity.md) | :heavy_check_mark:                                                                                        | The security requirements to use for the request.                                                         |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [dev.hathora.cloud_api.models.shared.AppConfig](../../models/shared/AppConfig.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.CreateAppResponse](../../models/operations/CreateAppResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateAppResponse>](../../models/operations/CreateAppResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
 
 ## deleteApp
 
@@ -77,24 +101,35 @@ Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#appli
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.DeleteAppRequest;
 import dev.hathora.cloud_api.models.operations.DeleteAppResponse;
-import dev.hathora.cloud_api.models.operations.DeleteAppSecurity;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            DeleteAppResponse res = sdk.appV1.deleteApp(new DeleteAppSecurity("unde") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
+            DeleteAppResponse res = sdk.appV1().deleteApp()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -104,16 +139,19 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               | Example                                                                                                   |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                | [dev.hathora.cloud_api.models.operations.DeleteAppSecurity](../../models/operations/DeleteAppSecurity.md) | :heavy_check_mark:                                                                                        | The security requirements to use for the request.                                                         |                                                                                                           |
-| `appId`                                                                                                   | *String*                                                                                                  | :heavy_check_mark:                                                                                        | N/A                                                                                                       | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                  |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.DeleteAppResponse](../../models/operations/DeleteAppResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.DeleteAppResponse>](../../models/operations/DeleteAppResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
 
 ## getAppInfo
 
@@ -124,24 +162,37 @@ Get details for an [application](https://hathora.dev/docs/concepts/hathora-entit
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.GetAppInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetAppInfoResponse;
-import dev.hathora.cloud_api.models.operations.GetAppInfoSecurity;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetAppInfoResponse res = sdk.appV1.getAppInfo(new GetAppInfoSecurity("nulla") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
+            GetAppInfoResponse res = sdk.appV1().getAppInfo()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .call();
 
-            if (res.application != null) {
+            if (res.application().isPresent()) {
                 // handle response
             }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -151,16 +202,19 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 | Example                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                  | [dev.hathora.cloud_api.models.operations.GetAppInfoSecurity](../../models/operations/GetAppInfoSecurity.md) | :heavy_check_mark:                                                                                          | The security requirements to use for the request.                                                           |                                                                                                             |
-| `appId`                                                                                                     | *String*                                                                                                    | :heavy_check_mark:                                                                                          | N/A                                                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                    |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetAppInfoResponse](../../models/operations/GetAppInfoResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetAppInfoResponse>](../../models/operations/GetAppInfoResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
 
 ## getApps
 
@@ -171,23 +225,35 @@ Returns an unsorted list of your organization’s [applications](https://hathora
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.GetAppsResponse;
-import dev.hathora.cloud_api.models.operations.GetAppsSecurity;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetAppsResponse res = sdk.appV1.getApps(new GetAppsSecurity("corrupti") {{
-                auth0 = "";
-            }});
+            GetAppsResponse res = sdk.appV1().getApps()
+                .call();
 
-            if (res.applicationWithDeployments != null) {
+            if (res.classes().isPresent()) {
                 // handle response
             }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -195,17 +261,15 @@ public class Application {
 }
 ```
 
-### Parameters
-
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `security`                                                                                            | [dev.hathora.cloud_api.models.operations.GetAppsSecurity](../../models/operations/GetAppsSecurity.md) | :heavy_check_mark:                                                                                    | The security requirements to use for the request.                                                     |
-
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetAppsResponse](../../models/operations/GetAppsResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetAppsResponse>](../../models/operations/GetAppsResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
 
 ## updateApp
 
@@ -216,41 +280,53 @@ Update data for an existing [application](https://hathora.dev/docs/concepts/hath
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.UpdateAppRequest;
 import dev.hathora.cloud_api.models.operations.UpdateAppResponse;
-import dev.hathora.cloud_api.models.operations.UpdateAppSecurity;
+import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.AppConfig;
-import dev.hathora.cloud_api.models.shared.AppConfigAuthConfiguration;
-import dev.hathora.cloud_api.models.shared.AppConfigAuthConfigurationGoogle;
+import dev.hathora.cloud_api.models.shared.AuthConfiguration;
+import dev.hathora.cloud_api.models.shared.Google;
 import dev.hathora.cloud_api.models.shared.RecordStringNever;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            UpdateAppResponse res = sdk.appV1.updateApp(new UpdateAppSecurity("illum") {{
-                auth0 = "";
-            }}, new AppConfig("minecraft",                 new AppConfigAuthConfiguration() {{
-                                anonymous = new RecordStringNever();;
-                                google = new AppConfigAuthConfigurationGoogle("deserunt");;
-                                nickname = new RecordStringNever();;
-                            }};) {{
-                appName = "minecraft";
-                authConfiguration = new AppConfigAuthConfiguration() {{
-                    anonymous = new RecordStringNever() {{}};
-                    google = new AppConfigAuthConfigurationGoogle("error") {{
-                        clientId = "vel";
-                    }};
-                    nickname = new RecordStringNever() {{}};
-                }};
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2");
+            UpdateAppResponse res = sdk.appV1().updateApp()
+                .appConfig(AppConfig.builder()
+                    .appName("minecraft")
+                    .authConfiguration(AuthConfiguration.builder()
+                            .anonymous(RecordStringNever.builder()
+                                .build())
+                            .google(Google.builder()
+                                .clientId("string")
+                                .build())
+                            .nickname(RecordStringNever.builder()
+                                .build())
+                            .build())
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .call();
 
-            if (res.application != null) {
+            if (res.application().isPresent()) {
                 // handle response
             }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -260,14 +336,17 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               | Example                                                                                                   |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                | [dev.hathora.cloud_api.models.operations.UpdateAppSecurity](../../models/operations/UpdateAppSecurity.md) | :heavy_check_mark:                                                                                        | The security requirements to use for the request.                                                         |                                                                                                           |
-| `appConfig`                                                                                               | [dev.hathora.cloud_api.models.shared.AppConfig](../../models/shared/AppConfig.md)                         | :heavy_check_mark:                                                                                        | N/A                                                                                                       |                                                                                                           |
-| `appId`                                                                                                   | *String*                                                                                                  | :heavy_check_mark:                                                                                        | N/A                                                                                                       | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                  |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `appConfig`                                                                       | [dev.hathora.cloud_api.models.shared.AppConfig](../../models/shared/AppConfig.md) | :heavy_check_mark:                                                                | N/A                                                                               |                                                                                   |
+| `appId`                                                                           | *Optional<? extends String>*                                                      | :heavy_minus_sign:                                                                | N/A                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                          |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.UpdateAppResponse](../../models/operations/UpdateAppResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.UpdateAppResponse>](../../models/operations/UpdateAppResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |

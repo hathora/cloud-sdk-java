@@ -1,35 +1,33 @@
-configVersion: 1.0.0
-management:
-  docChecksum: 5d493c13d7ba103babf8acc1a95da638
-  docVersion: 0.0.1
-  speakeasyVersion: 1.82.5
-  generationVersion: 2.108.3
+configVersion: 2.0.0
 generation:
-  comments:
-    disableComments: false
-    omitDescriptionIfSummaryPresent: false
+  sdkClassName: Hathora-Cloud
+  usageSnippets:
+    optionalPropertyRendering: withExample
+  fixes:
+    nameResolutionDec2023: false
+    parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
   baseServerURL: ""
   flattenGlobalSecurity: true
-  repoURL: https://github.com/hathora/cloud-sdk-typescript.git
-  sdkClassName: Hathora-Cloud
-  singleTagPerOp: false
-  tagNamespacingDisabled: false
-features:
-  java:
-    core: 2.85.2
-    deprecations: 2.81.1
-    flattening: 2.81.1
-    globalSecurity: 2.81.1
-    globalServerURLs: 2.82.0
-    methodSecurity: 2.81.1
 java:
-  version: 1.19.0
+  version: 2.0.0
   artifactID: cloud-api
   companyEmail: info@mycompany.com
   companyName: My Company
   companyURL: www.mycompany.com
   githubURL: github.com/owner/repo
   groupID: dev.hathora
+  imports:
+    option: openapi
+    paths:
+      callbacks: models/callbacks
+      errors: models/errors
+      operations: models/operations
+      shared: models/shared
+      webhooks: models/webhooks
+  inputModelSuffix: input
   maxMethodParams: 3
   ossrhURL: https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
+  outputModelSuffix: output
   projectName: Hathora-Cloud
+  templateVersion: v2

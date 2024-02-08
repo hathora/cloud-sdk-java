@@ -4,56 +4,265 @@
 
 package dev.hathora.cloud_api.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 
 
 public class GetBuildInfoResponse {
+
+    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
+
     /**
      * Ok
      */
-    
-    public dev.hathora.cloud_api.models.shared.Build build;
+    private Optional<? extends dev.hathora.cloud_api.models.shared.Build> build;
 
+    /**
+     * HTTP response content type for this operation
+     */
+    private String contentType;
+
+    /**
+     * HTTP response status code for this operation
+     */
+    private int statusCode;
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    private HttpResponse<InputStream> rawResponse;
+
+    public GetBuildInfoResponse(
+            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
+            Optional<? extends dev.hathora.cloud_api.models.shared.Build> build,
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(apiError, "apiError");
+        Utils.checkNotNull(build, "build");
+        Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(statusCode, "statusCode");
+        Utils.checkNotNull(rawResponse, "rawResponse");
+        this.apiError = apiError;
+        this.build = build;
+        this.contentType = contentType;
+        this.statusCode = statusCode;
+        this.rawResponse = rawResponse;
+    }
+
+    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
+        return apiError;
+    }
+
+    /**
+     * Ok
+     */
+    public Optional<? extends dev.hathora.cloud_api.models.shared.Build> build() {
+        return build;
+    }
+
+    /**
+     * HTTP response content type for this operation
+     */
+    public String contentType() {
+        return contentType;
+    }
+
+    /**
+     * HTTP response status code for this operation
+     */
+    public int statusCode() {
+        return statusCode;
+    }
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public HttpResponse<InputStream> rawResponse() {
+        return rawResponse;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    public GetBuildInfoResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
+        Utils.checkNotNull(apiError, "apiError");
+        this.apiError = Optional.ofNullable(apiError);
+        return this;
+    }
+    
+    public GetBuildInfoResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
+        Utils.checkNotNull(apiError, "apiError");
+        this.apiError = apiError;
+        return this;
+    }
+
+    /**
+     * Ok
+     */
     public GetBuildInfoResponse withBuild(dev.hathora.cloud_api.models.shared.Build build) {
+        Utils.checkNotNull(build, "build");
+        this.build = Optional.ofNullable(build);
+        return this;
+    }
+    
+    /**
+     * Ok
+     */
+    public GetBuildInfoResponse withBuild(Optional<? extends dev.hathora.cloud_api.models.shared.Build> build) {
+        Utils.checkNotNull(build, "build");
         this.build = build;
         return this;
     }
-    
-    
-    public String contentType;
 
+    /**
+     * HTTP response content type for this operation
+     */
     public GetBuildInfoResponse withContentType(String contentType) {
+        Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
     }
-    
-    
-    public String getBuildInfo404ApplicationJSONString;
 
-    public GetBuildInfoResponse withGetBuildInfo404ApplicationJSONString(String getBuildInfo404ApplicationJSONString) {
-        this.getBuildInfo404ApplicationJSONString = getBuildInfo404ApplicationJSONString;
-        return this;
-    }
-    
-    
-    public Integer statusCode;
-
-    public GetBuildInfoResponse withStatusCode(Integer statusCode) {
+    /**
+     * HTTP response status code for this operation
+     */
+    public GetBuildInfoResponse withStatusCode(int statusCode) {
+        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
-    
-    
-    public HttpResponse<byte[]> rawResponse;
 
-    public GetBuildInfoResponse withRawResponse(HttpResponse<byte[]> rawResponse) {
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public GetBuildInfoResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
     }
     
-    public GetBuildInfoResponse(@JsonProperty("ContentType") String contentType, @JsonProperty("StatusCode") Integer statusCode) {
-        this.contentType = contentType;
-        this.statusCode = statusCode;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetBuildInfoResponse other = (GetBuildInfoResponse) o;
+        return 
+            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
+            java.util.Objects.deepEquals(this.build, other.build) &&
+            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
+            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            apiError,
+            build,
+            contentType,
+            statusCode,
+            rawResponse);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(GetBuildInfoResponse.class,
+                "apiError", apiError,
+                "build", build,
+                "contentType", contentType,
+                "statusCode", statusCode,
+                "rawResponse", rawResponse);
+    }
+    
+    public final static class Builder {
+ 
+        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
+ 
+        private Optional<? extends dev.hathora.cloud_api.models.shared.Build> build = Optional.empty();
+ 
+        private String contentType;
+ 
+        private Integer statusCode;
+ 
+        private HttpResponse<InputStream> rawResponse;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
+            Utils.checkNotNull(apiError, "apiError");
+            this.apiError = Optional.ofNullable(apiError);
+            return this;
+        }
+        
+        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
+            Utils.checkNotNull(apiError, "apiError");
+            this.apiError = apiError;
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder build(dev.hathora.cloud_api.models.shared.Build build) {
+            Utils.checkNotNull(build, "build");
+            this.build = Optional.ofNullable(build);
+            return this;
+        }
+        
+        /**
+         * Ok
+         */
+        public Builder build(Optional<? extends dev.hathora.cloud_api.models.shared.Build> build) {
+            Utils.checkNotNull(build, "build");
+            this.build = build;
+            return this;
+        }
+
+        /**
+         * HTTP response content type for this operation
+         */
+        public Builder contentType(String contentType) {
+            Utils.checkNotNull(contentType, "contentType");
+            this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * HTTP response status code for this operation
+         */
+        public Builder statusCode(int statusCode) {
+            Utils.checkNotNull(statusCode, "statusCode");
+            this.statusCode = statusCode;
+            return this;
+        }
+
+        /**
+         * Raw HTTP response; suitable for custom response parsing
+         */
+        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
+            Utils.checkNotNull(rawResponse, "rawResponse");
+            this.rawResponse = rawResponse;
+            return this;
+        }        
+        
+        public GetBuildInfoResponse build() {
+            return new GetBuildInfoResponse(
+                apiError,
+                build,
+                contentType,
+                statusCode,
+                rawResponse);
+        }
+    }
 }
+

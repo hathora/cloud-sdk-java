@@ -5,63 +5,218 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
-/**
- * ActiveConnectionInfo - Connection information to the default port.
- */
 
 public class ActiveConnectionInfo {
+
     @JsonProperty("host")
-    public String host;
+    private String host;
 
-    public ActiveConnectionInfo withHost(String host) {
-        this.host = host;
-        return this;
-    }
-    
     @JsonProperty("port")
-    public Double port;
+    private double port;
 
-    public ActiveConnectionInfo withPort(Double port) {
-        this.port = port;
-        return this;
-    }
-    
     /**
-     * Unique identifier to a game session or match. Use either a system generated ID or pass in your own.
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
      */
     @JsonProperty("roomId")
-    public String roomId;
+    private String roomId;
 
-    public ActiveConnectionInfo withRoomId(String roomId) {
-        this.roomId = roomId;
-        return this;
-    }
-    
     @JsonProperty("status")
-    public ActiveConnectionInfoStatus status;
+    private Status status;
 
-    public ActiveConnectionInfo withStatus(ActiveConnectionInfoStatus status) {
-        this.status = status;
-        return this;
-    }
-    
     /**
      * Transport type specifies the underlying communication protocol to the exposed port.
      */
     @JsonProperty("transportType")
-    public TransportType transportType;
+    private TransportType transportType;
 
-    public ActiveConnectionInfo withTransportType(TransportType transportType) {
-        this.transportType = transportType;
-        return this;
-    }
-    
-    public ActiveConnectionInfo(@JsonProperty("host") String host, @JsonProperty("port") Double port, @JsonProperty("roomId") String roomId, @JsonProperty("status") ActiveConnectionInfoStatus status, @JsonProperty("transportType") TransportType transportType) {
+    public ActiveConnectionInfo(
+            @JsonProperty("host") String host,
+            @JsonProperty("port") double port,
+            @JsonProperty("roomId") String roomId,
+            @JsonProperty("status") Status status,
+            @JsonProperty("transportType") TransportType transportType) {
+        Utils.checkNotNull(host, "host");
+        Utils.checkNotNull(port, "port");
+        Utils.checkNotNull(roomId, "roomId");
+        Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(transportType, "transportType");
         this.host = host;
         this.port = port;
         this.roomId = roomId;
         this.status = status;
         this.transportType = transportType;
-  }
+    }
+
+    public String host() {
+        return host;
+    }
+
+    public double port() {
+        return port;
+    }
+
+    /**
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
+     */
+    public String roomId() {
+        return roomId;
+    }
+
+    public Status status() {
+        return status;
+    }
+
+    /**
+     * Transport type specifies the underlying communication protocol to the exposed port.
+     */
+    public TransportType transportType() {
+        return transportType;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    public ActiveConnectionInfo withHost(String host) {
+        Utils.checkNotNull(host, "host");
+        this.host = host;
+        return this;
+    }
+
+    public ActiveConnectionInfo withPort(double port) {
+        Utils.checkNotNull(port, "port");
+        this.port = port;
+        return this;
+    }
+
+    /**
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
+     */
+    public ActiveConnectionInfo withRoomId(String roomId) {
+        Utils.checkNotNull(roomId, "roomId");
+        this.roomId = roomId;
+        return this;
+    }
+
+    public ActiveConnectionInfo withStatus(Status status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Transport type specifies the underlying communication protocol to the exposed port.
+     */
+    public ActiveConnectionInfo withTransportType(TransportType transportType) {
+        Utils.checkNotNull(transportType, "transportType");
+        this.transportType = transportType;
+        return this;
+    }
+    
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ActiveConnectionInfo other = (ActiveConnectionInfo) o;
+        return 
+            java.util.Objects.deepEquals(this.host, other.host) &&
+            java.util.Objects.deepEquals(this.port, other.port) &&
+            java.util.Objects.deepEquals(this.roomId, other.roomId) &&
+            java.util.Objects.deepEquals(this.status, other.status) &&
+            java.util.Objects.deepEquals(this.transportType, other.transportType);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            host,
+            port,
+            roomId,
+            status,
+            transportType);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(ActiveConnectionInfo.class,
+                "host", host,
+                "port", port,
+                "roomId", roomId,
+                "status", status,
+                "transportType", transportType);
+    }
+    
+    public final static class Builder {
+ 
+        private String host;
+ 
+        private Double port;
+ 
+        private String roomId;
+ 
+        private Status status;
+ 
+        private TransportType transportType;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder host(String host) {
+            Utils.checkNotNull(host, "host");
+            this.host = host;
+            return this;
+        }
+
+        public Builder port(double port) {
+            Utils.checkNotNull(port, "port");
+            this.port = port;
+            return this;
+        }
+
+        /**
+         * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+         * Note: error will be returned if `roomId` is not globally unique.
+         */
+        public Builder roomId(String roomId) {
+            Utils.checkNotNull(roomId, "roomId");
+            this.roomId = roomId;
+            return this;
+        }
+
+        public Builder status(Status status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+        /**
+         * Transport type specifies the underlying communication protocol to the exposed port.
+         */
+        public Builder transportType(TransportType transportType) {
+            Utils.checkNotNull(transportType, "transportType");
+            this.transportType = transportType;
+            return this;
+        }        
+        
+        public ActiveConnectionInfo build() {
+            return new ActiveConnectionInfo(
+                host,
+                port,
+                roomId,
+                status,
+                transportType);
+        }
+    }
 }
+

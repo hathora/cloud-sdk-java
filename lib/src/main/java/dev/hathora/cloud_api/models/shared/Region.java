@@ -5,12 +5,12 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
-/**
- * Region - Available regions to request a game server.
- */
 public enum Region {
     SEATTLE("Seattle"),
+    LOS_ANGELES("Los_Angeles"),
     WASHINGTON_DC("Washington_DC"),
     CHICAGO("Chicago"),
     LONDON("London"),
@@ -22,9 +22,13 @@ public enum Region {
     SAO_PAULO("Sao_Paulo");
 
     @JsonValue
-    public final String value;
+    private final String value;
 
     private Region(String value) {
         this.value = value;
+    }
+    
+    public String value() {
+        return value;
     }
 }

@@ -1,42 +1,59 @@
-# processesV1
+# ProcessesV1
+(*processesV1()*)
 
 ## Overview
 
-Operations to get data on active and stopped [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
+Deprecated. Use [ProcessesV2](https://hathora.dev/api#tag/ProcessesV2).
 
 ### Available Operations
 
-* [getProcessInfo](#getprocessinfo) - Get details for an existing [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
-* [getRunningProcesses](#getrunningprocesses) - Returns an array of active [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
-* [getStoppedProcesses](#getstoppedprocesses) - Returns an array of stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
+* [~~getProcessInfoDeprecated~~](#getprocessinfodeprecated) - Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process). :warning: **Deprecated**
+* [~~getRunningProcesses~~](#getrunningprocesses) - Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. :warning: **Deprecated**
+* [~~getStoppedProcesses~~](#getstoppedprocesses) - Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. :warning: **Deprecated**
 
-## getProcessInfo
+## ~~getProcessInfoDeprecated~~
 
-Get details for an existing [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
+Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
-import dev.hathora.cloud_api.models.operations.GetProcessInfoRequest;
-import dev.hathora.cloud_api.models.operations.GetProcessInfoResponse;
-import dev.hathora.cloud_api.models.operations.GetProcessInfoSecurity;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
+import dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedRequest;
+import dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetProcessInfoResponse res = sdk.processesV1.getProcessInfo(new GetProcessInfoSecurity("esse") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");
+            GetProcessInfoDeprecatedResponse res = sdk.processesV1().getProcessInfoDeprecated()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
+                .call();
 
-            if (res.process != null) {
+            if (res.process().isPresent()) {
                 // handle response
             }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -46,46 +63,65 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         | Example                                                                                                             |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                          | [dev.hathora.cloud_api.models.operations.GetProcessInfoSecurity](../../models/operations/GetProcessInfoSecurity.md) | :heavy_check_mark:                                                                                                  | The security requirements to use for the request.                                                                   |                                                                                                                     |
-| `appId`                                                                                                             | *String*                                                                                                            | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                            |
-| `processId`                                                                                                         | *String*                                                                                                            | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 | cbfcddd2-0006-43ae-996c-995fff7bed2e                                                                                |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `processId`                              | *String*                                 | :heavy_check_mark:                       | N/A                                      | cbfcddd2-0006-43ae-996c-995fff7bed2e     |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetProcessInfoResponse](../../models/operations/GetProcessInfoResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse>](../../models/operations/GetProcessInfoDeprecatedResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
 
-## getRunningProcesses
+## ~~getRunningProcesses~~
 
-Returns an array of active [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
+Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.GetRunningProcessesRequest;
 import dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse;
-import dev.hathora.cloud_api.models.operations.GetRunningProcessesSecurity;
+import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Region;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetRunningProcessesResponse res = sdk.processesV1.getRunningProcesses(new GetRunningProcessesSecurity("ipsum") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", Region.MUMBAI);
+            GetRunningProcessesResponse res = sdk.processesV1().getRunningProcesses()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .region(Region.SINGAPORE)
+                .call();
 
-            if (res.processWithRooms != null) {
+            if (res.classes().isPresent()) {
                 // handle response
             }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -95,46 +131,65 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   | Example                                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                    | [dev.hathora.cloud_api.models.operations.GetRunningProcessesSecurity](../../models/operations/GetRunningProcessesSecurity.md) | :heavy_check_mark:                                                                                                            | The security requirements to use for the request.                                                                             |                                                                                                                               |
-| `appId`                                                                                                                       | *String*                                                                                                                      | :heavy_check_mark:                                                                                                            | N/A                                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                      |
-| `region`                                                                                                                      | [dev.hathora.cloud_api.models.shared.Region](../../models/shared/Region.md)                                                   | :heavy_minus_sign:                                                                                                            | Available regions to request a game server.                                                                                   |                                                                                                                               |
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
+| `region`                                                                                        | [Optional<? extends dev.hathora.cloud_api.models.shared.Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse](../../models/operations/GetRunningProcessesResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse>](../../models/operations/GetRunningProcessesResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
 
-## getStoppedProcesses
+## ~~getStoppedProcesses~~
 
-Returns an array of stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Filter the array by optionally passing in a region.
+Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.GetStoppedProcessesRequest;
 import dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse;
-import dev.hathora.cloud_api.models.operations.GetStoppedProcessesSecurity;
+import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Region;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetStoppedProcessesResponse res = sdk.processesV1.getStoppedProcesses(new GetStoppedProcessesSecurity("aspernatur") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", Region.SEATTLE);
+            GetStoppedProcessesResponse res = sdk.processesV1().getStoppedProcesses()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .region(Region.SYDNEY)
+                .call();
 
-            if (res.processes != null) {
+            if (res.classes().isPresent()) {
                 // handle response
             }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -144,14 +199,17 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   | Example                                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                    | [dev.hathora.cloud_api.models.operations.GetStoppedProcessesSecurity](../../models/operations/GetStoppedProcessesSecurity.md) | :heavy_check_mark:                                                                                                            | The security requirements to use for the request.                                                                             |                                                                                                                               |
-| `appId`                                                                                                                       | *String*                                                                                                                      | :heavy_check_mark:                                                                                                            | N/A                                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                      |
-| `region`                                                                                                                      | [dev.hathora.cloud_api.models.shared.Region](../../models/shared/Region.md)                                                   | :heavy_minus_sign:                                                                                                            | Available regions to request a game server.                                                                                   |                                                                                                                               |
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
+| `region`                                                                                        | [Optional<? extends dev.hathora.cloud_api.models.shared.Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse](../../models/operations/GetStoppedProcessesResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse>](../../models/operations/GetStoppedProcessesResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |

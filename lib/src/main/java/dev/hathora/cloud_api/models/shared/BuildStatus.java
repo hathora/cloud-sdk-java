@@ -5,17 +5,19 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
 /**
- * BuildStatus - Status of creating a build.
+ * BuildStatus - Current status of your build.
  * 
- * `created`: a new `buildId` was generated
+ * `created`: a build was created but not yet run
  * 
- * `running`: the container image is being built
+ * `running`: the build process is actively executing
  * 
- * `succeeded`: the container image was successfully built and stored in our registry
+ * `succeeded`: the game server artifact was successfully built and stored in the Hathora registries
  * 
- * `failed`: there was an issue creating and storing the container image in our container registry
+ * `failed`: the build process was unsuccessful, most likely due to an error with the `Dockerfile`
  */
 public enum BuildStatus {
     CREATED("created"),
@@ -24,9 +26,13 @@ public enum BuildStatus {
     FAILED("failed");
 
     @JsonValue
-    public final String value;
+    private final String value;
 
     private BuildStatus(String value) {
         this.value = value;
+    }
+    
+    public String value() {
+        return value;
     }
 }

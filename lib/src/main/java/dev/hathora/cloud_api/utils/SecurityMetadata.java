@@ -6,20 +6,19 @@ package dev.hathora.cloud_api.utils;
 
 import java.lang.reflect.Field;
 
-public class SecurityMetadata extends Metadata {
-    public String type;
-    public String subtype;
-    public boolean option;
-    public boolean scheme;
-    public String name;
+class SecurityMetadata {
 
-    // security:scheme=true,type=apiKey,subtype=header
-    public static SecurityMetadata parse(Field field) throws IllegalArgumentException, IllegalAccessException {
-        SecurityMetadata result = new SecurityMetadata();
-        result = (SecurityMetadata) parse("security", result, field);
-        return result;
-    }
+    String type;
+    String subtype;
+    boolean option;
+    boolean scheme;
+    String name;
 
     private SecurityMetadata() {
+    }
+
+    // security:scheme=true,type=apiKey,subtype=header
+    static SecurityMetadata parse(Field field) throws IllegalArgumentException, IllegalAccessException {
+       return Metadata.parse("security", new SecurityMetadata(), field);
     }
 }

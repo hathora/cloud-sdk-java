@@ -4,192 +4,285 @@
 
 package dev.hathora.cloud_api;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.hathora.cloud_api.models.errors.SDKError;
+import dev.hathora.cloud_api.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_api.utils.HTTPClient;
 import dev.hathora.cloud_api.utils.HTTPRequest;
 import dev.hathora.cloud_api.utils.JSON;
 import dev.hathora.cloud_api.utils.SerializedBody;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Operations that allow you configure and manage an application's [build](https://hathora.dev/docs/concepts/hathora-entities#build) at runtime.
  */
-public class DeploymentV1 {
-	
-	private SDKConfiguration sdkConfiguration;
+public class DeploymentV1 implements
+            MethodCallCreateDeployment,
+            MethodCallGetDeploymentInfo,
+            MethodCallGetDeployments {
+    
+    private final SDKConfiguration sdkConfiguration;
 
-	public DeploymentV1(SDKConfiguration sdkConfiguration) {
-		this.sdkConfiguration = sdkConfiguration;
-	}
+    DeploymentV1(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
+    }
+    public dev.hathora.cloud_api.models.operations.CreateDeploymentRequestBuilder createDeployment() {
+        return new dev.hathora.cloud_api.models.operations.CreateDeploymentRequestBuilder(this);
+    }
 
     /**
-     * Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) and [build](https://hathora.dev/docs/concepts/hathora-entities#build).
-     * @param security the security details to use for authentication
+     * Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
      * @param deploymentConfig User specified deployment configuration for your application at runtime.
      * @param appId
      * @param buildId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.CreateDeploymentResponse createDeployment(dev.hathora.cloud_api.models.operations.CreateDeploymentSecurity security, dev.hathora.cloud_api.models.shared.DeploymentConfig deploymentConfig, String appId, Integer buildId) throws Exception {
-        dev.hathora.cloud_api.models.operations.CreateDeploymentRequest request = new dev.hathora.cloud_api.models.operations.CreateDeploymentRequest(deploymentConfig, appId, buildId);
+    public dev.hathora.cloud_api.models.operations.CreateDeploymentResponse createDeployment(
+            dev.hathora.cloud_api.models.shared.DeploymentConfig deploymentConfig,
+            Optional<? extends String> appId,
+            int buildId) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.CreateDeploymentRequest request = 
+            dev.hathora.cloud_api.models.operations.CreateDeploymentRequest
+                .builder()
+                .deploymentConfig(deploymentConfig)
+                .appId(appId)
+                .buildId(buildId)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.CreateDeploymentRequest.class, baseUrl, "/deployments/v1/{appId}/create/{buildId}", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.CreateDeploymentRequest.class, 
+                baseUrl, 
+                "/deployments/v1/{appId}/create/{buildId}", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("POST");
         req.setURL(url);
-        SerializedBody serializedRequestBody = dev.hathora.cloud_api.utils.Utils.serializeRequestBody(request, "deploymentConfig", "json");
+        SerializedBody serializedRequestBody = dev.hathora.cloud_api.utils.Utils.serializeRequestBody(
+                request, "deploymentConfig", "json", false);
         if (serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.CreateDeploymentResponse res = new dev.hathora.cloud_api.models.operations.CreateDeploymentResponse(contentType, httpRes.statusCode()) {{
-            deployment = null;
-            createDeployment400ApplicationJSONString = null;
-            createDeployment404ApplicationJSONString = null;
-            createDeployment500ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.CreateDeploymentResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.CreateDeploymentResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.CreateDeploymentResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 201) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.Deployment out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.Deployment.class);
-                res.deployment = out;
+                dev.hathora.cloud_api.models.shared.Deployment out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.Deployment>() {});
+                res.withDeployment(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 400) {
+        } else if (httpRes.statusCode() == 400 || httpRes.statusCode() == 404 || httpRes.statusCode() == 500) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.createDeployment400ApplicationJSONString = out;
-            }
-        }
-        else if (httpRes.statusCode() == 404) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.createDeployment404ApplicationJSONString = out;
-            }
-        }
-        else if (httpRes.statusCode() == 500) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.createDeployment500ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
+    public dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequestBuilder getDeploymentInfo() {
+        return new dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequestBuilder(this);
+    }
+
     /**
-     * Get details for an existing [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) using `appId`.
-     * @param security the security details to use for authentication
+     * Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
      * @param appId
      * @param deploymentId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse getDeploymentInfo(dev.hathora.cloud_api.models.operations.GetDeploymentInfoSecurity security, String appId, Integer deploymentId) throws Exception {
-        dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest request = new dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest(appId, deploymentId);
+    public dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse getDeploymentInfo(
+            Optional<? extends String> appId,
+            int deploymentId) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest request = 
+            dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest
+                .builder()
+                .appId(appId)
+                .deploymentId(deploymentId)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest.class, baseUrl, "/deployments/v1/{appId}/info/{deploymentId}", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest.class, 
+                baseUrl, 
+                "/deployments/v1/{appId}/info/{deploymentId}", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse res = new dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse(contentType, httpRes.statusCode()) {{
-            deployment = null;
-            getDeploymentInfo404ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.Deployment out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.Deployment.class);
-                res.deployment = out;
+                dev.hathora.cloud_api.models.shared.Deployment out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.Deployment>() {});
+                res.withDeployment(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getDeploymentInfo404ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
+    public dev.hathora.cloud_api.models.operations.GetDeploymentsRequestBuilder getDeployments() {
+        return new dev.hathora.cloud_api.models.operations.GetDeploymentsRequestBuilder(this);
+    }
+
     /**
-     * Returns an array of [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) objects for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param security the security details to use for authentication
+     * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @param appId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetDeploymentsResponse getDeployments(dev.hathora.cloud_api.models.operations.GetDeploymentsSecurity security, String appId) throws Exception {
-        dev.hathora.cloud_api.models.operations.GetDeploymentsRequest request = new dev.hathora.cloud_api.models.operations.GetDeploymentsRequest(appId);
+    public dev.hathora.cloud_api.models.operations.GetDeploymentsResponse getDeployments(
+            Optional<? extends String> appId) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.GetDeploymentsRequest request = 
+            dev.hathora.cloud_api.models.operations.GetDeploymentsRequest
+                .builder()
+                .appId(appId)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetDeploymentsRequest.class, baseUrl, "/deployments/v1/{appId}/list", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.GetDeploymentsRequest.class, 
+                baseUrl, 
+                "/deployments/v1/{appId}/list", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.GetDeploymentsResponse res = new dev.hathora.cloud_api.models.operations.GetDeploymentsResponse(contentType, httpRes.statusCode()) {{
-            deployments = null;
-            getDeployments404ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.GetDeploymentsResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.GetDeploymentsResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.GetDeploymentsResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.Deployment[] out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.Deployment[].class);
-                res.deployments = out;
+                java.util.List<dev.hathora.cloud_api.models.shared.Deployment> out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<java.util.List<dev.hathora.cloud_api.models.shared.Deployment>>() {});
+                res.withClasses(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getDeployments404ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
+
 }
