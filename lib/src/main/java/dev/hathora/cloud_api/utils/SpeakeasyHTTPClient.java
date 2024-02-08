@@ -9,16 +9,17 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.io.InputStream;
 
 public class SpeakeasyHTTPClient implements HTTPClient {
     @Override
-    public HttpResponse<byte[]> send(HTTPRequest request)
+    public HttpResponse<InputStream> send(HTTPRequest request)
             throws IOException, InterruptedException, URISyntaxException {
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest req = request.build();
 
-        HttpResponse<byte[]> response = client.send(req, HttpResponse.BodyHandlers.ofByteArray());
+        HttpResponse<InputStream> response = client.send(req, HttpResponse.BodyHandlers.ofInputStream());
         return response;
     }
 }

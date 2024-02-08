@@ -5,15 +5,24 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
+/**
+ * ConnectionInfoV2Status - `exposedPort` will only be available when the `status` of a room is "active".
+ */
 public enum ConnectionInfoV2Status {
     STARTING("starting"),
     ACTIVE("active");
 
     @JsonValue
-    public final String value;
+    private final String value;
 
     private ConnectionInfoV2Status(String value) {
         this.value = value;
+    }
+    
+    public String value() {
+        return value;
     }
 }

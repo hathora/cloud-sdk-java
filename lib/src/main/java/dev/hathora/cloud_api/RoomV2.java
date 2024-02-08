@@ -4,433 +4,684 @@
 
 package dev.hathora.cloud_api;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.hathora.cloud_api.models.errors.SDKError;
+import dev.hathora.cloud_api.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_api.utils.HTTPClient;
 import dev.hathora.cloud_api.utils.HTTPRequest;
 import dev.hathora.cloud_api.utils.JSON;
 import dev.hathora.cloud_api.utils.SerializedBody;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 import org.apache.http.NameValuePair;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Operations to create, manage, and connect to [rooms](https://hathora.dev/docs/concepts/hathora-entities#room).
  */
-public class RoomV2 {
-	
-	private SDKConfiguration sdkConfiguration;
+public class RoomV2 implements
+            MethodCallCreateRoom,
+            MethodCallDestroyRoom,
+            MethodCallGetActiveRoomsForProcess,
+            MethodCallGetConnectionInfo,
+            MethodCallGetInactiveRoomsForProcess,
+            MethodCallGetRoomInfo,
+            MethodCallSuspendRoom,
+            MethodCallUpdateRoomConfig {
+    
+    private final SDKConfiguration sdkConfiguration;
 
-	public RoomV2(SDKConfiguration sdkConfiguration) {
-		this.sdkConfiguration = sdkConfiguration;
-	}
-
-    /**
-     * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId` and `region`.
-     * @param security the security details to use for authentication
-     * @param createRoomRequest
-     * @param appId
-     * @return the response from the API call
-     * @throws Exception if the API call fails
-     */
-    public dev.hathora.cloud_api.models.operations.CreateRoomResponse createRoom(dev.hathora.cloud_api.models.operations.CreateRoomSecurity security, dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId) throws Exception {
-        return this.createRoom(security, createRoomRequest, appId, null);
+    RoomV2(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
+    }
+    public dev.hathora.cloud_api.models.operations.CreateRoomRequestBuilder createRoom() {
+        return new dev.hathora.cloud_api.models.operations.CreateRoomRequestBuilder(this);
     }
 
     /**
-     * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId` and `region`.
-     * @param security the security details to use for authentication
-     * @param createRoomRequest
+     * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
+     * @param createRoomParams
      * @param appId
      * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.CreateRoomResponse createRoom(dev.hathora.cloud_api.models.operations.CreateRoomSecurity security, dev.hathora.cloud_api.models.shared.CreateRoomRequest createRoomRequest, String appId, String roomId) throws Exception {
-        dev.hathora.cloud_api.models.operations.CreateRoomRequest request = new dev.hathora.cloud_api.models.operations.CreateRoomRequest(createRoomRequest, appId);
-        request.roomId=roomId;
+    public dev.hathora.cloud_api.models.operations.CreateRoomResponse createRoom(
+            dev.hathora.cloud_api.models.shared.CreateRoomParams createRoomParams,
+            Optional<? extends String> appId,
+            Optional<? extends String> roomId) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.CreateRoomRequest request = 
+            dev.hathora.cloud_api.models.operations.CreateRoomRequest
+                .builder()
+                .createRoomParams(createRoomParams)
+                .appId(appId)
+                .roomId(roomId)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.CreateRoomRequest.class, baseUrl, "/rooms/v2/{appId}/create", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.CreateRoomRequest.class, 
+                baseUrl, 
+                "/rooms/v2/{appId}/create", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("POST");
         req.setURL(url);
-        SerializedBody serializedRequestBody = dev.hathora.cloud_api.utils.Utils.serializeRequestBody(request, "createRoomRequest", "json");
+        SerializedBody serializedRequestBody = dev.hathora.cloud_api.utils.Utils.serializeRequestBody(
+                request, "createRoomParams", "json", false);
         if (serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
-        java.util.List<NameValuePair> queryParams = dev.hathora.cloud_api.utils.Utils.getQueryParams(dev.hathora.cloud_api.models.operations.CreateRoomRequest.class, request, null);
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
+        java.util.List<NameValuePair> queryParams = dev.hathora.cloud_api.utils.Utils.getQueryParams(
+                dev.hathora.cloud_api.models.operations.CreateRoomRequest.class, request, this.sdkConfiguration.globals);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
                 req.addQueryParam(queryParam);
             }
         }
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.CreateRoomResponse res = new dev.hathora.cloud_api.models.operations.CreateRoomResponse(contentType, httpRes.statusCode()) {{
-            connectionInfoV2 = null;
-            createRoom400ApplicationJSONString = null;
-            createRoom403ApplicationJSONString = null;
-            createRoom404ApplicationJSONString = null;
-            createRoom500ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.CreateRoomResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.CreateRoomResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.CreateRoomResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 201) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.ConnectionInfoV2 out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.ConnectionInfoV2.class);
-                res.connectionInfoV2 = out;
+                dev.hathora.cloud_api.models.shared.CreateRoomResponse out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.CreateRoomResponse>() {});
+                res.withCreateRoomResponse(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 400) {
+        } else if (httpRes.statusCode() == 400 || httpRes.statusCode() == 402 || httpRes.statusCode() == 403 || httpRes.statusCode() == 404 || httpRes.statusCode() == 500) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.createRoom400ApplicationJSONString = out;
-            }
-        }
-        else if (httpRes.statusCode() == 403) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.createRoom403ApplicationJSONString = out;
-            }
-        }
-        else if (httpRes.statusCode() == 404) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.createRoom404ApplicationJSONString = out;
-            }
-        }
-        else if (httpRes.statusCode() == 500) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.createRoom500ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
+    public dev.hathora.cloud_api.models.operations.DestroyRoomRequestBuilder destroyRoom() {
+        return new dev.hathora.cloud_api.models.operations.DestroyRoomRequestBuilder(this);
+    }
+
     /**
-     * Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`. All associated metadata is deleted.
-     * @param security the security details to use for authentication
+     * Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
      * @param appId
      * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.DestroyRoomResponse destroyRoom(dev.hathora.cloud_api.models.operations.DestroyRoomSecurity security, String appId, String roomId) throws Exception {
-        dev.hathora.cloud_api.models.operations.DestroyRoomRequest request = new dev.hathora.cloud_api.models.operations.DestroyRoomRequest(appId, roomId);
+    public dev.hathora.cloud_api.models.operations.DestroyRoomResponse destroyRoom(
+            Optional<? extends String> appId,
+            String roomId) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.DestroyRoomRequest request = 
+            dev.hathora.cloud_api.models.operations.DestroyRoomRequest
+                .builder()
+                .appId(appId)
+                .roomId(roomId)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.DestroyRoomRequest.class, baseUrl, "/rooms/v2/{appId}/destroy/{roomId}", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.DestroyRoomRequest.class, 
+                baseUrl, 
+                "/rooms/v2/{appId}/destroy/{roomId}", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("POST");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.DestroyRoomResponse res = new dev.hathora.cloud_api.models.operations.DestroyRoomResponse(contentType, httpRes.statusCode()) {{
-            destroyRoom404ApplicationJSONString = null;
-            destroyRoom500ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.DestroyRoomResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.DestroyRoomResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.DestroyRoomResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 204) {
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404 || httpRes.statusCode() == 500) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.destroyRoom404ApplicationJSONString = out;
-            }
-        }
-        else if (httpRes.statusCode() == 500) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.destroyRoom500ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
+    public dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequestBuilder getActiveRoomsForProcess() {
+        return new dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequestBuilder(this);
+    }
+
     /**
-     * Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
-     * @param security the security details to use for authentication
+     * Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param appId
      * @param processId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse getActiveRoomsForProcess(dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessSecurity security, String appId, String processId) throws Exception {
-        dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest request = new dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest(appId, processId);
+    public dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse getActiveRoomsForProcess(
+            Optional<? extends String> appId,
+            String processId) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest request = 
+            dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest
+                .builder()
+                .appId(appId)
+                .processId(processId)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest.class, baseUrl, "/rooms/v2/{appId}/list/{processId}/active", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest.class, 
+                baseUrl, 
+                "/rooms/v2/{appId}/list/{processId}/active", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse res = new dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse(contentType, httpRes.statusCode()) {{
-            roomWithoutAllocations = null;
-            getActiveRoomsForProcess404ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.RoomWithoutAllocations[] out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.RoomWithoutAllocations[].class);
-                res.roomWithoutAllocations = out;
+                java.util.List<dev.hathora.cloud_api.models.shared.RoomWithoutAllocations> out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<java.util.List<dev.hathora.cloud_api.models.shared.RoomWithoutAllocations>>() {});
+                res.withClasses(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getActiveRoomsForProcess404ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
+    public dev.hathora.cloud_api.models.operations.GetConnectionInfoRequestBuilder getConnectionInfo() {
+        return new dev.hathora.cloud_api.models.operations.GetConnectionInfoRequestBuilder(this);
+    }
+
     /**
-     * Get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`. Clients can call this endpoint without authentication.
+     * Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
      * @param appId
      * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse getConnectionInfo(String appId, String roomId) throws Exception {
-        dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest request = new dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest(appId, roomId);
+    public dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse getConnectionInfo(
+            Optional<? extends String> appId,
+            String roomId) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest request = 
+            dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest
+                .builder()
+                .appId(appId)
+                .roomId(roomId)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest.class, baseUrl, "/rooms/v2/{appId}/connectioninfo/{roomId}", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest.class, 
+                baseUrl, 
+                "/rooms/v2/{appId}/connectioninfo/{roomId}", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this.sdkConfiguration.defaultClient;
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
+        
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse res = new dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse(contentType, httpRes.statusCode()) {{
-            connectionInfoV2 = null;
-            getConnectionInfo400ApplicationJSONString = null;
-            getConnectionInfo404ApplicationJSONString = null;
-            getConnectionInfo500ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.ConnectionInfoV2 out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.ConnectionInfoV2.class);
-                res.connectionInfoV2 = out;
+                dev.hathora.cloud_api.models.shared.ConnectionInfoV2 out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ConnectionInfoV2>() {});
+                res.withConnectionInfoV2(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 400) {
+        } else if (httpRes.statusCode() == 400 || httpRes.statusCode() == 404 || httpRes.statusCode() == 500) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getConnectionInfo400ApplicationJSONString = out;
-            }
-        }
-        else if (httpRes.statusCode() == 404) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getConnectionInfo404ApplicationJSONString = out;
-            }
-        }
-        else if (httpRes.statusCode() == 500) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getConnectionInfo500ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
+    public dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequestBuilder getInactiveRoomsForProcess() {
+        return new dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequestBuilder(this);
+    }
+
     /**
-     * Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
-     * @param security the security details to use for authentication
+     * Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param appId
      * @param processId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessSecurity security, String appId, String processId) throws Exception {
-        dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest request = new dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest(appId, processId);
+    public dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(
+            Optional<? extends String> appId,
+            String processId) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest request = 
+            dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest
+                .builder()
+                .appId(appId)
+                .processId(processId)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest.class, baseUrl, "/rooms/v2/{appId}/list/{processId}/inactive", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest.class, 
+                baseUrl, 
+                "/rooms/v2/{appId}/list/{processId}/inactive", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse res = new dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse(contentType, httpRes.statusCode()) {{
-            roomWithoutAllocations = null;
-            getInactiveRoomsForProcess404ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.RoomWithoutAllocations[] out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.RoomWithoutAllocations[].class);
-                res.roomWithoutAllocations = out;
+                java.util.List<dev.hathora.cloud_api.models.shared.RoomWithoutAllocations> out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<java.util.List<dev.hathora.cloud_api.models.shared.RoomWithoutAllocations>>() {});
+                res.withClasses(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getInactiveRoomsForProcess404ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
+    public dev.hathora.cloud_api.models.operations.GetRoomInfoRequestBuilder getRoomInfo() {
+        return new dev.hathora.cloud_api.models.operations.GetRoomInfoRequestBuilder(this);
+    }
+
     /**
-     * Get details for an existing [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`.
-     * @param security the security details to use for authentication
+     * Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
      * @param appId
      * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.GetRoomInfoResponse getRoomInfo(dev.hathora.cloud_api.models.operations.GetRoomInfoSecurity security, String appId, String roomId) throws Exception {
-        dev.hathora.cloud_api.models.operations.GetRoomInfoRequest request = new dev.hathora.cloud_api.models.operations.GetRoomInfoRequest(appId, roomId);
+    public dev.hathora.cloud_api.models.operations.GetRoomInfoResponse getRoomInfo(
+            Optional<? extends String> appId,
+            String roomId) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.GetRoomInfoRequest request = 
+            dev.hathora.cloud_api.models.operations.GetRoomInfoRequest
+                .builder()
+                .appId(appId)
+                .roomId(roomId)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.GetRoomInfoRequest.class, baseUrl, "/rooms/v2/{appId}/info/{roomId}", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.GetRoomInfoRequest.class, 
+                baseUrl, 
+                "/rooms/v2/{appId}/info/{roomId}", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.GetRoomInfoResponse res = new dev.hathora.cloud_api.models.operations.GetRoomInfoResponse(contentType, httpRes.statusCode()) {{
-            room = null;
-            getRoomInfo404ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.GetRoomInfoResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.GetRoomInfoResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.GetRoomInfoResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.Room out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), dev.hathora.cloud_api.models.shared.Room.class);
-                res.room = out;
+                dev.hathora.cloud_api.models.shared.Room out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.Room>() {});
+                res.withRoom(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.getRoomInfo404ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
 
+    public dev.hathora.cloud_api.models.operations.SuspendRoomRequestBuilder suspendRoom() {
+        return new dev.hathora.cloud_api.models.operations.SuspendRoomRequestBuilder(this);
+    }
+
     /**
-     * Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room) using `appId` and `roomId`. The room is unallocated from the process but can be rescheduled later using the same `roomId`.
-     * @param security the security details to use for authentication
+     * Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
      * @param appId
      * @param roomId
      * @return the response from the API call
      * @throws Exception if the API call fails
      */
-    public dev.hathora.cloud_api.models.operations.SuspendRoomResponse suspendRoom(dev.hathora.cloud_api.models.operations.SuspendRoomSecurity security, String appId, String roomId) throws Exception {
-        dev.hathora.cloud_api.models.operations.SuspendRoomRequest request = new dev.hathora.cloud_api.models.operations.SuspendRoomRequest(appId, roomId);
+    public dev.hathora.cloud_api.models.operations.SuspendRoomResponse suspendRoom(
+            Optional<? extends String> appId,
+            String roomId) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.SuspendRoomRequest request = 
+            dev.hathora.cloud_api.models.operations.SuspendRoomRequest
+                .builder()
+                .appId(appId)
+                .roomId(roomId)
+                .build();
         
         String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(dev.hathora.cloud_api.models.operations.SuspendRoomRequest.class, baseUrl, "/rooms/v2/{appId}/suspend/{roomId}", request, null);
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.SuspendRoomRequest.class, 
+                baseUrl, 
+                "/rooms/v2/{appId}/suspend/{roomId}", 
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("POST");
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(this.sdkConfiguration.defaultClient, security);
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
         
-        HttpResponse<byte[]> httpRes = client.send(req);
+        HttpResponse<InputStream> httpRes = client.send(req);
 
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
 
-        dev.hathora.cloud_api.models.operations.SuspendRoomResponse res = new dev.hathora.cloud_api.models.operations.SuspendRoomResponse(contentType, httpRes.statusCode()) {{
-            suspendRoom404ApplicationJSONString = null;
-            suspendRoom500ApplicationJSONString = null;
-        }};
-        res.rawResponse = httpRes;
+        dev.hathora.cloud_api.models.operations.SuspendRoomResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.SuspendRoomResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.SuspendRoomResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
         
         if (httpRes.statusCode() == 204) {
-        }
-        else if (httpRes.statusCode() == 404) {
+        } else if (httpRes.statusCode() == 404 || httpRes.statusCode() == 500) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.suspendRoom404ApplicationJSONString = out;
-            }
-        }
-        else if (httpRes.statusCode() == 500) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = new String(httpRes.body(), StandardCharsets.UTF_8);
-                res.suspendRoom500ApplicationJSONString = out;
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
         }
 
         return res;
     }
+
+    public dev.hathora.cloud_api.models.operations.UpdateRoomConfigRequestBuilder updateRoomConfig() {
+        return new dev.hathora.cloud_api.models.operations.UpdateRoomConfigRequestBuilder(this);
+    }
+
+    public dev.hathora.cloud_api.models.operations.UpdateRoomConfigResponse updateRoomConfig(
+            dev.hathora.cloud_api.models.shared.UpdateRoomConfigParams updateRoomConfigParams,
+            Optional<? extends String> appId,
+            String roomId) throws Exception {
+        
+        dev.hathora.cloud_api.models.operations.UpdateRoomConfigRequest request = 
+            dev.hathora.cloud_api.models.operations.UpdateRoomConfigRequest
+                .builder()
+                .updateRoomConfigParams(updateRoomConfigParams)
+                .appId(appId)
+                .roomId(roomId)
+                .build();
+        
+        String baseUrl = this.sdkConfiguration.serverUrl;
+        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+                dev.hathora.cloud_api.models.operations.UpdateRoomConfigRequest.class, 
+                baseUrl, 
+                "/rooms/v2/{appId}/update/{roomId}", 
+                request, this.sdkConfiguration.globals);
+        
+        HTTPRequest req = new HTTPRequest();
+        req.setMethod("POST");
+        req.setURL(url);
+        SerializedBody serializedRequestBody = dev.hathora.cloud_api.utils.Utils.serializeRequestBody(
+                request, "updateRoomConfigParams", "json", false);
+        if (serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        req.setBody(serializedRequestBody);
+
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
+        
+        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
+        
+        HttpResponse<InputStream> httpRes = client.send(req);
+
+        String contentType = httpRes
+                .headers()
+                .firstValue("Content-Type")
+                .orElse("application/octet-stream");
+
+        dev.hathora.cloud_api.models.operations.UpdateRoomConfigResponse.Builder resBuilder = 
+            dev.hathora.cloud_api.models.operations.UpdateRoomConfigResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        dev.hathora.cloud_api.models.operations.UpdateRoomConfigResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
+        
+        if (httpRes.statusCode() == 204) {
+        } else if (httpRes.statusCode() == 404 || httpRes.statusCode() == 500) {
+            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
+                ObjectMapper mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
+                res.withApiError(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+            }
+        }
+
+        return res;
+    }
+
 }

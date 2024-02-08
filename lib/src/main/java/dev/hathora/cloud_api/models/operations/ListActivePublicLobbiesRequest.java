@@ -4,31 +4,150 @@
 
 package dev.hathora.cloud_api.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
+import java.util.Optional;
 
 
 public class ListActivePublicLobbiesRequest {
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    public String appId;
+    private Optional<? extends String> appId;
+
+    /**
+     * If omitted, active public lobbies in all regions will be returned.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=region")
+    private Optional<? extends dev.hathora.cloud_api.models.shared.Region> region;
+
+    public ListActivePublicLobbiesRequest(
+            Optional<? extends String> appId,
+            Optional<? extends dev.hathora.cloud_api.models.shared.Region> region) {
+        Utils.checkNotNull(appId, "appId");
+        Utils.checkNotNull(region, "region");
+        this.appId = appId;
+        this.region = region;
+    }
+
+    public Optional<? extends String> appId() {
+        return appId;
+    }
+
+    /**
+     * If omitted, active public lobbies in all regions will be returned.
+     */
+    public Optional<? extends dev.hathora.cloud_api.models.shared.Region> region() {
+        return region;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
 
     public ListActivePublicLobbiesRequest withAppId(String appId) {
+        Utils.checkNotNull(appId, "appId");
+        this.appId = Optional.ofNullable(appId);
+        return this;
+    }
+    
+    public ListActivePublicLobbiesRequest withAppId(Optional<? extends String> appId) {
+        Utils.checkNotNull(appId, "appId");
         this.appId = appId;
+        return this;
+    }
+
+    /**
+     * If omitted, active public lobbies in all regions will be returned.
+     */
+    public ListActivePublicLobbiesRequest withRegion(dev.hathora.cloud_api.models.shared.Region region) {
+        Utils.checkNotNull(region, "region");
+        this.region = Optional.ofNullable(region);
         return this;
     }
     
     /**
-     * Region to filter by. If omitted, active public lobbies in all regions will be returned.
+     * If omitted, active public lobbies in all regions will be returned.
      */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=region")
-    public dev.hathora.cloud_api.models.shared.Region region;
-
-    public ListActivePublicLobbiesRequest withRegion(dev.hathora.cloud_api.models.shared.Region region) {
+    public ListActivePublicLobbiesRequest withRegion(Optional<? extends dev.hathora.cloud_api.models.shared.Region> region) {
+        Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
     }
     
-    public ListActivePublicLobbiesRequest(@JsonProperty("appId") String appId) {
-        this.appId = appId;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ListActivePublicLobbiesRequest other = (ListActivePublicLobbiesRequest) o;
+        return 
+            java.util.Objects.deepEquals(this.appId, other.appId) &&
+            java.util.Objects.deepEquals(this.region, other.region);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            appId,
+            region);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(ListActivePublicLobbiesRequest.class,
+                "appId", appId,
+                "region", region);
+    }
+    
+    public final static class Builder {
+ 
+        private Optional<? extends String> appId = Optional.empty();
+ 
+        private Optional<? extends dev.hathora.cloud_api.models.shared.Region> region = Optional.empty();  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder appId(String appId) {
+            Utils.checkNotNull(appId, "appId");
+            this.appId = Optional.ofNullable(appId);
+            return this;
+        }
+        
+        public Builder appId(Optional<? extends String> appId) {
+            Utils.checkNotNull(appId, "appId");
+            this.appId = appId;
+            return this;
+        }
+
+        /**
+         * If omitted, active public lobbies in all regions will be returned.
+         */
+        public Builder region(dev.hathora.cloud_api.models.shared.Region region) {
+            Utils.checkNotNull(region, "region");
+            this.region = Optional.ofNullable(region);
+            return this;
+        }
+        
+        /**
+         * If omitted, active public lobbies in all regions will be returned.
+         */
+        public Builder region(Optional<? extends dev.hathora.cloud_api.models.shared.Region> region) {
+            Utils.checkNotNull(region, "region");
+            this.region = region;
+            return this;
+        }        
+        
+        public ListActivePublicLobbiesRequest build() {
+            return new ListActivePublicLobbiesRequest(
+                appId,
+                region);
+        }
+    }
 }
+

@@ -5,6 +5,7 @@
 package dev.hathora.cloud_api.utils;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public enum Types {
     private static final Set<Class<?>> PRIMITIVE_TYPES = getPrimitiveWrapperTypes();
 
     public static Types getType(Class<?> clazz) {
-        if (clazz.isArray()) {
+        if (clazz.isArray() || List.class.isAssignableFrom(clazz)) {
             return Types.ARRAY;
         } else if (Map.class.isAssignableFrom(clazz)) {
             return Types.MAP;

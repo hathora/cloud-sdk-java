@@ -5,16 +5,23 @@
 package dev.hathora.cloud_api;
 
 import dev.hathora.cloud_api.utils.HTTPClient;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.util.Map;
+import java.util.HashMap;
 
 class SDKConfiguration {
+	public SecuritySource securitySource;	
+    
 	public HTTPClient defaultClient;
-	public HTTPClient securityClient;
-	
 	public String serverUrl;
 	public int serverIdx = 0;
 	public String language = "java";
 	public String openapiDocVersion = "0.0.1";
-	public String sdkVersion = "1.19.0";
-	public String genVersion = "2.108.3";
+	public String sdkVersion = "2.0.0";
+	public String genVersion = "2.250.19";
+	public String userAgent = "speakeasy-sdk/java 2.0.0 2.250.19 0.0.1 dev.hathora.cloud_api";
+	public Map<String, Map<String, Map<String, java.lang.Object>>> globals = new HashMap<>(){{
+		put("parameters", new HashMap<>());
+	}};
 	
 }

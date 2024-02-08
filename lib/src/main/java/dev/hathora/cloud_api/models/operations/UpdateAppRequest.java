@@ -4,29 +4,120 @@
 
 package dev.hathora.cloud_api.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
+import java.util.Optional;
 
 
 public class UpdateAppRequest {
+
     @SpeakeasyMetadata("request:mediaType=application/json")
-    public dev.hathora.cloud_api.models.shared.AppConfig appConfig;
+    private dev.hathora.cloud_api.models.shared.AppConfig appConfig;
+
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
+    private Optional<? extends String> appId;
+
+    public UpdateAppRequest(
+            dev.hathora.cloud_api.models.shared.AppConfig appConfig,
+            Optional<? extends String> appId) {
+        Utils.checkNotNull(appConfig, "appConfig");
+        Utils.checkNotNull(appId, "appId");
+        this.appConfig = appConfig;
+        this.appId = appId;
+    }
+
+    public dev.hathora.cloud_api.models.shared.AppConfig appConfig() {
+        return appConfig;
+    }
+
+    public Optional<? extends String> appId() {
+        return appId;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
 
     public UpdateAppRequest withAppConfig(dev.hathora.cloud_api.models.shared.AppConfig appConfig) {
+        Utils.checkNotNull(appConfig, "appConfig");
         this.appConfig = appConfig;
         return this;
     }
-    
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    public String appId;
 
     public UpdateAppRequest withAppId(String appId) {
+        Utils.checkNotNull(appId, "appId");
+        this.appId = Optional.ofNullable(appId);
+        return this;
+    }
+    
+    public UpdateAppRequest withAppId(Optional<? extends String> appId) {
+        Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
     
-    public UpdateAppRequest(@JsonProperty("AppConfig") dev.hathora.cloud_api.models.shared.AppConfig appConfig, @JsonProperty("appId") String appId) {
-        this.appConfig = appConfig;
-        this.appId = appId;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UpdateAppRequest other = (UpdateAppRequest) o;
+        return 
+            java.util.Objects.deepEquals(this.appConfig, other.appConfig) &&
+            java.util.Objects.deepEquals(this.appId, other.appId);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            appConfig,
+            appId);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(UpdateAppRequest.class,
+                "appConfig", appConfig,
+                "appId", appId);
+    }
+    
+    public final static class Builder {
+ 
+        private dev.hathora.cloud_api.models.shared.AppConfig appConfig;
+ 
+        private Optional<? extends String> appId = Optional.empty();  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder appConfig(dev.hathora.cloud_api.models.shared.AppConfig appConfig) {
+            Utils.checkNotNull(appConfig, "appConfig");
+            this.appConfig = appConfig;
+            return this;
+        }
+
+        public Builder appId(String appId) {
+            Utils.checkNotNull(appId, "appId");
+            this.appId = Optional.ofNullable(appId);
+            return this;
+        }
+        
+        public Builder appId(Optional<? extends String> appId) {
+            Utils.checkNotNull(appId, "appId");
+            this.appId = appId;
+            return this;
+        }        
+        
+        public UpdateAppRequest build() {
+            return new UpdateAppRequest(
+                appConfig,
+                appId);
+        }
+    }
 }
+

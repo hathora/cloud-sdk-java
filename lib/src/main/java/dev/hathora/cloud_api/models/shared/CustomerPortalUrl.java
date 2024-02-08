@@ -5,18 +5,78 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
 
 public class CustomerPortalUrl {
+
     @JsonProperty("returnUrl")
-    public String returnUrl;
+    private String returnUrl;
+
+    public CustomerPortalUrl(
+            @JsonProperty("returnUrl") String returnUrl) {
+        Utils.checkNotNull(returnUrl, "returnUrl");
+        this.returnUrl = returnUrl;
+    }
+
+    public String returnUrl() {
+        return returnUrl;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
 
     public CustomerPortalUrl withReturnUrl(String returnUrl) {
+        Utils.checkNotNull(returnUrl, "returnUrl");
         this.returnUrl = returnUrl;
         return this;
     }
     
-    public CustomerPortalUrl(@JsonProperty("returnUrl") String returnUrl) {
-        this.returnUrl = returnUrl;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CustomerPortalUrl other = (CustomerPortalUrl) o;
+        return 
+            java.util.Objects.deepEquals(this.returnUrl, other.returnUrl);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            returnUrl);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(CustomerPortalUrl.class,
+                "returnUrl", returnUrl);
+    }
+    
+    public final static class Builder {
+ 
+        private String returnUrl;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder returnUrl(String returnUrl) {
+            Utils.checkNotNull(returnUrl, "returnUrl");
+            this.returnUrl = returnUrl;
+            return this;
+        }        
+        
+        public CustomerPortalUrl build() {
+            return new CustomerPortalUrl(
+                returnUrl);
+        }
+    }
 }
+

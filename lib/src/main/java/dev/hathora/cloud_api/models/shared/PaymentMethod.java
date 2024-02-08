@@ -7,38 +7,177 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
+import java.util.Optional;
 
 /**
  * PaymentMethod - Make all properties in T optional
  */
 
 public class PaymentMethod {
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ach")
-    public AchPaymentMethod ach;
+    private Optional<? extends AchPaymentMethod> ach;
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("card")
+    private Optional<? extends CardPaymentMethod> card;
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("link")
+    private Optional<? extends LinkPaymentMethod> link;
+
+    public PaymentMethod(
+            @JsonProperty("ach") Optional<? extends AchPaymentMethod> ach,
+            @JsonProperty("card") Optional<? extends CardPaymentMethod> card,
+            @JsonProperty("link") Optional<? extends LinkPaymentMethod> link) {
+        Utils.checkNotNull(ach, "ach");
+        Utils.checkNotNull(card, "card");
+        Utils.checkNotNull(link, "link");
+        this.ach = ach;
+        this.card = card;
+        this.link = link;
+    }
+
+    public Optional<? extends AchPaymentMethod> ach() {
+        return ach;
+    }
+
+    public Optional<? extends CardPaymentMethod> card() {
+        return card;
+    }
+
+    public Optional<? extends LinkPaymentMethod> link() {
+        return link;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
 
     public PaymentMethod withAch(AchPaymentMethod ach) {
+        Utils.checkNotNull(ach, "ach");
+        this.ach = Optional.ofNullable(ach);
+        return this;
+    }
+    
+    public PaymentMethod withAch(Optional<? extends AchPaymentMethod> ach) {
+        Utils.checkNotNull(ach, "ach");
         this.ach = ach;
         return this;
     }
-    
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("card")
-    public CardPaymentMethod card;
 
     public PaymentMethod withCard(CardPaymentMethod card) {
-        this.card = card;
+        Utils.checkNotNull(card, "card");
+        this.card = Optional.ofNullable(card);
         return this;
     }
     
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("link")
-    public LinkPaymentMethod link;
+    public PaymentMethod withCard(Optional<? extends CardPaymentMethod> card) {
+        Utils.checkNotNull(card, "card");
+        this.card = card;
+        return this;
+    }
 
     public PaymentMethod withLink(LinkPaymentMethod link) {
+        Utils.checkNotNull(link, "link");
+        this.link = Optional.ofNullable(link);
+        return this;
+    }
+    
+    public PaymentMethod withLink(Optional<? extends LinkPaymentMethod> link) {
+        Utils.checkNotNull(link, "link");
         this.link = link;
         return this;
     }
     
-    public PaymentMethod(){}
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PaymentMethod other = (PaymentMethod) o;
+        return 
+            java.util.Objects.deepEquals(this.ach, other.ach) &&
+            java.util.Objects.deepEquals(this.card, other.card) &&
+            java.util.Objects.deepEquals(this.link, other.link);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            ach,
+            card,
+            link);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(PaymentMethod.class,
+                "ach", ach,
+                "card", card,
+                "link", link);
+    }
+    
+    public final static class Builder {
+ 
+        private Optional<? extends AchPaymentMethod> ach = Optional.empty();
+ 
+        private Optional<? extends CardPaymentMethod> card = Optional.empty();
+ 
+        private Optional<? extends LinkPaymentMethod> link = Optional.empty();  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder ach(AchPaymentMethod ach) {
+            Utils.checkNotNull(ach, "ach");
+            this.ach = Optional.ofNullable(ach);
+            return this;
+        }
+        
+        public Builder ach(Optional<? extends AchPaymentMethod> ach) {
+            Utils.checkNotNull(ach, "ach");
+            this.ach = ach;
+            return this;
+        }
+
+        public Builder card(CardPaymentMethod card) {
+            Utils.checkNotNull(card, "card");
+            this.card = Optional.ofNullable(card);
+            return this;
+        }
+        
+        public Builder card(Optional<? extends CardPaymentMethod> card) {
+            Utils.checkNotNull(card, "card");
+            this.card = card;
+            return this;
+        }
+
+        public Builder link(LinkPaymentMethod link) {
+            Utils.checkNotNull(link, "link");
+            this.link = Optional.ofNullable(link);
+            return this;
+        }
+        
+        public Builder link(Optional<? extends LinkPaymentMethod> link) {
+            Utils.checkNotNull(link, "link");
+            this.link = link;
+            return this;
+        }        
+        
+        public PaymentMethod build() {
+            return new PaymentMethod(
+                ach,
+                card,
+                link);
+        }
+    }
 }
+

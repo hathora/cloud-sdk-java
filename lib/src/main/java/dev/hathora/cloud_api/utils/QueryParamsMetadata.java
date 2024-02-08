@@ -6,17 +6,16 @@ package dev.hathora.cloud_api.utils;
 
 import java.lang.reflect.Field;
 
-public class QueryParamsMetadata extends Metadata {
-    public String style = "form";
-    public boolean explode = true;
-    public String name;
-    public String serialization;
+class QueryParamsMetadata {
+
+    String style = "form";
+    boolean explode = true;
+    String name;
+    String serialization;
 
     // queryParam:style=simple,explode=false,name=apiID
-    public static QueryParamsMetadata parse(Field field) throws IllegalArgumentException, IllegalAccessException {
-        QueryParamsMetadata result = new QueryParamsMetadata();
-        result = (QueryParamsMetadata) parse("queryParam", result, field);
-        return result;
+    static QueryParamsMetadata parse(Field field) throws IllegalArgumentException, IllegalAccessException {
+        return Metadata.parse("queryParam", new QueryParamsMetadata(), field);
     }
 
     private QueryParamsMetadata() {

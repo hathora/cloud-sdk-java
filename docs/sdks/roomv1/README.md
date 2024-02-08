@@ -1,4 +1,9 @@
-# roomV1
+# RoomV1
+(*roomV1()*)
+
+## Overview
+
+Deprecated. Use [RoomV2](https://hathora.dev/api#tag/RoomV2).
 
 ### Available Operations
 
@@ -19,28 +24,44 @@
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse;
-import dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedSecurity;
-import dev.hathora.cloud_api.models.shared.CreateRoomRequest;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.CreateRoomParams;
 import dev.hathora.cloud_api.models.shared.Region;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            CreateRoomDeprecatedResponse res = sdk.roomV1.createRoomDeprecated(new CreateRoomDeprecatedSecurity("ad") {{
-                auth0 = "";
-            }}, new CreateRoomRequest(Region.WASHINGTON_DC) {{
-                region = Region.SINGAPORE;
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
+            CreateRoomDeprecatedResponse res = sdk.roomV1().createRoomDeprecated()
+                .createRoomParams(CreateRoomParams.builder()
+                    .region(Region.SINGAPORE)
+                    .roomConfig("{\"name\":\"my-room\"}")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .roomId("2swovpy1fnunu")
+                .call();
 
-            if (res.roomId != null) {
+            if (res.roomId().isPresent()) {
                 // handle response
             }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -50,18 +71,21 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                       | Type                                                                                                                            | Required                                                                                                                        | Description                                                                                                                     | Example                                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                      | [dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedSecurity](../../models/operations/CreateRoomDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                              | The security requirements to use for the request.                                                                               |                                                                                                                                 |
-| `createRoomRequest`                                                                                                             | [dev.hathora.cloud_api.models.shared.CreateRoomRequest](../../models/shared/CreateRoomRequest.md)                               | :heavy_check_mark:                                                                                                              | N/A                                                                                                                             |                                                                                                                                 |
-| `appId`                                                                                                                         | *String*                                                                                                                        | :heavy_check_mark:                                                                                                              | N/A                                                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                        |
-| `roomId`                                                                                                                        | *String*                                                                                                                        | :heavy_minus_sign:                                                                                                              | N/A                                                                                                                             | 2swovpy1fnunu                                                                                                                   |
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `createRoomParams`                                                                              | [dev.hathora.cloud_api.models.shared.CreateRoomParams](../../models/shared/CreateRoomParams.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |                                                                                                 |
+| `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
+| `roomId`                                                                                        | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | 2swovpy1fnunu                                                                                   |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse](../../models/operations/CreateRoomDeprecatedResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse>](../../models/operations/CreateRoomDeprecatedResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
 
 ## ~~destroyRoomDeprecated~~
 
@@ -72,117 +96,36 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse;
-import dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedSecurity;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            DestroyRoomDeprecatedResponse res = sdk.roomV1.destroyRoomDeprecated(new DestroyRoomDeprecatedSecurity("iste") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
+            DestroyRoomDeprecatedResponse res = sdk.roomV1().destroyRoomDeprecated()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .roomId("2swovpy1fnunu")
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
-        } catch (Exception e) {
+            // handle response
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       | Example                                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                        | [dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedSecurity](../../models/operations/DestroyRoomDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                | The security requirements to use for the request.                                                                                 |                                                                                                                                   |
-| `appId`                                                                                                                           | *String*                                                                                                                          | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                          |
-| `roomId`                                                                                                                          | *String*                                                                                                                          | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               | 2swovpy1fnunu                                                                                                                     |
-
-
-### Response
-
-**[dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse](../../models/operations/DestroyRoomDeprecatedResponse.md)**
-
-
-## ~~getActiveRoomsForProcessDeprecated~~
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import dev.hathora.cloud_api.SDK;
-import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedRequest;
-import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse;
-import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedSecurity;
-
-public class Application {
-    public static void main(String[] args) {
-        try {
-            SDK sdk = SDK.builder()
-                .build();
-
-            GetActiveRoomsForProcessDeprecatedResponse res = sdk.roomV1.getActiveRoomsForProcessDeprecated(new GetActiveRoomsForProcessDeprecatedSecurity("dolor") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");
-
-            if (res.roomWithoutAllocations != null) {
-                // handle response
-            }
-        } catch (Exception e) {
-            // handle exception
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                   | Type                                                                                                                                                        | Required                                                                                                                                                    | Description                                                                                                                                                 | Example                                                                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                                  | [dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedSecurity](../../models/operations/GetActiveRoomsForProcessDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                                          | The security requirements to use for the request.                                                                                                           |                                                                                                                                                             |
-| `appId`                                                                                                                                                     | *String*                                                                                                                                                    | :heavy_check_mark:                                                                                                                                          | N/A                                                                                                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                                    |
-| `processId`                                                                                                                                                 | *String*                                                                                                                                                    | :heavy_check_mark:                                                                                                                                          | N/A                                                                                                                                                         | cbfcddd2-0006-43ae-996c-995fff7bed2e                                                                                                                        |
-
-
-### Response
-
-**[dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse](../../models/operations/GetActiveRoomsForProcessDeprecatedResponse.md)**
-
-
-## ~~getConnectionInfoDeprecated~~
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import dev.hathora.cloud_api.SDK;
-import dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedRequest;
-import dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse;
-
-public class Application {
-    public static void main(String[] args) {
-        try {
-            SDK sdk = SDK.builder()
-                .build();
-
-            GetConnectionInfoDeprecatedResponse res = sdk.roomV1.getConnectionInfoDeprecated("app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
-
-            if (res.connectionInfo != null) {
-                // handle response
-            }
         } catch (Exception e) {
             // handle exception
         }
@@ -194,14 +137,148 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse](../../models/operations/GetConnectionInfoDeprecatedResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse>](../../models/operations/DestroyRoomDeprecatedResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
+
+## ~~getActiveRoomsForProcessDeprecated~~
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
+import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedRequest;
+import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) {
+        try {
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .build();
+
+            GetActiveRoomsForProcessDeprecatedResponse res = sdk.roomV1().getActiveRoomsForProcessDeprecated()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
+                .call();
+
+            if (res.classes().isPresent()) {
+                // handle response
+            }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `processId`                              | *String*                                 | :heavy_check_mark:                       | N/A                                      | cbfcddd2-0006-43ae-996c-995fff7bed2e     |
+
+
+### Response
+
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse>](../../models/operations/GetActiveRoomsForProcessDeprecatedResponse.md)**
+### Errors
+
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
+
+## ~~getConnectionInfoDeprecated~~
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
+import dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedRequest;
+import dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) {
+        try {
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .build();
+
+            GetConnectionInfoDeprecatedResponse res = sdk.roomV1().getConnectionInfoDeprecated()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .roomId("2swovpy1fnunu")
+                .call();
+
+            if (res.connectionInfo().isPresent()) {
+                // handle response
+            }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
+
+
+### Response
+
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse>](../../models/operations/GetConnectionInfoDeprecatedResponse.md)**
+### Errors
+
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
 
 ## ~~getInactiveRoomsForProcessDeprecated~~
 
@@ -212,24 +289,38 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse;
-import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedSecurity;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetInactiveRoomsForProcessDeprecatedResponse res = sdk.roomV1.getInactiveRoomsForProcessDeprecated(new GetInactiveRoomsForProcessDeprecatedSecurity("natus") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e");
+            GetInactiveRoomsForProcessDeprecatedResponse res = sdk.roomV1().getInactiveRoomsForProcessDeprecated()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
+                .call();
 
-            if (res.roomWithoutAllocations != null) {
+            if (res.classes().isPresent()) {
                 // handle response
             }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -239,17 +330,20 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                       | Type                                                                                                                                                            | Required                                                                                                                                                        | Description                                                                                                                                                     | Example                                                                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                                      | [dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedSecurity](../../models/operations/GetInactiveRoomsForProcessDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                                              | The security requirements to use for the request.                                                                                                               |                                                                                                                                                                 |
-| `appId`                                                                                                                                                         | *String*                                                                                                                                                        | :heavy_check_mark:                                                                                                                                              | N/A                                                                                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                                        |
-| `processId`                                                                                                                                                     | *String*                                                                                                                                                        | :heavy_check_mark:                                                                                                                                              | N/A                                                                                                                                                             | cbfcddd2-0006-43ae-996c-995fff7bed2e                                                                                                                            |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `processId`                              | *String*                                 | :heavy_check_mark:                       | N/A                                      | cbfcddd2-0006-43ae-996c-995fff7bed2e     |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse](../../models/operations/GetInactiveRoomsForProcessDeprecatedResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse>](../../models/operations/GetInactiveRoomsForProcessDeprecatedResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
 
 ## ~~getRoomInfoDeprecated~~
 
@@ -260,24 +354,38 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse;
-import dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedSecurity;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetRoomInfoDeprecatedResponse res = sdk.roomV1.getRoomInfoDeprecated(new GetRoomInfoDeprecatedSecurity("laboriosam") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
+            GetRoomInfoDeprecatedResponse res = sdk.roomV1().getRoomInfoDeprecated()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .roomId("2swovpy1fnunu")
+                .call();
 
-            if (res.room != null) {
+            if (res.room().isPresent()) {
                 // handle response
             }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -287,17 +395,20 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       | Example                                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                        | [dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedSecurity](../../models/operations/GetRoomInfoDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                | The security requirements to use for the request.                                                                                 |                                                                                                                                   |
-| `appId`                                                                                                                           | *String*                                                                                                                          | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                          |
-| `roomId`                                                                                                                          | *String*                                                                                                                          | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               | 2swovpy1fnunu                                                                                                                     |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse](../../models/operations/GetRoomInfoDeprecatedResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse>](../../models/operations/GetRoomInfoDeprecatedResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
 
 ## ~~suspendRoomDeprecated~~
 
@@ -308,24 +419,36 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse;
-import dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedSecurity;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            SuspendRoomDeprecatedResponse res = sdk.roomV1.suspendRoomDeprecated(new SuspendRoomDeprecatedSecurity("hic") {{
-                auth0 = "";
-            }}, "app-af469a92-5b45-4565-b3c4-b79878de67d2", "2swovpy1fnunu");
+            SuspendRoomDeprecatedResponse res = sdk.roomV1().suspendRoomDeprecated()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .roomId("2swovpy1fnunu")
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -335,14 +458,17 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       | Example                                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                        | [dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedSecurity](../../models/operations/SuspendRoomDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                | The security requirements to use for the request.                                                                                 |                                                                                                                                   |
-| `appId`                                                                                                                           | *String*                                                                                                                          | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                          |
-| `roomId`                                                                                                                          | *String*                                                                                                                          | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               | 2swovpy1fnunu                                                                                                                     |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse](../../models/operations/SuspendRoomDeprecatedResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse>](../../models/operations/SuspendRoomDeprecatedResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |

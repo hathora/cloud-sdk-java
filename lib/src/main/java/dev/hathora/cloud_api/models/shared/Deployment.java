@@ -7,8 +7,8 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import dev.hathora.cloud_api.utils.DateTimeDeserializer;
-import dev.hathora.cloud_api.utils.DateTimeSerializer;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.time.OffsetDateTime;
 
 /**
@@ -16,109 +16,62 @@ import java.time.OffsetDateTime;
  */
 
 public class Deployment {
+
     /**
      * Additional ports your server listens on.
      */
     @JsonProperty("additionalContainerPorts")
-    public ContainerPort[] additionalContainerPorts;
+    private java.util.List<ContainerPort> additionalContainerPorts;
 
-    public Deployment withAdditionalContainerPorts(ContainerPort[] additionalContainerPorts) {
-        this.additionalContainerPorts = additionalContainerPorts;
-        return this;
-    }
-    
     /**
      * System generated unique identifier for an application.
      */
     @JsonProperty("appId")
-    public String appId;
+    private String appId;
 
-    public Deployment withAppId(String appId) {
-        this.appId = appId;
-        return this;
-    }
-    
     /**
-     * System generated id for a build associated with this deployment. Increments by 1.
+     * System generated id for a build. Increments by 1.
      */
     @JsonProperty("buildId")
-    public Integer buildId;
+    private int buildId;
 
-    public Deployment withBuildId(Integer buildId) {
-        this.buildId = buildId;
-        return this;
-    }
-    
     /**
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("containerPort")
     @Deprecated
-    public Double containerPort;
+    private double containerPort;
 
-    @Deprecated
-    public Deployment withContainerPort(Double containerPort) {
-        this.containerPort = containerPort;
-        return this;
-    }
-    
     /**
      * When the deployment was created.
      */
-    @JsonSerialize(using = DateTimeSerializer.class)
-    @JsonDeserialize(using = DateTimeDeserializer.class)
     @JsonProperty("createdAt")
-    public OffsetDateTime createdAt;
+    private OffsetDateTime createdAt;
 
-    public Deployment withCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-        return this;
-    }
-    
     /**
      * Email address for the user that created the deployment.
      */
     @JsonProperty("createdBy")
-    public String createdBy;
+    private String createdBy;
 
-    public Deployment withCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-        return this;
-    }
-    
     /**
      * A container port object represents the transport configruations for how your server will listen.
      */
     @JsonProperty("defaultContainerPort")
-    public ContainerPort defaultContainerPort;
+    private ContainerPort defaultContainerPort;
 
-    public Deployment withDefaultContainerPort(ContainerPort defaultContainerPort) {
-        this.defaultContainerPort = defaultContainerPort;
-        return this;
-    }
-    
     /**
      * System generated id for a deployment. Increments by 1.
      */
     @JsonProperty("deploymentId")
-    public Integer deploymentId;
+    private int deploymentId;
 
-    public Deployment withDeploymentId(Integer deploymentId) {
-        this.deploymentId = deploymentId;
-        return this;
-    }
-    
     /**
      * The environment variable that our process will have access to at runtime.
      */
     @JsonProperty("env")
-    public DeploymentEnv[] env;
+    private java.util.List<Env> env;
 
-    public Deployment withEnv(DeploymentEnv[] env) {
-        this.env = env;
-        return this;
-    }
-    
     /**
      * A plan defines how much CPU and memory is required to run an instance of your game server.
      * 
@@ -131,60 +84,62 @@ public class Deployment {
      * `large`: 4 core, 8gb memory
      */
     @JsonProperty("planName")
-    public PlanName planName;
+    private PlanName planName;
 
-    public Deployment withPlanName(PlanName planName) {
-        this.planName = planName;
-        return this;
-    }
-    
     /**
      * The number of cores allocated to your process.
      */
     @JsonProperty("requestedCPU")
-    public Double requestedCPU;
+    private double requestedCPU;
 
-    public Deployment withRequestedCPU(Double requestedCPU) {
-        this.requestedCPU = requestedCPU;
-        return this;
-    }
-    
     /**
      * The amount of memory allocated to your process.
      */
     @JsonProperty("requestedMemoryMB")
-    public Double requestedMemoryMB;
+    private int requestedMemoryMB;
 
-    public Deployment withRequestedMemoryMB(Double requestedMemoryMB) {
-        this.requestedMemoryMB = requestedMemoryMB;
-        return this;
-    }
-    
     /**
      * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
      */
     @JsonProperty("roomsPerProcess")
-    public Integer roomsPerProcess;
+    private int roomsPerProcess;
 
-    public Deployment withRoomsPerProcess(Integer roomsPerProcess) {
-        this.roomsPerProcess = roomsPerProcess;
-        return this;
-    }
-    
     /**
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("transportType")
     @Deprecated
-    public DeploymentTransportType transportType;
+    private DeploymentTransportType transportType;
 
-    @Deprecated
-    public Deployment withTransportType(DeploymentTransportType transportType) {
-        this.transportType = transportType;
-        return this;
-    }
-    
-    public Deployment(@JsonProperty("additionalContainerPorts") ContainerPort[] additionalContainerPorts, @JsonProperty("appId") String appId, @JsonProperty("buildId") Integer buildId, @JsonProperty("containerPort") Double containerPort, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("createdBy") String createdBy, @JsonProperty("defaultContainerPort") ContainerPort defaultContainerPort, @JsonProperty("deploymentId") Integer deploymentId, @JsonProperty("env") DeploymentEnv[] env, @JsonProperty("planName") PlanName planName, @JsonProperty("requestedCPU") Double requestedCPU, @JsonProperty("requestedMemoryMB") Double requestedMemoryMB, @JsonProperty("roomsPerProcess") Integer roomsPerProcess, @JsonProperty("transportType") DeploymentTransportType transportType) {
+    public Deployment(
+            @JsonProperty("additionalContainerPorts") java.util.List<ContainerPort> additionalContainerPorts,
+            @JsonProperty("appId") String appId,
+            @JsonProperty("buildId") int buildId,
+            @JsonProperty("containerPort") double containerPort,
+            @JsonProperty("createdAt") OffsetDateTime createdAt,
+            @JsonProperty("createdBy") String createdBy,
+            @JsonProperty("defaultContainerPort") ContainerPort defaultContainerPort,
+            @JsonProperty("deploymentId") int deploymentId,
+            @JsonProperty("env") java.util.List<Env> env,
+            @JsonProperty("planName") PlanName planName,
+            @JsonProperty("requestedCPU") double requestedCPU,
+            @JsonProperty("requestedMemoryMB") int requestedMemoryMB,
+            @JsonProperty("roomsPerProcess") int roomsPerProcess,
+            @JsonProperty("transportType") DeploymentTransportType transportType) {
+        Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
+        Utils.checkNotNull(appId, "appId");
+        Utils.checkNotNull(buildId, "buildId");
+        Utils.checkNotNull(containerPort, "containerPort");
+        Utils.checkNotNull(createdAt, "createdAt");
+        Utils.checkNotNull(createdBy, "createdBy");
+        Utils.checkNotNull(defaultContainerPort, "defaultContainerPort");
+        Utils.checkNotNull(deploymentId, "deploymentId");
+        Utils.checkNotNull(env, "env");
+        Utils.checkNotNull(planName, "planName");
+        Utils.checkNotNull(requestedCPU, "requestedCPU");
+        Utils.checkNotNull(requestedMemoryMB, "requestedMemoryMB");
+        Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
+        Utils.checkNotNull(transportType, "transportType");
         this.additionalContainerPorts = additionalContainerPorts;
         this.appId = appId;
         this.buildId = buildId;
@@ -199,5 +154,509 @@ public class Deployment {
         this.requestedMemoryMB = requestedMemoryMB;
         this.roomsPerProcess = roomsPerProcess;
         this.transportType = transportType;
-  }
+    }
+
+    /**
+     * Additional ports your server listens on.
+     */
+    public java.util.List<ContainerPort> additionalContainerPorts() {
+        return additionalContainerPorts;
+    }
+
+    /**
+     * System generated unique identifier for an application.
+     */
+    public String appId() {
+        return appId;
+    }
+
+    /**
+     * System generated id for a build. Increments by 1.
+     */
+    public int buildId() {
+        return buildId;
+    }
+
+    /**
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public double containerPort() {
+        return containerPort;
+    }
+
+    /**
+     * When the deployment was created.
+     */
+    public OffsetDateTime createdAt() {
+        return createdAt;
+    }
+
+    /**
+     * Email address for the user that created the deployment.
+     */
+    public String createdBy() {
+        return createdBy;
+    }
+
+    /**
+     * A container port object represents the transport configruations for how your server will listen.
+     */
+    public ContainerPort defaultContainerPort() {
+        return defaultContainerPort;
+    }
+
+    /**
+     * System generated id for a deployment. Increments by 1.
+     */
+    public int deploymentId() {
+        return deploymentId;
+    }
+
+    /**
+     * The environment variable that our process will have access to at runtime.
+     */
+    public java.util.List<Env> env() {
+        return env;
+    }
+
+    /**
+     * A plan defines how much CPU and memory is required to run an instance of your game server.
+     * 
+     * `tiny`: shared core, 1gb memory
+     * 
+     * `small`: 1 core, 2gb memory
+     * 
+     * `medium`: 2 core, 4gb memory
+     * 
+     * `large`: 4 core, 8gb memory
+     */
+    public PlanName planName() {
+        return planName;
+    }
+
+    /**
+     * The number of cores allocated to your process.
+     */
+    public double requestedCPU() {
+        return requestedCPU;
+    }
+
+    /**
+     * The amount of memory allocated to your process.
+     */
+    public int requestedMemoryMB() {
+        return requestedMemoryMB;
+    }
+
+    /**
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     */
+    public int roomsPerProcess() {
+        return roomsPerProcess;
+    }
+
+    /**
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public DeploymentTransportType transportType() {
+        return transportType;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * Additional ports your server listens on.
+     */
+    public Deployment withAdditionalContainerPorts(java.util.List<ContainerPort> additionalContainerPorts) {
+        Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
+        this.additionalContainerPorts = additionalContainerPorts;
+        return this;
+    }
+
+    /**
+     * System generated unique identifier for an application.
+     */
+    public Deployment withAppId(String appId) {
+        Utils.checkNotNull(appId, "appId");
+        this.appId = appId;
+        return this;
+    }
+
+    /**
+     * System generated id for a build. Increments by 1.
+     */
+    public Deployment withBuildId(int buildId) {
+        Utils.checkNotNull(buildId, "buildId");
+        this.buildId = buildId;
+        return this;
+    }
+
+    /**
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public Deployment withContainerPort(double containerPort) {
+        Utils.checkNotNull(containerPort, "containerPort");
+        this.containerPort = containerPort;
+        return this;
+    }
+
+    /**
+     * When the deployment was created.
+     */
+    public Deployment withCreatedAt(OffsetDateTime createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    /**
+     * Email address for the user that created the deployment.
+     */
+    public Deployment withCreatedBy(String createdBy) {
+        Utils.checkNotNull(createdBy, "createdBy");
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    /**
+     * A container port object represents the transport configruations for how your server will listen.
+     */
+    public Deployment withDefaultContainerPort(ContainerPort defaultContainerPort) {
+        Utils.checkNotNull(defaultContainerPort, "defaultContainerPort");
+        this.defaultContainerPort = defaultContainerPort;
+        return this;
+    }
+
+    /**
+     * System generated id for a deployment. Increments by 1.
+     */
+    public Deployment withDeploymentId(int deploymentId) {
+        Utils.checkNotNull(deploymentId, "deploymentId");
+        this.deploymentId = deploymentId;
+        return this;
+    }
+
+    /**
+     * The environment variable that our process will have access to at runtime.
+     */
+    public Deployment withEnv(java.util.List<Env> env) {
+        Utils.checkNotNull(env, "env");
+        this.env = env;
+        return this;
+    }
+
+    /**
+     * A plan defines how much CPU and memory is required to run an instance of your game server.
+     * 
+     * `tiny`: shared core, 1gb memory
+     * 
+     * `small`: 1 core, 2gb memory
+     * 
+     * `medium`: 2 core, 4gb memory
+     * 
+     * `large`: 4 core, 8gb memory
+     */
+    public Deployment withPlanName(PlanName planName) {
+        Utils.checkNotNull(planName, "planName");
+        this.planName = planName;
+        return this;
+    }
+
+    /**
+     * The number of cores allocated to your process.
+     */
+    public Deployment withRequestedCPU(double requestedCPU) {
+        Utils.checkNotNull(requestedCPU, "requestedCPU");
+        this.requestedCPU = requestedCPU;
+        return this;
+    }
+
+    /**
+     * The amount of memory allocated to your process.
+     */
+    public Deployment withRequestedMemoryMB(int requestedMemoryMB) {
+        Utils.checkNotNull(requestedMemoryMB, "requestedMemoryMB");
+        this.requestedMemoryMB = requestedMemoryMB;
+        return this;
+    }
+
+    /**
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     */
+    public Deployment withRoomsPerProcess(int roomsPerProcess) {
+        Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
+        this.roomsPerProcess = roomsPerProcess;
+        return this;
+    }
+
+    /**
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public Deployment withTransportType(DeploymentTransportType transportType) {
+        Utils.checkNotNull(transportType, "transportType");
+        this.transportType = transportType;
+        return this;
+    }
+    
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Deployment other = (Deployment) o;
+        return 
+            java.util.Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            java.util.Objects.deepEquals(this.appId, other.appId) &&
+            java.util.Objects.deepEquals(this.buildId, other.buildId) &&
+            java.util.Objects.deepEquals(this.containerPort, other.containerPort) &&
+            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
+            java.util.Objects.deepEquals(this.createdBy, other.createdBy) &&
+            java.util.Objects.deepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
+            java.util.Objects.deepEquals(this.deploymentId, other.deploymentId) &&
+            java.util.Objects.deepEquals(this.env, other.env) &&
+            java.util.Objects.deepEquals(this.planName, other.planName) &&
+            java.util.Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
+            java.util.Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
+            java.util.Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            java.util.Objects.deepEquals(this.transportType, other.transportType);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            additionalContainerPorts,
+            appId,
+            buildId,
+            containerPort,
+            createdAt,
+            createdBy,
+            defaultContainerPort,
+            deploymentId,
+            env,
+            planName,
+            requestedCPU,
+            requestedMemoryMB,
+            roomsPerProcess,
+            transportType);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(Deployment.class,
+                "additionalContainerPorts", additionalContainerPorts,
+                "appId", appId,
+                "buildId", buildId,
+                "containerPort", containerPort,
+                "createdAt", createdAt,
+                "createdBy", createdBy,
+                "defaultContainerPort", defaultContainerPort,
+                "deploymentId", deploymentId,
+                "env", env,
+                "planName", planName,
+                "requestedCPU", requestedCPU,
+                "requestedMemoryMB", requestedMemoryMB,
+                "roomsPerProcess", roomsPerProcess,
+                "transportType", transportType);
+    }
+    
+    public final static class Builder {
+ 
+        private java.util.List<ContainerPort> additionalContainerPorts;
+ 
+        private String appId;
+ 
+        private Integer buildId;
+ 
+        @Deprecated
+        private Double containerPort;
+ 
+        private OffsetDateTime createdAt;
+ 
+        private String createdBy;
+ 
+        private ContainerPort defaultContainerPort;
+ 
+        private Integer deploymentId;
+ 
+        private java.util.List<Env> env;
+ 
+        private PlanName planName;
+ 
+        private Double requestedCPU;
+ 
+        private Integer requestedMemoryMB;
+ 
+        private Integer roomsPerProcess;
+ 
+        @Deprecated
+        private DeploymentTransportType transportType;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        /**
+         * Additional ports your server listens on.
+         */
+        public Builder additionalContainerPorts(java.util.List<ContainerPort> additionalContainerPorts) {
+            Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
+            this.additionalContainerPorts = additionalContainerPorts;
+            return this;
+        }
+
+        /**
+         * System generated unique identifier for an application.
+         */
+        public Builder appId(String appId) {
+            Utils.checkNotNull(appId, "appId");
+            this.appId = appId;
+            return this;
+        }
+
+        /**
+         * System generated id for a build. Increments by 1.
+         */
+        public Builder buildId(int buildId) {
+            Utils.checkNotNull(buildId, "buildId");
+            this.buildId = buildId;
+            return this;
+        }
+
+        /**
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
+        public Builder containerPort(double containerPort) {
+            Utils.checkNotNull(containerPort, "containerPort");
+            this.containerPort = containerPort;
+            return this;
+        }
+
+        /**
+         * When the deployment was created.
+         */
+        public Builder createdAt(OffsetDateTime createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        /**
+         * Email address for the user that created the deployment.
+         */
+        public Builder createdBy(String createdBy) {
+            Utils.checkNotNull(createdBy, "createdBy");
+            this.createdBy = createdBy;
+            return this;
+        }
+
+        /**
+         * A container port object represents the transport configruations for how your server will listen.
+         */
+        public Builder defaultContainerPort(ContainerPort defaultContainerPort) {
+            Utils.checkNotNull(defaultContainerPort, "defaultContainerPort");
+            this.defaultContainerPort = defaultContainerPort;
+            return this;
+        }
+
+        /**
+         * System generated id for a deployment. Increments by 1.
+         */
+        public Builder deploymentId(int deploymentId) {
+            Utils.checkNotNull(deploymentId, "deploymentId");
+            this.deploymentId = deploymentId;
+            return this;
+        }
+
+        /**
+         * The environment variable that our process will have access to at runtime.
+         */
+        public Builder env(java.util.List<Env> env) {
+            Utils.checkNotNull(env, "env");
+            this.env = env;
+            return this;
+        }
+
+        /**
+         * A plan defines how much CPU and memory is required to run an instance of your game server.
+         * 
+         * `tiny`: shared core, 1gb memory
+         * 
+         * `small`: 1 core, 2gb memory
+         * 
+         * `medium`: 2 core, 4gb memory
+         * 
+         * `large`: 4 core, 8gb memory
+         */
+        public Builder planName(PlanName planName) {
+            Utils.checkNotNull(planName, "planName");
+            this.planName = planName;
+            return this;
+        }
+
+        /**
+         * The number of cores allocated to your process.
+         */
+        public Builder requestedCPU(double requestedCPU) {
+            Utils.checkNotNull(requestedCPU, "requestedCPU");
+            this.requestedCPU = requestedCPU;
+            return this;
+        }
+
+        /**
+         * The amount of memory allocated to your process.
+         */
+        public Builder requestedMemoryMB(int requestedMemoryMB) {
+            Utils.checkNotNull(requestedMemoryMB, "requestedMemoryMB");
+            this.requestedMemoryMB = requestedMemoryMB;
+            return this;
+        }
+
+        /**
+         * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+         */
+        public Builder roomsPerProcess(int roomsPerProcess) {
+            Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
+            this.roomsPerProcess = roomsPerProcess;
+            return this;
+        }
+
+        /**
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
+        public Builder transportType(DeploymentTransportType transportType) {
+            Utils.checkNotNull(transportType, "transportType");
+            this.transportType = transportType;
+            return this;
+        }        
+        
+        public Deployment build() {
+            return new Deployment(
+                additionalContainerPorts,
+                appId,
+                buildId,
+                containerPort,
+                createdAt,
+                createdBy,
+                defaultContainerPort,
+                deploymentId,
+                env,
+                planName,
+                requestedCPU,
+                requestedMemoryMB,
+                roomsPerProcess,
+                transportType);
+        }
+    }
 }
+

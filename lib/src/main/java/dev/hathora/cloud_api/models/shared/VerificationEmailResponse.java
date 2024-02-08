@@ -5,18 +5,78 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
 
 public class VerificationEmailResponse {
+
     @JsonProperty("status")
-    public VerificationEmailResponseStatus status;
+    private VerificationEmailResponseStatus status;
+
+    public VerificationEmailResponse(
+            @JsonProperty("status") VerificationEmailResponseStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+    }
+
+    public VerificationEmailResponseStatus status() {
+        return status;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
 
     public VerificationEmailResponse withStatus(VerificationEmailResponseStatus status) {
+        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
     
-    public VerificationEmailResponse(@JsonProperty("status") VerificationEmailResponseStatus status) {
-        this.status = status;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        VerificationEmailResponse other = (VerificationEmailResponse) o;
+        return 
+            java.util.Objects.deepEquals(this.status, other.status);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            status);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(VerificationEmailResponse.class,
+                "status", status);
+    }
+    
+    public final static class Builder {
+ 
+        private VerificationEmailResponseStatus status;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder status(VerificationEmailResponseStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }        
+        
+        public VerificationEmailResponse build() {
+            return new VerificationEmailResponse(
+                status);
+        }
+    }
 }
+

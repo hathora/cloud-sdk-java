@@ -5,6 +5,8 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
 /**
  * RoomStatus - The allocation status of a room.
@@ -24,9 +26,13 @@ public enum RoomStatus {
     DESTROYED("destroyed");
 
     @JsonValue
-    public final String value;
+    private final String value;
 
     private RoomStatus(String value) {
         this.value = value;
+    }
+    
+    public String value() {
+        return value;
     }
 }

@@ -5,14 +5,20 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
 public enum StartingConnectionInfoStatus {
     STARTING("starting");
 
     @JsonValue
-    public final String value;
+    private final String value;
 
     private StartingConnectionInfoStatus(String value) {
         this.value = value;
+    }
+    
+    public String value() {
+        return value;
     }
 }

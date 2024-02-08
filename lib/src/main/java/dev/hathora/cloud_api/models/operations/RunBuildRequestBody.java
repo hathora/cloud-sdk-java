@@ -4,20 +4,79 @@
 
 package dev.hathora.cloud_api.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
 
 public class RunBuildRequestBody {
-    @SpeakeasyMetadata("multipartForm:file")
-    public RunBuildRequestBodyFile file;
 
-    public RunBuildRequestBody withFile(RunBuildRequestBodyFile file) {
+    @SpeakeasyMetadata("multipartForm:file")
+    private File file;
+
+    public RunBuildRequestBody(
+            File file) {
+        Utils.checkNotNull(file, "file");
+        this.file = file;
+    }
+
+    public File file() {
+        return file;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    public RunBuildRequestBody withFile(File file) {
+        Utils.checkNotNull(file, "file");
         this.file = file;
         return this;
     }
     
-    public RunBuildRequestBody(@JsonProperty("file") RunBuildRequestBodyFile file) {
-        this.file = file;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        RunBuildRequestBody other = (RunBuildRequestBody) o;
+        return 
+            java.util.Objects.deepEquals(this.file, other.file);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            file);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(RunBuildRequestBody.class,
+                "file", file);
+    }
+    
+    public final static class Builder {
+ 
+        private File file;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder file(File file) {
+            Utils.checkNotNull(file, "file");
+            this.file = file;
+            return this;
+        }        
+        
+        public RunBuildRequestBody build() {
+            return new RunBuildRequestBody(
+                file);
+        }
+    }
 }
+

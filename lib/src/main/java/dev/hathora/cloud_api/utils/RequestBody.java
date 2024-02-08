@@ -11,9 +11,11 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+import java.util.Optional;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -22,6 +24,8 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.message.BasicNameValuePair;
+
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -33,11 +37,15 @@ public class RequestBody {
             "raw", "application/octet-stream",
             "string", "text/plain");
 
-    public static SerializedBody serialize(Object request, String requestField, String serializationMethod)
+    public static SerializedBody serialize(Object request, String requestField, String serializationMethod, boolean nullable)
             throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException,
             UnsupportedOperationException, IOException {
         if (request == null) {
             return null;
+        }
+        
+        if (!nullable && (request instanceof Optional) && ((Optional<?>) request).isEmpty()) {
+            request = JsonNullable.undefined();
         }
 
         if (Types.getType(request.getClass()) != Types.OBJECT) {
@@ -48,7 +56,8 @@ public class RequestBody {
         Field reqField = null;
 
         try {
-            reqField = request.getClass().getField(requestField);
+            reqField = request.getClass().getDeclaredField(requestField);
+            reqField.setAccessible(true);
         } catch (NoSuchFieldException e) {
             // ignore
         }
@@ -58,7 +67,7 @@ public class RequestBody {
         }
 
         Object requestValue = reqField.get(request);
-
+        requestValue = Utils.resolveOptionals(requestValue);
         if (requestValue == null) {
             return null;
         }
@@ -86,7 +95,11 @@ public class RequestBody {
         } else if (jsonPattern.matcher(contentType).matches()) {
             ObjectMapper mapper = JSON.getMapper();
             body.contentType = contentType;
-            body.body = BodyPublishers.ofString(mapper.writeValueAsString(value));
+            if (value instanceof JsonNullable && !((JsonNullable<?>) value).isPresent()) {
+                body.body = BodyPublishers.noBody();
+            } else {
+                body.body = BodyPublishers.ofString(mapper.writeValueAsString(value));
+            }
         } else if (multipartPattern.matcher(contentType).matches()) {
             body = serializeMultipart(value);
         } else if (formPattern.matcher(contentType).matches()) {
@@ -113,11 +126,12 @@ public class RequestBody {
         String boundary = "-------------" + System.currentTimeMillis();
         builder.setBoundary(boundary);
 
-        Field[] fields = value.getClass().getFields();
+        Field[] fields = value.getClass().getDeclaredFields();
 
         for (Field field : fields) {
-            Object val = field.get(value);
-
+            field.setAccessible(true);
+            Object val = Utils.resolveOptionals(field.get(value));
+            
             if (val == null) {
                 continue;
             }
@@ -134,8 +148,8 @@ public class RequestBody {
                 String json = mapper.writeValueAsString(val);
                 builder.addTextBody(metadata.name, json, ContentType.APPLICATION_JSON);
             } else {
-                if (val.getClass().isArray()) {
-                    Object[] arr = (Object[]) val;
+                if (val instanceof List || val.getClass().isArray()) {
+                    List<?> arr = Utils.toList(val);
                     for (Object item : arr) {
                         builder.addTextBody(metadata.name + "[]", Utils.valToString(item));
                     }
@@ -167,9 +181,10 @@ public class RequestBody {
         String fileName = "";
         byte[] content = null;
 
-        Field[] fields = file.getClass().getFields();
+        Field[] fields = file.getClass().getDeclaredFields();
 
         for (Field field : fields) {
+            field.setAccessible(true);
             Object val = field.get(file);
 
             if (val == null) {
@@ -198,7 +213,7 @@ public class RequestBody {
 
     private static SerializedBody serializeFormData(Object value)
             throws IOException, IllegalArgumentException, IllegalAccessException {
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        List<NameValuePair> params = new ArrayList<>();
 
         switch (Types.getType(value.getClass())) {
             case MAP:
@@ -211,11 +226,12 @@ public class RequestBody {
                 }
                 break;
             case OBJECT:
-                Field[] fields = value.getClass().getFields();
+                Field[] fields = value.getClass().getDeclaredFields();
 
                 for (Field field : fields) {
-                    Object val = field.get(value);
-
+                    field.setAccessible(true);
+                    Object val = Utils.resolveOptionals(field.get(value));
+                    
                     if (val == null) {
                         continue;
                     }
@@ -238,12 +254,13 @@ public class RequestBody {
                                     params.add(new BasicNameValuePair(metadata.name, String.valueOf(val)));
                                 } else {
 
-                                    Field[] valFields = val.getClass().getFields();
+                                    Field[] valFields = val.getClass().getDeclaredFields();
 
-                                    List<String> items = new ArrayList<String>();
+                                    List<String> items = new ArrayList<>();
 
                                     for (Field valField : valFields) {
-                                        Object v = valField.get(val);
+                                        valField.setAccessible(true);
+                                        Object v = Utils.resolveOptionals(valField.get(val));
                                         if (v == null) {
                                             continue;
                                         }
@@ -271,7 +288,7 @@ public class RequestBody {
                             case MAP: {
                                 Map<?, ?> valMap = (Map<?, ?>) val;
 
-                                List<String> items = new ArrayList<String>();
+                                List<String> items = new ArrayList<>();
 
                                 for (Map.Entry<?, ?> entry : valMap.entrySet()) {
                                     if (metadata.explode) {
@@ -289,11 +306,11 @@ public class RequestBody {
                                 break;
                             }
                             case ARRAY: {
-                                Object[] arr = (Object[]) val;
+                                final List<?> array = Utils.toList(val);
 
-                                List<String> items = new ArrayList<String>();
+                                List<String> items = new ArrayList<>();
 
-                                for (Object item : arr) {
+                                for (Object item : array) {
                                     if (metadata.explode) {
                                         params.add(new BasicNameValuePair(metadata.name, Utils.valToString(item)));
                                     } else {
