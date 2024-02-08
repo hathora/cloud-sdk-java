@@ -33,3 +33,4 @@ java:
   maxMethodParams: 3
   ossrhURL: https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
   projectName: Hathora-Cloud
+  templateVersion: v2
