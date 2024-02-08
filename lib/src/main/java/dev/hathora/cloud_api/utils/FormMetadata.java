@@ -6,20 +6,18 @@ package dev.hathora.cloud_api.utils;
 
 import java.lang.reflect.Field;
 
-public class FormMetadata extends Metadata {
-    public String style = "form";
-    public boolean explode = true;
-    public boolean json;
-    public String name;
+class FormMetadata {
 
-    // form:name=propName,style=spaceDelimited,explode=true
-    public static FormMetadata parse(Field field) throws IllegalArgumentException, IllegalAccessException {
-        FormMetadata result = new FormMetadata();
-        result = (FormMetadata) parse("form", result, field);
-
-        return result;
-    }
+    String style = "form";
+    boolean explode = true;
+    boolean json;
+    String name;
 
     private FormMetadata() {
+    }
+
+    // form:name=propName,style=spaceDelimited,explode=true
+    static FormMetadata parse(Field field) throws IllegalArgumentException, IllegalAccessException {
+        return Metadata.parse("form", new FormMetadata(), field);
     }
 }

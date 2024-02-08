@@ -5,6 +5,8 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
 /**
  * LobbyVisibility - Types of lobbies a player can create.
@@ -21,9 +23,13 @@ public enum LobbyVisibility {
     LOCAL("local");
 
     @JsonValue
-    public final String value;
+    private final String value;
 
     private LobbyVisibility(String value) {
         this.value = value;
+    }
+    
+    public String value() {
+        return value;
     }
 }

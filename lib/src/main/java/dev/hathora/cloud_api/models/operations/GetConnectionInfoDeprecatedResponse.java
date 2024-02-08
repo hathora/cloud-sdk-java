@@ -4,72 +4,265 @@
 
 package dev.hathora.cloud_api.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 
 
 public class GetConnectionInfoDeprecatedResponse {
+
+    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
+
     /**
      * Ok
      */
-    
-    public Object connectionInfo;
+    private Optional<? extends dev.hathora.cloud_api.models.shared.ConnectionInfo> connectionInfo;
 
-    public GetConnectionInfoDeprecatedResponse withConnectionInfo(Object connectionInfo) {
+    /**
+     * HTTP response content type for this operation
+     */
+    private String contentType;
+
+    /**
+     * HTTP response status code for this operation
+     */
+    private int statusCode;
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    private HttpResponse<InputStream> rawResponse;
+
+    public GetConnectionInfoDeprecatedResponse(
+            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
+            Optional<? extends dev.hathora.cloud_api.models.shared.ConnectionInfo> connectionInfo,
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(apiError, "apiError");
+        Utils.checkNotNull(connectionInfo, "connectionInfo");
+        Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(statusCode, "statusCode");
+        Utils.checkNotNull(rawResponse, "rawResponse");
+        this.apiError = apiError;
+        this.connectionInfo = connectionInfo;
+        this.contentType = contentType;
+        this.statusCode = statusCode;
+        this.rawResponse = rawResponse;
+    }
+
+    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
+        return apiError;
+    }
+
+    /**
+     * Ok
+     */
+    public Optional<? extends dev.hathora.cloud_api.models.shared.ConnectionInfo> connectionInfo() {
+        return connectionInfo;
+    }
+
+    /**
+     * HTTP response content type for this operation
+     */
+    public String contentType() {
+        return contentType;
+    }
+
+    /**
+     * HTTP response status code for this operation
+     */
+    public int statusCode() {
+        return statusCode;
+    }
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public HttpResponse<InputStream> rawResponse() {
+        return rawResponse;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    public GetConnectionInfoDeprecatedResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
+        Utils.checkNotNull(apiError, "apiError");
+        this.apiError = Optional.ofNullable(apiError);
+        return this;
+    }
+    
+    public GetConnectionInfoDeprecatedResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
+        Utils.checkNotNull(apiError, "apiError");
+        this.apiError = apiError;
+        return this;
+    }
+
+    /**
+     * Ok
+     */
+    public GetConnectionInfoDeprecatedResponse withConnectionInfo(dev.hathora.cloud_api.models.shared.ConnectionInfo connectionInfo) {
+        Utils.checkNotNull(connectionInfo, "connectionInfo");
+        this.connectionInfo = Optional.ofNullable(connectionInfo);
+        return this;
+    }
+    
+    /**
+     * Ok
+     */
+    public GetConnectionInfoDeprecatedResponse withConnectionInfo(Optional<? extends dev.hathora.cloud_api.models.shared.ConnectionInfo> connectionInfo) {
+        Utils.checkNotNull(connectionInfo, "connectionInfo");
         this.connectionInfo = connectionInfo;
         return this;
     }
-    
-    
-    public String contentType;
 
+    /**
+     * HTTP response content type for this operation
+     */
     public GetConnectionInfoDeprecatedResponse withContentType(String contentType) {
+        Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
     }
-    
-    
-    public String getConnectionInfoDeprecated400ApplicationJSONString;
 
-    public GetConnectionInfoDeprecatedResponse withGetConnectionInfoDeprecated400ApplicationJSONString(String getConnectionInfoDeprecated400ApplicationJSONString) {
-        this.getConnectionInfoDeprecated400ApplicationJSONString = getConnectionInfoDeprecated400ApplicationJSONString;
-        return this;
-    }
-    
-    
-    public String getConnectionInfoDeprecated404ApplicationJSONString;
-
-    public GetConnectionInfoDeprecatedResponse withGetConnectionInfoDeprecated404ApplicationJSONString(String getConnectionInfoDeprecated404ApplicationJSONString) {
-        this.getConnectionInfoDeprecated404ApplicationJSONString = getConnectionInfoDeprecated404ApplicationJSONString;
-        return this;
-    }
-    
-    
-    public String getConnectionInfoDeprecated500ApplicationJSONString;
-
-    public GetConnectionInfoDeprecatedResponse withGetConnectionInfoDeprecated500ApplicationJSONString(String getConnectionInfoDeprecated500ApplicationJSONString) {
-        this.getConnectionInfoDeprecated500ApplicationJSONString = getConnectionInfoDeprecated500ApplicationJSONString;
-        return this;
-    }
-    
-    
-    public Integer statusCode;
-
-    public GetConnectionInfoDeprecatedResponse withStatusCode(Integer statusCode) {
+    /**
+     * HTTP response status code for this operation
+     */
+    public GetConnectionInfoDeprecatedResponse withStatusCode(int statusCode) {
+        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
-    
-    
-    public HttpResponse<byte[]> rawResponse;
 
-    public GetConnectionInfoDeprecatedResponse withRawResponse(HttpResponse<byte[]> rawResponse) {
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public GetConnectionInfoDeprecatedResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
     }
     
-    public GetConnectionInfoDeprecatedResponse(@JsonProperty("ContentType") String contentType, @JsonProperty("StatusCode") Integer statusCode) {
-        this.contentType = contentType;
-        this.statusCode = statusCode;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetConnectionInfoDeprecatedResponse other = (GetConnectionInfoDeprecatedResponse) o;
+        return 
+            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
+            java.util.Objects.deepEquals(this.connectionInfo, other.connectionInfo) &&
+            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
+            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            apiError,
+            connectionInfo,
+            contentType,
+            statusCode,
+            rawResponse);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(GetConnectionInfoDeprecatedResponse.class,
+                "apiError", apiError,
+                "connectionInfo", connectionInfo,
+                "contentType", contentType,
+                "statusCode", statusCode,
+                "rawResponse", rawResponse);
+    }
+    
+    public final static class Builder {
+ 
+        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
+ 
+        private Optional<? extends dev.hathora.cloud_api.models.shared.ConnectionInfo> connectionInfo = Optional.empty();
+ 
+        private String contentType;
+ 
+        private Integer statusCode;
+ 
+        private HttpResponse<InputStream> rawResponse;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
+            Utils.checkNotNull(apiError, "apiError");
+            this.apiError = Optional.ofNullable(apiError);
+            return this;
+        }
+        
+        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
+            Utils.checkNotNull(apiError, "apiError");
+            this.apiError = apiError;
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder connectionInfo(dev.hathora.cloud_api.models.shared.ConnectionInfo connectionInfo) {
+            Utils.checkNotNull(connectionInfo, "connectionInfo");
+            this.connectionInfo = Optional.ofNullable(connectionInfo);
+            return this;
+        }
+        
+        /**
+         * Ok
+         */
+        public Builder connectionInfo(Optional<? extends dev.hathora.cloud_api.models.shared.ConnectionInfo> connectionInfo) {
+            Utils.checkNotNull(connectionInfo, "connectionInfo");
+            this.connectionInfo = connectionInfo;
+            return this;
+        }
+
+        /**
+         * HTTP response content type for this operation
+         */
+        public Builder contentType(String contentType) {
+            Utils.checkNotNull(contentType, "contentType");
+            this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * HTTP response status code for this operation
+         */
+        public Builder statusCode(int statusCode) {
+            Utils.checkNotNull(statusCode, "statusCode");
+            this.statusCode = statusCode;
+            return this;
+        }
+
+        /**
+         * Raw HTTP response; suitable for custom response parsing
+         */
+        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
+            Utils.checkNotNull(rawResponse, "rawResponse");
+            this.rawResponse = rawResponse;
+            return this;
+        }        
+        
+        public GetConnectionInfoDeprecatedResponse build() {
+            return new GetConnectionInfoDeprecatedResponse(
+                apiError,
+                connectionInfo,
+                contentType,
+                statusCode,
+                rawResponse);
+        }
+    }
 }
+

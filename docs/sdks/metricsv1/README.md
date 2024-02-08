@@ -1,4 +1,5 @@
-# metricsV1
+# MetricsV1
+(*metricsV1()*)
 
 ## Overview
 
@@ -17,34 +18,47 @@ Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.SDK;
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.GetMetricsRequest;
 import dev.hathora.cloud_api.models.operations.GetMetricsResponse;
-import dev.hathora.cloud_api.models.operations.GetMetricsSecurity;
+import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.MetricName;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
-            SDK sdk = SDK.builder()
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetMetricsRequest req = new GetMetricsRequest("app-af469a92-5b45-4565-b3c4-b79878de67d2", "cbfcddd2-0006-43ae-996c-995fff7bed2e") {{
-                end = 4736d;
-                metrics = new dev.hathora.cloud_api.models.shared.MetricName[]{{
-                    add(MetricName.MEMORY),
-                }};
-                start = 1863.32d;
-                step = 774234;
-            }};            
+            GetMetricsRequest req = GetMetricsRequest.builder()
+                .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
+                .end(5456.86d)
+                .metrics(java.util.List.of(
+                    MetricName.MEMORY))
+                .start(4311.13d)
+                .step(490659)
+                .build();
 
-            GetMetricsResponse res = sdk.metricsV1.getMetrics(req, new GetMetricsSecurity("cum") {{
-                auth0 = "";
-            }});
+            GetMetricsResponse res = sdk.metricsV1().getMetrics()
+                .request(req)
+                .call();
 
-            if (res.metricsResponse != null) {
+            if (res.metricsResponse().isPresent()) {
                 // handle response
             }
+
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -54,13 +68,16 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                   | [dev.hathora.cloud_api.models.operations.GetMetricsRequest](../../models/operations/GetMetricsRequest.md)   | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
-| `security`                                                                                                  | [dev.hathora.cloud_api.models.operations.GetMetricsSecurity](../../models/operations/GetMetricsSecurity.md) | :heavy_check_mark:                                                                                          | The security requirements to use for the request.                                                           |
+| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                 | [dev.hathora.cloud_api.models.operations.GetMetricsRequest](../../models/operations/GetMetricsRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetMetricsResponse](../../models/operations/GetMetricsResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetMetricsResponse>](../../models/operations/GetMetricsResponse.md)**
+### Errors
 
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |

@@ -5,6 +5,8 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
 /**
  * TransportType - Transport type specifies the underlying communication protocol to the exposed port.
@@ -15,9 +17,13 @@ public enum TransportType {
     TLS("tls");
 
     @JsonValue
-    public final String value;
+    private final String value;
 
     private TransportType(String value) {
         this.value = value;
+    }
+    
+    public String value() {
+        return value;
     }
 }

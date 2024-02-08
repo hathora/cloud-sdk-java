@@ -4,48 +4,226 @@
 
 package dev.hathora.cloud_api.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 
 
 public class GetAppsResponse {
+
+    /**
+     * HTTP response content type for this operation
+     */
+    private String contentType;
+
+    /**
+     * HTTP response status code for this operation
+     */
+    private int statusCode;
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    private HttpResponse<InputStream> rawResponse;
+
     /**
      * Ok
      */
-    
-    public dev.hathora.cloud_api.models.shared.ApplicationWithDeployment[] applicationWithDeployments;
+    private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment>> classes;
 
-    public GetAppsResponse withApplicationWithDeployments(dev.hathora.cloud_api.models.shared.ApplicationWithDeployment[] applicationWithDeployments) {
-        this.applicationWithDeployments = applicationWithDeployments;
-        return this;
+    public GetAppsResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse,
+            Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment>> classes) {
+        Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(statusCode, "statusCode");
+        Utils.checkNotNull(rawResponse, "rawResponse");
+        Utils.checkNotNull(classes, "classes");
+        this.contentType = contentType;
+        this.statusCode = statusCode;
+        this.rawResponse = rawResponse;
+        this.classes = classes;
+    }
+
+    /**
+     * HTTP response content type for this operation
+     */
+    public String contentType() {
+        return contentType;
+    }
+
+    /**
+     * HTTP response status code for this operation
+     */
+    public int statusCode() {
+        return statusCode;
+    }
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public HttpResponse<InputStream> rawResponse() {
+        return rawResponse;
+    }
+
+    /**
+     * Ok
+     */
+    public Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment>> classes() {
+        return classes;
     }
     
-    
-    public String contentType;
+    public final static Builder builder() {
+        return new Builder();
+    }
 
+    /**
+     * HTTP response content type for this operation
+     */
     public GetAppsResponse withContentType(String contentType) {
+        Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
     }
-    
-    
-    public Integer statusCode;
 
-    public GetAppsResponse withStatusCode(Integer statusCode) {
+    /**
+     * HTTP response status code for this operation
+     */
+    public GetAppsResponse withStatusCode(int statusCode) {
+        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
-    
-    
-    public HttpResponse<byte[]> rawResponse;
 
-    public GetAppsResponse withRawResponse(HttpResponse<byte[]> rawResponse) {
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public GetAppsResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
     }
+
+    /**
+     * Ok
+     */
+    public GetAppsResponse withClasses(java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment> classes) {
+        Utils.checkNotNull(classes, "classes");
+        this.classes = Optional.ofNullable(classes);
+        return this;
+    }
     
-    public GetAppsResponse(@JsonProperty("ContentType") String contentType, @JsonProperty("StatusCode") Integer statusCode) {
-        this.contentType = contentType;
-        this.statusCode = statusCode;
-  }
+    /**
+     * Ok
+     */
+    public GetAppsResponse withClasses(Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment>> classes) {
+        Utils.checkNotNull(classes, "classes");
+        this.classes = classes;
+        return this;
+    }
+    
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetAppsResponse other = (GetAppsResponse) o;
+        return 
+            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
+            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            java.util.Objects.deepEquals(this.classes, other.classes);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            contentType,
+            statusCode,
+            rawResponse,
+            classes);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(GetAppsResponse.class,
+                "contentType", contentType,
+                "statusCode", statusCode,
+                "rawResponse", rawResponse,
+                "classes", classes);
+    }
+    
+    public final static class Builder {
+ 
+        private String contentType;
+ 
+        private Integer statusCode;
+ 
+        private HttpResponse<InputStream> rawResponse;
+ 
+        private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment>> classes = Optional.empty();  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        /**
+         * HTTP response content type for this operation
+         */
+        public Builder contentType(String contentType) {
+            Utils.checkNotNull(contentType, "contentType");
+            this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * HTTP response status code for this operation
+         */
+        public Builder statusCode(int statusCode) {
+            Utils.checkNotNull(statusCode, "statusCode");
+            this.statusCode = statusCode;
+            return this;
+        }
+
+        /**
+         * Raw HTTP response; suitable for custom response parsing
+         */
+        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
+            Utils.checkNotNull(rawResponse, "rawResponse");
+            this.rawResponse = rawResponse;
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder classes(java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment> classes) {
+            Utils.checkNotNull(classes, "classes");
+            this.classes = Optional.ofNullable(classes);
+            return this;
+        }
+        
+        /**
+         * Ok
+         */
+        public Builder classes(Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment>> classes) {
+            Utils.checkNotNull(classes, "classes");
+            this.classes = classes;
+            return this;
+        }        
+        
+        public GetAppsResponse build() {
+            return new GetAppsResponse(
+                contentType,
+                statusCode,
+                rawResponse,
+                classes);
+        }
+    }
 }
+

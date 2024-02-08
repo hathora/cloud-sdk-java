@@ -4,64 +4,265 @@
 
 package dev.hathora.cloud_api.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 
 
 public class RunBuildResponse {
-    
-    public String contentType;
 
-    public RunBuildResponse withContentType(String contentType) {
+    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
+
+    /**
+     * HTTP response content type for this operation
+     */
+    private String contentType;
+
+    /**
+     * HTTP response status code for this operation
+     */
+    private int statusCode;
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    private HttpResponse<InputStream> rawResponse;
+
+    /**
+     * Ok
+     */
+    private Optional<? extends String> res;
+
+    public RunBuildResponse(
+            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse,
+            Optional<? extends String> res) {
+        Utils.checkNotNull(apiError, "apiError");
+        Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(statusCode, "statusCode");
+        Utils.checkNotNull(rawResponse, "rawResponse");
+        Utils.checkNotNull(res, "res");
+        this.apiError = apiError;
         this.contentType = contentType;
+        this.statusCode = statusCode;
+        this.rawResponse = rawResponse;
+        this.res = res;
+    }
+
+    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
+        return apiError;
+    }
+
+    /**
+     * HTTP response content type for this operation
+     */
+    public String contentType() {
+        return contentType;
+    }
+
+    /**
+     * HTTP response status code for this operation
+     */
+    public int statusCode() {
+        return statusCode;
+    }
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public HttpResponse<InputStream> rawResponse() {
+        return rawResponse;
+    }
+
+    /**
+     * Ok
+     */
+    public Optional<? extends String> res() {
+        return res;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    public RunBuildResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
+        Utils.checkNotNull(apiError, "apiError");
+        this.apiError = Optional.ofNullable(apiError);
+        return this;
+    }
+    
+    public RunBuildResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
+        Utils.checkNotNull(apiError, "apiError");
+        this.apiError = apiError;
+        return this;
+    }
+
+    /**
+     * HTTP response content type for this operation
+     */
+    public RunBuildResponse withContentType(String contentType) {
+        Utils.checkNotNull(contentType, "contentType");
+        this.contentType = contentType;
+        return this;
+    }
+
+    /**
+     * HTTP response status code for this operation
+     */
+    public RunBuildResponse withStatusCode(int statusCode) {
+        Utils.checkNotNull(statusCode, "statusCode");
+        this.statusCode = statusCode;
+        return this;
+    }
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    public RunBuildResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(rawResponse, "rawResponse");
+        this.rawResponse = rawResponse;
+        return this;
+    }
+
+    /**
+     * Ok
+     */
+    public RunBuildResponse withRes(String res) {
+        Utils.checkNotNull(res, "res");
+        this.res = Optional.ofNullable(res);
         return this;
     }
     
     /**
      * Ok
      */
-    
-    public String runBuild200TextPlainByteString;
-
-    public RunBuildResponse withRunBuild200TextPlainByteString(String runBuild200TextPlainByteString) {
-        this.runBuild200TextPlainByteString = runBuild200TextPlainByteString;
+    public RunBuildResponse withRes(Optional<? extends String> res) {
+        Utils.checkNotNull(res, "res");
+        this.res = res;
         return this;
     }
     
-    
-    public String runBuild404ApplicationJSONString;
-
-    public RunBuildResponse withRunBuild404ApplicationJSONString(String runBuild404ApplicationJSONString) {
-        this.runBuild404ApplicationJSONString = runBuild404ApplicationJSONString;
-        return this;
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        RunBuildResponse other = (RunBuildResponse) o;
+        return 
+            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
+            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
+            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            java.util.Objects.deepEquals(this.res, other.res);
     }
     
-    
-    public Integer statusCode;
-
-    public RunBuildResponse withStatusCode(Integer statusCode) {
-        this.statusCode = statusCode;
-        return this;
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            apiError,
+            contentType,
+            statusCode,
+            rawResponse,
+            res);
     }
     
-    
-    public HttpResponse<byte[]> rawResponse;
-
-    public RunBuildResponse withRawResponse(HttpResponse<byte[]> rawResponse) {
-        this.rawResponse = rawResponse;
-        return this;
+    @Override
+    public String toString() {
+        return Utils.toString(RunBuildResponse.class,
+                "apiError", apiError,
+                "contentType", contentType,
+                "statusCode", statusCode,
+                "rawResponse", rawResponse,
+                "res", res);
     }
     
-    
-    public String runBuild500ApplicationJSONString;
+    public final static class Builder {
+ 
+        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
+ 
+        private String contentType;
+ 
+        private Integer statusCode;
+ 
+        private HttpResponse<InputStream> rawResponse;
+ 
+        private Optional<? extends String> res = Optional.empty();  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
 
-    public RunBuildResponse withRunBuild500ApplicationJSONString(String runBuild500ApplicationJSONString) {
-        this.runBuild500ApplicationJSONString = runBuild500ApplicationJSONString;
-        return this;
+        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
+            Utils.checkNotNull(apiError, "apiError");
+            this.apiError = Optional.ofNullable(apiError);
+            return this;
+        }
+        
+        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
+            Utils.checkNotNull(apiError, "apiError");
+            this.apiError = apiError;
+            return this;
+        }
+
+        /**
+         * HTTP response content type for this operation
+         */
+        public Builder contentType(String contentType) {
+            Utils.checkNotNull(contentType, "contentType");
+            this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * HTTP response status code for this operation
+         */
+        public Builder statusCode(int statusCode) {
+            Utils.checkNotNull(statusCode, "statusCode");
+            this.statusCode = statusCode;
+            return this;
+        }
+
+        /**
+         * Raw HTTP response; suitable for custom response parsing
+         */
+        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
+            Utils.checkNotNull(rawResponse, "rawResponse");
+            this.rawResponse = rawResponse;
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder res(String res) {
+            Utils.checkNotNull(res, "res");
+            this.res = Optional.ofNullable(res);
+            return this;
+        }
+        
+        /**
+         * Ok
+         */
+        public Builder res(Optional<? extends String> res) {
+            Utils.checkNotNull(res, "res");
+            this.res = res;
+            return this;
+        }        
+        
+        public RunBuildResponse build() {
+            return new RunBuildResponse(
+                apiError,
+                contentType,
+                statusCode,
+                rawResponse,
+                res);
+        }
     }
-    
-    public RunBuildResponse(@JsonProperty("ContentType") String contentType, @JsonProperty("StatusCode") Integer statusCode) {
-        this.contentType = contentType;
-        this.statusCode = statusCode;
-  }
 }
+

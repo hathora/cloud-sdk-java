@@ -5,18 +5,90 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
 
 public class LoginNicknameRequest {
-    @JsonProperty("nickname")
-    public String nickname;
 
+    /**
+     * An alias to represent a player.
+     */
+    @JsonProperty("nickname")
+    private String nickname;
+
+    public LoginNicknameRequest(
+            @JsonProperty("nickname") String nickname) {
+        Utils.checkNotNull(nickname, "nickname");
+        this.nickname = nickname;
+    }
+
+    /**
+     * An alias to represent a player.
+     */
+    public String nickname() {
+        return nickname;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * An alias to represent a player.
+     */
     public LoginNicknameRequest withNickname(String nickname) {
+        Utils.checkNotNull(nickname, "nickname");
         this.nickname = nickname;
         return this;
     }
     
-    public LoginNicknameRequest(@JsonProperty("nickname") String nickname) {
-        this.nickname = nickname;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LoginNicknameRequest other = (LoginNicknameRequest) o;
+        return 
+            java.util.Objects.deepEquals(this.nickname, other.nickname);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            nickname);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(LoginNicknameRequest.class,
+                "nickname", nickname);
+    }
+    
+    public final static class Builder {
+ 
+        private String nickname;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        /**
+         * An alias to represent a player.
+         */
+        public Builder nickname(String nickname) {
+            Utils.checkNotNull(nickname, "nickname");
+            this.nickname = nickname;
+            return this;
+        }        
+        
+        public LoginNicknameRequest build() {
+            return new LoginNicknameRequest(
+                nickname);
+        }
+    }
 }
+

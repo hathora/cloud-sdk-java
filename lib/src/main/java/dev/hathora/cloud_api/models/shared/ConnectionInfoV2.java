@@ -7,54 +7,225 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
+import java.util.Optional;
 
 /**
  * ConnectionInfoV2 - Connection information for the default and additional ports.
  */
 
 public class ConnectionInfoV2 {
-    @JsonProperty("additionalExposedPorts")
-    public ExposedPort[] additionalExposedPorts;
 
-    public ConnectionInfoV2 withAdditionalExposedPorts(ExposedPort[] additionalExposedPorts) {
-        this.additionalExposedPorts = additionalExposedPorts;
-        return this;
-    }
-    
+    @JsonProperty("additionalExposedPorts")
+    private java.util.List<ExposedPort> additionalExposedPorts;
+
     /**
-     * Connection information to an exposed port on an active process.
+     * Connection details for an active process.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("exposedPort")
-    public ExposedPort exposedPort;
+    private Optional<? extends ExposedPort> exposedPort;
 
-    public ConnectionInfoV2 withExposedPort(ExposedPort exposedPort) {
+    /**
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
+     */
+    @JsonProperty("roomId")
+    private String roomId;
+
+    /**
+     * `exposedPort` will only be available when the `status` of a room is "active".
+     */
+    @JsonProperty("status")
+    private ConnectionInfoV2Status status;
+
+    public ConnectionInfoV2(
+            @JsonProperty("additionalExposedPorts") java.util.List<ExposedPort> additionalExposedPorts,
+            @JsonProperty("exposedPort") Optional<? extends ExposedPort> exposedPort,
+            @JsonProperty("roomId") String roomId,
+            @JsonProperty("status") ConnectionInfoV2Status status) {
+        Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
+        Utils.checkNotNull(exposedPort, "exposedPort");
+        Utils.checkNotNull(roomId, "roomId");
+        Utils.checkNotNull(status, "status");
+        this.additionalExposedPorts = additionalExposedPorts;
         this.exposedPort = exposedPort;
+        this.roomId = roomId;
+        this.status = status;
+    }
+
+    public java.util.List<ExposedPort> additionalExposedPorts() {
+        return additionalExposedPorts;
+    }
+
+    /**
+     * Connection details for an active process.
+     */
+    public Optional<? extends ExposedPort> exposedPort() {
+        return exposedPort;
+    }
+
+    /**
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
+     */
+    public String roomId() {
+        return roomId;
+    }
+
+    /**
+     * `exposedPort` will only be available when the `status` of a room is "active".
+     */
+    public ConnectionInfoV2Status status() {
+        return status;
+    }
+    
+    public final static Builder builder() {
+        return new Builder();
+    }
+
+    public ConnectionInfoV2 withAdditionalExposedPorts(java.util.List<ExposedPort> additionalExposedPorts) {
+        Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
+        this.additionalExposedPorts = additionalExposedPorts;
+        return this;
+    }
+
+    /**
+     * Connection details for an active process.
+     */
+    public ConnectionInfoV2 withExposedPort(ExposedPort exposedPort) {
+        Utils.checkNotNull(exposedPort, "exposedPort");
+        this.exposedPort = Optional.ofNullable(exposedPort);
         return this;
     }
     
     /**
-     * Unique identifier to a game session or match. Use either a system generated ID or pass in your own.
+     * Connection details for an active process.
      */
-    @JsonProperty("roomId")
-    public String roomId;
+    public ConnectionInfoV2 withExposedPort(Optional<? extends ExposedPort> exposedPort) {
+        Utils.checkNotNull(exposedPort, "exposedPort");
+        this.exposedPort = exposedPort;
+        return this;
+    }
 
+    /**
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
+     */
     public ConnectionInfoV2 withRoomId(String roomId) {
+        Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;
     }
-    
-    @JsonProperty("status")
-    public ConnectionInfoV2Status status;
 
+    /**
+     * `exposedPort` will only be available when the `status` of a room is "active".
+     */
     public ConnectionInfoV2 withStatus(ConnectionInfoV2Status status) {
+        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
     
-    public ConnectionInfoV2(@JsonProperty("additionalExposedPorts") ExposedPort[] additionalExposedPorts, @JsonProperty("roomId") String roomId, @JsonProperty("status") ConnectionInfoV2Status status) {
-        this.additionalExposedPorts = additionalExposedPorts;
-        this.roomId = roomId;
-        this.status = status;
-  }
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ConnectionInfoV2 other = (ConnectionInfoV2) o;
+        return 
+            java.util.Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
+            java.util.Objects.deepEquals(this.exposedPort, other.exposedPort) &&
+            java.util.Objects.deepEquals(this.roomId, other.roomId) &&
+            java.util.Objects.deepEquals(this.status, other.status);
+    }
+    
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(
+            additionalExposedPorts,
+            exposedPort,
+            roomId,
+            status);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(ConnectionInfoV2.class,
+                "additionalExposedPorts", additionalExposedPorts,
+                "exposedPort", exposedPort,
+                "roomId", roomId,
+                "status", status);
+    }
+    
+    public final static class Builder {
+ 
+        private java.util.List<ExposedPort> additionalExposedPorts;
+ 
+        private Optional<? extends ExposedPort> exposedPort = Optional.empty();
+ 
+        private String roomId;
+ 
+        private ConnectionInfoV2Status status;  
+        
+        private Builder() {
+          // force use of static builder() method
+        }
+
+        public Builder additionalExposedPorts(java.util.List<ExposedPort> additionalExposedPorts) {
+            Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
+            this.additionalExposedPorts = additionalExposedPorts;
+            return this;
+        }
+
+        /**
+         * Connection details for an active process.
+         */
+        public Builder exposedPort(ExposedPort exposedPort) {
+            Utils.checkNotNull(exposedPort, "exposedPort");
+            this.exposedPort = Optional.ofNullable(exposedPort);
+            return this;
+        }
+        
+        /**
+         * Connection details for an active process.
+         */
+        public Builder exposedPort(Optional<? extends ExposedPort> exposedPort) {
+            Utils.checkNotNull(exposedPort, "exposedPort");
+            this.exposedPort = exposedPort;
+            return this;
+        }
+
+        /**
+         * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+         * Note: error will be returned if `roomId` is not globally unique.
+         */
+        public Builder roomId(String roomId) {
+            Utils.checkNotNull(roomId, "roomId");
+            this.roomId = roomId;
+            return this;
+        }
+
+        /**
+         * `exposedPort` will only be available when the `status` of a room is "active".
+         */
+        public Builder status(ConnectionInfoV2Status status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }        
+        
+        public ConnectionInfoV2 build() {
+            return new ConnectionInfoV2(
+                additionalExposedPorts,
+                exposedPort,
+                roomId,
+                status);
+        }
+    }
 }
+

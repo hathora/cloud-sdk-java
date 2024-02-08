@@ -22,8 +22,8 @@ public class HTTPRequest {
     private String method;
     private SerializedBody body;
 
-    private List<NameValuePair> queryParams = new ArrayList<NameValuePair>();
-    private Map<String, List<String>> headers = new HashMap<String, List<String>>();
+    private List<NameValuePair> queryParams = new ArrayList<>();
+    private Map<String, List<String>> headers = new HashMap<>();
 
     public HTTPRequest setMethod(String method) {
         this.method = method;
@@ -43,7 +43,7 @@ public class HTTPRequest {
     public HTTPRequest addHeader(String key, String value) {
         List<String> headerValues = this.headers.get(key);
         if (headerValues == null) {
-            headerValues = new ArrayList<String>();
+            headerValues = new ArrayList<>();
         }
 
         headerValues.add(value);

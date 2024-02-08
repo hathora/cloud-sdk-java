@@ -21,10 +21,13 @@ public class QueryParameters {
             Map<String, Map<String, Map<String, Object>>> globals) throws Exception {
         List<NameValuePair> allParams = new ArrayList<>();
 
-        Field[] fields = type.getFields();
+        Field[] fields = type.getDeclaredFields();
 
         for (Field field : fields) {
+            field.setAccessible(true);
             Object value = queryParams != null ? field.get(queryParams) : null;
+            value = Utils.resolveOptionals(value);
+            
             value = Utils.populateGlobal(value, field.getName(), "queryParam", globals);
             if (value == null) {
                 continue;
@@ -81,8 +84,7 @@ public class QueryParameters {
 
         switch (Types.getType(value.getClass())) {
             case ARRAY: {
-                Object[] array = (Object[]) value;
-
+                final List<?> array = Utils.toList(value);
                 List<String> values = new ArrayList<>();
                 List<String> items = new ArrayList<>();
 
@@ -124,12 +126,14 @@ public class QueryParameters {
                 break;
             }
             case OBJECT: {
-                Field[] fields = value.getClass().getFields();
+                Field[] fields = value.getClass().getDeclaredFields();
 
                 List<String> items = new ArrayList<>();
 
                 for (Field field : fields) {
+                    field.setAccessible(true);
                     Object val = field.get(value);
+                    val = Utils.resolveOptionals(val);
                     if (val == null) {
                         continue;
                     }
@@ -169,10 +173,10 @@ public class QueryParameters {
 
                 for (Map.Entry<?, ?> entry : map.entrySet()) {
                     String key = Utils.valToString(entry.getKey());
-                    Object val = entry.getValue();
+                    Object val = Utils.resolveOptionals(entry.getValue());
 
-                    if (val.getClass().isArray()) {
-                        for (Object v : (Object[]) val) {
+                    if (val instanceof List || val.getClass().isArray()) {
+                        for (Object v : Utils.toList(val)) {
                             params.add(new BasicNameValuePair(String.format("%s[%s]", queryParamsMetadata.name, key),
                                     Utils.valToString(v)));
                         }
@@ -185,10 +189,12 @@ public class QueryParameters {
                 return params;
             }
             case OBJECT: {
-                Field[] fields = value.getClass().getFields();
+                Field[] fields = value.getClass().getDeclaredFields();
 
                 for (Field field : fields) {
+                    field.setAccessible(true);
                     Object val = field.get(value);
+                    val = Utils.resolveOptionals(val);
                     if (val == null) {
                         continue;
                     }
@@ -198,8 +204,8 @@ public class QueryParameters {
                         continue;
                     }
 
-                    if (val.getClass().isArray()) {
-                        for (Object v : (Object[]) val) {
+                    if (val instanceof List || val.getClass().isArray()) {
+                        for (Object v : Utils.toList(val)) {
                             params.add(new BasicNameValuePair(
                                     String.format("%s[%s]", queryParamsMetadata.name, metadata.name),
                                     Utils.valToString(v)));

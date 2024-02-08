@@ -16,10 +16,11 @@ public class Security {
         SpeakeasyHTTPSecurityClient securityClient = new SpeakeasyHTTPSecurityClient(client);
 
         if (security != null) {
-            Field[] fields = security.getClass().getFields();
+            Field[] fields = security.getClass().getDeclaredFields();
 
             for (Field field : fields) {
-                Object value = field.get(security);
+                field.setAccessible(true);
+                Object value = Utils.resolveOptionals(field.get(security));
                 if (value == null) {
                     continue;
                 }
@@ -49,11 +50,12 @@ public class Security {
 
     private static void parseSecurityOption(SpeakeasyHTTPSecurityClient client, Object option)
             throws Exception {
-        Field[] fields = option.getClass().getFields();
+        Field[] fields = option.getClass().getDeclaredFields();
 
         for (Field field : fields) {
-            Object value = field.get(option);
-
+            field.setAccessible(true);
+            Object value = Utils.resolveOptionals(field.get(option));
+            
             if (value == null) {
                 continue;
             }
@@ -76,10 +78,11 @@ public class Security {
                 return;
             }
 
-            Field[] fields = scheme.getClass().getFields();
+            Field[] fields = scheme.getClass().getDeclaredFields();
 
             for (Field field : fields) {
-                Object value = field.get(scheme);
+                field.setAccessible(true);
+                Object value = Utils.resolveOptionals(field.get(scheme));
 
                 if (value == null) {
                     continue;
@@ -120,10 +123,10 @@ public class Security {
                 }
                 break;
             case "openIdConnect":
-                client.addHeader(securityMetadata.name, Utils.valToString(value));
+                client.addHeader(securityMetadata.name, Utils.prefixBearer(Utils.valToString(value)));
                 break;
             case "oauth2":
-                client.addHeader(securityMetadata.name, Utils.valToString(value));
+                client.addHeader(securityMetadata.name, Utils.prefixBearer(Utils.valToString(value)));
                 break;
             case "http":
                 switch (schemeMetadata.subtype) {
@@ -141,13 +144,14 @@ public class Security {
 
     private static void parseBasicAuthScheme(SpeakeasyHTTPSecurityClient client, Object scheme)
             throws IllegalAccessException {
-        Field[] fields = scheme.getClass().getFields();
+        Field[] fields = scheme.getClass().getDeclaredFields();
 
         String username = "";
         String password = "";
 
         for (Field field : fields) {
-            Object value = field.get(scheme);
+            field.setAccessible(true);
+            Object value = Utils.resolveOptionals(field.get(scheme));
 
             if (value == null) {
                 continue;

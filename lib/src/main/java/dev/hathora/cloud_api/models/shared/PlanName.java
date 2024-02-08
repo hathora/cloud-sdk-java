@@ -5,6 +5,8 @@
 package dev.hathora.cloud_api.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.hathora.cloud_api.utils.Utils;
+import java.io.InputStream;
 
 /**
  * PlanName - A plan defines how much CPU and memory is required to run an instance of your game server.
@@ -24,9 +26,13 @@ public enum PlanName {
     LARGE("large");
 
     @JsonValue
-    public final String value;
+    private final String value;
 
     private PlanName(String value) {
         this.value = value;
+    }
+    
+    public String value() {
+        return value;
     }
 }

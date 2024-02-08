@@ -5,6 +5,7 @@
 package dev.hathora.cloud_api.utils;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
@@ -19,15 +20,15 @@ public class SpeakeasyHTTPSecurityClient
 
     private HTTPClient client;
 
-    private List<NameValuePair> queryParams = new ArrayList<NameValuePair>();
-    private Map<String, List<String>> headers = new HashMap<String, List<String>>();
+    private List<NameValuePair> queryParams = new ArrayList<>();
+    private Map<String, List<String>> headers = new HashMap<>();
 
     public SpeakeasyHTTPSecurityClient(HTTPClient client) {
         this.client = client;
     }
 
     @Override
-    public HttpResponse<byte[]> send(HTTPRequest request)
+    public HttpResponse<InputStream> send(HTTPRequest request)
             throws IOException, InterruptedException, URISyntaxException {
 
         for (Map.Entry<String, List<String>> entry : this.headers.entrySet()) {
@@ -46,7 +47,7 @@ public class SpeakeasyHTTPSecurityClient
     public void addHeader(String key, String value) {
         List<String> headerValues = this.headers.get(key);
         if (headerValues == null) {
-            headerValues = new ArrayList<String>();
+            headerValues = new ArrayList<>();
         }
 
         headerValues.add(value);
