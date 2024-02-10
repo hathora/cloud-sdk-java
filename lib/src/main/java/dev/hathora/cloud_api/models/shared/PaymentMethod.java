@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 /**
@@ -170,7 +171,7 @@ public class PaymentMethod {
             Utils.checkNotNull(link, "link");
             this.link = link;
             return this;
-        }        
+        }
         
         public PaymentMethod build() {
             return new PaymentMethod(

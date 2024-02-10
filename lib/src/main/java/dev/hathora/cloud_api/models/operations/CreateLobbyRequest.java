@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.operations;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 
@@ -189,7 +190,7 @@ public class CreateLobbyRequest {
             Utils.checkNotNull(shortCode, "shortCode");
             this.shortCode = shortCode;
             return this;
-        }        
+        }
         
         public CreateLobbyRequest build() {
             return new CreateLobbyRequest(

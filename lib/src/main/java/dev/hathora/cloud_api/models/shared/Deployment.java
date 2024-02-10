@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.time.OffsetDateTime;
 
 /**
@@ -638,7 +639,7 @@ public class Deployment {
             Utils.checkNotNull(transportType, "transportType");
             this.transportType = transportType;
             return this;
-        }        
+        }
         
         public Deployment build() {
             return new Deployment(

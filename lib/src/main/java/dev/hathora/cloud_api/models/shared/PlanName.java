@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 /**
  * PlanName - A plan defines how much CPU and memory is required to run an instance of your game server.

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -577,7 +578,7 @@ public class Build {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
-        }        
+        }
         
         public Build build() {
             return new Build(

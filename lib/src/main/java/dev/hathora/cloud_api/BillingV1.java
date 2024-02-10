@@ -56,7 +56,6 @@ public class BillingV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetBalanceResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetBalanceResponse
                 .builder()
@@ -119,7 +118,6 @@ public class BillingV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetInvoicesResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetInvoicesResponse
                 .builder()
@@ -182,7 +180,6 @@ public class BillingV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse
                 .builder()
@@ -252,7 +249,6 @@ public class BillingV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse
                 .builder()

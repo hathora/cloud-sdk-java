@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class ApiError {
@@ -71,7 +72,7 @@ public class ApiError {
             Utils.checkNotNull(message, "message");
             this.message = message;
             return this;
-        }        
+        }
         
         public ApiError build() {
             return new ApiError(

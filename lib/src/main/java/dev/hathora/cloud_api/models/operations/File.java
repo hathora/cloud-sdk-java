@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.operations;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class File {
@@ -98,7 +99,7 @@ public class File {
             Utils.checkNotNull(fileName, "fileName");
             this.fileName = fileName;
             return this;
-        }        
+        }
         
         public File build() {
             return new File(

@@ -74,7 +74,6 @@ public class AppV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.CreateAppResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.CreateAppResponse
                 .builder()
@@ -153,7 +152,6 @@ public class AppV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.DeleteAppResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.DeleteAppResponse
                 .builder()
@@ -223,7 +221,6 @@ public class AppV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetAppInfoResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetAppInfoResponse
                 .builder()
@@ -291,7 +288,6 @@ public class AppV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetAppsResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetAppsResponse
                 .builder()
@@ -369,7 +365,6 @@ public class AppV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.UpdateAppResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.UpdateAppResponse
                 .builder()

@@ -87,7 +87,6 @@ public class ProcessesV2 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetLatestProcessesResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetLatestProcessesResponse
                 .builder()
@@ -169,7 +168,6 @@ public class ProcessesV2 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetProcessInfoResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetProcessInfoResponse
                 .builder()

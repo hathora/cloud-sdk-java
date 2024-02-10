@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.time.OffsetDateTime;
 
 /**
@@ -239,7 +240,7 @@ public class Invoice {
             Utils.checkNotNull(year, "year");
             this.year = year;
             return this;
-        }        
+        }
         
         public Invoice build() {
             return new Invoice(

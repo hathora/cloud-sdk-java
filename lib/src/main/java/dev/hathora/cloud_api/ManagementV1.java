@@ -60,7 +60,6 @@ public class ManagementV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.SendVerificationEmailResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.SendVerificationEmailResponse
                 .builder()

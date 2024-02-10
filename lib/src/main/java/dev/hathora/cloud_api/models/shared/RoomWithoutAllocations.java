@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 /**
@@ -283,7 +284,7 @@ public class RoomWithoutAllocations {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
-        }        
+        }
         
         public RoomWithoutAllocations build() {
             return new RoomWithoutAllocations(

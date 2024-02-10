@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 
@@ -84,7 +85,7 @@ public class Security {
             Utils.checkNotNull(hathoraDevToken, "hathoraDevToken");
             this.hathoraDevToken = hathoraDevToken;
             return this;
-        }        
+        }
         
         public Security build() {
             return new Security(

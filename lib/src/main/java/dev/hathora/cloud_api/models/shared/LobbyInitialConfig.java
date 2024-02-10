@@ -6,6 +6,7 @@ package dev.hathora.cloud_api.models.shared;
 
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 /**
  * LobbyInitialConfig - User input to initialize the game state. Object must be smaller than 64KB.
@@ -48,7 +49,7 @@ public class LobbyInitialConfig {
         
         private Builder() {
           // force use of static builder() method
-        }        
+        }
         
         public LobbyInitialConfig build() {
             return new LobbyInitialConfig(

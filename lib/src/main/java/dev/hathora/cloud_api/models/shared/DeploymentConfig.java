@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 /**
@@ -335,7 +336,7 @@ public class DeploymentConfig {
             Utils.checkNotNull(transportType, "transportType");
             this.transportType = transportType;
             return this;
-        }        
+        }
         
         public DeploymentConfig build() {
             return new DeploymentConfig(

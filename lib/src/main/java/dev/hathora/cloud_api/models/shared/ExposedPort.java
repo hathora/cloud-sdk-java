@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 /**
  * ExposedPort - Connection details for an active process.
@@ -167,7 +168,7 @@ public class ExposedPort {
             Utils.checkNotNull(transportType, "transportType");
             this.transportType = transportType;
             return this;
-        }        
+        }
         
         public ExposedPort build() {
             return new ExposedPort(

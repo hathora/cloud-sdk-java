@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 
@@ -127,7 +128,7 @@ public class AchPaymentMethod {
             Utils.checkNotNull(last4, "last4");
             this.last4 = last4;
             return this;
-        }        
+        }
         
         public AchPaymentMethod build() {
             return new AchPaymentMethod(

@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 /**
  * ContainerPort - A container port object represents the transport configruations for how your server will listen.
@@ -152,7 +153,7 @@ public class ContainerPort {
             Utils.checkNotNull(transportType, "transportType");
             this.transportType = transportType;
             return this;
-        }        
+        }
         
         public ContainerPort build() {
             return new ContainerPort(

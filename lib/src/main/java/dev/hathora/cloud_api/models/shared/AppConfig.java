@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class AppConfig {
@@ -122,7 +123,7 @@ public class AppConfig {
             Utils.checkNotNull(authConfiguration, "authConfiguration");
             this.authConfiguration = authConfiguration;
             return this;
-        }        
+        }
         
         public AppConfig build() {
             return new AppConfig(

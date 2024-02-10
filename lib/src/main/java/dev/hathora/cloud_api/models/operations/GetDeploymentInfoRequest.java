@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.operations;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 
@@ -111,7 +112,7 @@ public class GetDeploymentInfoRequest {
             Utils.checkNotNull(deploymentId, "deploymentId");
             this.deploymentId = deploymentId;
             return this;
-        }        
+        }
         
         public GetDeploymentInfoRequest build() {
             return new GetDeploymentInfoRequest(

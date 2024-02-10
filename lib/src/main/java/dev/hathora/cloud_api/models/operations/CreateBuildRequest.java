@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.operations;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 
@@ -111,7 +112,7 @@ public class CreateBuildRequest {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;
-        }        
+        }
         
         public CreateBuildRequest build() {
             return new CreateBuildRequest(

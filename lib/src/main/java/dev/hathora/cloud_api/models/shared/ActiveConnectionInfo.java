@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class ActiveConnectionInfo {
@@ -207,7 +208,7 @@ public class ActiveConnectionInfo {
             Utils.checkNotNull(transportType, "transportType");
             this.transportType = transportType;
             return this;
-        }        
+        }
         
         public ActiveConnectionInfo build() {
             return new ActiveConnectionInfo(

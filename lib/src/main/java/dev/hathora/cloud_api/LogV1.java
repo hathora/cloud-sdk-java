@@ -78,7 +78,6 @@ public class LogV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.DownloadLogForProcessResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.DownloadLogForProcessResponse
                 .builder()
@@ -156,7 +155,6 @@ public class LogV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetLogsForAppResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetLogsForAppResponse
                 .builder()
@@ -234,7 +232,6 @@ public class LogV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetLogsForDeploymentResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetLogsForDeploymentResponse
                 .builder()
@@ -310,7 +307,6 @@ public class LogV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetLogsForProcessResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetLogsForProcessResponse
                 .builder()

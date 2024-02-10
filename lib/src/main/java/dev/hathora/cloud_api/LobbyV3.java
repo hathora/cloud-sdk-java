@@ -85,7 +85,6 @@ public class LobbyV3 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.CreateLobbyResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.CreateLobbyResponse
                 .builder()
@@ -167,7 +166,6 @@ public class LobbyV3 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetLobbyInfoByRoomIdResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetLobbyInfoByRoomIdResponse
                 .builder()
@@ -249,7 +247,6 @@ public class LobbyV3 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetLobbyInfoByShortCodeResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetLobbyInfoByShortCodeResponse
                 .builder()
@@ -338,7 +335,6 @@ public class LobbyV3 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesResponse
                 .builder()

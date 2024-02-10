@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.operations;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class CreateLocalLobbySecurity {
@@ -71,7 +72,7 @@ public class CreateLocalLobbySecurity {
             Utils.checkNotNull(playerAuth, "playerAuth");
             this.playerAuth = playerAuth;
             return this;
-        }        
+        }
         
         public CreateLocalLobbySecurity build() {
             return new CreateLocalLobbySecurity(

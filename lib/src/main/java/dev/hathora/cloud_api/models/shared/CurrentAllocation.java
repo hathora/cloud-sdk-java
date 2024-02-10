@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -198,7 +199,7 @@ public class CurrentAllocation {
             Utils.checkNotNull(unscheduledAt, "unscheduledAt");
             this.unscheduledAt = unscheduledAt;
             return this;
-        }        
+        }
         
         public CurrentAllocation build() {
             return new CurrentAllocation(

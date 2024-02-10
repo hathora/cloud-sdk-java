@@ -99,7 +99,6 @@ public class RoomV2 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.CreateRoomResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.CreateRoomResponse
                 .builder()
@@ -181,7 +180,6 @@ public class RoomV2 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.DestroyRoomResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.DestroyRoomResponse
                 .builder()
@@ -254,7 +252,6 @@ public class RoomV2 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse
                 .builder()
@@ -336,7 +333,6 @@ public class RoomV2 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse
                 .builder()
@@ -418,7 +414,6 @@ public class RoomV2 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse
                 .builder()
@@ -500,7 +495,6 @@ public class RoomV2 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetRoomInfoResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetRoomInfoResponse
                 .builder()
@@ -582,7 +576,6 @@ public class RoomV2 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.SuspendRoomResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.SuspendRoomResponse
                 .builder()
@@ -656,7 +649,6 @@ public class RoomV2 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.UpdateRoomConfigResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.UpdateRoomConfigResponse
                 .builder()

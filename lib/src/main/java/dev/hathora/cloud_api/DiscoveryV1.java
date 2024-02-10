@@ -60,7 +60,6 @@ public class DiscoveryV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetPingServiceEndpointsResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetPingServiceEndpointsResponse
                 .builder()

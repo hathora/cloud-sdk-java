@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class LoginNicknameRequest {
@@ -83,7 +84,7 @@ public class LoginNicknameRequest {
             Utils.checkNotNull(nickname, "nickname");
             this.nickname = nickname;
             return this;
-        }        
+        }
         
         public LoginNicknameRequest build() {
             return new LoginNicknameRequest(

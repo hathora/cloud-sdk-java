@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 /**
@@ -217,7 +218,7 @@ public class ConnectionInfoV2 {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
-        }        
+        }
         
         public ConnectionInfoV2 build() {
             return new ConnectionInfoV2(

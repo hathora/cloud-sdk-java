@@ -9,6 +9,7 @@ import dev.hathora.cloud_api.utils.LazySingletonValue;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 
@@ -191,7 +192,7 @@ public class GetLogsForProcessRequest {
             Utils.checkNotNull(tailLines, "tailLines");
             this.tailLines = tailLines;
             return this;
-        }        
+        }
         
         public GetLogsForProcessRequest build() {
             if (follow == null) {

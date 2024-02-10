@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -442,7 +443,7 @@ public class Application {
             Utils.checkNotNull(orgId, "orgId");
             this.orgId = orgId;
             return this;
-        }        
+        }
         
         public Application build() {
             return new Application(

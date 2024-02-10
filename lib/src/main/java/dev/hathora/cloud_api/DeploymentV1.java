@@ -87,7 +87,6 @@ public class DeploymentV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.CreateDeploymentResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.CreateDeploymentResponse
                 .builder()
@@ -169,7 +168,6 @@ public class DeploymentV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse
                 .builder()
@@ -248,7 +246,6 @@ public class DeploymentV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetDeploymentsResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetDeploymentsResponse
                 .builder()

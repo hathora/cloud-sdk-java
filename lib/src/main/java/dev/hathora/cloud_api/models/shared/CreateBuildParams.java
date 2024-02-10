@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 
@@ -105,7 +106,7 @@ public class CreateBuildParams {
             Utils.checkNotNull(buildTag, "buildTag");
             this.buildTag = buildTag;
             return this;
-        }        
+        }
         
         public CreateBuildParams build() {
             return new CreateBuildParams(

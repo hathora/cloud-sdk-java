@@ -4,16 +4,16 @@ management:
   docChecksum: 3403616a2f0f820ee5bdf9184764ef27
   docVersion: 0.0.1
   speakeasyVersion: internal
-  generationVersion: 2.250.19
-  releaseVersion: 2.0.0
-  configChecksum: 9337c7c315af056fd2f2485d798176f3
+  generationVersion: 2.252.2
+  releaseVersion: 2.1.0
+  configChecksum: 739c8c39f1588740493bd30061131f9d
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
 features:
   java:
     constsAndDefaults: 0.1.0
-    core: 3.10.0
+    core: 3.11.0
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.82.2

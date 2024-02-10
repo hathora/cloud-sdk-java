@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class VerificationEmailRequest {
@@ -71,7 +72,7 @@ public class VerificationEmailRequest {
             Utils.checkNotNull(userId, "userId");
             this.userId = userId;
             return this;
-        }        
+        }
         
         public VerificationEmailRequest build() {
             return new VerificationEmailRequest(

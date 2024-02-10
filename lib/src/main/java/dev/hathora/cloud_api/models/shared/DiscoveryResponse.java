@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class DiscoveryResponse {
@@ -125,7 +126,7 @@ public class DiscoveryResponse {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
-        }        
+        }
         
         public DiscoveryResponse build() {
             return new DiscoveryResponse(

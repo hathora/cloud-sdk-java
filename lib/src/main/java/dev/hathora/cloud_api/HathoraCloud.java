@@ -293,9 +293,8 @@ public class HathoraCloud {
         /**
          * Builds a new instance of the SDK.
          * @return The SDK instance.
-         * @throws Exception Thrown if the SDK could not be built.
          */
-        public HathoraCloud build() throws Exception {
+        public HathoraCloud build() {
             if (sdkConfiguration.defaultClient == null) {
                 sdkConfiguration.defaultClient = new SpeakeasyHTTPClient();
             }
@@ -321,7 +320,7 @@ public class HathoraCloud {
         return new Builder();
     }
 
-    private HathoraCloud(SDKConfiguration sdkConfiguration) throws Exception {
+    private HathoraCloud(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.appV1 = new AppV1(sdkConfiguration);
         this.authV1 = new AuthV1(sdkConfiguration);

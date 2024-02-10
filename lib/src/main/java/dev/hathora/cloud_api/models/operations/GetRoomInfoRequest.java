@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.operations;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 
@@ -111,7 +112,7 @@ public class GetRoomInfoRequest {
             Utils.checkNotNull(roomId, "roomId");
             this.roomId = roomId;
             return this;
-        }        
+        }
         
         public GetRoomInfoRequest build() {
             return new GetRoomInfoRequest(

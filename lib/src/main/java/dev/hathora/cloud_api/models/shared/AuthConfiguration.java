@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 /**
@@ -224,7 +225,7 @@ public class AuthConfiguration {
             Utils.checkNotNull(nickname, "nickname");
             this.nickname = nickname;
             return this;
-        }        
+        }
         
         public AuthConfiguration build() {
             return new AuthConfiguration(

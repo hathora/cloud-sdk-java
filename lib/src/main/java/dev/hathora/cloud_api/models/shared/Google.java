@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 /**
  * Google - Enable google auth for your application.
@@ -86,7 +87,7 @@ public class Google {
             Utils.checkNotNull(clientId, "clientId");
             this.clientId = clientId;
             return this;
-        }        
+        }
         
         public Google build() {
             return new Google(

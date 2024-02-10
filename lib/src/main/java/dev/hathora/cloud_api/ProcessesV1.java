@@ -80,7 +80,6 @@ public class ProcessesV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse
                 .builder()
@@ -171,7 +170,6 @@ public class ProcessesV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse
                 .builder()
@@ -262,7 +260,6 @@ public class ProcessesV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse
                 .builder()

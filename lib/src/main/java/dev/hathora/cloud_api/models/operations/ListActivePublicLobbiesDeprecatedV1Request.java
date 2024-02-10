@@ -9,6 +9,7 @@ import dev.hathora.cloud_api.utils.LazySingletonValue;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 
@@ -164,7 +165,7 @@ public class ListActivePublicLobbiesDeprecatedV1Request {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
-        }        
+        }
         
         public ListActivePublicLobbiesDeprecatedV1Request build() {
             if (local == null) {

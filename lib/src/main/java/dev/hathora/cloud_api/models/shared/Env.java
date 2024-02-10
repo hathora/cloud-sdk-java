@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class Env {
@@ -98,7 +99,7 @@ public class Env {
             Utils.checkNotNull(value, "value");
             this.value = value;
             return this;
-        }        
+        }
         
         public Env build() {
             return new Env(

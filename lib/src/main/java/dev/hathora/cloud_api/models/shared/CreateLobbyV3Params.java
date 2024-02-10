@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 
@@ -195,7 +196,7 @@ public class CreateLobbyV3Params {
             Utils.checkNotNull(visibility, "visibility");
             this.visibility = visibility;
             return this;
-        }        
+        }
         
         public CreateLobbyV3Params build() {
             return new CreateLobbyV3Params(

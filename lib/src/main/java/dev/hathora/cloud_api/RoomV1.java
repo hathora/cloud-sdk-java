@@ -99,7 +99,6 @@ public class RoomV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse
                 .builder()
@@ -179,7 +178,6 @@ public class RoomV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse
                 .builder()
@@ -253,7 +251,6 @@ public class RoomV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse
                 .builder()
@@ -336,7 +333,6 @@ public class RoomV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse
                 .builder()
@@ -419,7 +415,6 @@ public class RoomV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse
                 .builder()
@@ -502,7 +497,6 @@ public class RoomV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse
                 .builder()
@@ -585,7 +579,6 @@ public class RoomV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse
                 .builder()

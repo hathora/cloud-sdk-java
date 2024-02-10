@@ -6,6 +6,7 @@ package dev.hathora.cloud_api.models.shared;
 
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 /**
  * RecordStringNever - Construct a type with a set of properties K of type T
@@ -48,7 +49,7 @@ public class RecordStringNever {
         
         private Builder() {
           // force use of static builder() method
-        }        
+        }
         
         public RecordStringNever build() {
             return new RecordStringNever(

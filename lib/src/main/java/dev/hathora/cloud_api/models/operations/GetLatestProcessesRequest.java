@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.operations;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.util.Optional;
 
 
@@ -162,7 +163,7 @@ public class GetLatestProcessesRequest {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
-        }        
+        }
         
         public GetLatestProcessesRequest build() {
             return new GetLatestProcessesRequest(

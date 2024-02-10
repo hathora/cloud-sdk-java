@@ -6,6 +6,7 @@ package dev.hathora.cloud_api.models.shared;
 
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 /**
  * SetLobbyStateParamsState - JSON blob to store metadata for a room. Must be smaller than 1MB.
@@ -48,7 +49,7 @@ public class SetLobbyStateParamsState {
         
         private Builder() {
           // force use of static builder() method
-        }        
+        }
         
         public SetLobbyStateParamsState build() {
             return new SetLobbyStateParamsState(

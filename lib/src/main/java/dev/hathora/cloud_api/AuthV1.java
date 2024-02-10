@@ -74,7 +74,6 @@ public class AuthV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.LoginAnonymousResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.LoginAnonymousResponse
                 .builder()
@@ -162,7 +161,6 @@ public class AuthV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.LoginGoogleResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.LoginGoogleResponse
                 .builder()
@@ -250,7 +248,6 @@ public class AuthV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.LoginNicknameResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.LoginNicknameResponse
                 .builder()

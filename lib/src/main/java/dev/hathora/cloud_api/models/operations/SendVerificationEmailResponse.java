@@ -6,6 +6,7 @@ package dev.hathora.cloud_api.models.operations;
 
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -253,7 +254,7 @@ public class SendVerificationEmailResponse {
             Utils.checkNotNull(verificationEmailResponse, "verificationEmailResponse");
             this.verificationEmailResponse = verificationEmailResponse;
             return this;
-        }        
+        }
         
         public SendVerificationEmailResponse build() {
             return new SendVerificationEmailResponse(

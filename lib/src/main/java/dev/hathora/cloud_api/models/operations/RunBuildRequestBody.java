@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.operations;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class RunBuildRequestBody {
@@ -71,7 +72,7 @@ public class RunBuildRequestBody {
             Utils.checkNotNull(file, "file");
             this.file = file;
             return this;
-        }        
+        }
         
         public RunBuildRequestBody build() {
             return new RunBuildRequestBody(

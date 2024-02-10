@@ -6,6 +6,7 @@ package dev.hathora.cloud_api.models.operations;
 
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -215,7 +216,7 @@ public class ListActivePublicLobbiesDeprecatedV2Response {
             Utils.checkNotNull(classes, "classes");
             this.classes = classes;
             return this;
-        }        
+        }
         
         public ListActivePublicLobbiesDeprecatedV2Response build() {
             return new ListActivePublicLobbiesDeprecatedV2Response(

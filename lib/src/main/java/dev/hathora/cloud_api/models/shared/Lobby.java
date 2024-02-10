@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -484,7 +485,7 @@ public class Lobby {
             Utils.checkNotNull(visibility, "visibility");
             this.visibility = visibility;
             return this;
-        }        
+        }
         
         public Lobby build() {
             return new Lobby(

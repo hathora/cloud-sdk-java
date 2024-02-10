@@ -72,7 +72,6 @@ public class MetricsV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetMetricsResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetMetricsResponse
                 .builder()

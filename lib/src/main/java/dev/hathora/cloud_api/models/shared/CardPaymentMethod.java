@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class CardPaymentMethod {
@@ -98,7 +99,7 @@ public class CardPaymentMethod {
             Utils.checkNotNull(last4, "last4");
             this.last4 = last4;
             return this;
-        }        
+        }
         
         public CardPaymentMethod build() {
             return new CardPaymentMethod(

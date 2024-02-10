@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.operations;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class CreatePrivateLobbyRequestBody {
@@ -110,7 +111,7 @@ public class CreatePrivateLobbyRequestBody {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
-        }        
+        }
         
         public CreatePrivateLobbyRequestBody build() {
             return new CreatePrivateLobbyRequestBody(

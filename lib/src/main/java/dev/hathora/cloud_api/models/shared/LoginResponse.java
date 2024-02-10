@@ -7,6 +7,7 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 
 
 public class LoginResponse {
@@ -83,7 +84,7 @@ public class LoginResponse {
             Utils.checkNotNull(token, "token");
             this.token = token;
             return this;
-        }        
+        }
         
         public LoginResponse build() {
             return new LoginResponse(

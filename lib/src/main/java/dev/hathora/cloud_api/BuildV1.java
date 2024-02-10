@@ -86,7 +86,6 @@ public class BuildV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.CreateBuildResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.CreateBuildResponse
                 .builder()
@@ -168,7 +167,6 @@ public class BuildV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.DeleteBuildResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.DeleteBuildResponse
                 .builder()
@@ -241,7 +239,6 @@ public class BuildV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetBuildInfoResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetBuildInfoResponse
                 .builder()
@@ -320,7 +317,6 @@ public class BuildV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.GetBuildsResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.GetBuildsResponse
                 .builder()
@@ -411,7 +407,6 @@ public class BuildV1 implements
                 .headers()
                 .firstValue("Content-Type")
                 .orElse("application/octet-stream");
-
         dev.hathora.cloud_api.models.operations.RunBuildResponse.Builder resBuilder = 
             dev.hathora.cloud_api.models.operations.RunBuildResponse
                 .builder()

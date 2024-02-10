@@ -17,9 +17,9 @@ class SDKConfiguration {
 	public int serverIdx = 0;
 	public String language = "java";
 	public String openapiDocVersion = "0.0.1";
-	public String sdkVersion = "2.0.0";
-	public String genVersion = "2.250.19";
-	public String userAgent = "speakeasy-sdk/java 2.0.0 2.250.19 0.0.1 dev.hathora.cloud_api";
+	public String sdkVersion = "2.1.0";
+	public String genVersion = "2.252.2";
+	public String userAgent = "speakeasy-sdk/java 2.1.0 2.252.2 0.0.1 dev.hathora.cloud_api";
 	public Map<String, Map<String, Map<String, java.lang.Object>>> globals = new HashMap<>(){{
 		put("parameters", new HashMap<>());
 	}};
