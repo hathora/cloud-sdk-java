@@ -11,8 +11,11 @@ import dev.hathora.cloud_api.models.shared.AuthConfiguration;
 import dev.hathora.cloud_api.models.shared.Google;
 import dev.hathora.cloud_api.models.shared.RecordStringNever;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -32,7 +35,7 @@ public class Application {
                         .anonymous(RecordStringNever.builder()
                             .build())
                         .google(Google.builder()
-                            .clientId("string")
+                            .clientId("<value>")
                             .build())
                         .nickname(RecordStringNever.builder()
                             .build())
@@ -46,7 +49,6 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {

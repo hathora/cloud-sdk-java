@@ -7,14 +7,17 @@ generation:
     nameResolutionDec2023: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
   baseServerURL: ""
   flattenGlobalSecurity: true
 java:
-  version: 2.0.0
+  version: 2.1.0
   artifactID: cloud-api
   companyEmail: info@mycompany.com
   companyName: My Company
   companyURL: www.mycompany.com
+  flattenGlobalSecurity: false
   githubURL: github.com/owner/repo
   groupID: dev.hathora
   imports:

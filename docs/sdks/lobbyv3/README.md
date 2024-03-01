@@ -30,8 +30,11 @@ import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.CreateLobbyV3Params;
 import dev.hathora.cloud_api.models.shared.LobbyVisibility;
 import dev.hathora.cloud_api.models.shared.Region;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -62,7 +65,6 @@ public class Application {
             if (res.lobbyV3().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -103,9 +105,11 @@ import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.GetLobbyInfoByRoomIdRequest;
 import dev.hathora.cloud_api.models.operations.GetLobbyInfoByRoomIdResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -113,9 +117,6 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
@@ -127,7 +128,6 @@ public class Application {
             if (res.lobbyV3().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -168,9 +168,11 @@ import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.GetLobbyInfoByShortCodeRequest;
 import dev.hathora.cloud_api.models.operations.GetLobbyInfoByShortCodeResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -178,9 +180,6 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
@@ -192,7 +191,6 @@ public class Application {
             if (res.lobbyV3().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -234,9 +232,11 @@ import dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesRequest;
 import dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Region;
-import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -244,9 +244,6 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
@@ -258,7 +255,6 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {

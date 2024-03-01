@@ -32,8 +32,11 @@ import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.CreateRoomParams;
 import dev.hathora.cloud_api.models.shared.Region;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -59,7 +62,6 @@ public class Application {
             if (res.roomId().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -102,8 +104,11 @@ import dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -123,7 +128,6 @@ public class Application {
                 .call();
 
             // handle response
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -165,8 +169,11 @@ import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecate
 import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -188,7 +195,6 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -229,9 +235,11 @@ import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -239,9 +247,6 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
@@ -253,7 +258,6 @@ public class Application {
             if (res.connectionInfo().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -295,8 +299,11 @@ import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDepreca
 import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -318,7 +325,6 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -360,8 +366,11 @@ import dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -383,7 +392,6 @@ public class Application {
             if (res.room().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -425,8 +433,11 @@ import dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedRequest;
 import dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -446,7 +457,6 @@ public class Application {
                 .call();
 
             // handle response
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {

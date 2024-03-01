@@ -29,8 +29,11 @@ import dev.hathora.cloud_api.models.operations.CreateBuildResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.CreateBuildParams;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -54,7 +57,6 @@ public class Application {
             if (res.build().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -96,8 +98,11 @@ import dev.hathora.cloud_api.models.operations.DeleteBuildRequest;
 import dev.hathora.cloud_api.models.operations.DeleteBuildResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -117,7 +122,6 @@ public class Application {
                 .call();
 
             // handle response
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -159,8 +163,11 @@ import dev.hathora.cloud_api.models.operations.GetBuildInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetBuildInfoResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -182,7 +189,6 @@ public class Application {
             if (res.build().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -224,8 +230,11 @@ import dev.hathora.cloud_api.models.operations.GetBuildsRequest;
 import dev.hathora.cloud_api.models.operations.GetBuildsResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -246,7 +255,6 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -289,8 +297,11 @@ import dev.hathora.cloud_api.models.operations.RunBuildRequestBody;
 import dev.hathora.cloud_api.models.operations.RunBuildResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -308,7 +319,7 @@ public class Application {
                 .requestBody(RunBuildRequestBody.builder()
                     .file(File.builder()
                             .content("0xCb8B3aFD88".getBytes())
-                            .fileName("string")
+                            .fileName("<value>")
                             .build())
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -318,7 +329,6 @@ public class Application {
             if (res.res().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
