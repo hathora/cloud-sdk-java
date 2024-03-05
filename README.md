@@ -12,7 +12,7 @@
 ### Gradle
 
 ```groovy
-implementation 'dev.hathora.cloud_api:Hathora-Cloud:2.0.0'
+implementation 'dev.hathora.cloud_api:Hathora-Cloud:2.1.0'
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -33,8 +33,11 @@ import dev.hathora.cloud_api.models.shared.AuthConfiguration;
 import dev.hathora.cloud_api.models.shared.Google;
 import dev.hathora.cloud_api.models.shared.RecordStringNever;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -54,7 +57,7 @@ public class Application {
                         .anonymous(RecordStringNever.builder()
                             .build())
                         .google(Google.builder()
-                            .clientId("string")
+                            .clientId("<value>")
                             .build())
                         .nickname(RecordStringNever.builder()
                             .build())
@@ -68,7 +71,6 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -116,6 +118,7 @@ public class Application {
 * [createDeployment](docs/sdks/deploymentv1/README.md#createdeployment) - Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
 * [getDeploymentInfo](docs/sdks/deploymentv1/README.md#getdeploymentinfo) - Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
 * [getDeployments](docs/sdks/deploymentv1/README.md#getdeployments) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+* [getLatestDeployment](docs/sdks/deploymentv1/README.md#getlatestdeployment) - Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
 
 ### [discoveryV1()](docs/sdks/discoveryv1/README.md)
 
@@ -169,6 +172,7 @@ public class Application {
 
 * [getLatestProcesses](docs/sdks/processesv2/README.md#getlatestprocesses) - Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
 * [getProcessInfo](docs/sdks/processesv2/README.md#getprocessinfo) - Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+* [stopProcess](docs/sdks/processesv2/README.md#stopprocess) - Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
 
 ### [roomV1()](docs/sdks/roomv1/README.md)
 
@@ -190,6 +194,12 @@ public class Application {
 * [getRoomInfo](docs/sdks/roomv2/README.md#getroominfo) - Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
 * [suspendRoom](docs/sdks/roomv2/README.md#suspendroom) - Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
 * [updateRoomConfig](docs/sdks/roomv2/README.md#updateroomconfig)
+
+### [orgTokensV1()](docs/sdks/orgtokensv1/README.md)
+
+* [createOrgToken](docs/sdks/orgtokensv1/README.md#createorgtoken) - Create a new organization token.
+* [getOrgTokens](docs/sdks/orgtokensv1/README.md#getorgtokens) - List all organization tokens for a given org.
+* [revokeOrgToken](docs/sdks/orgtokensv1/README.md#revokeorgtoken) - Revoke an organization token.
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Global Parameters [global-parameters] -->
@@ -220,8 +230,11 @@ import dev.hathora.cloud_api.models.operations.DeleteAppRequest;
 import dev.hathora.cloud_api.models.operations.DeleteAppResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -240,7 +253,6 @@ public class Application {
                 .call();
 
             // handle response
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -274,8 +286,11 @@ import dev.hathora.cloud_api.models.shared.AuthConfiguration;
 import dev.hathora.cloud_api.models.shared.Google;
 import dev.hathora.cloud_api.models.shared.RecordStringNever;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -295,7 +310,7 @@ public class Application {
                         .anonymous(RecordStringNever.builder()
                             .build())
                         .google(Google.builder()
-                            .clientId("string")
+                            .clientId("<value>")
                             .build())
                         .nickname(RecordStringNever.builder()
                             .build())
@@ -309,7 +324,6 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -346,8 +360,11 @@ import dev.hathora.cloud_api.models.shared.AuthConfiguration;
 import dev.hathora.cloud_api.models.shared.Google;
 import dev.hathora.cloud_api.models.shared.RecordStringNever;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -368,7 +385,7 @@ public class Application {
                         .anonymous(RecordStringNever.builder()
                             .build())
                         .google(Google.builder()
-                            .clientId("string")
+                            .clientId("<value>")
                             .build())
                         .nickname(RecordStringNever.builder()
                             .build())
@@ -382,7 +399,6 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -408,8 +424,11 @@ import dev.hathora.cloud_api.models.shared.AuthConfiguration;
 import dev.hathora.cloud_api.models.shared.Google;
 import dev.hathora.cloud_api.models.shared.RecordStringNever;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -430,7 +449,7 @@ public class Application {
                         .anonymous(RecordStringNever.builder()
                             .build())
                         .google(Google.builder()
-                            .clientId("string")
+                            .clientId("<value>")
                             .build())
                         .nickname(RecordStringNever.builder()
                             .build())
@@ -444,7 +463,6 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -479,8 +497,11 @@ import dev.hathora.cloud_api.models.shared.AuthConfiguration;
 import dev.hathora.cloud_api.models.shared.Google;
 import dev.hathora.cloud_api.models.shared.RecordStringNever;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -500,7 +521,7 @@ public class Application {
                         .anonymous(RecordStringNever.builder()
                             .build())
                         .google(Google.builder()
-                            .clientId("string")
+                            .clientId("<value>")
                             .build())
                         .nickname(RecordStringNever.builder()
                             .build())
@@ -514,7 +535,6 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -537,8 +557,11 @@ import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedRespo
 import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedSecurity;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Region;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -561,7 +584,6 @@ public class Application {
             if (res.roomId().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {

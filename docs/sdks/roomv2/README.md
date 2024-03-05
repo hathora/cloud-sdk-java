@@ -33,8 +33,11 @@ import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.CreateRoomParams;
 import dev.hathora.cloud_api.models.shared.Region;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -60,7 +63,6 @@ public class Application {
             if (res.createRoomResponse().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -103,8 +105,11 @@ import dev.hathora.cloud_api.models.operations.DestroyRoomRequest;
 import dev.hathora.cloud_api.models.operations.DestroyRoomResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -124,7 +129,6 @@ public class Application {
                 .call();
 
             // handle response
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -166,8 +170,11 @@ import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest;
 import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -189,7 +196,6 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -230,9 +236,11 @@ import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -240,9 +248,6 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
@@ -254,7 +259,6 @@ public class Application {
             if (res.connectionInfoV2().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -296,8 +300,11 @@ import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest
 import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -319,7 +326,6 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -361,8 +367,11 @@ import dev.hathora.cloud_api.models.operations.GetRoomInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetRoomInfoResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -384,7 +393,6 @@ public class Application {
             if (res.room().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -426,8 +434,11 @@ import dev.hathora.cloud_api.models.operations.SuspendRoomRequest;
 import dev.hathora.cloud_api.models.operations.SuspendRoomResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -447,7 +458,6 @@ public class Application {
                 .call();
 
             // handle response
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -488,8 +498,11 @@ import dev.hathora.cloud_api.models.operations.UpdateRoomConfigResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import dev.hathora.cloud_api.models.shared.UpdateRoomConfigParams;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -512,7 +525,6 @@ public class Application {
                 .call();
 
             // handle response
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {

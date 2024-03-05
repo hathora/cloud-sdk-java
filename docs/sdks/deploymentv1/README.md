@@ -10,6 +10,7 @@ Operations that allow you configure and manage an application's [build](https://
 * [createDeployment](#createdeployment) - Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
 * [getDeploymentInfo](#getdeploymentinfo) - Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
 * [getDeployments](#getdeployments) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+* [getLatestDeployment](#getlatestdeployment) - Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
 
 ## createDeployment
 
@@ -31,8 +32,11 @@ import dev.hathora.cloud_api.models.shared.DeploymentConfigEnv;
 import dev.hathora.cloud_api.models.shared.PlanName;
 import dev.hathora.cloud_api.models.shared.Security;
 import dev.hathora.cloud_api.models.shared.TransportType;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -57,12 +61,6 @@ public class Application {
                     .planName(PlanName.TINY)
                     .roomsPerProcess(3)
                     .transportType(TransportType.TCP)
-                    .additionalContainerPorts(java.util.List.of(
-                        ContainerPort.builder()
-                            .name("default")
-                            .port(8000)
-                            .transportType(TransportType.TCP)
-                            .build()))
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
@@ -71,7 +69,6 @@ public class Application {
             if (res.deployment().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -114,8 +111,11 @@ import dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest;
 import dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -137,7 +137,6 @@ public class Application {
             if (res.deployment().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -179,8 +178,11 @@ import dev.hathora.cloud_api.models.operations.GetDeploymentsRequest;
 import dev.hathora.cloud_api.models.operations.GetDeploymentsResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -201,7 +203,6 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -221,6 +222,71 @@ public class Application {
 ### Response
 
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetDeploymentsResponse>](../../models/operations/GetDeploymentsResponse.md)**
+### Errors
+
+| Error Object          | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| models/errorsSDKError | 4xx-5xx               | */*                   |
+
+## getLatestDeployment
+
+Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.models.operations.*;
+import dev.hathora.cloud_api.models.operations.GetLatestDeploymentRequest;
+import dev.hathora.cloud_api.models.operations.GetLatestDeploymentResponse;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) {
+        try {
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .build();
+
+            GetLatestDeploymentResponse res = sdk.deploymentV1().getLatestDeployment()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .call();
+
+            if (res.deployment().isPresent()) {
+                // handle response
+            }
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+
+
+### Response
+
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetLatestDeploymentResponse>](../../models/operations/GetLatestDeploymentResponse.md)**
 ### Errors
 
 | Error Object          | Status Code           | Content Type          |

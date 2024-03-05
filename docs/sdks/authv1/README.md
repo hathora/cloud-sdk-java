@@ -25,9 +25,11 @@ import dev.hathora.cloud_api.models.operations.*;
 import dev.hathora.cloud_api.models.operations.LoginAnonymousRequest;
 import dev.hathora.cloud_api.models.operations.LoginAnonymousResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -35,9 +37,6 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
@@ -48,7 +47,6 @@ public class Application {
             if (res.loginResponse().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -89,9 +87,11 @@ import dev.hathora.cloud_api.models.operations.LoginGoogleRequest;
 import dev.hathora.cloud_api.models.operations.LoginGoogleResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.LoginGoogleRequest;
-import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -99,9 +99,6 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
@@ -115,7 +112,6 @@ public class Application {
             if (res.loginResponse().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -157,9 +153,11 @@ import dev.hathora.cloud_api.models.operations.LoginNicknameRequest;
 import dev.hathora.cloud_api.models.operations.LoginNicknameResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.LoginNicknameRequest;
-import dev.hathora.cloud_api.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 import static java.util.Map.entry;
 
 public class Application {
@@ -167,9 +165,6 @@ public class Application {
     public static void main(String[] args) {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
@@ -183,7 +178,6 @@ public class Application {
             if (res.loginResponse().isPresent()) {
                 // handle response
             }
-
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
