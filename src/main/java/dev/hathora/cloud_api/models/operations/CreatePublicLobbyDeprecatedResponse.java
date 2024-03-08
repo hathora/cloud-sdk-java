@@ -15,7 +15,7 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-public class CreatePublicLobbyDeprecatedResponse {
+public class CreatePublicLobbyDeprecatedResponse implements dev.hathora.cloud_api.utils.Response {
 
     private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
 

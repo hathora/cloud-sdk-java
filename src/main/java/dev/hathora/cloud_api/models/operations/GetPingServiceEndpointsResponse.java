@@ -15,7 +15,7 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-public class GetPingServiceEndpointsResponse {
+public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.utils.Response {
 
     /**
      * HTTP response content type for this operation

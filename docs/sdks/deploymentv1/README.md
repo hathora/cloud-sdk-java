@@ -92,9 +92,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreateDeploymentResponse>](../../models/operations/CreateDeploymentResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getDeploymentInfo
 
@@ -159,9 +159,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse>](../../models/operations/GetDeploymentInfoResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getDeployments
 
@@ -224,9 +224,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetDeploymentsResponse>](../../models/operations/GetDeploymentsResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getLatestDeployment
 
@@ -289,6 +289,6 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetLatestDeploymentResponse>](../../models/operations/GetLatestDeploymentResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

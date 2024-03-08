@@ -92,9 +92,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreateLobbyDeprecatedResponse>](../../models/operations/CreateLobbyDeprecatedResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~createLocalLobby~~
 
@@ -169,9 +169,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreateLocalLobbyResponse>](../../models/operations/CreateLocalLobbyResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~createPrivateLobby~~
 
@@ -246,9 +246,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreatePrivateLobbyResponse>](../../models/operations/CreatePrivateLobbyResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~createPublicLobby~~
 
@@ -323,9 +323,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreatePublicLobbyResponse>](../../models/operations/CreatePublicLobbyResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getLobbyInfo~~
 
@@ -388,9 +388,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetLobbyInfoResponse>](../../models/operations/GetLobbyInfoResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~listActivePublicLobbiesDeprecatedV2~~
 
@@ -454,9 +454,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedV2Response>](../../models/operations/ListActivePublicLobbiesDeprecatedV2Response.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~setLobbyState~~
 
@@ -530,6 +530,6 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.SetLobbyStateResponse>](../../models/operations/SetLobbyStateResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

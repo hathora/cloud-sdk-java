@@ -73,9 +73,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreateOrgTokenResponse>](../../models/operations/CreateOrgTokenResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getOrgTokens
 
@@ -138,9 +138,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetOrgTokensResponse>](../../models/operations/GetOrgTokensResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## revokeOrgToken
 
@@ -205,6 +205,6 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.RevokeOrgTokenResponse>](../../models/operations/RevokeOrgTokenResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

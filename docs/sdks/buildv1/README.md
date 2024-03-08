@@ -79,9 +79,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreateBuildResponse>](../../models/operations/CreateBuildResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## deleteBuild
 
@@ -144,9 +144,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.DeleteBuildResponse>](../../models/operations/DeleteBuildResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getBuildInfo
 
@@ -211,9 +211,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetBuildInfoResponse>](../../models/operations/GetBuildInfoResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getBuilds
 
@@ -276,9 +276,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetBuildsResponse>](../../models/operations/GetBuildsResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## runBuild
 
@@ -352,6 +352,6 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.RunBuildResponse>](../../models/operations/RunBuildResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
