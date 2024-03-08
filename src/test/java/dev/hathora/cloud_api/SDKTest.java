@@ -1,6 +1,5 @@
 package dev.hathora.cloud_api;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import dev.hathora.cloud_api.models.operations.*;
@@ -8,13 +7,17 @@ import dev.hathora.cloud_api.models.operations.CreateRoomResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import org.junit.jupiter.api.Test;
 
+import java.lang.System;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 public class SDKTest {
-    private static final String HATHORA_APP_ID = "";
-    private static final String HATHORA_DEV_TOKEN = "";
+    private static final String HATHORA_APP_ID = "app-7422f70e-e6a7-440f-ba50-d9924af00296";
+    private static final String HATHORA_DEV_TOKEN = Optional.ofNullable(
+        System.getenv("HATHORA_DEV_TOKEN")
+    ).orElseThrow(() -> new IllegalStateException("API_KEY env var is not defined"));
     private static final int POLL_INTERVAL_MS = 1000;
 
     @Test
