@@ -8,10 +8,7 @@ import dev.hathora.cloud_api.models.shared.*;
 import org.junit.jupiter.api.Test;
 
 import java.lang.System;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class SDKTest {
     private static final String HATHORA_APP_ID = "app-7422f70e-e6a7-440f-ba50-d9924af00296";
@@ -147,6 +144,7 @@ public class SDKTest {
                 long elapsedTime = end - start;
                 System.out.println("POLLING TIME ELAPSED: " + elapsedTime + "ms");
                 stillPoll = false;
+                testGetMetrics(hathoraCloudSdk, processInfoResponse.processV2().get().processId());
             } else {
                 System.out.println("RES: " + processInfoResponse.statusCode() + ", processV2.ExposedPort not present, keep polling");
             }
@@ -317,5 +315,14 @@ public class SDKTest {
 
         client.startPingTest();
         return client.calculateLatency();
+    }
+    public void testGetMetrics(HathoraCloud hathoraCloudSdk, String processId) throws Exception {
+        GetMetricsResponse res = hathoraCloudSdk.metricsV1().getMetrics(GetMetricsRequest.builder().metrics(List.of(MetricName.CPU)).processId(processId).build());
+        System.out.println("RES: " + res.statusCode());
+        if (res.metricsResponse().isPresent()) {
+            System.out.println("Metrics: " + res.metricsResponse().get());
+        } else {
+            fail("Inner response not present!");
+        }
     }
 }
