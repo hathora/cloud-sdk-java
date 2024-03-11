@@ -1,0 +1,23 @@
+name: Tests
+on:
+  pull_request:
+    paths:
+      - "**"
+
+jobs:
+  test:
+    name: Test Java SDK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+      - name: Run Tests
+        run: ./gradlew test
+        env:
+          HATHORA_DEV_TOKEN: ${{ secrets.HATHORA_DEV_TOKEN }}
