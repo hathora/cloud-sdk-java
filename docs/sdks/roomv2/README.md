@@ -86,9 +86,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreateRoomResponse>](../../models/operations/CreateRoomResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## destroyRoom
 
@@ -151,9 +151,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.DestroyRoomResponse>](../../models/operations/DestroyRoomResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getActiveRoomsForProcess
 
@@ -218,9 +218,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse>](../../models/operations/GetActiveRoomsForProcessResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getConnectionInfo
 
@@ -281,9 +281,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse>](../../models/operations/GetConnectionInfoResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getInactiveRoomsForProcess
 
@@ -348,9 +348,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse>](../../models/operations/GetInactiveRoomsForProcessResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getRoomInfo
 
@@ -415,9 +415,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetRoomInfoResponse>](../../models/operations/GetRoomInfoResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## suspendRoom
 
@@ -480,9 +480,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.SuspendRoomResponse>](../../models/operations/SuspendRoomResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## updateRoomConfig
 
@@ -548,6 +548,6 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.UpdateRoomConfigResponse>](../../models/operations/UpdateRoomConfigResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

@@ -80,9 +80,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetLatestProcessesResponse>](../../models/operations/GetLatestProcessesResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getProcessInfo
 
@@ -147,9 +147,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetProcessInfoResponse>](../../models/operations/GetProcessInfoResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## stopProcess
 
@@ -212,6 +212,6 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.StopProcessResponse>](../../models/operations/StopProcessResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

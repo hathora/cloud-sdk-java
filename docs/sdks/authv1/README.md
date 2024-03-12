@@ -68,9 +68,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.LoginAnonymousResponse>](../../models/operations/LoginAnonymousResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## loginGoogle
 
@@ -134,9 +134,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.LoginGoogleResponse>](../../models/operations/LoginGoogleResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## loginNickname
 
@@ -200,6 +200,6 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.LoginNicknameResponse>](../../models/operations/LoginNicknameResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

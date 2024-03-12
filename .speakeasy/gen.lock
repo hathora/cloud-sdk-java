@@ -3,17 +3,17 @@ id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
   docChecksum: fe0411409b4a4c0817207b28714a3d7f
   docVersion: 0.0.1
-  speakeasyVersion: internal
-  generationVersion: 2.276.1
-  releaseVersion: 2.1.0
-  configChecksum: c2e58c472b96e912add8e4887b93322b
+  speakeasyVersion: 1.204.1
+  generationVersion: 2.279.1
+  releaseVersion: 2.2.0
+  configChecksum: 5de57ea8eef3b43f99487e4906ab1151
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
 features:
   java:
     constsAndDefaults: 0.1.1
-    core: 3.13.3
+    core: 3.14.1
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.82.4
@@ -119,6 +119,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_api/utils/BackoffStrategy.java
   - src/main/java/dev/hathora/cloud_api/utils/BigDecimalString.java
   - src/main/java/dev/hathora/cloud_api/utils/BigIntegerString.java
+  - src/main/java/dev/hathora/cloud_api/utils/Deserializers.java
   - src/main/java/dev/hathora/cloud_api/utils/FormMetadata.java
   - src/main/java/dev/hathora/cloud_api/utils/HTTPClient.java
   - src/main/java/dev/hathora/cloud_api/utils/HTTPRequest.java
@@ -134,6 +135,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_api/utils/QueryParamsMetadata.java
   - src/main/java/dev/hathora/cloud_api/utils/RequestBody.java
   - src/main/java/dev/hathora/cloud_api/utils/RequestMetadata.java
+  - src/main/java/dev/hathora/cloud_api/utils/Response.java
   - src/main/java/dev/hathora/cloud_api/utils/Retries.java
   - src/main/java/dev/hathora/cloud_api/utils/RetryConfig.java
   - src/main/java/dev/hathora/cloud_api/utils/Security.java

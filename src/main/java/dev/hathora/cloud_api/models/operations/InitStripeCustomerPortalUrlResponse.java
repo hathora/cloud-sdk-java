@@ -15,7 +15,7 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-public class InitStripeCustomerPortalUrlResponse {
+public class InitStripeCustomerPortalUrlResponse implements dev.hathora.cloud_api.utils.Response {
 
     private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
 
@@ -37,24 +37,24 @@ public class InitStripeCustomerPortalUrlResponse {
     /**
      * Ok
      */
-    private Optional<? extends String> res;
+    private Optional<? extends String> string;
 
     public InitStripeCustomerPortalUrlResponse(
             Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends String> res) {
+            Optional<? extends String> string) {
         Utils.checkNotNull(apiError, "apiError");
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(res, "res");
+        Utils.checkNotNull(string, "string");
         this.apiError = apiError;
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.res = res;
+        this.string = string;
     }
 
     public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
@@ -85,8 +85,8 @@ public class InitStripeCustomerPortalUrlResponse {
     /**
      * Ok
      */
-    public Optional<? extends String> res() {
-        return res;
+    public Optional<? extends String> string() {
+        return string;
     }
 
     public final static Builder builder() {
@@ -135,18 +135,18 @@ public class InitStripeCustomerPortalUrlResponse {
     /**
      * Ok
      */
-    public InitStripeCustomerPortalUrlResponse withRes(String res) {
-        Utils.checkNotNull(res, "res");
-        this.res = Optional.ofNullable(res);
+    public InitStripeCustomerPortalUrlResponse withString(String string) {
+        Utils.checkNotNull(string, "string");
+        this.string = Optional.ofNullable(string);
         return this;
     }
 
     /**
      * Ok
      */
-    public InitStripeCustomerPortalUrlResponse withRes(Optional<? extends String> res) {
-        Utils.checkNotNull(res, "res");
-        this.res = res;
+    public InitStripeCustomerPortalUrlResponse withString(Optional<? extends String> string) {
+        Utils.checkNotNull(string, "string");
+        this.string = string;
         return this;
     }
     
@@ -164,7 +164,7 @@ public class InitStripeCustomerPortalUrlResponse {
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.res, other.res);
+            java.util.Objects.deepEquals(this.string, other.string);
     }
     
     @Override
@@ -174,7 +174,7 @@ public class InitStripeCustomerPortalUrlResponse {
             contentType,
             statusCode,
             rawResponse,
-            res);
+            string);
     }
     
     @Override
@@ -184,7 +184,7 @@ public class InitStripeCustomerPortalUrlResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "res", res);
+                "string", string);
     }
     
     public final static class Builder {
@@ -197,7 +197,7 @@ public class InitStripeCustomerPortalUrlResponse {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends String> res = Optional.empty();  
+        private Optional<? extends String> string = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -245,18 +245,18 @@ public class InitStripeCustomerPortalUrlResponse {
         /**
          * Ok
          */
-        public Builder res(String res) {
-            Utils.checkNotNull(res, "res");
-            this.res = Optional.ofNullable(res);
+        public Builder string(String string) {
+            Utils.checkNotNull(string, "string");
+            this.string = Optional.ofNullable(string);
             return this;
         }
 
         /**
          * Ok
          */
-        public Builder res(Optional<? extends String> res) {
-            Utils.checkNotNull(res, "res");
-            this.res = res;
+        public Builder string(Optional<? extends String> string) {
+            Utils.checkNotNull(string, "string");
+            this.string = string;
             return this;
         }
         
@@ -266,7 +266,7 @@ public class InitStripeCustomerPortalUrlResponse {
                 contentType,
                 statusCode,
                 rawResponse,
-                res);
+                string);
         }
     }
 }

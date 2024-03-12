@@ -317,7 +317,7 @@ public class SDKTest {
         return client.calculateLatency();
     }
     public void testGetMetrics(HathoraCloud hathoraCloudSdk, String processId) throws Exception {
-        GetMetricsResponse res = hathoraCloudSdk.metricsV1().getMetrics(GetMetricsRequest.builder().metrics(List.of(MetricName.CPU)).processId(processId).build());
+        GetMetricsResponse res = hathoraCloudSdk.metricsV1().getMetrics(GetMetricsRequest.builder().metrics(List.of(MetricName.CPU)).processId(processId).step(60).build());
         System.out.println("RES: " + res.statusCode());
         if (res.metricsResponse().isPresent()) {
             System.out.println("Metrics: " + res.metricsResponse().get());

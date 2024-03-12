@@ -75,9 +75,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.DownloadLogForProcessResponse>](../../models/operations/DownloadLogForProcessResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getLogsForApp~~
 
@@ -149,9 +149,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetLogsForAppResponse>](../../models/operations/GetLogsForAppResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getLogsForDeployment~~
 
@@ -222,9 +222,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetLogsForDeploymentResponse>](../../models/operations/GetLogsForDeploymentResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getLogsForProcess
 
@@ -293,6 +293,6 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetLogsForProcessResponse>](../../models/operations/GetLogsForProcessResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

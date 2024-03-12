@@ -85,9 +85,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse>](../../models/operations/CreateRoomDeprecatedResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~destroyRoomDeprecated~~
 
@@ -150,9 +150,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse>](../../models/operations/DestroyRoomDeprecatedResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getActiveRoomsForProcessDeprecated~~
 
@@ -217,9 +217,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse>](../../models/operations/GetActiveRoomsForProcessDeprecatedResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getConnectionInfoDeprecated~~
 
@@ -280,9 +280,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse>](../../models/operations/GetConnectionInfoDeprecatedResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getInactiveRoomsForProcessDeprecated~~
 
@@ -347,9 +347,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse>](../../models/operations/GetInactiveRoomsForProcessDeprecatedResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getRoomInfoDeprecated~~
 
@@ -414,9 +414,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse>](../../models/operations/GetRoomInfoDeprecatedResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~suspendRoomDeprecated~~
 
@@ -479,6 +479,6 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse>](../../models/operations/SuspendRoomDeprecatedResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

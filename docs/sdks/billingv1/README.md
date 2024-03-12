@@ -59,9 +59,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetBalanceResponse>](../../models/operations/GetBalanceResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getInvoices
 
@@ -114,9 +114,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetInvoicesResponse>](../../models/operations/GetInvoicesResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getPaymentMethod
 
@@ -169,9 +169,9 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse>](../../models/operations/GetPaymentMethodResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## initStripeCustomerPortalUrl
 
@@ -212,7 +212,7 @@ public class Application {
                 .request(req)
                 .call();
 
-            if (res.res().isPresent()) {
+            if (res.string().isPresent()) {
                 // handle response
             }
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
@@ -236,6 +236,6 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse>](../../models/operations/InitStripeCustomerPortalUrlResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

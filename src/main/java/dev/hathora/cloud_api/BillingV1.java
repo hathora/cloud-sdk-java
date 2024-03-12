@@ -278,8 +278,11 @@ public class BillingV1 implements
 
         if (httpRes.statusCode() == 200) {
             if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                String out = Utils.toUtf8AndClose(httpRes.body());
-                res.withRes(java.util.Optional.ofNullable(out));
+                ObjectMapper mapper = JSON.getMapper();
+                String out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<String>() {});
+                res.withString(java.util.Optional.ofNullable(out));
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
