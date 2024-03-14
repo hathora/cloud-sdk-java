@@ -12,7 +12,8 @@ generation:
   baseServerURL: ""
   flattenGlobalSecurity: true
 java:
-  version: 2.2.0
+  version: 2.3.0
+  additionalDependencies: []
   artifactID: cloud-api
   companyEmail: info@mycompany.com
   companyName: My Company
