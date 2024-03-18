@@ -12,7 +12,7 @@
 ### Gradle
 
 ```groovy
-implementation 'dev.hathora.cloud_api:Hathora-Cloud:2.2.0'
+implementation 'dev.hathora.cloud_api:Hathora-Cloud:2.3.0'
 ```
 <!-- End SDK Installation [installation] -->
 
