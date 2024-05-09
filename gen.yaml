@@ -13,7 +13,9 @@ generation:
   flattenGlobalSecurity: true
 java:
   version: 2.3.0
-  additionalDependencies: []
+  additionalDependencies: 
+  - 'testImplementation:org.junit.jupiter:junit-jupiter-api:5.8.1'
+  - 'testRuntimeOnly:org.junit.jupiter:junit-jupiter-engine:5.8.1'
   artifactID: cloud-api
   companyEmail: info@mycompany.com
   companyName: My Company
