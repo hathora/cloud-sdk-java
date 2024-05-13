@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -34,6 +36,7 @@ public class ProcessWithRoomsExposedPort {
     @JsonProperty("transportType")
     private TransportType transportType;
 
+    @JsonCreator
     public ProcessWithRoomsExposedPort(
             @JsonProperty("host") String host,
             @JsonProperty("name") String name,
@@ -49,14 +52,17 @@ public class ProcessWithRoomsExposedPort {
         this.transportType = transportType;
     }
 
+    @JsonIgnore
     public String host() {
         return host;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public int port() {
         return port;
     }
@@ -64,6 +70,7 @@ public class ProcessWithRoomsExposedPort {
     /**
      * Transport type specifies the underlying communication protocol to the exposed port.
      */
+    @JsonIgnore
     public TransportType transportType() {
         return transportType;
     }

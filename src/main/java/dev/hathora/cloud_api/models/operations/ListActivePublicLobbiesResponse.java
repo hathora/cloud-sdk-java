@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -37,6 +39,7 @@ public class ListActivePublicLobbiesResponse implements dev.hathora.cloud_api.ut
      */
     private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.LobbyV3>> classes;
 
+    @JsonCreator
     public ListActivePublicLobbiesResponse(
             String contentType,
             int statusCode,
@@ -51,10 +54,18 @@ public class ListActivePublicLobbiesResponse implements dev.hathora.cloud_api.ut
         this.rawResponse = rawResponse;
         this.classes = classes;
     }
+    
+    public ListActivePublicLobbiesResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse, Optional.empty());
+    }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -62,6 +73,7 @@ public class ListActivePublicLobbiesResponse implements dev.hathora.cloud_api.ut
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -69,6 +81,7 @@ public class ListActivePublicLobbiesResponse implements dev.hathora.cloud_api.ut
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -76,8 +89,10 @@ public class ListActivePublicLobbiesResponse implements dev.hathora.cloud_api.ut
     /**
      * Ok
      */
-    public Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.LobbyV3>> classes() {
-        return classes;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<java.util.List<dev.hathora.cloud_api.models.shared.LobbyV3>> classes() {
+        return (Optional<java.util.List<dev.hathora.cloud_api.models.shared.LobbyV3>>) classes;
     }
 
     public final static Builder builder() {

@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -17,8 +19,6 @@ import java.util.Optional;
 
 public class GetMetricsResponse implements dev.hathora.cloud_api.utils.Response {
 
-    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
-
     /**
      * HTTP response content type for this operation
      */
@@ -27,7 +27,7 @@ public class GetMetricsResponse implements dev.hathora.cloud_api.utils.Response 
     /**
      * Ok
      */
-    private Optional<? extends dev.hathora.cloud_api.models.shared.MetricsResponse> metricsResponse;
+    private Optional<? extends dev.hathora.cloud_api.models.shared.MetricsData> metricsData;
 
     /**
      * HTTP response status code for this operation
@@ -39,31 +39,33 @@ public class GetMetricsResponse implements dev.hathora.cloud_api.utils.Response 
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public GetMetricsResponse(
-            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             String contentType,
-            Optional<? extends dev.hathora.cloud_api.models.shared.MetricsResponse> metricsResponse,
+            Optional<? extends dev.hathora.cloud_api.models.shared.MetricsData> metricsData,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(apiError, "apiError");
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(metricsResponse, "metricsResponse");
+        Utils.checkNotNull(metricsData, "metricsData");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.apiError = apiError;
         this.contentType = contentType;
-        this.metricsResponse = metricsResponse;
+        this.metricsData = metricsData;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
-
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
-        return apiError;
+    
+    public GetMetricsResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -71,13 +73,16 @@ public class GetMetricsResponse implements dev.hathora.cloud_api.utils.Response 
     /**
      * Ok
      */
-    public Optional<? extends dev.hathora.cloud_api.models.shared.MetricsResponse> metricsResponse() {
-        return metricsResponse;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<dev.hathora.cloud_api.models.shared.MetricsData> metricsData() {
+        return (Optional<dev.hathora.cloud_api.models.shared.MetricsData>) metricsData;
     }
 
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -85,24 +90,13 @@ public class GetMetricsResponse implements dev.hathora.cloud_api.utils.Response 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public GetMetricsResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = Optional.ofNullable(apiError);
-        return this;
-    }
-
-    public GetMetricsResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = apiError;
-        return this;
     }
 
     /**
@@ -117,18 +111,18 @@ public class GetMetricsResponse implements dev.hathora.cloud_api.utils.Response 
     /**
      * Ok
      */
-    public GetMetricsResponse withMetricsResponse(dev.hathora.cloud_api.models.shared.MetricsResponse metricsResponse) {
-        Utils.checkNotNull(metricsResponse, "metricsResponse");
-        this.metricsResponse = Optional.ofNullable(metricsResponse);
+    public GetMetricsResponse withMetricsData(dev.hathora.cloud_api.models.shared.MetricsData metricsData) {
+        Utils.checkNotNull(metricsData, "metricsData");
+        this.metricsData = Optional.ofNullable(metricsData);
         return this;
     }
 
     /**
      * Ok
      */
-    public GetMetricsResponse withMetricsResponse(Optional<? extends dev.hathora.cloud_api.models.shared.MetricsResponse> metricsResponse) {
-        Utils.checkNotNull(metricsResponse, "metricsResponse");
-        this.metricsResponse = metricsResponse;
+    public GetMetricsResponse withMetricsData(Optional<? extends dev.hathora.cloud_api.models.shared.MetricsData> metricsData) {
+        Utils.checkNotNull(metricsData, "metricsData");
+        this.metricsData = metricsData;
         return this;
     }
 
@@ -160,9 +154,8 @@ public class GetMetricsResponse implements dev.hathora.cloud_api.utils.Response 
         }
         GetMetricsResponse other = (GetMetricsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.metricsResponse, other.metricsResponse) &&
+            java.util.Objects.deepEquals(this.metricsData, other.metricsData) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -170,9 +163,8 @@ public class GetMetricsResponse implements dev.hathora.cloud_api.utils.Response 
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            apiError,
             contentType,
-            metricsResponse,
+            metricsData,
             statusCode,
             rawResponse);
     }
@@ -180,20 +172,17 @@ public class GetMetricsResponse implements dev.hathora.cloud_api.utils.Response 
     @Override
     public String toString() {
         return Utils.toString(GetMetricsResponse.class,
-                "apiError", apiError,
                 "contentType", contentType,
-                "metricsResponse", metricsResponse,
+                "metricsData", metricsData,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
     
     public final static class Builder {
  
-        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
- 
         private String contentType;
  
-        private Optional<? extends dev.hathora.cloud_api.models.shared.MetricsResponse> metricsResponse = Optional.empty();
+        private Optional<? extends dev.hathora.cloud_api.models.shared.MetricsData> metricsData = Optional.empty();
  
         private Integer statusCode;
  
@@ -201,18 +190,6 @@ public class GetMetricsResponse implements dev.hathora.cloud_api.utils.Response 
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = Optional.ofNullable(apiError);
-            return this;
-        }
-
-        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = apiError;
-            return this;
         }
 
         /**
@@ -227,18 +204,18 @@ public class GetMetricsResponse implements dev.hathora.cloud_api.utils.Response 
         /**
          * Ok
          */
-        public Builder metricsResponse(dev.hathora.cloud_api.models.shared.MetricsResponse metricsResponse) {
-            Utils.checkNotNull(metricsResponse, "metricsResponse");
-            this.metricsResponse = Optional.ofNullable(metricsResponse);
+        public Builder metricsData(dev.hathora.cloud_api.models.shared.MetricsData metricsData) {
+            Utils.checkNotNull(metricsData, "metricsData");
+            this.metricsData = Optional.ofNullable(metricsData);
             return this;
         }
 
         /**
          * Ok
          */
-        public Builder metricsResponse(Optional<? extends dev.hathora.cloud_api.models.shared.MetricsResponse> metricsResponse) {
-            Utils.checkNotNull(metricsResponse, "metricsResponse");
-            this.metricsResponse = metricsResponse;
+        public Builder metricsData(Optional<? extends dev.hathora.cloud_api.models.shared.MetricsData> metricsData) {
+            Utils.checkNotNull(metricsData, "metricsData");
+            this.metricsData = metricsData;
             return this;
         }
 
@@ -262,9 +239,8 @@ public class GetMetricsResponse implements dev.hathora.cloud_api.utils.Response 
         
         public GetMetricsResponse build() {
             return new GetMetricsResponse(
-                apiError,
                 contentType,
-                metricsResponse,
+                metricsData,
                 statusCode,
                 rawResponse);
         }

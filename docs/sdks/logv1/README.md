@@ -21,10 +21,8 @@ Download entire log file for a stopped process.
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.DownloadLogForProcessRequest;
-import dev.hathora.cloud_api.models.operations.DownloadLogForProcessResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -32,11 +30,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -50,13 +49,18 @@ public class Application {
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
 
-            if (res.res().isPresent()) {
+            if (res.stream().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -77,6 +81,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 400,401,404,410        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getLogsForApp~~
@@ -90,23 +95,21 @@ Returns a stream of logs for an [application](https://hathora.dev/docs/concepts/
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetLogsForAppRequest;
-import dev.hathora.cloud_api.models.operations.GetLogsForAppResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Region;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -116,8 +119,6 @@ public class Application {
                 .build();
 
             GetLogsForAppRequest req = GetLogsForAppRequest.builder()
-                .follow(false)
-                .region(Region.SINGAPORE)
                 .tailLines(100)
                 .build();
 
@@ -125,13 +126,18 @@ public class Application {
                 .request(req)
                 .call();
 
-            if (res.res().isPresent()) {
+            if (res.stream().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -151,6 +157,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getLogsForDeployment~~
@@ -164,10 +171,8 @@ Returns a stream of logs for a [deployment](https://hathora.dev/docs/concepts/ha
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetLogsForDeploymentRequest;
-import dev.hathora.cloud_api.models.operations.GetLogsForDeploymentResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -175,11 +180,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -190,7 +196,6 @@ public class Application {
 
             GetLogsForDeploymentRequest req = GetLogsForDeploymentRequest.builder()
                 .deploymentId(1)
-                .follow(false)
                 .tailLines(100)
                 .build();
 
@@ -198,13 +203,18 @@ public class Application {
                 .request(req)
                 .call();
 
-            if (res.res().isPresent()) {
+            if (res.stream().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -224,6 +234,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getLogsForProcess
@@ -235,10 +246,8 @@ Returns a stream of logs for a [process](https://hathora.dev/docs/concepts/hatho
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetLogsForProcessRequest;
-import dev.hathora.cloud_api.models.operations.GetLogsForProcessResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -246,11 +255,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -261,7 +271,6 @@ public class Application {
 
             GetLogsForProcessRequest req = GetLogsForProcessRequest.builder()
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
-                .follow(false)
                 .tailLines(100)
                 .build();
 
@@ -269,13 +278,18 @@ public class Application {
                 .request(req)
                 .call();
 
-            if (res.res().isPresent()) {
+            if (res.stream().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -295,4 +309,5 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 400,401,404,410,500    | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |

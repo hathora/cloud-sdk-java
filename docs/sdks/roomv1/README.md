@@ -24,24 +24,21 @@ Deprecated. Use [RoomV2](https://hathora.dev/api#tag/RoomV2).
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedRequest;
-import dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.CreateRoomParams;
-import dev.hathora.cloud_api.models.shared.Region;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -52,7 +49,7 @@ public class Application {
 
             CreateRoomDeprecatedResponse res = sdk.roomV1().createRoomDeprecated()
                 .createRoomParams(CreateRoomParams.builder()
-                    .region(Region.SINGAPORE)
+                    .region(Region.CHICAGO)
                     .roomConfig("{\"name\":\"my-room\"}")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -62,10 +59,15 @@ public class Application {
             if (res.roomId().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -85,9 +87,10 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse>](../../models/operations/CreateRoomDeprecatedResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ApiError      | 400,401,402,403,404,429,500 | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## ~~destroyRoomDeprecated~~
 
@@ -98,10 +101,8 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedRequest;
-import dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -109,11 +110,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -128,10 +130,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -152,6 +159,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,429,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getActiveRoomsForProcessDeprecated~~
@@ -163,10 +171,8 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedRequest;
-import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -174,11 +180,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -195,10 +202,15 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -219,6 +231,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getConnectionInfoDeprecated~~
@@ -230,21 +243,20 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedRequest;
-import dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -258,10 +270,15 @@ public class Application {
             if (res.connectionInfo().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -282,6 +299,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 400,402,404,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getInactiveRoomsForProcessDeprecated~~
@@ -293,10 +311,8 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedRequest;
-import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -304,11 +320,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -325,10 +342,15 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -349,6 +371,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getRoomInfoDeprecated~~
@@ -360,10 +383,8 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedRequest;
-import dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -371,11 +392,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -392,10 +414,15 @@ public class Application {
             if (res.room().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -416,6 +443,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~suspendRoomDeprecated~~
@@ -427,10 +455,8 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedRequest;
-import dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -438,11 +464,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -457,10 +484,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -481,4 +513,5 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,429,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |

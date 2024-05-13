@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -20,14 +22,21 @@ public class Security {
     @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
     private Optional<? extends String> hathoraDevToken;
 
+    @JsonCreator
     public Security(
             Optional<? extends String> hathoraDevToken) {
         Utils.checkNotNull(hathoraDevToken, "hathoraDevToken");
         this.hathoraDevToken = hathoraDevToken;
     }
+    
+    public Security() {
+        this(Optional.empty());
+    }
 
-    public Optional<? extends String> hathoraDevToken() {
-        return hathoraDevToken;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> hathoraDevToken() {
+        return (Optional<String>) hathoraDevToken;
     }
 
     public final static Builder builder() {

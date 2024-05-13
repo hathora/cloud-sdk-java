@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -128,6 +130,7 @@ public class Deployment {
     @Deprecated
     private DeploymentTransportType transportType;
 
+    @JsonCreator
     public Deployment(
             @JsonProperty("additionalContainerPorts") java.util.List<ContainerPort> additionalContainerPorts,
             @JsonProperty("appId") String appId,
@@ -175,10 +178,29 @@ public class Deployment {
         this.roomsPerProcess = roomsPerProcess;
         this.transportType = transportType;
     }
+    
+    public Deployment(
+            java.util.List<ContainerPort> additionalContainerPorts,
+            String appId,
+            int buildId,
+            double containerPort,
+            OffsetDateTime createdAt,
+            String createdBy,
+            ContainerPort defaultContainerPort,
+            int deploymentId,
+            java.util.List<Env> env,
+            PlanName planName,
+            double requestedCPU,
+            int requestedMemoryMB,
+            int roomsPerProcess,
+            DeploymentTransportType transportType) {
+        this(additionalContainerPorts, appId, buildId, containerPort, createdAt, createdBy, defaultContainerPort, deploymentId, env, Optional.empty(), planName, requestedCPU, requestedMemoryMB, roomsPerProcess, transportType);
+    }
 
     /**
      * Additional ports your server listens on.
      */
+    @JsonIgnore
     public java.util.List<ContainerPort> additionalContainerPorts() {
         return additionalContainerPorts;
     }
@@ -186,6 +208,7 @@ public class Deployment {
     /**
      * System generated unique identifier for an application.
      */
+    @JsonIgnore
     public String appId() {
         return appId;
     }
@@ -193,6 +216,7 @@ public class Deployment {
     /**
      * System generated id for a build. Increments by 1.
      */
+    @JsonIgnore
     public int buildId() {
         return buildId;
     }
@@ -201,6 +225,7 @@ public class Deployment {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public double containerPort() {
         return containerPort;
     }
@@ -208,6 +233,7 @@ public class Deployment {
     /**
      * When the deployment was created.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -215,6 +241,7 @@ public class Deployment {
     /**
      * UserId or email address for the user that created the deployment.
      */
+    @JsonIgnore
     public String createdBy() {
         return createdBy;
     }
@@ -222,6 +249,7 @@ public class Deployment {
     /**
      * A container port object represents the transport configruations for how your server will listen.
      */
+    @JsonIgnore
     public ContainerPort defaultContainerPort() {
         return defaultContainerPort;
     }
@@ -229,6 +257,7 @@ public class Deployment {
     /**
      * System generated id for a deployment. Increments by 1.
      */
+    @JsonIgnore
     public int deploymentId() {
         return deploymentId;
     }
@@ -236,6 +265,7 @@ public class Deployment {
     /**
      * The environment variable that our process will have access to at runtime.
      */
+    @JsonIgnore
     public java.util.List<Env> env() {
         return env;
     }
@@ -244,8 +274,10 @@ public class Deployment {
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
-    public Optional<? extends Boolean> idleTimeoutEnabled() {
-        return idleTimeoutEnabled;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Boolean> idleTimeoutEnabled() {
+        return (Optional<Boolean>) idleTimeoutEnabled;
     }
 
     /**
@@ -259,6 +291,7 @@ public class Deployment {
      * 
      * `large`: 4 core, 8gb memory
      */
+    @JsonIgnore
     public PlanName planName() {
         return planName;
     }
@@ -266,6 +299,7 @@ public class Deployment {
     /**
      * The number of cores allocated to your process.
      */
+    @JsonIgnore
     public double requestedCPU() {
         return requestedCPU;
     }
@@ -273,6 +307,7 @@ public class Deployment {
     /**
      * The amount of memory allocated to your process.
      */
+    @JsonIgnore
     public int requestedMemoryMB() {
         return requestedMemoryMB;
     }
@@ -280,6 +315,7 @@ public class Deployment {
     /**
      * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
      */
+    @JsonIgnore
     public int roomsPerProcess() {
         return roomsPerProcess;
     }
@@ -288,6 +324,7 @@ public class Deployment {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public DeploymentTransportType transportType() {
         return transportType;
     }

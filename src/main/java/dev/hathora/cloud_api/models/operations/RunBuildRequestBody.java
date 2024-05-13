@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -17,15 +19,17 @@ import java.math.BigInteger;
 public class RunBuildRequestBody {
 
     @SpeakeasyMetadata("multipartForm:file")
-    private File file;
+    private RunBuildFile file;
 
+    @JsonCreator
     public RunBuildRequestBody(
-            File file) {
+            RunBuildFile file) {
         Utils.checkNotNull(file, "file");
         this.file = file;
     }
 
-    public File file() {
+    @JsonIgnore
+    public RunBuildFile file() {
         return file;
     }
 
@@ -33,7 +37,7 @@ public class RunBuildRequestBody {
         return new Builder();
     }
 
-    public RunBuildRequestBody withFile(File file) {
+    public RunBuildRequestBody withFile(RunBuildFile file) {
         Utils.checkNotNull(file, "file");
         this.file = file;
         return this;
@@ -66,13 +70,13 @@ public class RunBuildRequestBody {
     
     public final static class Builder {
  
-        private File file;  
+        private RunBuildFile file;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder file(File file) {
+        public Builder file(RunBuildFile file) {
             Utils.checkNotNull(file, "file");
             this.file = file;
             return this;

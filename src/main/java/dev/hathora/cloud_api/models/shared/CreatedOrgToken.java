@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -22,6 +24,7 @@ public class CreatedOrgToken {
     @JsonProperty("plainTextToken")
     private String plainTextToken;
 
+    @JsonCreator
     public CreatedOrgToken(
             @JsonProperty("orgToken") OrgToken orgToken,
             @JsonProperty("plainTextToken") String plainTextToken) {
@@ -31,10 +34,12 @@ public class CreatedOrgToken {
         this.plainTextToken = plainTextToken;
     }
 
+    @JsonIgnore
     public OrgToken orgToken() {
         return orgToken;
     }
 
+    @JsonIgnore
     public String plainTextToken() {
         return plainTextToken;
     }

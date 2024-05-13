@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -23,6 +25,7 @@ public class GetLobbyInfoByShortCodeRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=shortCode")
     private String shortCode;
 
+    @JsonCreator
     public GetLobbyInfoByShortCodeRequest(
             Optional<? extends String> appId,
             String shortCode) {
@@ -31,11 +34,19 @@ public class GetLobbyInfoByShortCodeRequest {
         this.appId = appId;
         this.shortCode = shortCode;
     }
-
-    public Optional<? extends String> appId() {
-        return appId;
+    
+    public GetLobbyInfoByShortCodeRequest(
+            String shortCode) {
+        this(Optional.empty(), shortCode);
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
+    }
+
+    @JsonIgnore
     public String shortCode() {
         return shortCode;
     }

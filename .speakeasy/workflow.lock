@@ -1,0 +1,14 @@
+speakeasyVersion: 1.286.0
+sources: {}
+targets: {}
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        java-source:
+            inputs:
+                - location: https://hathora.dev/swagger.json
+    targets:
+        hathora-java:
+            target: java
+            source: java-source

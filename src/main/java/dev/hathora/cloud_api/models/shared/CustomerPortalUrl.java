@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -19,12 +21,14 @@ public class CustomerPortalUrl {
     @JsonProperty("returnUrl")
     private String returnUrl;
 
+    @JsonCreator
     public CustomerPortalUrl(
             @JsonProperty("returnUrl") String returnUrl) {
         Utils.checkNotNull(returnUrl, "returnUrl");
         this.returnUrl = returnUrl;
     }
 
+    @JsonIgnore
     public String returnUrl() {
         return returnUrl;
     }

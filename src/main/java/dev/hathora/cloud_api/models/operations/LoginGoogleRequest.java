@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -18,35 +20,44 @@ import java.util.Optional;
 public class LoginGoogleRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private dev.hathora.cloud_api.models.shared.LoginGoogleRequest loginGoogleRequest;
+    private dev.hathora.cloud_api.models.shared.GoogleIdTokenObject googleIdTokenObject;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<? extends String> appId;
 
+    @JsonCreator
     public LoginGoogleRequest(
-            dev.hathora.cloud_api.models.shared.LoginGoogleRequest loginGoogleRequest,
+            dev.hathora.cloud_api.models.shared.GoogleIdTokenObject googleIdTokenObject,
             Optional<? extends String> appId) {
-        Utils.checkNotNull(loginGoogleRequest, "loginGoogleRequest");
+        Utils.checkNotNull(googleIdTokenObject, "googleIdTokenObject");
         Utils.checkNotNull(appId, "appId");
-        this.loginGoogleRequest = loginGoogleRequest;
+        this.googleIdTokenObject = googleIdTokenObject;
         this.appId = appId;
     }
-
-    public dev.hathora.cloud_api.models.shared.LoginGoogleRequest loginGoogleRequest() {
-        return loginGoogleRequest;
+    
+    public LoginGoogleRequest(
+            dev.hathora.cloud_api.models.shared.GoogleIdTokenObject googleIdTokenObject) {
+        this(googleIdTokenObject, Optional.empty());
     }
 
-    public Optional<? extends String> appId() {
-        return appId;
+    @JsonIgnore
+    public dev.hathora.cloud_api.models.shared.GoogleIdTokenObject googleIdTokenObject() {
+        return googleIdTokenObject;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public LoginGoogleRequest withLoginGoogleRequest(dev.hathora.cloud_api.models.shared.LoginGoogleRequest loginGoogleRequest) {
-        Utils.checkNotNull(loginGoogleRequest, "loginGoogleRequest");
-        this.loginGoogleRequest = loginGoogleRequest;
+    public LoginGoogleRequest withGoogleIdTokenObject(dev.hathora.cloud_api.models.shared.GoogleIdTokenObject googleIdTokenObject) {
+        Utils.checkNotNull(googleIdTokenObject, "googleIdTokenObject");
+        this.googleIdTokenObject = googleIdTokenObject;
         return this;
     }
 
@@ -72,27 +83,27 @@ public class LoginGoogleRequest {
         }
         LoginGoogleRequest other = (LoginGoogleRequest) o;
         return 
-            java.util.Objects.deepEquals(this.loginGoogleRequest, other.loginGoogleRequest) &&
+            java.util.Objects.deepEquals(this.googleIdTokenObject, other.googleIdTokenObject) &&
             java.util.Objects.deepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            loginGoogleRequest,
+            googleIdTokenObject,
             appId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(LoginGoogleRequest.class,
-                "loginGoogleRequest", loginGoogleRequest,
+                "googleIdTokenObject", googleIdTokenObject,
                 "appId", appId);
     }
     
     public final static class Builder {
  
-        private dev.hathora.cloud_api.models.shared.LoginGoogleRequest loginGoogleRequest;
+        private dev.hathora.cloud_api.models.shared.GoogleIdTokenObject googleIdTokenObject;
  
         private Optional<? extends String> appId = Optional.empty();  
         
@@ -100,9 +111,9 @@ public class LoginGoogleRequest {
           // force use of static builder() method
         }
 
-        public Builder loginGoogleRequest(dev.hathora.cloud_api.models.shared.LoginGoogleRequest loginGoogleRequest) {
-            Utils.checkNotNull(loginGoogleRequest, "loginGoogleRequest");
-            this.loginGoogleRequest = loginGoogleRequest;
+        public Builder googleIdTokenObject(dev.hathora.cloud_api.models.shared.GoogleIdTokenObject googleIdTokenObject) {
+            Utils.checkNotNull(googleIdTokenObject, "googleIdTokenObject");
+            this.googleIdTokenObject = googleIdTokenObject;
             return this;
         }
 
@@ -120,7 +131,7 @@ public class LoginGoogleRequest {
         
         public LoginGoogleRequest build() {
             return new LoginGoogleRequest(
-                loginGoogleRequest,
+                googleIdTokenObject,
                 appId);
         }
     }

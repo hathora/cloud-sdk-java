@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -16,8 +18,6 @@ import java.util.Optional;
 
 
 public class GetOrgTokensResponse implements dev.hathora.cloud_api.utils.Response {
-
-    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
 
     /**
      * HTTP response content type for this operation
@@ -39,31 +39,33 @@ public class GetOrgTokensResponse implements dev.hathora.cloud_api.utils.Respons
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public GetOrgTokensResponse(
-            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             String contentType,
             Optional<? extends dev.hathora.cloud_api.models.shared.ListOrgTokens> listOrgTokens,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(apiError, "apiError");
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(listOrgTokens, "listOrgTokens");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.apiError = apiError;
         this.contentType = contentType;
         this.listOrgTokens = listOrgTokens;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
-
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
-        return apiError;
+    
+    public GetOrgTokensResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -71,13 +73,16 @@ public class GetOrgTokensResponse implements dev.hathora.cloud_api.utils.Respons
     /**
      * Ok
      */
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ListOrgTokens> listOrgTokens() {
-        return listOrgTokens;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<dev.hathora.cloud_api.models.shared.ListOrgTokens> listOrgTokens() {
+        return (Optional<dev.hathora.cloud_api.models.shared.ListOrgTokens>) listOrgTokens;
     }
 
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -85,24 +90,13 @@ public class GetOrgTokensResponse implements dev.hathora.cloud_api.utils.Respons
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public GetOrgTokensResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = Optional.ofNullable(apiError);
-        return this;
-    }
-
-    public GetOrgTokensResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = apiError;
-        return this;
     }
 
     /**
@@ -160,7 +154,6 @@ public class GetOrgTokensResponse implements dev.hathora.cloud_api.utils.Respons
         }
         GetOrgTokensResponse other = (GetOrgTokensResponse) o;
         return 
-            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.listOrgTokens, other.listOrgTokens) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
@@ -170,7 +163,6 @@ public class GetOrgTokensResponse implements dev.hathora.cloud_api.utils.Respons
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            apiError,
             contentType,
             listOrgTokens,
             statusCode,
@@ -180,7 +172,6 @@ public class GetOrgTokensResponse implements dev.hathora.cloud_api.utils.Respons
     @Override
     public String toString() {
         return Utils.toString(GetOrgTokensResponse.class,
-                "apiError", apiError,
                 "contentType", contentType,
                 "listOrgTokens", listOrgTokens,
                 "statusCode", statusCode,
@@ -188,8 +179,6 @@ public class GetOrgTokensResponse implements dev.hathora.cloud_api.utils.Respons
     }
     
     public final static class Builder {
- 
-        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
  
         private String contentType;
  
@@ -201,18 +190,6 @@ public class GetOrgTokensResponse implements dev.hathora.cloud_api.utils.Respons
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = Optional.ofNullable(apiError);
-            return this;
-        }
-
-        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = apiError;
-            return this;
         }
 
         /**
@@ -262,7 +239,6 @@ public class GetOrgTokensResponse implements dev.hathora.cloud_api.utils.Respons
         
         public GetOrgTokensResponse build() {
             return new GetOrgTokensResponse(
-                apiError,
                 contentType,
                 listOrgTokens,
                 statusCode,

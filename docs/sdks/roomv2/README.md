@@ -13,7 +13,7 @@ Operations to create, manage, and connect to [rooms](https://hathora.dev/docs/co
 * [getConnectionInfo](#getconnectioninfo) - Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
 * [getInactiveRoomsForProcess](#getinactiveroomsforprocess) - Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
 * [getRoomInfo](#getroominfo) - Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
-* [suspendRoom](#suspendroom) - Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
+* [~~suspendRoomV2Deprecated~~](#suspendroomv2deprecated) - Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`. :warning: **Deprecated**
 * [updateRoomConfig](#updateroomconfig)
 
 ## createRoom
@@ -25,24 +25,21 @@ Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreateRoomRequest;
-import dev.hathora.cloud_api.models.operations.CreateRoomResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.CreateRoomParams;
-import dev.hathora.cloud_api.models.shared.Region;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -53,20 +50,25 @@ public class Application {
 
             CreateRoomResponse res = sdk.roomV2().createRoom()
                 .createRoomParams(CreateRoomParams.builder()
-                    .region(Region.TOKYO)
+                    .region(Region.SAO_PAULO)
                     .roomConfig("{\"name\":\"my-room\"}")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.createRoomResponse().isPresent()) {
+            if (res.roomConnectionData().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -86,9 +88,10 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreateRoomResponse>](../../models/operations/CreateRoomResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ApiError      | 400,401,402,403,404,429,500 | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## destroyRoom
 
@@ -99,10 +102,8 @@ Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All a
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.DestroyRoomRequest;
-import dev.hathora.cloud_api.models.operations.DestroyRoomResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -110,11 +111,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -129,10 +131,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -153,6 +160,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,429,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getActiveRoomsForProcess
@@ -164,10 +172,8 @@ Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessRequest;
-import dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -175,11 +181,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -196,10 +203,15 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -220,6 +232,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getConnectionInfo
@@ -231,21 +244,20 @@ Poll this endpoint to get connection details to a [room](https://hathora.dev/doc
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetConnectionInfoRequest;
-import dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -259,10 +271,15 @@ public class Application {
             if (res.connectionInfoV2().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -283,6 +300,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 400,402,404,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getInactiveRoomsForProcess
@@ -294,10 +312,8 @@ Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessRequest;
-import dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -305,11 +321,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -326,10 +343,15 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -350,6 +372,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getRoomInfo
@@ -361,10 +384,8 @@ Retreive current and historical allocation data for a [room](https://hathora.dev
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetRoomInfoRequest;
-import dev.hathora.cloud_api.models.operations.GetRoomInfoResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -372,11 +393,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -393,10 +415,15 @@ public class Application {
             if (res.room().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -417,21 +444,22 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
-## suspendRoom
+## ~~suspendRoomV2Deprecated~~
 
 Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.SuspendRoomRequest;
-import dev.hathora.cloud_api.models.operations.SuspendRoomResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -439,11 +467,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -452,16 +481,21 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            SuspendRoomResponse res = sdk.roomV2().suspendRoom()
+            SuspendRoomV2DeprecatedResponse res = sdk.roomV2().suspendRoomV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
             // handle response
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -477,11 +511,12 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.SuspendRoomResponse>](../../models/operations/SuspendRoomResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.SuspendRoomV2DeprecatedResponse>](../../models/operations/SuspendRoomV2DeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,429,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## updateRoomConfig
@@ -491,23 +526,21 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.UpdateRoomConfigRequest;
-import dev.hathora.cloud_api.models.operations.UpdateRoomConfigResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.models.shared.UpdateRoomConfigParams;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -525,10 +558,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -550,4 +588,5 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,429,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |

@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -28,6 +30,7 @@ public class AppConfig {
     @JsonProperty("authConfiguration")
     private AuthConfiguration authConfiguration;
 
+    @JsonCreator
     public AppConfig(
             @JsonProperty("appName") String appName,
             @JsonProperty("authConfiguration") AuthConfiguration authConfiguration) {
@@ -40,6 +43,7 @@ public class AppConfig {
     /**
      * Readable name for an application. Must be unique within an organization.
      */
+    @JsonIgnore
     public String appName() {
         return appName;
     }
@@ -47,6 +51,7 @@ public class AppConfig {
     /**
      * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
+    @JsonIgnore
     public AuthConfiguration authConfiguration() {
         return authConfiguration;
     }

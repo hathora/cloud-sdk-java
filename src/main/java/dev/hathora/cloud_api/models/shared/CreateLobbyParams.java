@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -37,6 +39,7 @@ public class CreateLobbyParams {
     @JsonProperty("visibility")
     private LobbyVisibility visibility;
 
+    @JsonCreator
     public CreateLobbyParams(
             @JsonProperty("initialConfig") LobbyInitialConfig initialConfig,
             @JsonProperty("region") Region region,
@@ -52,10 +55,12 @@ public class CreateLobbyParams {
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
+    @JsonIgnore
     public LobbyInitialConfig initialConfig() {
         return initialConfig;
     }
 
+    @JsonIgnore
     public Region region() {
         return region;
     }
@@ -69,6 +74,7 @@ public class CreateLobbyParams {
      * 
      * `local`: for testing with a server running locally
      */
+    @JsonIgnore
     public LobbyVisibility visibility() {
         return visibility;
     }

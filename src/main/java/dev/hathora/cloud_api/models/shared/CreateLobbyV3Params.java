@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -41,6 +43,7 @@ public class CreateLobbyV3Params {
     @JsonProperty("visibility")
     private LobbyVisibility visibility;
 
+    @JsonCreator
     public CreateLobbyV3Params(
             @JsonProperty("region") Region region,
             @JsonProperty("roomConfig") Optional<? extends String> roomConfig,
@@ -52,7 +55,14 @@ public class CreateLobbyV3Params {
         this.roomConfig = roomConfig;
         this.visibility = visibility;
     }
+    
+    public CreateLobbyV3Params(
+            Region region,
+            LobbyVisibility visibility) {
+        this(region, Optional.empty(), visibility);
+    }
 
+    @JsonIgnore
     public Region region() {
         return region;
     }
@@ -60,8 +70,10 @@ public class CreateLobbyV3Params {
     /**
      * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
-    public Optional<? extends String> roomConfig() {
-        return roomConfig;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> roomConfig() {
+        return (Optional<String>) roomConfig;
     }
 
     /**
@@ -73,6 +85,7 @@ public class CreateLobbyV3Params {
      * 
      * `local`: for testing with a server running locally
      */
+    @JsonIgnore
     public LobbyVisibility visibility() {
         return visibility;
     }

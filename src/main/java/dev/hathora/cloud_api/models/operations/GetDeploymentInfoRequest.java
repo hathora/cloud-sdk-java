@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -23,6 +25,7 @@ public class GetDeploymentInfoRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=deploymentId")
     private int deploymentId;
 
+    @JsonCreator
     public GetDeploymentInfoRequest(
             Optional<? extends String> appId,
             int deploymentId) {
@@ -31,11 +34,19 @@ public class GetDeploymentInfoRequest {
         this.appId = appId;
         this.deploymentId = deploymentId;
     }
-
-    public Optional<? extends String> appId() {
-        return appId;
+    
+    public GetDeploymentInfoRequest(
+            int deploymentId) {
+        this(Optional.empty(), deploymentId);
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
+    }
+
+    @JsonIgnore
     public int deploymentId() {
         return deploymentId;
     }

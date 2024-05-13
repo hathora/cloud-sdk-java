@@ -3,45 +3,41 @@
 
 ## Overview
 
-Operations that allow you configure and manage an application's [build](https://hathora.dev/docs/concepts/hathora-entities#build) at runtime.
+Deprecated. Use [DeploymentV2](https://hathora.dev/api#tag/DeploymentV2).
 
 ### Available Operations
 
-* [createDeployment](#createdeployment) - Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
-* [getDeploymentInfo](#getdeploymentinfo) - Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
-* [getDeployments](#getdeployments) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
-* [getLatestDeployment](#getlatestdeployment) - Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+* [~~createDeploymentDeprecated~~](#createdeploymentdeprecated) - Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected. :warning: **Deprecated**
+* [~~getDeploymentInfoDeprecated~~](#getdeploymentinfodeprecated) - Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). :warning: **Deprecated**
+* [~~getDeploymentsDeprecated~~](#getdeploymentsdeprecated) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). :warning: **Deprecated**
+* [~~getLatestDeploymentDeprecated~~](#getlatestdeploymentdeprecated) - Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). :warning: **Deprecated**
 
-## createDeployment
+## ~~createDeploymentDeprecated~~
 
 Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreateDeploymentRequest;
-import dev.hathora.cloud_api.models.operations.CreateDeploymentResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.ContainerPort;
-import dev.hathora.cloud_api.models.shared.DeploymentConfig;
-import dev.hathora.cloud_api.models.shared.DeploymentConfigEnv;
-import dev.hathora.cloud_api.models.shared.PlanName;
 import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.models.shared.TransportType;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -50,7 +46,7 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            CreateDeploymentResponse res = sdk.deploymentV1().createDeployment()
+            CreateDeploymentDeprecatedResponse res = sdk.deploymentV1().createDeploymentDeprecated()
                 .deploymentConfig(DeploymentConfig.builder()
                     .containerPort(4000)
                     .env(java.util.List.of(
@@ -60,7 +56,13 @@ public class Application {
                                 .build()))
                     .planName(PlanName.TINY)
                     .roomsPerProcess(3)
-                    .transportType(TransportType.TCP)
+                    .transportType(TransportType.UDP)
+                    .additionalContainerPorts(java.util.List.of(
+                        ContainerPort.builder()
+                            .name("default")
+                            .port(8000)
+                            .transportType(TransportType.TLS)
+                            .build()))
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
@@ -69,10 +71,15 @@ public class Application {
             if (res.deployment().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -89,26 +96,27 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateDeploymentResponse>](../../models/operations/CreateDeploymentResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateDeploymentDeprecatedResponse>](../../models/operations/CreateDeploymentDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 400,401,404,429,500    | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
-## getDeploymentInfo
+## ~~getDeploymentInfoDeprecated~~
 
 Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetDeploymentInfoRequest;
-import dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -116,11 +124,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -129,7 +138,7 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetDeploymentInfoResponse res = sdk.deploymentV1().getDeploymentInfo()
+            GetDeploymentInfoDeprecatedResponse res = sdk.deploymentV1().getDeploymentInfoDeprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .deploymentId(1)
                 .call();
@@ -137,10 +146,15 @@ public class Application {
             if (res.deployment().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -156,26 +170,27 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse>](../../models/operations/GetDeploymentInfoResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetDeploymentInfoDeprecatedResponse>](../../models/operations/GetDeploymentInfoDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
-## getDeployments
+## ~~getDeploymentsDeprecated~~
 
 Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetDeploymentsRequest;
-import dev.hathora.cloud_api.models.operations.GetDeploymentsResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -183,11 +198,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -196,17 +212,22 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetDeploymentsResponse res = sdk.deploymentV1().getDeployments()
+            GetDeploymentsDeprecatedResponse res = sdk.deploymentV1().getDeploymentsDeprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
             if (res.classes().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -221,26 +242,27 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetDeploymentsResponse>](../../models/operations/GetDeploymentsResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetDeploymentsDeprecatedResponse>](../../models/operations/GetDeploymentsDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
-## getLatestDeployment
+## ~~getLatestDeploymentDeprecated~~
 
 Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetLatestDeploymentRequest;
-import dev.hathora.cloud_api.models.operations.GetLatestDeploymentResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -248,11 +270,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -261,17 +284,22 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetLatestDeploymentResponse res = sdk.deploymentV1().getLatestDeployment()
+            GetLatestDeploymentDeprecatedResponse res = sdk.deploymentV1().getLatestDeploymentDeprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
             if (res.deployment().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -286,9 +314,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetLatestDeploymentResponse>](../../models/operations/GetLatestDeploymentResponse.md)**
+**[Optional<? extends dev.hathora.cloud_api.models.operations.GetLatestDeploymentDeprecatedResponse>](../../models/operations/GetLatestDeploymentDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |

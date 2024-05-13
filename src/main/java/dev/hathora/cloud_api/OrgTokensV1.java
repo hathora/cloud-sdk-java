@@ -10,17 +10,25 @@ import dev.hathora.cloud_api.models.errors.SDKError;
 import dev.hathora.cloud_api.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_api.utils.HTTPClient;
 import dev.hathora.cloud_api.utils.HTTPRequest;
+import dev.hathora.cloud_api.utils.Hook.AfterErrorContextImpl;
+import dev.hathora.cloud_api.utils.Hook.AfterSuccessContextImpl;
+import dev.hathora.cloud_api.utils.Hook.BeforeRequestContextImpl;
 import dev.hathora.cloud_api.utils.JSON;
+import dev.hathora.cloud_api.utils.Retries.NonRetryableException;
 import dev.hathora.cloud_api.utils.SerializedBody;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+/**
+ *  
+ */
 public class OrgTokensV1 implements
             MethodCallCreateOrgToken,
             MethodCallGetOrgTokens,
@@ -32,6 +40,10 @@ public class OrgTokensV1 implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
+    /**
+     * Create a new organization token.
+     * @return The call builder
+     */
     public dev.hathora.cloud_api.models.operations.CreateOrgTokenRequestBuilder createOrgToken() {
         return new dev.hathora.cloud_api.models.operations.CreateOrgTokenRequestBuilder(this);
     }
@@ -40,8 +52,8 @@ public class OrgTokensV1 implements
      * Create a new organization token.
      * @param createOrgToken
      * @param orgId
-     * @return The response from the API call.
-     * @throws Exception if the API call fails.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
      */
     public dev.hathora.cloud_api.models.operations.CreateOrgTokenResponse createOrgToken(
             dev.hathora.cloud_api.models.shared.CreateOrgToken createOrgToken,
@@ -53,76 +65,120 @@ public class OrgTokensV1 implements
                 .orgId(orgId)
                 .build();
         
-
-        String baseUrl = this.sdkConfiguration.serverUrl;
-
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
                 dev.hathora.cloud_api.models.operations.CreateOrgTokenRequest.class,
-                baseUrl,
+                _baseUrl,
                 "/tokens/v1/orgs/{orgId}/create",
                 request, this.sdkConfiguration.globals);
-
-        HTTPRequest req = new HTTPRequest();
-        req.setMethod("POST");
-        req.setURL(url);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
         Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
             new TypeReference<java.lang.Object>() {});
-        SerializedBody serializedRequestBody = dev.hathora.cloud_api.utils.Utils.serializeRequestBody(
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, "createOrgToken", "json", false);
-        if (serializedRequestBody == null) {
+        if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
-        req.setBody(serializedRequestBody);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
 
-        req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
 
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
-                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
-
-        HttpResponse<InputStream> httpRes = client.send(req);
-
-        String contentType = httpRes
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl("CreateOrgToken", sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl("CreateOrgToken", sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl("CreateOrgToken", sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(new AfterErrorContextImpl("CreateOrgToken", sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        dev.hathora.cloud_api.models.operations.CreateOrgTokenResponse.Builder resBuilder = 
+        dev.hathora.cloud_api.models.operations.CreateOrgTokenResponse.Builder _resBuilder = 
             dev.hathora.cloud_api.models.operations.CreateOrgTokenResponse
                 .builder()
-                .contentType(contentType)
-                .statusCode(httpRes.statusCode())
-                .rawResponse(httpRes);
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
 
-        dev.hathora.cloud_api.models.operations.CreateOrgTokenResponse res = resBuilder.build();
-
-        res.withRawResponse(httpRes);
-
-        if (httpRes.statusCode() == 201) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.CreatedOrgToken out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
+        dev.hathora.cloud_api.models.operations.CreateOrgTokenResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.CreatedOrgToken _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<dev.hathora.cloud_api.models.shared.CreatedOrgToken>() {});
-                res.withCreatedOrgToken(java.util.Optional.ofNullable(out));
+                _res.withCreatedOrgToken(java.util.Optional.ofNullable(_out));
+                return _res;
             } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if (httpRes.statusCode() == 401 || httpRes.statusCode() == 404 || httpRes.statusCode() == 422) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
-                res.withApiError(java.util.Optional.ofNullable(out));
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
             }
         }
-
-        return res;
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.errors.ApiError _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.errors.ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.toByteArrayAndClose(_httpRes.body()));
     }
 
 
+    /**
+     * List all organization tokens for a given org.
+     * @return The call builder
+     */
     public dev.hathora.cloud_api.models.operations.GetOrgTokensRequestBuilder getOrgTokens() {
         return new dev.hathora.cloud_api.models.operations.GetOrgTokensRequestBuilder(this);
     }
@@ -130,8 +186,8 @@ public class OrgTokensV1 implements
     /**
      * List all organization tokens for a given org.
      * @param orgId
-     * @return The response from the API call.
-     * @throws Exception if the API call fails.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
      */
     public dev.hathora.cloud_api.models.operations.GetOrgTokensResponse getOrgTokens(
             String orgId) throws Exception {
@@ -141,68 +197,112 @@ public class OrgTokensV1 implements
                 .orgId(orgId)
                 .build();
         
-
-        String baseUrl = this.sdkConfiguration.serverUrl;
-
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
                 dev.hathora.cloud_api.models.operations.GetOrgTokensRequest.class,
-                baseUrl,
+                _baseUrl,
                 "/tokens/v1/orgs/{orgId}",
                 request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
 
-        HTTPRequest req = new HTTPRequest();
-        req.setMethod("GET");
-        req.setURL(url);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
 
-        req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
-
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
-                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
-
-        HttpResponse<InputStream> httpRes = client.send(req);
-
-        String contentType = httpRes
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl("GetOrgTokens", sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl("GetOrgTokens", sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl("GetOrgTokens", sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(new AfterErrorContextImpl("GetOrgTokens", sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        dev.hathora.cloud_api.models.operations.GetOrgTokensResponse.Builder resBuilder = 
+        dev.hathora.cloud_api.models.operations.GetOrgTokensResponse.Builder _resBuilder = 
             dev.hathora.cloud_api.models.operations.GetOrgTokensResponse
                 .builder()
-                .contentType(contentType)
-                .statusCode(httpRes.statusCode())
-                .rawResponse(httpRes);
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
 
-        dev.hathora.cloud_api.models.operations.GetOrgTokensResponse res = resBuilder.build();
-
-        res.withRawResponse(httpRes);
-
-        if (httpRes.statusCode() == 200) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.ListOrgTokens out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
+        dev.hathora.cloud_api.models.operations.GetOrgTokensResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.shared.ListOrgTokens _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<dev.hathora.cloud_api.models.shared.ListOrgTokens>() {});
-                res.withListOrgTokens(java.util.Optional.ofNullable(out));
+                _res.withListOrgTokens(java.util.Optional.ofNullable(_out));
+                return _res;
             } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if (httpRes.statusCode() == 401 || httpRes.statusCode() == 404) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
-                res.withApiError(java.util.Optional.ofNullable(out));
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
             }
         }
-
-        return res;
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.errors.ApiError _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.errors.ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.toByteArrayAndClose(_httpRes.body()));
     }
 
 
+    /**
+     * Revoke an organization token.
+     * @return The call builder
+     */
     public dev.hathora.cloud_api.models.operations.RevokeOrgTokenRequestBuilder revokeOrgToken() {
         return new dev.hathora.cloud_api.models.operations.RevokeOrgTokenRequestBuilder(this);
     }
@@ -211,8 +311,8 @@ public class OrgTokensV1 implements
      * Revoke an organization token.
      * @param orgId
      * @param orgTokenId
-     * @return The response from the API call.
-     * @throws Exception if the API call fails.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
      */
     public dev.hathora.cloud_api.models.operations.RevokeOrgTokenResponse revokeOrgToken(
             String orgId,
@@ -224,65 +324,105 @@ public class OrgTokensV1 implements
                 .orgTokenId(orgTokenId)
                 .build();
         
-
-        String baseUrl = this.sdkConfiguration.serverUrl;
-
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
                 dev.hathora.cloud_api.models.operations.RevokeOrgTokenRequest.class,
-                baseUrl,
+                _baseUrl,
                 "/tokens/v1/orgs/{orgId}/tokens/{orgTokenId}/revoke",
                 request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
 
-        HTTPRequest req = new HTTPRequest();
-        req.setMethod("POST");
-        req.setURL(url);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
 
-        req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
-
-        HTTPClient client = dev.hathora.cloud_api.utils.Utils.configureSecurityClient(
-                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
-
-        HttpResponse<InputStream> httpRes = client.send(req);
-
-        String contentType = httpRes
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl("RevokeOrgToken", sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl("RevokeOrgToken", sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl("RevokeOrgToken", sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(new AfterErrorContextImpl("RevokeOrgToken", sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        dev.hathora.cloud_api.models.operations.RevokeOrgTokenResponse.Builder resBuilder = 
+        dev.hathora.cloud_api.models.operations.RevokeOrgTokenResponse.Builder _resBuilder = 
             dev.hathora.cloud_api.models.operations.RevokeOrgTokenResponse
                 .builder()
-                .contentType(contentType)
-                .statusCode(httpRes.statusCode())
-                .rawResponse(httpRes);
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
 
-        dev.hathora.cloud_api.models.operations.RevokeOrgTokenResponse res = resBuilder.build();
-
-        res.withRawResponse(httpRes);
-
-        if (httpRes.statusCode() == 200) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                boolean out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
+        dev.hathora.cloud_api.models.operations.RevokeOrgTokenResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                boolean _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<Boolean>() {});
-                res.withBoolean(java.util.Optional.ofNullable(out));
+                _res.withBoolean(java.util.Optional.ofNullable(_out));
+                return _res;
             } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if (httpRes.statusCode() == 401 || httpRes.statusCode() == 404) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
-                res.withApiError(java.util.Optional.ofNullable(out));
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
             }
         }
-
-        return res;
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                dev.hathora.cloud_api.models.errors.ApiError _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.errors.ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.toByteArrayAndClose(_httpRes.body()));
     }
 
 }

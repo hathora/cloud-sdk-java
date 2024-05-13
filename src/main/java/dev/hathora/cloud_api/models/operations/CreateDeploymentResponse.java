@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -17,14 +19,12 @@ import java.util.Optional;
 
 public class CreateDeploymentResponse implements dev.hathora.cloud_api.utils.Response {
 
-    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
-
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
 
-    private Optional<? extends dev.hathora.cloud_api.models.shared.Deployment> deployment;
+    private Optional<? extends dev.hathora.cloud_api.models.shared.DeploymentV2> deploymentV2;
 
     /**
      * HTTP response status code for this operation
@@ -36,42 +36,47 @@ public class CreateDeploymentResponse implements dev.hathora.cloud_api.utils.Res
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public CreateDeploymentResponse(
-            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             String contentType,
-            Optional<? extends dev.hathora.cloud_api.models.shared.Deployment> deployment,
+            Optional<? extends dev.hathora.cloud_api.models.shared.DeploymentV2> deploymentV2,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(apiError, "apiError");
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(deployment, "deployment");
+        Utils.checkNotNull(deploymentV2, "deploymentV2");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.apiError = apiError;
         this.contentType = contentType;
-        this.deployment = deployment;
+        this.deploymentV2 = deploymentV2;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
-
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
-        return apiError;
+    
+    public CreateDeploymentResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
 
-    public Optional<? extends dev.hathora.cloud_api.models.shared.Deployment> deployment() {
-        return deployment;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<dev.hathora.cloud_api.models.shared.DeploymentV2> deploymentV2() {
+        return (Optional<dev.hathora.cloud_api.models.shared.DeploymentV2>) deploymentV2;
     }
 
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -79,24 +84,13 @@ public class CreateDeploymentResponse implements dev.hathora.cloud_api.utils.Res
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public CreateDeploymentResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = Optional.ofNullable(apiError);
-        return this;
-    }
-
-    public CreateDeploymentResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = apiError;
-        return this;
     }
 
     /**
@@ -108,15 +102,15 @@ public class CreateDeploymentResponse implements dev.hathora.cloud_api.utils.Res
         return this;
     }
 
-    public CreateDeploymentResponse withDeployment(dev.hathora.cloud_api.models.shared.Deployment deployment) {
-        Utils.checkNotNull(deployment, "deployment");
-        this.deployment = Optional.ofNullable(deployment);
+    public CreateDeploymentResponse withDeploymentV2(dev.hathora.cloud_api.models.shared.DeploymentV2 deploymentV2) {
+        Utils.checkNotNull(deploymentV2, "deploymentV2");
+        this.deploymentV2 = Optional.ofNullable(deploymentV2);
         return this;
     }
 
-    public CreateDeploymentResponse withDeployment(Optional<? extends dev.hathora.cloud_api.models.shared.Deployment> deployment) {
-        Utils.checkNotNull(deployment, "deployment");
-        this.deployment = deployment;
+    public CreateDeploymentResponse withDeploymentV2(Optional<? extends dev.hathora.cloud_api.models.shared.DeploymentV2> deploymentV2) {
+        Utils.checkNotNull(deploymentV2, "deploymentV2");
+        this.deploymentV2 = deploymentV2;
         return this;
     }
 
@@ -148,9 +142,8 @@ public class CreateDeploymentResponse implements dev.hathora.cloud_api.utils.Res
         }
         CreateDeploymentResponse other = (CreateDeploymentResponse) o;
         return 
-            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.deployment, other.deployment) &&
+            java.util.Objects.deepEquals(this.deploymentV2, other.deploymentV2) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -158,9 +151,8 @@ public class CreateDeploymentResponse implements dev.hathora.cloud_api.utils.Res
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            apiError,
             contentType,
-            deployment,
+            deploymentV2,
             statusCode,
             rawResponse);
     }
@@ -168,20 +160,17 @@ public class CreateDeploymentResponse implements dev.hathora.cloud_api.utils.Res
     @Override
     public String toString() {
         return Utils.toString(CreateDeploymentResponse.class,
-                "apiError", apiError,
                 "contentType", contentType,
-                "deployment", deployment,
+                "deploymentV2", deploymentV2,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
     
     public final static class Builder {
  
-        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
- 
         private String contentType;
  
-        private Optional<? extends dev.hathora.cloud_api.models.shared.Deployment> deployment = Optional.empty();
+        private Optional<? extends dev.hathora.cloud_api.models.shared.DeploymentV2> deploymentV2 = Optional.empty();
  
         private Integer statusCode;
  
@@ -189,18 +178,6 @@ public class CreateDeploymentResponse implements dev.hathora.cloud_api.utils.Res
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = Optional.ofNullable(apiError);
-            return this;
-        }
-
-        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = apiError;
-            return this;
         }
 
         /**
@@ -212,15 +189,15 @@ public class CreateDeploymentResponse implements dev.hathora.cloud_api.utils.Res
             return this;
         }
 
-        public Builder deployment(dev.hathora.cloud_api.models.shared.Deployment deployment) {
-            Utils.checkNotNull(deployment, "deployment");
-            this.deployment = Optional.ofNullable(deployment);
+        public Builder deploymentV2(dev.hathora.cloud_api.models.shared.DeploymentV2 deploymentV2) {
+            Utils.checkNotNull(deploymentV2, "deploymentV2");
+            this.deploymentV2 = Optional.ofNullable(deploymentV2);
             return this;
         }
 
-        public Builder deployment(Optional<? extends dev.hathora.cloud_api.models.shared.Deployment> deployment) {
-            Utils.checkNotNull(deployment, "deployment");
-            this.deployment = deployment;
+        public Builder deploymentV2(Optional<? extends dev.hathora.cloud_api.models.shared.DeploymentV2> deploymentV2) {
+            Utils.checkNotNull(deploymentV2, "deploymentV2");
+            this.deploymentV2 = deploymentV2;
             return this;
         }
 
@@ -244,9 +221,8 @@ public class CreateDeploymentResponse implements dev.hathora.cloud_api.utils.Res
         
         public CreateDeploymentResponse build() {
             return new CreateDeploymentResponse(
-                apiError,
                 contentType,
-                deployment,
+                deploymentV2,
                 statusCode,
                 rawResponse);
         }

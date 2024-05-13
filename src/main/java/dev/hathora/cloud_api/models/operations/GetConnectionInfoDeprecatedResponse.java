@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -16,8 +18,6 @@ import java.util.Optional;
 
 
 public class GetConnectionInfoDeprecatedResponse implements dev.hathora.cloud_api.utils.Response {
-
-    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
 
     /**
      * Ok
@@ -39,38 +39,42 @@ public class GetConnectionInfoDeprecatedResponse implements dev.hathora.cloud_ap
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public GetConnectionInfoDeprecatedResponse(
-            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             Optional<? extends dev.hathora.cloud_api.models.shared.ConnectionInfo> connectionInfo,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(apiError, "apiError");
         Utils.checkNotNull(connectionInfo, "connectionInfo");
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.apiError = apiError;
         this.connectionInfo = connectionInfo;
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
-
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
-        return apiError;
+    
+    public GetConnectionInfoDeprecatedResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(Optional.empty(), contentType, statusCode, rawResponse);
     }
 
     /**
      * Ok
      */
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ConnectionInfo> connectionInfo() {
-        return connectionInfo;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<dev.hathora.cloud_api.models.shared.ConnectionInfo> connectionInfo() {
+        return (Optional<dev.hathora.cloud_api.models.shared.ConnectionInfo>) connectionInfo;
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -78,6 +82,7 @@ public class GetConnectionInfoDeprecatedResponse implements dev.hathora.cloud_ap
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -85,24 +90,13 @@ public class GetConnectionInfoDeprecatedResponse implements dev.hathora.cloud_ap
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public GetConnectionInfoDeprecatedResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = Optional.ofNullable(apiError);
-        return this;
-    }
-
-    public GetConnectionInfoDeprecatedResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = apiError;
-        return this;
     }
 
     /**
@@ -160,7 +154,6 @@ public class GetConnectionInfoDeprecatedResponse implements dev.hathora.cloud_ap
         }
         GetConnectionInfoDeprecatedResponse other = (GetConnectionInfoDeprecatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
             java.util.Objects.deepEquals(this.connectionInfo, other.connectionInfo) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
@@ -170,7 +163,6 @@ public class GetConnectionInfoDeprecatedResponse implements dev.hathora.cloud_ap
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            apiError,
             connectionInfo,
             contentType,
             statusCode,
@@ -180,7 +172,6 @@ public class GetConnectionInfoDeprecatedResponse implements dev.hathora.cloud_ap
     @Override
     public String toString() {
         return Utils.toString(GetConnectionInfoDeprecatedResponse.class,
-                "apiError", apiError,
                 "connectionInfo", connectionInfo,
                 "contentType", contentType,
                 "statusCode", statusCode,
@@ -188,8 +179,6 @@ public class GetConnectionInfoDeprecatedResponse implements dev.hathora.cloud_ap
     }
     
     public final static class Builder {
- 
-        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
  
         private Optional<? extends dev.hathora.cloud_api.models.shared.ConnectionInfo> connectionInfo = Optional.empty();
  
@@ -201,18 +190,6 @@ public class GetConnectionInfoDeprecatedResponse implements dev.hathora.cloud_ap
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = Optional.ofNullable(apiError);
-            return this;
-        }
-
-        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = apiError;
-            return this;
         }
 
         /**
@@ -262,7 +239,6 @@ public class GetConnectionInfoDeprecatedResponse implements dev.hathora.cloud_ap
         
         public GetConnectionInfoDeprecatedResponse build() {
             return new GetConnectionInfoDeprecatedResponse(
-                apiError,
                 connectionInfo,
                 contentType,
                 statusCode,

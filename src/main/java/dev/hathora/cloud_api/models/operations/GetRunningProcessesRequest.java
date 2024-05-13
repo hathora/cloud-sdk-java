@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -23,6 +25,7 @@ public class GetRunningProcessesRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=region")
     private Optional<? extends dev.hathora.cloud_api.models.shared.Region> region;
 
+    @JsonCreator
     public GetRunningProcessesRequest(
             Optional<? extends String> appId,
             Optional<? extends dev.hathora.cloud_api.models.shared.Region> region) {
@@ -31,13 +34,21 @@ public class GetRunningProcessesRequest {
         this.appId = appId;
         this.region = region;
     }
-
-    public Optional<? extends String> appId() {
-        return appId;
+    
+    public GetRunningProcessesRequest() {
+        this(Optional.empty(), Optional.empty());
     }
 
-    public Optional<? extends dev.hathora.cloud_api.models.shared.Region> region() {
-        return region;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<dev.hathora.cloud_api.models.shared.Region> region() {
+        return (Optional<dev.hathora.cloud_api.models.shared.Region>) region;
     }
 
     public final static Builder builder() {

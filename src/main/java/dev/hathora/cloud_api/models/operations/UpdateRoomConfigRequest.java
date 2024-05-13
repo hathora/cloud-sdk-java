@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -26,6 +28,7 @@ public class UpdateRoomConfigRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=roomId")
     private String roomId;
 
+    @JsonCreator
     public UpdateRoomConfigRequest(
             dev.hathora.cloud_api.models.shared.UpdateRoomConfigParams updateRoomConfigParams,
             Optional<? extends String> appId,
@@ -37,15 +40,25 @@ public class UpdateRoomConfigRequest {
         this.appId = appId;
         this.roomId = roomId;
     }
+    
+    public UpdateRoomConfigRequest(
+            dev.hathora.cloud_api.models.shared.UpdateRoomConfigParams updateRoomConfigParams,
+            String roomId) {
+        this(updateRoomConfigParams, Optional.empty(), roomId);
+    }
 
+    @JsonIgnore
     public dev.hathora.cloud_api.models.shared.UpdateRoomConfigParams updateRoomConfigParams() {
         return updateRoomConfigParams;
     }
 
-    public Optional<? extends String> appId() {
-        return appId;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
     }
 
+    @JsonIgnore
     public String roomId() {
         return roomId;
     }

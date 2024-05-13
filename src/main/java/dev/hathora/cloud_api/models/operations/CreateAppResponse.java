@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -16,8 +18,6 @@ import java.util.Optional;
 
 
 public class CreateAppResponse implements dev.hathora.cloud_api.utils.Response {
-
-    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
 
     private Optional<? extends dev.hathora.cloud_api.models.shared.Application> application;
 
@@ -36,35 +36,39 @@ public class CreateAppResponse implements dev.hathora.cloud_api.utils.Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public CreateAppResponse(
-            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             Optional<? extends dev.hathora.cloud_api.models.shared.Application> application,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(apiError, "apiError");
         Utils.checkNotNull(application, "application");
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.apiError = apiError;
         this.application = application;
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
-
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
-        return apiError;
+    
+    public CreateAppResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(Optional.empty(), contentType, statusCode, rawResponse);
     }
 
-    public Optional<? extends dev.hathora.cloud_api.models.shared.Application> application() {
-        return application;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<dev.hathora.cloud_api.models.shared.Application> application() {
+        return (Optional<dev.hathora.cloud_api.models.shared.Application>) application;
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -72,6 +76,7 @@ public class CreateAppResponse implements dev.hathora.cloud_api.utils.Response {
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -79,24 +84,13 @@ public class CreateAppResponse implements dev.hathora.cloud_api.utils.Response {
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public CreateAppResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = Optional.ofNullable(apiError);
-        return this;
-    }
-
-    public CreateAppResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = apiError;
-        return this;
     }
 
     public CreateAppResponse withApplication(dev.hathora.cloud_api.models.shared.Application application) {
@@ -148,7 +142,6 @@ public class CreateAppResponse implements dev.hathora.cloud_api.utils.Response {
         }
         CreateAppResponse other = (CreateAppResponse) o;
         return 
-            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
             java.util.Objects.deepEquals(this.application, other.application) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
@@ -158,7 +151,6 @@ public class CreateAppResponse implements dev.hathora.cloud_api.utils.Response {
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            apiError,
             application,
             contentType,
             statusCode,
@@ -168,7 +160,6 @@ public class CreateAppResponse implements dev.hathora.cloud_api.utils.Response {
     @Override
     public String toString() {
         return Utils.toString(CreateAppResponse.class,
-                "apiError", apiError,
                 "application", application,
                 "contentType", contentType,
                 "statusCode", statusCode,
@@ -176,8 +167,6 @@ public class CreateAppResponse implements dev.hathora.cloud_api.utils.Response {
     }
     
     public final static class Builder {
- 
-        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
  
         private Optional<? extends dev.hathora.cloud_api.models.shared.Application> application = Optional.empty();
  
@@ -189,18 +178,6 @@ public class CreateAppResponse implements dev.hathora.cloud_api.utils.Response {
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = Optional.ofNullable(apiError);
-            return this;
-        }
-
-        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = apiError;
-            return this;
         }
 
         public Builder application(dev.hathora.cloud_api.models.shared.Application application) {
@@ -244,7 +221,6 @@ public class CreateAppResponse implements dev.hathora.cloud_api.utils.Response {
         
         public CreateAppResponse build() {
             return new CreateAppResponse(
-                apiError,
                 application,
                 contentType,
                 statusCode,

@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,23 +22,30 @@ import java.util.Optional;
 public class CreateBuildParams {
 
     /**
-     * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV1/operation/GetBuildInfo).
+     * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buildTag")
     private Optional<? extends String> buildTag;
 
+    @JsonCreator
     public CreateBuildParams(
             @JsonProperty("buildTag") Optional<? extends String> buildTag) {
         Utils.checkNotNull(buildTag, "buildTag");
         this.buildTag = buildTag;
     }
+    
+    public CreateBuildParams() {
+        this(Optional.empty());
+    }
 
     /**
-     * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV1/operation/GetBuildInfo).
+     * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
      */
-    public Optional<? extends String> buildTag() {
-        return buildTag;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> buildTag() {
+        return (Optional<String>) buildTag;
     }
 
     public final static Builder builder() {
@@ -44,7 +53,7 @@ public class CreateBuildParams {
     }
 
     /**
-     * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV1/operation/GetBuildInfo).
+     * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
      */
     public CreateBuildParams withBuildTag(String buildTag) {
         Utils.checkNotNull(buildTag, "buildTag");
@@ -53,7 +62,7 @@ public class CreateBuildParams {
     }
 
     /**
-     * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV1/operation/GetBuildInfo).
+     * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
      */
     public CreateBuildParams withBuildTag(Optional<? extends String> buildTag) {
         Utils.checkNotNull(buildTag, "buildTag");
@@ -95,7 +104,7 @@ public class CreateBuildParams {
         }
 
         /**
-         * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV1/operation/GetBuildInfo).
+         * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
          */
         public Builder buildTag(String buildTag) {
             Utils.checkNotNull(buildTag, "buildTag");
@@ -104,7 +113,7 @@ public class CreateBuildParams {
         }
 
         /**
-         * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV1/operation/GetBuildInfo).
+         * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
          */
         public Builder buildTag(Optional<? extends String> buildTag) {
             Utils.checkNotNull(buildTag, "buildTag");

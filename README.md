@@ -9,10 +9,36 @@
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-### Gradle
+### Getting started
 
+The samples below show how a published SDK artifact is used:
+
+Gradle:
 ```groovy
-implementation 'dev.hathora.cloud_api:Hathora-Cloud:2.3.0'
+implementation 'dev.hathora.cloud_api:Hathora-Cloud:2.4.0'
+```
+
+Maven:
+```xml
+<dependency>
+    <groupId>dev.hathora.cloud_api</groupId>
+    <artifactId>Hathora-Cloud</artifactId>
+    <version>2.4.0</version>
+</dependency>
+```
+
+### How to build
+After cloning the git repository to your file system you can build the SDK artifact from source to the `build` directory by running `./gradlew build` on *nix systems or `gradlew.bat` on Windows systems.
+
+If you wish to build from source and publish the SDK artifact to your local Maven repository (on your filesystem) then use the following command (after cloning the git repo locally):
+
+On *nix:
+```bash
+./gradlew publishToMavenLocal -Pskip.signing
+```
+On Windows:
+```bash
+gradlew.bat publishToMavenLocal -Pskip.signing
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -24,25 +50,21 @@ implementation 'dev.hathora.cloud_api:Hathora-Cloud:2.3.0'
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreateAppResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.AppConfig;
-import dev.hathora.cloud_api.models.shared.AuthConfiguration;
-import dev.hathora.cloud_api.models.shared.Google;
-import dev.hathora.cloud_api.models.shared.RecordStringNever;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -54,13 +76,6 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .anonymous(RecordStringNever.builder()
-                            .build())
-                        .google(Google.builder()
-                            .clientId("<value>")
-                            .build())
-                        .nickname(RecordStringNever.builder()
-                            .build())
                         .build())
                 .build();
 
@@ -71,10 +86,15 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -107,22 +127,41 @@ public class Application {
 
 ### [buildV1()](docs/sdks/buildv1/README.md)
 
-* [createBuild](docs/sdks/buildv1/README.md#createbuild) - Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
-* [deleteBuild](docs/sdks/buildv1/README.md#deletebuild) - Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
-* [getBuildInfo](docs/sdks/buildv1/README.md#getbuildinfo) - Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
-* [getBuilds](docs/sdks/buildv1/README.md#getbuilds) - Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
-* [runBuild](docs/sdks/buildv1/README.md#runbuild) - Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+* [~~createBuildDeprecated~~](docs/sdks/buildv1/README.md#createbuilddeprecated) - Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build. :warning: **Deprecated**
+* [~~deleteBuildDeprecated~~](docs/sdks/buildv1/README.md#deletebuilddeprecated) - Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted. :warning: **Deprecated**
+* [~~getBuildInfoDeprecated~~](docs/sdks/buildv1/README.md#getbuildinfodeprecated) - Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build). :warning: **Deprecated**
+* [~~getBuildsDeprecated~~](docs/sdks/buildv1/README.md#getbuildsdeprecated) - Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). :warning: **Deprecated**
+* [~~runBuildDeprecated~~](docs/sdks/buildv1/README.md#runbuilddeprecated) - Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild). :warning: **Deprecated**
+
+### [buildV2()](docs/sdks/buildv2/README.md)
+
+* [createBuild](docs/sdks/buildv2/README.md#createbuild) - Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+* [deleteBuild](docs/sdks/buildv2/README.md#deletebuild) - Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
+* [getBuildInfo](docs/sdks/buildv2/README.md#getbuildinfo) - Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
+* [getBuilds](docs/sdks/buildv2/README.md#getbuilds) - Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+* [runBuild](docs/sdks/buildv2/README.md#runbuild) - Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
 
 ### [deploymentV1()](docs/sdks/deploymentv1/README.md)
 
-* [createDeployment](docs/sdks/deploymentv1/README.md#createdeployment) - Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
-* [getDeploymentInfo](docs/sdks/deploymentv1/README.md#getdeploymentinfo) - Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
-* [getDeployments](docs/sdks/deploymentv1/README.md#getdeployments) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
-* [getLatestDeployment](docs/sdks/deploymentv1/README.md#getlatestdeployment) - Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+* [~~createDeploymentDeprecated~~](docs/sdks/deploymentv1/README.md#createdeploymentdeprecated) - Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected. :warning: **Deprecated**
+* [~~getDeploymentInfoDeprecated~~](docs/sdks/deploymentv1/README.md#getdeploymentinfodeprecated) - Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). :warning: **Deprecated**
+* [~~getDeploymentsDeprecated~~](docs/sdks/deploymentv1/README.md#getdeploymentsdeprecated) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). :warning: **Deprecated**
+* [~~getLatestDeploymentDeprecated~~](docs/sdks/deploymentv1/README.md#getlatestdeploymentdeprecated) - Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). :warning: **Deprecated**
+
+### [deploymentV2()](docs/sdks/deploymentv2/README.md)
+
+* [createDeployment](docs/sdks/deploymentv2/README.md#createdeployment) - Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+* [getDeploymentInfo](docs/sdks/deploymentv2/README.md#getdeploymentinfo) - Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
+* [getDeployments](docs/sdks/deploymentv2/README.md#getdeployments) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+* [getLatestDeployment](docs/sdks/deploymentv2/README.md#getlatestdeployment) - Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
 
 ### [discoveryV1()](docs/sdks/discoveryv1/README.md)
 
-* [getPingServiceEndpoints](docs/sdks/discoveryv1/README.md#getpingserviceendpoints) - Returns an array of all regions with a host and port that a client can directly ping. Open a websocket connection to `wss://<host>:<port>/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back.
+* [~~getPingServiceEndpointsDeprecated~~](docs/sdks/discoveryv1/README.md#getpingserviceendpointsdeprecated) - Returns an array of V1 regions with a host and port that a client can directly ping. Open a websocket connection to `wss://<host>:<port>/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back. :warning: **Deprecated**
+
+### [discoveryV2()](docs/sdks/discoveryv2/README.md)
+
+* [getPingServiceEndpoints](docs/sdks/discoveryv2/README.md#getpingserviceendpoints) - Returns an array of all regions with a host and port that a client can directly ping. Open a websocket connection to `wss://<host>:<port>/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back.
 
 ### [lobbyV1()](docs/sdks/lobbyv1/README.md)
 
@@ -162,6 +201,15 @@ public class Application {
 
 * [getMetrics](docs/sdks/metricsv1/README.md#getmetrics) - Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
 
+### [organizationsV1()](docs/sdks/organizationsv1/README.md)
+
+* [acceptInvite](docs/sdks/organizationsv1/README.md#acceptinvite)
+* [getOrgPendingInvites](docs/sdks/organizationsv1/README.md#getorgpendinginvites)
+* [getUserPendingInvites](docs/sdks/organizationsv1/README.md#getuserpendinginvites)
+* [inviteUser](docs/sdks/organizationsv1/README.md#inviteuser)
+* [rejectInvite](docs/sdks/organizationsv1/README.md#rejectinvite)
+* [rescindInvite](docs/sdks/organizationsv1/README.md#rescindinvite)
+
 ### [processesV1()](docs/sdks/processesv1/README.md)
 
 * [~~getProcessInfoDeprecated~~](docs/sdks/processesv1/README.md#getprocessinfodeprecated) - Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process). :warning: **Deprecated**
@@ -170,6 +218,7 @@ public class Application {
 
 ### [processesV2()](docs/sdks/processesv2/README.md)
 
+* [createProcess](docs/sdks/processesv2/README.md#createprocess) - Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
 * [getLatestProcesses](docs/sdks/processesv2/README.md#getlatestprocesses) - Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
 * [getProcessInfo](docs/sdks/processesv2/README.md#getprocessinfo) - Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
 * [stopProcess](docs/sdks/processesv2/README.md#stopprocess) - Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
@@ -192,7 +241,7 @@ public class Application {
 * [getConnectionInfo](docs/sdks/roomv2/README.md#getconnectioninfo) - Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
 * [getInactiveRoomsForProcess](docs/sdks/roomv2/README.md#getinactiveroomsforprocess) - Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
 * [getRoomInfo](docs/sdks/roomv2/README.md#getroominfo) - Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
-* [suspendRoom](docs/sdks/roomv2/README.md#suspendroom) - Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
+* [~~suspendRoomV2Deprecated~~](docs/sdks/roomv2/README.md#suspendroomv2deprecated) - Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`. :warning: **Deprecated**
 * [updateRoomConfig](docs/sdks/roomv2/README.md#updateroomconfig)
 
 ### [orgTokensV1()](docs/sdks/orgtokensv1/README.md)
@@ -224,10 +273,8 @@ The following global parameter is available.
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.DeleteAppRequest;
-import dev.hathora.cloud_api.models.operations.DeleteAppResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
@@ -235,11 +282,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -253,10 +301,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -270,6 +323,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,422,429,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ### Example
@@ -277,25 +331,21 @@ Handling errors in this SDK should largely match your expectations.  All operati
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreateAppResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.AppConfig;
-import dev.hathora.cloud_api.models.shared.AuthConfiguration;
-import dev.hathora.cloud_api.models.shared.Google;
-import dev.hathora.cloud_api.models.shared.RecordStringNever;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -307,13 +357,6 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .anonymous(RecordStringNever.builder()
-                            .build())
-                        .google(Google.builder()
-                            .clientId("<value>")
-                            .build())
-                        .nickname(RecordStringNever.builder()
-                            .build())
                         .build())
                 .build();
 
@@ -324,10 +367,15 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -351,25 +399,21 @@ You can override the default server globally by passing a server index to the `s
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreateAppResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.AppConfig;
-import dev.hathora.cloud_api.models.shared.AuthConfiguration;
-import dev.hathora.cloud_api.models.shared.Google;
-import dev.hathora.cloud_api.models.shared.RecordStringNever;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .serverIndex(1)
@@ -382,13 +426,6 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .anonymous(RecordStringNever.builder()
-                            .build())
-                        .google(Google.builder()
-                            .clientId("<value>")
-                            .build())
-                        .nickname(RecordStringNever.builder()
-                            .build())
                         .build())
                 .build();
 
@@ -399,10 +436,15 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -415,25 +457,21 @@ The default server can also be overridden globally by passing a URL to the `serv
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreateAppResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.AppConfig;
-import dev.hathora.cloud_api.models.shared.AuthConfiguration;
-import dev.hathora.cloud_api.models.shared.Google;
-import dev.hathora.cloud_api.models.shared.RecordStringNever;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .serverURL("https://api.hathora.dev")
@@ -446,13 +484,6 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .anonymous(RecordStringNever.builder()
-                            .build())
-                        .google(Google.builder()
-                            .clientId("<value>")
-                            .build())
-                        .nickname(RecordStringNever.builder()
-                            .build())
                         .build())
                 .build();
 
@@ -463,10 +494,15 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -488,25 +524,21 @@ You can set the security parameters through the `security` builder method when i
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreateAppResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.AppConfig;
-import dev.hathora.cloud_api.models.shared.AuthConfiguration;
-import dev.hathora.cloud_api.models.shared.Google;
-import dev.hathora.cloud_api.models.shared.RecordStringNever;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -518,13 +550,6 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .anonymous(RecordStringNever.builder()
-                            .build())
-                        .google(Google.builder()
-                            .clientId("<value>")
-                            .build())
-                        .nickname(RecordStringNever.builder()
-                            .build())
                         .build())
                 .build();
 
@@ -535,10 +560,15 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -550,23 +580,21 @@ Some operations in this SDK require the security scheme to be specified at the r
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedRequest;
-import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedResponse;
 import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedSecurity;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Region;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -584,10 +612,15 @@ public class Application {
             if (res.roomId().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }

@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,14 +25,21 @@ public class LinkPaymentMethod {
     @JsonProperty("email")
     private Optional<? extends String> email;
 
+    @JsonCreator
     public LinkPaymentMethod(
             @JsonProperty("email") Optional<? extends String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
     }
+    
+    public LinkPaymentMethod() {
+        this(Optional.empty());
+    }
 
-    public Optional<? extends String> email() {
-        return email;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> email() {
+        return (Optional<String>) email;
     }
 
     public final static Builder builder() {

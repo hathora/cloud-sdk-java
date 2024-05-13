@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -76,6 +78,7 @@ public class DeploymentConfig {
     @JsonProperty("transportType")
     private TransportType transportType;
 
+    @JsonCreator
     public DeploymentConfig(
             @JsonProperty("additionalContainerPorts") Optional<? extends java.util.List<ContainerPort>> additionalContainerPorts,
             @JsonProperty("containerPort") int containerPort,
@@ -99,17 +102,29 @@ public class DeploymentConfig {
         this.roomsPerProcess = roomsPerProcess;
         this.transportType = transportType;
     }
+    
+    public DeploymentConfig(
+            int containerPort,
+            java.util.List<DeploymentConfigEnv> env,
+            PlanName planName,
+            int roomsPerProcess,
+            TransportType transportType) {
+        this(Optional.empty(), containerPort, env, Optional.empty(), planName, roomsPerProcess, transportType);
+    }
 
     /**
      * Additional ports your server listens on.
      */
-    public Optional<? extends java.util.List<ContainerPort>> additionalContainerPorts() {
-        return additionalContainerPorts;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<java.util.List<ContainerPort>> additionalContainerPorts() {
+        return (Optional<java.util.List<ContainerPort>>) additionalContainerPorts;
     }
 
     /**
      * Default port the server listens on.
      */
+    @JsonIgnore
     public int containerPort() {
         return containerPort;
     }
@@ -117,6 +132,7 @@ public class DeploymentConfig {
     /**
      * The environment variable that our process will have access to at runtime.
      */
+    @JsonIgnore
     public java.util.List<DeploymentConfigEnv> env() {
         return env;
     }
@@ -125,8 +141,10 @@ public class DeploymentConfig {
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
-    public Optional<? extends Boolean> idleTimeoutEnabled() {
-        return idleTimeoutEnabled;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Boolean> idleTimeoutEnabled() {
+        return (Optional<Boolean>) idleTimeoutEnabled;
     }
 
     /**
@@ -140,6 +158,7 @@ public class DeploymentConfig {
      * 
      * `large`: 4 core, 8gb memory
      */
+    @JsonIgnore
     public PlanName planName() {
         return planName;
     }
@@ -147,6 +166,7 @@ public class DeploymentConfig {
     /**
      * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
      */
+    @JsonIgnore
     public int roomsPerProcess() {
         return roomsPerProcess;
     }
@@ -154,6 +174,7 @@ public class DeploymentConfig {
     /**
      * Transport type specifies the underlying communication protocol to the exposed port.
      */
+    @JsonIgnore
     public TransportType transportType() {
         return transportType;
     }

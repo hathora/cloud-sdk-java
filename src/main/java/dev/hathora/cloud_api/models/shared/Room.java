@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -60,6 +62,7 @@ public class Room {
     @JsonProperty("status")
     private RoomStatus status;
 
+    @JsonCreator
     public Room(
             @JsonProperty("allocations") java.util.List<RoomAllocation> allocations,
             @JsonProperty("appId") String appId,
@@ -80,7 +83,16 @@ public class Room {
         this.roomId = roomId;
         this.status = status;
     }
+    
+    public Room(
+            java.util.List<RoomAllocation> allocations,
+            String appId,
+            String roomId,
+            RoomStatus status) {
+        this(allocations, appId, Optional.empty(), Optional.empty(), roomId, status);
+    }
 
+    @JsonIgnore
     public java.util.List<RoomAllocation> allocations() {
         return allocations;
     }
@@ -88,22 +100,28 @@ public class Room {
     /**
      * System generated unique identifier for an application.
      */
+    @JsonIgnore
     public String appId() {
         return appId;
     }
 
-    public Optional<? extends CurrentAllocation> currentAllocation() {
-        return currentAllocation;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CurrentAllocation> currentAllocation() {
+        return (Optional<CurrentAllocation>) currentAllocation;
     }
 
-    public Optional<? extends String> roomConfig() {
-        return roomConfig;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> roomConfig() {
+        return (Optional<String>) roomConfig;
     }
 
     /**
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
+    @JsonIgnore
     public String roomId() {
         return roomId;
     }
@@ -119,6 +137,7 @@ public class Room {
      * 
      * `destroyed`: all associated metadata is deleted
      */
+    @JsonIgnore
     public RoomStatus status() {
         return status;
     }

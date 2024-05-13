@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -26,6 +28,7 @@ public class StartingConnectionInfo {
     @JsonProperty("status")
     private StartingConnectionInfoStatus status;
 
+    @JsonCreator
     public StartingConnectionInfo(
             @JsonProperty("roomId") String roomId,
             @JsonProperty("status") StartingConnectionInfoStatus status) {
@@ -39,10 +42,12 @@ public class StartingConnectionInfo {
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
+    @JsonIgnore
     public String roomId() {
         return roomId;
     }
 
+    @JsonIgnore
     public StartingConnectionInfoStatus status() {
         return status;
     }

@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.LazySingletonValue;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
@@ -45,6 +47,7 @@ public class GetMetricsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=step")
     private Optional<? extends Integer> step;
 
+    @JsonCreator
     public GetMetricsRequest(
             Optional<? extends String> appId,
             Optional<? extends Double> end,
@@ -65,25 +68,37 @@ public class GetMetricsRequest {
         this.start = start;
         this.step = step;
     }
+    
+    public GetMetricsRequest(
+            String processId) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), processId, Optional.empty(), Optional.empty());
+    }
 
-    public Optional<? extends String> appId() {
-        return appId;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
     }
 
     /**
      * Unix timestamp. Default is current time.
      */
-    public Optional<? extends Double> end() {
-        return end;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Double> end() {
+        return (Optional<Double>) end;
     }
 
     /**
      * Available metrics to query over time.
      */
-    public Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.MetricName>> metrics() {
-        return metrics;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<java.util.List<dev.hathora.cloud_api.models.shared.MetricName>> metrics() {
+        return (Optional<java.util.List<dev.hathora.cloud_api.models.shared.MetricName>>) metrics;
     }
 
+    @JsonIgnore
     public String processId() {
         return processId;
     }
@@ -91,12 +106,16 @@ public class GetMetricsRequest {
     /**
      * Unix timestamp. Default is -1 hour from `end`.
      */
-    public Optional<? extends Double> start() {
-        return start;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Double> start() {
+        return (Optional<Double>) start;
     }
 
-    public Optional<? extends Integer> step() {
-        return step;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Integer> step() {
+        return (Optional<Integer>) step;
     }
 
     public final static Builder builder() {

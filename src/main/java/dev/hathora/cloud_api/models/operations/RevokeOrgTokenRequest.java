@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -22,6 +24,7 @@ public class RevokeOrgTokenRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=orgTokenId")
     private String orgTokenId;
 
+    @JsonCreator
     public RevokeOrgTokenRequest(
             String orgId,
             String orgTokenId) {
@@ -31,10 +34,12 @@ public class RevokeOrgTokenRequest {
         this.orgTokenId = orgTokenId;
     }
 
+    @JsonIgnore
     public String orgId() {
         return orgId;
     }
 
+    @JsonIgnore
     public String orgTokenId() {
         return orgTokenId;
     }

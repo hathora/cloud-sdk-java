@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -22,6 +24,7 @@ public class Env {
     @JsonProperty("value")
     private String value;
 
+    @JsonCreator
     public Env(
             @JsonProperty("name") String name,
             @JsonProperty("value") String value) {
@@ -31,10 +34,12 @@ public class Env {
         this.value = value;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public String value() {
         return value;
     }

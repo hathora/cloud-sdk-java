@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -16,8 +18,6 @@ import java.util.Optional;
 
 
 public class DownloadLogForProcessResponse implements dev.hathora.cloud_api.utils.Response {
-
-    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
 
     /**
      * HTTP response content type for this operation
@@ -37,33 +37,35 @@ public class DownloadLogForProcessResponse implements dev.hathora.cloud_api.util
     /**
      * Ok
      */
-    private Optional<? extends String> res;
+    private Optional<? extends InputStream> stream;
 
+    @JsonCreator
     public DownloadLogForProcessResponse(
-            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends String> res) {
-        Utils.checkNotNull(apiError, "apiError");
+            Optional<? extends InputStream> stream) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(res, "res");
-        this.apiError = apiError;
+        Utils.checkNotNull(stream, "stream");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.res = res;
+        this.stream = stream;
     }
-
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
-        return apiError;
+    
+    public DownloadLogForProcessResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse, Optional.empty());
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -71,6 +73,7 @@ public class DownloadLogForProcessResponse implements dev.hathora.cloud_api.util
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -78,6 +81,7 @@ public class DownloadLogForProcessResponse implements dev.hathora.cloud_api.util
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -85,24 +89,14 @@ public class DownloadLogForProcessResponse implements dev.hathora.cloud_api.util
     /**
      * Ok
      */
-    public Optional<? extends String> res() {
-        return res;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<InputStream> stream() {
+        return (Optional<InputStream>) stream;
     }
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public DownloadLogForProcessResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = Optional.ofNullable(apiError);
-        return this;
-    }
-
-    public DownloadLogForProcessResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = apiError;
-        return this;
     }
 
     /**
@@ -135,18 +129,18 @@ public class DownloadLogForProcessResponse implements dev.hathora.cloud_api.util
     /**
      * Ok
      */
-    public DownloadLogForProcessResponse withRes(String res) {
-        Utils.checkNotNull(res, "res");
-        this.res = Optional.ofNullable(res);
+    public DownloadLogForProcessResponse withStream(InputStream stream) {
+        Utils.checkNotNull(stream, "stream");
+        this.stream = Optional.ofNullable(stream);
         return this;
     }
 
     /**
      * Ok
      */
-    public DownloadLogForProcessResponse withRes(Optional<? extends String> res) {
-        Utils.checkNotNull(res, "res");
-        this.res = res;
+    public DownloadLogForProcessResponse withStream(Optional<? extends InputStream> stream) {
+        Utils.checkNotNull(stream, "stream");
+        this.stream = stream;
         return this;
     }
     
@@ -160,36 +154,31 @@ public class DownloadLogForProcessResponse implements dev.hathora.cloud_api.util
         }
         DownloadLogForProcessResponse other = (DownloadLogForProcessResponse) o;
         return 
-            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.res, other.res);
+            java.util.Objects.deepEquals(this.stream, other.stream);
     }
     
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            apiError,
             contentType,
             statusCode,
             rawResponse,
-            res);
+            stream);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DownloadLogForProcessResponse.class,
-                "apiError", apiError,
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "res", res);
+                "stream", stream);
     }
     
     public final static class Builder {
- 
-        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
  
         private String contentType;
  
@@ -197,22 +186,10 @@ public class DownloadLogForProcessResponse implements dev.hathora.cloud_api.util
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends String> res = Optional.empty();  
+        private Optional<? extends InputStream> stream = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = Optional.ofNullable(apiError);
-            return this;
-        }
-
-        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = apiError;
-            return this;
         }
 
         /**
@@ -245,28 +222,27 @@ public class DownloadLogForProcessResponse implements dev.hathora.cloud_api.util
         /**
          * Ok
          */
-        public Builder res(String res) {
-            Utils.checkNotNull(res, "res");
-            this.res = Optional.ofNullable(res);
+        public Builder stream(InputStream stream) {
+            Utils.checkNotNull(stream, "stream");
+            this.stream = Optional.ofNullable(stream);
             return this;
         }
 
         /**
          * Ok
          */
-        public Builder res(Optional<? extends String> res) {
-            Utils.checkNotNull(res, "res");
-            this.res = res;
+        public Builder stream(Optional<? extends InputStream> stream) {
+            Utils.checkNotNull(stream, "stream");
+            this.stream = stream;
             return this;
         }
         
         public DownloadLogForProcessResponse build() {
             return new DownloadLogForProcessResponse(
-                apiError,
                 contentType,
                 statusCode,
                 rawResponse,
-                res);
+                stream);
         }
     }
 }

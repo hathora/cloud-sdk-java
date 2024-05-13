@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -29,6 +31,7 @@ public class CreateLobbyRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=shortCode")
     private Optional<? extends String> shortCode;
 
+    @JsonCreator
     public CreateLobbyRequest(
             dev.hathora.cloud_api.models.shared.CreateLobbyV3Params createLobbyV3Params,
             Optional<? extends String> appId,
@@ -43,21 +46,33 @@ public class CreateLobbyRequest {
         this.roomId = roomId;
         this.shortCode = shortCode;
     }
+    
+    public CreateLobbyRequest(
+            dev.hathora.cloud_api.models.shared.CreateLobbyV3Params createLobbyV3Params) {
+        this(createLobbyV3Params, Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public dev.hathora.cloud_api.models.shared.CreateLobbyV3Params createLobbyV3Params() {
         return createLobbyV3Params;
     }
 
-    public Optional<? extends String> appId() {
-        return appId;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
     }
 
-    public Optional<? extends String> roomId() {
-        return roomId;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> roomId() {
+        return (Optional<String>) roomId;
     }
 
-    public Optional<? extends String> shortCode() {
-        return shortCode;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> shortCode() {
+        return (Optional<String>) shortCode;
     }
 
     public final static Builder builder() {

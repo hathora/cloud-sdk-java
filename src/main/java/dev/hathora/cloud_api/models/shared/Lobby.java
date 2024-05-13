@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,6 +20,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Lobby - A lobby object allows you to store and manage metadata for your rooms.
@@ -75,7 +78,7 @@ public class Lobby {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
-    private Optional<? extends State> state;
+    private JsonNullable<? extends State> state;
 
     /**
      * Types of lobbies a player can create.
@@ -89,6 +92,7 @@ public class Lobby {
     @JsonProperty("visibility")
     private LobbyVisibility visibility;
 
+    @JsonCreator
     public Lobby(
             @JsonProperty("appId") String appId,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
@@ -98,7 +102,7 @@ public class Lobby {
             @JsonProperty("region") Region region,
             @JsonProperty("roomId") String roomId,
             @JsonProperty("shortCode") Optional<? extends String> shortCode,
-            @JsonProperty("state") Optional<? extends State> state,
+            @JsonProperty("state") JsonNullable<? extends State> state,
             @JsonProperty("visibility") LobbyVisibility visibility) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(createdAt, "createdAt");
@@ -121,10 +125,23 @@ public class Lobby {
         this.state = state;
         this.visibility = visibility;
     }
+    
+    public Lobby(
+            String appId,
+            OffsetDateTime createdAt,
+            String createdBy,
+            LobbyInitialConfig initialConfig,
+            boolean local,
+            Region region,
+            String roomId,
+            LobbyVisibility visibility) {
+        this(appId, createdAt, createdBy, initialConfig, local, region, roomId, Optional.empty(), JsonNullable.undefined(), visibility);
+    }
 
     /**
      * System generated unique identifier for an application.
      */
+    @JsonIgnore
     public String appId() {
         return appId;
     }
@@ -132,6 +149,7 @@ public class Lobby {
     /**
      * When the lobby was created.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -139,6 +157,7 @@ public class Lobby {
     /**
      * UserId or email address for the user that created the lobby.
      */
+    @JsonIgnore
     public String createdBy() {
         return createdBy;
     }
@@ -146,6 +165,7 @@ public class Lobby {
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
+    @JsonIgnore
     public LobbyInitialConfig initialConfig() {
         return initialConfig;
     }
@@ -154,10 +174,12 @@ public class Lobby {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public boolean local() {
         return local;
     }
 
+    @JsonIgnore
     public Region region() {
         return region;
     }
@@ -166,19 +188,24 @@ public class Lobby {
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
+    @JsonIgnore
     public String roomId() {
         return roomId;
     }
 
-    public Optional<? extends String> shortCode() {
-        return shortCode;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> shortCode() {
+        return (Optional<String>) shortCode;
     }
 
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
-    public Optional<? extends State> state() {
-        return state;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<State> state() {
+        return (JsonNullable<State>) state;
     }
 
     /**
@@ -190,6 +217,7 @@ public class Lobby {
      * 
      * `local`: for testing with a server running locally
      */
+    @JsonIgnore
     public LobbyVisibility visibility() {
         return visibility;
     }
@@ -277,14 +305,14 @@ public class Lobby {
      */
     public Lobby withState(State state) {
         Utils.checkNotNull(state, "state");
-        this.state = Optional.ofNullable(state);
+        this.state = JsonNullable.of(state);
         return this;
     }
 
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
-    public Lobby withState(Optional<? extends State> state) {
+    public Lobby withState(JsonNullable<? extends State> state) {
         Utils.checkNotNull(state, "state");
         this.state = state;
         return this;
@@ -376,7 +404,7 @@ public class Lobby {
  
         private Optional<? extends String> shortCode = Optional.empty();
  
-        private Optional<? extends State> state = Optional.empty();
+        private JsonNullable<? extends State> state = JsonNullable.undefined();
  
         private LobbyVisibility visibility;  
         
@@ -463,14 +491,14 @@ public class Lobby {
          */
         public Builder state(State state) {
             Utils.checkNotNull(state, "state");
-            this.state = Optional.ofNullable(state);
+            this.state = JsonNullable.of(state);
             return this;
         }
 
         /**
          * JSON blob to store metadata for a room. Must be smaller than 1MB.
          */
-        public Builder state(Optional<? extends State> state) {
+        public Builder state(JsonNullable<? extends State> state) {
             Utils.checkNotNull(state, "state");
             this.state = state;
             return this;

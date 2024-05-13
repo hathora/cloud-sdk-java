@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -25,6 +27,7 @@ public class CreatePublicLobbyRequestBody {
     @JsonProperty("region")
     private dev.hathora.cloud_api.models.shared.Region region;
 
+    @JsonCreator
     public CreatePublicLobbyRequestBody(
             @JsonProperty("initialConfig") dev.hathora.cloud_api.models.shared.LobbyInitialConfig initialConfig,
             @JsonProperty("region") dev.hathora.cloud_api.models.shared.Region region) {
@@ -37,10 +40,12 @@ public class CreatePublicLobbyRequestBody {
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
+    @JsonIgnore
     public dev.hathora.cloud_api.models.shared.LobbyInitialConfig initialConfig() {
         return initialConfig;
     }
 
+    @JsonIgnore
     public dev.hathora.cloud_api.models.shared.Region region() {
         return region;
     }

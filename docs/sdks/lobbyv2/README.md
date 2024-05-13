@@ -26,26 +26,21 @@ Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathor
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreateLobbyDeprecatedRequest;
-import dev.hathora.cloud_api.models.operations.CreateLobbyDeprecatedResponse;
 import dev.hathora.cloud_api.models.operations.CreateLobbyDeprecatedSecurity;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.CreateLobbyParams;
-import dev.hathora.cloud_api.models.shared.LobbyInitialConfig;
-import dev.hathora.cloud_api.models.shared.LobbyVisibility;
-import dev.hathora.cloud_api.models.shared.Region;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -58,7 +53,7 @@ public class Application {
                 .createLobbyParams(CreateLobbyParams.builder()
                     .initialConfig(LobbyInitialConfig.builder()
                             .build())
-                    .region(Region.CHICAGO)
+                    .region(Region.TOKYO)
                     .visibility(LobbyVisibility.PRIVATE_)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -68,10 +63,15 @@ public class Application {
             if (res.lobby().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -92,9 +92,10 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreateLobbyDeprecatedResponse>](../../models/operations/CreateLobbyDeprecatedResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## ~~createLocalLobby~~
 
@@ -105,25 +106,21 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequest;
-import dev.hathora.cloud_api.models.operations.CreateLocalLobbyRequestBody;
-import dev.hathora.cloud_api.models.operations.CreateLocalLobbyResponse;
 import dev.hathora.cloud_api.models.operations.CreateLocalLobbySecurity;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.LobbyInitialConfig;
-import dev.hathora.cloud_api.models.shared.Region;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -136,7 +133,7 @@ public class Application {
                 .requestBody(CreateLocalLobbyRequestBody.builder()
                     .initialConfig(LobbyInitialConfig.builder()
                             .build())
-                    .region(Region.WASHINGTON_DC)
+                    .region(Region.SAO_PAULO)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
@@ -145,10 +142,15 @@ public class Application {
             if (res.lobby().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -169,9 +171,10 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreateLocalLobbyResponse>](../../models/operations/CreateLocalLobbyResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## ~~createPrivateLobby~~
 
@@ -182,25 +185,21 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequest;
-import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyRequestBody;
-import dev.hathora.cloud_api.models.operations.CreatePrivateLobbyResponse;
 import dev.hathora.cloud_api.models.operations.CreatePrivateLobbySecurity;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.LobbyInitialConfig;
-import dev.hathora.cloud_api.models.shared.Region;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -213,7 +212,7 @@ public class Application {
                 .requestBody(CreatePrivateLobbyRequestBody.builder()
                     .initialConfig(LobbyInitialConfig.builder()
                             .build())
-                    .region(Region.LOS_ANGELES)
+                    .region(Region.CHICAGO)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
@@ -222,10 +221,15 @@ public class Application {
             if (res.lobby().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -246,9 +250,10 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreatePrivateLobbyResponse>](../../models/operations/CreatePrivateLobbyResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## ~~createPublicLobby~~
 
@@ -259,25 +264,21 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequest;
-import dev.hathora.cloud_api.models.operations.CreatePublicLobbyRequestBody;
-import dev.hathora.cloud_api.models.operations.CreatePublicLobbyResponse;
 import dev.hathora.cloud_api.models.operations.CreatePublicLobbySecurity;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.LobbyInitialConfig;
-import dev.hathora.cloud_api.models.shared.Region;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -290,7 +291,7 @@ public class Application {
                 .requestBody(CreatePublicLobbyRequestBody.builder()
                     .initialConfig(LobbyInitialConfig.builder()
                             .build())
-                    .region(Region.WASHINGTON_DC)
+                    .region(Region.SAO_PAULO)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
@@ -299,10 +300,15 @@ public class Application {
             if (res.lobby().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -323,9 +329,10 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.CreatePublicLobbyResponse>](../../models/operations/CreatePublicLobbyResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## ~~getLobbyInfo~~
 
@@ -338,21 +345,20 @@ Get details for a lobby.
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetLobbyInfoRequest;
-import dev.hathora.cloud_api.models.operations.GetLobbyInfoResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -366,10 +372,15 @@ public class Application {
             if (res.lobby().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -390,6 +401,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 404                    | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~listActivePublicLobbiesDeprecatedV2~~
@@ -403,22 +415,20 @@ Get all active lobbies for a an [application](https://hathora.dev/docs/concepts/
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedV2Request;
-import dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedV2Response;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Region;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -434,8 +444,10 @@ public class Application {
             }
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -469,24 +481,21 @@ Set the state of a lobby. State is intended to be set by the server and must be 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.SetLobbyStateRequest;
-import dev.hathora.cloud_api.models.operations.SetLobbyStateResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.models.shared.SetLobbyStateParams;
-import dev.hathora.cloud_api.models.shared.SetLobbyStateParamsState;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -507,10 +516,15 @@ public class Application {
             if (res.lobby().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -532,4 +546,5 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,422,429        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |

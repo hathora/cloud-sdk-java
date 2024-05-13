@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -34,6 +36,7 @@ public class ContainerPort {
     @JsonProperty("transportType")
     private TransportType transportType;
 
+    @JsonCreator
     public ContainerPort(
             @JsonProperty("name") String name,
             @JsonProperty("port") int port,
@@ -49,10 +52,12 @@ public class ContainerPort {
     /**
      * Readable name for the port.
      */
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public int port() {
         return port;
     }
@@ -60,6 +65,7 @@ public class ContainerPort {
     /**
      * Transport type specifies the underlying communication protocol to the exposed port.
      */
+    @JsonIgnore
     public TransportType transportType() {
         return transportType;
     }

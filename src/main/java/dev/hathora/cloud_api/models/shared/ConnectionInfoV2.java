@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -39,17 +41,15 @@ public class ConnectionInfoV2 {
     @JsonProperty("roomId")
     private String roomId;
 
-    /**
-     * `exposedPort` will only be available when the `status` of a room is "active".
-     */
     @JsonProperty("status")
-    private ConnectionInfoV2Status status;
+    private RoomReadyStatus status;
 
+    @JsonCreator
     public ConnectionInfoV2(
             @JsonProperty("additionalExposedPorts") java.util.List<ExposedPort> additionalExposedPorts,
             @JsonProperty("exposedPort") Optional<? extends ExposedPort> exposedPort,
             @JsonProperty("roomId") String roomId,
-            @JsonProperty("status") ConnectionInfoV2Status status) {
+            @JsonProperty("status") RoomReadyStatus status) {
         Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
         Utils.checkNotNull(exposedPort, "exposedPort");
         Utils.checkNotNull(roomId, "roomId");
@@ -59,7 +59,15 @@ public class ConnectionInfoV2 {
         this.roomId = roomId;
         this.status = status;
     }
+    
+    public ConnectionInfoV2(
+            java.util.List<ExposedPort> additionalExposedPorts,
+            String roomId,
+            RoomReadyStatus status) {
+        this(additionalExposedPorts, Optional.empty(), roomId, status);
+    }
 
+    @JsonIgnore
     public java.util.List<ExposedPort> additionalExposedPorts() {
         return additionalExposedPorts;
     }
@@ -67,22 +75,23 @@ public class ConnectionInfoV2 {
     /**
      * Connection details for an active process.
      */
-    public Optional<? extends ExposedPort> exposedPort() {
-        return exposedPort;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ExposedPort> exposedPort() {
+        return (Optional<ExposedPort>) exposedPort;
     }
 
     /**
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
+    @JsonIgnore
     public String roomId() {
         return roomId;
     }
 
-    /**
-     * `exposedPort` will only be available when the `status` of a room is "active".
-     */
-    public ConnectionInfoV2Status status() {
+    @JsonIgnore
+    public RoomReadyStatus status() {
         return status;
     }
 
@@ -124,10 +133,7 @@ public class ConnectionInfoV2 {
         return this;
     }
 
-    /**
-     * `exposedPort` will only be available when the `status` of a room is "active".
-     */
-    public ConnectionInfoV2 withStatus(ConnectionInfoV2Status status) {
+    public ConnectionInfoV2 withStatus(RoomReadyStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -175,7 +181,7 @@ public class ConnectionInfoV2 {
  
         private String roomId;
  
-        private ConnectionInfoV2Status status;  
+        private RoomReadyStatus status;  
         
         private Builder() {
           // force use of static builder() method
@@ -215,10 +221,7 @@ public class ConnectionInfoV2 {
             return this;
         }
 
-        /**
-         * `exposedPort` will only be available when the `status` of a room is "active".
-         */
-        public Builder status(ConnectionInfoV2Status status) {
+        public Builder status(RoomReadyStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

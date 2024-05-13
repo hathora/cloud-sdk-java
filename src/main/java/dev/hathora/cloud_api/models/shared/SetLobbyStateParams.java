@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -22,6 +24,7 @@ public class SetLobbyStateParams {
     @JsonProperty("state")
     private SetLobbyStateParamsState state;
 
+    @JsonCreator
     public SetLobbyStateParams(
             @JsonProperty("state") SetLobbyStateParamsState state) {
         Utils.checkNotNull(state, "state");
@@ -31,6 +34,7 @@ public class SetLobbyStateParams {
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
+    @JsonIgnore
     public SetLobbyStateParamsState state() {
         return state;
     }

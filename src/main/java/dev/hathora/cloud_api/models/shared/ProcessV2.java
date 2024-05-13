@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -92,6 +94,7 @@ public class ProcessV2 {
     @JsonProperty("terminatedAt")
     private Optional<? extends OffsetDateTime> terminatedAt;
 
+    @JsonCreator
     public ProcessV2(
             @JsonProperty("additionalExposedPorts") java.util.List<ExposedPort> additionalExposedPorts,
             @JsonProperty("appId") String appId,
@@ -133,7 +136,21 @@ public class ProcessV2 {
         this.stoppingAt = stoppingAt;
         this.terminatedAt = terminatedAt;
     }
+    
+    public ProcessV2(
+            java.util.List<ExposedPort> additionalExposedPorts,
+            String appId,
+            OffsetDateTime createdAt,
+            int deploymentId,
+            String processId,
+            Region region,
+            int roomsAllocated,
+            int roomsPerProcess,
+            ProcessStatus status) {
+        this(additionalExposedPorts, appId, createdAt, deploymentId, Optional.empty(), processId, region, roomsAllocated, roomsPerProcess, Optional.empty(), status, Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public java.util.List<ExposedPort> additionalExposedPorts() {
         return additionalExposedPorts;
     }
@@ -141,6 +158,7 @@ public class ProcessV2 {
     /**
      * System generated unique identifier for an application.
      */
+    @JsonIgnore
     public String appId() {
         return appId;
     }
@@ -148,6 +166,7 @@ public class ProcessV2 {
     /**
      * When the process started being provisioned.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -155,21 +174,26 @@ public class ProcessV2 {
     /**
      * System generated id for a deployment. Increments by 1.
      */
+    @JsonIgnore
     public int deploymentId() {
         return deploymentId;
     }
 
-    public Optional<? extends ProcessV2ExposedPort> exposedPort() {
-        return exposedPort;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ProcessV2ExposedPort> exposedPort() {
+        return (Optional<ProcessV2ExposedPort>) exposedPort;
     }
 
     /**
      * System generated unique identifier to a runtime instance of your game server.
      */
+    @JsonIgnore
     public String processId() {
         return processId;
     }
 
+    @JsonIgnore
     public Region region() {
         return region;
     }
@@ -177,6 +201,7 @@ public class ProcessV2 {
     /**
      * Tracks the number of rooms that have been allocated to the process.
      */
+    @JsonIgnore
     public int roomsAllocated() {
         return roomsAllocated;
     }
@@ -184,6 +209,7 @@ public class ProcessV2 {
     /**
      * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
      */
+    @JsonIgnore
     public int roomsPerProcess() {
         return roomsPerProcess;
     }
@@ -191,10 +217,13 @@ public class ProcessV2 {
     /**
      * When the process bound to the specified port. We use this to determine when we should start billing.
      */
-    public Optional<? extends OffsetDateTime> startedAt() {
-        return startedAt;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> startedAt() {
+        return (Optional<OffsetDateTime>) startedAt;
     }
 
+    @JsonIgnore
     public ProcessStatus status() {
         return status;
     }
@@ -202,15 +231,19 @@ public class ProcessV2 {
     /**
      * When the process is issued to stop. We use this to determine when we should stop billing.
      */
-    public Optional<? extends OffsetDateTime> stoppingAt() {
-        return stoppingAt;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> stoppingAt() {
+        return (Optional<OffsetDateTime>) stoppingAt;
     }
 
     /**
      * When the process has been terminated.
      */
-    public Optional<? extends OffsetDateTime> terminatedAt() {
-        return terminatedAt;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> terminatedAt() {
+        return (Optional<OffsetDateTime>) terminatedAt;
     }
 
     public final static Builder builder() {

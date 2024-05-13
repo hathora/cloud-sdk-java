@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -25,6 +27,7 @@ public class Google {
     @JsonProperty("clientId")
     private String clientId;
 
+    @JsonCreator
     public Google(
             @JsonProperty("clientId") String clientId) {
         Utils.checkNotNull(clientId, "clientId");
@@ -34,6 +37,7 @@ public class Google {
     /**
      * A Google generated token representing the developer's credentials for [Google's API Console](https://console.cloud.google.com/apis/dashboard?pli=1&amp;project=discourse-login-388921). Learn how to get a `clientId` [here](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
      */
+    @JsonIgnore
     public String clientId() {
         return clientId;
     }

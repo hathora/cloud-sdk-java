@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -35,13 +37,14 @@ public class GetAppsResponse implements dev.hathora.cloud_api.utils.Response {
     /**
      * Ok
      */
-    private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment>> classes;
+    private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithLatestDeploymentAndBuild>> classes;
 
+    @JsonCreator
     public GetAppsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment>> classes) {
+            Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithLatestDeploymentAndBuild>> classes) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -51,10 +54,18 @@ public class GetAppsResponse implements dev.hathora.cloud_api.utils.Response {
         this.rawResponse = rawResponse;
         this.classes = classes;
     }
+    
+    public GetAppsResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse, Optional.empty());
+    }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -62,6 +73,7 @@ public class GetAppsResponse implements dev.hathora.cloud_api.utils.Response {
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -69,6 +81,7 @@ public class GetAppsResponse implements dev.hathora.cloud_api.utils.Response {
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -76,8 +89,10 @@ public class GetAppsResponse implements dev.hathora.cloud_api.utils.Response {
     /**
      * Ok
      */
-    public Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment>> classes() {
-        return classes;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithLatestDeploymentAndBuild>> classes() {
+        return (Optional<java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithLatestDeploymentAndBuild>>) classes;
     }
 
     public final static Builder builder() {
@@ -114,7 +129,7 @@ public class GetAppsResponse implements dev.hathora.cloud_api.utils.Response {
     /**
      * Ok
      */
-    public GetAppsResponse withClasses(java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment> classes) {
+    public GetAppsResponse withClasses(java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithLatestDeploymentAndBuild> classes) {
         Utils.checkNotNull(classes, "classes");
         this.classes = Optional.ofNullable(classes);
         return this;
@@ -123,7 +138,7 @@ public class GetAppsResponse implements dev.hathora.cloud_api.utils.Response {
     /**
      * Ok
      */
-    public GetAppsResponse withClasses(Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment>> classes) {
+    public GetAppsResponse withClasses(Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithLatestDeploymentAndBuild>> classes) {
         Utils.checkNotNull(classes, "classes");
         this.classes = classes;
         return this;
@@ -171,7 +186,7 @@ public class GetAppsResponse implements dev.hathora.cloud_api.utils.Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment>> classes = Optional.empty();  
+        private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithLatestDeploymentAndBuild>> classes = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -207,7 +222,7 @@ public class GetAppsResponse implements dev.hathora.cloud_api.utils.Response {
         /**
          * Ok
          */
-        public Builder classes(java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment> classes) {
+        public Builder classes(java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithLatestDeploymentAndBuild> classes) {
             Utils.checkNotNull(classes, "classes");
             this.classes = Optional.ofNullable(classes);
             return this;
@@ -216,7 +231,7 @@ public class GetAppsResponse implements dev.hathora.cloud_api.utils.Response {
         /**
          * Ok
          */
-        public Builder classes(Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithDeployment>> classes) {
+        public Builder classes(Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ApplicationWithLatestDeploymentAndBuild>> classes) {
             Utils.checkNotNull(classes, "classes");
             this.classes = classes;
             return this;

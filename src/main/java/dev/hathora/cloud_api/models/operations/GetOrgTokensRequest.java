@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -19,12 +21,14 @@ public class GetOrgTokensRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=orgId")
     private String orgId;
 
+    @JsonCreator
     public GetOrgTokensRequest(
             String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
     }
 
+    @JsonIgnore
     public String orgId() {
         return orgId;
     }

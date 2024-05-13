@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -23,6 +25,7 @@ public class GetInactiveRoomsForProcessDeprecatedRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=processId")
     private String processId;
 
+    @JsonCreator
     public GetInactiveRoomsForProcessDeprecatedRequest(
             Optional<? extends String> appId,
             String processId) {
@@ -31,11 +34,19 @@ public class GetInactiveRoomsForProcessDeprecatedRequest {
         this.appId = appId;
         this.processId = processId;
     }
-
-    public Optional<? extends String> appId() {
-        return appId;
+    
+    public GetInactiveRoomsForProcessDeprecatedRequest(
+            String processId) {
+        this(Optional.empty(), processId);
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
+    }
+
+    @JsonIgnore
     public String processId() {
         return processId;
     }

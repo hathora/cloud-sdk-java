@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -75,6 +77,7 @@ public class LobbyV3 {
     @JsonProperty("visibility")
     private LobbyVisibility visibility;
 
+    @JsonCreator
     public LobbyV3(
             @JsonProperty("appId") String appId,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
@@ -101,10 +104,22 @@ public class LobbyV3 {
         this.shortCode = shortCode;
         this.visibility = visibility;
     }
+    
+    public LobbyV3(
+            String appId,
+            OffsetDateTime createdAt,
+            String createdBy,
+            Region region,
+            String roomId,
+            String shortCode,
+            LobbyVisibility visibility) {
+        this(appId, createdAt, createdBy, region, Optional.empty(), roomId, shortCode, visibility);
+    }
 
     /**
      * System generated unique identifier for an application.
      */
+    @JsonIgnore
     public String appId() {
         return appId;
     }
@@ -112,6 +127,7 @@ public class LobbyV3 {
     /**
      * When the lobby was created.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -119,22 +135,27 @@ public class LobbyV3 {
     /**
      * UserId or email address for the user that created the lobby.
      */
+    @JsonIgnore
     public String createdBy() {
         return createdBy;
     }
 
+    @JsonIgnore
     public Region region() {
         return region;
     }
 
-    public Optional<? extends String> roomConfig() {
-        return roomConfig;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> roomConfig() {
+        return (Optional<String>) roomConfig;
     }
 
     /**
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
+    @JsonIgnore
     public String roomId() {
         return roomId;
     }
@@ -142,6 +163,7 @@ public class LobbyV3 {
     /**
      * User-defined identifier for a lobby.
      */
+    @JsonIgnore
     public String shortCode() {
         return shortCode;
     }
@@ -155,6 +177,7 @@ public class LobbyV3 {
      * 
      * `local`: for testing with a server running locally
      */
+    @JsonIgnore
     public LobbyVisibility visibility() {
         return visibility;
     }

@@ -2,25 +2,21 @@
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreateAppResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.AppConfig;
-import dev.hathora.cloud_api.models.shared.AuthConfiguration;
-import dev.hathora.cloud_api.models.shared.Google;
-import dev.hathora.cloud_api.models.shared.RecordStringNever;
 import dev.hathora.cloud_api.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -32,13 +28,6 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .anonymous(RecordStringNever.builder()
-                            .build())
-                        .google(Google.builder()
-                            .clientId("<value>")
-                            .build())
-                        .nickname(RecordStringNever.builder()
-                            .build())
                         .build())
                 .build();
 
@@ -49,10 +38,15 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
