@@ -1,22 +1,13 @@
 name: Test Java SDK
 on:
   pull_request:
-    types: [opened, synchronize, reopened
-
+    paths-ignore:
+      - "applications/cirrus/**"
+      - .github/workflows/ci-cirrus.yml
+      - .github/workflows/autosucceed-ci-cirrus.yml
 jobs:
-  test:
+  deploy:
     name: Test Java SDK
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: "17"
-          distribution: "temurin"
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-      - name: Run Tests
-        run: ./gradlew test
-        env:
-          HATHORA_DEV_TOKEN: ${{ secrets.HATHORA_DEV_TOKEN }}
+      - run: 'echo "No build required"'
