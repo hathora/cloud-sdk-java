@@ -1,9 +1,7 @@
-name: Tests
+name: Test Java SDK
 on:
   pull_request:
-    paths:
-      - "**"
-
+    types: [opened, synchronize, reopened]
 jobs:
   test:
     name: Test Java SDK
