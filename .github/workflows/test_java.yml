@@ -1,10 +1,7 @@
 name: Test Java SDK
 on:
   pull_request:
-    paths-ignore:
-      - "applications/cirrus/**"
-      - .github/workflows/ci-cirrus.yml
-      - .github/workflows/autosucceed-ci-cirrus.yml
+    types: [opened, synchronize, reopened]
 jobs:
   deploy:
     name: Test Java SDK
