@@ -38,7 +38,7 @@ public class SDKTest {
                         .roomConfig(roomConfig)
                         .build())
                 .call();
-        if (createRoomResponse.apiError().isPresent()) {
+        if (createRoomResponse.statusCode() != 201 ) {
             System.out.println("error: " + createRoomResponse.apiError().get().message());
         }
 

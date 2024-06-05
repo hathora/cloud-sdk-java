@@ -12,10 +12,11 @@ generation:
   baseServerURL: ""
   flattenGlobalSecurity: true
 java:
-  version: 2.3.0
-  additionalDependencies: 
-  - 'testImplementation:org.junit.jupiter:junit-jupiter-api:5.8.1'
-  - 'testRuntimeOnly:org.junit.jupiter:junit-jupiter-engine:5.8.1'
+  version: 2.4.0
+  additionalDependencies:
+    - testImplementation:org.junit.jupiter:junit-jupiter-api:5.8.1
+    - testRuntimeOnly:org.junit.jupiter:junit-jupiter-engine:5.8.1
+    - implementation:org.java-websocket:Java-WebSocket:1.5.6
   artifactID: cloud-api
   companyEmail: info@mycompany.com
   companyName: My Company
