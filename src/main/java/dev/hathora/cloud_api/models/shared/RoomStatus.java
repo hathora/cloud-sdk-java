@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -20,14 +22,11 @@ import java.math.BigInteger;
  * 
  * `active`: ready to accept connections
  * 
- * `suspended`: room is unallocated from the process but can be rescheduled later with the same `roomId`
- * 
  * `destroyed`: all associated metadata is deleted
  */
 public enum RoomStatus {
     SCHEDULING("scheduling"),
     ACTIVE("active"),
-    SUSPENDED("suspended"),
     DESTROYED("destroyed");
 
     @JsonValue

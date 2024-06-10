@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,7 +20,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
+import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * Lobby - A lobby object allows you to store and manage metadata for your rooms.
  */
@@ -41,13 +43,13 @@ public class Lobby {
      * UserId or email address for the user that created the lobby.
      */
     @JsonProperty("createdBy")
-    private String createdBy;
+    private CreatedBy createdBy;
 
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
     @JsonProperty("initialConfig")
-    private LobbyInitialConfig initialConfig;
+    private java.lang.Object initialConfig;
 
     /**
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -75,7 +77,7 @@ public class Lobby {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
-    private Optional<? extends State> state;
+    private JsonNullable<? extends java.lang.Object> state;
 
     /**
      * Types of lobbies a player can create.
@@ -89,16 +91,17 @@ public class Lobby {
     @JsonProperty("visibility")
     private LobbyVisibility visibility;
 
+    @JsonCreator
     public Lobby(
             @JsonProperty("appId") String appId,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("createdBy") String createdBy,
-            @JsonProperty("initialConfig") LobbyInitialConfig initialConfig,
+            @JsonProperty("createdBy") CreatedBy createdBy,
+            @JsonProperty("initialConfig") java.lang.Object initialConfig,
             @JsonProperty("local") boolean local,
             @JsonProperty("region") Region region,
             @JsonProperty("roomId") String roomId,
             @JsonProperty("shortCode") Optional<? extends String> shortCode,
-            @JsonProperty("state") Optional<? extends State> state,
+            @JsonProperty("state") JsonNullable<? extends java.lang.Object> state,
             @JsonProperty("visibility") LobbyVisibility visibility) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(createdAt, "createdAt");
@@ -121,10 +124,23 @@ public class Lobby {
         this.state = state;
         this.visibility = visibility;
     }
+    
+    public Lobby(
+            String appId,
+            OffsetDateTime createdAt,
+            CreatedBy createdBy,
+            java.lang.Object initialConfig,
+            boolean local,
+            Region region,
+            String roomId,
+            LobbyVisibility visibility) {
+        this(appId, createdAt, createdBy, initialConfig, local, region, roomId, Optional.empty(), JsonNullable.undefined(), visibility);
+    }
 
     /**
      * System generated unique identifier for an application.
      */
+    @JsonIgnore
     public String appId() {
         return appId;
     }
@@ -132,6 +148,7 @@ public class Lobby {
     /**
      * When the lobby was created.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -139,14 +156,16 @@ public class Lobby {
     /**
      * UserId or email address for the user that created the lobby.
      */
-    public String createdBy() {
+    @JsonIgnore
+    public CreatedBy createdBy() {
         return createdBy;
     }
 
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
-    public LobbyInitialConfig initialConfig() {
+    @JsonIgnore
+    public java.lang.Object initialConfig() {
         return initialConfig;
     }
 
@@ -154,10 +173,12 @@ public class Lobby {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public boolean local() {
         return local;
     }
 
+    @JsonIgnore
     public Region region() {
         return region;
     }
@@ -166,19 +187,24 @@ public class Lobby {
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
+    @JsonIgnore
     public String roomId() {
         return roomId;
     }
 
-    public Optional<? extends String> shortCode() {
-        return shortCode;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> shortCode() {
+        return (Optional<String>) shortCode;
     }
 
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
-    public Optional<? extends State> state() {
-        return state;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<java.lang.Object> state() {
+        return (JsonNullable<java.lang.Object>) state;
     }
 
     /**
@@ -190,6 +216,7 @@ public class Lobby {
      * 
      * `local`: for testing with a server running locally
      */
+    @JsonIgnore
     public LobbyVisibility visibility() {
         return visibility;
     }
@@ -219,7 +246,7 @@ public class Lobby {
     /**
      * UserId or email address for the user that created the lobby.
      */
-    public Lobby withCreatedBy(String createdBy) {
+    public Lobby withCreatedBy(CreatedBy createdBy) {
         Utils.checkNotNull(createdBy, "createdBy");
         this.createdBy = createdBy;
         return this;
@@ -228,7 +255,7 @@ public class Lobby {
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
-    public Lobby withInitialConfig(LobbyInitialConfig initialConfig) {
+    public Lobby withInitialConfig(java.lang.Object initialConfig) {
         Utils.checkNotNull(initialConfig, "initialConfig");
         this.initialConfig = initialConfig;
         return this;
@@ -275,16 +302,16 @@ public class Lobby {
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
-    public Lobby withState(State state) {
+    public Lobby withState(java.lang.Object state) {
         Utils.checkNotNull(state, "state");
-        this.state = Optional.ofNullable(state);
+        this.state = JsonNullable.of(state);
         return this;
     }
 
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
-    public Lobby withState(Optional<? extends State> state) {
+    public Lobby withState(JsonNullable<? extends java.lang.Object> state) {
         Utils.checkNotNull(state, "state");
         this.state = state;
         return this;
@@ -363,9 +390,9 @@ public class Lobby {
  
         private OffsetDateTime createdAt;
  
-        private String createdBy;
+        private CreatedBy createdBy;
  
-        private LobbyInitialConfig initialConfig;
+        private java.lang.Object initialConfig;
  
         @Deprecated
         private Boolean local;
@@ -376,7 +403,7 @@ public class Lobby {
  
         private Optional<? extends String> shortCode = Optional.empty();
  
-        private Optional<? extends State> state = Optional.empty();
+        private JsonNullable<? extends java.lang.Object> state = JsonNullable.undefined();
  
         private LobbyVisibility visibility;  
         
@@ -405,7 +432,7 @@ public class Lobby {
         /**
          * UserId or email address for the user that created the lobby.
          */
-        public Builder createdBy(String createdBy) {
+        public Builder createdBy(CreatedBy createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;
             return this;
@@ -414,7 +441,7 @@ public class Lobby {
         /**
          * User input to initialize the game state. Object must be smaller than 64KB.
          */
-        public Builder initialConfig(LobbyInitialConfig initialConfig) {
+        public Builder initialConfig(java.lang.Object initialConfig) {
             Utils.checkNotNull(initialConfig, "initialConfig");
             this.initialConfig = initialConfig;
             return this;
@@ -461,16 +488,16 @@ public class Lobby {
         /**
          * JSON blob to store metadata for a room. Must be smaller than 1MB.
          */
-        public Builder state(State state) {
+        public Builder state(java.lang.Object state) {
             Utils.checkNotNull(state, "state");
-            this.state = Optional.ofNullable(state);
+            this.state = JsonNullable.of(state);
             return this;
         }
 
         /**
          * JSON blob to store metadata for a room. Must be smaller than 1MB.
          */
-        public Builder state(Optional<? extends State> state) {
+        public Builder state(JsonNullable<? extends java.lang.Object> state) {
             Utils.checkNotNull(state, "state");
             this.state = state;
             return this;

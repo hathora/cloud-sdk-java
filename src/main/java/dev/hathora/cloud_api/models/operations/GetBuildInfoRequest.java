@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -14,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class GetBuildInfoRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
@@ -23,6 +24,7 @@ public class GetBuildInfoRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buildId")
     private int buildId;
 
+    @JsonCreator
     public GetBuildInfoRequest(
             Optional<? extends String> appId,
             int buildId) {
@@ -31,11 +33,19 @@ public class GetBuildInfoRequest {
         this.appId = appId;
         this.buildId = buildId;
     }
-
-    public Optional<? extends String> appId() {
-        return appId;
+    
+    public GetBuildInfoRequest(
+            int buildId) {
+        this(Optional.empty(), buildId);
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
+    }
+
+    @JsonIgnore
     public int buildId() {
         return buildId;
     }

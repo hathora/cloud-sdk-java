@@ -7,12 +7,17 @@ package dev.hathora.cloud_api;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_api.utils.HTTPClient;
+import dev.hathora.cloud_api.utils.Hook.AfterErrorContextImpl;
+import dev.hathora.cloud_api.utils.Hook.AfterSuccessContextImpl;
+import dev.hathora.cloud_api.utils.Hook.BeforeRequestContextImpl;
+import dev.hathora.cloud_api.utils.Retries.NonRetryableException;
 import dev.hathora.cloud_api.utils.RetryConfig;
 import dev.hathora.cloud_api.utils.SpeakeasyHTTPClient;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.http.HttpRequest;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
@@ -22,6 +27,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * Hathora Cloud API: Welcome to the Hathora Cloud API documentation! Learn how to use the Hathora Cloud APIs to build and scale your game servers globally.
  */
 public class HathoraCloud {
+
+
     /**
      * SERVERS contains the list of server urls available to the SDK.
      */
@@ -30,59 +37,55 @@ public class HathoraCloud {
         "https:///",
     };
 
-    /**
-     * Operations that allow you manage your [applications](https://hathora.dev/docs/concepts/hathora-entities#application).
-     */
-    private final AppV1 appV1;
+    private final AppsV1 appsV1;
 
     /**
      * Operations that allow you to generate a Hathora-signed [JSON web token (JWT)](https://jwt.io/) for [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service).
      */
     private final AuthV1 authV1;
 
+    /**
+     *  
+     */
     private final BillingV1 billingV1;
 
-    /**
-     * Operations that allow you create and manage your [builds](https://hathora.dev/docs/concepts/hathora-entities#build).
-     */
-    private final BuildV1 buildV1;
+    private final BuildsV1 buildsV1;
+
+    private final BuildsV2 buildsV2;
+
+    private final DeploymentsV1 deploymentsV1;
+
+    private final DeploymentsV2 deploymentsV2;
 
     /**
-     * Operations that allow you configure and manage an application's [build](https://hathora.dev/docs/concepts/hathora-entities#build) at runtime.
-     */
-    private final DeploymentV1 deploymentV1;
-
-    /**
-     * Service that allows clients to directly ping all Hathora regions to get latency information
+     * Deprecated. Does not include latest Regions (missing Dallas region). Use [DiscoveryV2](https://hathora.dev/api#tag/DiscoveryV2).
      */
     private final DiscoveryV1 discoveryV1;
 
     /**
-     * Deprecated. Use [LobbyV3](https://hathora.dev/api#tag/LobbyV3).
+     * Service that allows clients to directly ping all Hathora regions to get latency information
      */
-    private final LobbyV1 lobbyV1;
+    private final DiscoveryV2 discoveryV2;
+
+    private final LobbiesV1 lobbiesV1;
+
+    private final LobbiesV2 lobbiesV2;
+
+    private final LobbiesV3 lobbiesV3;
+
+    private final LogsV1 logsV1;
 
     /**
-     * Deprecated. Use [LobbyV3](https://hathora.dev/api#tag/LobbyV3).
+     *  
      */
-    private final LobbyV2 lobbyV2;
-
-    /**
-     * Operations to create and manage lobbies using our [Lobby Service](https://hathora.dev/docs/lobbies-and-matchmaking/lobby-service).
-     */
-    private final LobbyV3 lobbyV3;
-
-    /**
-     * Operations to get logs by [applications](https://hathora.dev/docs/concepts/hathora-entities#application), [processes](https://hathora.dev/docs/concepts/hathora-entities#process), and [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment). We store 20GB of logs data.
-     */
-    private final LogV1 logV1;
-
     private final ManagementV1 managementV1;
 
     /**
      * Operations to get metrics by [process](https://hathora.dev/docs/concepts/hathora-entities#process). We store 72 hours of metrics data.
      */
     private final MetricsV1 metricsV1;
+
+    private final OrganizationsV1 organizationsV1;
 
     /**
      * Deprecated. Use [ProcessesV2](https://hathora.dev/api#tag/ProcessesV2).
@@ -94,23 +97,17 @@ public class HathoraCloud {
      */
     private final ProcessesV2 processesV2;
 
-    /**
-     * Deprecated. Use [RoomV2](https://hathora.dev/api#tag/RoomV2).
-     */
-    private final RoomV1 roomV1;
+    private final RoomsV1 roomsV1;
+
+    private final RoomsV2 roomsV2;
 
     /**
-     * Operations to create, manage, and connect to [rooms](https://hathora.dev/docs/concepts/hathora-entities#room).
+     *  
      */
-    private final RoomV2 roomV2;
+    private final TokensV1 tokensV1;
 
-    private final OrgTokensV1 orgTokensV1;
-
-    /**
-     * Operations that allow you manage your [applications](https://hathora.dev/docs/concepts/hathora-entities#application).
-     */
-    public AppV1 appV1() {
-        return appV1;
+    public AppsV1 appsV1() {
+        return appsV1;
     }
 
     /**
@@ -120,59 +117,62 @@ public class HathoraCloud {
         return authV1;
     }
 
+    /**
+     *  
+     */
     public BillingV1 billingV1() {
         return billingV1;
     }
 
-    /**
-     * Operations that allow you create and manage your [builds](https://hathora.dev/docs/concepts/hathora-entities#build).
-     */
-    public BuildV1 buildV1() {
-        return buildV1;
+    public BuildsV1 buildsV1() {
+        return buildsV1;
+    }
+
+    public BuildsV2 buildsV2() {
+        return buildsV2;
+    }
+
+    public DeploymentsV1 deploymentsV1() {
+        return deploymentsV1;
+    }
+
+    public DeploymentsV2 deploymentsV2() {
+        return deploymentsV2;
     }
 
     /**
-     * Operations that allow you configure and manage an application's [build](https://hathora.dev/docs/concepts/hathora-entities#build) at runtime.
-     */
-    public DeploymentV1 deploymentV1() {
-        return deploymentV1;
-    }
-
-    /**
-     * Service that allows clients to directly ping all Hathora regions to get latency information
+     * Deprecated. Does not include latest Regions (missing Dallas region). Use [DiscoveryV2](https://hathora.dev/api#tag/DiscoveryV2).
      */
     public DiscoveryV1 discoveryV1() {
         return discoveryV1;
     }
 
     /**
-     * Deprecated. Use [LobbyV3](https://hathora.dev/api#tag/LobbyV3).
+     * Service that allows clients to directly ping all Hathora regions to get latency information
      */
-    public LobbyV1 lobbyV1() {
-        return lobbyV1;
+    public DiscoveryV2 discoveryV2() {
+        return discoveryV2;
+    }
+
+    public LobbiesV1 lobbiesV1() {
+        return lobbiesV1;
+    }
+
+    public LobbiesV2 lobbiesV2() {
+        return lobbiesV2;
+    }
+
+    public LobbiesV3 lobbiesV3() {
+        return lobbiesV3;
+    }
+
+    public LogsV1 logsV1() {
+        return logsV1;
     }
 
     /**
-     * Deprecated. Use [LobbyV3](https://hathora.dev/api#tag/LobbyV3).
+     *  
      */
-    public LobbyV2 lobbyV2() {
-        return lobbyV2;
-    }
-
-    /**
-     * Operations to create and manage lobbies using our [Lobby Service](https://hathora.dev/docs/lobbies-and-matchmaking/lobby-service).
-     */
-    public LobbyV3 lobbyV3() {
-        return lobbyV3;
-    }
-
-    /**
-     * Operations to get logs by [applications](https://hathora.dev/docs/concepts/hathora-entities#application), [processes](https://hathora.dev/docs/concepts/hathora-entities#process), and [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment). We store 20GB of logs data.
-     */
-    public LogV1 logV1() {
-        return logV1;
-    }
-
     public ManagementV1 managementV1() {
         return managementV1;
     }
@@ -182,6 +182,10 @@ public class HathoraCloud {
      */
     public MetricsV1 metricsV1() {
         return metricsV1;
+    }
+
+    public OrganizationsV1 organizationsV1() {
+        return organizationsV1;
     }
 
     /**
@@ -198,22 +202,19 @@ public class HathoraCloud {
         return processesV2;
     }
 
-    /**
-     * Deprecated. Use [RoomV2](https://hathora.dev/api#tag/RoomV2).
-     */
-    public RoomV1 roomV1() {
-        return roomV1;
+    public RoomsV1 roomsV1() {
+        return roomsV1;
+    }
+
+    public RoomsV2 roomsV2() {
+        return roomsV2;
     }
 
     /**
-     * Operations to create, manage, and connect to [rooms](https://hathora.dev/docs/concepts/hathora-entities#room).
+     *  
      */
-    public RoomV2 roomV2() {
-        return roomV2;
-    }
-
-    public OrgTokensV1 orgTokensV1() {
-        return orgTokensV1;
+    public TokensV1 tokensV1() {
+        return tokensV1;
     }
 
     private final SDKConfiguration sdkConfiguration;
@@ -329,9 +330,9 @@ public class HathoraCloud {
             if (sdkConfiguration.defaultClient == null) {
                 sdkConfiguration.defaultClient = new SpeakeasyHTTPClient();
             }
-	    if (sdkConfiguration.securitySource == null) {
-	    	sdkConfiguration.securitySource = SecuritySource.of(null);
-	    }
+	        if (sdkConfiguration.securitySource == null) {
+	    	    sdkConfiguration.securitySource = SecuritySource.of(null);
+	        }
             if (sdkConfiguration.serverUrl == null || sdkConfiguration.serverUrl.isBlank()) {
                 sdkConfiguration.serverUrl = SERVERS[0];
                 sdkConfiguration.serverIdx = 0;
@@ -342,7 +343,7 @@ public class HathoraCloud {
             return new HathoraCloud(sdkConfiguration);
         }
     }
-
+    
     /**
      * Get a new instance of the SDK builder to configure a new instance of the SDK.
      * @return The SDK builder instance.
@@ -353,87 +354,26 @@ public class HathoraCloud {
 
     private HathoraCloud(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.appV1 = new AppV1(sdkConfiguration);
+        this.appsV1 = new AppsV1(sdkConfiguration);
         this.authV1 = new AuthV1(sdkConfiguration);
         this.billingV1 = new BillingV1(sdkConfiguration);
-        this.buildV1 = new BuildV1(sdkConfiguration);
-        this.deploymentV1 = new DeploymentV1(sdkConfiguration);
+        this.buildsV1 = new BuildsV1(sdkConfiguration);
+        this.buildsV2 = new BuildsV2(sdkConfiguration);
+        this.deploymentsV1 = new DeploymentsV1(sdkConfiguration);
+        this.deploymentsV2 = new DeploymentsV2(sdkConfiguration);
         this.discoveryV1 = new DiscoveryV1(sdkConfiguration);
-        this.lobbyV1 = new LobbyV1(sdkConfiguration);
-        this.lobbyV2 = new LobbyV2(sdkConfiguration);
-        this.lobbyV3 = new LobbyV3(sdkConfiguration);
-        this.logV1 = new LogV1(sdkConfiguration);
+        this.discoveryV2 = new DiscoveryV2(sdkConfiguration);
+        this.lobbiesV1 = new LobbiesV1(sdkConfiguration);
+        this.lobbiesV2 = new LobbiesV2(sdkConfiguration);
+        this.lobbiesV3 = new LobbiesV3(sdkConfiguration);
+        this.logsV1 = new LogsV1(sdkConfiguration);
         this.managementV1 = new ManagementV1(sdkConfiguration);
         this.metricsV1 = new MetricsV1(sdkConfiguration);
+        this.organizationsV1 = new OrganizationsV1(sdkConfiguration);
         this.processesV1 = new ProcessesV1(sdkConfiguration);
         this.processesV2 = new ProcessesV2(sdkConfiguration);
-        this.roomV1 = new RoomV1(sdkConfiguration);
-        this.roomV2 = new RoomV2(sdkConfiguration);
-        this.orgTokensV1 = new OrgTokensV1(sdkConfiguration);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+        this.roomsV1 = new RoomsV1(sdkConfiguration);
+        this.roomsV2 = new RoomsV2(sdkConfiguration);
+        this.tokensV1 = new TokensV1(sdkConfiguration);
+        this.sdkConfiguration.initialize();
+    }}

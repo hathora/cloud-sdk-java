@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,7 +20,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
 /**
  * Process - A process object represents a runtime instance of your game server and its metadata.
  */
@@ -158,6 +159,7 @@ public class Process {
     @JsonProperty("terminatedAt")
     private Optional<? extends OffsetDateTime> terminatedAt;
 
+    @JsonCreator
     public Process(
             @JsonProperty("activeConnections") int activeConnections,
             @JsonProperty("activeConnectionsUpdatedAt") OffsetDateTime activeConnectionsUpdatedAt,
@@ -226,12 +228,34 @@ public class Process {
         this.stoppingAt = stoppingAt;
         this.terminatedAt = terminatedAt;
     }
+    
+    public Process(
+            int activeConnections,
+            OffsetDateTime activeConnectionsUpdatedAt,
+            java.util.List<ExposedPort> additionalExposedPorts,
+            String appId,
+            int deploymentId,
+            boolean draining,
+            int egressedBytes,
+            String host,
+            double port,
+            String processId,
+            Region region,
+            double roomSlotsAvailable,
+            OffsetDateTime roomSlotsAvailableUpdatedAt,
+            int roomsAllocated,
+            OffsetDateTime roomsAllocatedUpdatedAt,
+            int roomsPerProcess,
+            OffsetDateTime startingAt) {
+        this(activeConnections, activeConnectionsUpdatedAt, additionalExposedPorts, appId, deploymentId, draining, egressedBytes, Optional.empty(), host, Optional.empty(), port, processId, region, roomSlotsAvailable, roomSlotsAvailableUpdatedAt, roomsAllocated, roomsAllocatedUpdatedAt, roomsPerProcess, Optional.empty(), startingAt, Optional.empty(), Optional.empty());
+    }
 
     /**
      * Tracks the number of active connections to a process.
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public int activeConnections() {
         return activeConnections;
     }
@@ -240,10 +264,12 @@ public class Process {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public OffsetDateTime activeConnectionsUpdatedAt() {
         return activeConnectionsUpdatedAt;
     }
 
+    @JsonIgnore
     public java.util.List<ExposedPort> additionalExposedPorts() {
         return additionalExposedPorts;
     }
@@ -251,6 +277,7 @@ public class Process {
     /**
      * System generated unique identifier for an application.
      */
+    @JsonIgnore
     public String appId() {
         return appId;
     }
@@ -258,6 +285,7 @@ public class Process {
     /**
      * System generated id for a deployment. Increments by 1.
      */
+    @JsonIgnore
     public int deploymentId() {
         return deploymentId;
     }
@@ -265,6 +293,7 @@ public class Process {
     /**
      * Process in drain will not accept any new rooms.
      */
+    @JsonIgnore
     public boolean draining() {
         return draining;
     }
@@ -272,18 +301,22 @@ public class Process {
     /**
      * Measures network traffic leaving the process in bytes.
      */
+    @JsonIgnore
     public int egressedBytes() {
         return egressedBytes;
     }
 
-    public Optional<? extends ProcessExposedPort> exposedPort() {
-        return exposedPort;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ProcessExposedPort> exposedPort() {
+        return (Optional<ProcessExposedPort>) exposedPort;
     }
 
     /**
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public String host() {
         return host;
     }
@@ -292,14 +325,17 @@ public class Process {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public Optional<? extends OffsetDateTime> idleSince() {
-        return idleSince;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> idleSince() {
+        return (Optional<OffsetDateTime>) idleSince;
     }
 
     /**
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public double port() {
         return port;
     }
@@ -307,10 +343,12 @@ public class Process {
     /**
      * System generated unique identifier to a runtime instance of your game server.
      */
+    @JsonIgnore
     public String processId() {
         return processId;
     }
 
+    @JsonIgnore
     public Region region() {
         return region;
     }
@@ -319,6 +357,7 @@ public class Process {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public double roomSlotsAvailable() {
         return roomSlotsAvailable;
     }
@@ -327,6 +366,7 @@ public class Process {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public OffsetDateTime roomSlotsAvailableUpdatedAt() {
         return roomSlotsAvailableUpdatedAt;
     }
@@ -334,10 +374,12 @@ public class Process {
     /**
      * Tracks the number of rooms that have been allocated to the process.
      */
+    @JsonIgnore
     public int roomsAllocated() {
         return roomsAllocated;
     }
 
+    @JsonIgnore
     public OffsetDateTime roomsAllocatedUpdatedAt() {
         return roomsAllocatedUpdatedAt;
     }
@@ -345,6 +387,7 @@ public class Process {
     /**
      * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
      */
+    @JsonIgnore
     public int roomsPerProcess() {
         return roomsPerProcess;
     }
@@ -352,13 +395,16 @@ public class Process {
     /**
      * When the process bound to the specified port. We use this to determine when we should start billing.
      */
-    public Optional<? extends OffsetDateTime> startedAt() {
-        return startedAt;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> startedAt() {
+        return (Optional<OffsetDateTime>) startedAt;
     }
 
     /**
      * When the process started being provisioned.
      */
+    @JsonIgnore
     public OffsetDateTime startingAt() {
         return startingAt;
     }
@@ -366,15 +412,19 @@ public class Process {
     /**
      * When the process is issued to stop. We use this to determine when we should stop billing.
      */
-    public Optional<? extends OffsetDateTime> stoppingAt() {
-        return stoppingAt;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> stoppingAt() {
+        return (Optional<OffsetDateTime>) stoppingAt;
     }
 
     /**
      * When the process has been terminated.
      */
-    public Optional<? extends OffsetDateTime> terminatedAt() {
-        return terminatedAt;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> terminatedAt() {
+        return (Optional<OffsetDateTime>) terminatedAt;
     }
 
     public final static Builder builder() {

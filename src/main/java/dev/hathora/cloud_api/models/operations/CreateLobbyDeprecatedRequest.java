@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -13,7 +15,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 
 public class CreateLobbyDeprecatedRequest {
 
@@ -26,6 +27,7 @@ public class CreateLobbyDeprecatedRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=roomId")
     private Optional<? extends String> roomId;
 
+    @JsonCreator
     public CreateLobbyDeprecatedRequest(
             dev.hathora.cloud_api.models.shared.CreateLobbyParams createLobbyParams,
             Optional<? extends String> appId,
@@ -37,17 +39,27 @@ public class CreateLobbyDeprecatedRequest {
         this.appId = appId;
         this.roomId = roomId;
     }
+    
+    public CreateLobbyDeprecatedRequest(
+            dev.hathora.cloud_api.models.shared.CreateLobbyParams createLobbyParams) {
+        this(createLobbyParams, Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public dev.hathora.cloud_api.models.shared.CreateLobbyParams createLobbyParams() {
         return createLobbyParams;
     }
 
-    public Optional<? extends String> appId() {
-        return appId;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
     }
 
-    public Optional<? extends String> roomId() {
-        return roomId;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> roomId() {
+        return (Optional<String>) roomId;
     }
 
     public final static Builder builder() {

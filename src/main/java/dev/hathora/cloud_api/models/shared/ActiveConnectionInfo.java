@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -12,7 +14,6 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
 
 public class ActiveConnectionInfo {
 
@@ -38,6 +39,7 @@ public class ActiveConnectionInfo {
     @JsonProperty("transportType")
     private TransportType transportType;
 
+    @JsonCreator
     public ActiveConnectionInfo(
             @JsonProperty("host") String host,
             @JsonProperty("port") double port,
@@ -56,10 +58,12 @@ public class ActiveConnectionInfo {
         this.transportType = transportType;
     }
 
+    @JsonIgnore
     public String host() {
         return host;
     }
 
+    @JsonIgnore
     public double port() {
         return port;
     }
@@ -68,10 +72,12 @@ public class ActiveConnectionInfo {
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
+    @JsonIgnore
     public String roomId() {
         return roomId;
     }
 
+    @JsonIgnore
     public Status status() {
         return status;
     }
@@ -79,6 +85,7 @@ public class ActiveConnectionInfo {
     /**
      * Transport type specifies the underlying communication protocol to the exposed port.
      */
+    @JsonIgnore
     public TransportType transportType() {
         return transportType;
     }

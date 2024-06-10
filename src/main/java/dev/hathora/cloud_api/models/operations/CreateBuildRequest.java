@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -14,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class CreateBuildRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -23,6 +24,7 @@ public class CreateBuildRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<? extends String> appId;
 
+    @JsonCreator
     public CreateBuildRequest(
             dev.hathora.cloud_api.models.shared.CreateBuildParams createBuildParams,
             Optional<? extends String> appId) {
@@ -31,13 +33,21 @@ public class CreateBuildRequest {
         this.createBuildParams = createBuildParams;
         this.appId = appId;
     }
+    
+    public CreateBuildRequest(
+            dev.hathora.cloud_api.models.shared.CreateBuildParams createBuildParams) {
+        this(createBuildParams, Optional.empty());
+    }
 
+    @JsonIgnore
     public dev.hathora.cloud_api.models.shared.CreateBuildParams createBuildParams() {
         return createBuildParams;
     }
 
-    public Optional<? extends String> appId() {
-        return appId;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
     }
 
     public final static Builder builder() {

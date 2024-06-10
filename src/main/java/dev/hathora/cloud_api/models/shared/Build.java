@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,7 +20,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
+import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * Build - A build represents a game server artifact and its associated metadata.
  */
@@ -37,12 +39,12 @@ public class Build {
     @JsonProperty("buildId")
     private int buildId;
 
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buildTag")
-    private Optional<? extends String> buildTag;
+    private JsonNullable<? extends String> buildTag;
 
     /**
-     * When [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild) is called.
+     * When [`CreateBuild()`](https://hathora.dev/api#tag/BuildV2/operation/CreateBuild) is called.
      */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
@@ -61,7 +63,7 @@ public class Build {
     private Optional<? extends OffsetDateTime> deletedAt;
 
     /**
-     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) finished executing.
+     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("finishedAt")
@@ -71,7 +73,7 @@ public class Build {
      * The size (in bytes) of the Docker image built by Hathora.
      */
     @JsonProperty("imageSize")
-    private int imageSize;
+    private long imageSize;
 
     /**
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -81,35 +83,25 @@ public class Build {
     private java.util.List<RegionalContainerTags> regionalContainerTags;
 
     /**
-     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) is called.
+     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("startedAt")
     private Optional<? extends OffsetDateTime> startedAt;
 
-    /**
-     * Current status of your build.
-     * 
-     * `created`: a build was created but not yet run
-     * 
-     * `running`: the build process is actively executing
-     * 
-     * `succeeded`: the game server artifact was successfully built and stored in the Hathora registries
-     * 
-     * `failed`: the build process was unsuccessful, most likely due to an error with the `Dockerfile`
-     */
     @JsonProperty("status")
     private BuildStatus status;
 
+    @JsonCreator
     public Build(
             @JsonProperty("appId") String appId,
             @JsonProperty("buildId") int buildId,
-            @JsonProperty("buildTag") Optional<? extends String> buildTag,
+            @JsonProperty("buildTag") JsonNullable<? extends String> buildTag,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") String createdBy,
             @JsonProperty("deletedAt") Optional<? extends OffsetDateTime> deletedAt,
             @JsonProperty("finishedAt") Optional<? extends OffsetDateTime> finishedAt,
-            @JsonProperty("imageSize") int imageSize,
+            @JsonProperty("imageSize") long imageSize,
             @JsonProperty("regionalContainerTags") java.util.List<RegionalContainerTags> regionalContainerTags,
             @JsonProperty("startedAt") Optional<? extends OffsetDateTime> startedAt,
             @JsonProperty("status") BuildStatus status) {
@@ -136,10 +128,22 @@ public class Build {
         this.startedAt = startedAt;
         this.status = status;
     }
+    
+    public Build(
+            String appId,
+            int buildId,
+            OffsetDateTime createdAt,
+            String createdBy,
+            long imageSize,
+            java.util.List<RegionalContainerTags> regionalContainerTags,
+            BuildStatus status) {
+        this(appId, buildId, JsonNullable.undefined(), createdAt, createdBy, Optional.empty(), Optional.empty(), imageSize, regionalContainerTags, Optional.empty(), status);
+    }
 
     /**
      * System generated unique identifier for an application.
      */
+    @JsonIgnore
     public String appId() {
         return appId;
     }
@@ -147,17 +151,21 @@ public class Build {
     /**
      * System generated id for a build. Increments by 1.
      */
+    @JsonIgnore
     public int buildId() {
         return buildId;
     }
 
-    public Optional<? extends String> buildTag() {
-        return buildTag;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<String> buildTag() {
+        return (JsonNullable<String>) buildTag;
     }
 
     /**
-     * When [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild) is called.
+     * When [`CreateBuild()`](https://hathora.dev/api#tag/BuildV2/operation/CreateBuild) is called.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -165,6 +173,7 @@ public class Build {
     /**
      * UserId or email address for the user that created the build.
      */
+    @JsonIgnore
     public String createdBy() {
         return createdBy;
     }
@@ -172,21 +181,26 @@ public class Build {
     /**
      * When the build was deleted.
      */
-    public Optional<? extends OffsetDateTime> deletedAt() {
-        return deletedAt;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> deletedAt() {
+        return (Optional<OffsetDateTime>) deletedAt;
     }
 
     /**
-     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) finished executing.
+     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
-    public Optional<? extends OffsetDateTime> finishedAt() {
-        return finishedAt;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> finishedAt() {
+        return (Optional<OffsetDateTime>) finishedAt;
     }
 
     /**
      * The size (in bytes) of the Docker image built by Hathora.
      */
-    public int imageSize() {
+    @JsonIgnore
+    public long imageSize() {
         return imageSize;
     }
 
@@ -194,28 +208,21 @@ public class Build {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public java.util.List<RegionalContainerTags> regionalContainerTags() {
         return regionalContainerTags;
     }
 
     /**
-     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) is called.
+     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
-    public Optional<? extends OffsetDateTime> startedAt() {
-        return startedAt;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> startedAt() {
+        return (Optional<OffsetDateTime>) startedAt;
     }
 
-    /**
-     * Current status of your build.
-     * 
-     * `created`: a build was created but not yet run
-     * 
-     * `running`: the build process is actively executing
-     * 
-     * `succeeded`: the game server artifact was successfully built and stored in the Hathora registries
-     * 
-     * `failed`: the build process was unsuccessful, most likely due to an error with the `Dockerfile`
-     */
+    @JsonIgnore
     public BuildStatus status() {
         return status;
     }
@@ -244,18 +251,18 @@ public class Build {
 
     public Build withBuildTag(String buildTag) {
         Utils.checkNotNull(buildTag, "buildTag");
-        this.buildTag = Optional.ofNullable(buildTag);
+        this.buildTag = JsonNullable.of(buildTag);
         return this;
     }
 
-    public Build withBuildTag(Optional<? extends String> buildTag) {
+    public Build withBuildTag(JsonNullable<? extends String> buildTag) {
         Utils.checkNotNull(buildTag, "buildTag");
         this.buildTag = buildTag;
         return this;
     }
 
     /**
-     * When [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild) is called.
+     * When [`CreateBuild()`](https://hathora.dev/api#tag/BuildV2/operation/CreateBuild) is called.
      */
     public Build withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -291,7 +298,7 @@ public class Build {
     }
 
     /**
-     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) finished executing.
+     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     public Build withFinishedAt(OffsetDateTime finishedAt) {
         Utils.checkNotNull(finishedAt, "finishedAt");
@@ -300,7 +307,7 @@ public class Build {
     }
 
     /**
-     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) finished executing.
+     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     public Build withFinishedAt(Optional<? extends OffsetDateTime> finishedAt) {
         Utils.checkNotNull(finishedAt, "finishedAt");
@@ -311,7 +318,7 @@ public class Build {
     /**
      * The size (in bytes) of the Docker image built by Hathora.
      */
-    public Build withImageSize(int imageSize) {
+    public Build withImageSize(long imageSize) {
         Utils.checkNotNull(imageSize, "imageSize");
         this.imageSize = imageSize;
         return this;
@@ -328,7 +335,7 @@ public class Build {
     }
 
     /**
-     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) is called.
+     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
     public Build withStartedAt(OffsetDateTime startedAt) {
         Utils.checkNotNull(startedAt, "startedAt");
@@ -337,7 +344,7 @@ public class Build {
     }
 
     /**
-     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) is called.
+     * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
     public Build withStartedAt(Optional<? extends OffsetDateTime> startedAt) {
         Utils.checkNotNull(startedAt, "startedAt");
@@ -345,17 +352,6 @@ public class Build {
         return this;
     }
 
-    /**
-     * Current status of your build.
-     * 
-     * `created`: a build was created but not yet run
-     * 
-     * `running`: the build process is actively executing
-     * 
-     * `succeeded`: the game server artifact was successfully built and stored in the Hathora registries
-     * 
-     * `failed`: the build process was unsuccessful, most likely due to an error with the `Dockerfile`
-     */
     public Build withStatus(BuildStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -423,7 +419,7 @@ public class Build {
  
         private Integer buildId;
  
-        private Optional<? extends String> buildTag = Optional.empty();
+        private JsonNullable<? extends String> buildTag = JsonNullable.undefined();
  
         private OffsetDateTime createdAt;
  
@@ -433,7 +429,7 @@ public class Build {
  
         private Optional<? extends OffsetDateTime> finishedAt = Optional.empty();
  
-        private Integer imageSize;
+        private Long imageSize;
  
         @Deprecated
         private java.util.List<RegionalContainerTags> regionalContainerTags;
@@ -466,18 +462,18 @@ public class Build {
 
         public Builder buildTag(String buildTag) {
             Utils.checkNotNull(buildTag, "buildTag");
-            this.buildTag = Optional.ofNullable(buildTag);
+            this.buildTag = JsonNullable.of(buildTag);
             return this;
         }
 
-        public Builder buildTag(Optional<? extends String> buildTag) {
+        public Builder buildTag(JsonNullable<? extends String> buildTag) {
             Utils.checkNotNull(buildTag, "buildTag");
             this.buildTag = buildTag;
             return this;
         }
 
         /**
-         * When [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild) is called.
+         * When [`CreateBuild()`](https://hathora.dev/api#tag/BuildV2/operation/CreateBuild) is called.
          */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -513,7 +509,7 @@ public class Build {
         }
 
         /**
-         * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) finished executing.
+         * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
          */
         public Builder finishedAt(OffsetDateTime finishedAt) {
             Utils.checkNotNull(finishedAt, "finishedAt");
@@ -522,7 +518,7 @@ public class Build {
         }
 
         /**
-         * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) finished executing.
+         * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
          */
         public Builder finishedAt(Optional<? extends OffsetDateTime> finishedAt) {
             Utils.checkNotNull(finishedAt, "finishedAt");
@@ -533,7 +529,7 @@ public class Build {
         /**
          * The size (in bytes) of the Docker image built by Hathora.
          */
-        public Builder imageSize(int imageSize) {
+        public Builder imageSize(long imageSize) {
             Utils.checkNotNull(imageSize, "imageSize");
             this.imageSize = imageSize;
             return this;
@@ -550,7 +546,7 @@ public class Build {
         }
 
         /**
-         * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) is called.
+         * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
          */
         public Builder startedAt(OffsetDateTime startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
@@ -559,7 +555,7 @@ public class Build {
         }
 
         /**
-         * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) is called.
+         * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
          */
         public Builder startedAt(Optional<? extends OffsetDateTime> startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
@@ -567,17 +563,6 @@ public class Build {
             return this;
         }
 
-        /**
-         * Current status of your build.
-         * 
-         * `created`: a build was created but not yet run
-         * 
-         * `running`: the build process is actively executing
-         * 
-         * `succeeded`: the game server artifact was successfully built and stored in the Hathora registries
-         * 
-         * `failed`: the build process was unsuccessful, most likely due to an error with the `Dockerfile`
-         */
         public Builder status(BuildStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;

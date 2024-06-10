@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -15,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-
 
 public class Invoice {
 
@@ -40,6 +41,7 @@ public class Invoice {
     @JsonProperty("year")
     private double year;
 
+    @JsonCreator
     public Invoice(
             @JsonProperty("amountDue") double amountDue,
             @JsonProperty("dueDate") OffsetDateTime dueDate,
@@ -64,30 +66,37 @@ public class Invoice {
         this.year = year;
     }
 
+    @JsonIgnore
     public double amountDue() {
         return amountDue;
     }
 
+    @JsonIgnore
     public OffsetDateTime dueDate() {
         return dueDate;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public double month() {
         return month;
     }
 
+    @JsonIgnore
     public String pdfUrl() {
         return pdfUrl;
     }
 
+    @JsonIgnore
     public InvoiceStatus status() {
         return status;
     }
 
+    @JsonIgnore
     public double year() {
         return year;
     }

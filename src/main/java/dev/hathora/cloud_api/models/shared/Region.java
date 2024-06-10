@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -24,7 +26,8 @@ public enum Region {
     SINGAPORE("Singapore"),
     TOKYO("Tokyo"),
     SYDNEY("Sydney"),
-    SAO_PAULO("Sao_Paulo");
+    SAO_PAULO("Sao_Paulo"),
+    DALLAS("Dallas");
 
     @JsonValue
     private final String value;

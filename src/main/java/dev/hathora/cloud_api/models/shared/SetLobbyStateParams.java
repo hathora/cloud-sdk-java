@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -13,17 +15,17 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-
 public class SetLobbyStateParams {
 
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
     @JsonProperty("state")
-    private SetLobbyStateParamsState state;
+    private java.lang.Object state;
 
+    @JsonCreator
     public SetLobbyStateParams(
-            @JsonProperty("state") SetLobbyStateParamsState state) {
+            @JsonProperty("state") java.lang.Object state) {
         Utils.checkNotNull(state, "state");
         this.state = state;
     }
@@ -31,7 +33,8 @@ public class SetLobbyStateParams {
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
-    public SetLobbyStateParamsState state() {
+    @JsonIgnore
+    public java.lang.Object state() {
         return state;
     }
 
@@ -42,7 +45,7 @@ public class SetLobbyStateParams {
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
-    public SetLobbyStateParams withState(SetLobbyStateParamsState state) {
+    public SetLobbyStateParams withState(java.lang.Object state) {
         Utils.checkNotNull(state, "state");
         this.state = state;
         return this;
@@ -75,7 +78,7 @@ public class SetLobbyStateParams {
     
     public final static class Builder {
  
-        private SetLobbyStateParamsState state;  
+        private java.lang.Object state;  
         
         private Builder() {
           // force use of static builder() method
@@ -84,7 +87,7 @@ public class SetLobbyStateParams {
         /**
          * JSON blob to store metadata for a room. Must be smaller than 1MB.
          */
-        public Builder state(SetLobbyStateParamsState state) {
+        public Builder state(java.lang.Object state) {
             Utils.checkNotNull(state, "state");
             this.state = state;
             return this;

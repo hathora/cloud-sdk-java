@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -13,17 +15,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-/**
- * BuildStatus - Current status of your build.
- * 
- * `created`: a build was created but not yet run
- * 
- * `running`: the build process is actively executing
- * 
- * `succeeded`: the game server artifact was successfully built and stored in the Hathora registries
- * 
- * `failed`: the build process was unsuccessful, most likely due to an error with the `Dockerfile`
- */
 public enum BuildStatus {
     CREATED("created"),
     RUNNING("running"),

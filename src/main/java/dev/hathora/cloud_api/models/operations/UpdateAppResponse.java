@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -14,10 +16,7 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class UpdateAppResponse implements dev.hathora.cloud_api.utils.Response {
-
-    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
 
     /**
      * Ok
@@ -39,38 +38,42 @@ public class UpdateAppResponse implements dev.hathora.cloud_api.utils.Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public UpdateAppResponse(
-            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             Optional<? extends dev.hathora.cloud_api.models.shared.Application> application,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(apiError, "apiError");
         Utils.checkNotNull(application, "application");
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.apiError = apiError;
         this.application = application;
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
-
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
-        return apiError;
+    
+    public UpdateAppResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(Optional.empty(), contentType, statusCode, rawResponse);
     }
 
     /**
      * Ok
      */
-    public Optional<? extends dev.hathora.cloud_api.models.shared.Application> application() {
-        return application;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<dev.hathora.cloud_api.models.shared.Application> application() {
+        return (Optional<dev.hathora.cloud_api.models.shared.Application>) application;
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -78,6 +81,7 @@ public class UpdateAppResponse implements dev.hathora.cloud_api.utils.Response {
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -85,24 +89,13 @@ public class UpdateAppResponse implements dev.hathora.cloud_api.utils.Response {
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public UpdateAppResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = Optional.ofNullable(apiError);
-        return this;
-    }
-
-    public UpdateAppResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = apiError;
-        return this;
     }
 
     /**
@@ -160,7 +153,6 @@ public class UpdateAppResponse implements dev.hathora.cloud_api.utils.Response {
         }
         UpdateAppResponse other = (UpdateAppResponse) o;
         return 
-            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
             java.util.Objects.deepEquals(this.application, other.application) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
@@ -170,7 +162,6 @@ public class UpdateAppResponse implements dev.hathora.cloud_api.utils.Response {
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            apiError,
             application,
             contentType,
             statusCode,
@@ -180,7 +171,6 @@ public class UpdateAppResponse implements dev.hathora.cloud_api.utils.Response {
     @Override
     public String toString() {
         return Utils.toString(UpdateAppResponse.class,
-                "apiError", apiError,
                 "application", application,
                 "contentType", contentType,
                 "statusCode", statusCode,
@@ -188,8 +178,6 @@ public class UpdateAppResponse implements dev.hathora.cloud_api.utils.Response {
     }
     
     public final static class Builder {
- 
-        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
  
         private Optional<? extends dev.hathora.cloud_api.models.shared.Application> application = Optional.empty();
  
@@ -201,18 +189,6 @@ public class UpdateAppResponse implements dev.hathora.cloud_api.utils.Response {
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = Optional.ofNullable(apiError);
-            return this;
-        }
-
-        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = apiError;
-            return this;
         }
 
         /**
@@ -262,7 +238,6 @@ public class UpdateAppResponse implements dev.hathora.cloud_api.utils.Response {
         
         public UpdateAppResponse build() {
             return new UpdateAppResponse(
-                apiError,
                 application,
                 contentType,
                 statusCode,

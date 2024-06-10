@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 /**
  * PaymentMethod - Make all properties in T optional
  */
@@ -34,6 +35,7 @@ public class PaymentMethod {
     @JsonProperty("link")
     private Optional<? extends LinkPaymentMethod> link;
 
+    @JsonCreator
     public PaymentMethod(
             @JsonProperty("ach") Optional<? extends AchPaymentMethod> ach,
             @JsonProperty("card") Optional<? extends CardPaymentMethod> card,
@@ -45,17 +47,27 @@ public class PaymentMethod {
         this.card = card;
         this.link = link;
     }
-
-    public Optional<? extends AchPaymentMethod> ach() {
-        return ach;
+    
+    public PaymentMethod() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    public Optional<? extends CardPaymentMethod> card() {
-        return card;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<AchPaymentMethod> ach() {
+        return (Optional<AchPaymentMethod>) ach;
     }
 
-    public Optional<? extends LinkPaymentMethod> link() {
-        return link;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CardPaymentMethod> card() {
+        return (Optional<CardPaymentMethod>) card;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LinkPaymentMethod> link() {
+        return (Optional<LinkPaymentMethod>) link;
     }
 
     public final static Builder builder() {

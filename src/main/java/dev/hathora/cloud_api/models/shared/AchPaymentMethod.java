@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class AchPaymentMethod {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -27,6 +28,7 @@ public class AchPaymentMethod {
     @JsonProperty("last4")
     private Optional<? extends String> last4;
 
+    @JsonCreator
     public AchPaymentMethod(
             @JsonProperty("bankName") Optional<? extends String> bankName,
             @JsonProperty("last4") Optional<? extends String> last4) {
@@ -35,13 +37,21 @@ public class AchPaymentMethod {
         this.bankName = bankName;
         this.last4 = last4;
     }
-
-    public Optional<? extends String> bankName() {
-        return bankName;
+    
+    public AchPaymentMethod() {
+        this(Optional.empty(), Optional.empty());
     }
 
-    public Optional<? extends String> last4() {
-        return last4;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> bankName() {
+        return (Optional<String>) bankName;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> last4() {
+        return (Optional<String>) last4;
     }
 
     public final static Builder builder() {

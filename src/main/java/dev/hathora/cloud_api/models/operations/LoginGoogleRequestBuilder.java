@@ -19,7 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class LoginGoogleRequestBuilder {
 
-    private dev.hathora.cloud_api.models.shared.LoginGoogleRequest loginGoogleRequest;
+    private dev.hathora.cloud_api.models.shared.GoogleIdTokenObject googleIdTokenObject;
     private Optional<? extends String> appId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallLoginGoogle sdk;
 
@@ -27,9 +27,9 @@ public class LoginGoogleRequestBuilder {
         this.sdk = sdk;
     }
 
-    public LoginGoogleRequestBuilder loginGoogleRequest(dev.hathora.cloud_api.models.shared.LoginGoogleRequest loginGoogleRequest) {
-        Utils.checkNotNull(loginGoogleRequest, "loginGoogleRequest");
-        this.loginGoogleRequest = loginGoogleRequest;
+    public LoginGoogleRequestBuilder googleIdTokenObject(dev.hathora.cloud_api.models.shared.GoogleIdTokenObject googleIdTokenObject) {
+        Utils.checkNotNull(googleIdTokenObject, "googleIdTokenObject");
+        this.googleIdTokenObject = googleIdTokenObject;
         return this;
     }
                 
@@ -48,7 +48,7 @@ public class LoginGoogleRequestBuilder {
     public LoginGoogleResponse call() throws Exception {
 
         return sdk.loginGoogle(
-            loginGoogleRequest,
+            googleIdTokenObject,
             appId);
     }
 }

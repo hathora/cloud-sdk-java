@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -14,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class GetConnectionInfoRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
@@ -23,6 +24,7 @@ public class GetConnectionInfoRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=roomId")
     private String roomId;
 
+    @JsonCreator
     public GetConnectionInfoRequest(
             Optional<? extends String> appId,
             String roomId) {
@@ -31,11 +33,19 @@ public class GetConnectionInfoRequest {
         this.appId = appId;
         this.roomId = roomId;
     }
-
-    public Optional<? extends String> appId() {
-        return appId;
+    
+    public GetConnectionInfoRequest(
+            String roomId) {
+        this(Optional.empty(), roomId);
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
+    }
+
+    @JsonIgnore
     public String roomId() {
         return roomId;
     }

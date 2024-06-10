@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -12,7 +14,6 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
 
 public class RegionalContainerTags {
 
@@ -22,6 +23,7 @@ public class RegionalContainerTags {
     @JsonProperty("region")
     private Region region;
 
+    @JsonCreator
     public RegionalContainerTags(
             @JsonProperty("containerTag") String containerTag,
             @JsonProperty("region") Region region) {
@@ -31,10 +33,12 @@ public class RegionalContainerTags {
         this.region = region;
     }
 
+    @JsonIgnore
     public String containerTag() {
         return containerTag;
     }
 
+    @JsonIgnore
     public Region region() {
         return region;
     }

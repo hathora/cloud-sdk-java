@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -14,11 +16,10 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class CreateDeploymentRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private dev.hathora.cloud_api.models.shared.DeploymentConfig deploymentConfig;
+    private dev.hathora.cloud_api.models.shared.DeploymentConfigV2 deploymentConfigV2;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<? extends String> appId;
@@ -26,26 +27,37 @@ public class CreateDeploymentRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buildId")
     private int buildId;
 
+    @JsonCreator
     public CreateDeploymentRequest(
-            dev.hathora.cloud_api.models.shared.DeploymentConfig deploymentConfig,
+            dev.hathora.cloud_api.models.shared.DeploymentConfigV2 deploymentConfigV2,
             Optional<? extends String> appId,
             int buildId) {
-        Utils.checkNotNull(deploymentConfig, "deploymentConfig");
+        Utils.checkNotNull(deploymentConfigV2, "deploymentConfigV2");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(buildId, "buildId");
-        this.deploymentConfig = deploymentConfig;
+        this.deploymentConfigV2 = deploymentConfigV2;
         this.appId = appId;
         this.buildId = buildId;
     }
-
-    public dev.hathora.cloud_api.models.shared.DeploymentConfig deploymentConfig() {
-        return deploymentConfig;
+    
+    public CreateDeploymentRequest(
+            dev.hathora.cloud_api.models.shared.DeploymentConfigV2 deploymentConfigV2,
+            int buildId) {
+        this(deploymentConfigV2, Optional.empty(), buildId);
     }
 
-    public Optional<? extends String> appId() {
-        return appId;
+    @JsonIgnore
+    public dev.hathora.cloud_api.models.shared.DeploymentConfigV2 deploymentConfigV2() {
+        return deploymentConfigV2;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
+    }
+
+    @JsonIgnore
     public int buildId() {
         return buildId;
     }
@@ -54,9 +66,9 @@ public class CreateDeploymentRequest {
         return new Builder();
     }
 
-    public CreateDeploymentRequest withDeploymentConfig(dev.hathora.cloud_api.models.shared.DeploymentConfig deploymentConfig) {
-        Utils.checkNotNull(deploymentConfig, "deploymentConfig");
-        this.deploymentConfig = deploymentConfig;
+    public CreateDeploymentRequest withDeploymentConfigV2(dev.hathora.cloud_api.models.shared.DeploymentConfigV2 deploymentConfigV2) {
+        Utils.checkNotNull(deploymentConfigV2, "deploymentConfigV2");
+        this.deploymentConfigV2 = deploymentConfigV2;
         return this;
     }
 
@@ -88,7 +100,7 @@ public class CreateDeploymentRequest {
         }
         CreateDeploymentRequest other = (CreateDeploymentRequest) o;
         return 
-            java.util.Objects.deepEquals(this.deploymentConfig, other.deploymentConfig) &&
+            java.util.Objects.deepEquals(this.deploymentConfigV2, other.deploymentConfigV2) &&
             java.util.Objects.deepEquals(this.appId, other.appId) &&
             java.util.Objects.deepEquals(this.buildId, other.buildId);
     }
@@ -96,7 +108,7 @@ public class CreateDeploymentRequest {
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            deploymentConfig,
+            deploymentConfigV2,
             appId,
             buildId);
     }
@@ -104,14 +116,14 @@ public class CreateDeploymentRequest {
     @Override
     public String toString() {
         return Utils.toString(CreateDeploymentRequest.class,
-                "deploymentConfig", deploymentConfig,
+                "deploymentConfigV2", deploymentConfigV2,
                 "appId", appId,
                 "buildId", buildId);
     }
     
     public final static class Builder {
  
-        private dev.hathora.cloud_api.models.shared.DeploymentConfig deploymentConfig;
+        private dev.hathora.cloud_api.models.shared.DeploymentConfigV2 deploymentConfigV2;
  
         private Optional<? extends String> appId = Optional.empty();
  
@@ -121,9 +133,9 @@ public class CreateDeploymentRequest {
           // force use of static builder() method
         }
 
-        public Builder deploymentConfig(dev.hathora.cloud_api.models.shared.DeploymentConfig deploymentConfig) {
-            Utils.checkNotNull(deploymentConfig, "deploymentConfig");
-            this.deploymentConfig = deploymentConfig;
+        public Builder deploymentConfigV2(dev.hathora.cloud_api.models.shared.DeploymentConfigV2 deploymentConfigV2) {
+            Utils.checkNotNull(deploymentConfigV2, "deploymentConfigV2");
+            this.deploymentConfigV2 = deploymentConfigV2;
             return this;
         }
 
@@ -147,7 +159,7 @@ public class CreateDeploymentRequest {
         
         public CreateDeploymentRequest build() {
             return new CreateDeploymentRequest(
-                deploymentConfig,
+                deploymentConfigV2,
                 appId,
                 buildId);
         }
