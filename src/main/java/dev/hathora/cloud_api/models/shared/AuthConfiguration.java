@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 /**
  * AuthConfiguration - Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
  */
@@ -43,6 +44,7 @@ public class AuthConfiguration {
     @JsonProperty("nickname")
     private Optional<? extends RecordStringNever> nickname;
 
+    @JsonCreator
     public AuthConfiguration(
             @JsonProperty("anonymous") Optional<? extends RecordStringNever> anonymous,
             @JsonProperty("google") Optional<? extends Google> google,
@@ -54,26 +56,36 @@ public class AuthConfiguration {
         this.google = google;
         this.nickname = nickname;
     }
+    
+    public AuthConfiguration() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * Construct a type with a set of properties K of type T
      */
-    public Optional<? extends RecordStringNever> anonymous() {
-        return anonymous;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<RecordStringNever> anonymous() {
+        return (Optional<RecordStringNever>) anonymous;
     }
 
     /**
      * Enable google auth for your application.
      */
-    public Optional<? extends Google> google() {
-        return google;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Google> google() {
+        return (Optional<Google>) google;
     }
 
     /**
      * Construct a type with a set of properties K of type T
      */
-    public Optional<? extends RecordStringNever> nickname() {
-        return nickname;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<RecordStringNever> nickname() {
+        return (Optional<RecordStringNever>) nickname;
     }
 
     public final static Builder builder() {

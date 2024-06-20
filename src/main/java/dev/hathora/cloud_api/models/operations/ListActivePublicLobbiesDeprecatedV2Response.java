@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -13,7 +15,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
-
 
 public class ListActivePublicLobbiesDeprecatedV2Response implements dev.hathora.cloud_api.utils.Response {
 
@@ -37,6 +38,7 @@ public class ListActivePublicLobbiesDeprecatedV2Response implements dev.hathora.
      */
     private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.Lobby>> classes;
 
+    @JsonCreator
     public ListActivePublicLobbiesDeprecatedV2Response(
             String contentType,
             int statusCode,
@@ -51,10 +53,18 @@ public class ListActivePublicLobbiesDeprecatedV2Response implements dev.hathora.
         this.rawResponse = rawResponse;
         this.classes = classes;
     }
+    
+    public ListActivePublicLobbiesDeprecatedV2Response(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse, Optional.empty());
+    }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -62,6 +72,7 @@ public class ListActivePublicLobbiesDeprecatedV2Response implements dev.hathora.
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -69,6 +80,7 @@ public class ListActivePublicLobbiesDeprecatedV2Response implements dev.hathora.
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -76,8 +88,10 @@ public class ListActivePublicLobbiesDeprecatedV2Response implements dev.hathora.
     /**
      * Ok
      */
-    public Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.Lobby>> classes() {
-        return classes;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<java.util.List<dev.hathora.cloud_api.models.shared.Lobby>> classes() {
+        return (Optional<java.util.List<dev.hathora.cloud_api.models.shared.Lobby>>) classes;
     }
 
     public final static Builder builder() {

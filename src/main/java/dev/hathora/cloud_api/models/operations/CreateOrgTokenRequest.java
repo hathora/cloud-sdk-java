@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -12,7 +14,6 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
 
 public class CreateOrgTokenRequest {
 
@@ -22,6 +23,7 @@ public class CreateOrgTokenRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=orgId")
     private String orgId;
 
+    @JsonCreator
     public CreateOrgTokenRequest(
             dev.hathora.cloud_api.models.shared.CreateOrgToken createOrgToken,
             String orgId) {
@@ -31,10 +33,12 @@ public class CreateOrgTokenRequest {
         this.orgId = orgId;
     }
 
+    @JsonIgnore
     public dev.hathora.cloud_api.models.shared.CreateOrgToken createOrgToken() {
         return createOrgToken;
     }
 
+    @JsonIgnore
     public String orgId() {
         return orgId;
     }

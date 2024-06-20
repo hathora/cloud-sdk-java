@@ -19,7 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class LoginNicknameRequestBuilder {
 
-    private dev.hathora.cloud_api.models.shared.LoginNicknameRequest loginNicknameRequest;
+    private dev.hathora.cloud_api.models.shared.NicknameObject nicknameObject;
     private Optional<? extends String> appId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallLoginNickname sdk;
 
@@ -27,9 +27,9 @@ public class LoginNicknameRequestBuilder {
         this.sdk = sdk;
     }
 
-    public LoginNicknameRequestBuilder loginNicknameRequest(dev.hathora.cloud_api.models.shared.LoginNicknameRequest loginNicknameRequest) {
-        Utils.checkNotNull(loginNicknameRequest, "loginNicknameRequest");
-        this.loginNicknameRequest = loginNicknameRequest;
+    public LoginNicknameRequestBuilder nicknameObject(dev.hathora.cloud_api.models.shared.NicknameObject nicknameObject) {
+        Utils.checkNotNull(nicknameObject, "nicknameObject");
+        this.nicknameObject = nicknameObject;
         return this;
     }
                 
@@ -48,7 +48,7 @@ public class LoginNicknameRequestBuilder {
     public LoginNicknameResponse call() throws Exception {
 
         return sdk.loginNickname(
-            loginNicknameRequest,
+            nicknameObject,
             appId);
     }
 }

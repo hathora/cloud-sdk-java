@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -14,10 +16,7 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class LoginGoogleResponse implements dev.hathora.cloud_api.utils.Response {
-
-    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
 
     /**
      * HTTP response content type for this operation
@@ -27,7 +26,7 @@ public class LoginGoogleResponse implements dev.hathora.cloud_api.utils.Response
     /**
      * Ok
      */
-    private Optional<? extends dev.hathora.cloud_api.models.shared.LoginResponse> loginResponse;
+    private Optional<? extends dev.hathora.cloud_api.models.shared.PlayerTokenObject> playerTokenObject;
 
     /**
      * HTTP response status code for this operation
@@ -39,31 +38,33 @@ public class LoginGoogleResponse implements dev.hathora.cloud_api.utils.Response
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public LoginGoogleResponse(
-            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             String contentType,
-            Optional<? extends dev.hathora.cloud_api.models.shared.LoginResponse> loginResponse,
+            Optional<? extends dev.hathora.cloud_api.models.shared.PlayerTokenObject> playerTokenObject,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(apiError, "apiError");
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(loginResponse, "loginResponse");
+        Utils.checkNotNull(playerTokenObject, "playerTokenObject");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.apiError = apiError;
         this.contentType = contentType;
-        this.loginResponse = loginResponse;
+        this.playerTokenObject = playerTokenObject;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
-
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
-        return apiError;
+    
+    public LoginGoogleResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -71,13 +72,16 @@ public class LoginGoogleResponse implements dev.hathora.cloud_api.utils.Response
     /**
      * Ok
      */
-    public Optional<? extends dev.hathora.cloud_api.models.shared.LoginResponse> loginResponse() {
-        return loginResponse;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<dev.hathora.cloud_api.models.shared.PlayerTokenObject> playerTokenObject() {
+        return (Optional<dev.hathora.cloud_api.models.shared.PlayerTokenObject>) playerTokenObject;
     }
 
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -85,24 +89,13 @@ public class LoginGoogleResponse implements dev.hathora.cloud_api.utils.Response
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public LoginGoogleResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = Optional.ofNullable(apiError);
-        return this;
-    }
-
-    public LoginGoogleResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = apiError;
-        return this;
     }
 
     /**
@@ -117,18 +110,18 @@ public class LoginGoogleResponse implements dev.hathora.cloud_api.utils.Response
     /**
      * Ok
      */
-    public LoginGoogleResponse withLoginResponse(dev.hathora.cloud_api.models.shared.LoginResponse loginResponse) {
-        Utils.checkNotNull(loginResponse, "loginResponse");
-        this.loginResponse = Optional.ofNullable(loginResponse);
+    public LoginGoogleResponse withPlayerTokenObject(dev.hathora.cloud_api.models.shared.PlayerTokenObject playerTokenObject) {
+        Utils.checkNotNull(playerTokenObject, "playerTokenObject");
+        this.playerTokenObject = Optional.ofNullable(playerTokenObject);
         return this;
     }
 
     /**
      * Ok
      */
-    public LoginGoogleResponse withLoginResponse(Optional<? extends dev.hathora.cloud_api.models.shared.LoginResponse> loginResponse) {
-        Utils.checkNotNull(loginResponse, "loginResponse");
-        this.loginResponse = loginResponse;
+    public LoginGoogleResponse withPlayerTokenObject(Optional<? extends dev.hathora.cloud_api.models.shared.PlayerTokenObject> playerTokenObject) {
+        Utils.checkNotNull(playerTokenObject, "playerTokenObject");
+        this.playerTokenObject = playerTokenObject;
         return this;
     }
 
@@ -160,9 +153,8 @@ public class LoginGoogleResponse implements dev.hathora.cloud_api.utils.Response
         }
         LoginGoogleResponse other = (LoginGoogleResponse) o;
         return 
-            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.loginResponse, other.loginResponse) &&
+            java.util.Objects.deepEquals(this.playerTokenObject, other.playerTokenObject) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -170,9 +162,8 @@ public class LoginGoogleResponse implements dev.hathora.cloud_api.utils.Response
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            apiError,
             contentType,
-            loginResponse,
+            playerTokenObject,
             statusCode,
             rawResponse);
     }
@@ -180,20 +171,17 @@ public class LoginGoogleResponse implements dev.hathora.cloud_api.utils.Response
     @Override
     public String toString() {
         return Utils.toString(LoginGoogleResponse.class,
-                "apiError", apiError,
                 "contentType", contentType,
-                "loginResponse", loginResponse,
+                "playerTokenObject", playerTokenObject,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
     
     public final static class Builder {
  
-        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
- 
         private String contentType;
  
-        private Optional<? extends dev.hathora.cloud_api.models.shared.LoginResponse> loginResponse = Optional.empty();
+        private Optional<? extends dev.hathora.cloud_api.models.shared.PlayerTokenObject> playerTokenObject = Optional.empty();
  
         private Integer statusCode;
  
@@ -201,18 +189,6 @@ public class LoginGoogleResponse implements dev.hathora.cloud_api.utils.Response
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = Optional.ofNullable(apiError);
-            return this;
-        }
-
-        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = apiError;
-            return this;
         }
 
         /**
@@ -227,18 +203,18 @@ public class LoginGoogleResponse implements dev.hathora.cloud_api.utils.Response
         /**
          * Ok
          */
-        public Builder loginResponse(dev.hathora.cloud_api.models.shared.LoginResponse loginResponse) {
-            Utils.checkNotNull(loginResponse, "loginResponse");
-            this.loginResponse = Optional.ofNullable(loginResponse);
+        public Builder playerTokenObject(dev.hathora.cloud_api.models.shared.PlayerTokenObject playerTokenObject) {
+            Utils.checkNotNull(playerTokenObject, "playerTokenObject");
+            this.playerTokenObject = Optional.ofNullable(playerTokenObject);
             return this;
         }
 
         /**
          * Ok
          */
-        public Builder loginResponse(Optional<? extends dev.hathora.cloud_api.models.shared.LoginResponse> loginResponse) {
-            Utils.checkNotNull(loginResponse, "loginResponse");
-            this.loginResponse = loginResponse;
+        public Builder playerTokenObject(Optional<? extends dev.hathora.cloud_api.models.shared.PlayerTokenObject> playerTokenObject) {
+            Utils.checkNotNull(playerTokenObject, "playerTokenObject");
+            this.playerTokenObject = playerTokenObject;
             return this;
         }
 
@@ -262,9 +238,8 @@ public class LoginGoogleResponse implements dev.hathora.cloud_api.utils.Response
         
         public LoginGoogleResponse build() {
             return new LoginGoogleResponse(
-                apiError,
                 contentType,
-                loginResponse,
+                playerTokenObject,
                 statusCode,
                 rawResponse);
         }

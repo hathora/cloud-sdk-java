@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,7 +20,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
 /**
  * Application - An application object is the top level namespace for the game server.
  */
@@ -81,6 +82,7 @@ public class Application {
     @JsonProperty("orgId")
     private String orgId;
 
+    @JsonCreator
     public Application(
             @JsonProperty("appId") String appId,
             @JsonProperty("appName") String appName,
@@ -110,10 +112,22 @@ public class Application {
         this.deletedBy = deletedBy;
         this.orgId = orgId;
     }
+    
+    public Application(
+            String appId,
+            String appName,
+            String appSecret,
+            AuthConfiguration authConfiguration,
+            OffsetDateTime createdAt,
+            String createdBy,
+            String orgId) {
+        this(appId, appName, appSecret, authConfiguration, createdAt, createdBy, Optional.empty(), Optional.empty(), orgId);
+    }
 
     /**
      * System generated unique identifier for an application.
      */
+    @JsonIgnore
     public String appId() {
         return appId;
     }
@@ -121,6 +135,7 @@ public class Application {
     /**
      * Readable name for an application. Must be unique within an organization.
      */
+    @JsonIgnore
     public String appName() {
         return appName;
     }
@@ -128,6 +143,7 @@ public class Application {
     /**
      * Secret that is used for identity and access management.
      */
+    @JsonIgnore
     public String appSecret() {
         return appSecret;
     }
@@ -135,6 +151,7 @@ public class Application {
     /**
      * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
+    @JsonIgnore
     public AuthConfiguration authConfiguration() {
         return authConfiguration;
     }
@@ -142,6 +159,7 @@ public class Application {
     /**
      * When the application was created.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -149,6 +167,7 @@ public class Application {
     /**
      * UserId or email address for the user that created the application.
      */
+    @JsonIgnore
     public String createdBy() {
         return createdBy;
     }
@@ -156,20 +175,25 @@ public class Application {
     /**
      * When the application was deleted.
      */
-    public Optional<? extends OffsetDateTime> deletedAt() {
-        return deletedAt;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> deletedAt() {
+        return (Optional<OffsetDateTime>) deletedAt;
     }
 
     /**
      * UserId or email address for the user that deleted the application.
      */
-    public Optional<? extends String> deletedBy() {
-        return deletedBy;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> deletedBy() {
+        return (Optional<String>) deletedBy;
     }
 
     /**
      * System generated unique identifier for an organization. Not guaranteed to have a specific format.
      */
+    @JsonIgnore
     public String orgId() {
         return orgId;
     }

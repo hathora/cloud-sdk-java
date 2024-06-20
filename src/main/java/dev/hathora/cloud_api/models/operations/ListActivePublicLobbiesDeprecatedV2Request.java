@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -13,7 +15,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 
 public class ListActivePublicLobbiesDeprecatedV2Request {
 
@@ -26,6 +27,7 @@ public class ListActivePublicLobbiesDeprecatedV2Request {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=region")
     private Optional<? extends dev.hathora.cloud_api.models.shared.Region> region;
 
+    @JsonCreator
     public ListActivePublicLobbiesDeprecatedV2Request(
             Optional<? extends String> appId,
             Optional<? extends dev.hathora.cloud_api.models.shared.Region> region) {
@@ -34,16 +36,24 @@ public class ListActivePublicLobbiesDeprecatedV2Request {
         this.appId = appId;
         this.region = region;
     }
+    
+    public ListActivePublicLobbiesDeprecatedV2Request() {
+        this(Optional.empty(), Optional.empty());
+    }
 
-    public Optional<? extends String> appId() {
-        return appId;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
     }
 
     /**
      * Region to filter by. If omitted, active public lobbies in all regions will be returned.
      */
-    public Optional<? extends dev.hathora.cloud_api.models.shared.Region> region() {
-        return region;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<dev.hathora.cloud_api.models.shared.Region> region() {
+        return (Optional<dev.hathora.cloud_api.models.shared.Region>) region;
     }
 
     public final static Builder builder() {

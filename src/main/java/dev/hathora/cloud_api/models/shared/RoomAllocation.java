@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,7 +20,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
 /**
  * RoomAllocation - Metadata on an allocated instance of a room.
  */
@@ -44,6 +45,7 @@ public class RoomAllocation {
     @JsonProperty("unscheduledAt")
     private Optional<? extends OffsetDateTime> unscheduledAt;
 
+    @JsonCreator
     public RoomAllocation(
             @JsonProperty("processId") String processId,
             @JsonProperty("roomAllocationId") String roomAllocationId,
@@ -58,10 +60,18 @@ public class RoomAllocation {
         this.scheduledAt = scheduledAt;
         this.unscheduledAt = unscheduledAt;
     }
+    
+    public RoomAllocation(
+            String processId,
+            String roomAllocationId,
+            OffsetDateTime scheduledAt) {
+        this(processId, roomAllocationId, scheduledAt, Optional.empty());
+    }
 
     /**
      * System generated unique identifier to a runtime instance of your game server.
      */
+    @JsonIgnore
     public String processId() {
         return processId;
     }
@@ -69,16 +79,20 @@ public class RoomAllocation {
     /**
      * System generated unique identifier to an allocated instance of a room.
      */
+    @JsonIgnore
     public String roomAllocationId() {
         return roomAllocationId;
     }
 
+    @JsonIgnore
     public OffsetDateTime scheduledAt() {
         return scheduledAt;
     }
 
-    public Optional<? extends OffsetDateTime> unscheduledAt() {
-        return unscheduledAt;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> unscheduledAt() {
+        return (Optional<OffsetDateTime>) unscheduledAt;
     }
 
     public final static Builder builder() {

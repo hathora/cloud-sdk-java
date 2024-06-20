@@ -19,7 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateDeploymentRequestBuilder {
 
-    private dev.hathora.cloud_api.models.shared.DeploymentConfig deploymentConfig;
+    private dev.hathora.cloud_api.models.shared.DeploymentConfigV2 deploymentConfigV2;
     private Optional<? extends String> appId = Optional.empty();
     private Integer buildId;
     private final SDKMethodInterfaces.MethodCallCreateDeployment sdk;
@@ -28,9 +28,9 @@ public class CreateDeploymentRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateDeploymentRequestBuilder deploymentConfig(dev.hathora.cloud_api.models.shared.DeploymentConfig deploymentConfig) {
-        Utils.checkNotNull(deploymentConfig, "deploymentConfig");
-        this.deploymentConfig = deploymentConfig;
+    public CreateDeploymentRequestBuilder deploymentConfigV2(dev.hathora.cloud_api.models.shared.DeploymentConfigV2 deploymentConfigV2) {
+        Utils.checkNotNull(deploymentConfigV2, "deploymentConfigV2");
+        this.deploymentConfigV2 = deploymentConfigV2;
         return this;
     }
                 
@@ -55,7 +55,7 @@ public class CreateDeploymentRequestBuilder {
     public CreateDeploymentResponse call() throws Exception {
 
         return sdk.createDeployment(
-            deploymentConfig,
+            deploymentConfigV2,
             appId,
             buildId);
     }

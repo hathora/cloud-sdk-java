@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -13,7 +15,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 
 public class GetLatestProcessesRequest {
 
@@ -26,6 +27,7 @@ public class GetLatestProcessesRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=status")
     private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ProcessStatus>> status;
 
+    @JsonCreator
     public GetLatestProcessesRequest(
             Optional<? extends String> appId,
             Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.Region>> region,
@@ -37,17 +39,27 @@ public class GetLatestProcessesRequest {
         this.region = region;
         this.status = status;
     }
-
-    public Optional<? extends String> appId() {
-        return appId;
+    
+    public GetLatestProcessesRequest() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    public Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.Region>> region() {
-        return region;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
     }
 
-    public Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.ProcessStatus>> status() {
-        return status;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<java.util.List<dev.hathora.cloud_api.models.shared.Region>> region() {
+        return (Optional<java.util.List<dev.hathora.cloud_api.models.shared.Region>>) region;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<java.util.List<dev.hathora.cloud_api.models.shared.ProcessStatus>> status() {
+        return (Optional<java.util.List<dev.hathora.cloud_api.models.shared.ProcessStatus>>) status;
     }
 
     public final static Builder builder() {

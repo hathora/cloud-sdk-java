@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -14,10 +16,7 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class CreatePrivateLobbyResponse implements dev.hathora.cloud_api.utils.Response {
-
-    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
 
     /**
      * HTTP response content type for this operation
@@ -36,42 +35,47 @@ public class CreatePrivateLobbyResponse implements dev.hathora.cloud_api.utils.R
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public CreatePrivateLobbyResponse(
-            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             String contentType,
             Optional<? extends dev.hathora.cloud_api.models.shared.Lobby> lobby,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(apiError, "apiError");
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(lobby, "lobby");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.apiError = apiError;
         this.contentType = contentType;
         this.lobby = lobby;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
-
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
-        return apiError;
+    
+    public CreatePrivateLobbyResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
 
-    public Optional<? extends dev.hathora.cloud_api.models.shared.Lobby> lobby() {
-        return lobby;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<dev.hathora.cloud_api.models.shared.Lobby> lobby() {
+        return (Optional<dev.hathora.cloud_api.models.shared.Lobby>) lobby;
     }
 
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -79,24 +83,13 @@ public class CreatePrivateLobbyResponse implements dev.hathora.cloud_api.utils.R
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public CreatePrivateLobbyResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = Optional.ofNullable(apiError);
-        return this;
-    }
-
-    public CreatePrivateLobbyResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = apiError;
-        return this;
     }
 
     /**
@@ -148,7 +141,6 @@ public class CreatePrivateLobbyResponse implements dev.hathora.cloud_api.utils.R
         }
         CreatePrivateLobbyResponse other = (CreatePrivateLobbyResponse) o;
         return 
-            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.lobby, other.lobby) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
@@ -158,7 +150,6 @@ public class CreatePrivateLobbyResponse implements dev.hathora.cloud_api.utils.R
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            apiError,
             contentType,
             lobby,
             statusCode,
@@ -168,7 +159,6 @@ public class CreatePrivateLobbyResponse implements dev.hathora.cloud_api.utils.R
     @Override
     public String toString() {
         return Utils.toString(CreatePrivateLobbyResponse.class,
-                "apiError", apiError,
                 "contentType", contentType,
                 "lobby", lobby,
                 "statusCode", statusCode,
@@ -176,8 +166,6 @@ public class CreatePrivateLobbyResponse implements dev.hathora.cloud_api.utils.R
     }
     
     public final static class Builder {
- 
-        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
  
         private String contentType;
  
@@ -189,18 +177,6 @@ public class CreatePrivateLobbyResponse implements dev.hathora.cloud_api.utils.R
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = Optional.ofNullable(apiError);
-            return this;
-        }
-
-        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = apiError;
-            return this;
         }
 
         /**
@@ -244,7 +220,6 @@ public class CreatePrivateLobbyResponse implements dev.hathora.cloud_api.utils.R
         
         public CreatePrivateLobbyResponse build() {
             return new CreatePrivateLobbyResponse(
-                apiError,
                 contentType,
                 lobby,
                 statusCode,

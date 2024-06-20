@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.LazySingletonValue;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
@@ -14,7 +16,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 
 public class GetLogsForProcessRequest {
 
@@ -30,6 +31,7 @@ public class GetLogsForProcessRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=tailLines")
     private Optional<? extends Integer> tailLines;
 
+    @JsonCreator
     public GetLogsForProcessRequest(
             Optional<? extends String> appId,
             Optional<? extends Boolean> follow,
@@ -44,21 +46,33 @@ public class GetLogsForProcessRequest {
         this.processId = processId;
         this.tailLines = tailLines;
     }
-
-    public Optional<? extends String> appId() {
-        return appId;
+    
+    public GetLogsForProcessRequest(
+            String processId) {
+        this(Optional.empty(), Optional.empty(), processId, Optional.empty());
     }
 
-    public Optional<? extends Boolean> follow() {
-        return follow;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Boolean> follow() {
+        return (Optional<Boolean>) follow;
+    }
+
+    @JsonIgnore
     public String processId() {
         return processId;
     }
 
-    public Optional<? extends Integer> tailLines() {
-        return tailLines;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Integer> tailLines() {
+        return (Optional<Integer>) tailLines;
     }
 
     public final static Builder builder() {
