@@ -39,7 +39,7 @@ public class SDKTest {
                         .build())
                 .call();
         if (createRoomResponse.statusCode() != 201 ) {
-            System.out.println("error: " + createRoomResponse.apiError().get().message());
+            System.out.println("error: " + createRoomResponse.rawResponse());
         }
 
         System.out.println("RES: " + createRoomResponse.statusCode());
@@ -61,8 +61,8 @@ public class SDKTest {
             GetConnectionInfoResponse connectionInfoResponse = hathoraCloudSdk.roomV2().getConnectionInfo()
                     .roomId(createRoomResponse.createRoomResponse().get().roomId())
                     .call();
-            if (connectionInfoResponse.apiError().isPresent()) {
-                System.out.println("api error: " + connectionInfoResponse.apiError().get().message());
+            if (connectionInfoResponse.statusCode() != 200) {
+                System.out.println("api error: " + connectionInfoResponse.rawResponse());
             }
             if (connectionInfoResponse.connectionInfoV2().isPresent() && connectionInfoResponse.connectionInfoV2().get().exposedPort().isPresent()) {
                 System.out.println("RES: " + connectionInfoResponse.statusCode() + ", Success!");
@@ -109,13 +109,13 @@ public class SDKTest {
                         .roomConfig(roomConfig)
                         .build())
                 .call();
-        if (createRoomResponse.apiError().isPresent()) {
-            System.out.println("error: " + createRoomResponse.apiError().get().message());
+        if (createRoomResponse.statusCode() != 201) {
+            System.out.println("error: " + createRoomResponse.rawResponse());
         }
 
         System.out.println("RES: " + createRoomResponse.statusCode());
         if (createRoomResponse.createRoomResponse().isPresent()) {
-            System.out.println("Status: " + createRoomResponse.createRoomResponse().get().status());
+            System.out.println("Status: " + createRoomResponse.status());
             System.out.println("RoomId: " + createRoomResponse.createRoomResponse().get().roomId());
             System.out.println("ProcessId: " + createRoomResponse.createRoomResponse().get().processId());
         } else {
@@ -220,8 +220,8 @@ public class SDKTest {
             GetConnectionInfoResponse connectionInfoResponse = hathoraCloudSdk.roomV2().getConnectionInfo()
                     .roomId(createLobbyResponse.lobbyV3().get().roomId())
                     .call();
-            if (connectionInfoResponse.apiError().isPresent()) {
-                System.out.println("api error: " + connectionInfoResponse.apiError().get().message());
+            if (connectionInfoResponse.statusCode() != 200) {
+                System.out.println("api error: " + connectionInfoResponse.rawResponse());
             }
             if (connectionInfoResponse.connectionInfoV2().isPresent() && connectionInfoResponse.connectionInfoV2().get().exposedPort().isPresent()) {
                 System.out.println("RES: " + connectionInfoResponse.statusCode() + ", Success!");
@@ -258,12 +258,12 @@ public class SDKTest {
                 .appId(HATHORA_APP_ID)
                 .build();
 
-        GetPingServiceEndpointsResponse res = hathoraCloudSdk.discoveryV1().getPingServiceEndpoints()
+        GetPingServiceEndpointsResponse res = hathoraCloudSdk.discoveryV2().getPingServiceEndpoints()
                 .call();
 
         System.out.println("RES: " + res.statusCode());
-        if (res.discoveryResponse().isPresent()) {
-            System.out.println("Ping Endpoints: " + res.discoveryResponse().get().size());
+        if (res.statusCode() == 200) {
+            System.out.println("Ping Endpoints: " + res.pingEndpoints());
         } else {
             System.out.println("Inner response not present!");
         }
