@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 
 public class CreateRoomParams {
 
@@ -29,6 +30,7 @@ public class CreateRoomParams {
     @JsonProperty("roomConfig")
     private Optional<? extends String> roomConfig;
 
+    @JsonCreator
     public CreateRoomParams(
             @JsonProperty("region") Region region,
             @JsonProperty("roomConfig") Optional<? extends String> roomConfig) {
@@ -37,7 +39,13 @@ public class CreateRoomParams {
         this.region = region;
         this.roomConfig = roomConfig;
     }
+    
+    public CreateRoomParams(
+            Region region) {
+        this(region, Optional.empty());
+    }
 
+    @JsonIgnore
     public Region region() {
         return region;
     }
@@ -45,8 +53,10 @@ public class CreateRoomParams {
     /**
      * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
-    public Optional<? extends String> roomConfig() {
-        return roomConfig;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> roomConfig() {
+        return (Optional<String>) roomConfig;
     }
 
     public final static Builder builder() {

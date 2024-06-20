@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -12,7 +14,6 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
 
 public class UpdateRoomConfigParams {
 
@@ -22,6 +23,7 @@ public class UpdateRoomConfigParams {
     @JsonProperty("roomConfig")
     private String roomConfig;
 
+    @JsonCreator
     public UpdateRoomConfigParams(
             @JsonProperty("roomConfig") String roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
@@ -31,6 +33,7 @@ public class UpdateRoomConfigParams {
     /**
      * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
+    @JsonIgnore
     public String roomConfig() {
         return roomConfig;
     }

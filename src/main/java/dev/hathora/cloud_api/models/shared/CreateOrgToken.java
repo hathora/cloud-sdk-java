@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -12,7 +14,6 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
 
 public class CreateOrgToken {
 
@@ -22,6 +23,7 @@ public class CreateOrgToken {
     @JsonProperty("name")
     private String name;
 
+    @JsonCreator
     public CreateOrgToken(
             @JsonProperty("name") String name) {
         Utils.checkNotNull(name, "name");
@@ -31,6 +33,7 @@ public class CreateOrgToken {
     /**
      * Readable name for a token. Must be unique within an organization.
      */
+    @JsonIgnore
     public String name() {
         return name;
     }

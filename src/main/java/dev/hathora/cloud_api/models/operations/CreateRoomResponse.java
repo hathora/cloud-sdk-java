@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -14,17 +16,14 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class CreateRoomResponse implements dev.hathora.cloud_api.utils.Response {
-
-    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
 
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
 
-    private Optional<? extends dev.hathora.cloud_api.models.shared.CreateRoomResponse> createRoomResponse;
+    private Optional<? extends dev.hathora.cloud_api.models.shared.RoomConnectionData> roomConnectionData;
 
     /**
      * HTTP response status code for this operation
@@ -36,42 +35,47 @@ public class CreateRoomResponse implements dev.hathora.cloud_api.utils.Response 
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public CreateRoomResponse(
-            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             String contentType,
-            Optional<? extends dev.hathora.cloud_api.models.shared.CreateRoomResponse> createRoomResponse,
+            Optional<? extends dev.hathora.cloud_api.models.shared.RoomConnectionData> roomConnectionData,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(apiError, "apiError");
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(createRoomResponse, "createRoomResponse");
+        Utils.checkNotNull(roomConnectionData, "roomConnectionData");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.apiError = apiError;
         this.contentType = contentType;
-        this.createRoomResponse = createRoomResponse;
+        this.roomConnectionData = roomConnectionData;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
-
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
-        return apiError;
+    
+    public CreateRoomResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
 
-    public Optional<? extends dev.hathora.cloud_api.models.shared.CreateRoomResponse> createRoomResponse() {
-        return createRoomResponse;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<dev.hathora.cloud_api.models.shared.RoomConnectionData> roomConnectionData() {
+        return (Optional<dev.hathora.cloud_api.models.shared.RoomConnectionData>) roomConnectionData;
     }
 
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -79,24 +83,13 @@ public class CreateRoomResponse implements dev.hathora.cloud_api.utils.Response 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public CreateRoomResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = Optional.ofNullable(apiError);
-        return this;
-    }
-
-    public CreateRoomResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = apiError;
-        return this;
     }
 
     /**
@@ -108,15 +101,15 @@ public class CreateRoomResponse implements dev.hathora.cloud_api.utils.Response 
         return this;
     }
 
-    public CreateRoomResponse withCreateRoomResponse(dev.hathora.cloud_api.models.shared.CreateRoomResponse createRoomResponse) {
-        Utils.checkNotNull(createRoomResponse, "createRoomResponse");
-        this.createRoomResponse = Optional.ofNullable(createRoomResponse);
+    public CreateRoomResponse withRoomConnectionData(dev.hathora.cloud_api.models.shared.RoomConnectionData roomConnectionData) {
+        Utils.checkNotNull(roomConnectionData, "roomConnectionData");
+        this.roomConnectionData = Optional.ofNullable(roomConnectionData);
         return this;
     }
 
-    public CreateRoomResponse withCreateRoomResponse(Optional<? extends dev.hathora.cloud_api.models.shared.CreateRoomResponse> createRoomResponse) {
-        Utils.checkNotNull(createRoomResponse, "createRoomResponse");
-        this.createRoomResponse = createRoomResponse;
+    public CreateRoomResponse withRoomConnectionData(Optional<? extends dev.hathora.cloud_api.models.shared.RoomConnectionData> roomConnectionData) {
+        Utils.checkNotNull(roomConnectionData, "roomConnectionData");
+        this.roomConnectionData = roomConnectionData;
         return this;
     }
 
@@ -148,9 +141,8 @@ public class CreateRoomResponse implements dev.hathora.cloud_api.utils.Response 
         }
         CreateRoomResponse other = (CreateRoomResponse) o;
         return 
-            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.createRoomResponse, other.createRoomResponse) &&
+            java.util.Objects.deepEquals(this.roomConnectionData, other.roomConnectionData) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -158,9 +150,8 @@ public class CreateRoomResponse implements dev.hathora.cloud_api.utils.Response 
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            apiError,
             contentType,
-            createRoomResponse,
+            roomConnectionData,
             statusCode,
             rawResponse);
     }
@@ -168,20 +159,17 @@ public class CreateRoomResponse implements dev.hathora.cloud_api.utils.Response 
     @Override
     public String toString() {
         return Utils.toString(CreateRoomResponse.class,
-                "apiError", apiError,
                 "contentType", contentType,
-                "createRoomResponse", createRoomResponse,
+                "roomConnectionData", roomConnectionData,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
     
     public final static class Builder {
  
-        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
- 
         private String contentType;
  
-        private Optional<? extends dev.hathora.cloud_api.models.shared.CreateRoomResponse> createRoomResponse = Optional.empty();
+        private Optional<? extends dev.hathora.cloud_api.models.shared.RoomConnectionData> roomConnectionData = Optional.empty();
  
         private Integer statusCode;
  
@@ -189,18 +177,6 @@ public class CreateRoomResponse implements dev.hathora.cloud_api.utils.Response 
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = Optional.ofNullable(apiError);
-            return this;
-        }
-
-        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = apiError;
-            return this;
         }
 
         /**
@@ -212,15 +188,15 @@ public class CreateRoomResponse implements dev.hathora.cloud_api.utils.Response 
             return this;
         }
 
-        public Builder createRoomResponse(dev.hathora.cloud_api.models.shared.CreateRoomResponse createRoomResponse) {
-            Utils.checkNotNull(createRoomResponse, "createRoomResponse");
-            this.createRoomResponse = Optional.ofNullable(createRoomResponse);
+        public Builder roomConnectionData(dev.hathora.cloud_api.models.shared.RoomConnectionData roomConnectionData) {
+            Utils.checkNotNull(roomConnectionData, "roomConnectionData");
+            this.roomConnectionData = Optional.ofNullable(roomConnectionData);
             return this;
         }
 
-        public Builder createRoomResponse(Optional<? extends dev.hathora.cloud_api.models.shared.CreateRoomResponse> createRoomResponse) {
-            Utils.checkNotNull(createRoomResponse, "createRoomResponse");
-            this.createRoomResponse = createRoomResponse;
+        public Builder roomConnectionData(Optional<? extends dev.hathora.cloud_api.models.shared.RoomConnectionData> roomConnectionData) {
+            Utils.checkNotNull(roomConnectionData, "roomConnectionData");
+            this.roomConnectionData = roomConnectionData;
             return this;
         }
 
@@ -244,9 +220,8 @@ public class CreateRoomResponse implements dev.hathora.cloud_api.utils.Response 
         
         public CreateRoomResponse build() {
             return new CreateRoomResponse(
-                apiError,
                 contentType,
-                createRoomResponse,
+                roomConnectionData,
                 statusCode,
                 rawResponse);
         }

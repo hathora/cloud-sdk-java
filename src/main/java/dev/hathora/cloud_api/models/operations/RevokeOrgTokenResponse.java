@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -14,10 +16,7 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class RevokeOrgTokenResponse implements dev.hathora.cloud_api.utils.Response {
-
-    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
 
     /**
      * HTTP response content type for this operation
@@ -39,31 +38,33 @@ public class RevokeOrgTokenResponse implements dev.hathora.cloud_api.utils.Respo
      */
     private Optional<? extends Boolean> boolean_;
 
+    @JsonCreator
     public RevokeOrgTokenResponse(
-            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
             Optional<? extends Boolean> boolean_) {
-        Utils.checkNotNull(apiError, "apiError");
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(boolean_, "boolean_");
-        this.apiError = apiError;
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.boolean_ = boolean_;
     }
-
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
-        return apiError;
+    
+    public RevokeOrgTokenResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse, Optional.empty());
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -71,6 +72,7 @@ public class RevokeOrgTokenResponse implements dev.hathora.cloud_api.utils.Respo
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -78,6 +80,7 @@ public class RevokeOrgTokenResponse implements dev.hathora.cloud_api.utils.Respo
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -85,24 +88,14 @@ public class RevokeOrgTokenResponse implements dev.hathora.cloud_api.utils.Respo
     /**
      * Ok
      */
-    public Optional<? extends Boolean> boolean_() {
-        return boolean_;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Boolean> boolean_() {
+        return (Optional<Boolean>) boolean_;
     }
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public RevokeOrgTokenResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = Optional.ofNullable(apiError);
-        return this;
-    }
-
-    public RevokeOrgTokenResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = apiError;
-        return this;
     }
 
     /**
@@ -160,7 +153,6 @@ public class RevokeOrgTokenResponse implements dev.hathora.cloud_api.utils.Respo
         }
         RevokeOrgTokenResponse other = (RevokeOrgTokenResponse) o;
         return 
-            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
@@ -170,7 +162,6 @@ public class RevokeOrgTokenResponse implements dev.hathora.cloud_api.utils.Respo
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            apiError,
             contentType,
             statusCode,
             rawResponse,
@@ -180,7 +171,6 @@ public class RevokeOrgTokenResponse implements dev.hathora.cloud_api.utils.Respo
     @Override
     public String toString() {
         return Utils.toString(RevokeOrgTokenResponse.class,
-                "apiError", apiError,
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
@@ -188,8 +178,6 @@ public class RevokeOrgTokenResponse implements dev.hathora.cloud_api.utils.Respo
     }
     
     public final static class Builder {
- 
-        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
  
         private String contentType;
  
@@ -201,18 +189,6 @@ public class RevokeOrgTokenResponse implements dev.hathora.cloud_api.utils.Respo
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = Optional.ofNullable(apiError);
-            return this;
-        }
-
-        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = apiError;
-            return this;
         }
 
         /**
@@ -262,7 +238,6 @@ public class RevokeOrgTokenResponse implements dev.hathora.cloud_api.utils.Respo
         
         public RevokeOrgTokenResponse build() {
             return new RevokeOrgTokenResponse(
-                apiError,
                 contentType,
                 statusCode,
                 rawResponse,

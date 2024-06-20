@@ -1,0 +1,29 @@
+speakeasyVersion: 1.310.0
+sources:
+    java-source:
+        sourceNamespace: java-source
+        sourceRevisionDigest: sha256:d00b020dd02bb5f3110400f584724c469aeb46fb6f3e5e480a0f35ced36aee5d
+        sourceBlobDigest: sha256:4334f8b35afc85bfe7ad0dae9bd614e0186ae4b73b09f56e63cb0d45c491fcd9
+        tags:
+            - latest
+            - main
+targets:
+    hathora-java:
+        source: java-source
+        sourceNamespace: java-source
+        sourceRevisionDigest: sha256:d00b020dd02bb5f3110400f584724c469aeb46fb6f3e5e480a0f35ced36aee5d
+        sourceBlobDigest: sha256:4334f8b35afc85bfe7ad0dae9bd614e0186ae4b73b09f56e63cb0d45c491fcd9
+        outLocation: /github/workspace/repo
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        java-source:
+            inputs:
+                - location: https://hathora.dev/swagger.json
+            registry:
+                location: registry.speakeasyapi.dev/hathora/hathora/java-source
+    targets:
+        hathora-java:
+            target: java
+            source: java-source

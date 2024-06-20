@@ -7,9 +7,84 @@ Operations to get data on active and stopped [processes](https://hathora.dev/doc
 
 ### Available Operations
 
+* [createProcess](#createprocess) - Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
 * [getLatestProcesses](#getlatestprocesses) - Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
 * [getProcessInfo](#getprocessinfo) - Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
 * [stopProcess](#stopprocess) - Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
+
+## createProcess
+
+Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.hathora.cloud_api.HathoraCloud;
+import dev.hathora.cloud_api.models.operations.*;
+import dev.hathora.cloud_api.models.shared.*;
+import dev.hathora.cloud_api.models.shared.Security;
+import dev.hathora.cloud_api.utils.EventStream;
+import java.math.BigDecimal;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+        try {
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .build();
+
+            CreateProcessResponse res = sdk.processesV2().createProcess()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .region(Region.TOKYO)
+                .call();
+
+            if (res.processV2().isPresent()) {
+                // handle response
+            }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
+        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+            // handle exception
+            throw e;
+        } catch (Exception e) {
+            // handle exception
+            throw e;
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `appId`                                                                     | *Optional<? extends String>*                                                | :heavy_minus_sign:                                                          | N/A                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                    |
+| `region`                                                                    | [dev.hathora.cloud_api.models.shared.Region](../../models/shared/Region.md) | :heavy_check_mark:                                                          | N/A                                                                         |                                                                             |
+
+
+### Response
+
+**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateProcessResponse>](../../models/operations/CreateProcessResponse.md)**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,402,404,429,500    | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getLatestProcesses
 
@@ -20,24 +95,23 @@ Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathor
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetLatestProcessesRequest;
-import dev.hathora.cloud_api.models.operations.GetLatestProcessesResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.ProcessStatus;
-import dev.hathora.cloud_api.models.shared.Region;
 import dev.hathora.cloud_api.models.shared.Security;
+import dev.hathora.cloud_api.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -49,7 +123,7 @@ public class Application {
             GetLatestProcessesResponse res = sdk.processesV2().getLatestProcesses()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .region(java.util.List.of(
-                    Region.SINGAPORE))
+                    Region.TOKYO))
                 .status(java.util.List.of(
                     ProcessStatus.DRAINING))
                 .call();
@@ -57,10 +131,15 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -82,6 +161,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getProcessInfo
@@ -93,22 +173,23 @@ Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetProcessInfoRequest;
-import dev.hathora.cloud_api.models.operations.GetProcessInfoResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import dev.hathora.cloud_api.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -125,10 +206,15 @@ public class Application {
             if (res.processV2().isPresent()) {
                 // handle response
             }
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -149,6 +235,7 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## stopProcess
@@ -160,22 +247,23 @@ Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) im
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.StopProcessRequest;
-import dev.hathora.cloud_api.models.operations.StopProcessResponse;
 import dev.hathora.cloud_api.models.shared.*;
 import dev.hathora.cloud_api.models.shared.Security;
+import dev.hathora.cloud_api.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -190,10 +278,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -214,4 +307,5 @@ public class Application {
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,429,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | */*                    |

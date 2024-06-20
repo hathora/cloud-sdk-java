@@ -10,12 +10,17 @@ import dev.hathora.cloud_api.models.errors.SDKError;
 import dev.hathora.cloud_api.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_api.utils.HTTPClient;
 import dev.hathora.cloud_api.utils.HTTPRequest;
+import dev.hathora.cloud_api.utils.Hook.AfterErrorContextImpl;
+import dev.hathora.cloud_api.utils.Hook.AfterSuccessContextImpl;
+import dev.hathora.cloud_api.utils.Hook.BeforeRequestContextImpl;
 import dev.hathora.cloud_api.utils.JSON;
+import dev.hathora.cloud_api.utils.Retries.NonRetryableException;
 import dev.hathora.cloud_api.utils.SerializedBody;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
@@ -35,15 +40,28 @@ public class AuthV1 implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
+
+    /**
+     * Returns a unique player token for an anonymous user.
+     * @return The call builder
+     */
     public dev.hathora.cloud_api.models.operations.LoginAnonymousRequestBuilder loginAnonymous() {
         return new dev.hathora.cloud_api.models.operations.LoginAnonymousRequestBuilder(this);
     }
 
     /**
      * Returns a unique player token for an anonymous user.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public dev.hathora.cloud_api.models.operations.LoginAnonymousResponse loginAnonymousDirect() throws Exception {
+        return loginAnonymous(Optional.empty());
+    }
+    /**
+     * Returns a unique player token for an anonymous user.
      * @param appId
-     * @return The response from the API call.
-     * @throws Exception if the API call fails.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
      */
     public dev.hathora.cloud_api.models.operations.LoginAnonymousResponse loginAnonymous(
             Optional<? extends String> appId) throws Exception {
@@ -53,244 +71,382 @@ public class AuthV1 implements
                 .appId(appId)
                 .build();
         
-
-        String baseUrl = this.sdkConfiguration.serverUrl;
-
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
                 dev.hathora.cloud_api.models.operations.LoginAnonymousRequest.class,
-                baseUrl,
+                _baseUrl,
                 "/auth/v1/{appId}/login/anonymous",
                 request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
 
-        HTTPRequest req = new HTTPRequest();
-        req.setMethod("POST");
-        req.setURL(url);
-
-        req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
-
-        HTTPClient client = this.sdkConfiguration.defaultClient;
-
-        HttpResponse<InputStream> httpRes = client.send(req);
-
-        String contentType = httpRes
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl("LoginAnonymous", Optional.empty(), sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "429", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl("LoginAnonymous", Optional.empty(), sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl("LoginAnonymous", Optional.empty(), sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(new AfterErrorContextImpl("LoginAnonymous", Optional.empty(), sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        dev.hathora.cloud_api.models.operations.LoginAnonymousResponse.Builder resBuilder = 
+        dev.hathora.cloud_api.models.operations.LoginAnonymousResponse.Builder _resBuilder = 
             dev.hathora.cloud_api.models.operations.LoginAnonymousResponse
                 .builder()
-                .contentType(contentType)
-                .statusCode(httpRes.statusCode())
-                .rawResponse(httpRes);
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
 
-        dev.hathora.cloud_api.models.operations.LoginAnonymousResponse res = resBuilder.build();
-
-        res.withRawResponse(httpRes);
-
-        if (httpRes.statusCode() == 200) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.LoginResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<dev.hathora.cloud_api.models.shared.LoginResponse>() {});
-                res.withLoginResponse(java.util.Optional.ofNullable(out));
+        dev.hathora.cloud_api.models.operations.LoginAnonymousResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                dev.hathora.cloud_api.models.shared.PlayerTokenObject _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.PlayerTokenObject>() {});
+                _res.withPlayerTokenObject(java.util.Optional.ofNullable(_out));
+                return _res;
             } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if (httpRes.statusCode() == 404) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
-                res.withApiError(java.util.Optional.ofNullable(out));
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
             }
         }
-
-        return res;
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "429")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                dev.hathora.cloud_api.models.errors.ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.errors.ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.toByteArrayAndClose(_httpRes.body()));
     }
 
 
+
+    /**
+     * Returns a unique player token using a Google-signed OIDC `idToken`.
+     * @return The call builder
+     */
     public dev.hathora.cloud_api.models.operations.LoginGoogleRequestBuilder loginGoogle() {
         return new dev.hathora.cloud_api.models.operations.LoginGoogleRequestBuilder(this);
     }
 
     /**
      * Returns a unique player token using a Google-signed OIDC `idToken`.
-     * @param loginGoogleRequest
-     * @param appId
-     * @return The response from the API call.
-     * @throws Exception if the API call fails.
+     * @param googleIdTokenObject
+     * @return The response from the API call
+     * @throws Exception if the API call fails
      */
     public dev.hathora.cloud_api.models.operations.LoginGoogleResponse loginGoogle(
-            dev.hathora.cloud_api.models.shared.LoginGoogleRequest loginGoogleRequest,
+            dev.hathora.cloud_api.models.shared.GoogleIdTokenObject googleIdTokenObject) throws Exception {
+        return loginGoogle(googleIdTokenObject, Optional.empty());
+    }
+    /**
+     * Returns a unique player token using a Google-signed OIDC `idToken`.
+     * @param googleIdTokenObject
+     * @param appId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public dev.hathora.cloud_api.models.operations.LoginGoogleResponse loginGoogle(
+            dev.hathora.cloud_api.models.shared.GoogleIdTokenObject googleIdTokenObject,
             Optional<? extends String> appId) throws Exception {
         dev.hathora.cloud_api.models.operations.LoginGoogleRequest request =
             dev.hathora.cloud_api.models.operations.LoginGoogleRequest
                 .builder()
-                .loginGoogleRequest(loginGoogleRequest)
+                .googleIdTokenObject(googleIdTokenObject)
                 .appId(appId)
                 .build();
         
-
-        String baseUrl = this.sdkConfiguration.serverUrl;
-
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
                 dev.hathora.cloud_api.models.operations.LoginGoogleRequest.class,
-                baseUrl,
+                _baseUrl,
                 "/auth/v1/{appId}/login/google",
                 request, this.sdkConfiguration.globals);
-
-        HTTPRequest req = new HTTPRequest();
-        req.setMethod("POST");
-        req.setURL(url);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
         Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
             new TypeReference<java.lang.Object>() {});
-        SerializedBody serializedRequestBody = dev.hathora.cloud_api.utils.Utils.serializeRequestBody(
-                _convertedRequest, "loginGoogleRequest", "json", false);
-        if (serializedRequestBody == null) {
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, "googleIdTokenObject", "json", false);
+        if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
-        req.setBody(serializedRequestBody);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
 
-        req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
-
-        HTTPClient client = this.sdkConfiguration.defaultClient;
-
-        HttpResponse<InputStream> httpRes = client.send(req);
-
-        String contentType = httpRes
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl("LoginGoogle", Optional.empty(), sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl("LoginGoogle", Optional.empty(), sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl("LoginGoogle", Optional.empty(), sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(new AfterErrorContextImpl("LoginGoogle", Optional.empty(), sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        dev.hathora.cloud_api.models.operations.LoginGoogleResponse.Builder resBuilder = 
+        dev.hathora.cloud_api.models.operations.LoginGoogleResponse.Builder _resBuilder = 
             dev.hathora.cloud_api.models.operations.LoginGoogleResponse
                 .builder()
-                .contentType(contentType)
-                .statusCode(httpRes.statusCode())
-                .rawResponse(httpRes);
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
 
-        dev.hathora.cloud_api.models.operations.LoginGoogleResponse res = resBuilder.build();
-
-        res.withRawResponse(httpRes);
-
-        if (httpRes.statusCode() == 200) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.LoginResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<dev.hathora.cloud_api.models.shared.LoginResponse>() {});
-                res.withLoginResponse(java.util.Optional.ofNullable(out));
+        dev.hathora.cloud_api.models.operations.LoginGoogleResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                dev.hathora.cloud_api.models.shared.PlayerTokenObject _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.PlayerTokenObject>() {});
+                _res.withPlayerTokenObject(java.util.Optional.ofNullable(_out));
+                return _res;
             } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if (httpRes.statusCode() == 401 || httpRes.statusCode() == 404) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
-                res.withApiError(java.util.Optional.ofNullable(out));
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
             }
         }
-
-        return res;
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                dev.hathora.cloud_api.models.errors.ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.errors.ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.toByteArrayAndClose(_httpRes.body()));
     }
 
 
+
+    /**
+     * Returns a unique player token with a specified nickname for a user.
+     * @return The call builder
+     */
     public dev.hathora.cloud_api.models.operations.LoginNicknameRequestBuilder loginNickname() {
         return new dev.hathora.cloud_api.models.operations.LoginNicknameRequestBuilder(this);
     }
 
     /**
      * Returns a unique player token with a specified nickname for a user.
-     * @param loginNicknameRequest
-     * @param appId
-     * @return The response from the API call.
-     * @throws Exception if the API call fails.
+     * @param nicknameObject
+     * @return The response from the API call
+     * @throws Exception if the API call fails
      */
     public dev.hathora.cloud_api.models.operations.LoginNicknameResponse loginNickname(
-            dev.hathora.cloud_api.models.shared.LoginNicknameRequest loginNicknameRequest,
+            dev.hathora.cloud_api.models.shared.NicknameObject nicknameObject) throws Exception {
+        return loginNickname(nicknameObject, Optional.empty());
+    }
+    /**
+     * Returns a unique player token with a specified nickname for a user.
+     * @param nicknameObject
+     * @param appId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public dev.hathora.cloud_api.models.operations.LoginNicknameResponse loginNickname(
+            dev.hathora.cloud_api.models.shared.NicknameObject nicknameObject,
             Optional<? extends String> appId) throws Exception {
         dev.hathora.cloud_api.models.operations.LoginNicknameRequest request =
             dev.hathora.cloud_api.models.operations.LoginNicknameRequest
                 .builder()
-                .loginNicknameRequest(loginNicknameRequest)
+                .nicknameObject(nicknameObject)
                 .appId(appId)
                 .build();
         
-
-        String baseUrl = this.sdkConfiguration.serverUrl;
-
-        String url = dev.hathora.cloud_api.utils.Utils.generateURL(
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
                 dev.hathora.cloud_api.models.operations.LoginNicknameRequest.class,
-                baseUrl,
+                _baseUrl,
                 "/auth/v1/{appId}/login/nickname",
                 request, this.sdkConfiguration.globals);
-
-        HTTPRequest req = new HTTPRequest();
-        req.setMethod("POST");
-        req.setURL(url);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
         Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
             new TypeReference<java.lang.Object>() {});
-        SerializedBody serializedRequestBody = dev.hathora.cloud_api.utils.Utils.serializeRequestBody(
-                _convertedRequest, "loginNicknameRequest", "json", false);
-        if (serializedRequestBody == null) {
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, "nicknameObject", "json", false);
+        if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
-        req.setBody(serializedRequestBody);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
 
-        req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
-
-        HTTPClient client = this.sdkConfiguration.defaultClient;
-
-        HttpResponse<InputStream> httpRes = client.send(req);
-
-        String contentType = httpRes
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl("LoginNickname", Optional.empty(), sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "429", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl("LoginNickname", Optional.empty(), sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl("LoginNickname", Optional.empty(), sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(new AfterErrorContextImpl("LoginNickname", Optional.empty(), sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        dev.hathora.cloud_api.models.operations.LoginNicknameResponse.Builder resBuilder = 
+        dev.hathora.cloud_api.models.operations.LoginNicknameResponse.Builder _resBuilder = 
             dev.hathora.cloud_api.models.operations.LoginNicknameResponse
                 .builder()
-                .contentType(contentType)
-                .statusCode(httpRes.statusCode())
-                .rawResponse(httpRes);
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
 
-        dev.hathora.cloud_api.models.operations.LoginNicknameResponse res = resBuilder.build();
-
-        res.withRawResponse(httpRes);
-
-        if (httpRes.statusCode() == 200) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.LoginResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<dev.hathora.cloud_api.models.shared.LoginResponse>() {});
-                res.withLoginResponse(java.util.Optional.ofNullable(out));
+        dev.hathora.cloud_api.models.operations.LoginNicknameResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                dev.hathora.cloud_api.models.shared.PlayerTokenObject _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.shared.PlayerTokenObject>() {});
+                _res.withPlayerTokenObject(java.util.Optional.ofNullable(_out));
+                return _res;
             } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if (httpRes.statusCode() == 404) {
-            if (dev.hathora.cloud_api.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                dev.hathora.cloud_api.models.shared.ApiError out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<dev.hathora.cloud_api.models.shared.ApiError>() {});
-                res.withApiError(java.util.Optional.ofNullable(out));
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
             }
         }
-
-        return res;
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "429")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                dev.hathora.cloud_api.models.errors.ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<dev.hathora.cloud_api.models.errors.ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.toByteArrayAndClose(_httpRes.body()));
     }
 
 }

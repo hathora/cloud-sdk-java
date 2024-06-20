@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -13,14 +15,13 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-
 public class CreateLobbyParams {
 
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
     @JsonProperty("initialConfig")
-    private LobbyInitialConfig initialConfig;
+    private java.lang.Object initialConfig;
 
     @JsonProperty("region")
     private Region region;
@@ -37,8 +38,9 @@ public class CreateLobbyParams {
     @JsonProperty("visibility")
     private LobbyVisibility visibility;
 
+    @JsonCreator
     public CreateLobbyParams(
-            @JsonProperty("initialConfig") LobbyInitialConfig initialConfig,
+            @JsonProperty("initialConfig") java.lang.Object initialConfig,
             @JsonProperty("region") Region region,
             @JsonProperty("visibility") LobbyVisibility visibility) {
         Utils.checkNotNull(initialConfig, "initialConfig");
@@ -52,10 +54,12 @@ public class CreateLobbyParams {
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
-    public LobbyInitialConfig initialConfig() {
+    @JsonIgnore
+    public java.lang.Object initialConfig() {
         return initialConfig;
     }
 
+    @JsonIgnore
     public Region region() {
         return region;
     }
@@ -69,6 +73,7 @@ public class CreateLobbyParams {
      * 
      * `local`: for testing with a server running locally
      */
+    @JsonIgnore
     public LobbyVisibility visibility() {
         return visibility;
     }
@@ -80,7 +85,7 @@ public class CreateLobbyParams {
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
-    public CreateLobbyParams withInitialConfig(LobbyInitialConfig initialConfig) {
+    public CreateLobbyParams withInitialConfig(java.lang.Object initialConfig) {
         Utils.checkNotNull(initialConfig, "initialConfig");
         this.initialConfig = initialConfig;
         return this;
@@ -140,7 +145,7 @@ public class CreateLobbyParams {
     
     public final static class Builder {
  
-        private LobbyInitialConfig initialConfig;
+        private java.lang.Object initialConfig;
  
         private Region region;
  
@@ -153,7 +158,7 @@ public class CreateLobbyParams {
         /**
          * User input to initialize the game state. Object must be smaller than 64KB.
          */
-        public Builder initialConfig(LobbyInitialConfig initialConfig) {
+        public Builder initialConfig(java.lang.Object initialConfig) {
             Utils.checkNotNull(initialConfig, "initialConfig");
             this.initialConfig = initialConfig;
             return this;

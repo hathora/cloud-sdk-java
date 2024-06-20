@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -13,7 +15,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
-
 
 public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.utils.Response {
 
@@ -25,7 +26,7 @@ public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.ut
     /**
      * Ok
      */
-    private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse>> discoveryResponse;
+    private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.PingEndpoints>> pingEndpoints;
 
     /**
      * HTTP response status code for this operation
@@ -37,24 +38,33 @@ public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.ut
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public GetPingServiceEndpointsResponse(
             String contentType,
-            Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse>> discoveryResponse,
+            Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.PingEndpoints>> pingEndpoints,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(discoveryResponse, "discoveryResponse");
+        Utils.checkNotNull(pingEndpoints, "pingEndpoints");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.discoveryResponse = discoveryResponse;
+        this.pingEndpoints = pingEndpoints;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
+    }
+    
+    public GetPingServiceEndpointsResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -62,13 +72,16 @@ public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.ut
     /**
      * Ok
      */
-    public Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse>> discoveryResponse() {
-        return discoveryResponse;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<java.util.List<dev.hathora.cloud_api.models.shared.PingEndpoints>> pingEndpoints() {
+        return (Optional<java.util.List<dev.hathora.cloud_api.models.shared.PingEndpoints>>) pingEndpoints;
     }
 
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -76,6 +89,7 @@ public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.ut
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -96,18 +110,18 @@ public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.ut
     /**
      * Ok
      */
-    public GetPingServiceEndpointsResponse withDiscoveryResponse(java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse> discoveryResponse) {
-        Utils.checkNotNull(discoveryResponse, "discoveryResponse");
-        this.discoveryResponse = Optional.ofNullable(discoveryResponse);
+    public GetPingServiceEndpointsResponse withPingEndpoints(java.util.List<dev.hathora.cloud_api.models.shared.PingEndpoints> pingEndpoints) {
+        Utils.checkNotNull(pingEndpoints, "pingEndpoints");
+        this.pingEndpoints = Optional.ofNullable(pingEndpoints);
         return this;
     }
 
     /**
      * Ok
      */
-    public GetPingServiceEndpointsResponse withDiscoveryResponse(Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse>> discoveryResponse) {
-        Utils.checkNotNull(discoveryResponse, "discoveryResponse");
-        this.discoveryResponse = discoveryResponse;
+    public GetPingServiceEndpointsResponse withPingEndpoints(Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.PingEndpoints>> pingEndpoints) {
+        Utils.checkNotNull(pingEndpoints, "pingEndpoints");
+        this.pingEndpoints = pingEndpoints;
         return this;
     }
 
@@ -140,7 +154,7 @@ public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.ut
         GetPingServiceEndpointsResponse other = (GetPingServiceEndpointsResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.discoveryResponse, other.discoveryResponse) &&
+            java.util.Objects.deepEquals(this.pingEndpoints, other.pingEndpoints) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -149,7 +163,7 @@ public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.ut
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            discoveryResponse,
+            pingEndpoints,
             statusCode,
             rawResponse);
     }
@@ -158,7 +172,7 @@ public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.ut
     public String toString() {
         return Utils.toString(GetPingServiceEndpointsResponse.class,
                 "contentType", contentType,
-                "discoveryResponse", discoveryResponse,
+                "pingEndpoints", pingEndpoints,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -167,7 +181,7 @@ public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.ut
  
         private String contentType;
  
-        private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse>> discoveryResponse = Optional.empty();
+        private Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.PingEndpoints>> pingEndpoints = Optional.empty();
  
         private Integer statusCode;
  
@@ -189,18 +203,18 @@ public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.ut
         /**
          * Ok
          */
-        public Builder discoveryResponse(java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse> discoveryResponse) {
-            Utils.checkNotNull(discoveryResponse, "discoveryResponse");
-            this.discoveryResponse = Optional.ofNullable(discoveryResponse);
+        public Builder pingEndpoints(java.util.List<dev.hathora.cloud_api.models.shared.PingEndpoints> pingEndpoints) {
+            Utils.checkNotNull(pingEndpoints, "pingEndpoints");
+            this.pingEndpoints = Optional.ofNullable(pingEndpoints);
             return this;
         }
 
         /**
          * Ok
          */
-        public Builder discoveryResponse(Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.DiscoveryResponse>> discoveryResponse) {
-            Utils.checkNotNull(discoveryResponse, "discoveryResponse");
-            this.discoveryResponse = discoveryResponse;
+        public Builder pingEndpoints(Optional<? extends java.util.List<dev.hathora.cloud_api.models.shared.PingEndpoints>> pingEndpoints) {
+            Utils.checkNotNull(pingEndpoints, "pingEndpoints");
+            this.pingEndpoints = pingEndpoints;
             return this;
         }
 
@@ -225,7 +239,7 @@ public class GetPingServiceEndpointsResponse implements dev.hathora.cloud_api.ut
         public GetPingServiceEndpointsResponse build() {
             return new GetPingServiceEndpointsResponse(
                 contentType,
-                discoveryResponse,
+                pingEndpoints,
                 statusCode,
                 rawResponse);
         }

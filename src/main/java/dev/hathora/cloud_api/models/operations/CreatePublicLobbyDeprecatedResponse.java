@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
 import java.io.InputStream;
@@ -14,10 +16,7 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class CreatePublicLobbyDeprecatedResponse implements dev.hathora.cloud_api.utils.Response {
-
-    private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError;
 
     /**
      * HTTP response content type for this operation
@@ -39,31 +38,33 @@ public class CreatePublicLobbyDeprecatedResponse implements dev.hathora.cloud_ap
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public CreatePublicLobbyDeprecatedResponse(
-            Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError,
             String contentType,
             Optional<? extends String> roomId,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(apiError, "apiError");
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(roomId, "roomId");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.apiError = apiError;
         this.contentType = contentType;
         this.roomId = roomId;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
-
-    public Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError() {
-        return apiError;
+    
+    public CreatePublicLobbyDeprecatedResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -71,13 +72,16 @@ public class CreatePublicLobbyDeprecatedResponse implements dev.hathora.cloud_ap
     /**
      * Ok
      */
-    public Optional<? extends String> roomId() {
-        return roomId;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> roomId() {
+        return (Optional<String>) roomId;
     }
 
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -85,24 +89,13 @@ public class CreatePublicLobbyDeprecatedResponse implements dev.hathora.cloud_ap
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public CreatePublicLobbyDeprecatedResponse withApiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = Optional.ofNullable(apiError);
-        return this;
-    }
-
-    public CreatePublicLobbyDeprecatedResponse withApiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-        Utils.checkNotNull(apiError, "apiError");
-        this.apiError = apiError;
-        return this;
     }
 
     /**
@@ -160,7 +153,6 @@ public class CreatePublicLobbyDeprecatedResponse implements dev.hathora.cloud_ap
         }
         CreatePublicLobbyDeprecatedResponse other = (CreatePublicLobbyDeprecatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.apiError, other.apiError) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.roomId, other.roomId) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
@@ -170,7 +162,6 @@ public class CreatePublicLobbyDeprecatedResponse implements dev.hathora.cloud_ap
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            apiError,
             contentType,
             roomId,
             statusCode,
@@ -180,7 +171,6 @@ public class CreatePublicLobbyDeprecatedResponse implements dev.hathora.cloud_ap
     @Override
     public String toString() {
         return Utils.toString(CreatePublicLobbyDeprecatedResponse.class,
-                "apiError", apiError,
                 "contentType", contentType,
                 "roomId", roomId,
                 "statusCode", statusCode,
@@ -188,8 +178,6 @@ public class CreatePublicLobbyDeprecatedResponse implements dev.hathora.cloud_ap
     }
     
     public final static class Builder {
- 
-        private Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError = Optional.empty();
  
         private String contentType;
  
@@ -201,18 +189,6 @@ public class CreatePublicLobbyDeprecatedResponse implements dev.hathora.cloud_ap
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder apiError(dev.hathora.cloud_api.models.shared.ApiError apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = Optional.ofNullable(apiError);
-            return this;
-        }
-
-        public Builder apiError(Optional<? extends dev.hathora.cloud_api.models.shared.ApiError> apiError) {
-            Utils.checkNotNull(apiError, "apiError");
-            this.apiError = apiError;
-            return this;
         }
 
         /**
@@ -262,7 +238,6 @@ public class CreatePublicLobbyDeprecatedResponse implements dev.hathora.cloud_ap
         
         public CreatePublicLobbyDeprecatedResponse build() {
             return new CreatePublicLobbyDeprecatedResponse(
-                apiError,
                 contentType,
                 roomId,
                 statusCode,

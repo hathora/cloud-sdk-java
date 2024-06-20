@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -15,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-
 
 public class OrgToken {
 
@@ -46,6 +47,7 @@ public class OrgToken {
     @JsonProperty("status")
     private OrgTokenStatus status;
 
+    @JsonCreator
     public OrgToken(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") String createdBy,
@@ -70,14 +72,17 @@ public class OrgToken {
         this.status = status;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String createdBy() {
         return createdBy;
     }
 
+    @JsonIgnore
     public String lastFourCharsOfKey() {
         return lastFourCharsOfKey;
     }
@@ -85,10 +90,12 @@ public class OrgToken {
     /**
      * Readable name for a token. Must be unique within an organization.
      */
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public String orgId() {
         return orgId;
     }
@@ -96,10 +103,12 @@ public class OrgToken {
     /**
      * System generated unique identifier for an organization token.
      */
+    @JsonIgnore
     public String orgTokenId() {
         return orgTokenId;
     }
 
+    @JsonIgnore
     public OrgTokenStatus status() {
         return status;
     }

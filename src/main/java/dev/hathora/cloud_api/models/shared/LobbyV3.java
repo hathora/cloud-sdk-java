@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,7 +20,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
 /**
  * LobbyV3 - A lobby object allows you to store and manage metadata for your rooms.
  */
@@ -41,7 +42,7 @@ public class LobbyV3 {
      * UserId or email address for the user that created the lobby.
      */
     @JsonProperty("createdBy")
-    private String createdBy;
+    private LobbyV3CreatedBy createdBy;
 
     @JsonProperty("region")
     private Region region;
@@ -75,10 +76,11 @@ public class LobbyV3 {
     @JsonProperty("visibility")
     private LobbyVisibility visibility;
 
+    @JsonCreator
     public LobbyV3(
             @JsonProperty("appId") String appId,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("createdBy") String createdBy,
+            @JsonProperty("createdBy") LobbyV3CreatedBy createdBy,
             @JsonProperty("region") Region region,
             @JsonProperty("roomConfig") Optional<? extends String> roomConfig,
             @JsonProperty("roomId") String roomId,
@@ -101,10 +103,22 @@ public class LobbyV3 {
         this.shortCode = shortCode;
         this.visibility = visibility;
     }
+    
+    public LobbyV3(
+            String appId,
+            OffsetDateTime createdAt,
+            LobbyV3CreatedBy createdBy,
+            Region region,
+            String roomId,
+            String shortCode,
+            LobbyVisibility visibility) {
+        this(appId, createdAt, createdBy, region, Optional.empty(), roomId, shortCode, visibility);
+    }
 
     /**
      * System generated unique identifier for an application.
      */
+    @JsonIgnore
     public String appId() {
         return appId;
     }
@@ -112,6 +126,7 @@ public class LobbyV3 {
     /**
      * When the lobby was created.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -119,22 +134,27 @@ public class LobbyV3 {
     /**
      * UserId or email address for the user that created the lobby.
      */
-    public String createdBy() {
+    @JsonIgnore
+    public LobbyV3CreatedBy createdBy() {
         return createdBy;
     }
 
+    @JsonIgnore
     public Region region() {
         return region;
     }
 
-    public Optional<? extends String> roomConfig() {
-        return roomConfig;
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> roomConfig() {
+        return (Optional<String>) roomConfig;
     }
 
     /**
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
+    @JsonIgnore
     public String roomId() {
         return roomId;
     }
@@ -142,6 +162,7 @@ public class LobbyV3 {
     /**
      * User-defined identifier for a lobby.
      */
+    @JsonIgnore
     public String shortCode() {
         return shortCode;
     }
@@ -155,6 +176,7 @@ public class LobbyV3 {
      * 
      * `local`: for testing with a server running locally
      */
+    @JsonIgnore
     public LobbyVisibility visibility() {
         return visibility;
     }
@@ -184,7 +206,7 @@ public class LobbyV3 {
     /**
      * UserId or email address for the user that created the lobby.
      */
-    public LobbyV3 withCreatedBy(String createdBy) {
+    public LobbyV3 withCreatedBy(LobbyV3CreatedBy createdBy) {
         Utils.checkNotNull(createdBy, "createdBy");
         this.createdBy = createdBy;
         return this;
@@ -294,7 +316,7 @@ public class LobbyV3 {
  
         private OffsetDateTime createdAt;
  
-        private String createdBy;
+        private LobbyV3CreatedBy createdBy;
  
         private Region region;
  
@@ -331,7 +353,7 @@ public class LobbyV3 {
         /**
          * UserId or email address for the user that created the lobby.
          */
-        public Builder createdBy(String createdBy) {
+        public Builder createdBy(LobbyV3CreatedBy createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;
             return this;

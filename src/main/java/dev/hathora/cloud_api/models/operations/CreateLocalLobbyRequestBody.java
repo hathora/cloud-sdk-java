@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.Utils;
@@ -13,20 +15,20 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-
 public class CreateLocalLobbyRequestBody {
 
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
     @JsonProperty("initialConfig")
-    private dev.hathora.cloud_api.models.shared.LobbyInitialConfig initialConfig;
+    private java.lang.Object initialConfig;
 
     @JsonProperty("region")
     private dev.hathora.cloud_api.models.shared.Region region;
 
+    @JsonCreator
     public CreateLocalLobbyRequestBody(
-            @JsonProperty("initialConfig") dev.hathora.cloud_api.models.shared.LobbyInitialConfig initialConfig,
+            @JsonProperty("initialConfig") java.lang.Object initialConfig,
             @JsonProperty("region") dev.hathora.cloud_api.models.shared.Region region) {
         Utils.checkNotNull(initialConfig, "initialConfig");
         Utils.checkNotNull(region, "region");
@@ -37,10 +39,12 @@ public class CreateLocalLobbyRequestBody {
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
-    public dev.hathora.cloud_api.models.shared.LobbyInitialConfig initialConfig() {
+    @JsonIgnore
+    public java.lang.Object initialConfig() {
         return initialConfig;
     }
 
+    @JsonIgnore
     public dev.hathora.cloud_api.models.shared.Region region() {
         return region;
     }
@@ -52,7 +56,7 @@ public class CreateLocalLobbyRequestBody {
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
-    public CreateLocalLobbyRequestBody withInitialConfig(dev.hathora.cloud_api.models.shared.LobbyInitialConfig initialConfig) {
+    public CreateLocalLobbyRequestBody withInitialConfig(java.lang.Object initialConfig) {
         Utils.checkNotNull(initialConfig, "initialConfig");
         this.initialConfig = initialConfig;
         return this;
@@ -94,7 +98,7 @@ public class CreateLocalLobbyRequestBody {
     
     public final static class Builder {
  
-        private dev.hathora.cloud_api.models.shared.LobbyInitialConfig initialConfig;
+        private java.lang.Object initialConfig;
  
         private dev.hathora.cloud_api.models.shared.Region region;  
         
@@ -105,7 +109,7 @@ public class CreateLocalLobbyRequestBody {
         /**
          * User input to initialize the game state. Object must be smaller than 64KB.
          */
-        public Builder initialConfig(dev.hathora.cloud_api.models.shared.LobbyInitialConfig initialConfig) {
+        public Builder initialConfig(java.lang.Object initialConfig) {
             Utils.checkNotNull(initialConfig, "initialConfig");
             this.initialConfig = initialConfig;
             return this;

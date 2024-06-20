@@ -4,7 +4,9 @@
 
 package dev.hathora.cloud_api.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_api.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_api.utils.Utils;
@@ -14,39 +16,47 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class LoginNicknameRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private dev.hathora.cloud_api.models.shared.LoginNicknameRequest loginNicknameRequest;
+    private dev.hathora.cloud_api.models.shared.NicknameObject nicknameObject;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<? extends String> appId;
 
+    @JsonCreator
     public LoginNicknameRequest(
-            dev.hathora.cloud_api.models.shared.LoginNicknameRequest loginNicknameRequest,
+            dev.hathora.cloud_api.models.shared.NicknameObject nicknameObject,
             Optional<? extends String> appId) {
-        Utils.checkNotNull(loginNicknameRequest, "loginNicknameRequest");
+        Utils.checkNotNull(nicknameObject, "nicknameObject");
         Utils.checkNotNull(appId, "appId");
-        this.loginNicknameRequest = loginNicknameRequest;
+        this.nicknameObject = nicknameObject;
         this.appId = appId;
     }
-
-    public dev.hathora.cloud_api.models.shared.LoginNicknameRequest loginNicknameRequest() {
-        return loginNicknameRequest;
+    
+    public LoginNicknameRequest(
+            dev.hathora.cloud_api.models.shared.NicknameObject nicknameObject) {
+        this(nicknameObject, Optional.empty());
     }
 
-    public Optional<? extends String> appId() {
-        return appId;
+    @JsonIgnore
+    public dev.hathora.cloud_api.models.shared.NicknameObject nicknameObject() {
+        return nicknameObject;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> appId() {
+        return (Optional<String>) appId;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public LoginNicknameRequest withLoginNicknameRequest(dev.hathora.cloud_api.models.shared.LoginNicknameRequest loginNicknameRequest) {
-        Utils.checkNotNull(loginNicknameRequest, "loginNicknameRequest");
-        this.loginNicknameRequest = loginNicknameRequest;
+    public LoginNicknameRequest withNicknameObject(dev.hathora.cloud_api.models.shared.NicknameObject nicknameObject) {
+        Utils.checkNotNull(nicknameObject, "nicknameObject");
+        this.nicknameObject = nicknameObject;
         return this;
     }
 
@@ -72,27 +82,27 @@ public class LoginNicknameRequest {
         }
         LoginNicknameRequest other = (LoginNicknameRequest) o;
         return 
-            java.util.Objects.deepEquals(this.loginNicknameRequest, other.loginNicknameRequest) &&
+            java.util.Objects.deepEquals(this.nicknameObject, other.nicknameObject) &&
             java.util.Objects.deepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            loginNicknameRequest,
+            nicknameObject,
             appId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(LoginNicknameRequest.class,
-                "loginNicknameRequest", loginNicknameRequest,
+                "nicknameObject", nicknameObject,
                 "appId", appId);
     }
     
     public final static class Builder {
  
-        private dev.hathora.cloud_api.models.shared.LoginNicknameRequest loginNicknameRequest;
+        private dev.hathora.cloud_api.models.shared.NicknameObject nicknameObject;
  
         private Optional<? extends String> appId = Optional.empty();  
         
@@ -100,9 +110,9 @@ public class LoginNicknameRequest {
           // force use of static builder() method
         }
 
-        public Builder loginNicknameRequest(dev.hathora.cloud_api.models.shared.LoginNicknameRequest loginNicknameRequest) {
-            Utils.checkNotNull(loginNicknameRequest, "loginNicknameRequest");
-            this.loginNicknameRequest = loginNicknameRequest;
+        public Builder nicknameObject(dev.hathora.cloud_api.models.shared.NicknameObject nicknameObject) {
+            Utils.checkNotNull(nicknameObject, "nicknameObject");
+            this.nicknameObject = nicknameObject;
             return this;
         }
 
@@ -120,7 +130,7 @@ public class LoginNicknameRequest {
         
         public LoginNicknameRequest build() {
             return new LoginNicknameRequest(
-                loginNicknameRequest,
+                nicknameObject,
                 appId);
         }
     }
