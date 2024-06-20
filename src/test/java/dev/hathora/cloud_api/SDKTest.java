@@ -31,7 +31,7 @@ public class SDKTest {
                 .appId(HATHORA_APP_ID)
                 .build();
 
-        CreateRoomResponse createRoomResponse = hathoraCloudSdk.roomV2().createRoom()
+        CreateRoomResponse createRoomResponse = hathoraCloudSdk.roomsV2().createRoom()
                 .roomId(roomId)
                 .createRoomParams(CreateRoomParams.builder()
                         .region(region)
@@ -43,9 +43,9 @@ public class SDKTest {
         }
 
         System.out.println("RES: " + createRoomResponse.statusCode());
-        if (createRoomResponse.createRoomResponse().isPresent()) {
-            System.out.println("Status: " + createRoomResponse.createRoomResponse().get().status());
-            System.out.println("RoomId: " + createRoomResponse.createRoomResponse().get().roomId());
+        if (createRoomResponse.roomConnectionData().isPresent()) {
+            System.out.println("Status: " + createRoomResponse.roomConnectionData().get().status());
+            System.out.println("RoomId: " + createRoomResponse.roomConnectionData().get().roomId());
         } else {
             System.out.println("Inner response not present!");
         }
@@ -58,8 +58,8 @@ public class SDKTest {
         int tries = 0;
         while (stillPoll) {
             System.out.println("poll try #" + tries + ":");
-            GetConnectionInfoResponse connectionInfoResponse = hathoraCloudSdk.roomV2().getConnectionInfo()
-                    .roomId(createRoomResponse.createRoomResponse().get().roomId())
+            GetConnectionInfoResponse connectionInfoResponse = hathoraCloudSdk.roomsV2().getConnectionInfo()
+                    .roomId(createRoomResponse.roomConnectionData().get().roomId())
                     .call();
             if (connectionInfoResponse.statusCode() != 200) {
                 System.out.println("api error: " + connectionInfoResponse.rawResponse());
@@ -102,7 +102,7 @@ public class SDKTest {
                 .appId(HATHORA_APP_ID)
                 .build();
 
-        CreateRoomResponse createRoomResponse = hathoraCloudSdk.roomV2().createRoom()
+        CreateRoomResponse createRoomResponse = hathoraCloudSdk.roomsV2().createRoom()
                 .roomId(roomId)
                 .createRoomParams(CreateRoomParams.builder()
                         .region(region)
@@ -113,11 +113,11 @@ public class SDKTest {
             System.out.println("error: " + createRoomResponse.rawResponse());
         }
 
-        System.out.println("RES: " + createRoomResponse.statusCode());
-        if (createRoomResponse.createRoomResponse().isPresent()) {
-            System.out.println("Status: " + createRoomResponse.status());
-            System.out.println("RoomId: " + createRoomResponse.createRoomResponse().get().roomId());
-            System.out.println("ProcessId: " + createRoomResponse.createRoomResponse().get().processId());
+        System.out.println("RES: " + createRoomResponse.rawResponse());
+        if (createRoomResponse.roomConnectionData().isPresent()) {
+            System.out.println("Status: " + createRoomResponse.statusCode());
+            System.out.println("RoomId: " + createRoomResponse.roomConnectionData().get().roomId());
+            System.out.println("ProcessId: " + createRoomResponse.roomConnectionData().get().processId());
         } else {
             System.out.println("Inner response not present!");
         }
@@ -131,10 +131,10 @@ public class SDKTest {
         while (stillPoll) {
             System.out.println("poll try #" + tries + ":");
             GetProcessInfoResponse processInfoResponse = hathoraCloudSdk.processesV2().getProcessInfo()
-                    .processId(createRoomResponse.createRoomResponse().get().processId())
+                    .processId(createRoomResponse.roomConnectionData().get().processId())
                     .call();
-            if (processInfoResponse.apiError().isPresent()) {
-                System.out.println("api error: " + processInfoResponse.apiError().get().message());
+            if (processInfoResponse.processV2().isEmpty()) {
+                System.out.println("api error: " + processInfoResponse.rawResponse().toString());
             }
             if (processInfoResponse.processV2().isPresent() && processInfoResponse.processV2().get().exposedPort().isPresent()) {
                 System.out.println("RES: " + processInfoResponse.statusCode() + ", Success!");
@@ -174,19 +174,19 @@ public class SDKTest {
 
         // login anonymous
         LoginAnonymousResponse loginAnonymousResponse = hathoraCloudSdk.authV1().loginAnonymous().appId(HATHORA_APP_ID).call();
-        if (loginAnonymousResponse.apiError().isPresent()) {
-            System.out.println("error: " + loginAnonymousResponse.apiError().get().message());
+        if (loginAnonymousResponse.playerTokenObject().isEmpty()) {
+            System.out.println("error: " + loginAnonymousResponse.rawResponse().toString());
         }
 
         System.out.println("RES: " + loginAnonymousResponse.statusCode());
-        if (loginAnonymousResponse.loginResponse().isPresent()) {
-            System.out.println("Status: " + loginAnonymousResponse.loginResponse().get().token());
+        if (loginAnonymousResponse.playerTokenObject().isPresent()) {
+            System.out.println("Status: " + loginAnonymousResponse.playerTokenObject().get().token());
         } else {
             System.out.println("Inner response not present!");
         }
 
-        CreateLobbyResponse createLobbyResponse = hathoraCloudSdk.lobbyV3().createLobby()
-                .security(CreateLobbySecurity.builder().playerAuth(loginAnonymousResponse.loginResponse().get().token()).build())
+        CreateLobbyResponse createLobbyResponse = hathoraCloudSdk.lobbiesV3().createLobby()
+                .security(CreateLobbySecurity.builder().playerAuth(loginAnonymousResponse.playerTokenObject().get().token()).build())
                 .request(CreateLobbyRequest.builder()
                         .roomId(roomId)
                         .shortCode("test_short_code")
@@ -197,8 +197,8 @@ public class SDKTest {
                                 .build())
                         .build())
                 .call();
-        if (createLobbyResponse.apiError().isPresent()) {
-            System.out.println("error: " + createLobbyResponse.apiError().get().message());
+        if (createLobbyResponse.lobbyV3().isEmpty()) {
+            System.out.println("error: " + createLobbyResponse.statusCode());
         }
 
         System.out.println("RES: " + createLobbyResponse.statusCode());
@@ -217,7 +217,7 @@ public class SDKTest {
         int tries = 0;
         while (stillPoll) {
             System.out.println("poll try #" + tries + ":");
-            GetConnectionInfoResponse connectionInfoResponse = hathoraCloudSdk.roomV2().getConnectionInfo()
+            GetConnectionInfoResponse connectionInfoResponse = hathoraCloudSdk.roomsV2().getConnectionInfo()
                     .roomId(createLobbyResponse.lobbyV3().get().roomId())
                     .call();
             if (connectionInfoResponse.statusCode() != 200) {
@@ -272,7 +272,7 @@ public class SDKTest {
         double bestRegionTime = Double.MAX_VALUE;
         Region bestRegion = null;
         Map<Region, Double> pingMap = new HashMap<>();
-        for (DiscoveryResponse dr : res.discoveryResponse().get()) {
+        for (PingEndpoints dr : res.pingEndpoints().get()) {
             System.out.println("Ping " + dr.region() + ": " + dr.host() + " " + dr.port());
             long ping1 = ping(dr.host(), (int) dr.port());
             long ping2 = ping(dr.host(), (int) dr.port());
@@ -319,8 +319,8 @@ public class SDKTest {
     public void testGetMetrics(HathoraCloud hathoraCloudSdk, String processId) throws Exception {
         GetMetricsResponse res = hathoraCloudSdk.metricsV1().getMetrics(GetMetricsRequest.builder().metrics(List.of(MetricName.CPU)).processId(processId).step(60).build());
         System.out.println("RES: " + res.statusCode());
-        if (res.metricsResponse().isPresent()) {
-            System.out.println("Metrics: " + res.metricsResponse().get());
+        if (res.metricsData().isPresent()) {
+            System.out.println("Metrics: " + res.metricsData().get());
         } else {
             fail("Inner response not present!");
         }
