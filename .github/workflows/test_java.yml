@@ -1,7 +1,8 @@
 name: Test Java SDK
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches:
+      - 'main'
 jobs:
   test:
     name: Test Java SDK
