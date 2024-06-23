@@ -17,7 +17,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-api:2.4.1'
+implementation 'dev.hathora:cloud-api:2.5.0'
 ```
 
 Maven:
@@ -25,7 +25,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-api</artifactId>
-    <version>2.4.1</version>
+    <version>2.5.0</version>
 </dependency>
 ```
 
@@ -100,6 +100,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -320,6 +321,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -388,6 +390,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -459,6 +462,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -519,6 +523,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -587,6 +592,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -641,6 +647,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```

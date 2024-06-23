@@ -23,9 +23,9 @@ class SDKConfiguration {
     public int serverIdx = 0;
     public String language = "java";
     public String openapiDocVersion = "0.0.1";
-    public String sdkVersion = "2.4.1";
-    public String genVersion = "2.347.8";
-    public String userAgent = "speakeasy-sdk/java 2.4.1 2.347.8 0.0.1 dev.hathora.cloud_api";
+    public String sdkVersion = "2.5.0";
+    public String genVersion = "2.349.6";
+    public String userAgent = "speakeasy-sdk/java 2.5.0 2.349.6 0.0.1 dev.hathora.cloud_api";
 
     private dev.hathora.cloud_api.utils.Hooks _hooks = createHooks();
 
