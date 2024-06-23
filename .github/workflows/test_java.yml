@@ -2,7 +2,9 @@ name: Test Java SDK
 on:
   pull_request:
     branches:
-      - 'main'
+      - "main"
+  repository_dispatch:
+    types: [create-pull-request]
 jobs:
   test:
     name: Test Java SDK
