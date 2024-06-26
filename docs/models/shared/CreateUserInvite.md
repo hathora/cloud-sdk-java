@@ -3,6 +3,6 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `userEmail`        | *String*           | :heavy_check_mark: | N/A                |
+| Field               | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `userEmail`         | *String*            | :heavy_check_mark:  | A user's email.     | noreply@hathora.dev |

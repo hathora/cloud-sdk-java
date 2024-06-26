@@ -26,7 +26,7 @@ public class InviteUserResponse implements dev.hathora.cloud_api.utils.Response 
     /**
      * Ok
      */
-    private Optional<? extends dev.hathora.cloud_api.models.shared.OrgPermission> orgPermission;
+    private Optional<? extends dev.hathora.cloud_api.models.shared.PendingOrgInvite> pendingOrgInvite;
 
     /**
      * HTTP response status code for this operation
@@ -41,15 +41,15 @@ public class InviteUserResponse implements dev.hathora.cloud_api.utils.Response 
     @JsonCreator
     public InviteUserResponse(
             String contentType,
-            Optional<? extends dev.hathora.cloud_api.models.shared.OrgPermission> orgPermission,
+            Optional<? extends dev.hathora.cloud_api.models.shared.PendingOrgInvite> pendingOrgInvite,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(orgPermission, "orgPermission");
+        Utils.checkNotNull(pendingOrgInvite, "pendingOrgInvite");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.orgPermission = orgPermission;
+        this.pendingOrgInvite = pendingOrgInvite;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -74,8 +74,8 @@ public class InviteUserResponse implements dev.hathora.cloud_api.utils.Response 
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<dev.hathora.cloud_api.models.shared.OrgPermission> orgPermission() {
-        return (Optional<dev.hathora.cloud_api.models.shared.OrgPermission>) orgPermission;
+    public Optional<dev.hathora.cloud_api.models.shared.PendingOrgInvite> pendingOrgInvite() {
+        return (Optional<dev.hathora.cloud_api.models.shared.PendingOrgInvite>) pendingOrgInvite;
     }
 
     /**
@@ -110,18 +110,18 @@ public class InviteUserResponse implements dev.hathora.cloud_api.utils.Response 
     /**
      * Ok
      */
-    public InviteUserResponse withOrgPermission(dev.hathora.cloud_api.models.shared.OrgPermission orgPermission) {
-        Utils.checkNotNull(orgPermission, "orgPermission");
-        this.orgPermission = Optional.ofNullable(orgPermission);
+    public InviteUserResponse withPendingOrgInvite(dev.hathora.cloud_api.models.shared.PendingOrgInvite pendingOrgInvite) {
+        Utils.checkNotNull(pendingOrgInvite, "pendingOrgInvite");
+        this.pendingOrgInvite = Optional.ofNullable(pendingOrgInvite);
         return this;
     }
 
     /**
      * Ok
      */
-    public InviteUserResponse withOrgPermission(Optional<? extends dev.hathora.cloud_api.models.shared.OrgPermission> orgPermission) {
-        Utils.checkNotNull(orgPermission, "orgPermission");
-        this.orgPermission = orgPermission;
+    public InviteUserResponse withPendingOrgInvite(Optional<? extends dev.hathora.cloud_api.models.shared.PendingOrgInvite> pendingOrgInvite) {
+        Utils.checkNotNull(pendingOrgInvite, "pendingOrgInvite");
+        this.pendingOrgInvite = pendingOrgInvite;
         return this;
     }
 
@@ -154,7 +154,7 @@ public class InviteUserResponse implements dev.hathora.cloud_api.utils.Response 
         InviteUserResponse other = (InviteUserResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.orgPermission, other.orgPermission) &&
+            java.util.Objects.deepEquals(this.pendingOrgInvite, other.pendingOrgInvite) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -163,7 +163,7 @@ public class InviteUserResponse implements dev.hathora.cloud_api.utils.Response 
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            orgPermission,
+            pendingOrgInvite,
             statusCode,
             rawResponse);
     }
@@ -172,7 +172,7 @@ public class InviteUserResponse implements dev.hathora.cloud_api.utils.Response 
     public String toString() {
         return Utils.toString(InviteUserResponse.class,
                 "contentType", contentType,
-                "orgPermission", orgPermission,
+                "pendingOrgInvite", pendingOrgInvite,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -181,7 +181,7 @@ public class InviteUserResponse implements dev.hathora.cloud_api.utils.Response 
  
         private String contentType;
  
-        private Optional<? extends dev.hathora.cloud_api.models.shared.OrgPermission> orgPermission = Optional.empty();
+        private Optional<? extends dev.hathora.cloud_api.models.shared.PendingOrgInvite> pendingOrgInvite = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,18 +203,18 @@ public class InviteUserResponse implements dev.hathora.cloud_api.utils.Response 
         /**
          * Ok
          */
-        public Builder orgPermission(dev.hathora.cloud_api.models.shared.OrgPermission orgPermission) {
-            Utils.checkNotNull(orgPermission, "orgPermission");
-            this.orgPermission = Optional.ofNullable(orgPermission);
+        public Builder pendingOrgInvite(dev.hathora.cloud_api.models.shared.PendingOrgInvite pendingOrgInvite) {
+            Utils.checkNotNull(pendingOrgInvite, "pendingOrgInvite");
+            this.pendingOrgInvite = Optional.ofNullable(pendingOrgInvite);
             return this;
         }
 
         /**
          * Ok
          */
-        public Builder orgPermission(Optional<? extends dev.hathora.cloud_api.models.shared.OrgPermission> orgPermission) {
-            Utils.checkNotNull(orgPermission, "orgPermission");
-            this.orgPermission = orgPermission;
+        public Builder pendingOrgInvite(Optional<? extends dev.hathora.cloud_api.models.shared.PendingOrgInvite> pendingOrgInvite) {
+            Utils.checkNotNull(pendingOrgInvite, "pendingOrgInvite");
+            this.pendingOrgInvite = pendingOrgInvite;
             return this;
         }
 
@@ -239,7 +239,7 @@ public class InviteUserResponse implements dev.hathora.cloud_api.utils.Response 
         public InviteUserResponse build() {
             return new InviteUserResponse(
                 contentType,
-                orgPermission,
+                pendingOrgInvite,
                 statusCode,
                 rawResponse);
         }

@@ -17,6 +17,7 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * Room - A room object represents a game session or match.
  */
@@ -36,9 +37,9 @@ public class Room {
     @JsonProperty("currentAllocation")
     private Optional<? extends CurrentAllocation> currentAllocation;
 
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("roomConfig")
-    private Optional<? extends String> roomConfig;
+    private JsonNullable<? extends String> roomConfig;
 
     /**
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
@@ -64,7 +65,7 @@ public class Room {
             @JsonProperty("allocations") java.util.List<RoomAllocation> allocations,
             @JsonProperty("appId") String appId,
             @JsonProperty("currentAllocation") Optional<? extends CurrentAllocation> currentAllocation,
-            @JsonProperty("roomConfig") Optional<? extends String> roomConfig,
+            @JsonProperty("roomConfig") JsonNullable<? extends String> roomConfig,
             @JsonProperty("roomId") String roomId,
             @JsonProperty("status") RoomStatus status) {
         Utils.checkNotNull(allocations, "allocations");
@@ -86,7 +87,7 @@ public class Room {
             String appId,
             String roomId,
             RoomStatus status) {
-        this(allocations, appId, Optional.empty(), Optional.empty(), roomId, status);
+        this(allocations, appId, Optional.empty(), JsonNullable.undefined(), roomId, status);
     }
 
     @JsonIgnore
@@ -110,8 +111,8 @@ public class Room {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> roomConfig() {
-        return (Optional<String>) roomConfig;
+    public JsonNullable<String> roomConfig() {
+        return (JsonNullable<String>) roomConfig;
     }
 
     /**
@@ -170,11 +171,11 @@ public class Room {
 
     public Room withRoomConfig(String roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
-        this.roomConfig = Optional.ofNullable(roomConfig);
+        this.roomConfig = JsonNullable.of(roomConfig);
         return this;
     }
 
-    public Room withRoomConfig(Optional<? extends String> roomConfig) {
+    public Room withRoomConfig(JsonNullable<? extends String> roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
         this.roomConfig = roomConfig;
         return this;
@@ -253,7 +254,7 @@ public class Room {
  
         private Optional<? extends CurrentAllocation> currentAllocation = Optional.empty();
  
-        private Optional<? extends String> roomConfig = Optional.empty();
+        private JsonNullable<? extends String> roomConfig = JsonNullable.undefined();
  
         private String roomId;
  
@@ -292,11 +293,11 @@ public class Room {
 
         public Builder roomConfig(String roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
-            this.roomConfig = Optional.ofNullable(roomConfig);
+            this.roomConfig = JsonNullable.of(roomConfig);
             return this;
         }
 
-        public Builder roomConfig(Optional<? extends String> roomConfig) {
+        public Builder roomConfig(JsonNullable<? extends String> roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
             this.roomConfig = roomConfig;
             return this;

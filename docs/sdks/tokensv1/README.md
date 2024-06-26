@@ -197,7 +197,7 @@ public class Application {
 
             RevokeOrgTokenResponse res = sdk.tokensV1().revokeOrgToken()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
-                .orgTokenId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .orgTokenId("org-token-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
             if (res.boolean_().isPresent()) {
@@ -220,10 +220,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `orgId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
-| `orgTokenId`                             | *String*                                 | :heavy_check_mark:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
+| Parameter                                      | Type                                           | Required                                       | Description                                    | Example                                        |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| `orgId`                                        | *String*                                       | :heavy_check_mark:                             | N/A                                            | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39       |
+| `orgTokenId`                                   | *String*                                       | :heavy_check_mark:                             | N/A                                            | org-token-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
 
 ### Response

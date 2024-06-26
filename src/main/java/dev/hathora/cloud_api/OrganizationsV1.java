@@ -328,10 +328,10 @@ public class OrganizationsV1 implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                dev.hathora.cloud_api.models.shared.OrgInvitesPage _out = Utils.mapper().readValue(
+                dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<dev.hathora.cloud_api.models.shared.OrgInvitesPage>() {});
-                _res.withOrgInvitesPage(java.util.Optional.ofNullable(_out));
+                    new TypeReference<dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage>() {});
+                _res.withPendingOrgInvitesPage(java.util.Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
@@ -545,10 +545,10 @@ public class OrganizationsV1 implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                dev.hathora.cloud_api.models.shared.OrgInvitesPage _out = Utils.mapper().readValue(
+                dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<dev.hathora.cloud_api.models.shared.OrgInvitesPage>() {});
-                _res.withOrgInvitesPage(java.util.Optional.ofNullable(_out));
+                    new TypeReference<dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage>() {});
+                _res.withPendingOrgInvitesPage(java.util.Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
@@ -668,10 +668,10 @@ public class OrganizationsV1 implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                dev.hathora.cloud_api.models.shared.OrgPermission _out = Utils.mapper().readValue(
+                dev.hathora.cloud_api.models.shared.PendingOrgInvite _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<dev.hathora.cloud_api.models.shared.OrgPermission>() {});
-                _res.withOrgPermission(java.util.Optional.ofNullable(_out));
+                    new TypeReference<dev.hathora.cloud_api.models.shared.PendingOrgInvite>() {});
+                _res.withPendingOrgInvite(java.util.Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(

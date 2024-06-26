@@ -19,7 +19,7 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * LobbyV3 - A lobby object allows you to store and manage metadata for your rooms.
  */
@@ -47,9 +47,9 @@ public class LobbyV3 {
     @JsonProperty("region")
     private Region region;
 
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("roomConfig")
-    private Optional<? extends String> roomConfig;
+    private JsonNullable<? extends String> roomConfig;
 
     /**
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
@@ -82,7 +82,7 @@ public class LobbyV3 {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") LobbyV3CreatedBy createdBy,
             @JsonProperty("region") Region region,
-            @JsonProperty("roomConfig") Optional<? extends String> roomConfig,
+            @JsonProperty("roomConfig") JsonNullable<? extends String> roomConfig,
             @JsonProperty("roomId") String roomId,
             @JsonProperty("shortCode") String shortCode,
             @JsonProperty("visibility") LobbyVisibility visibility) {
@@ -112,7 +112,7 @@ public class LobbyV3 {
             String roomId,
             String shortCode,
             LobbyVisibility visibility) {
-        this(appId, createdAt, createdBy, region, Optional.empty(), roomId, shortCode, visibility);
+        this(appId, createdAt, createdBy, region, JsonNullable.undefined(), roomId, shortCode, visibility);
     }
 
     /**
@@ -146,8 +146,8 @@ public class LobbyV3 {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> roomConfig() {
-        return (Optional<String>) roomConfig;
+    public JsonNullable<String> roomConfig() {
+        return (JsonNullable<String>) roomConfig;
     }
 
     /**
@@ -220,11 +220,11 @@ public class LobbyV3 {
 
     public LobbyV3 withRoomConfig(String roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
-        this.roomConfig = Optional.ofNullable(roomConfig);
+        this.roomConfig = JsonNullable.of(roomConfig);
         return this;
     }
 
-    public LobbyV3 withRoomConfig(Optional<? extends String> roomConfig) {
+    public LobbyV3 withRoomConfig(JsonNullable<? extends String> roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
         this.roomConfig = roomConfig;
         return this;
@@ -320,7 +320,7 @@ public class LobbyV3 {
  
         private Region region;
  
-        private Optional<? extends String> roomConfig = Optional.empty();
+        private JsonNullable<? extends String> roomConfig = JsonNullable.undefined();
  
         private String roomId;
  
@@ -367,11 +367,11 @@ public class LobbyV3 {
 
         public Builder roomConfig(String roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
-            this.roomConfig = Optional.ofNullable(roomConfig);
+            this.roomConfig = JsonNullable.of(roomConfig);
             return this;
         }
 
-        public Builder roomConfig(Optional<? extends String> roomConfig) {
+        public Builder roomConfig(JsonNullable<? extends String> roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
             this.roomConfig = roomConfig;
             return this;

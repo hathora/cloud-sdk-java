@@ -7,6 +7,8 @@ package dev.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -17,17 +19,19 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 
 public class OrgMember {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-    /**
-     * System generated unique identifier for a user. Not guaranteed to have a specific format.
-     */
     @JsonProperty("invitedBy")
     private String invitedBy;
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lastLogin")
+    private Optional<? extends OffsetDateTime> lastLogin;
 
     /**
      * System generated unique identifier for an organization. Not guaranteed to have a specific format.
@@ -39,28 +43,40 @@ public class OrgMember {
     private OffsetDateTime updatedAt;
 
     /**
-     * System generated unique identifier for a user. Not guaranteed to have a specific format.
+     * A user's email.
      */
-    @JsonProperty("userId")
-    private String userId;
+    @JsonProperty("userEmail")
+    private String userEmail;
 
     @JsonCreator
     public OrgMember(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("invitedBy") String invitedBy,
+            @JsonProperty("lastLogin") Optional<? extends OffsetDateTime> lastLogin,
             @JsonProperty("orgId") String orgId,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt,
-            @JsonProperty("userId") String userId) {
+            @JsonProperty("userEmail") String userEmail) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(invitedBy, "invitedBy");
+        Utils.checkNotNull(lastLogin, "lastLogin");
         Utils.checkNotNull(orgId, "orgId");
         Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(userId, "userId");
+        Utils.checkNotNull(userEmail, "userEmail");
         this.createdAt = createdAt;
         this.invitedBy = invitedBy;
+        this.lastLogin = lastLogin;
         this.orgId = orgId;
         this.updatedAt = updatedAt;
-        this.userId = userId;
+        this.userEmail = userEmail;
+    }
+    
+    public OrgMember(
+            OffsetDateTime createdAt,
+            String invitedBy,
+            String orgId,
+            OffsetDateTime updatedAt,
+            String userEmail) {
+        this(createdAt, invitedBy, Optional.empty(), orgId, updatedAt, userEmail);
     }
 
     @JsonIgnore
@@ -68,12 +84,15 @@ public class OrgMember {
         return createdAt;
     }
 
-    /**
-     * System generated unique identifier for a user. Not guaranteed to have a specific format.
-     */
     @JsonIgnore
     public String invitedBy() {
         return invitedBy;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<OffsetDateTime> lastLogin() {
+        return (Optional<OffsetDateTime>) lastLogin;
     }
 
     /**
@@ -90,11 +109,11 @@ public class OrgMember {
     }
 
     /**
-     * System generated unique identifier for a user. Not guaranteed to have a specific format.
+     * A user's email.
      */
     @JsonIgnore
-    public String userId() {
-        return userId;
+    public String userEmail() {
+        return userEmail;
     }
 
     public final static Builder builder() {
@@ -107,12 +126,21 @@ public class OrgMember {
         return this;
     }
 
-    /**
-     * System generated unique identifier for a user. Not guaranteed to have a specific format.
-     */
     public OrgMember withInvitedBy(String invitedBy) {
         Utils.checkNotNull(invitedBy, "invitedBy");
         this.invitedBy = invitedBy;
+        return this;
+    }
+
+    public OrgMember withLastLogin(OffsetDateTime lastLogin) {
+        Utils.checkNotNull(lastLogin, "lastLogin");
+        this.lastLogin = Optional.ofNullable(lastLogin);
+        return this;
+    }
+
+    public OrgMember withLastLogin(Optional<? extends OffsetDateTime> lastLogin) {
+        Utils.checkNotNull(lastLogin, "lastLogin");
+        this.lastLogin = lastLogin;
         return this;
     }
 
@@ -132,11 +160,11 @@ public class OrgMember {
     }
 
     /**
-     * System generated unique identifier for a user. Not guaranteed to have a specific format.
+     * A user's email.
      */
-    public OrgMember withUserId(String userId) {
-        Utils.checkNotNull(userId, "userId");
-        this.userId = userId;
+    public OrgMember withUserEmail(String userEmail) {
+        Utils.checkNotNull(userEmail, "userEmail");
+        this.userEmail = userEmail;
         return this;
     }
     
@@ -152,9 +180,10 @@ public class OrgMember {
         return 
             java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
             java.util.Objects.deepEquals(this.invitedBy, other.invitedBy) &&
+            java.util.Objects.deepEquals(this.lastLogin, other.lastLogin) &&
             java.util.Objects.deepEquals(this.orgId, other.orgId) &&
             java.util.Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            java.util.Objects.deepEquals(this.userId, other.userId);
+            java.util.Objects.deepEquals(this.userEmail, other.userEmail);
     }
     
     @Override
@@ -162,9 +191,10 @@ public class OrgMember {
         return java.util.Objects.hash(
             createdAt,
             invitedBy,
+            lastLogin,
             orgId,
             updatedAt,
-            userId);
+            userEmail);
     }
     
     @Override
@@ -172,9 +202,10 @@ public class OrgMember {
         return Utils.toString(OrgMember.class,
                 "createdAt", createdAt,
                 "invitedBy", invitedBy,
+                "lastLogin", lastLogin,
                 "orgId", orgId,
                 "updatedAt", updatedAt,
-                "userId", userId);
+                "userEmail", userEmail);
     }
     
     public final static class Builder {
@@ -183,11 +214,13 @@ public class OrgMember {
  
         private String invitedBy;
  
+        private Optional<? extends OffsetDateTime> lastLogin = Optional.empty();
+ 
         private String orgId;
  
         private OffsetDateTime updatedAt;
  
-        private String userId;  
+        private String userEmail;  
         
         private Builder() {
           // force use of static builder() method
@@ -199,12 +232,21 @@ public class OrgMember {
             return this;
         }
 
-        /**
-         * System generated unique identifier for a user. Not guaranteed to have a specific format.
-         */
         public Builder invitedBy(String invitedBy) {
             Utils.checkNotNull(invitedBy, "invitedBy");
             this.invitedBy = invitedBy;
+            return this;
+        }
+
+        public Builder lastLogin(OffsetDateTime lastLogin) {
+            Utils.checkNotNull(lastLogin, "lastLogin");
+            this.lastLogin = Optional.ofNullable(lastLogin);
+            return this;
+        }
+
+        public Builder lastLogin(Optional<? extends OffsetDateTime> lastLogin) {
+            Utils.checkNotNull(lastLogin, "lastLogin");
+            this.lastLogin = lastLogin;
             return this;
         }
 
@@ -224,11 +266,11 @@ public class OrgMember {
         }
 
         /**
-         * System generated unique identifier for a user. Not guaranteed to have a specific format.
+         * A user's email.
          */
-        public Builder userId(String userId) {
-            Utils.checkNotNull(userId, "userId");
-            this.userId = userId;
+        public Builder userEmail(String userEmail) {
+            Utils.checkNotNull(userEmail, "userEmail");
+            this.userEmail = userEmail;
             return this;
         }
         
@@ -236,9 +278,10 @@ public class OrgMember {
             return new OrgMember(
                 createdAt,
                 invitedBy,
+                lastLogin,
                 orgId,
                 updatedAt,
-                userId);
+                userEmail);
         }
     }
 }
