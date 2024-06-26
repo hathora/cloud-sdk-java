@@ -26,7 +26,7 @@ public class GetOrgPendingInvitesResponse implements dev.hathora.cloud_api.utils
     /**
      * Ok
      */
-    private Optional<? extends dev.hathora.cloud_api.models.shared.OrgInvitesPage> orgInvitesPage;
+    private Optional<? extends dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage> pendingOrgInvitesPage;
 
     /**
      * HTTP response status code for this operation
@@ -41,15 +41,15 @@ public class GetOrgPendingInvitesResponse implements dev.hathora.cloud_api.utils
     @JsonCreator
     public GetOrgPendingInvitesResponse(
             String contentType,
-            Optional<? extends dev.hathora.cloud_api.models.shared.OrgInvitesPage> orgInvitesPage,
+            Optional<? extends dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage> pendingOrgInvitesPage,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(orgInvitesPage, "orgInvitesPage");
+        Utils.checkNotNull(pendingOrgInvitesPage, "pendingOrgInvitesPage");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.orgInvitesPage = orgInvitesPage;
+        this.pendingOrgInvitesPage = pendingOrgInvitesPage;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -74,8 +74,8 @@ public class GetOrgPendingInvitesResponse implements dev.hathora.cloud_api.utils
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<dev.hathora.cloud_api.models.shared.OrgInvitesPage> orgInvitesPage() {
-        return (Optional<dev.hathora.cloud_api.models.shared.OrgInvitesPage>) orgInvitesPage;
+    public Optional<dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage> pendingOrgInvitesPage() {
+        return (Optional<dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage>) pendingOrgInvitesPage;
     }
 
     /**
@@ -110,18 +110,18 @@ public class GetOrgPendingInvitesResponse implements dev.hathora.cloud_api.utils
     /**
      * Ok
      */
-    public GetOrgPendingInvitesResponse withOrgInvitesPage(dev.hathora.cloud_api.models.shared.OrgInvitesPage orgInvitesPage) {
-        Utils.checkNotNull(orgInvitesPage, "orgInvitesPage");
-        this.orgInvitesPage = Optional.ofNullable(orgInvitesPage);
+    public GetOrgPendingInvitesResponse withPendingOrgInvitesPage(dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage pendingOrgInvitesPage) {
+        Utils.checkNotNull(pendingOrgInvitesPage, "pendingOrgInvitesPage");
+        this.pendingOrgInvitesPage = Optional.ofNullable(pendingOrgInvitesPage);
         return this;
     }
 
     /**
      * Ok
      */
-    public GetOrgPendingInvitesResponse withOrgInvitesPage(Optional<? extends dev.hathora.cloud_api.models.shared.OrgInvitesPage> orgInvitesPage) {
-        Utils.checkNotNull(orgInvitesPage, "orgInvitesPage");
-        this.orgInvitesPage = orgInvitesPage;
+    public GetOrgPendingInvitesResponse withPendingOrgInvitesPage(Optional<? extends dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage> pendingOrgInvitesPage) {
+        Utils.checkNotNull(pendingOrgInvitesPage, "pendingOrgInvitesPage");
+        this.pendingOrgInvitesPage = pendingOrgInvitesPage;
         return this;
     }
 
@@ -154,7 +154,7 @@ public class GetOrgPendingInvitesResponse implements dev.hathora.cloud_api.utils
         GetOrgPendingInvitesResponse other = (GetOrgPendingInvitesResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.orgInvitesPage, other.orgInvitesPage) &&
+            java.util.Objects.deepEquals(this.pendingOrgInvitesPage, other.pendingOrgInvitesPage) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -163,7 +163,7 @@ public class GetOrgPendingInvitesResponse implements dev.hathora.cloud_api.utils
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            orgInvitesPage,
+            pendingOrgInvitesPage,
             statusCode,
             rawResponse);
     }
@@ -172,7 +172,7 @@ public class GetOrgPendingInvitesResponse implements dev.hathora.cloud_api.utils
     public String toString() {
         return Utils.toString(GetOrgPendingInvitesResponse.class,
                 "contentType", contentType,
-                "orgInvitesPage", orgInvitesPage,
+                "pendingOrgInvitesPage", pendingOrgInvitesPage,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -181,7 +181,7 @@ public class GetOrgPendingInvitesResponse implements dev.hathora.cloud_api.utils
  
         private String contentType;
  
-        private Optional<? extends dev.hathora.cloud_api.models.shared.OrgInvitesPage> orgInvitesPage = Optional.empty();
+        private Optional<? extends dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage> pendingOrgInvitesPage = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,18 +203,18 @@ public class GetOrgPendingInvitesResponse implements dev.hathora.cloud_api.utils
         /**
          * Ok
          */
-        public Builder orgInvitesPage(dev.hathora.cloud_api.models.shared.OrgInvitesPage orgInvitesPage) {
-            Utils.checkNotNull(orgInvitesPage, "orgInvitesPage");
-            this.orgInvitesPage = Optional.ofNullable(orgInvitesPage);
+        public Builder pendingOrgInvitesPage(dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage pendingOrgInvitesPage) {
+            Utils.checkNotNull(pendingOrgInvitesPage, "pendingOrgInvitesPage");
+            this.pendingOrgInvitesPage = Optional.ofNullable(pendingOrgInvitesPage);
             return this;
         }
 
         /**
          * Ok
          */
-        public Builder orgInvitesPage(Optional<? extends dev.hathora.cloud_api.models.shared.OrgInvitesPage> orgInvitesPage) {
-            Utils.checkNotNull(orgInvitesPage, "orgInvitesPage");
-            this.orgInvitesPage = orgInvitesPage;
+        public Builder pendingOrgInvitesPage(Optional<? extends dev.hathora.cloud_api.models.shared.PendingOrgInvitesPage> pendingOrgInvitesPage) {
+            Utils.checkNotNull(pendingOrgInvitesPage, "pendingOrgInvitesPage");
+            this.pendingOrgInvitesPage = pendingOrgInvitesPage;
             return this;
         }
 
@@ -239,7 +239,7 @@ public class GetOrgPendingInvitesResponse implements dev.hathora.cloud_api.utils
         public GetOrgPendingInvitesResponse build() {
             return new GetOrgPendingInvitesResponse(
                 contentType,
-                orgInvitesPage,
+                pendingOrgInvitesPage,
                 statusCode,
                 rawResponse);
         }

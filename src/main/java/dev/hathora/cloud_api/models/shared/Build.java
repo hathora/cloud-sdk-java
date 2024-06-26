@@ -49,9 +49,6 @@ public class Build {
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-    /**
-     * UserId or email address for the user that created the build.
-     */
     @JsonProperty("createdBy")
     private String createdBy;
 
@@ -170,9 +167,6 @@ public class Build {
         return createdAt;
     }
 
-    /**
-     * UserId or email address for the user that created the build.
-     */
     @JsonIgnore
     public String createdBy() {
         return createdBy;
@@ -270,9 +264,6 @@ public class Build {
         return this;
     }
 
-    /**
-     * UserId or email address for the user that created the build.
-     */
     public Build withCreatedBy(String createdBy) {
         Utils.checkNotNull(createdBy, "createdBy");
         this.createdBy = createdBy;
@@ -481,9 +472,6 @@ public class Build {
             return this;
         }
 
-        /**
-         * UserId or email address for the user that created the build.
-         */
         public Builder createdBy(String createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;

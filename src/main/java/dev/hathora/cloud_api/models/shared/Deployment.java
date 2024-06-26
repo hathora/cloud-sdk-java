@@ -58,9 +58,6 @@ public class Deployment {
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-    /**
-     * UserId or email address for the user that created the deployment.
-     */
     @JsonProperty("createdBy")
     private String createdBy;
 
@@ -237,9 +234,6 @@ public class Deployment {
         return createdAt;
     }
 
-    /**
-     * UserId or email address for the user that created the deployment.
-     */
     @JsonIgnore
     public String createdBy() {
         return createdBy;
@@ -378,9 +372,6 @@ public class Deployment {
         return this;
     }
 
-    /**
-     * UserId or email address for the user that created the deployment.
-     */
     public Deployment withCreatedBy(String createdBy) {
         Utils.checkNotNull(createdBy, "createdBy");
         this.createdBy = createdBy;
@@ -639,9 +630,6 @@ public class Deployment {
             return this;
         }
 
-        /**
-         * UserId or email address for the user that created the deployment.
-         */
         public Builder createdBy(String createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;

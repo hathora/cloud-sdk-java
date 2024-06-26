@@ -56,9 +56,6 @@ public class Application {
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-    /**
-     * UserId or email address for the user that created the application.
-     */
     @JsonProperty("createdBy")
     private String createdBy;
 
@@ -70,7 +67,7 @@ public class Application {
     private Optional<? extends OffsetDateTime> deletedAt;
 
     /**
-     * UserId or email address for the user that deleted the application.
+     * The email address or token id for the user that deleted the application.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("deletedBy")
@@ -164,9 +161,6 @@ public class Application {
         return createdAt;
     }
 
-    /**
-     * UserId or email address for the user that created the application.
-     */
     @JsonIgnore
     public String createdBy() {
         return createdBy;
@@ -182,7 +176,7 @@ public class Application {
     }
 
     /**
-     * UserId or email address for the user that deleted the application.
+     * The email address or token id for the user that deleted the application.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -247,9 +241,6 @@ public class Application {
         return this;
     }
 
-    /**
-     * UserId or email address for the user that created the application.
-     */
     public Application withCreatedBy(String createdBy) {
         Utils.checkNotNull(createdBy, "createdBy");
         this.createdBy = createdBy;
@@ -275,7 +266,7 @@ public class Application {
     }
 
     /**
-     * UserId or email address for the user that deleted the application.
+     * The email address or token id for the user that deleted the application.
      */
     public Application withDeletedBy(String deletedBy) {
         Utils.checkNotNull(deletedBy, "deletedBy");
@@ -284,7 +275,7 @@ public class Application {
     }
 
     /**
-     * UserId or email address for the user that deleted the application.
+     * The email address or token id for the user that deleted the application.
      */
     public Application withDeletedBy(Optional<? extends String> deletedBy) {
         Utils.checkNotNull(deletedBy, "deletedBy");
@@ -419,9 +410,6 @@ public class Application {
             return this;
         }
 
-        /**
-         * UserId or email address for the user that created the application.
-         */
         public Builder createdBy(String createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;
@@ -447,7 +435,7 @@ public class Application {
         }
 
         /**
-         * UserId or email address for the user that deleted the application.
+         * The email address or token id for the user that deleted the application.
          */
         public Builder deletedBy(String deletedBy) {
             Utils.checkNotNull(deletedBy, "deletedBy");
@@ -456,7 +444,7 @@ public class Application {
         }
 
         /**
-         * UserId or email address for the user that deleted the application.
+         * The email address or token id for the user that deleted the application.
          */
         public Builder deletedBy(Optional<? extends String> deletedBy) {
             Utils.checkNotNull(deletedBy, "deletedBy");

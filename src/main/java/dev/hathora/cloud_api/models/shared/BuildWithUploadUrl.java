@@ -49,9 +49,6 @@ public class BuildWithUploadUrl {
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-    /**
-     * UserId or email address for the user that created the build.
-     */
     @JsonProperty("createdBy")
     private String createdBy;
 
@@ -184,9 +181,6 @@ public class BuildWithUploadUrl {
         return createdAt;
     }
 
-    /**
-     * UserId or email address for the user that created the build.
-     */
     @JsonIgnore
     public String createdBy() {
         return createdBy;
@@ -294,9 +288,6 @@ public class BuildWithUploadUrl {
         return this;
     }
 
-    /**
-     * UserId or email address for the user that created the build.
-     */
     public BuildWithUploadUrl withCreatedBy(String createdBy) {
         Utils.checkNotNull(createdBy, "createdBy");
         this.createdBy = createdBy;
@@ -527,9 +518,6 @@ public class BuildWithUploadUrl {
             return this;
         }
 
-        /**
-         * UserId or email address for the user that created the build.
-         */
         public Builder createdBy(String createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;

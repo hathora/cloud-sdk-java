@@ -18,14 +18,11 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 
-public class OrgPermission {
+public class PendingOrgInvite {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-    /**
-     * System generated unique identifier for a user. Not guaranteed to have a specific format.
-     */
     @JsonProperty("invitedBy")
     private String invitedBy;
 
@@ -35,34 +32,25 @@ public class OrgPermission {
     @JsonProperty("orgId")
     private String orgId;
 
-    @JsonProperty("status")
-    private OrganizationInviteStatus status;
-
-    @JsonProperty("updatedAt")
-    private OffsetDateTime updatedAt;
-
+    /**
+     * A user's email.
+     */
     @JsonProperty("userEmail")
     private String userEmail;
 
     @JsonCreator
-    public OrgPermission(
+    public PendingOrgInvite(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("invitedBy") String invitedBy,
             @JsonProperty("orgId") String orgId,
-            @JsonProperty("status") OrganizationInviteStatus status,
-            @JsonProperty("updatedAt") OffsetDateTime updatedAt,
             @JsonProperty("userEmail") String userEmail) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(invitedBy, "invitedBy");
         Utils.checkNotNull(orgId, "orgId");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(userEmail, "userEmail");
         this.createdAt = createdAt;
         this.invitedBy = invitedBy;
         this.orgId = orgId;
-        this.status = status;
-        this.updatedAt = updatedAt;
         this.userEmail = userEmail;
     }
 
@@ -71,9 +59,6 @@ public class OrgPermission {
         return createdAt;
     }
 
-    /**
-     * System generated unique identifier for a user. Not guaranteed to have a specific format.
-     */
     @JsonIgnore
     public String invitedBy() {
         return invitedBy;
@@ -87,16 +72,9 @@ public class OrgPermission {
         return orgId;
     }
 
-    @JsonIgnore
-    public OrganizationInviteStatus status() {
-        return status;
-    }
-
-    @JsonIgnore
-    public OffsetDateTime updatedAt() {
-        return updatedAt;
-    }
-
+    /**
+     * A user's email.
+     */
     @JsonIgnore
     public String userEmail() {
         return userEmail;
@@ -106,16 +84,13 @@ public class OrgPermission {
         return new Builder();
     }
 
-    public OrgPermission withCreatedAt(OffsetDateTime createdAt) {
+    public PendingOrgInvite withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
-    /**
-     * System generated unique identifier for a user. Not guaranteed to have a specific format.
-     */
-    public OrgPermission withInvitedBy(String invitedBy) {
+    public PendingOrgInvite withInvitedBy(String invitedBy) {
         Utils.checkNotNull(invitedBy, "invitedBy");
         this.invitedBy = invitedBy;
         return this;
@@ -124,25 +99,16 @@ public class OrgPermission {
     /**
      * System generated unique identifier for an organization. Not guaranteed to have a specific format.
      */
-    public OrgPermission withOrgId(String orgId) {
+    public PendingOrgInvite withOrgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
 
-    public OrgPermission withStatus(OrganizationInviteStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
-
-    public OrgPermission withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
-
-    public OrgPermission withUserEmail(String userEmail) {
+    /**
+     * A user's email.
+     */
+    public PendingOrgInvite withUserEmail(String userEmail) {
         Utils.checkNotNull(userEmail, "userEmail");
         this.userEmail = userEmail;
         return this;
@@ -156,13 +122,11 @@ public class OrgPermission {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        OrgPermission other = (OrgPermission) o;
+        PendingOrgInvite other = (PendingOrgInvite) o;
         return 
             java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
             java.util.Objects.deepEquals(this.invitedBy, other.invitedBy) &&
             java.util.Objects.deepEquals(this.orgId, other.orgId) &&
-            java.util.Objects.deepEquals(this.status, other.status) &&
-            java.util.Objects.deepEquals(this.updatedAt, other.updatedAt) &&
             java.util.Objects.deepEquals(this.userEmail, other.userEmail);
     }
     
@@ -172,19 +136,15 @@ public class OrgPermission {
             createdAt,
             invitedBy,
             orgId,
-            status,
-            updatedAt,
             userEmail);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(OrgPermission.class,
+        return Utils.toString(PendingOrgInvite.class,
                 "createdAt", createdAt,
                 "invitedBy", invitedBy,
                 "orgId", orgId,
-                "status", status,
-                "updatedAt", updatedAt,
                 "userEmail", userEmail);
     }
     
@@ -195,10 +155,6 @@ public class OrgPermission {
         private String invitedBy;
  
         private String orgId;
- 
-        private OrganizationInviteStatus status;
- 
-        private OffsetDateTime updatedAt;
  
         private String userEmail;  
         
@@ -212,9 +168,6 @@ public class OrgPermission {
             return this;
         }
 
-        /**
-         * System generated unique identifier for a user. Not guaranteed to have a specific format.
-         */
         public Builder invitedBy(String invitedBy) {
             Utils.checkNotNull(invitedBy, "invitedBy");
             this.invitedBy = invitedBy;
@@ -230,31 +183,20 @@ public class OrgPermission {
             return this;
         }
 
-        public Builder status(OrganizationInviteStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
+        /**
+         * A user's email.
+         */
         public Builder userEmail(String userEmail) {
             Utils.checkNotNull(userEmail, "userEmail");
             this.userEmail = userEmail;
             return this;
         }
         
-        public OrgPermission build() {
-            return new OrgPermission(
+        public PendingOrgInvite build() {
+            return new PendingOrgInvite(
                 createdAt,
                 invitedBy,
                 orgId,
-                status,
-                updatedAt,
                 userEmail);
         }
     }

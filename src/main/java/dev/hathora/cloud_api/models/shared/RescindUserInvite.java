@@ -17,6 +17,9 @@ import java.math.BigInteger;
 
 public class RescindUserInvite {
 
+    /**
+     * A user's email.
+     */
     @JsonProperty("userEmail")
     private String userEmail;
 
@@ -27,6 +30,9 @@ public class RescindUserInvite {
         this.userEmail = userEmail;
     }
 
+    /**
+     * A user's email.
+     */
     @JsonIgnore
     public String userEmail() {
         return userEmail;
@@ -36,6 +42,9 @@ public class RescindUserInvite {
         return new Builder();
     }
 
+    /**
+     * A user's email.
+     */
     public RescindUserInvite withUserEmail(String userEmail) {
         Utils.checkNotNull(userEmail, "userEmail");
         this.userEmail = userEmail;
@@ -75,6 +84,9 @@ public class RescindUserInvite {
           // force use of static builder() method
         }
 
+        /**
+         * A user's email.
+         */
         public Builder userEmail(String userEmail) {
             Utils.checkNotNull(userEmail, "userEmail");
             this.userEmail = userEmail;

@@ -1,9 +1,0 @@
-# InviteStatusAccepted
-
-
-## Fields
-
-| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              | Example                                                                                  |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `type`                                                                                   | [dev.hathora.cloud_api.models.shared.Type](../../models/shared/Type.md)                  | :heavy_check_mark:                                                                       | N/A                                                                                      |                                                                                          |
-| `userId`                                                                                 | *String*                                                                                 | :heavy_check_mark:                                                                       | System generated unique identifier for a user. Not guaranteed to have a specific format. | auth0\|646bdf96f7fb73d04c8c84db                                                          |

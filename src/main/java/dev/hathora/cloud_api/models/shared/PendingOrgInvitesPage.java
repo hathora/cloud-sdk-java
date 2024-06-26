@@ -15,30 +15,30 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class InviteStatusPending {
+public class PendingOrgInvitesPage {
 
-    @JsonProperty("type")
-    private InviteStatusPendingType type;
+    @JsonProperty("invites")
+    private java.util.List<PendingOrgInvite> invites;
 
     @JsonCreator
-    public InviteStatusPending(
-            @JsonProperty("type") InviteStatusPendingType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
+    public PendingOrgInvitesPage(
+            @JsonProperty("invites") java.util.List<PendingOrgInvite> invites) {
+        Utils.checkNotNull(invites, "invites");
+        this.invites = invites;
     }
 
     @JsonIgnore
-    public InviteStatusPendingType type() {
-        return type;
+    public java.util.List<PendingOrgInvite> invites() {
+        return invites;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public InviteStatusPending withType(InviteStatusPendingType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
+    public PendingOrgInvitesPage withInvites(java.util.List<PendingOrgInvite> invites) {
+        Utils.checkNotNull(invites, "invites");
+        this.invites = invites;
         return this;
     }
     
@@ -50,40 +50,40 @@ public class InviteStatusPending {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        InviteStatusPending other = (InviteStatusPending) o;
+        PendingOrgInvitesPage other = (PendingOrgInvitesPage) o;
         return 
-            java.util.Objects.deepEquals(this.type, other.type);
+            java.util.Objects.deepEquals(this.invites, other.invites);
     }
     
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            type);
+            invites);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(InviteStatusPending.class,
-                "type", type);
+        return Utils.toString(PendingOrgInvitesPage.class,
+                "invites", invites);
     }
     
     public final static class Builder {
  
-        private InviteStatusPendingType type;  
+        private java.util.List<PendingOrgInvite> invites;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder type(InviteStatusPendingType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
+        public Builder invites(java.util.List<PendingOrgInvite> invites) {
+            Utils.checkNotNull(invites, "invites");
+            this.invites = invites;
             return this;
         }
         
-        public InviteStatusPending build() {
-            return new InviteStatusPending(
-                type);
+        public PendingOrgInvitesPage build() {
+            return new PendingOrgInvitesPage(
+                invites);
         }
     }
 }

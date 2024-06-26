@@ -188,7 +188,7 @@ public class Application {
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.orgInvitesPage().isPresent()) {
+            if (res.pendingOrgInvitesPage().isPresent()) {
                 // handle response
             }
         } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
@@ -324,7 +324,7 @@ public class Application {
             GetUserPendingInvitesResponse res = sdk.organizationsV1().getUserPendingInvites()
                 .call();
 
-            if (res.orgInvitesPage().isPresent()) {
+            if (res.pendingOrgInvitesPage().isPresent()) {
                 // handle response
             }
         } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
@@ -387,12 +387,12 @@ public class Application {
 
             InviteUserResponse res = sdk.organizationsV1().inviteUser()
                 .createUserInvite(CreateUserInvite.builder()
-                    .userEmail("<value>")
+                    .userEmail("noreply@hathora.dev")
                     .build())
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.orgPermission().isPresent()) {
+            if (res.pendingOrgInvite().isPresent()) {
                 // handle response
             }
         } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
@@ -531,7 +531,7 @@ public class Application {
 
             RescindInviteResponse res = sdk.organizationsV1().rescindInvite()
                 .rescindUserInvite(RescindUserInvite.builder()
-                    .userEmail("<value>")
+                    .userEmail("noreply@hathora.dev")
                     .build())
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
