@@ -104,7 +104,7 @@ public class LobbiesV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreatePrivateLobbyDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("CreatePrivateLobbyDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -112,18 +112,18 @@ public class LobbiesV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreatePrivateLobbyDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("CreatePrivateLobbyDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreatePrivateLobbyDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("CreatePrivateLobbyDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreatePrivateLobbyDeprecated", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("CreatePrivateLobbyDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -252,7 +252,7 @@ public class LobbiesV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreatePublicLobbyDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("CreatePublicLobbyDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -260,18 +260,18 @@ public class LobbiesV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreatePublicLobbyDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("CreatePublicLobbyDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreatePublicLobbyDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("CreatePublicLobbyDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreatePublicLobbyDeprecated", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("CreatePublicLobbyDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -394,7 +394,7 @@ public class LobbiesV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("ListActivePublicLobbiesDeprecatedV1", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("ListActivePublicLobbiesDeprecatedV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -402,18 +402,18 @@ public class LobbiesV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("ListActivePublicLobbiesDeprecatedV1", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("ListActivePublicLobbiesDeprecatedV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("ListActivePublicLobbiesDeprecatedV1", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("ListActivePublicLobbiesDeprecatedV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("ListActivePublicLobbiesDeprecatedV1", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("ListActivePublicLobbiesDeprecatedV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }

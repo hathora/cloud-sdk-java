@@ -67,7 +67,7 @@ public class ManagementV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("SendVerificationEmail", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("SendVerificationEmail", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -75,18 +75,18 @@ public class ManagementV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("SendVerificationEmail", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("SendVerificationEmail", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("SendVerificationEmail", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("SendVerificationEmail", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("SendVerificationEmail", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("SendVerificationEmail", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }

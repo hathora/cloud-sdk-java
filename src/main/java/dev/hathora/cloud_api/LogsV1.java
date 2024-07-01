@@ -93,7 +93,7 @@ public class LogsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("DownloadLogForProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("DownloadLogForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -101,18 +101,18 @@ public class LogsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "410", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("DownloadLogForProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("DownloadLogForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("DownloadLogForProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("DownloadLogForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("DownloadLogForProcess", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("DownloadLogForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -218,7 +218,7 @@ public class LogsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetLogsForApp", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetLogsForApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -226,18 +226,18 @@ public class LogsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetLogsForApp", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetLogsForApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetLogsForApp", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetLogsForApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetLogsForApp", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetLogsForApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -343,7 +343,7 @@ public class LogsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetLogsForDeployment", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetLogsForDeployment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -351,18 +351,18 @@ public class LogsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetLogsForDeployment", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetLogsForDeployment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetLogsForDeployment", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetLogsForDeployment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetLogsForDeployment", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetLogsForDeployment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -464,7 +464,7 @@ public class LogsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetLogsForProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetLogsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -472,18 +472,18 @@ public class LogsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "410", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetLogsForProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetLogsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetLogsForProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetLogsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetLogsForProcess", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetLogsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
