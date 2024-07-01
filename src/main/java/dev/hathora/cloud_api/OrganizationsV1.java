@@ -75,7 +75,7 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("AcceptInvite", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("AcceptInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -83,18 +83,18 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("AcceptInvite", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("AcceptInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("AcceptInvite", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("AcceptInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("AcceptInvite", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("AcceptInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -177,7 +177,7 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetOrgMembers", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetOrgMembers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -185,18 +185,18 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetOrgMembers", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetOrgMembers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetOrgMembers", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetOrgMembers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetOrgMembers", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetOrgMembers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -290,7 +290,7 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetOrgPendingInvites", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetOrgPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -298,18 +298,18 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetOrgPendingInvites", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetOrgPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetOrgPendingInvites", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetOrgPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetOrgPendingInvites", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetOrgPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -403,7 +403,7 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetOrgs", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetOrgs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -411,18 +411,18 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetOrgs", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetOrgs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetOrgs", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetOrgs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetOrgs", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetOrgs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -507,7 +507,7 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetUserPendingInvites", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetUserPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -515,18 +515,18 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetUserPendingInvites", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetUserPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetUserPendingInvites", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetUserPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetUserPendingInvites", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetUserPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -630,7 +630,7 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("InviteUser", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("InviteUser", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -638,18 +638,18 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "422", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("InviteUser", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("InviteUser", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("InviteUser", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("InviteUser", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("InviteUser", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("InviteUser", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -743,7 +743,7 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("RejectInvite", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("RejectInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -751,18 +751,18 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("RejectInvite", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("RejectInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("RejectInvite", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("RejectInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("RejectInvite", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("RejectInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -855,7 +855,7 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("RescindInvite", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("RescindInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -863,18 +863,18 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("RescindInvite", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("RescindInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("RescindInvite", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("RescindInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("RescindInvite", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("RescindInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }

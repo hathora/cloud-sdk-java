@@ -114,7 +114,7 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateRoom", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("CreateRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -122,18 +122,18 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "403", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateRoom", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("CreateRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateRoom", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("CreateRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateRoom", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("CreateRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -250,7 +250,7 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("DestroyRoom", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("DestroyRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -258,18 +258,18 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("DestroyRoom", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("DestroyRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("DestroyRoom", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("DestroyRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("DestroyRoom", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("DestroyRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -375,7 +375,7 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetActiveRoomsForProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetActiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -383,18 +383,18 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetActiveRoomsForProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetActiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetActiveRoomsForProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetActiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetActiveRoomsForProcess", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetActiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -508,7 +508,7 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetConnectionInfo", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetConnectionInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -516,18 +516,18 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "402", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetConnectionInfo", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetConnectionInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetConnectionInfo", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetConnectionInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetConnectionInfo", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetConnectionInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -644,7 +644,7 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetInactiveRoomsForProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetInactiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -652,18 +652,18 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetInactiveRoomsForProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetInactiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetInactiveRoomsForProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetInactiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetInactiveRoomsForProcess", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetInactiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -780,7 +780,7 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetRoomInfo", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetRoomInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -788,18 +788,18 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetRoomInfo", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetRoomInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetRoomInfo", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetRoomInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetRoomInfo", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetRoomInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -922,7 +922,7 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("SuspendRoomV2Deprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("SuspendRoomV2Deprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -930,18 +930,18 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("SuspendRoomV2Deprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("SuspendRoomV2Deprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("SuspendRoomV2Deprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("SuspendRoomV2Deprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("SuspendRoomV2Deprecated", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("SuspendRoomV2Deprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1041,7 +1041,7 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("UpdateRoomConfig", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("UpdateRoomConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1049,18 +1049,18 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("UpdateRoomConfig", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("UpdateRoomConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("UpdateRoomConfig", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("UpdateRoomConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("UpdateRoomConfig", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("UpdateRoomConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }

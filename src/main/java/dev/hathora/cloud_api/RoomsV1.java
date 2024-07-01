@@ -116,7 +116,7 @@ public class RoomsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateRoomDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("CreateRoomDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -124,18 +124,18 @@ public class RoomsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "403", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateRoomDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("CreateRoomDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateRoomDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("CreateRoomDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateRoomDeprecated", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("CreateRoomDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -255,7 +255,7 @@ public class RoomsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("DestroyRoomDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("DestroyRoomDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -263,18 +263,18 @@ public class RoomsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("DestroyRoomDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("DestroyRoomDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("DestroyRoomDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("DestroyRoomDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("DestroyRoomDeprecated", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("DestroyRoomDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -383,7 +383,7 @@ public class RoomsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetActiveRoomsForProcessDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetActiveRoomsForProcessDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -391,18 +391,18 @@ public class RoomsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetActiveRoomsForProcessDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetActiveRoomsForProcessDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetActiveRoomsForProcessDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetActiveRoomsForProcessDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetActiveRoomsForProcessDeprecated", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetActiveRoomsForProcessDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -519,7 +519,7 @@ public class RoomsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetConnectionInfoDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetConnectionInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -527,18 +527,18 @@ public class RoomsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "402", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetConnectionInfoDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetConnectionInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetConnectionInfoDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetConnectionInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetConnectionInfoDeprecated", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetConnectionInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -658,7 +658,7 @@ public class RoomsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetInactiveRoomsForProcessDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetInactiveRoomsForProcessDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -666,18 +666,18 @@ public class RoomsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetInactiveRoomsForProcessDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetInactiveRoomsForProcessDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetInactiveRoomsForProcessDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetInactiveRoomsForProcessDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetInactiveRoomsForProcessDeprecated", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetInactiveRoomsForProcessDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -797,7 +797,7 @@ public class RoomsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetRoomInfoDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetRoomInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -805,18 +805,18 @@ public class RoomsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetRoomInfoDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetRoomInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetRoomInfoDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetRoomInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetRoomInfoDeprecated", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetRoomInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -936,7 +936,7 @@ public class RoomsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("SuspendRoomDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("SuspendRoomDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -944,18 +944,18 @@ public class RoomsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("SuspendRoomDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("SuspendRoomDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("SuspendRoomDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("SuspendRoomDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("SuspendRoomDeprecated", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("SuspendRoomDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }

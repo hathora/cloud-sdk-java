@@ -102,7 +102,7 @@ public class ProcessesV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetProcessInfoDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetProcessInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -110,18 +110,18 @@ public class ProcessesV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetProcessInfoDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetProcessInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetProcessInfoDeprecated", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetProcessInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetProcessInfoDeprecated", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetProcessInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -247,7 +247,7 @@ public class ProcessesV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetRunningProcesses", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetRunningProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -255,18 +255,18 @@ public class ProcessesV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetRunningProcesses", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetRunningProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetRunningProcesses", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetRunningProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetRunningProcesses", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetRunningProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -392,7 +392,7 @@ public class ProcessesV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetStoppedProcesses", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetStoppedProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -400,18 +400,18 @@ public class ProcessesV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetStoppedProcesses", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetStoppedProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetStoppedProcesses", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetStoppedProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetStoppedProcesses", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetStoppedProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }

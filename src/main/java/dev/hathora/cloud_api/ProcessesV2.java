@@ -97,7 +97,7 @@ public class ProcessesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("CreateProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -105,18 +105,18 @@ public class ProcessesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "402", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("CreateProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("CreateProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateProcess", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("CreateProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -239,7 +239,7 @@ public class ProcessesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetLatestProcesses", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetLatestProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -247,18 +247,18 @@ public class ProcessesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetLatestProcesses", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetLatestProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetLatestProcesses", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetLatestProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetLatestProcesses", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetLatestProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -375,7 +375,7 @@ public class ProcessesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetProcessInfo", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetProcessInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -383,18 +383,18 @@ public class ProcessesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetProcessInfo", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetProcessInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetProcessInfo", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetProcessInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetProcessInfo", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetProcessInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -511,7 +511,7 @@ public class ProcessesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("StopProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("StopProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -519,18 +519,18 @@ public class ProcessesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("StopProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("StopProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("StopProcess", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("StopProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("StopProcess", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("StopProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }

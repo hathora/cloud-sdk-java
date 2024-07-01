@@ -90,7 +90,7 @@ public class LobbiesV3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateLobby", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("CreateLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -98,18 +98,18 @@ public class LobbiesV3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateLobby", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("CreateLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateLobby", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("CreateLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateLobby", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("CreateLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -223,7 +223,7 @@ public class LobbiesV3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetLobbyInfoByRoomId", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetLobbyInfoByRoomId", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -231,18 +231,18 @@ public class LobbiesV3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "422", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetLobbyInfoByRoomId", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetLobbyInfoByRoomId", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetLobbyInfoByRoomId", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetLobbyInfoByRoomId", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetLobbyInfoByRoomId", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetLobbyInfoByRoomId", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -356,7 +356,7 @@ public class LobbiesV3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetLobbyInfoByShortCode", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("GetLobbyInfoByShortCode", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -364,18 +364,18 @@ public class LobbiesV3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetLobbyInfoByShortCode", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("GetLobbyInfoByShortCode", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetLobbyInfoByShortCode", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("GetLobbyInfoByShortCode", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetLobbyInfoByShortCode", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("GetLobbyInfoByShortCode", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -492,7 +492,7 @@ public class LobbiesV3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("ListActivePublicLobbies", Optional.empty(), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("ListActivePublicLobbies", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -500,18 +500,18 @@ public class LobbiesV3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("ListActivePublicLobbies", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("ListActivePublicLobbies", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("ListActivePublicLobbies", Optional.empty(), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("ListActivePublicLobbies", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("ListActivePublicLobbies", Optional.empty(), sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("ListActivePublicLobbies", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
