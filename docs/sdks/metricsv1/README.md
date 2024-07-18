@@ -18,20 +18,23 @@ Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.Hathora-Cloud;
+import dev.hathora.cloud_api.HathoraCloud;
 import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.GetMetricsRequest;
-import dev.hathora.cloud_api.models.operations.GetMetricsResponse;
 import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.MetricName;
 import dev.hathora.cloud_api.models.shared.Security;
+import dev.hathora.cloud_api.utils.EventStream;
+import java.math.BigDecimal;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -42,26 +45,26 @@ public class Application {
 
             GetMetricsRequest req = GetMetricsRequest.builder()
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
-                .end(5456.86d)
-                .metrics(java.util.List.of(
-                    MetricName.MEMORY))
-                .start(4311.13d)
-                .step(490659)
                 .build();
 
             GetMetricsResponse res = sdk.metricsV1().getMetrics()
                 .request(req)
                 .call();
 
-            if (res.metricsResponse().isPresent()) {
+            if (res.metricsData().isPresent()) {
                 // handle response
             }
-
+        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+            // handle exception
+            throw e;
         } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
+
     }
 }
 ```
@@ -78,6 +81,7 @@ public class Application {
 **[Optional<? extends dev.hathora.cloud_api.models.operations.GetMetricsResponse>](../../models/operations/GetMetricsResponse.md)**
 ### Errors
 
-| Error Object          | Status Code           | Content Type          |
-| --------------------- | --------------------- | --------------------- |
-| models/errorsSDKError | 4xx-5xx               | */*                   |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,422,429,500    | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

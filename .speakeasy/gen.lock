@@ -1,334 +1,457 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: 3403616a2f0f820ee5bdf9184764ef27
+  docChecksum: aab9fbbed986e8a2acaae5f2f1efe3f9
   docVersion: 0.0.1
-  speakeasyVersion: internal
-  generationVersion: 2.250.19
-  releaseVersion: 2.0.0
-  configChecksum: 9337c7c315af056fd2f2485d798176f3
+  speakeasyVersion: 1.322.3
+  generationVersion: 2.354.2
+  releaseVersion: 2.7.0
+  configChecksum: 776af557fd1193e1f027f5dd9c1273aa
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
 features:
   java:
-    constsAndDefaults: 0.1.0
-    core: 3.10.0
+    additionalDependencies: 0.1.0
+    constsAndDefaults: 0.1.1
+    core: 3.26.0
     deprecations: 2.81.1
+    downloadStreams: 0.1.1
     flattening: 2.81.1
-    globalSecurity: 2.82.2
+    globalSecurity: 2.82.5
+    globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.1
-    globals: 2.81.1
+    globals: 2.82.1
+    groups: 2.81.2
     methodSecurity: 2.82.1
-    unions: 0.0.2
+    nullables: 0.1.0
+    sdkHooks: 0.1.0
+    unions: 0.0.4
 generatedFiles:
-  - lib/src/main/java/dev/hathora/cloud_api/SecuritySource.java
-  - lib/src/main/java/dev/hathora/cloud_api/SDKConfiguration.java
-  - lib/src/main/java/dev/hathora/cloud_api/AppV1.java
-  - lib/src/main/java/dev/hathora/cloud_api/AuthV1.java
-  - lib/src/main/java/dev/hathora/cloud_api/BillingV1.java
-  - lib/src/main/java/dev/hathora/cloud_api/BuildV1.java
-  - lib/src/main/java/dev/hathora/cloud_api/DeploymentV1.java
-  - lib/src/main/java/dev/hathora/cloud_api/DiscoveryV1.java
-  - lib/src/main/java/dev/hathora/cloud_api/LobbyV1.java
-  - lib/src/main/java/dev/hathora/cloud_api/LobbyV2.java
-  - lib/src/main/java/dev/hathora/cloud_api/LobbyV3.java
-  - lib/src/main/java/dev/hathora/cloud_api/LogV1.java
-  - lib/src/main/java/dev/hathora/cloud_api/ManagementV1.java
-  - lib/src/main/java/dev/hathora/cloud_api/MetricsV1.java
-  - lib/src/main/java/dev/hathora/cloud_api/ProcessesV1.java
-  - lib/src/main/java/dev/hathora/cloud_api/ProcessesV2.java
-  - lib/src/main/java/dev/hathora/cloud_api/RoomV1.java
-  - lib/src/main/java/dev/hathora/cloud_api/RoomV2.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateAppRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DeleteAppRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetAppInfoRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetAppsRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/UpdateAppRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/LoginAnonymousRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/LoginGoogleRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/LoginNicknameRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetBalanceRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetInvoicesRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetPaymentMethodRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/InitStripeCustomerPortalUrlRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateBuildRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DeleteBuildRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetBuildInfoRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetBuildsRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/RunBuildRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateDeploymentRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentInfoRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentsRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetPingServiceEndpointsRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyDeprecatedRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyDeprecatedRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesDeprecatedV1RequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyDeprecatedRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLocalLobbyRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesDeprecatedV2RequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/SetLobbyStateRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoByRoomIdRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoByShortCodeRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DownloadLogForProcessRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForAppRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForDeploymentRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForProcessRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/SendVerificationEmailRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetMetricsRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetProcessInfoDeprecatedRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetRunningProcessesRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetStoppedProcessesRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLatestProcessesRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetProcessInfoRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateRoomDeprecatedRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DestroyRoomDeprecatedRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetActiveRoomsForProcessDeprecatedRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetConnectionInfoDeprecatedRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetInactiveRoomsForProcessDeprecatedRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetRoomInfoDeprecatedRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/SuspendRoomDeprecatedRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateRoomRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DestroyRoomRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetActiveRoomsForProcessRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetConnectionInfoRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetInactiveRoomsForProcessRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetRoomInfoRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/SuspendRoomRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/UpdateRoomConfigRequestBuilder.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/SDKMethodInterfaces.java
-  - lib/src/main/java/dev/hathora/cloud_api/HathoraCloud.java
+  - src/main/java/dev/hathora/cloud_api/SecuritySource.java
+  - src/main/java/dev/hathora/cloud_api/SDKConfiguration.java
+  - src/main/java/dev/hathora/cloud_api/AppsV1.java
+  - src/main/java/dev/hathora/cloud_api/AuthV1.java
+  - src/main/java/dev/hathora/cloud_api/BillingV1.java
+  - src/main/java/dev/hathora/cloud_api/BuildsV1.java
+  - src/main/java/dev/hathora/cloud_api/BuildsV2.java
+  - src/main/java/dev/hathora/cloud_api/DeploymentsV1.java
+  - src/main/java/dev/hathora/cloud_api/DeploymentsV2.java
+  - src/main/java/dev/hathora/cloud_api/DiscoveryV1.java
+  - src/main/java/dev/hathora/cloud_api/DiscoveryV2.java
+  - src/main/java/dev/hathora/cloud_api/LobbiesV1.java
+  - src/main/java/dev/hathora/cloud_api/LobbiesV2.java
+  - src/main/java/dev/hathora/cloud_api/LobbiesV3.java
+  - src/main/java/dev/hathora/cloud_api/LogsV1.java
+  - src/main/java/dev/hathora/cloud_api/ManagementV1.java
+  - src/main/java/dev/hathora/cloud_api/MetricsV1.java
+  - src/main/java/dev/hathora/cloud_api/OrganizationsV1.java
+  - src/main/java/dev/hathora/cloud_api/ProcessesV1.java
+  - src/main/java/dev/hathora/cloud_api/ProcessesV2.java
+  - src/main/java/dev/hathora/cloud_api/RoomsV1.java
+  - src/main/java/dev/hathora/cloud_api/RoomsV2.java
+  - src/main/java/dev/hathora/cloud_api/TokensV1.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateAppRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DeleteAppRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetAppInfoRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetAppsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/UpdateAppRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/LoginAnonymousRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/LoginGoogleRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/LoginNicknameRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBalanceRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetInvoicesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetPaymentMethodRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/InitStripeCustomerPortalUrlRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateBuildDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DeleteBuildDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBuildInfoDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBuildsDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RunBuildDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateBuildRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateBuildWithUploadUrlRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DeleteBuildRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBuildInfoRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBuildsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RunBuildRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateDeploymentDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentInfoDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentsDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLatestDeploymentDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateDeploymentRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentInfoRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLatestDeploymentRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetPingServiceEndpointsDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetPingServiceEndpointsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesDeprecatedV1RequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLocalLobbyRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesDeprecatedV2RequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/SetLobbyStateRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoByRoomIdRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoByShortCodeRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DownloadLogForProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForAppRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForDeploymentRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/SendVerificationEmailRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetMetricsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/AcceptInviteRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetOrgMembersRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetOrgPendingInvitesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetOrgsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetUserPendingInvitesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/InviteUserRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RejectInviteRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RescindInviteRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetProcessInfoDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetRunningProcessesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetStoppedProcessesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLatestProcessesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetProcessInfoRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/StopProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateRoomDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DestroyRoomDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetActiveRoomsForProcessDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetConnectionInfoDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetInactiveRoomsForProcessDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetRoomInfoDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/SuspendRoomDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateRoomRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DestroyRoomRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetActiveRoomsForProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetConnectionInfoRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetInactiveRoomsForProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetRoomInfoRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/SuspendRoomV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/UpdateRoomConfigRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateOrgTokenRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetOrgTokensRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RevokeOrgTokenRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/SDKMethodInterfaces.java
+  - src/main/java/dev/hathora/cloud_api/HathoraCloud.java
   - .gitattributes
+  - build.gradle
   - gradle/wrapper/gradle-wrapper.jar
   - gradle/wrapper/gradle-wrapper.properties
   - gradlew
   - gradlew.bat
-  - lib/build.gradle
-  - lib/src/main/java/dev/hathora/cloud_api/utils/FormMetadata.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/HTTPClient.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/HTTPRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/HeaderMetadata.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/JSON.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/LazySingletonValue.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/Metadata.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/MultipartFormMetadata.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/OneOfDeserializer.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/PathParamsMetadata.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/QueryParameters.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/QueryParamsMetadata.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/RequestBody.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/RequestMetadata.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/Security.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/SecurityMetadata.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/SerializedBody.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/SpeakeasyHTTPClient.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/SpeakeasyHTTPSecurityClient.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/SpeakeasyMetadata.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/Types.java
-  - lib/src/main/java/dev/hathora/cloud_api/utils/Utils.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/errors/SDKError.java
   - settings.gradle
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateAppResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DeleteAppRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DeleteAppResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetAppInfoRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetAppInfoResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetAppsResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/UpdateAppRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/UpdateAppResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/LoginAnonymousRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/LoginAnonymousResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/LoginGoogleRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/LoginGoogleResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/LoginNicknameRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/LoginNicknameResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetBalanceResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetInvoicesResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetPaymentMethodResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/InitStripeCustomerPortalUrlResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateBuildRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateBuildResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DeleteBuildRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DeleteBuildResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetBuildInfoRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetBuildInfoResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetBuildsRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetBuildsResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/File.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/RunBuildRequestBody.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/RunBuildRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/RunBuildResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateDeploymentRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateDeploymentResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentInfoRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentInfoResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentsRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentsResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetPingServiceEndpointsResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyDeprecatedSecurity.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyDeprecatedRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyDeprecatedResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyDeprecatedSecurity.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyDeprecatedRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyDeprecatedResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesDeprecatedV1Request.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesDeprecatedV1Response.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyDeprecatedSecurity.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyDeprecatedRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyDeprecatedResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLocalLobbySecurity.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLocalLobbyRequestBody.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLocalLobbyRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLocalLobbyResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbySecurity.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyRequestBody.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbySecurity.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyRequestBody.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesDeprecatedV2Request.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesDeprecatedV2Response.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/SetLobbyStateRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/SetLobbyStateResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbySecurity.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoByRoomIdRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoByRoomIdResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoByShortCodeRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoByShortCodeResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DownloadLogForProcessRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DownloadLogForProcessResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForAppRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForAppResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForDeploymentRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForDeploymentResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForProcessRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForProcessResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/SendVerificationEmailResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetMetricsRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetMetricsResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetProcessInfoDeprecatedRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetProcessInfoDeprecatedResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetRunningProcessesRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetRunningProcessesResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetStoppedProcessesRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetStoppedProcessesResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLatestProcessesRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetLatestProcessesResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetProcessInfoRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetProcessInfoResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateRoomDeprecatedRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateRoomDeprecatedResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DestroyRoomDeprecatedRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DestroyRoomDeprecatedResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetActiveRoomsForProcessDeprecatedRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetActiveRoomsForProcessDeprecatedResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetConnectionInfoDeprecatedRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetConnectionInfoDeprecatedResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetInactiveRoomsForProcessDeprecatedRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetInactiveRoomsForProcessDeprecatedResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetRoomInfoDeprecatedRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetRoomInfoDeprecatedResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/SuspendRoomDeprecatedRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/SuspendRoomDeprecatedResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateRoomRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/CreateRoomResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DestroyRoomRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/DestroyRoomResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetActiveRoomsForProcessRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetActiveRoomsForProcessResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetConnectionInfoRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetConnectionInfoResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetInactiveRoomsForProcessRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetInactiveRoomsForProcessResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetRoomInfoRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/GetRoomInfoResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/SuspendRoomRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/SuspendRoomResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/UpdateRoomConfigRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/operations/UpdateRoomConfigResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/Application.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/Google.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/AuthConfiguration.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/RecordStringNever.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/ApiError.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/AppConfig.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/ApplicationWithDeployment.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/Env.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/DeploymentTransportType.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/Deployment.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/PlanName.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/ContainerPort.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/TransportType.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/LoginResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/LoginGoogleRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/LoginNicknameRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/InvoiceStatus.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/Invoice.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/PaymentMethod.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/LinkPaymentMethod.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/CardPaymentMethod.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/CardBrand.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/AchPaymentMethod.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/CustomerPortalUrl.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/RegionalContainerTags.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/BuildStatus.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/Build.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/Region.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/CreateBuildParams.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/DeploymentConfigEnv.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/DeploymentConfig.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/DiscoveryResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/State.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/Lobby.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/LobbyVisibility.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/LobbyInitialConfig.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/CreateLobbyParams.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/SetLobbyStateParamsState.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/SetLobbyStateParams.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/LobbyV3.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/CreateLobbyV3Params.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/VerificationEmailResponseStatus.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/VerificationEmailResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/VerificationEmailRequest.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/MetricsResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/MetricValue.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/MetricName.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/Process.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/ExposedPort.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/ProcessWithRooms.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/RoomWithoutAllocationsCurrentAllocation.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/RoomWithoutAllocations.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/RoomStatus.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/ProcessV2.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/ProcessStatus.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/CreateRoomParams.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/ConnectionInfo.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/StartingConnectionInfoStatus.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/StartingConnectionInfo.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/Status.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/ActiveConnectionInfo.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/CurrentAllocation.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/Room.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/RoomAllocation.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/CreateRoomResponseStatus.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/CreateRoomResponse.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/ConnectionInfoV2Status.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/ConnectionInfoV2.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/UpdateRoomConfigParams.java
-  - lib/src/main/java/dev/hathora/cloud_api/models/shared/Security.java
+  - src/main/java/dev/hathora/cloud_api/utils/BackoffStrategy.java
+  - src/main/java/dev/hathora/cloud_api/utils/BigDecimalString.java
+  - src/main/java/dev/hathora/cloud_api/utils/BigIntegerString.java
+  - src/main/java/dev/hathora/cloud_api/utils/Deserializers.java
+  - src/main/java/dev/hathora/cloud_api/utils/EventStream.java
+  - src/main/java/dev/hathora/cloud_api/utils/EventStreamLineReader.java
+  - src/main/java/dev/hathora/cloud_api/utils/EventStreamMessage.java
+  - src/main/java/dev/hathora/cloud_api/utils/EventStreamReader.java
+  - src/main/java/dev/hathora/cloud_api/utils/FormMetadata.java
+  - src/main/java/dev/hathora/cloud_api/utils/HTTPClient.java
+  - src/main/java/dev/hathora/cloud_api/utils/HTTPRequest.java
+  - src/main/java/dev/hathora/cloud_api/utils/HeaderMetadata.java
+  - src/main/java/dev/hathora/cloud_api/utils/Helpers.java
+  - src/main/java/dev/hathora/cloud_api/utils/Hook.java
+  - src/main/java/dev/hathora/cloud_api/utils/Hooks.java
+  - src/main/java/dev/hathora/cloud_api/utils/JSON.java
+  - src/main/java/dev/hathora/cloud_api/utils/LazySingletonValue.java
+  - src/main/java/dev/hathora/cloud_api/utils/Metadata.java
+  - src/main/java/dev/hathora/cloud_api/utils/MultipartFormMetadata.java
+  - src/main/java/dev/hathora/cloud_api/utils/OneOfDeserializer.java
+  - src/main/java/dev/hathora/cloud_api/utils/Options.java
+  - src/main/java/dev/hathora/cloud_api/utils/PathParamsMetadata.java
+  - src/main/java/dev/hathora/cloud_api/utils/QueryParameters.java
+  - src/main/java/dev/hathora/cloud_api/utils/QueryParamsMetadata.java
+  - src/main/java/dev/hathora/cloud_api/utils/RequestBody.java
+  - src/main/java/dev/hathora/cloud_api/utils/RequestMetadata.java
+  - src/main/java/dev/hathora/cloud_api/utils/Response.java
+  - src/main/java/dev/hathora/cloud_api/utils/Retries.java
+  - src/main/java/dev/hathora/cloud_api/utils/RetryConfig.java
+  - src/main/java/dev/hathora/cloud_api/utils/Security.java
+  - src/main/java/dev/hathora/cloud_api/utils/SecurityMetadata.java
+  - src/main/java/dev/hathora/cloud_api/utils/SerializedBody.java
+  - src/main/java/dev/hathora/cloud_api/utils/SpeakeasyHTTPClient.java
+  - src/main/java/dev/hathora/cloud_api/utils/SpeakeasyMetadata.java
+  - src/main/java/dev/hathora/cloud_api/utils/TypedObject.java
+  - src/main/java/dev/hathora/cloud_api/utils/Types.java
+  - src/main/java/dev/hathora/cloud_api/utils/Utils.java
+  - src/main/java/dev/hathora/cloud_api/models/errors/AuthException.java
+  - src/main/java/dev/hathora/cloud_api/models/errors/SDKError.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateAppResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DeleteAppRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DeleteAppResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetAppInfoRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetAppInfoResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetAppsResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/UpdateAppRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/UpdateAppResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/LoginAnonymousRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/LoginAnonymousResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/LoginGoogleRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/LoginGoogleResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/LoginNicknameRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/LoginNicknameResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBalanceResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetInvoicesResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetPaymentMethodResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/InitStripeCustomerPortalUrlResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateBuildDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateBuildDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DeleteBuildDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DeleteBuildDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBuildInfoDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBuildInfoDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBuildsDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBuildsDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/File.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RunBuildDeprecatedRequestBody.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RunBuildDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RunBuildDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateBuildRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateBuildResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateBuildWithUploadUrlRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateBuildWithUploadUrlResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DeleteBuildRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DeleteBuildResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBuildInfoRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBuildInfoResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBuildsRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetBuildsResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RunBuildFile.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RunBuildRequestBody.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RunBuildRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RunBuildResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateDeploymentDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateDeploymentDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentInfoDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentInfoDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentsDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentsDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLatestDeploymentDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLatestDeploymentDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateDeploymentRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateDeploymentResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentInfoRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentInfoResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentsRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetDeploymentsResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLatestDeploymentRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLatestDeploymentResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetPingServiceEndpointsDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetPingServiceEndpointsResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyDeprecatedSecurity.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyDeprecatedSecurity.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesDeprecatedV1Request.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesDeprecatedV1Response.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyDeprecatedSecurity.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLocalLobbySecurity.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLocalLobbyRequestBody.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLocalLobbyRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLocalLobbyResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbySecurity.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyRequestBody.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePrivateLobbyResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbySecurity.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyRequestBody.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreatePublicLobbyResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesDeprecatedV2Request.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesDeprecatedV2Response.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/SetLobbyStateRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/SetLobbyStateResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbySecurity.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateLobbyResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoByRoomIdRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoByRoomIdResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoByShortCodeRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLobbyInfoByShortCodeResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/ListActivePublicLobbiesResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DownloadLogForProcessRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DownloadLogForProcessResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForAppRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForAppResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForDeploymentRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForDeploymentResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForProcessRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLogsForProcessResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/SendVerificationEmailResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetMetricsRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetMetricsResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/AcceptInviteRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/AcceptInviteResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetOrgMembersRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetOrgMembersResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetOrgPendingInvitesRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetOrgPendingInvitesResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetOrgsResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetUserPendingInvitesResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/InviteUserRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/InviteUserResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RejectInviteRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RejectInviteResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RescindInviteRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RescindInviteResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetProcessInfoDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetProcessInfoDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetRunningProcessesRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetRunningProcessesResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetStoppedProcessesRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetStoppedProcessesResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateProcessRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateProcessResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLatestProcessesRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetLatestProcessesResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetProcessInfoRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetProcessInfoResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/StopProcessRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/StopProcessResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateRoomDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateRoomDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DestroyRoomDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DestroyRoomDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetActiveRoomsForProcessDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetActiveRoomsForProcessDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetConnectionInfoDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetConnectionInfoDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetInactiveRoomsForProcessDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetInactiveRoomsForProcessDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetRoomInfoDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetRoomInfoDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/SuspendRoomDeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/SuspendRoomDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateRoomRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateRoomResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DestroyRoomRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/DestroyRoomResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetActiveRoomsForProcessRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetActiveRoomsForProcessResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetConnectionInfoRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetConnectionInfoResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetInactiveRoomsForProcessRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetInactiveRoomsForProcessResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetRoomInfoRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetRoomInfoResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/SuspendRoomV2DeprecatedRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/SuspendRoomV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/UpdateRoomConfigRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/UpdateRoomConfigResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateOrgTokenRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/CreateOrgTokenResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetOrgTokensRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/GetOrgTokensResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RevokeOrgTokenRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/operations/RevokeOrgTokenResponse.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Application.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Google.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/AuthConfiguration.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/RecordStringNever.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/AppConfig.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ApplicationWithLatestDeploymentAndBuildEnv.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ApplicationWithLatestDeploymentAndBuildDeployment.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ApplicationWithLatestDeploymentAndBuild.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ContainerPort.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/TransportType.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/RegionalContainerTags.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Build.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/BuildStatus.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Region.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/PlayerTokenObject.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/GoogleIdTokenObject.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/NicknameObject.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Invoice.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/InvoiceStatus.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/PaymentMethod.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/LinkPaymentMethod.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/CardPaymentMethod.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/CardBrand.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/AchPaymentMethod.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/CustomerPortalUrl.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/CreateBuildParams.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/BuildWithUploadUrlRegionalContainerTags.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/UploadBodyParams.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/BuildWithUploadUrl.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Env.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/DeploymentTransportType.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Deployment.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/PlanName.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/DeploymentConfigEnv.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/DeploymentConfig.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/DeploymentV2Env.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/DeploymentV2.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/DeploymentConfigV2Env.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/DeploymentConfigV2.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/PingEndpoints.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/CreatedBy.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Lobby.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/LobbyVisibility.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/CreateLobbyParams.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/SetLobbyStateParams.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/LobbyV3CreatedBy.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/LobbyV3.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/CreateLobbyV3Params.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/VerificationEmailSuccess.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/VerificationEmailRequest.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/MetricsData.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/MetricValue.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/MetricName.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/OrgMembersPage.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/OrgMember.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/PendingOrgInvitesPage.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/PendingOrgInvite.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/OrgsPage.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Organization.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/CreateUserInvite.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/RescindUserInvite.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ProcessExposedPort.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Process.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ExposedPort.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ProcessWithRoomsExposedPort.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ProcessWithRooms.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/RoomWithoutAllocationsCurrentAllocation.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/RoomWithoutAllocations.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/RoomStatus.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ProcessV2ExposedPort.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ProcessV2.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ProcessStatus.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/CreateRoomParams.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ConnectionInfo.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/StartingConnectionInfoStatus.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/StartingConnectionInfo.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Status.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ActiveConnectionInfo.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/CurrentAllocation.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Room.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/RoomAllocation.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/RoomConnectionData.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/RoomReadyStatus.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ConnectionInfoV2.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/UpdateRoomConfigParams.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/CreatedOrgToken.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/OrgToken.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/OrgTokenStatus.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/CreateOrgToken.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/ListOrgTokens.java
+  - src/main/java/dev/hathora/cloud_api/models/shared/Security.java
+  - src/main/java/dev/hathora/cloud_api/models/errors/ApiError.java
   - docs/models/operations/CreateAppResponse.md
   - docs/models/operations/DeleteAppRequest.md
   - docs/models/operations/DeleteAppResponse.md
@@ -347,24 +470,49 @@ generatedFiles:
   - docs/models/operations/GetInvoicesResponse.md
   - docs/models/operations/GetPaymentMethodResponse.md
   - docs/models/operations/InitStripeCustomerPortalUrlResponse.md
+  - docs/models/operations/CreateBuildDeprecatedRequest.md
+  - docs/models/operations/CreateBuildDeprecatedResponse.md
+  - docs/models/operations/DeleteBuildDeprecatedRequest.md
+  - docs/models/operations/DeleteBuildDeprecatedResponse.md
+  - docs/models/operations/GetBuildInfoDeprecatedRequest.md
+  - docs/models/operations/GetBuildInfoDeprecatedResponse.md
+  - docs/models/operations/GetBuildsDeprecatedRequest.md
+  - docs/models/operations/GetBuildsDeprecatedResponse.md
+  - docs/models/operations/File.md
+  - docs/models/operations/RunBuildDeprecatedRequestBody.md
+  - docs/models/operations/RunBuildDeprecatedRequest.md
+  - docs/models/operations/RunBuildDeprecatedResponse.md
   - docs/models/operations/CreateBuildRequest.md
   - docs/models/operations/CreateBuildResponse.md
+  - docs/models/operations/CreateBuildWithUploadUrlRequest.md
+  - docs/models/operations/CreateBuildWithUploadUrlResponse.md
   - docs/models/operations/DeleteBuildRequest.md
   - docs/models/operations/DeleteBuildResponse.md
   - docs/models/operations/GetBuildInfoRequest.md
   - docs/models/operations/GetBuildInfoResponse.md
   - docs/models/operations/GetBuildsRequest.md
   - docs/models/operations/GetBuildsResponse.md
-  - docs/models/operations/File.md
+  - docs/models/operations/RunBuildFile.md
   - docs/models/operations/RunBuildRequestBody.md
   - docs/models/operations/RunBuildRequest.md
   - docs/models/operations/RunBuildResponse.md
+  - docs/models/operations/CreateDeploymentDeprecatedRequest.md
+  - docs/models/operations/CreateDeploymentDeprecatedResponse.md
+  - docs/models/operations/GetDeploymentInfoDeprecatedRequest.md
+  - docs/models/operations/GetDeploymentInfoDeprecatedResponse.md
+  - docs/models/operations/GetDeploymentsDeprecatedRequest.md
+  - docs/models/operations/GetDeploymentsDeprecatedResponse.md
+  - docs/models/operations/GetLatestDeploymentDeprecatedRequest.md
+  - docs/models/operations/GetLatestDeploymentDeprecatedResponse.md
   - docs/models/operations/CreateDeploymentRequest.md
   - docs/models/operations/CreateDeploymentResponse.md
   - docs/models/operations/GetDeploymentInfoRequest.md
   - docs/models/operations/GetDeploymentInfoResponse.md
   - docs/models/operations/GetDeploymentsRequest.md
   - docs/models/operations/GetDeploymentsResponse.md
+  - docs/models/operations/GetLatestDeploymentRequest.md
+  - docs/models/operations/GetLatestDeploymentResponse.md
+  - docs/models/operations/GetPingServiceEndpointsDeprecatedResponse.md
   - docs/models/operations/GetPingServiceEndpointsResponse.md
   - docs/models/operations/CreatePrivateLobbyDeprecatedSecurity.md
   - docs/models/operations/CreatePrivateLobbyDeprecatedRequest.md
@@ -415,16 +563,34 @@ generatedFiles:
   - docs/models/operations/SendVerificationEmailResponse.md
   - docs/models/operations/GetMetricsRequest.md
   - docs/models/operations/GetMetricsResponse.md
+  - docs/models/operations/AcceptInviteRequest.md
+  - docs/models/operations/AcceptInviteResponse.md
+  - docs/models/operations/GetOrgMembersRequest.md
+  - docs/models/operations/GetOrgMembersResponse.md
+  - docs/models/operations/GetOrgPendingInvitesRequest.md
+  - docs/models/operations/GetOrgPendingInvitesResponse.md
+  - docs/models/operations/GetOrgsResponse.md
+  - docs/models/operations/GetUserPendingInvitesResponse.md
+  - docs/models/operations/InviteUserRequest.md
+  - docs/models/operations/InviteUserResponse.md
+  - docs/models/operations/RejectInviteRequest.md
+  - docs/models/operations/RejectInviteResponse.md
+  - docs/models/operations/RescindInviteRequest.md
+  - docs/models/operations/RescindInviteResponse.md
   - docs/models/operations/GetProcessInfoDeprecatedRequest.md
   - docs/models/operations/GetProcessInfoDeprecatedResponse.md
   - docs/models/operations/GetRunningProcessesRequest.md
   - docs/models/operations/GetRunningProcessesResponse.md
   - docs/models/operations/GetStoppedProcessesRequest.md
   - docs/models/operations/GetStoppedProcessesResponse.md
+  - docs/models/operations/CreateProcessRequest.md
+  - docs/models/operations/CreateProcessResponse.md
   - docs/models/operations/GetLatestProcessesRequest.md
   - docs/models/operations/GetLatestProcessesResponse.md
   - docs/models/operations/GetProcessInfoRequest.md
   - docs/models/operations/GetProcessInfoResponse.md
+  - docs/models/operations/StopProcessRequest.md
+  - docs/models/operations/StopProcessResponse.md
   - docs/models/operations/CreateRoomDeprecatedRequest.md
   - docs/models/operations/CreateRoomDeprecatedResponse.md
   - docs/models/operations/DestroyRoomDeprecatedRequest.md
@@ -451,63 +617,86 @@ generatedFiles:
   - docs/models/operations/GetInactiveRoomsForProcessResponse.md
   - docs/models/operations/GetRoomInfoRequest.md
   - docs/models/operations/GetRoomInfoResponse.md
-  - docs/models/operations/SuspendRoomRequest.md
-  - docs/models/operations/SuspendRoomResponse.md
+  - docs/models/operations/SuspendRoomV2DeprecatedRequest.md
+  - docs/models/operations/SuspendRoomV2DeprecatedResponse.md
   - docs/models/operations/UpdateRoomConfigRequest.md
   - docs/models/operations/UpdateRoomConfigResponse.md
+  - docs/models/operations/CreateOrgTokenRequest.md
+  - docs/models/operations/CreateOrgTokenResponse.md
+  - docs/models/operations/GetOrgTokensRequest.md
+  - docs/models/operations/GetOrgTokensResponse.md
+  - docs/models/operations/RevokeOrgTokenRequest.md
+  - docs/models/operations/RevokeOrgTokenResponse.md
   - docs/models/shared/Application.md
   - docs/models/shared/Google.md
   - docs/models/shared/AuthConfiguration.md
   - docs/models/shared/RecordStringNever.md
-  - docs/models/shared/ApiError.md
   - docs/models/shared/AppConfig.md
-  - docs/models/shared/ApplicationWithDeployment.md
-  - docs/models/shared/Env.md
-  - docs/models/shared/DeploymentTransportType.md
-  - docs/models/shared/Deployment.md
-  - docs/models/shared/PlanName.md
+  - docs/models/shared/ApplicationWithLatestDeploymentAndBuildEnv.md
+  - docs/models/shared/ApplicationWithLatestDeploymentAndBuildDeployment.md
+  - docs/models/shared/ApplicationWithLatestDeploymentAndBuild.md
   - docs/models/shared/ContainerPort.md
   - docs/models/shared/TransportType.md
-  - docs/models/shared/LoginResponse.md
-  - docs/models/shared/LoginGoogleRequest.md
-  - docs/models/shared/LoginNicknameRequest.md
-  - docs/models/shared/InvoiceStatus.md
+  - docs/models/shared/RegionalContainerTags.md
+  - docs/models/shared/Build.md
+  - docs/models/shared/BuildStatus.md
+  - docs/models/shared/Region.md
+  - docs/models/shared/PlayerTokenObject.md
+  - docs/models/shared/GoogleIdTokenObject.md
+  - docs/models/shared/NicknameObject.md
   - docs/models/shared/Invoice.md
+  - docs/models/shared/InvoiceStatus.md
   - docs/models/shared/PaymentMethod.md
   - docs/models/shared/LinkPaymentMethod.md
   - docs/models/shared/CardPaymentMethod.md
   - docs/models/shared/CardBrand.md
   - docs/models/shared/AchPaymentMethod.md
   - docs/models/shared/CustomerPortalUrl.md
-  - docs/models/shared/RegionalContainerTags.md
-  - docs/models/shared/BuildStatus.md
-  - docs/models/shared/Build.md
-  - docs/models/shared/Region.md
   - docs/models/shared/CreateBuildParams.md
+  - docs/models/shared/BuildWithUploadUrlRegionalContainerTags.md
+  - docs/models/shared/UploadBodyParams.md
+  - docs/models/shared/BuildWithUploadUrl.md
+  - docs/models/shared/Env.md
+  - docs/models/shared/DeploymentTransportType.md
+  - docs/models/shared/Deployment.md
+  - docs/models/shared/PlanName.md
   - docs/models/shared/DeploymentConfigEnv.md
   - docs/models/shared/DeploymentConfig.md
-  - docs/models/shared/DiscoveryResponse.md
-  - docs/models/shared/State.md
+  - docs/models/shared/DeploymentV2Env.md
+  - docs/models/shared/DeploymentV2.md
+  - docs/models/shared/DeploymentConfigV2Env.md
+  - docs/models/shared/DeploymentConfigV2.md
+  - docs/models/shared/PingEndpoints.md
+  - docs/models/shared/CreatedBy.md
   - docs/models/shared/Lobby.md
   - docs/models/shared/LobbyVisibility.md
-  - docs/models/shared/LobbyInitialConfig.md
   - docs/models/shared/CreateLobbyParams.md
-  - docs/models/shared/SetLobbyStateParamsState.md
   - docs/models/shared/SetLobbyStateParams.md
+  - docs/models/shared/LobbyV3CreatedBy.md
   - docs/models/shared/LobbyV3.md
   - docs/models/shared/CreateLobbyV3Params.md
-  - docs/models/shared/VerificationEmailResponseStatus.md
-  - docs/models/shared/VerificationEmailResponse.md
+  - docs/models/shared/VerificationEmailSuccess.md
   - docs/models/shared/VerificationEmailRequest.md
-  - docs/models/shared/MetricsResponse.md
+  - docs/models/shared/MetricsData.md
   - docs/models/shared/MetricValue.md
   - docs/models/shared/MetricName.md
+  - docs/models/shared/OrgMembersPage.md
+  - docs/models/shared/OrgMember.md
+  - docs/models/shared/PendingOrgInvitesPage.md
+  - docs/models/shared/PendingOrgInvite.md
+  - docs/models/shared/OrgsPage.md
+  - docs/models/shared/Organization.md
+  - docs/models/shared/CreateUserInvite.md
+  - docs/models/shared/RescindUserInvite.md
+  - docs/models/shared/ProcessExposedPort.md
   - docs/models/shared/Process.md
   - docs/models/shared/ExposedPort.md
+  - docs/models/shared/ProcessWithRoomsExposedPort.md
   - docs/models/shared/ProcessWithRooms.md
   - docs/models/shared/RoomWithoutAllocationsCurrentAllocation.md
   - docs/models/shared/RoomWithoutAllocations.md
   - docs/models/shared/RoomStatus.md
+  - docs/models/shared/ProcessV2ExposedPort.md
   - docs/models/shared/ProcessV2.md
   - docs/models/shared/ProcessStatus.md
   - docs/models/shared/CreateRoomParams.md
@@ -519,27 +708,37 @@ generatedFiles:
   - docs/models/shared/CurrentAllocation.md
   - docs/models/shared/Room.md
   - docs/models/shared/RoomAllocation.md
-  - docs/models/shared/CreateRoomResponseStatus.md
-  - docs/models/shared/CreateRoomResponse.md
-  - docs/models/shared/ConnectionInfoV2Status.md
+  - docs/models/shared/RoomConnectionData.md
+  - docs/models/shared/RoomReadyStatus.md
   - docs/models/shared/ConnectionInfoV2.md
   - docs/models/shared/UpdateRoomConfigParams.md
+  - docs/models/shared/CreatedOrgToken.md
+  - docs/models/shared/OrgToken.md
+  - docs/models/shared/OrgTokenStatus.md
+  - docs/models/shared/CreateOrgToken.md
+  - docs/models/shared/ListOrgTokens.md
   - docs/models/shared/Security.md
+  - docs/models/errors/ApiError.md
   - docs/sdks/hathoracloud/README.md
-  - docs/sdks/appv1/README.md
+  - docs/sdks/appsv1/README.md
   - docs/sdks/authv1/README.md
   - docs/sdks/billingv1/README.md
-  - docs/sdks/buildv1/README.md
-  - docs/sdks/deploymentv1/README.md
+  - docs/sdks/buildsv1/README.md
+  - docs/sdks/buildsv2/README.md
+  - docs/sdks/deploymentsv1/README.md
+  - docs/sdks/deploymentsv2/README.md
   - docs/sdks/discoveryv1/README.md
-  - docs/sdks/lobbyv1/README.md
-  - docs/sdks/lobbyv2/README.md
-  - docs/sdks/lobbyv3/README.md
-  - docs/sdks/logv1/README.md
+  - docs/sdks/discoveryv2/README.md
+  - docs/sdks/lobbiesv1/README.md
+  - docs/sdks/lobbiesv2/README.md
+  - docs/sdks/lobbiesv3/README.md
+  - docs/sdks/logsv1/README.md
   - docs/sdks/managementv1/README.md
   - docs/sdks/metricsv1/README.md
+  - docs/sdks/organizationsv1/README.md
   - docs/sdks/processesv1/README.md
   - docs/sdks/processesv2/README.md
-  - docs/sdks/roomv1/README.md
-  - docs/sdks/roomv2/README.md
+  - docs/sdks/roomsv1/README.md
+  - docs/sdks/roomsv2/README.md
+  - docs/sdks/tokensv1/README.md
   - USAGE.md

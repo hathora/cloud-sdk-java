@@ -185,3 +185,67 @@ Based on:
 - Speakeasy CLI 1.174.2 (2.250.19) https://github.com/speakeasy-api/speakeasy
 ### Generated
 - [java v2.0.0] .
+
+## 2024-03-01 19:58:45
+### Changes
+Based on:
+- OpenAPI Doc 0.0.1 
+- Speakeasy CLI 1.199.0 (2.276.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.1.0] .
+
+## 2024-03-08 00:23:17
+### Changes
+Based on:
+- OpenAPI Doc 0.0.1 
+- Speakeasy CLI 1.204.1 (2.279.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.2.0] .
+
+## 2024-03-14 00:22:50
+### Changes
+Based on:
+- OpenAPI Doc 0.0.1 
+- Speakeasy CLI 1.209.2 (2.281.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.3.0] .
+
+## 2024-06-20 00:25:00
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.310.0 (2.347.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.4.0] .
+
+## 2024-06-21 00:24:59
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.313.0 (2.347.8) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.4.1] .
+
+## 2024-06-23 00:27:45
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.314.2 (2.349.6) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.5.0] .
+
+## 2024-06-26 00:25:18
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.318.0 (2.352.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.6.0] .
+
+## 2024-07-01 00:30:05
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.322.3 (2.354.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.7.0] .
