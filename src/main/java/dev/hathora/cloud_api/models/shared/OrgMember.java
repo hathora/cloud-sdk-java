@@ -29,6 +29,9 @@ public class OrgMember {
     @JsonProperty("invitedBy")
     private String invitedBy;
 
+    @JsonProperty("joinedAt")
+    private OffsetDateTime joinedAt;
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastLogin")
     private Optional<? extends OffsetDateTime> lastLogin;
@@ -38,9 +41,6 @@ public class OrgMember {
      */
     @JsonProperty("orgId")
     private String orgId;
-
-    @JsonProperty("updatedAt")
-    private OffsetDateTime updatedAt;
 
     /**
      * A user's email.
@@ -52,31 +52,31 @@ public class OrgMember {
     public OrgMember(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("invitedBy") String invitedBy,
+            @JsonProperty("joinedAt") OffsetDateTime joinedAt,
             @JsonProperty("lastLogin") Optional<? extends OffsetDateTime> lastLogin,
             @JsonProperty("orgId") String orgId,
-            @JsonProperty("updatedAt") OffsetDateTime updatedAt,
             @JsonProperty("userEmail") String userEmail) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(invitedBy, "invitedBy");
+        Utils.checkNotNull(joinedAt, "joinedAt");
         Utils.checkNotNull(lastLogin, "lastLogin");
         Utils.checkNotNull(orgId, "orgId");
-        Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(userEmail, "userEmail");
         this.createdAt = createdAt;
         this.invitedBy = invitedBy;
+        this.joinedAt = joinedAt;
         this.lastLogin = lastLogin;
         this.orgId = orgId;
-        this.updatedAt = updatedAt;
         this.userEmail = userEmail;
     }
     
     public OrgMember(
             OffsetDateTime createdAt,
             String invitedBy,
+            OffsetDateTime joinedAt,
             String orgId,
-            OffsetDateTime updatedAt,
             String userEmail) {
-        this(createdAt, invitedBy, Optional.empty(), orgId, updatedAt, userEmail);
+        this(createdAt, invitedBy, joinedAt, Optional.empty(), orgId, userEmail);
     }
 
     @JsonIgnore
@@ -87,6 +87,11 @@ public class OrgMember {
     @JsonIgnore
     public String invitedBy() {
         return invitedBy;
+    }
+
+    @JsonIgnore
+    public OffsetDateTime joinedAt() {
+        return joinedAt;
     }
 
     @SuppressWarnings("unchecked")
@@ -101,11 +106,6 @@ public class OrgMember {
     @JsonIgnore
     public String orgId() {
         return orgId;
-    }
-
-    @JsonIgnore
-    public OffsetDateTime updatedAt() {
-        return updatedAt;
     }
 
     /**
@@ -132,6 +132,12 @@ public class OrgMember {
         return this;
     }
 
+    public OrgMember withJoinedAt(OffsetDateTime joinedAt) {
+        Utils.checkNotNull(joinedAt, "joinedAt");
+        this.joinedAt = joinedAt;
+        return this;
+    }
+
     public OrgMember withLastLogin(OffsetDateTime lastLogin) {
         Utils.checkNotNull(lastLogin, "lastLogin");
         this.lastLogin = Optional.ofNullable(lastLogin);
@@ -150,12 +156,6 @@ public class OrgMember {
     public OrgMember withOrgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
-        return this;
-    }
-
-    public OrgMember withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
         return this;
     }
 
@@ -180,9 +180,9 @@ public class OrgMember {
         return 
             java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
             java.util.Objects.deepEquals(this.invitedBy, other.invitedBy) &&
+            java.util.Objects.deepEquals(this.joinedAt, other.joinedAt) &&
             java.util.Objects.deepEquals(this.lastLogin, other.lastLogin) &&
             java.util.Objects.deepEquals(this.orgId, other.orgId) &&
-            java.util.Objects.deepEquals(this.updatedAt, other.updatedAt) &&
             java.util.Objects.deepEquals(this.userEmail, other.userEmail);
     }
     
@@ -191,9 +191,9 @@ public class OrgMember {
         return java.util.Objects.hash(
             createdAt,
             invitedBy,
+            joinedAt,
             lastLogin,
             orgId,
-            updatedAt,
             userEmail);
     }
     
@@ -202,9 +202,9 @@ public class OrgMember {
         return Utils.toString(OrgMember.class,
                 "createdAt", createdAt,
                 "invitedBy", invitedBy,
+                "joinedAt", joinedAt,
                 "lastLogin", lastLogin,
                 "orgId", orgId,
-                "updatedAt", updatedAt,
                 "userEmail", userEmail);
     }
     
@@ -214,11 +214,11 @@ public class OrgMember {
  
         private String invitedBy;
  
+        private OffsetDateTime joinedAt;
+ 
         private Optional<? extends OffsetDateTime> lastLogin = Optional.empty();
  
         private String orgId;
- 
-        private OffsetDateTime updatedAt;
  
         private String userEmail;  
         
@@ -235,6 +235,12 @@ public class OrgMember {
         public Builder invitedBy(String invitedBy) {
             Utils.checkNotNull(invitedBy, "invitedBy");
             this.invitedBy = invitedBy;
+            return this;
+        }
+
+        public Builder joinedAt(OffsetDateTime joinedAt) {
+            Utils.checkNotNull(joinedAt, "joinedAt");
+            this.joinedAt = joinedAt;
             return this;
         }
 
@@ -259,12 +265,6 @@ public class OrgMember {
             return this;
         }
 
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
         /**
          * A user's email.
          */
@@ -278,9 +278,9 @@ public class OrgMember {
             return new OrgMember(
                 createdAt,
                 invitedBy,
+                joinedAt,
                 lastLogin,
                 orgId,
-                updatedAt,
                 userEmail);
         }
     }

@@ -79,13 +79,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateBuildResponse>](../../models/operations/CreateBuildResponse.md)**
+**[dev.hathora.cloud_api.models.operations.CreateBuildResponse](../../models/operations/CreateBuildResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## createBuildWithUploadUrl
 
@@ -156,13 +156,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateBuildWithUploadUrlResponse>](../../models/operations/CreateBuildWithUploadUrlResponse.md)**
+**[dev.hathora.cloud_api.models.operations.CreateBuildWithUploadUrlResponse](../../models/operations/CreateBuildWithUploadUrlResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## deleteBuild
 
@@ -229,13 +229,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.DeleteBuildResponse>](../../models/operations/DeleteBuildResponse.md)**
+**[dev.hathora.cloud_api.models.operations.DeleteBuildResponse](../../models/operations/DeleteBuildResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,422,429,500    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getBuildInfo
 
@@ -304,13 +304,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetBuildInfoResponse>](../../models/operations/GetBuildInfoResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetBuildInfoResponse](../../models/operations/GetBuildInfoResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getBuilds
 
@@ -377,13 +377,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetBuildsResponse>](../../models/operations/GetBuildsResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetBuildsResponse](../../models/operations/GetBuildsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## runBuild
 
@@ -421,10 +421,6 @@ public class Application {
 
             RunBuildResponse res = sdk.buildsV2().runBuild()
                 .requestBody(RunBuildRequestBody.builder()
-                    .file(RunBuildFile.builder()
-                            .content("0xcBBBDB7B76".getBytes())
-                            .fileName("<value>")
-                            .build())
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
@@ -459,10 +455,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.RunBuildResponse>](../../models/operations/RunBuildResponse.md)**
+**[dev.hathora.cloud_api.models.operations.RunBuildResponse](../../models/operations/RunBuildResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 400,401,404,429,500    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
