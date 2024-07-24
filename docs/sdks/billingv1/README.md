@@ -68,13 +68,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetBalanceResponse>](../../models/operations/GetBalanceResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetBalanceResponse](../../models/operations/GetBalanceResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getInvoices
 
@@ -132,13 +132,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetInvoicesResponse>](../../models/operations/GetInvoicesResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetInvoicesResponse](../../models/operations/GetInvoicesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getPaymentMethod
 
@@ -196,13 +196,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse>](../../models/operations/GetPaymentMethodResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetPaymentMethodResponse](../../models/operations/GetPaymentMethodResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## initStripeCustomerPortalUrl
 
@@ -271,10 +271,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse>](../../models/operations/InitStripeCustomerPortalUrlResponse.md)**
+**[dev.hathora.cloud_api.models.operations.InitStripeCustomerPortalUrlResponse](../../models/operations/InitStripeCustomerPortalUrlResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

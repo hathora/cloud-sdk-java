@@ -80,13 +80,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse>](../../models/operations/GetProcessInfoDeprecatedResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse](../../models/operations/GetProcessInfoDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## ~~getRunningProcesses~~
 
@@ -157,13 +157,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse>](../../models/operations/GetRunningProcessesResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse](../../models/operations/GetRunningProcessesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## ~~getStoppedProcesses~~
 
@@ -234,10 +234,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse>](../../models/operations/GetStoppedProcessesResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse](../../models/operations/GetStoppedProcessesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

@@ -72,10 +72,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.SendVerificationEmailResponse>](../../models/operations/SendVerificationEmailResponse.md)**
+**[dev.hathora.cloud_api.models.operations.SendVerificationEmailResponse](../../models/operations/SendVerificationEmailResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,429,500            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

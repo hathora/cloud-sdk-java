@@ -79,13 +79,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateProcessResponse>](../../models/operations/CreateProcessResponse.md)**
+**[dev.hathora.cloud_api.models.operations.CreateProcessResponse](../../models/operations/CreateProcessResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,402,404,429,500    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getLatestProcesses
 
@@ -158,13 +158,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetLatestProcessesResponse>](../../models/operations/GetLatestProcessesResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetLatestProcessesResponse](../../models/operations/GetLatestProcessesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getProcessInfo
 
@@ -233,13 +233,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetProcessInfoResponse>](../../models/operations/GetProcessInfoResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetProcessInfoResponse](../../models/operations/GetProcessInfoResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## stopProcess
 
@@ -306,10 +306,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.StopProcessResponse>](../../models/operations/StopProcessResponse.md)**
+**[dev.hathora.cloud_api.models.operations.StopProcessResponse](../../models/operations/StopProcessResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

@@ -72,13 +72,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.LoginAnonymousResponse>](../../models/operations/LoginAnonymousResponse.md)**
+**[dev.hathora.cloud_api.models.operations.LoginAnonymousResponse](../../models/operations/LoginAnonymousResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 404,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## loginGoogle
 
@@ -145,13 +145,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.LoginGoogleResponse>](../../models/operations/LoginGoogleResponse.md)**
+**[dev.hathora.cloud_api.models.operations.LoginGoogleResponse](../../models/operations/LoginGoogleResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## loginNickname
 
@@ -218,10 +218,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.LoginNicknameResponse>](../../models/operations/LoginNicknameResponse.md)**
+**[dev.hathora.cloud_api.models.operations.LoginNicknameResponse](../../models/operations/LoginNicknameResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 404,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

@@ -75,13 +75,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.DownloadLogForProcessResponse>](../../models/operations/DownloadLogForProcessResponse.md)**
+**[dev.hathora.cloud_api.models.operations.DownloadLogForProcessResponse](../../models/operations/DownloadLogForProcessResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 400,401,404,410,429    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## ~~getLogsForApp~~
 
@@ -154,13 +154,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetLogsForAppResponse>](../../models/operations/GetLogsForAppResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetLogsForAppResponse](../../models/operations/GetLogsForAppResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## ~~getLogsForDeployment~~
 
@@ -234,13 +234,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetLogsForDeploymentResponse>](../../models/operations/GetLogsForDeploymentResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetLogsForDeploymentResponse](../../models/operations/GetLogsForDeploymentResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getLogsForProcess
 
@@ -312,10 +312,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetLogsForProcessResponse>](../../models/operations/GetLogsForProcessResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetLogsForProcessResponse](../../models/operations/GetLogsForProcessResponse.md)**
 ### Errors
 
 | Error Object            | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
 | models/errors/ApiError  | 400,401,404,410,429,500 | application/json        |
-| models/errors/SDKError  | 4xx-5xx                 | */*                     |
+| models/errors/SDKError  | 4xx-5xx                 | \*\/*                   |

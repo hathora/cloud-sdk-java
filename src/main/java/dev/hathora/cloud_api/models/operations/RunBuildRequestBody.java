@@ -14,22 +14,28 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Optional;
 
 public class RunBuildRequestBody {
 
     @SpeakeasyMetadata("multipartForm:file")
-    private RunBuildFile file;
+    private Optional<? extends RunBuildFile> file;
 
     @JsonCreator
     public RunBuildRequestBody(
-            RunBuildFile file) {
+            Optional<? extends RunBuildFile> file) {
         Utils.checkNotNull(file, "file");
         this.file = file;
     }
+    
+    public RunBuildRequestBody() {
+        this(Optional.empty());
+    }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public RunBuildFile file() {
-        return file;
+    public Optional<RunBuildFile> file() {
+        return (Optional<RunBuildFile>) file;
     }
 
     public final static Builder builder() {
@@ -37,6 +43,12 @@ public class RunBuildRequestBody {
     }
 
     public RunBuildRequestBody withFile(RunBuildFile file) {
+        Utils.checkNotNull(file, "file");
+        this.file = Optional.ofNullable(file);
+        return this;
+    }
+
+    public RunBuildRequestBody withFile(Optional<? extends RunBuildFile> file) {
         Utils.checkNotNull(file, "file");
         this.file = file;
         return this;
@@ -69,13 +81,19 @@ public class RunBuildRequestBody {
     
     public final static class Builder {
  
-        private RunBuildFile file;  
+        private Optional<? extends RunBuildFile> file = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
         public Builder file(RunBuildFile file) {
+            Utils.checkNotNull(file, "file");
+            this.file = Optional.ofNullable(file);
+            return this;
+        }
+
+        public Builder file(Optional<? extends RunBuildFile> file) {
             Utils.checkNotNull(file, "file");
             this.file = file;
             return this;
