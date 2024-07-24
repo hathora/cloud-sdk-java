@@ -16,3 +16,7 @@ targets:
                 ossrhPassword: $ossrh_password
                 gpgSecretKey: $gpg_secret_key
                 gpgPassPhrase: $gpg_pass_phrase
+        codeSamples:
+            output: codeSamples.yaml
+            registry:
+                location: registry.speakeasyapi.dev/hathora/hathora/code-samples-java-hathora-java
