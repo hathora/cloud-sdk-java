@@ -80,13 +80,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateBuildDeprecatedResponse>](../../models/operations/CreateBuildDeprecatedResponse.md)**
+**[dev.hathora.cloud_api.models.operations.CreateBuildDeprecatedResponse](../../models/operations/CreateBuildDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## ~~deleteBuildDeprecated~~
 
@@ -155,13 +155,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.DeleteBuildDeprecatedResponse>](../../models/operations/DeleteBuildDeprecatedResponse.md)**
+**[dev.hathora.cloud_api.models.operations.DeleteBuildDeprecatedResponse](../../models/operations/DeleteBuildDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,422,429,500    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## ~~getBuildInfoDeprecated~~
 
@@ -232,13 +232,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetBuildInfoDeprecatedResponse>](../../models/operations/GetBuildInfoDeprecatedResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetBuildInfoDeprecatedResponse](../../models/operations/GetBuildInfoDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## ~~getBuildsDeprecated~~
 
@@ -307,13 +307,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetBuildsDeprecatedResponse>](../../models/operations/GetBuildsDeprecatedResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetBuildsDeprecatedResponse](../../models/operations/GetBuildsDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## ~~runBuildDeprecated~~
 
@@ -391,10 +391,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.RunBuildDeprecatedResponse>](../../models/operations/RunBuildDeprecatedResponse.md)**
+**[dev.hathora.cloud_api.models.operations.RunBuildDeprecatedResponse](../../models/operations/RunBuildDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 400,401,404,429,500    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

@@ -73,13 +73,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.AcceptInviteResponse>](../../models/operations/AcceptInviteResponse.md)**
+**[dev.hathora.cloud_api.models.operations.AcceptInviteResponse](../../models/operations/AcceptInviteResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getOrgMembers
 
@@ -144,13 +144,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetOrgMembersResponse>](../../models/operations/GetOrgMembersResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetOrgMembersResponse](../../models/operations/GetOrgMembersResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getOrgPendingInvites
 
@@ -215,13 +215,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetOrgPendingInvitesResponse>](../../models/operations/GetOrgPendingInvitesResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetOrgPendingInvitesResponse](../../models/operations/GetOrgPendingInvitesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getOrgs
 
@@ -281,13 +281,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetOrgsResponse>](../../models/operations/GetOrgsResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetOrgsResponse](../../models/operations/GetOrgsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getUserPendingInvites
 
@@ -345,13 +345,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetUserPendingInvitesResponse>](../../models/operations/GetUserPendingInvitesResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetUserPendingInvitesResponse](../../models/operations/GetUserPendingInvitesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## inviteUser
 
@@ -420,13 +420,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.InviteUserResponse>](../../models/operations/InviteUserResponse.md)**
+**[dev.hathora.cloud_api.models.operations.InviteUserResponse](../../models/operations/InviteUserResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,422,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## rejectInvite
 
@@ -489,13 +489,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.RejectInviteResponse>](../../models/operations/RejectInviteResponse.md)**
+**[dev.hathora.cloud_api.models.operations.RejectInviteResponse](../../models/operations/RejectInviteResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## rescindInvite
 
@@ -562,10 +562,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.RescindInviteResponse>](../../models/operations/RescindInviteResponse.md)**
+**[dev.hathora.cloud_api.models.operations.RescindInviteResponse](../../models/operations/RescindInviteResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/ApiError | 401,404,422,429,500    | application/json       |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

@@ -17,7 +17,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-api:2.7.0'
+implementation 'dev.hathora:cloud-api:2.7.1'
 ```
 
 Maven:
@@ -25,7 +25,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-api</artifactId>
-    <version>2.7.0</version>
+    <version>2.7.1</version>
 </dependency>
 ```
 
@@ -335,7 +335,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,422,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ### Example
 

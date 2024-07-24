@@ -84,13 +84,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateLobbyResponse>](../../models/operations/CreateLobbyResponse.md)**
+**[dev.hathora.cloud_api.models.operations.CreateLobbyResponse](../../models/operations/CreateLobbyResponse.md)**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | */*                         |
+| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
 
 ## getLobbyInfoByRoomId
 
@@ -155,13 +155,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetLobbyInfoByRoomIdResponse>](../../models/operations/GetLobbyInfoByRoomIdResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetLobbyInfoByRoomIdResponse](../../models/operations/GetLobbyInfoByRoomIdResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 404,422,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getLobbyInfoByShortCode
 
@@ -226,13 +226,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetLobbyInfoByShortCodeResponse>](../../models/operations/GetLobbyInfoByShortCodeResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetLobbyInfoByShortCodeResponse](../../models/operations/GetLobbyInfoByShortCodeResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 404,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## listActivePublicLobbies
 
@@ -297,10 +297,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesResponse>](../../models/operations/ListActivePublicLobbiesResponse.md)**
+**[dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesResponse](../../models/operations/ListActivePublicLobbiesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

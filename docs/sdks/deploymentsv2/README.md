@@ -95,13 +95,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateDeploymentResponse>](../../models/operations/CreateDeploymentResponse.md)**
+**[dev.hathora.cloud_api.models.operations.CreateDeploymentResponse](../../models/operations/CreateDeploymentResponse.md)**
 ### Errors
 
 | Error Object            | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
 | models/errors/ApiError  | 400,401,404,422,429,500 | application/json        |
-| models/errors/SDKError  | 4xx-5xx                 | */*                     |
+| models/errors/SDKError  | 4xx-5xx                 | \*\/*                   |
 
 ## getDeploymentInfo
 
@@ -170,13 +170,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse>](../../models/operations/GetDeploymentInfoResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetDeploymentInfoResponse](../../models/operations/GetDeploymentInfoResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getDeployments
 
@@ -243,13 +243,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetDeploymentsResponse>](../../models/operations/GetDeploymentsResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetDeploymentsResponse](../../models/operations/GetDeploymentsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getLatestDeployment
 
@@ -316,10 +316,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetLatestDeploymentResponse>](../../models/operations/GetLatestDeploymentResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetLatestDeploymentResponse](../../models/operations/GetLatestDeploymentResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

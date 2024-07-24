@@ -1,9 +1,9 @@
-speakeasyVersion: 1.322.3
+speakeasyVersion: 1.345.4
 sources:
     java-source:
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:e103fd95afb574cca7c81943217e0b27eb068485851a9aa4021e73774f7240d6
-        sourceBlobDigest: sha256:440be8d203f83f7d2891a89d537408e67dfd8b0ae841d24a2ce5e47390e93d13
+        sourceRevisionDigest: sha256:2d2a67b41e411019b117beb2e1b72306b6fd3481ed0d37de77a7e673f0e29859
+        sourceBlobDigest: sha256:b197e72535e7cfad45c370ff0abe0efd82e7ca13c6f0ba8da44d0b07b4a557c5
         tags:
             - latest
             - main
@@ -11,8 +11,8 @@ targets:
     hathora-java:
         source: java-source
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:e103fd95afb574cca7c81943217e0b27eb068485851a9aa4021e73774f7240d6
-        sourceBlobDigest: sha256:440be8d203f83f7d2891a89d537408e67dfd8b0ae841d24a2ce5e47390e93d13
+        sourceRevisionDigest: sha256:2d2a67b41e411019b117beb2e1b72306b6fd3481ed0d37de77a7e673f0e29859
+        sourceBlobDigest: sha256:b197e72535e7cfad45c370ff0abe0efd82e7ca13c6f0ba8da44d0b07b4a557c5
         outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0

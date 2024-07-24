@@ -77,13 +77,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedResponse>](../../models/operations/CreatePrivateLobbyDeprecatedResponse.md)**
+**[dev.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedResponse](../../models/operations/CreatePrivateLobbyDeprecatedResponse.md)**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | */*                         |
+| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
 
 ## ~~createPublicLobbyDeprecated~~
 
@@ -155,13 +155,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedResponse>](../../models/operations/CreatePublicLobbyDeprecatedResponse.md)**
+**[dev.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedResponse](../../models/operations/CreatePublicLobbyDeprecatedResponse.md)**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | */*                         |
+| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
 
 ## ~~listActivePublicLobbiesDeprecatedV1~~
 
@@ -228,10 +228,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedV1Response>](../../models/operations/ListActivePublicLobbiesDeprecatedV1Response.md)**
+**[dev.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedV1Response](../../models/operations/ListActivePublicLobbiesDeprecatedV1Response.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 404,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
