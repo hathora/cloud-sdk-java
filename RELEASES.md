@@ -257,3 +257,13 @@ Based on:
 - Speakeasy CLI 1.345.4 (2.378.3) https://github.com/speakeasy-api/speakeasy
 ### Generated
 - [java v2.7.1] .
+
+## 2024-07-24 21:07:57
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.345.4 (2.378.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.7.3] .
+### Releases
+- [Maven Central v2.7.3] https://central.sonatype.com/artifact/dev.hathora/cloud-api/2.7.3 - .
