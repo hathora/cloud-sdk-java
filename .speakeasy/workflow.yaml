@@ -10,3 +10,7 @@ targets:
     hathora-java:
         target: java
         source: java-source
+        codeSamples:
+            output: codeSamples.yaml
+            registry:
+                location: registry.speakeasyapi.dev/hathora/hathora/code-samples-java-hathora-java
