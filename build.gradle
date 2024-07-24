@@ -75,7 +75,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.hathora'
             artifactId = 'cloud-api'
-            version = '2.7.1'
+            version = '2.7.2'
 
             from components.java
 
