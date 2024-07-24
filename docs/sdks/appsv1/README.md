@@ -80,13 +80,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateAppResponse>](../../models/operations/CreateAppResponse.md)**
+**[dev.hathora.cloud_api.models.operations.CreateAppResponse](../../models/operations/CreateAppResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,422,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## deleteApp
 
@@ -151,13 +151,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.DeleteAppResponse>](../../models/operations/DeleteAppResponse.md)**
+**[dev.hathora.cloud_api.models.operations.DeleteAppResponse](../../models/operations/DeleteAppResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getAppInfo
 
@@ -224,13 +224,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetAppInfoResponse>](../../models/operations/GetAppInfoResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetAppInfoResponse](../../models/operations/GetAppInfoResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getApps
 
@@ -290,13 +290,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetAppsResponse>](../../models/operations/GetAppsResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetAppsResponse](../../models/operations/GetAppsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## updateApp
 
@@ -369,10 +369,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.UpdateAppResponse>](../../models/operations/UpdateAppResponse.md)**
+**[dev.hathora.cloud_api.models.operations.UpdateAppResponse](../../models/operations/UpdateAppResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,422,429,500    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

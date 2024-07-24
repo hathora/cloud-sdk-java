@@ -84,13 +84,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateRoomResponse>](../../models/operations/CreateRoomResponse.md)**
+**[dev.hathora.cloud_api.models.operations.CreateRoomResponse](../../models/operations/CreateRoomResponse.md)**
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | models/errors/ApiError          | 400,401,402,403,404,422,429,500 | application/json                |
-| models/errors/SDKError          | 4xx-5xx                         | */*                             |
+| models/errors/SDKError          | 4xx-5xx                         | \*\/*                           |
 
 ## destroyRoom
 
@@ -157,13 +157,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.DestroyRoomResponse>](../../models/operations/DestroyRoomResponse.md)**
+**[dev.hathora.cloud_api.models.operations.DestroyRoomResponse](../../models/operations/DestroyRoomResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getActiveRoomsForProcess
 
@@ -232,13 +232,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse>](../../models/operations/GetActiveRoomsForProcessResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessResponse](../../models/operations/GetActiveRoomsForProcessResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getConnectionInfo
 
@@ -303,13 +303,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse>](../../models/operations/GetConnectionInfoResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetConnectionInfoResponse](../../models/operations/GetConnectionInfoResponse.md)**
 ### Errors
 
 | Error Object            | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
 | models/errors/ApiError  | 400,402,404,422,429,500 | application/json        |
-| models/errors/SDKError  | 4xx-5xx                 | */*                     |
+| models/errors/SDKError  | 4xx-5xx                 | \*\/*                   |
 
 ## getInactiveRoomsForProcess
 
@@ -378,13 +378,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse>](../../models/operations/GetInactiveRoomsForProcessResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessResponse](../../models/operations/GetInactiveRoomsForProcessResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getRoomInfo
 
@@ -453,13 +453,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetRoomInfoResponse>](../../models/operations/GetRoomInfoResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetRoomInfoResponse](../../models/operations/GetRoomInfoResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,422,429        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## ~~suspendRoomV2Deprecated~~
 
@@ -528,13 +528,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.SuspendRoomV2DeprecatedResponse>](../../models/operations/SuspendRoomV2DeprecatedResponse.md)**
+**[dev.hathora.cloud_api.models.operations.SuspendRoomV2DeprecatedResponse](../../models/operations/SuspendRoomV2DeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## updateRoomConfig
 
@@ -603,10 +603,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.UpdateRoomConfigResponse>](../../models/operations/UpdateRoomConfigResponse.md)**
+**[dev.hathora.cloud_api.models.operations.UpdateRoomConfigResponse](../../models/operations/UpdateRoomConfigResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

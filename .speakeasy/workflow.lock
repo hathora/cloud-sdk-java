@@ -1,9 +1,9 @@
-speakeasyVersion: 1.322.3
+speakeasyVersion: 1.345.4
 sources:
     java-source:
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:e103fd95afb574cca7c81943217e0b27eb068485851a9aa4021e73774f7240d6
-        sourceBlobDigest: sha256:440be8d203f83f7d2891a89d537408e67dfd8b0ae841d24a2ce5e47390e93d13
+        sourceRevisionDigest: sha256:6b97283f12f20997549a87d7f3b06dc2e8660e33319c1c15d103a24faabb3c08
+        sourceBlobDigest: sha256:9b1aa86374d8cade475959b91024fad9bbbec6a3a9ae2d8455d10cdb3162de46
         tags:
             - latest
             - main
@@ -11,8 +11,10 @@ targets:
     hathora-java:
         source: java-source
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:e103fd95afb574cca7c81943217e0b27eb068485851a9aa4021e73774f7240d6
-        sourceBlobDigest: sha256:440be8d203f83f7d2891a89d537408e67dfd8b0ae841d24a2ce5e47390e93d13
+        sourceRevisionDigest: sha256:6b97283f12f20997549a87d7f3b06dc2e8660e33319c1c15d103a24faabb3c08
+        sourceBlobDigest: sha256:9b1aa86374d8cade475959b91024fad9bbbec6a3a9ae2d8455d10cdb3162de46
+        codeSamplesNamespace: code-samples-java-hathora-java
+        codeSamplesRevisionDigest: sha256:87209ffd7e5d1cad71f677ed96ecfdde4c340bbfd86f5a2abbf6d486e99a4ded
         outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
@@ -27,3 +29,7 @@ workflow:
         hathora-java:
             target: java
             source: java-source
+            codeSamples:
+                output: codeSamples.yaml
+                registry:
+                    location: registry.speakeasyapi.dev/hathora/hathora/code-samples-java-hathora-java

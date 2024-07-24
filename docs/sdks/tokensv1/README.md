@@ -80,13 +80,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateOrgTokenResponse>](../../models/operations/CreateOrgTokenResponse.md)**
+**[dev.hathora.cloud_api.models.operations.CreateOrgTokenResponse](../../models/operations/CreateOrgTokenResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,422,429        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getOrgTokens
 
@@ -153,13 +153,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetOrgTokensResponse>](../../models/operations/GetOrgTokensResponse.md)**
+**[dev.hathora.cloud_api.models.operations.GetOrgTokensResponse](../../models/operations/GetOrgTokensResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## revokeOrgToken
 
@@ -228,10 +228,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.RevokeOrgTokenResponse>](../../models/operations/RevokeOrgTokenResponse.md)**
+**[dev.hathora.cloud_api.models.operations.RevokeOrgTokenResponse](../../models/operations/RevokeOrgTokenResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
