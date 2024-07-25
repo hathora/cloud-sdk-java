@@ -20,11 +20,11 @@ java:
   additionalPlugins: []
   artifactID: cloud-api
   clientServerStatusCodesAsErrors: true
-  companyEmail: info@mycompany.com
-  companyName: My Company
-  companyURL: www.mycompany.com
+  companyEmail: hello@hathora.dev
+  companyName: Hathora
+  companyURL: https://hathora.dev/
   flattenGlobalSecurity: false
-  githubURL: github.com/owner/repo
+  githubURL: github.com/hathora/cloud-sdk-java
   groupID: dev.hathora
   imports:
     option: openapi
