@@ -75,17 +75,17 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.hathora'
             artifactId = 'cloud-api'
-            version = '2.7.3'
+            version = '2.7.4'
 
             from components.java
 
             pom {
-                name = 'My Company Java SDK'
-                description = 'SDK enabling Java developers to easily integrate with the My Company API.'
-                url = 'https://github.com/owner/repo'
+                name = 'Hathora Java SDK'
+                description = 'SDK enabling Java developers to easily integrate with the Hathora API.'
+                url = 'https://github.com/hathora/cloud-sdk-java'
                 scm {
-                    url = 'github.com/owner/repo'
-                    connection = 'scm:git:ssh://git@github.com/owner/repo.git'
+                    url = 'github.com/hathora/cloud-sdk-java'
+                    connection = 'scm:git:ssh://git@github.com/hathora/cloud-sdk-java.git'
                 }
                 licenses {
                     license {
@@ -95,14 +95,14 @@ publishing {
                 }
                 developers {
                     developer {
-                        name = 'My Company'
-                        organization = 'My Company'
-                        email = 'info@mycompany.com'
+                        name = 'Hathora'
+                        organization = 'Hathora'
+                        email = 'hello@hathora.dev'
                     }
                 }
                 organization {
-                    name = 'My Company'
-                    url = 'www.mycompany.com'
+                    name = 'Hathora'
+                    url = 'https://hathora.dev/'
                 }
             }
         }
