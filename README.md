@@ -17,7 +17,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-api:2.7.5'
+implementation 'dev.hathora:cloud-api:2.7.6'
 ```
 
 Maven:
@@ -25,7 +25,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-api</artifactId>
-    <version>2.7.5</version>
+    <version>2.7.6</version>
 </dependency>
 ```
 
