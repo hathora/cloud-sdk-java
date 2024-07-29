@@ -10,7 +10,7 @@ permissions:
       - main
     paths:
       - RELEASES.md
-      - '*/RELEASES.md'
+      - "*/RELEASES.md"
 jobs:
   publish:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
@@ -19,4 +19,5 @@ jobs:
       java_gpg_passphrase: ${{ secrets.JAVA_GPG_PASSPHRASE }}
       java_gpg_secret_key: ${{ secrets.JAVA_GPG_SECRET_KEY }}
       ossrh_password: ${{ secrets.OSSRH_PASSWORD }}
+      ossrh_username: 9BQq3qir
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
