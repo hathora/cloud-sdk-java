@@ -62,7 +62,7 @@ tasks.withType(Javadoc) {
   options.addStringOption('Xdoclint:none', '-quiet')
 }
 group = "dev.hathora"
-version = "2.7.5"
+version = "2.7.6"
 
 sourcesJar {
     archiveBaseName = "cloud-api"
@@ -99,7 +99,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.hathora'
             artifactId = 'cloud-api'
-            version = '2.7.5'
+            version = '2.7.6'
 
             from components.java
 
