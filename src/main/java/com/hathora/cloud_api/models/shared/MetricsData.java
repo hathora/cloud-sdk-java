@@ -7,6 +7,8 @@ package com.hathora.cloud_api.models.shared;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_api.utils.Utils;
@@ -14,34 +16,37 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-/**
- * MetricsData - Construct a type with a set of properties K of type T
- */
+import java.util.Optional;
 
 public class MetricsData {
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("active_connections")
-    private java.util.List<MetricValue> activeConnections;
+    private Optional<? extends java.util.List<MetricValue>> activeConnections;
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cpu")
-    private java.util.List<MetricValue> cpu;
+    private Optional<? extends java.util.List<MetricValue>> cpu;
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("memory")
-    private java.util.List<MetricValue> memory;
+    private Optional<? extends java.util.List<MetricValue>> memory;
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("rate_egress")
-    private java.util.List<MetricValue> rateEgress;
+    private Optional<? extends java.util.List<MetricValue>> rateEgress;
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_egress")
-    private java.util.List<MetricValue> totalEgress;
+    private Optional<? extends java.util.List<MetricValue>> totalEgress;
 
     @JsonCreator
     public MetricsData(
-            @JsonProperty("active_connections") java.util.List<MetricValue> activeConnections,
-            @JsonProperty("cpu") java.util.List<MetricValue> cpu,
-            @JsonProperty("memory") java.util.List<MetricValue> memory,
-            @JsonProperty("rate_egress") java.util.List<MetricValue> rateEgress,
-            @JsonProperty("total_egress") java.util.List<MetricValue> totalEgress) {
+            @JsonProperty("active_connections") Optional<? extends java.util.List<MetricValue>> activeConnections,
+            @JsonProperty("cpu") Optional<? extends java.util.List<MetricValue>> cpu,
+            @JsonProperty("memory") Optional<? extends java.util.List<MetricValue>> memory,
+            @JsonProperty("rate_egress") Optional<? extends java.util.List<MetricValue>> rateEgress,
+            @JsonProperty("total_egress") Optional<? extends java.util.List<MetricValue>> totalEgress) {
         Utils.checkNotNull(activeConnections, "activeConnections");
         Utils.checkNotNull(cpu, "cpu");
         Utils.checkNotNull(memory, "memory");
@@ -53,30 +58,39 @@ public class MetricsData {
         this.rateEgress = rateEgress;
         this.totalEgress = totalEgress;
     }
-
-    @JsonIgnore
-    public java.util.List<MetricValue> activeConnections() {
-        return activeConnections;
+    
+    public MetricsData() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public java.util.List<MetricValue> cpu() {
-        return cpu;
+    public Optional<java.util.List<MetricValue>> activeConnections() {
+        return (Optional<java.util.List<MetricValue>>) activeConnections;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public java.util.List<MetricValue> memory() {
-        return memory;
+    public Optional<java.util.List<MetricValue>> cpu() {
+        return (Optional<java.util.List<MetricValue>>) cpu;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public java.util.List<MetricValue> rateEgress() {
-        return rateEgress;
+    public Optional<java.util.List<MetricValue>> memory() {
+        return (Optional<java.util.List<MetricValue>>) memory;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public java.util.List<MetricValue> totalEgress() {
-        return totalEgress;
+    public Optional<java.util.List<MetricValue>> rateEgress() {
+        return (Optional<java.util.List<MetricValue>>) rateEgress;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<java.util.List<MetricValue>> totalEgress() {
+        return (Optional<java.util.List<MetricValue>>) totalEgress;
     }
 
     public final static Builder builder() {
@@ -85,11 +99,23 @@ public class MetricsData {
 
     public MetricsData withActiveConnections(java.util.List<MetricValue> activeConnections) {
         Utils.checkNotNull(activeConnections, "activeConnections");
+        this.activeConnections = Optional.ofNullable(activeConnections);
+        return this;
+    }
+
+    public MetricsData withActiveConnections(Optional<? extends java.util.List<MetricValue>> activeConnections) {
+        Utils.checkNotNull(activeConnections, "activeConnections");
         this.activeConnections = activeConnections;
         return this;
     }
 
     public MetricsData withCpu(java.util.List<MetricValue> cpu) {
+        Utils.checkNotNull(cpu, "cpu");
+        this.cpu = Optional.ofNullable(cpu);
+        return this;
+    }
+
+    public MetricsData withCpu(Optional<? extends java.util.List<MetricValue>> cpu) {
         Utils.checkNotNull(cpu, "cpu");
         this.cpu = cpu;
         return this;
@@ -97,17 +123,35 @@ public class MetricsData {
 
     public MetricsData withMemory(java.util.List<MetricValue> memory) {
         Utils.checkNotNull(memory, "memory");
+        this.memory = Optional.ofNullable(memory);
+        return this;
+    }
+
+    public MetricsData withMemory(Optional<? extends java.util.List<MetricValue>> memory) {
+        Utils.checkNotNull(memory, "memory");
         this.memory = memory;
         return this;
     }
 
     public MetricsData withRateEgress(java.util.List<MetricValue> rateEgress) {
         Utils.checkNotNull(rateEgress, "rateEgress");
+        this.rateEgress = Optional.ofNullable(rateEgress);
+        return this;
+    }
+
+    public MetricsData withRateEgress(Optional<? extends java.util.List<MetricValue>> rateEgress) {
+        Utils.checkNotNull(rateEgress, "rateEgress");
         this.rateEgress = rateEgress;
         return this;
     }
 
     public MetricsData withTotalEgress(java.util.List<MetricValue> totalEgress) {
+        Utils.checkNotNull(totalEgress, "totalEgress");
+        this.totalEgress = Optional.ofNullable(totalEgress);
+        return this;
+    }
+
+    public MetricsData withTotalEgress(Optional<? extends java.util.List<MetricValue>> totalEgress) {
         Utils.checkNotNull(totalEgress, "totalEgress");
         this.totalEgress = totalEgress;
         return this;
@@ -152,15 +196,15 @@ public class MetricsData {
     
     public final static class Builder {
  
-        private java.util.List<MetricValue> activeConnections;
+        private Optional<? extends java.util.List<MetricValue>> activeConnections = Optional.empty();
  
-        private java.util.List<MetricValue> cpu;
+        private Optional<? extends java.util.List<MetricValue>> cpu = Optional.empty();
  
-        private java.util.List<MetricValue> memory;
+        private Optional<? extends java.util.List<MetricValue>> memory = Optional.empty();
  
-        private java.util.List<MetricValue> rateEgress;
+        private Optional<? extends java.util.List<MetricValue>> rateEgress = Optional.empty();
  
-        private java.util.List<MetricValue> totalEgress;  
+        private Optional<? extends java.util.List<MetricValue>> totalEgress = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -168,11 +212,23 @@ public class MetricsData {
 
         public Builder activeConnections(java.util.List<MetricValue> activeConnections) {
             Utils.checkNotNull(activeConnections, "activeConnections");
+            this.activeConnections = Optional.ofNullable(activeConnections);
+            return this;
+        }
+
+        public Builder activeConnections(Optional<? extends java.util.List<MetricValue>> activeConnections) {
+            Utils.checkNotNull(activeConnections, "activeConnections");
             this.activeConnections = activeConnections;
             return this;
         }
 
         public Builder cpu(java.util.List<MetricValue> cpu) {
+            Utils.checkNotNull(cpu, "cpu");
+            this.cpu = Optional.ofNullable(cpu);
+            return this;
+        }
+
+        public Builder cpu(Optional<? extends java.util.List<MetricValue>> cpu) {
             Utils.checkNotNull(cpu, "cpu");
             this.cpu = cpu;
             return this;
@@ -180,17 +236,35 @@ public class MetricsData {
 
         public Builder memory(java.util.List<MetricValue> memory) {
             Utils.checkNotNull(memory, "memory");
+            this.memory = Optional.ofNullable(memory);
+            return this;
+        }
+
+        public Builder memory(Optional<? extends java.util.List<MetricValue>> memory) {
+            Utils.checkNotNull(memory, "memory");
             this.memory = memory;
             return this;
         }
 
         public Builder rateEgress(java.util.List<MetricValue> rateEgress) {
             Utils.checkNotNull(rateEgress, "rateEgress");
+            this.rateEgress = Optional.ofNullable(rateEgress);
+            return this;
+        }
+
+        public Builder rateEgress(Optional<? extends java.util.List<MetricValue>> rateEgress) {
+            Utils.checkNotNull(rateEgress, "rateEgress");
             this.rateEgress = rateEgress;
             return this;
         }
 
         public Builder totalEgress(java.util.List<MetricValue> totalEgress) {
+            Utils.checkNotNull(totalEgress, "totalEgress");
+            this.totalEgress = Optional.ofNullable(totalEgress);
+            return this;
+        }
+
+        public Builder totalEgress(Optional<? extends java.util.List<MetricValue>> totalEgress) {
             Utils.checkNotNull(totalEgress, "totalEgress");
             this.totalEgress = totalEgress;
             return this;

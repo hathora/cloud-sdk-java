@@ -17,25 +17,28 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-/**
- * RoomWithoutAllocations - From T, pick a set of properties whose keys are in the union K
- */
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class RoomWithoutAllocations {
 
+    /**
+     * System generated unique identifier for an application.
+     */
     @JsonProperty("appId")
     private String appId;
 
-    /**
-     * Metadata on an allocated instance of a room.
-     */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("currentAllocation")
-    private RoomAllocation currentAllocation;
+    private Optional<? extends RoomWithoutAllocationsCurrentAllocation> currentAllocation;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("roomConfig")
-    private Optional<? extends String> roomConfig;
+    private JsonNullable<? extends String> roomConfig;
 
+    /**
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
+     */
     @JsonProperty("roomId")
     private String roomId;
 
@@ -54,8 +57,8 @@ public class RoomWithoutAllocations {
     @JsonCreator
     public RoomWithoutAllocations(
             @JsonProperty("appId") String appId,
-            @JsonProperty("currentAllocation") RoomAllocation currentAllocation,
-            @JsonProperty("roomConfig") Optional<? extends String> roomConfig,
+            @JsonProperty("currentAllocation") Optional<? extends RoomWithoutAllocationsCurrentAllocation> currentAllocation,
+            @JsonProperty("roomConfig") JsonNullable<? extends String> roomConfig,
             @JsonProperty("roomId") String roomId,
             @JsonProperty("status") RoomStatus status) {
         Utils.checkNotNull(appId, "appId");
@@ -72,31 +75,35 @@ public class RoomWithoutAllocations {
     
     public RoomWithoutAllocations(
             String appId,
-            RoomAllocation currentAllocation,
             String roomId,
             RoomStatus status) {
-        this(appId, currentAllocation, Optional.empty(), roomId, status);
+        this(appId, Optional.empty(), JsonNullable.undefined(), roomId, status);
     }
 
+    /**
+     * System generated unique identifier for an application.
+     */
     @JsonIgnore
     public String appId() {
         return appId;
     }
 
-    /**
-     * Metadata on an allocated instance of a room.
-     */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public RoomAllocation currentAllocation() {
-        return currentAllocation;
+    public Optional<RoomWithoutAllocationsCurrentAllocation> currentAllocation() {
+        return (Optional<RoomWithoutAllocationsCurrentAllocation>) currentAllocation;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> roomConfig() {
-        return (Optional<String>) roomConfig;
+    public JsonNullable<String> roomConfig() {
+        return (JsonNullable<String>) roomConfig;
     }
 
+    /**
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
+     */
     @JsonIgnore
     public String roomId() {
         return roomId;
@@ -120,16 +127,22 @@ public class RoomWithoutAllocations {
         return new Builder();
     }
 
+    /**
+     * System generated unique identifier for an application.
+     */
     public RoomWithoutAllocations withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Metadata on an allocated instance of a room.
-     */
-    public RoomWithoutAllocations withCurrentAllocation(RoomAllocation currentAllocation) {
+    public RoomWithoutAllocations withCurrentAllocation(RoomWithoutAllocationsCurrentAllocation currentAllocation) {
+        Utils.checkNotNull(currentAllocation, "currentAllocation");
+        this.currentAllocation = Optional.ofNullable(currentAllocation);
+        return this;
+    }
+
+    public RoomWithoutAllocations withCurrentAllocation(Optional<? extends RoomWithoutAllocationsCurrentAllocation> currentAllocation) {
         Utils.checkNotNull(currentAllocation, "currentAllocation");
         this.currentAllocation = currentAllocation;
         return this;
@@ -137,16 +150,20 @@ public class RoomWithoutAllocations {
 
     public RoomWithoutAllocations withRoomConfig(String roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
-        this.roomConfig = Optional.ofNullable(roomConfig);
+        this.roomConfig = JsonNullable.of(roomConfig);
         return this;
     }
 
-    public RoomWithoutAllocations withRoomConfig(Optional<? extends String> roomConfig) {
+    public RoomWithoutAllocations withRoomConfig(JsonNullable<? extends String> roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
         this.roomConfig = roomConfig;
         return this;
     }
 
+    /**
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Note: error will be returned if `roomId` is not globally unique.
+     */
     public RoomWithoutAllocations withRoomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
@@ -209,9 +226,9 @@ public class RoomWithoutAllocations {
  
         private String appId;
  
-        private RoomAllocation currentAllocation;
+        private Optional<? extends RoomWithoutAllocationsCurrentAllocation> currentAllocation = Optional.empty();
  
-        private Optional<? extends String> roomConfig = Optional.empty();
+        private JsonNullable<? extends String> roomConfig = JsonNullable.undefined();
  
         private String roomId;
  
@@ -221,16 +238,22 @@ public class RoomWithoutAllocations {
           // force use of static builder() method
         }
 
+        /**
+         * System generated unique identifier for an application.
+         */
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;
         }
 
-        /**
-         * Metadata on an allocated instance of a room.
-         */
-        public Builder currentAllocation(RoomAllocation currentAllocation) {
+        public Builder currentAllocation(RoomWithoutAllocationsCurrentAllocation currentAllocation) {
+            Utils.checkNotNull(currentAllocation, "currentAllocation");
+            this.currentAllocation = Optional.ofNullable(currentAllocation);
+            return this;
+        }
+
+        public Builder currentAllocation(Optional<? extends RoomWithoutAllocationsCurrentAllocation> currentAllocation) {
             Utils.checkNotNull(currentAllocation, "currentAllocation");
             this.currentAllocation = currentAllocation;
             return this;
@@ -238,16 +261,20 @@ public class RoomWithoutAllocations {
 
         public Builder roomConfig(String roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
-            this.roomConfig = Optional.ofNullable(roomConfig);
+            this.roomConfig = JsonNullable.of(roomConfig);
             return this;
         }
 
-        public Builder roomConfig(Optional<? extends String> roomConfig) {
+        public Builder roomConfig(JsonNullable<? extends String> roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
             this.roomConfig = roomConfig;
             return this;
         }
 
+        /**
+         * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+         * Note: error will be returned if `roomId` is not globally unique.
+         */
         public Builder roomId(String roomId) {
             Utils.checkNotNull(roomId, "roomId");
             this.roomId = roomId;
