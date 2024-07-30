@@ -20,10 +20,10 @@ Returns a unique player token for an anonymous user.
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -48,10 +48,10 @@ public class Application {
             if (res.playerTokenObject().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class Application {
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.LoginAnonymousResponse](../../models/operations/LoginAnonymousResponse.md)**
+**[com.hathora.cloud_api.models.operations.LoginAnonymousResponse](../../models/operations/LoginAnonymousResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -89,10 +89,10 @@ Returns a unique player token using a Google-signed OIDC `idToken`.
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -120,10 +120,10 @@ public class Application {
             if (res.playerTokenObject().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -139,13 +139,13 @@ public class Application {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           | Example                                                                                               |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `googleIdTokenObject`                                                                                 | [dev.hathora.cloud_api.models.shared.GoogleIdTokenObject](../../models/shared/GoogleIdTokenObject.md) | :heavy_check_mark:                                                                                    | N/A                                                                                                   |                                                                                                       |
+| `googleIdTokenObject`                                                                                 | [com.hathora.cloud_api.models.shared.GoogleIdTokenObject](../../models/shared/GoogleIdTokenObject.md) | :heavy_check_mark:                                                                                    | N/A                                                                                                   |                                                                                                       |
 | `appId`                                                                                               | *Optional<? extends String>*                                                                          | :heavy_minus_sign:                                                                                    | N/A                                                                                                   | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                              |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.LoginGoogleResponse](../../models/operations/LoginGoogleResponse.md)**
+**[com.hathora.cloud_api.models.operations.LoginGoogleResponse](../../models/operations/LoginGoogleResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -162,10 +162,10 @@ Returns a unique player token with a specified nickname for a user.
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -193,10 +193,10 @@ public class Application {
             if (res.playerTokenObject().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -212,13 +212,13 @@ public class Application {
 
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `nicknameObject`                                                                            | [dev.hathora.cloud_api.models.shared.NicknameObject](../../models/shared/NicknameObject.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
+| `nicknameObject`                                                                            | [com.hathora.cloud_api.models.shared.NicknameObject](../../models/shared/NicknameObject.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
 | `appId`                                                                                     | *Optional<? extends String>*                                                                | :heavy_minus_sign:                                                                          | N/A                                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                    |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.LoginNicknameResponse](../../models/operations/LoginNicknameResponse.md)**
+**[com.hathora.cloud_api.models.operations.LoginNicknameResponse](../../models/operations/LoginNicknameResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
