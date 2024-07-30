@@ -25,7 +25,7 @@ java:
   companyURL: https://hathora.dev/
   flattenGlobalSecurity: false
   githubURL: github.com/hathora/cloud-sdk-java
-  groupID: dev.hathora
+  groupID: com.hathora
   imports:
     option: openapi
     paths:
