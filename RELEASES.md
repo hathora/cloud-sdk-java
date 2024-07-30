@@ -1,309 +1,486 @@
-
-
 ## 2023-06-19 20:17:27
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.49.0 (2.41.4) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-06-21 00:25:36
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.49.1 (2.41.5) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-06-23 00:29:18
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.50.1 (2.43.2) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-06-27 00:28:31
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.51.1 (2.50.2) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-06-29 00:28:09
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.51.3 (2.52.2) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-01 00:34:59
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.52.0 (2.55.0) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-06 00:29:45
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.52.2 (2.57.2) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-07 00:28:44
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.53.0 (2.58.0) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-08 00:28:09
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.53.1 (2.58.2) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-11 00:26:02
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.56.0 (2.61.0) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-12 00:31:05
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.56.3 (2.61.4) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-13 00:28:13
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.57.0 (2.62.1) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-14 00:29:24
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.59.0 (2.65.0) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-18 00:44:13
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.61.0 (2.70.0) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-19 00:40:02
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.62.1 (2.70.2) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-22 00:26:25
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.64.0 (2.71.0) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-26 00:25:19
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.65.0 (2.73.0) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-27 00:23:48
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.65.1 (2.73.1) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-07-28 00:23:41
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.65.2 (2.75.1) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-08-01 00:27:42
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.66.1 (2.75.2) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-08-03 00:25:17
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.68.1 (2.77.1) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-08-04 00:25:04
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.68.3 (2.81.1) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-08-08 00:24:53
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.69.1 (2.82.0) https://github.com/speakeasy-api/speakeasy
 
 ## 2023-08-15 00:21:07
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.72.0 (2.84.1) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v1.17.0] .
 
 ## 2023-08-19 00:19:49
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.74.3 (2.86.6) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v1.17.1] .
 
 ## 2023-08-25 00:21:20
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.74.11 (2.87.1) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v1.17.2] .
 
 ## 2023-08-26 00:20:28
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.74.15 (2.88.2) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v1.18.0] .
 
 ## 2023-09-12 00:20:40
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.82.5 (2.108.3) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v1.19.0] .
 
 ## 2024-02-08 17:09:16
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.174.2 (2.250.19) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.0.0] .
 
 ## 2024-03-01 19:58:45
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.199.0 (2.276.1) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.1.0] .
 
 ## 2024-03-08 00:23:17
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.204.1 (2.279.1) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.2.0] .
 
 ## 2024-03-14 00:22:50
+
 ### Changes
+
 Based on:
-- OpenAPI Doc 0.0.1 
+
+- OpenAPI Doc 0.0.1
 - Speakeasy CLI 1.209.2 (2.281.2) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.3.0] .
 
 ## 2024-06-20 00:25:00
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.310.0 (2.347.4) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.4.0] .
 
 ## 2024-06-21 00:24:59
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.313.0 (2.347.8) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.4.1] .
 
 ## 2024-06-23 00:27:45
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.314.2 (2.349.6) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.5.0] .
 
 ## 2024-06-26 00:25:18
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.318.0 (2.352.0) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.6.0] .
 
 ## 2024-07-01 00:30:05
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.322.3 (2.354.2) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.7.0] .
 
 ## 2024-07-24 18:47:26
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.345.4 (2.378.3) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.7.1] .
 
 ## 2024-07-24 21:07:57
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.345.4 (2.378.3) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.7.3] .
+
 ### Releases
-- [Maven Central v2.7.3] https://central.sonatype.com/artifact/dev.hathora/cloud-api/2.7.3 - .
+
+- [Maven Central v2.7.3] https://central.sonatype.com/artifact/com.hathora/cloud-api/2.7.3 - .
 
 ## 2024-07-25 18:14:30
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.346.0 (2.379.3) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.7.4] .
+
 ### Releases
-- [Maven Central v2.7.4] https://central.sonatype.com/artifact/dev.hathora/cloud-api/2.7.4 - .
+
+- [Maven Central v2.7.4] https://central.sonatype.com/artifact/com.hathora/cloud-api/2.7.4 - .
 
 ## 2024-07-26 00:05:41
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.346.0 (2.379.3) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.7.5] .
+
 ### Releases
-- [Maven Central v2.7.5] https://central.sonatype.com/artifact/dev.hathora/cloud-api/2.7.5 - .
+
+- [Maven Central v2.7.5] https://central.sonatype.com/artifact/com.hathora/cloud-api/2.7.5 - .
 
 ## 2024-07-29 18:17:26
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.348.0 (2.380.1) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.7.6] .
+
 ### Releases
-- [Maven Central v2.7.6] https://central.sonatype.com/artifact/dev.hathora/cloud-api/2.7.6 - .
+
+- [Maven Central v2.7.6] https://central.sonatype.com/artifact/com.hathora/cloud-api/2.7.6 - .
 
 ## 2024-07-30 16:00:10
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.348.2 (2.380.2) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.7.7] .
+
 ### Releases
+
 - [Maven Central v2.7.7] https://central.sonatype.com/artifact/com.hathora/cloud-api/2.7.7 - .

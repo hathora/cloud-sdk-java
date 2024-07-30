@@ -1,10 +1,10 @@
-package dev.hathora.cloud_api;
+package com.hathora.cloud_api;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.operations.CreateRoomResponse;
-import dev.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.operations.CreateRoomResponse;
+import com.hathora.cloud_api.models.shared.*;
 import org.junit.jupiter.api.Test;
 
 import java.lang.System;
@@ -13,13 +13,13 @@ import java.util.*;
 public class SDKTest {
     private static final String HATHORA_APP_ID = "app-7422f70e-e6a7-440f-ba50-d9924af00296";
     private static final String HATHORA_DEV_TOKEN = Optional.ofNullable(
-        System.getenv("HATHORA_DEV_TOKEN")
-    ).orElseThrow(() -> new IllegalStateException("API_KEY env var is not defined"));
+            System.getenv("HATHORA_DEV_TOKEN"))
+            .orElseThrow(() -> new IllegalStateException("API_KEY env var is not defined"));
     private static final int POLL_INTERVAL_MS = 1000;
 
     @Test
     public void testRoomFlowWithGetConnectionInfo() throws Exception {
-                String roomId = UUID.randomUUID().toString();
+        String roomId = UUID.randomUUID().toString();
         Region region = Region.WASHINGTON_DC;
         String roomConfig = "{\"property\":\"value\"}";
 
@@ -38,7 +38,7 @@ public class SDKTest {
                         .roomConfig(roomConfig)
                         .build())
                 .call();
-        if (createRoomResponse.statusCode() != 201 ) {
+        if (createRoomResponse.statusCode() != 201) {
             System.out.println("error: " + createRoomResponse.rawResponse());
         }
 
@@ -64,7 +64,8 @@ public class SDKTest {
             if (connectionInfoResponse.statusCode() != 200) {
                 System.out.println("api error: " + connectionInfoResponse.rawResponse());
             }
-            if (connectionInfoResponse.connectionInfoV2().isPresent() && connectionInfoResponse.connectionInfoV2().get().exposedPort().isPresent()) {
+            if (connectionInfoResponse.connectionInfoV2().isPresent()
+                    && connectionInfoResponse.connectionInfoV2().get().exposedPort().isPresent()) {
                 System.out.println("RES: " + connectionInfoResponse.statusCode() + ", Success!");
                 System.out.println("RoomId: " + connectionInfoResponse.connectionInfoV2().get().roomId());
                 System.out.println("ExposedPort: " + connectionInfoResponse.connectionInfoV2().get().exposedPort());
@@ -73,7 +74,8 @@ public class SDKTest {
                 System.out.println("POLLING TIME ELAPSED: " + elapsedTime + "ms");
                 stillPoll = false;
             } else {
-                System.out.println("RES: " + connectionInfoResponse.statusCode() + ", ConnectionInfoV2.ExposedPort not present, keep polling");
+                System.out.println("RES: " + connectionInfoResponse.statusCode()
+                        + ", ConnectionInfoV2.ExposedPort not present, keep polling");
             }
             if (stillPoll && tries > 15) {
                 stillPoll = false;
@@ -136,7 +138,8 @@ public class SDKTest {
             if (processInfoResponse.processV2().isEmpty()) {
                 System.out.println("api error: " + processInfoResponse.rawResponse().toString());
             }
-            if (processInfoResponse.processV2().isPresent() && processInfoResponse.processV2().get().exposedPort().isPresent()) {
+            if (processInfoResponse.processV2().isPresent()
+                    && processInfoResponse.processV2().get().exposedPort().isPresent()) {
                 System.out.println("RES: " + processInfoResponse.statusCode() + ", Success!");
                 System.out.println("RoomId: " + processInfoResponse.processV2().get().processId());
                 System.out.println("ExposedPort: " + processInfoResponse.processV2().get().exposedPort());
@@ -146,7 +149,8 @@ public class SDKTest {
                 stillPoll = false;
                 testGetMetrics(hathoraCloudSdk, processInfoResponse.processV2().get().processId());
             } else {
-                System.out.println("RES: " + processInfoResponse.statusCode() + ", processV2.ExposedPort not present, keep polling");
+                System.out.println("RES: " + processInfoResponse.statusCode()
+                        + ", processV2.ExposedPort not present, keep polling");
             }
             if (stillPoll && tries > 15) {
                 stillPoll = false;
@@ -173,7 +177,8 @@ public class SDKTest {
                 .build();
 
         // login anonymous
-        LoginAnonymousResponse loginAnonymousResponse = hathoraCloudSdk.authV1().loginAnonymous().appId(HATHORA_APP_ID).call();
+        LoginAnonymousResponse loginAnonymousResponse = hathoraCloudSdk.authV1().loginAnonymous().appId(HATHORA_APP_ID)
+                .call();
         if (loginAnonymousResponse.playerTokenObject().isEmpty()) {
             System.out.println("error: " + loginAnonymousResponse.rawResponse().toString());
         }
@@ -186,7 +191,8 @@ public class SDKTest {
         }
 
         CreateLobbyResponse createLobbyResponse = hathoraCloudSdk.lobbiesV3().createLobby()
-                .security(CreateLobbySecurity.builder().playerAuth(loginAnonymousResponse.playerTokenObject().get().token()).build())
+                .security(CreateLobbySecurity.builder()
+                        .playerAuth(loginAnonymousResponse.playerTokenObject().get().token()).build())
                 .request(CreateLobbyRequest.builder()
                         .roomId(roomId)
                         .shortCode("test_short_code")
@@ -223,7 +229,8 @@ public class SDKTest {
             if (connectionInfoResponse.statusCode() != 200) {
                 System.out.println("api error: " + connectionInfoResponse.rawResponse());
             }
-            if (connectionInfoResponse.connectionInfoV2().isPresent() && connectionInfoResponse.connectionInfoV2().get().exposedPort().isPresent()) {
+            if (connectionInfoResponse.connectionInfoV2().isPresent()
+                    && connectionInfoResponse.connectionInfoV2().get().exposedPort().isPresent()) {
                 System.out.println("RES: " + connectionInfoResponse.statusCode() + ", Success!");
                 System.out.println("RoomId: " + connectionInfoResponse.connectionInfoV2().get().roomId());
                 System.out.println("ExposedPort: " + connectionInfoResponse.connectionInfoV2().get().exposedPort());
@@ -232,7 +239,8 @@ public class SDKTest {
                 System.out.println("POLLING TIME ELAPSED: " + elapsedTime + "ms");
                 stillPoll = false;
             } else {
-                System.out.println("RES: " + connectionInfoResponse.statusCode() + ", ConnectionInfoV2.ExposedPort not present, keep polling");
+                System.out.println("RES: " + connectionInfoResponse.statusCode()
+                        + ", ConnectionInfoV2.ExposedPort not present, keep polling");
             }
             if (stillPoll && tries > 15) {
                 stillPoll = false;
@@ -248,7 +256,6 @@ public class SDKTest {
 
     @Test
     public void testDiscoveryPingService() throws Exception {
-
 
         // Instantiate SDK
         HathoraCloud hathoraCloudSdk = HathoraCloud.builder()
@@ -304,20 +311,24 @@ public class SDKTest {
 
     /**
      * Ping a host (TCP) 3-times and return average latency time
+     * 
      * @param host Hostname to be pinged.
-     * @return <code>ping latency</code> if the given HTTP URL has returned response code 200-399 on a HEAD request within the
-     * given timeout, otherwise <code>-1</code>.
+     * @return <code>ping latency</code> if the given HTTP URL has returned response
+     *         code 200-399 on a HEAD request within the
+     *         given timeout, otherwise <code>-1</code>.
      */
     private long ping(String host, int port) throws Exception {
 
-        WebSocketPing client = new WebSocketPing("wss://"+host+":"+port+"/ws");
+        WebSocketPing client = new WebSocketPing("wss://" + host + ":" + port + "/ws");
         client.connectBlocking(); // Ensure the client is connected before sending messages
 
         client.startPingTest();
         return client.calculateLatency();
     }
+
     public void testGetMetrics(HathoraCloud hathoraCloudSdk, String processId) throws Exception {
-        GetMetricsResponse res = hathoraCloudSdk.metricsV1().getMetrics(GetMetricsRequest.builder().metrics(List.of(MetricName.CPU)).processId(processId).step(60).build());
+        GetMetricsResponse res = hathoraCloudSdk.metricsV1().getMetrics(
+                GetMetricsRequest.builder().metrics(List.of(MetricName.CPU)).processId(processId).step(60).build());
         System.out.println("RES: " + res.statusCode());
         if (res.metricsData().isPresent()) {
             System.out.println("Metrics: " + res.metricsData().get());
