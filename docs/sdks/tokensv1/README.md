@@ -20,11 +20,11 @@ Create a new organization token.
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -55,10 +55,10 @@ public class Application {
             if (res.createdOrgToken().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -74,13 +74,13 @@ public class Application {
 
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `createOrgToken`                                                                            | [dev.hathora.cloud_api.models.shared.CreateOrgToken](../../models/shared/CreateOrgToken.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
+| `createOrgToken`                                                                            | [com.hathora.cloud_api.models.shared.CreateOrgToken](../../models/shared/CreateOrgToken.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
 | `orgId`                                                                                     | *String*                                                                                    | :heavy_check_mark:                                                                          | N/A                                                                                         | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                                                    |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.CreateOrgTokenResponse](../../models/operations/CreateOrgTokenResponse.md)**
+**[com.hathora.cloud_api.models.operations.CreateOrgTokenResponse](../../models/operations/CreateOrgTokenResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -97,11 +97,11 @@ List all organization tokens for a given org.
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -129,10 +129,10 @@ public class Application {
             if (res.listOrgTokens().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -153,7 +153,7 @@ public class Application {
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetOrgTokensResponse](../../models/operations/GetOrgTokensResponse.md)**
+**[com.hathora.cloud_api.models.operations.GetOrgTokensResponse](../../models/operations/GetOrgTokensResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -170,11 +170,11 @@ Revoke an organization token.
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -203,10 +203,10 @@ public class Application {
             if (res.boolean_().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -228,7 +228,7 @@ public class Application {
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.RevokeOrgTokenResponse](../../models/operations/RevokeOrgTokenResponse.md)**
+**[com.hathora.cloud_api.models.operations.RevokeOrgTokenResponse](../../models/operations/RevokeOrgTokenResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

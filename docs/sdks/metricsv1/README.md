@@ -18,11 +18,11 @@ Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -54,10 +54,10 @@ public class Application {
             if (res.metricsData().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -73,12 +73,12 @@ public class Application {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                 | [dev.hathora.cloud_api.models.operations.GetMetricsRequest](../../models/operations/GetMetricsRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `request`                                                                                                 | [com.hathora.cloud_api.models.operations.GetMetricsRequest](../../models/operations/GetMetricsRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetMetricsResponse](../../models/operations/GetMetricsResponse.md)**
+**[com.hathora.cloud_api.models.operations.GetMetricsResponse](../../models/operations/GetMetricsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

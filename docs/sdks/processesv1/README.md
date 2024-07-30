@@ -22,11 +22,11 @@ Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -55,10 +55,10 @@ public class Application {
             if (res.process().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -80,7 +80,7 @@ public class Application {
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse](../../models/operations/GetProcessInfoDeprecatedResponse.md)**
+**[com.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse](../../models/operations/GetProcessInfoDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -99,11 +99,11 @@ Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/ha
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -132,10 +132,10 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -152,12 +152,12 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
-| `region`                                                                                        | [Optional<? extends dev.hathora.cloud_api.models.shared.Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
+| `region`                                                                                        | [Optional<? extends com.hathora.cloud_api.models.shared.Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse](../../models/operations/GetRunningProcessesResponse.md)**
+**[com.hathora.cloud_api.models.operations.GetRunningProcessesResponse](../../models/operations/GetRunningProcessesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -176,11 +176,11 @@ Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/ha
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -209,10 +209,10 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -229,12 +229,12 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
-| `region`                                                                                        | [Optional<? extends dev.hathora.cloud_api.models.shared.Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
+| `region`                                                                                        | [Optional<? extends com.hathora.cloud_api.models.shared.Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse](../../models/operations/GetStoppedProcessesResponse.md)**
+**[com.hathora.cloud_api.models.operations.GetStoppedProcessesResponse](../../models/operations/GetStoppedProcessesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

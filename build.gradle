@@ -42,7 +42,7 @@ jar {
     dependsOn(":generatePomFileForMavenPublication")
     archiveBaseName = "cloud-api"
 
-    into("META-INF/maven/dev.hathora/cloud-api") {
+    into("META-INF/maven/com.hathora/cloud-api") {
         from("$buildDir/pom.xml")
     }
 }
@@ -61,8 +61,8 @@ tasks.withType(Javadoc) {
   failOnError false
   options.addStringOption('Xdoclint:none', '-quiet')
 }
-group = "dev.hathora"
-version = "2.7.6"
+group = "com.hathora"
+version = "2.7.7"
 
 sourcesJar {
     archiveBaseName = "cloud-api"
@@ -97,9 +97,9 @@ publishing {
 
     publications {
         maven(MavenPublication) {
-            groupId = 'dev.hathora'
+            groupId = 'com.hathora'
             artifactId = 'cloud-api'
-            version = '2.7.6'
+            version = '2.7.7'
 
             from components.java
 

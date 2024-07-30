@@ -20,11 +20,11 @@
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -57,10 +57,10 @@ public class Application {
             if (res.roomId().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -76,14 +76,14 @@ public class Application {
 
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `createRoomParams`                                                                              | [dev.hathora.cloud_api.models.shared.CreateRoomParams](../../models/shared/CreateRoomParams.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |                                                                                                 |
+| `createRoomParams`                                                                              | [com.hathora.cloud_api.models.shared.CreateRoomParams](../../models/shared/CreateRoomParams.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |                                                                                                 |
 | `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
 | `roomId`                                                                                        | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | 2swovpy1fnunu                                                                                   |
 
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse](../../models/operations/CreateRoomDeprecatedResponse.md)**
+**[com.hathora.cloud_api.models.operations.CreateRoomDeprecatedResponse](../../models/operations/CreateRoomDeprecatedResponse.md)**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -100,11 +100,11 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -131,10 +131,10 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -156,7 +156,7 @@ public class Application {
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse](../../models/operations/DestroyRoomDeprecatedResponse.md)**
+**[com.hathora.cloud_api.models.operations.DestroyRoomDeprecatedResponse](../../models/operations/DestroyRoomDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -173,11 +173,11 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -206,10 +206,10 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -231,7 +231,7 @@ public class Application {
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse](../../models/operations/GetActiveRoomsForProcessDeprecatedResponse.md)**
+**[com.hathora.cloud_api.models.operations.GetActiveRoomsForProcessDeprecatedResponse](../../models/operations/GetActiveRoomsForProcessDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -248,10 +248,10 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -277,10 +277,10 @@ public class Application {
             if (res.connectionInfo().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -302,7 +302,7 @@ public class Application {
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse](../../models/operations/GetConnectionInfoDeprecatedResponse.md)**
+**[com.hathora.cloud_api.models.operations.GetConnectionInfoDeprecatedResponse](../../models/operations/GetConnectionInfoDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -319,11 +319,11 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -352,10 +352,10 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -377,7 +377,7 @@ public class Application {
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse](../../models/operations/GetInactiveRoomsForProcessDeprecatedResponse.md)**
+**[com.hathora.cloud_api.models.operations.GetInactiveRoomsForProcessDeprecatedResponse](../../models/operations/GetInactiveRoomsForProcessDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -394,11 +394,11 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -427,10 +427,10 @@ public class Application {
             if (res.room().isPresent()) {
                 // handle response
             }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -452,7 +452,7 @@ public class Application {
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse](../../models/operations/GetRoomInfoDeprecatedResponse.md)**
+**[com.hathora.cloud_api.models.operations.GetRoomInfoDeprecatedResponse](../../models/operations/GetRoomInfoDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -469,11 +469,11 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_api.HathoraCloud;
+import com.hathora.cloud_api.models.operations.*;
+import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_api.models.shared.Security;
+import com.hathora.cloud_api.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -500,10 +500,10 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -525,7 +525,7 @@ public class Application {
 
 ### Response
 
-**[dev.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse](../../models/operations/SuspendRoomDeprecatedResponse.md)**
+**[com.hathora.cloud_api.models.operations.SuspendRoomDeprecatedResponse](../../models/operations/SuspendRoomDeprecatedResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
