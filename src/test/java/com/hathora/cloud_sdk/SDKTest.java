@@ -1,10 +1,10 @@
-package com.hathora.cloud_api;
+package com.hathora.cloud_sdk;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.operations.CreateRoomResponse;
-import com.hathora.cloud_api.models.shared.*;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.operations.CreateRoomResponse;
+import com.hathora.cloud_sdk.models.shared.*;
 import org.junit.jupiter.api.Test;
 
 import java.lang.System;

@@ -1,4 +1,4 @@
-package com.hathora.cloud_api;
+package com.hathora.cloud_sdk;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
