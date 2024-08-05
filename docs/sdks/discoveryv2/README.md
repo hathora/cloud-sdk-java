@@ -18,10 +18,10 @@ Returns an array of all regions with a host and port that a client can directly 
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -45,7 +45,7 @@ public class Application {
             if (res.pingEndpoints().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -60,7 +60,7 @@ public class Application {
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.GetPingServiceEndpointsResponse](../../models/operations/GetPingServiceEndpointsResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsResponse](../../models/operations/GetPingServiceEndpointsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

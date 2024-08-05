@@ -21,11 +21,10 @@ Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) 
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.models.shared.Security;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -54,10 +53,10 @@ public class Application {
             if (res.processV2().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -74,12 +73,12 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `appId`                                                                     | *Optional<? extends String>*                                                | :heavy_minus_sign:                                                          | N/A                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                    |
-| `region`                                                                    | [com.hathora.cloud_api.models.shared.Region](../../models/shared/Region.md) | :heavy_check_mark:                                                          | N/A                                                                         |                                                                             |
+| `region`                                                                    | [com.hathora.cloud_sdk.models.shared.Region](../../models/shared/Region.md) | :heavy_check_mark:                                                          | N/A                                                                         |                                                                             |
 
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.CreateProcessResponse](../../models/operations/CreateProcessResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.CreateProcessResponse](../../models/operations/CreateProcessResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -96,11 +95,10 @@ Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathor
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.models.shared.Security;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -132,10 +130,10 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -152,13 +150,13 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
-| `region`                                                                                        | List<[com.hathora.cloud_api.models.shared.Region](../../models/shared/Region.md)>               | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
-| `status`                                                                                        | List<[com.hathora.cloud_api.models.shared.ProcessStatus](../../models/shared/ProcessStatus.md)> | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
+| `region`                                                                                        | List<[com.hathora.cloud_sdk.models.shared.Region](../../models/shared/Region.md)>               | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
+| `status`                                                                                        | List<[com.hathora.cloud_sdk.models.shared.ProcessStatus](../../models/shared/ProcessStatus.md)> | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
 
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.GetLatestProcessesResponse](../../models/operations/GetLatestProcessesResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.GetLatestProcessesResponse](../../models/operations/GetLatestProcessesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -175,11 +173,10 @@ Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.models.shared.Security;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -208,10 +205,10 @@ public class Application {
             if (res.processV2().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -233,7 +230,7 @@ public class Application {
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.GetProcessInfoResponse](../../models/operations/GetProcessInfoResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.GetProcessInfoResponse](../../models/operations/GetProcessInfoResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -250,11 +247,10 @@ Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) im
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.models.shared.Security;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -281,10 +277,10 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -306,7 +302,7 @@ public class Application {
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.StopProcessResponse](../../models/operations/StopProcessResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.StopProcessResponse](../../models/operations/StopProcessResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

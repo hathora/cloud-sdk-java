@@ -12,7 +12,7 @@ generation:
   baseServerURL: ""
   flattenGlobalSecurity: true
 java:
-  version: 2.7.8
+  version: 2.8.0
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter-api:5.8.1
     - testRuntimeOnly:org.junit.jupiter:junit-jupiter-engine:5.8.1
@@ -25,7 +25,6 @@ java:
   companyURL: https://hathora.dev/
   flattenGlobalSecurity: false
   githubURL: github.com/hathora/cloud-sdk-java
-  ossrhURL: https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
   groupID: com.hathora
   imports:
     option: openapi
@@ -41,6 +40,7 @@ java:
     shortName: MIT
     url: https://mit-license.org/
   maxMethodParams: 3
+  ossrhURL: https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
   outputModelSuffix: output
   projectName: Hathora-Cloud
   templateVersion: v2
