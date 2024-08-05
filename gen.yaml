@@ -18,13 +18,14 @@ java:
     - testRuntimeOnly:org.junit.jupiter:junit-jupiter-engine:5.8.1
     - implementation:org.java-websocket:Java-WebSocket:1.5.6
   additionalPlugins: []
-  artifactID: cloud-api
+  artifactID: cloud-sdk
   clientServerStatusCodesAsErrors: true
   companyEmail: hello@hathora.dev
   companyName: Hathora
   companyURL: https://hathora.dev/
   flattenGlobalSecurity: false
   githubURL: github.com/hathora/cloud-sdk-java
+  ossrhURL: https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
   groupID: com.hathora
   imports:
     option: openapi
