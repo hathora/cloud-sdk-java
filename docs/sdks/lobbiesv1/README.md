@@ -16,11 +16,10 @@
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedSecurity;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -50,10 +49,10 @@ public class Application {
             if (res.roomId().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -69,15 +68,15 @@ public class Application {
 
 | Parameter                                                                                                                                       | Type                                                                                                                                            | Required                                                                                                                                        | Description                                                                                                                                     | Example                                                                                                                                         |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                      | [com.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedSecurity](../../models/operations/CreatePrivateLobbyDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                              | The security requirements to use for the request.                                                                                               |                                                                                                                                                 |
+| `security`                                                                                                                                      | [com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedSecurity](../../models/operations/CreatePrivateLobbyDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                              | The security requirements to use for the request.                                                                                               |                                                                                                                                                 |
 | `appId`                                                                                                                                         | *Optional<? extends String>*                                                                                                                    | :heavy_minus_sign:                                                                                                                              | N/A                                                                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                        |
 | `local`                                                                                                                                         | *Optional<? extends Boolean>*                                                                                                                   | :heavy_minus_sign:                                                                                                                              | N/A                                                                                                                                             |                                                                                                                                                 |
-| `region`                                                                                                                                        | [Optional<? extends com.hathora.cloud_api.models.shared.Region>](../../models/shared/Region.md)                                                 | :heavy_minus_sign:                                                                                                                              | N/A                                                                                                                                             |                                                                                                                                                 |
+| `region`                                                                                                                                        | [Optional<? extends com.hathora.cloud_sdk.models.shared.Region>](../../models/shared/Region.md)                                                 | :heavy_minus_sign:                                                                                                                              | N/A                                                                                                                                             |                                                                                                                                                 |
 
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.CreatePrivateLobbyDeprecatedResponse](../../models/operations/CreatePrivateLobbyDeprecatedResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedResponse](../../models/operations/CreatePrivateLobbyDeprecatedResponse.md)**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -94,11 +93,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedSecurity;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -128,10 +126,10 @@ public class Application {
             if (res.roomId().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -147,15 +145,15 @@ public class Application {
 
 | Parameter                                                                                                                                     | Type                                                                                                                                          | Required                                                                                                                                      | Description                                                                                                                                   | Example                                                                                                                                       |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                    | [com.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedSecurity](../../models/operations/CreatePublicLobbyDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                            | The security requirements to use for the request.                                                                                             |                                                                                                                                               |
+| `security`                                                                                                                                    | [com.hathora.cloud_sdk.models.operations.CreatePublicLobbyDeprecatedSecurity](../../models/operations/CreatePublicLobbyDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                            | The security requirements to use for the request.                                                                                             |                                                                                                                                               |
 | `appId`                                                                                                                                       | *Optional<? extends String>*                                                                                                                  | :heavy_minus_sign:                                                                                                                            | N/A                                                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                      |
 | `local`                                                                                                                                       | *Optional<? extends Boolean>*                                                                                                                 | :heavy_minus_sign:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |
-| `region`                                                                                                                                      | [Optional<? extends com.hathora.cloud_api.models.shared.Region>](../../models/shared/Region.md)                                               | :heavy_minus_sign:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |
+| `region`                                                                                                                                      | [Optional<? extends com.hathora.cloud_sdk.models.shared.Region>](../../models/shared/Region.md)                                               | :heavy_minus_sign:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |
 
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.CreatePublicLobbyDeprecatedResponse](../../models/operations/CreatePublicLobbyDeprecatedResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.CreatePublicLobbyDeprecatedResponse](../../models/operations/CreatePublicLobbyDeprecatedResponse.md)**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -172,10 +170,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -202,10 +200,10 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -223,12 +221,12 @@ public class Application {
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
 | `local`                                                                                         | *Optional<? extends Boolean>*                                                                   | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
-| `region`                                                                                        | [Optional<? extends com.hathora.cloud_api.models.shared.Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
+| `region`                                                                                        | [Optional<? extends com.hathora.cloud_sdk.models.shared.Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
 
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.ListActivePublicLobbiesDeprecatedV1Response](../../models/operations/ListActivePublicLobbiesDeprecatedV1Response.md)**
+**[com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV1Response](../../models/operations/ListActivePublicLobbiesDeprecatedV1Response.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

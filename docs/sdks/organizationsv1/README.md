@@ -19,11 +19,10 @@
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.models.shared.Security;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -49,10 +48,10 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -73,7 +72,7 @@ public class Application {
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.AcceptInviteResponse](../../models/operations/AcceptInviteResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.AcceptInviteResponse](../../models/operations/AcceptInviteResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -88,11 +87,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.models.shared.Security;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -120,10 +118,10 @@ public class Application {
             if (res.orgMembersPage().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -144,7 +142,7 @@ public class Application {
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.GetOrgMembersResponse](../../models/operations/GetOrgMembersResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.GetOrgMembersResponse](../../models/operations/GetOrgMembersResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -159,11 +157,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.models.shared.Security;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -191,10 +188,10 @@ public class Application {
             if (res.pendingOrgInvitesPage().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -215,7 +212,7 @@ public class Application {
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.GetOrgPendingInvitesResponse](../../models/operations/GetOrgPendingInvitesResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse](../../models/operations/GetOrgPendingInvitesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -232,11 +229,10 @@ Returns an unsorted list of all organizations that you are a member of (an accep
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.models.shared.Security;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -263,10 +259,10 @@ public class Application {
             if (res.orgsPage().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -281,7 +277,7 @@ public class Application {
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.GetOrgsResponse](../../models/operations/GetOrgsResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.GetOrgsResponse](../../models/operations/GetOrgsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -296,11 +292,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.models.shared.Security;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -327,10 +322,10 @@ public class Application {
             if (res.pendingOrgInvitesPage().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -345,7 +340,7 @@ public class Application {
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.GetUserPendingInvitesResponse](../../models/operations/GetUserPendingInvitesResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse](../../models/operations/GetUserPendingInvitesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -360,11 +355,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.models.shared.Security;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -395,10 +389,10 @@ public class Application {
             if (res.pendingOrgInvite().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -414,13 +408,13 @@ public class Application {
 
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `createUserInvite`                                                                              | [com.hathora.cloud_api.models.shared.CreateUserInvite](../../models/shared/CreateUserInvite.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |                                                                                                 |
+| `createUserInvite`                                                                              | [com.hathora.cloud_sdk.models.shared.CreateUserInvite](../../models/shared/CreateUserInvite.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |                                                                                                 |
 | `orgId`                                                                                         | *String*                                                                                        | :heavy_check_mark:                                                                              | N/A                                                                                             | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                                                        |
 
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.InviteUserResponse](../../models/operations/InviteUserResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.InviteUserResponse](../../models/operations/InviteUserResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -435,11 +429,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.models.shared.Security;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -465,10 +458,10 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -489,7 +482,7 @@ public class Application {
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.RejectInviteResponse](../../models/operations/RejectInviteResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.RejectInviteResponse](../../models/operations/RejectInviteResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -504,11 +497,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_api.HathoraCloud;
-import com.hathora.cloud_api.models.operations.*;
-import com.hathora.cloud_api.models.shared.*;
-import com.hathora.cloud_api.models.shared.Security;
-import com.hathora.cloud_api.utils.EventStream;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.operations.*;
+import com.hathora.cloud_sdk.models.shared.*;
+import com.hathora.cloud_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -537,10 +529,10 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.hathora.cloud_api.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_api.models.errors.SDKError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -556,13 +548,13 @@ public class Application {
 
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       | Example                                                                                           |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `rescindUserInvite`                                                                               | [com.hathora.cloud_api.models.shared.RescindUserInvite](../../models/shared/RescindUserInvite.md) | :heavy_check_mark:                                                                                | N/A                                                                                               |                                                                                                   |
+| `rescindUserInvite`                                                                               | [com.hathora.cloud_sdk.models.shared.RescindUserInvite](../../models/shared/RescindUserInvite.md) | :heavy_check_mark:                                                                                | N/A                                                                                               |                                                                                                   |
 | `orgId`                                                                                           | *String*                                                                                          | :heavy_check_mark:                                                                                | N/A                                                                                               | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                                                          |
 
 
 ### Response
 
-**[com.hathora.cloud_api.models.operations.RescindInviteResponse](../../models/operations/RescindInviteResponse.md)**
+**[com.hathora.cloud_sdk.models.operations.RescindInviteResponse](../../models/operations/RescindInviteResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
