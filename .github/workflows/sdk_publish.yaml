@@ -10,7 +10,7 @@ permissions:
       - main
     paths:
       - RELEASES.md
-      - "*/RELE ASES.md"
+      - "*/RELEASES.md"
 jobs:
   publish:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
