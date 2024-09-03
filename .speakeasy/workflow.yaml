@@ -16,5 +16,6 @@ targets:
                 ossrhPassword: $ossrh_password
                 gpgSecretKey: $java_gpg_secret_key
                 gpgPassPhrase: $java_gpg_passphrase
+                useSonatypeLegacy: true
         codeSamples:
             output: codeSamples.yaml
