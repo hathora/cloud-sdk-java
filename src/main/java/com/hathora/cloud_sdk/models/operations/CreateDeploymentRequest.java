@@ -4,71 +4,58 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.DeploymentConfigV3;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateDeploymentRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.hathora.cloud_sdk.models.shared.DeploymentConfigV2 deploymentConfigV2;
+    private DeploymentConfigV3 deploymentConfigV3;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
-
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buildId")
-    private int buildId;
+    private Optional<String> appId;
 
     @JsonCreator
     public CreateDeploymentRequest(
-            com.hathora.cloud_sdk.models.shared.DeploymentConfigV2 deploymentConfigV2,
-            Optional<? extends String> appId,
-            int buildId) {
-        Utils.checkNotNull(deploymentConfigV2, "deploymentConfigV2");
+            DeploymentConfigV3 deploymentConfigV3,
+            Optional<String> appId) {
+        Utils.checkNotNull(deploymentConfigV3, "deploymentConfigV3");
         Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(buildId, "buildId");
-        this.deploymentConfigV2 = deploymentConfigV2;
+        this.deploymentConfigV3 = deploymentConfigV3;
         this.appId = appId;
-        this.buildId = buildId;
     }
     
     public CreateDeploymentRequest(
-            com.hathora.cloud_sdk.models.shared.DeploymentConfigV2 deploymentConfigV2,
-            int buildId) {
-        this(deploymentConfigV2, Optional.empty(), buildId);
+            DeploymentConfigV3 deploymentConfigV3) {
+        this(deploymentConfigV3, Optional.empty());
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.DeploymentConfigV2 deploymentConfigV2() {
-        return deploymentConfigV2;
+    public DeploymentConfigV3 deploymentConfigV3() {
+        return deploymentConfigV3;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
-    }
-
-    @JsonIgnore
-    public int buildId() {
-        return buildId;
+        return appId;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public CreateDeploymentRequest withDeploymentConfigV2(com.hathora.cloud_sdk.models.shared.DeploymentConfigV2 deploymentConfigV2) {
-        Utils.checkNotNull(deploymentConfigV2, "deploymentConfigV2");
-        this.deploymentConfigV2 = deploymentConfigV2;
+    public CreateDeploymentRequest withDeploymentConfigV3(DeploymentConfigV3 deploymentConfigV3) {
+        Utils.checkNotNull(deploymentConfigV3, "deploymentConfigV3");
+        this.deploymentConfigV3 = deploymentConfigV3;
         return this;
     }
 
@@ -78,15 +65,9 @@ public class CreateDeploymentRequest {
         return this;
     }
 
-    public CreateDeploymentRequest withAppId(Optional<? extends String> appId) {
+    public CreateDeploymentRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
-        return this;
-    }
-
-    public CreateDeploymentRequest withBuildId(int buildId) {
-        Utils.checkNotNull(buildId, "buildId");
-        this.buildId = buildId;
         return this;
     }
     
@@ -100,42 +81,37 @@ public class CreateDeploymentRequest {
         }
         CreateDeploymentRequest other = (CreateDeploymentRequest) o;
         return 
-            java.util.Objects.deepEquals(this.deploymentConfigV2, other.deploymentConfigV2) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.buildId, other.buildId);
+            Objects.deepEquals(this.deploymentConfigV3, other.deploymentConfigV3) &&
+            Objects.deepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
-            deploymentConfigV2,
-            appId,
-            buildId);
+        return Objects.hash(
+            deploymentConfigV3,
+            appId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateDeploymentRequest.class,
-                "deploymentConfigV2", deploymentConfigV2,
-                "appId", appId,
-                "buildId", buildId);
+                "deploymentConfigV3", deploymentConfigV3,
+                "appId", appId);
     }
     
     public final static class Builder {
  
-        private com.hathora.cloud_sdk.models.shared.DeploymentConfigV2 deploymentConfigV2;
+        private DeploymentConfigV3 deploymentConfigV3;
  
-        private Optional<? extends String> appId = Optional.empty();
- 
-        private Integer buildId;  
+        private Optional<String> appId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder deploymentConfigV2(com.hathora.cloud_sdk.models.shared.DeploymentConfigV2 deploymentConfigV2) {
-            Utils.checkNotNull(deploymentConfigV2, "deploymentConfigV2");
-            this.deploymentConfigV2 = deploymentConfigV2;
+        public Builder deploymentConfigV3(DeploymentConfigV3 deploymentConfigV3) {
+            Utils.checkNotNull(deploymentConfigV3, "deploymentConfigV3");
+            this.deploymentConfigV3 = deploymentConfigV3;
             return this;
         }
 
@@ -145,23 +121,16 @@ public class CreateDeploymentRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
-            return this;
-        }
-
-        public Builder buildId(int buildId) {
-            Utils.checkNotNull(buildId, "buildId");
-            this.buildId = buildId;
             return this;
         }
         
         public CreateDeploymentRequest build() {
             return new CreateDeploymentRequest(
-                deploymentConfigV2,
-                appId,
-                buildId);
+                deploymentConfigV3,
+                appId);
         }
     }
 }

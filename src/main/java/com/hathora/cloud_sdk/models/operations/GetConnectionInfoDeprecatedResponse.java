@@ -4,24 +4,28 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.ConnectionInfo;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetConnectionInfoDeprecatedResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetConnectionInfoDeprecatedResponse implements Response {
 
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.ConnectionInfo> connectionInfo;
+    private Optional<? extends ConnectionInfo> connectionInfo;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class GetConnectionInfoDeprecatedResponse implements com.hathora.cloud_sd
 
     @JsonCreator
     public GetConnectionInfoDeprecatedResponse(
-            Optional<? extends com.hathora.cloud_sdk.models.shared.ConnectionInfo> connectionInfo,
+            Optional<? extends ConnectionInfo> connectionInfo,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class GetConnectionInfoDeprecatedResponse implements com.hathora.cloud_sd
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.ConnectionInfo> connectionInfo() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.ConnectionInfo>) connectionInfo;
+    public Optional<ConnectionInfo> connectionInfo() {
+        return (Optional<ConnectionInfo>) connectionInfo;
     }
 
     /**
@@ -101,7 +105,7 @@ public class GetConnectionInfoDeprecatedResponse implements com.hathora.cloud_sd
     /**
      * Ok
      */
-    public GetConnectionInfoDeprecatedResponse withConnectionInfo(com.hathora.cloud_sdk.models.shared.ConnectionInfo connectionInfo) {
+    public GetConnectionInfoDeprecatedResponse withConnectionInfo(ConnectionInfo connectionInfo) {
         Utils.checkNotNull(connectionInfo, "connectionInfo");
         this.connectionInfo = Optional.ofNullable(connectionInfo);
         return this;
@@ -110,7 +114,7 @@ public class GetConnectionInfoDeprecatedResponse implements com.hathora.cloud_sd
     /**
      * Ok
      */
-    public GetConnectionInfoDeprecatedResponse withConnectionInfo(Optional<? extends com.hathora.cloud_sdk.models.shared.ConnectionInfo> connectionInfo) {
+    public GetConnectionInfoDeprecatedResponse withConnectionInfo(Optional<? extends ConnectionInfo> connectionInfo) {
         Utils.checkNotNull(connectionInfo, "connectionInfo");
         this.connectionInfo = connectionInfo;
         return this;
@@ -153,15 +157,15 @@ public class GetConnectionInfoDeprecatedResponse implements com.hathora.cloud_sd
         }
         GetConnectionInfoDeprecatedResponse other = (GetConnectionInfoDeprecatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.connectionInfo, other.connectionInfo) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.connectionInfo, other.connectionInfo) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             connectionInfo,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class GetConnectionInfoDeprecatedResponse implements com.hathora.cloud_sd
     
     public final static class Builder {
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.ConnectionInfo> connectionInfo = Optional.empty();
+        private Optional<? extends ConnectionInfo> connectionInfo = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class GetConnectionInfoDeprecatedResponse implements com.hathora.cloud_sd
         /**
          * Ok
          */
-        public Builder connectionInfo(com.hathora.cloud_sdk.models.shared.ConnectionInfo connectionInfo) {
+        public Builder connectionInfo(ConnectionInfo connectionInfo) {
             Utils.checkNotNull(connectionInfo, "connectionInfo");
             this.connectionInfo = Optional.ofNullable(connectionInfo);
             return this;
@@ -203,7 +207,7 @@ public class GetConnectionInfoDeprecatedResponse implements com.hathora.cloud_sd
         /**
          * Ok
          */
-        public Builder connectionInfo(Optional<? extends com.hathora.cloud_sdk.models.shared.ConnectionInfo> connectionInfo) {
+        public Builder connectionInfo(Optional<? extends ConnectionInfo> connectionInfo) {
             Utils.checkNotNull(connectionInfo, "connectionInfo");
             this.connectionInfo = connectionInfo;
             return this;

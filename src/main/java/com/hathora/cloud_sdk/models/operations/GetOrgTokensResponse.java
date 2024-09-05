@@ -4,19 +4,23 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.ListOrgTokens;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetOrgTokensResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetOrgTokensResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetOrgTokensResponse implements com.hathora.cloud_sdk.utils.Respons
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.ListOrgTokens> listOrgTokens;
+    private Optional<? extends ListOrgTokens> listOrgTokens;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetOrgTokensResponse implements com.hathora.cloud_sdk.utils.Respons
     @JsonCreator
     public GetOrgTokensResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.ListOrgTokens> listOrgTokens,
+            Optional<? extends ListOrgTokens> listOrgTokens,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetOrgTokensResponse implements com.hathora.cloud_sdk.utils.Respons
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.ListOrgTokens> listOrgTokens() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.ListOrgTokens>) listOrgTokens;
+    public Optional<ListOrgTokens> listOrgTokens() {
+        return (Optional<ListOrgTokens>) listOrgTokens;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetOrgTokensResponse implements com.hathora.cloud_sdk.utils.Respons
     /**
      * Ok
      */
-    public GetOrgTokensResponse withListOrgTokens(com.hathora.cloud_sdk.models.shared.ListOrgTokens listOrgTokens) {
+    public GetOrgTokensResponse withListOrgTokens(ListOrgTokens listOrgTokens) {
         Utils.checkNotNull(listOrgTokens, "listOrgTokens");
         this.listOrgTokens = Optional.ofNullable(listOrgTokens);
         return this;
@@ -119,7 +123,7 @@ public class GetOrgTokensResponse implements com.hathora.cloud_sdk.utils.Respons
     /**
      * Ok
      */
-    public GetOrgTokensResponse withListOrgTokens(Optional<? extends com.hathora.cloud_sdk.models.shared.ListOrgTokens> listOrgTokens) {
+    public GetOrgTokensResponse withListOrgTokens(Optional<? extends ListOrgTokens> listOrgTokens) {
         Utils.checkNotNull(listOrgTokens, "listOrgTokens");
         this.listOrgTokens = listOrgTokens;
         return this;
@@ -153,15 +157,15 @@ public class GetOrgTokensResponse implements com.hathora.cloud_sdk.utils.Respons
         }
         GetOrgTokensResponse other = (GetOrgTokensResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.listOrgTokens, other.listOrgTokens) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.listOrgTokens, other.listOrgTokens) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             listOrgTokens,
             statusCode,
@@ -181,7 +185,7 @@ public class GetOrgTokensResponse implements com.hathora.cloud_sdk.utils.Respons
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.ListOrgTokens> listOrgTokens = Optional.empty();
+        private Optional<? extends ListOrgTokens> listOrgTokens = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetOrgTokensResponse implements com.hathora.cloud_sdk.utils.Respons
         /**
          * Ok
          */
-        public Builder listOrgTokens(com.hathora.cloud_sdk.models.shared.ListOrgTokens listOrgTokens) {
+        public Builder listOrgTokens(ListOrgTokens listOrgTokens) {
             Utils.checkNotNull(listOrgTokens, "listOrgTokens");
             this.listOrgTokens = Optional.ofNullable(listOrgTokens);
             return this;
@@ -212,7 +216,7 @@ public class GetOrgTokensResponse implements com.hathora.cloud_sdk.utils.Respons
         /**
          * Ok
          */
-        public Builder listOrgTokens(Optional<? extends com.hathora.cloud_sdk.models.shared.ListOrgTokens> listOrgTokens) {
+        public Builder listOrgTokens(Optional<? extends ListOrgTokens> listOrgTokens) {
             Utils.checkNotNull(listOrgTokens, "listOrgTokens");
             this.listOrgTokens = listOrgTokens;
             return this;

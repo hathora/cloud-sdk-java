@@ -4,16 +4,15 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class BuildWithUploadUrlRegionalContainerTags {
 
@@ -69,13 +68,13 @@ public class BuildWithUploadUrlRegionalContainerTags {
         }
         BuildWithUploadUrlRegionalContainerTags other = (BuildWithUploadUrlRegionalContainerTags) o;
         return 
-            java.util.Objects.deepEquals(this.containerTag, other.containerTag) &&
-            java.util.Objects.deepEquals(this.region, other.region);
+            Objects.deepEquals(this.containerTag, other.containerTag) &&
+            Objects.deepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             containerTag,
             region);
     }

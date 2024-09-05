@@ -5,35 +5,61 @@
 package com.hathora.cloud_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hathora.cloud_sdk.models.errors.ApiError;
 import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateBuildV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.CreateBuildV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.CreateBuildV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.CreateWithMultipartUploadsV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.CreateWithMultipartUploadsV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.CreateWithMultipartUploadsV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.DeleteBuildV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.DeleteBuildV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.DeleteBuildV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.GetBuildInfoV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.GetBuildInfoV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetBuildInfoV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.GetBuildsV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.GetBuildsV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetBuildsV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.RunBuildV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.RunBuildV2DeprecatedRequestBody;
+import com.hathora.cloud_sdk.models.operations.RunBuildV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.RunBuildV2DeprecatedResponse;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
+import com.hathora.cloud_sdk.models.shared.Build;
+import com.hathora.cloud_sdk.models.shared.BuildWithMultipartUrls;
+import com.hathora.cloud_sdk.models.shared.BuildWithUploadUrl;
+import com.hathora.cloud_sdk.models.shared.CreateBuildParams;
+import com.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams;
 import com.hathora.cloud_sdk.utils.HTTPClient;
 import com.hathora.cloud_sdk.utils.HTTPRequest;
 import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.JSON;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.SerializedBody;
+import com.hathora.cloud_sdk.utils.Utils.JsonShape;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class BuildsV2 implements
-            MethodCallCreateBuild,
-            MethodCallCreateBuildWithUploadUrl,
-            MethodCallDeleteBuild,
-            MethodCallGetBuildInfo,
-            MethodCallGetBuilds,
-            MethodCallRunBuild {
+            MethodCallCreateBuildV2Deprecated,
+            MethodCallCreateBuildWithUploadUrlV2Deprecated,
+            MethodCallCreateWithMultipartUploadsV2Deprecated,
+            MethodCallDeleteBuildV2Deprecated,
+            MethodCallGetBuildInfoV2Deprecated,
+            MethodCallGetBuildsV2Deprecated,
+            MethodCallRunBuildV2Deprecated {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -46,8 +72,8 @@ public class BuildsV2 implements
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.CreateBuildRequestBuilder createBuild() {
-        return new com.hathora.cloud_sdk.models.operations.CreateBuildRequestBuilder(this);
+    public CreateBuildV2DeprecatedRequestBuilder createBuildV2Deprecated() {
+        return new CreateBuildV2DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -56,10 +82,11 @@ public class BuildsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.CreateBuildResponse createBuild(
-            com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams) throws Exception {
-        return createBuild(createBuildParams, Optional.empty());
+    public CreateBuildV2DeprecatedResponse createBuildV2Deprecated(
+            CreateBuildParams createBuildParams) throws Exception {
+        return createBuildV2Deprecated(createBuildParams, Optional.empty());
     }
+    
     /**
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @param createBuildParams
@@ -67,11 +94,11 @@ public class BuildsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.CreateBuildResponse createBuild(
-            com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams,
-            Optional<? extends String> appId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.CreateBuildRequest request =
-            com.hathora.cloud_sdk.models.operations.CreateBuildRequest
+    public CreateBuildV2DeprecatedResponse createBuildV2Deprecated(
+            CreateBuildParams createBuildParams,
+            Optional<String> appId) throws Exception {
+        CreateBuildV2DeprecatedRequest request =
+            CreateBuildV2DeprecatedRequest
                 .builder()
                 .createBuildParams(createBuildParams)
                 .appId(appId)
@@ -79,16 +106,21 @@ public class BuildsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.CreateBuildRequest.class,
+                CreateBuildV2DeprecatedRequest.class,
                 _baseUrl,
                 "/builds/v2/{appId}/create",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "createBuildParams", "json", false);
+                _convertedRequest, 
+                "createBuildParams",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -104,7 +136,10 @@ public class BuildsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateBuild", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "CreateBuildV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -112,18 +147,28 @@ public class BuildsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateBuild", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "CreateBuildV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateBuild", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "CreateBuildV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateBuild", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreateBuildV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -131,42 +176,42 @@ public class BuildsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.CreateBuildResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.CreateBuildResponse
+        CreateBuildV2DeprecatedResponse.Builder _resBuilder = 
+            CreateBuildV2DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.CreateBuildResponse _res = _resBuilder.build();
+        CreateBuildV2DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Build _out = Utils.mapper().readValue(
+                Build _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Build>() {});
-                _res.withBuild(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Build>() {});
+                _res.withBuild(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -175,47 +220,48 @@ public class BuildsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
     /**
-     * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `uploadUrl` that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with `uploadUrl` that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlRequestBuilder createBuildWithUploadUrl() {
-        return new com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlRequestBuilder(this);
+    public CreateBuildWithUploadUrlV2DeprecatedRequestBuilder createBuildWithUploadUrlV2Deprecated() {
+        return new CreateBuildWithUploadUrlV2DeprecatedRequestBuilder(this);
     }
 
     /**
-     * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `uploadUrl` that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with `uploadUrl` that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @param createBuildParams
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlResponse createBuildWithUploadUrl(
-            com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams) throws Exception {
-        return createBuildWithUploadUrl(createBuildParams, Optional.empty());
+    public CreateBuildWithUploadUrlV2DeprecatedResponse createBuildWithUploadUrlV2Deprecated(
+            CreateBuildParams createBuildParams) throws Exception {
+        return createBuildWithUploadUrlV2Deprecated(createBuildParams, Optional.empty());
     }
+    
     /**
-     * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `uploadUrl` that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with `uploadUrl` that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @param createBuildParams
      * @param appId
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlResponse createBuildWithUploadUrl(
-            com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams,
-            Optional<? extends String> appId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlRequest request =
-            com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlRequest
+    public CreateBuildWithUploadUrlV2DeprecatedResponse createBuildWithUploadUrlV2Deprecated(
+            CreateBuildParams createBuildParams,
+            Optional<String> appId) throws Exception {
+        CreateBuildWithUploadUrlV2DeprecatedRequest request =
+            CreateBuildWithUploadUrlV2DeprecatedRequest
                 .builder()
                 .createBuildParams(createBuildParams)
                 .appId(appId)
@@ -223,16 +269,21 @@ public class BuildsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlRequest.class,
+                CreateBuildWithUploadUrlV2DeprecatedRequest.class,
                 _baseUrl,
                 "/builds/v2/{appId}/createWithUploadUrl",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "createBuildParams", "json", false);
+                _convertedRequest, 
+                "createBuildParams",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -248,7 +299,10 @@ public class BuildsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateBuildWithUploadUrl", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "CreateBuildWithUploadUrlV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -256,18 +310,28 @@ public class BuildsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateBuildWithUploadUrl", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "CreateBuildWithUploadUrlV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateBuildWithUploadUrl", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "CreateBuildWithUploadUrlV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateBuildWithUploadUrl", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreateBuildWithUploadUrlV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -275,42 +339,42 @@ public class BuildsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlResponse
+        CreateBuildWithUploadUrlV2DeprecatedResponse.Builder _resBuilder = 
+            CreateBuildWithUploadUrlV2DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlResponse _res = _resBuilder.build();
+        CreateBuildWithUploadUrlV2DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.BuildWithUploadUrl _out = Utils.mapper().readValue(
+                BuildWithUploadUrl _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.BuildWithUploadUrl>() {});
-                _res.withBuildWithUploadUrl(java.util.Optional.ofNullable(_out));
+                    new TypeReference<BuildWithUploadUrl>() {});
+                _res.withBuildWithUploadUrl(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -319,13 +383,176 @@ public class BuildsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * @return The call builder
+     */
+    public CreateWithMultipartUploadsV2DeprecatedRequestBuilder createWithMultipartUploadsV2Deprecated() {
+        return new CreateWithMultipartUploadsV2DeprecatedRequestBuilder(this);
+    }
+
+    /**
+     * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * @param createMultipartBuildParams
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public CreateWithMultipartUploadsV2DeprecatedResponse createWithMultipartUploadsV2Deprecated(
+            CreateMultipartBuildParams createMultipartBuildParams) throws Exception {
+        return createWithMultipartUploadsV2Deprecated(createMultipartBuildParams, Optional.empty());
+    }
+    
+    /**
+     * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * @param createMultipartBuildParams
+     * @param appId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public CreateWithMultipartUploadsV2DeprecatedResponse createWithMultipartUploadsV2Deprecated(
+            CreateMultipartBuildParams createMultipartBuildParams,
+            Optional<String> appId) throws Exception {
+        CreateWithMultipartUploadsV2DeprecatedRequest request =
+            CreateWithMultipartUploadsV2DeprecatedRequest
+                .builder()
+                .createMultipartBuildParams(createMultipartBuildParams)
+                .appId(appId)
+                .build();
+        
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                CreateWithMultipartUploadsV2DeprecatedRequest.class,
+                _baseUrl,
+                "/builds/v2/{appId}/createWithMultipartUploads",
+                request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "createMultipartBuildParams",
+                "json",
+                false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "CreateWithMultipartUploadsV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "429", "4XX", "500", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreateWithMultipartUploadsV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "CreateWithMultipartUploadsV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreateWithMultipartUploadsV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        CreateWithMultipartUploadsV2DeprecatedResponse.Builder _resBuilder = 
+            CreateWithMultipartUploadsV2DeprecatedResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        CreateWithMultipartUploadsV2DeprecatedResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                BuildWithMultipartUrls _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<BuildWithMultipartUrls>() {});
+                _res.withBuildWithMultipartUrls(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "429", "500")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -334,8 +561,8 @@ public class BuildsV2 implements
      * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.DeleteBuildRequestBuilder deleteBuild() {
-        return new com.hathora.cloud_sdk.models.operations.DeleteBuildRequestBuilder(this);
+    public DeleteBuildV2DeprecatedRequestBuilder deleteBuildV2Deprecated() {
+        return new DeleteBuildV2DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -344,10 +571,11 @@ public class BuildsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.DeleteBuildResponse deleteBuild(
+    public DeleteBuildV2DeprecatedResponse deleteBuildV2Deprecated(
             int buildId) throws Exception {
-        return deleteBuild(Optional.empty(), buildId);
+        return deleteBuildV2Deprecated(Optional.empty(), buildId);
     }
+    
     /**
      * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
      * @param appId
@@ -355,11 +583,11 @@ public class BuildsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.DeleteBuildResponse deleteBuild(
-            Optional<? extends String> appId,
+    public DeleteBuildV2DeprecatedResponse deleteBuildV2Deprecated(
+            Optional<String> appId,
             int buildId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.DeleteBuildRequest request =
-            com.hathora.cloud_sdk.models.operations.DeleteBuildRequest
+        DeleteBuildV2DeprecatedRequest request =
+            DeleteBuildV2DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .buildId(buildId)
@@ -367,7 +595,7 @@ public class BuildsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.DeleteBuildRequest.class,
+                DeleteBuildV2DeprecatedRequest.class,
                 _baseUrl,
                 "/builds/v2/{appId}/delete/{buildId}",
                 request, this.sdkConfiguration.globals);
@@ -384,7 +612,10 @@ public class BuildsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("DeleteBuild", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "DeleteBuildV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -392,18 +623,28 @@ public class BuildsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("DeleteBuild", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "DeleteBuildV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("DeleteBuild", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "DeleteBuildV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("DeleteBuild", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "DeleteBuildV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -411,14 +652,14 @@ public class BuildsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.DeleteBuildResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.DeleteBuildResponse
+        DeleteBuildV2DeprecatedResponse.Builder _resBuilder = 
+            DeleteBuildV2DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.DeleteBuildResponse _res = _resBuilder.build();
+        DeleteBuildV2DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -426,16 +667,16 @@ public class BuildsV2 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -444,13 +685,13 @@ public class BuildsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -459,8 +700,8 @@ public class BuildsV2 implements
      * Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetBuildInfoRequestBuilder getBuildInfo() {
-        return new com.hathora.cloud_sdk.models.operations.GetBuildInfoRequestBuilder(this);
+    public GetBuildInfoV2DeprecatedRequestBuilder getBuildInfoV2Deprecated() {
+        return new GetBuildInfoV2DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -469,10 +710,11 @@ public class BuildsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetBuildInfoResponse getBuildInfo(
+    public GetBuildInfoV2DeprecatedResponse getBuildInfoV2Deprecated(
             int buildId) throws Exception {
-        return getBuildInfo(Optional.empty(), buildId);
+        return getBuildInfoV2Deprecated(Optional.empty(), buildId);
     }
+    
     /**
      * Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
      * @param appId
@@ -480,11 +722,11 @@ public class BuildsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetBuildInfoResponse getBuildInfo(
-            Optional<? extends String> appId,
+    public GetBuildInfoV2DeprecatedResponse getBuildInfoV2Deprecated(
+            Optional<String> appId,
             int buildId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetBuildInfoRequest request =
-            com.hathora.cloud_sdk.models.operations.GetBuildInfoRequest
+        GetBuildInfoV2DeprecatedRequest request =
+            GetBuildInfoV2DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .buildId(buildId)
@@ -492,7 +734,7 @@ public class BuildsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetBuildInfoRequest.class,
+                GetBuildInfoV2DeprecatedRequest.class,
                 _baseUrl,
                 "/builds/v2/{appId}/info/{buildId}",
                 request, this.sdkConfiguration.globals);
@@ -509,26 +751,39 @@ public class BuildsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetBuildInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetBuildInfoV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "4XX", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetBuildInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetBuildInfoV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetBuildInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetBuildInfoV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetBuildInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetBuildInfoV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -536,42 +791,42 @@ public class BuildsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetBuildInfoResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetBuildInfoResponse
+        GetBuildInfoV2DeprecatedResponse.Builder _resBuilder = 
+            GetBuildInfoV2DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetBuildInfoResponse _res = _resBuilder.build();
+        GetBuildInfoV2DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Build _out = Utils.mapper().readValue(
+                Build _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Build>() {});
-                _res.withBuild(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Build>() {});
+                _res.withBuild(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -580,13 +835,13 @@ public class BuildsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -595,8 +850,8 @@ public class BuildsV2 implements
      * Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetBuildsRequestBuilder getBuilds() {
-        return new com.hathora.cloud_sdk.models.operations.GetBuildsRequestBuilder(this);
+    public GetBuildsV2DeprecatedRequestBuilder getBuildsV2Deprecated() {
+        return new GetBuildsV2DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -604,26 +859,27 @@ public class BuildsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetBuildsResponse getBuildsDirect() throws Exception {
-        return getBuilds(Optional.empty());
+    public GetBuildsV2DeprecatedResponse getBuildsV2DeprecatedDirect() throws Exception {
+        return getBuildsV2Deprecated(Optional.empty());
     }
+    
     /**
      * Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @param appId
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetBuildsResponse getBuilds(
-            Optional<? extends String> appId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetBuildsRequest request =
-            com.hathora.cloud_sdk.models.operations.GetBuildsRequest
+    public GetBuildsV2DeprecatedResponse getBuildsV2Deprecated(
+            Optional<String> appId) throws Exception {
+        GetBuildsV2DeprecatedRequest request =
+            GetBuildsV2DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetBuildsRequest.class,
+                GetBuildsV2DeprecatedRequest.class,
                 _baseUrl,
                 "/builds/v2/{appId}/list",
                 request, this.sdkConfiguration.globals);
@@ -640,26 +896,39 @@ public class BuildsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetBuilds", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetBuildsV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "4XX", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetBuilds", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetBuildsV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetBuilds", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetBuildsV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetBuilds", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetBuildsV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -667,42 +936,42 @@ public class BuildsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetBuildsResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetBuildsResponse
+        GetBuildsV2DeprecatedResponse.Builder _resBuilder = 
+            GetBuildsV2DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetBuildsResponse _res = _resBuilder.build();
+        GetBuildsV2DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                java.util.List<com.hathora.cloud_sdk.models.shared.Build> _out = Utils.mapper().readValue(
+                List<Build> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<java.util.List<com.hathora.cloud_sdk.models.shared.Build>>() {});
-                _res.withClasses(java.util.Optional.ofNullable(_out));
+                    new TypeReference<List<Build>>() {});
+                _res.withClasses(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -711,13 +980,13 @@ public class BuildsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -726,8 +995,8 @@ public class BuildsV2 implements
      * Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.RunBuildRequestBuilder runBuild() {
-        return new com.hathora.cloud_sdk.models.operations.RunBuildRequestBuilder(this);
+    public RunBuildV2DeprecatedRequestBuilder runBuildV2Deprecated() {
+        return new RunBuildV2DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -737,11 +1006,12 @@ public class BuildsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.RunBuildResponse runBuild(
-            com.hathora.cloud_sdk.models.operations.RunBuildRequestBody requestBody,
+    public RunBuildV2DeprecatedResponse runBuildV2Deprecated(
+            RunBuildV2DeprecatedRequestBody requestBody,
             int buildId) throws Exception {
-        return runBuild(requestBody, Optional.empty(), buildId);
+        return runBuildV2Deprecated(requestBody, Optional.empty(), buildId);
     }
+    
     /**
      * Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * @param requestBody
@@ -750,12 +1020,12 @@ public class BuildsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.RunBuildResponse runBuild(
-            com.hathora.cloud_sdk.models.operations.RunBuildRequestBody requestBody,
-            Optional<? extends String> appId,
+    public RunBuildV2DeprecatedResponse runBuildV2Deprecated(
+            RunBuildV2DeprecatedRequestBody requestBody,
+            Optional<String> appId,
             int buildId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.RunBuildRequest request =
-            com.hathora.cloud_sdk.models.operations.RunBuildRequest
+        RunBuildV2DeprecatedRequest request =
+            RunBuildV2DeprecatedRequest
                 .builder()
                 .requestBody(requestBody)
                 .appId(appId)
@@ -764,16 +1034,21 @@ public class BuildsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.RunBuildRequest.class,
+                RunBuildV2DeprecatedRequest.class,
                 _baseUrl,
                 "/builds/v2/{appId}/run/{buildId}",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "multipart", false);
+                _convertedRequest, 
+                "requestBody",
+                "multipart",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -789,7 +1064,10 @@ public class BuildsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("RunBuild", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "RunBuildV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -797,18 +1075,28 @@ public class BuildsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("RunBuild", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "RunBuildV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("RunBuild", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "RunBuildV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("RunBuild", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "RunBuildV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -816,8 +1104,8 @@ public class BuildsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.RunBuildResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.RunBuildResponse
+        RunBuildV2DeprecatedResponse.Builder _resBuilder = 
+            RunBuildV2DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
@@ -826,7 +1114,7 @@ public class BuildsV2 implements
             _resBuilder.responseStream(_httpRes.body());
         }
 
-        com.hathora.cloud_sdk.models.operations.RunBuildResponse _res = _resBuilder.build();
+        RunBuildV2DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/octet-stream")) {
@@ -836,21 +1124,21 @@ public class BuildsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -859,13 +1147,13 @@ public class BuildsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

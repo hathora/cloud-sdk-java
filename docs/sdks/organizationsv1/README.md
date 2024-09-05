@@ -1,6 +1,8 @@
 # OrganizationsV1
 (*organizationsV1()*)
 
+## Overview
+
 ### Available Operations
 
 * [acceptInvite](#acceptinvite)
@@ -20,17 +22,10 @@
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.AcceptInviteResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -51,7 +46,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -69,16 +64,17 @@ public class Application {
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | `orgId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
-
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.AcceptInviteResponse](../../models/operations/AcceptInviteResponse.md)**
+**[AcceptInviteResponse](../../models/operations/AcceptInviteResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## getOrgMembers
 
@@ -88,17 +84,10 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetOrgMembersResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -121,7 +110,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -139,16 +128,17 @@ public class Application {
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | `orgId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
-
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetOrgMembersResponse](../../models/operations/GetOrgMembersResponse.md)**
+**[GetOrgMembersResponse](../../models/operations/GetOrgMembersResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,429                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## getOrgPendingInvites
 
@@ -158,17 +148,10 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -191,7 +174,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -209,16 +192,17 @@ public class Application {
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | `orgId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
-
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse](../../models/operations/GetOrgPendingInvitesResponse.md)**
+**[GetOrgPendingInvitesResponse](../../models/operations/GetOrgPendingInvitesResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,429                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## getOrgs
 
@@ -230,17 +214,10 @@ Returns an unsorted list of all organizations that you are a member of (an accep
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetOrgsResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -262,7 +239,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -274,16 +251,17 @@ public class Application {
 }
 ```
 
-
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetOrgsResponse](../../models/operations/GetOrgsResponse.md)**
+**[GetOrgsResponse](../../models/operations/GetOrgsResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## getUserPendingInvites
 
@@ -293,17 +271,10 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -325,7 +296,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -337,16 +308,17 @@ public class Application {
 }
 ```
 
-
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse](../../models/operations/GetUserPendingInvitesResponse.md)**
+**[GetUserPendingInvitesResponse](../../models/operations/GetUserPendingInvitesResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,429                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## inviteUser
 
@@ -356,17 +328,11 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.InviteUserResponse;
+import com.hathora.cloud_sdk.models.shared.CreateUserInvite;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -392,7 +358,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -406,21 +372,22 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `createUserInvite`                                                                              | [com.hathora.cloud_sdk.models.shared.CreateUserInvite](../../models/shared/CreateUserInvite.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |                                                                                                 |
-| `orgId`                                                                                         | *String*                                                                                        | :heavy_check_mark:                                                                              | N/A                                                                                             | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                                                        |
-
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 | Example                                                     |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `createUserInvite`                                          | [CreateUserInvite](../../models/shared/CreateUserInvite.md) | :heavy_check_mark:                                          | N/A                                                         |                                                             |
+| `orgId`                                                     | *String*                                                    | :heavy_check_mark:                                          | N/A                                                         | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                    |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.InviteUserResponse](../../models/operations/InviteUserResponse.md)**
+**[InviteUserResponse](../../models/operations/InviteUserResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,422,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## rejectInvite
 
@@ -430,17 +397,10 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.RejectInviteResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -461,7 +421,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -479,16 +439,17 @@ public class Application {
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | `orgId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
-
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.RejectInviteResponse](../../models/operations/RejectInviteResponse.md)**
+**[RejectInviteResponse](../../models/operations/RejectInviteResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## rescindInvite
 
@@ -498,17 +459,11 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.RescindInviteResponse;
+import com.hathora.cloud_sdk.models.shared.RescindUserInvite;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -532,7 +487,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -546,15 +501,15 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       | Example                                                                                           |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `rescindUserInvite`                                                                               | [com.hathora.cloud_sdk.models.shared.RescindUserInvite](../../models/shared/RescindUserInvite.md) | :heavy_check_mark:                                                                                | N/A                                                                                               |                                                                                                   |
-| `orgId`                                                                                           | *String*                                                                                          | :heavy_check_mark:                                                                                | N/A                                                                                               | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                                                          |
-
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `rescindUserInvite`                                           | [RescindUserInvite](../../models/shared/RescindUserInvite.md) | :heavy_check_mark:                                            | N/A                                                           |                                                               |
+| `orgId`                                                       | *String*                                                      | :heavy_check_mark:                                            | N/A                                                           | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                      |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.RescindInviteResponse](../../models/operations/RescindInviteResponse.md)**
+**[RescindInviteResponse](../../models/operations/RescindInviteResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

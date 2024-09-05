@@ -4,16 +4,15 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class UpdateRoomConfigParams {
 
@@ -61,12 +60,12 @@ public class UpdateRoomConfigParams {
         }
         UpdateRoomConfigParams other = (UpdateRoomConfigParams) o;
         return 
-            java.util.Objects.deepEquals(this.roomConfig, other.roomConfig);
+            Objects.deepEquals(this.roomConfig, other.roomConfig);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             roomConfig);
     }
     

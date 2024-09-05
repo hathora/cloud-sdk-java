@@ -4,20 +4,20 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class RoomWithoutAllocations {
 
@@ -33,7 +33,7 @@ public class RoomWithoutAllocations {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("roomConfig")
-    private JsonNullable<? extends String> roomConfig;
+    private JsonNullable<String> roomConfig;
 
     /**
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
@@ -58,7 +58,7 @@ public class RoomWithoutAllocations {
     public RoomWithoutAllocations(
             @JsonProperty("appId") String appId,
             @JsonProperty("currentAllocation") Optional<? extends RoomWithoutAllocationsCurrentAllocation> currentAllocation,
-            @JsonProperty("roomConfig") JsonNullable<? extends String> roomConfig,
+            @JsonProperty("roomConfig") JsonNullable<String> roomConfig,
             @JsonProperty("roomId") String roomId,
             @JsonProperty("status") RoomStatus status) {
         Utils.checkNotNull(appId, "appId");
@@ -94,10 +94,9 @@ public class RoomWithoutAllocations {
         return (Optional<RoomWithoutAllocationsCurrentAllocation>) currentAllocation;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<String> roomConfig() {
-        return (JsonNullable<String>) roomConfig;
+        return roomConfig;
     }
 
     /**
@@ -154,7 +153,7 @@ public class RoomWithoutAllocations {
         return this;
     }
 
-    public RoomWithoutAllocations withRoomConfig(JsonNullable<? extends String> roomConfig) {
+    public RoomWithoutAllocations withRoomConfig(JsonNullable<String> roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
         this.roomConfig = roomConfig;
         return this;
@@ -195,16 +194,16 @@ public class RoomWithoutAllocations {
         }
         RoomWithoutAllocations other = (RoomWithoutAllocations) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.currentAllocation, other.currentAllocation) &&
-            java.util.Objects.deepEquals(this.roomConfig, other.roomConfig) &&
-            java.util.Objects.deepEquals(this.roomId, other.roomId) &&
-            java.util.Objects.deepEquals(this.status, other.status);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.currentAllocation, other.currentAllocation) &&
+            Objects.deepEquals(this.roomConfig, other.roomConfig) &&
+            Objects.deepEquals(this.roomId, other.roomId) &&
+            Objects.deepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             currentAllocation,
             roomConfig,
@@ -228,7 +227,7 @@ public class RoomWithoutAllocations {
  
         private Optional<? extends RoomWithoutAllocationsCurrentAllocation> currentAllocation = Optional.empty();
  
-        private JsonNullable<? extends String> roomConfig = JsonNullable.undefined();
+        private JsonNullable<String> roomConfig = JsonNullable.undefined();
  
         private String roomId;
  
@@ -265,7 +264,7 @@ public class RoomWithoutAllocations {
             return this;
         }
 
-        public Builder roomConfig(JsonNullable<? extends String> roomConfig) {
+        public Builder roomConfig(JsonNullable<String> roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
             this.roomConfig = roomConfig;
             return this;

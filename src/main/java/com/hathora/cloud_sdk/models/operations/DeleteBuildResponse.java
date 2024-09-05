@@ -4,23 +4,33 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.DeletedBuild;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
+import java.util.Optional;
 
-public class DeleteBuildResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class DeleteBuildResponse implements Response {
 
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
+
+    /**
+     * Ok
+     */
+    private Optional<? extends DeletedBuild> deletedBuild;
 
     /**
      * HTTP response status code for this operation
@@ -35,14 +45,24 @@ public class DeleteBuildResponse implements com.hathora.cloud_sdk.utils.Response
     @JsonCreator
     public DeleteBuildResponse(
             String contentType,
+            Optional<? extends DeletedBuild> deletedBuild,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(deletedBuild, "deletedBuild");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
+        this.deletedBuild = deletedBuild;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
+    }
+    
+    public DeleteBuildResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
@@ -51,6 +71,15 @@ public class DeleteBuildResponse implements com.hathora.cloud_sdk.utils.Response
     @JsonIgnore
     public String contentType() {
         return contentType;
+    }
+
+    /**
+     * Ok
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<DeletedBuild> deletedBuild() {
+        return (Optional<DeletedBuild>) deletedBuild;
     }
 
     /**
@@ -83,6 +112,24 @@ public class DeleteBuildResponse implements com.hathora.cloud_sdk.utils.Response
     }
 
     /**
+     * Ok
+     */
+    public DeleteBuildResponse withDeletedBuild(DeletedBuild deletedBuild) {
+        Utils.checkNotNull(deletedBuild, "deletedBuild");
+        this.deletedBuild = Optional.ofNullable(deletedBuild);
+        return this;
+    }
+
+    /**
+     * Ok
+     */
+    public DeleteBuildResponse withDeletedBuild(Optional<? extends DeletedBuild> deletedBuild) {
+        Utils.checkNotNull(deletedBuild, "deletedBuild");
+        this.deletedBuild = deletedBuild;
+        return this;
+    }
+
+    /**
      * HTTP response status code for this operation
      */
     public DeleteBuildResponse withStatusCode(int statusCode) {
@@ -110,15 +157,17 @@ public class DeleteBuildResponse implements com.hathora.cloud_sdk.utils.Response
         }
         DeleteBuildResponse other = (DeleteBuildResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.deletedBuild, other.deletedBuild) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
+            deletedBuild,
             statusCode,
             rawResponse);
     }
@@ -127,6 +176,7 @@ public class DeleteBuildResponse implements com.hathora.cloud_sdk.utils.Response
     public String toString() {
         return Utils.toString(DeleteBuildResponse.class,
                 "contentType", contentType,
+                "deletedBuild", deletedBuild,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -134,6 +184,8 @@ public class DeleteBuildResponse implements com.hathora.cloud_sdk.utils.Response
     public final static class Builder {
  
         private String contentType;
+ 
+        private Optional<? extends DeletedBuild> deletedBuild = Optional.empty();
  
         private Integer statusCode;
  
@@ -149,6 +201,24 @@ public class DeleteBuildResponse implements com.hathora.cloud_sdk.utils.Response
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder deletedBuild(DeletedBuild deletedBuild) {
+            Utils.checkNotNull(deletedBuild, "deletedBuild");
+            this.deletedBuild = Optional.ofNullable(deletedBuild);
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder deletedBuild(Optional<? extends DeletedBuild> deletedBuild) {
+            Utils.checkNotNull(deletedBuild, "deletedBuild");
+            this.deletedBuild = deletedBuild;
             return this;
         }
 
@@ -173,6 +243,7 @@ public class DeleteBuildResponse implements com.hathora.cloud_sdk.utils.Response
         public DeleteBuildResponse build() {
             return new DeleteBuildResponse(
                 contentType,
+                deletedBuild,
                 statusCode,
                 rawResponse);
         }

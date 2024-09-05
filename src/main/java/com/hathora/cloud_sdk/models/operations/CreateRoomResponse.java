@@ -4,26 +4,30 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.RoomConnectionData;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class CreateRoomResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class CreateRoomResponse implements Response {
 
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
 
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.RoomConnectionData> roomConnectionData;
+    private Optional<? extends RoomConnectionData> roomConnectionData;
 
     /**
      * HTTP response status code for this operation
@@ -38,7 +42,7 @@ public class CreateRoomResponse implements com.hathora.cloud_sdk.utils.Response 
     @JsonCreator
     public CreateRoomResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.RoomConnectionData> roomConnectionData,
+            Optional<? extends RoomConnectionData> roomConnectionData,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -68,8 +72,8 @@ public class CreateRoomResponse implements com.hathora.cloud_sdk.utils.Response 
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.RoomConnectionData> roomConnectionData() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.RoomConnectionData>) roomConnectionData;
+    public Optional<RoomConnectionData> roomConnectionData() {
+        return (Optional<RoomConnectionData>) roomConnectionData;
     }
 
     /**
@@ -101,13 +105,13 @@ public class CreateRoomResponse implements com.hathora.cloud_sdk.utils.Response 
         return this;
     }
 
-    public CreateRoomResponse withRoomConnectionData(com.hathora.cloud_sdk.models.shared.RoomConnectionData roomConnectionData) {
+    public CreateRoomResponse withRoomConnectionData(RoomConnectionData roomConnectionData) {
         Utils.checkNotNull(roomConnectionData, "roomConnectionData");
         this.roomConnectionData = Optional.ofNullable(roomConnectionData);
         return this;
     }
 
-    public CreateRoomResponse withRoomConnectionData(Optional<? extends com.hathora.cloud_sdk.models.shared.RoomConnectionData> roomConnectionData) {
+    public CreateRoomResponse withRoomConnectionData(Optional<? extends RoomConnectionData> roomConnectionData) {
         Utils.checkNotNull(roomConnectionData, "roomConnectionData");
         this.roomConnectionData = roomConnectionData;
         return this;
@@ -141,15 +145,15 @@ public class CreateRoomResponse implements com.hathora.cloud_sdk.utils.Response 
         }
         CreateRoomResponse other = (CreateRoomResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.roomConnectionData, other.roomConnectionData) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.roomConnectionData, other.roomConnectionData) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             roomConnectionData,
             statusCode,
@@ -169,7 +173,7 @@ public class CreateRoomResponse implements com.hathora.cloud_sdk.utils.Response 
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.RoomConnectionData> roomConnectionData = Optional.empty();
+        private Optional<? extends RoomConnectionData> roomConnectionData = Optional.empty();
  
         private Integer statusCode;
  
@@ -188,13 +192,13 @@ public class CreateRoomResponse implements com.hathora.cloud_sdk.utils.Response 
             return this;
         }
 
-        public Builder roomConnectionData(com.hathora.cloud_sdk.models.shared.RoomConnectionData roomConnectionData) {
+        public Builder roomConnectionData(RoomConnectionData roomConnectionData) {
             Utils.checkNotNull(roomConnectionData, "roomConnectionData");
             this.roomConnectionData = Optional.ofNullable(roomConnectionData);
             return this;
         }
 
-        public Builder roomConnectionData(Optional<? extends com.hathora.cloud_sdk.models.shared.RoomConnectionData> roomConnectionData) {
+        public Builder roomConnectionData(Optional<? extends RoomConnectionData> roomConnectionData) {
             Utils.checkNotNull(roomConnectionData, "roomConnectionData");
             this.roomConnectionData = roomConnectionData;
             return this;

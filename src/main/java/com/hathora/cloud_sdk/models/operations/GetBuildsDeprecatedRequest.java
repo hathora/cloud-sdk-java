@@ -4,26 +4,25 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetBuildsDeprecatedRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @JsonCreator
     public GetBuildsDeprecatedRequest(
-            Optional<? extends String> appId) {
+            Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
     }
@@ -32,10 +31,9 @@ public class GetBuildsDeprecatedRequest {
         this(Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
     public final static Builder builder() {
@@ -48,7 +46,7 @@ public class GetBuildsDeprecatedRequest {
         return this;
     }
 
-    public GetBuildsDeprecatedRequest withAppId(Optional<? extends String> appId) {
+    public GetBuildsDeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -64,12 +62,12 @@ public class GetBuildsDeprecatedRequest {
         }
         GetBuildsDeprecatedRequest other = (GetBuildsDeprecatedRequest) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId);
+            Objects.deepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId);
     }
     
@@ -81,7 +79,7 @@ public class GetBuildsDeprecatedRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> appId = Optional.empty();  
+        private Optional<String> appId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -93,7 +91,7 @@ public class GetBuildsDeprecatedRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;

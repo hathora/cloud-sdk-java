@@ -5,26 +5,43 @@
 package com.hathora.cloud_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hathora.cloud_sdk.models.errors.ApiError;
 import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetBalanceRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetBalanceResponse;
+import com.hathora.cloud_sdk.models.operations.GetInvoicesRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetInvoicesResponse;
+import com.hathora.cloud_sdk.models.operations.GetPaymentMethodRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetPaymentMethodResponse;
+import com.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceItemsRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceItemsResponse;
+import com.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceTotalRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceTotalResponse;
+import com.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceTotalResponseBody;
+import com.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlResponse;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
+import com.hathora.cloud_sdk.models.shared.CustomerPortalUrl;
+import com.hathora.cloud_sdk.models.shared.Invoice;
+import com.hathora.cloud_sdk.models.shared.InvoiceItemPage;
+import com.hathora.cloud_sdk.models.shared.PaymentMethod;
 import com.hathora.cloud_sdk.utils.HTTPClient;
 import com.hathora.cloud_sdk.utils.HTTPRequest;
 import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.JSON;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.SerializedBody;
+import com.hathora.cloud_sdk.utils.Utils.JsonShape;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Double;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 /**
  *  
@@ -33,6 +50,8 @@ public class BillingV1 implements
             MethodCallGetBalance,
             MethodCallGetInvoices,
             MethodCallGetPaymentMethod,
+            MethodCallGetUpcomingInvoiceItems,
+            MethodCallGetUpcomingInvoiceTotal,
             MethodCallInitStripeCustomerPortalUrl {
 
     private final SDKConfiguration sdkConfiguration;
@@ -42,11 +61,11 @@ public class BillingV1 implements
     }
 
 
-    public com.hathora.cloud_sdk.models.operations.GetBalanceRequestBuilder getBalance() {
-        return new com.hathora.cloud_sdk.models.operations.GetBalanceRequestBuilder(this);
+    public GetBalanceRequestBuilder getBalance() {
+        return new GetBalanceRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.GetBalanceResponse getBalanceDirect() throws Exception {
+    public GetBalanceResponse getBalanceDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -64,7 +83,10 @@ public class BillingV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetBalance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetBalance", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -72,18 +94,28 @@ public class BillingV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetBalance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetBalance",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetBalance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetBalance",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetBalance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetBalance",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -91,42 +123,42 @@ public class BillingV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetBalanceResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetBalanceResponse
+        GetBalanceResponse.Builder _resBuilder = 
+            GetBalanceResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetBalanceResponse _res = _resBuilder.build();
+        GetBalanceResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 double _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<Double>() {});
-                _res.withNumber(java.util.Optional.ofNullable(_out));
+                _res.withNumber(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -135,22 +167,22 @@ public class BillingV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
-    public com.hathora.cloud_sdk.models.operations.GetInvoicesRequestBuilder getInvoices() {
-        return new com.hathora.cloud_sdk.models.operations.GetInvoicesRequestBuilder(this);
+    public GetInvoicesRequestBuilder getInvoices() {
+        return new GetInvoicesRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.GetInvoicesResponse getInvoicesDirect() throws Exception {
+    public GetInvoicesResponse getInvoicesDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -168,7 +200,10 @@ public class BillingV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetInvoices", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetInvoices", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -176,18 +211,28 @@ public class BillingV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetInvoices", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetInvoices",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetInvoices", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetInvoices",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetInvoices", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetInvoices",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -195,42 +240,42 @@ public class BillingV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetInvoicesResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetInvoicesResponse
+        GetInvoicesResponse.Builder _resBuilder = 
+            GetInvoicesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetInvoicesResponse _res = _resBuilder.build();
+        GetInvoicesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                java.util.List<com.hathora.cloud_sdk.models.shared.Invoice> _out = Utils.mapper().readValue(
+                List<Invoice> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<java.util.List<com.hathora.cloud_sdk.models.shared.Invoice>>() {});
-                _res.withClasses(java.util.Optional.ofNullable(_out));
+                    new TypeReference<List<Invoice>>() {});
+                _res.withClasses(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -239,22 +284,22 @@ public class BillingV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
-    public com.hathora.cloud_sdk.models.operations.GetPaymentMethodRequestBuilder getPaymentMethod() {
-        return new com.hathora.cloud_sdk.models.operations.GetPaymentMethodRequestBuilder(this);
+    public GetPaymentMethodRequestBuilder getPaymentMethod() {
+        return new GetPaymentMethodRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.GetPaymentMethodResponse getPaymentMethodDirect() throws Exception {
+    public GetPaymentMethodResponse getPaymentMethodDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -272,7 +317,10 @@ public class BillingV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetPaymentMethod", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetPaymentMethod", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -280,18 +328,28 @@ public class BillingV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetPaymentMethod", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetPaymentMethod",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetPaymentMethod", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetPaymentMethod",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetPaymentMethod", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetPaymentMethod",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -299,42 +357,42 @@ public class BillingV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetPaymentMethodResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetPaymentMethodResponse
+        GetPaymentMethodResponse.Builder _resBuilder = 
+            GetPaymentMethodResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetPaymentMethodResponse _res = _resBuilder.build();
+        GetPaymentMethodResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.PaymentMethod _out = Utils.mapper().readValue(
+                PaymentMethod _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.PaymentMethod>() {});
-                _res.withPaymentMethod(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PaymentMethod>() {});
+                _res.withPaymentMethod(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -343,33 +401,272 @@ public class BillingV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
-    public com.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlRequestBuilder initStripeCustomerPortalUrl() {
-        return new com.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlRequestBuilder(this);
+    public GetUpcomingInvoiceItemsRequestBuilder getUpcomingInvoiceItems() {
+        return new GetUpcomingInvoiceItemsRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(
-            com.hathora.cloud_sdk.models.shared.CustomerPortalUrl request) throws Exception {
+    public GetUpcomingInvoiceItemsResponse getUpcomingInvoiceItemsDirect() throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/billing/v1/upcoming/items");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "GetUpcomingInvoiceItems", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetUpcomingInvoiceItems",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "GetUpcomingInvoiceItems",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetUpcomingInvoiceItems",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        GetUpcomingInvoiceItemsResponse.Builder _resBuilder = 
+            GetUpcomingInvoiceItemsResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        GetUpcomingInvoiceItemsResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                InvoiceItemPage _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<InvoiceItemPage>() {});
+                _res.withInvoiceItemPage(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    public GetUpcomingInvoiceTotalRequestBuilder getUpcomingInvoiceTotal() {
+        return new GetUpcomingInvoiceTotalRequestBuilder(this);
+    }
+
+    public GetUpcomingInvoiceTotalResponse getUpcomingInvoiceTotalDirect() throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/billing/v1/upcoming/total");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "GetUpcomingInvoiceTotal", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetUpcomingInvoiceTotal",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "GetUpcomingInvoiceTotal",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetUpcomingInvoiceTotal",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        GetUpcomingInvoiceTotalResponse.Builder _resBuilder = 
+            GetUpcomingInvoiceTotalResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        GetUpcomingInvoiceTotalResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                GetUpcomingInvoiceTotalResponseBody _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<GetUpcomingInvoiceTotalResponseBody>() {});
+                _res.withObject(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    public InitStripeCustomerPortalUrlRequestBuilder initStripeCustomerPortalUrl() {
+        return new InitStripeCustomerPortalUrlRequestBuilder(this);
+    }
+
+    public InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(
+            CustomerPortalUrl request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/billing/v1/customerportalurl");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.hathora.cloud_sdk.models.shared.CustomerPortalUrl>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<CustomerPortalUrl>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -385,7 +682,10 @@ public class BillingV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("InitStripeCustomerPortalUrl", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "InitStripeCustomerPortalUrl", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -393,18 +693,28 @@ public class BillingV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("InitStripeCustomerPortalUrl", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "InitStripeCustomerPortalUrl",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("InitStripeCustomerPortalUrl", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "InitStripeCustomerPortalUrl",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("InitStripeCustomerPortalUrl", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "InitStripeCustomerPortalUrl",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -412,42 +722,42 @@ public class BillingV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlResponse
+        InitStripeCustomerPortalUrlResponse.Builder _resBuilder = 
+            InitStripeCustomerPortalUrlResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlResponse _res = _resBuilder.build();
+        InitStripeCustomerPortalUrlResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 String _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<String>() {});
-                _res.withString(java.util.Optional.ofNullable(_out));
+                _res.withString(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -456,13 +766,13 @@ public class BillingV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

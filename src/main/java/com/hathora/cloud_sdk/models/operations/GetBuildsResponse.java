@@ -4,19 +4,28 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.BuildsV3Page;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetBuildsResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetBuildsResponse implements Response {
+
+    /**
+     * Ok
+     */
+    private Optional<? extends BuildsV3Page> buildsV3Page;
 
     /**
      * HTTP response content type for this operation
@@ -33,32 +42,36 @@ public class GetBuildsResponse implements com.hathora.cloud_sdk.utils.Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * Ok
-     */
-    private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Build>> classes;
-
     @JsonCreator
     public GetBuildsResponse(
+            Optional<? extends BuildsV3Page> buildsV3Page,
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Build>> classes) {
+            HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(buildsV3Page, "buildsV3Page");
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(classes, "classes");
+        this.buildsV3Page = buildsV3Page;
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.classes = classes;
     }
     
     public GetBuildsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(Optional.empty(), contentType, statusCode, rawResponse);
+    }
+
+    /**
+     * Ok
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<BuildsV3Page> buildsV3Page() {
+        return (Optional<BuildsV3Page>) buildsV3Page;
     }
 
     /**
@@ -85,17 +98,26 @@ public class GetBuildsResponse implements com.hathora.cloud_sdk.utils.Response {
         return rawResponse;
     }
 
+    public final static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Ok
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<java.util.List<com.hathora.cloud_sdk.models.shared.Build>> classes() {
-        return (Optional<java.util.List<com.hathora.cloud_sdk.models.shared.Build>>) classes;
+    public GetBuildsResponse withBuildsV3Page(BuildsV3Page buildsV3Page) {
+        Utils.checkNotNull(buildsV3Page, "buildsV3Page");
+        this.buildsV3Page = Optional.ofNullable(buildsV3Page);
+        return this;
     }
 
-    public final static Builder builder() {
-        return new Builder();
+    /**
+     * Ok
+     */
+    public GetBuildsResponse withBuildsV3Page(Optional<? extends BuildsV3Page> buildsV3Page) {
+        Utils.checkNotNull(buildsV3Page, "buildsV3Page");
+        this.buildsV3Page = buildsV3Page;
+        return this;
     }
 
     /**
@@ -124,24 +146,6 @@ public class GetBuildsResponse implements com.hathora.cloud_sdk.utils.Response {
         this.rawResponse = rawResponse;
         return this;
     }
-
-    /**
-     * Ok
-     */
-    public GetBuildsResponse withClasses(java.util.List<com.hathora.cloud_sdk.models.shared.Build> classes) {
-        Utils.checkNotNull(classes, "classes");
-        this.classes = Optional.ofNullable(classes);
-        return this;
-    }
-
-    /**
-     * Ok
-     */
-    public GetBuildsResponse withClasses(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Build>> classes) {
-        Utils.checkNotNull(classes, "classes");
-        this.classes = classes;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -153,42 +157,60 @@ public class GetBuildsResponse implements com.hathora.cloud_sdk.utils.Response {
         }
         GetBuildsResponse other = (GetBuildsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.classes, other.classes);
+            Objects.deepEquals(this.buildsV3Page, other.buildsV3Page) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
+            buildsV3Page,
             contentType,
             statusCode,
-            rawResponse,
-            classes);
+            rawResponse);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetBuildsResponse.class,
+                "buildsV3Page", buildsV3Page,
                 "contentType", contentType,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "classes", classes);
+                "rawResponse", rawResponse);
     }
     
     public final static class Builder {
+ 
+        private Optional<? extends BuildsV3Page> buildsV3Page = Optional.empty();
  
         private String contentType;
  
         private Integer statusCode;
  
-        private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Build>> classes = Optional.empty();  
+        private HttpResponse<InputStream> rawResponse;  
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        /**
+         * Ok
+         */
+        public Builder buildsV3Page(BuildsV3Page buildsV3Page) {
+            Utils.checkNotNull(buildsV3Page, "buildsV3Page");
+            this.buildsV3Page = Optional.ofNullable(buildsV3Page);
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder buildsV3Page(Optional<? extends BuildsV3Page> buildsV3Page) {
+            Utils.checkNotNull(buildsV3Page, "buildsV3Page");
+            this.buildsV3Page = buildsV3Page;
+            return this;
         }
 
         /**
@@ -217,31 +239,13 @@ public class GetBuildsResponse implements com.hathora.cloud_sdk.utils.Response {
             this.rawResponse = rawResponse;
             return this;
         }
-
-        /**
-         * Ok
-         */
-        public Builder classes(java.util.List<com.hathora.cloud_sdk.models.shared.Build> classes) {
-            Utils.checkNotNull(classes, "classes");
-            this.classes = Optional.ofNullable(classes);
-            return this;
-        }
-
-        /**
-         * Ok
-         */
-        public Builder classes(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Build>> classes) {
-            Utils.checkNotNull(classes, "classes");
-            this.classes = classes;
-            return this;
-        }
         
         public GetBuildsResponse build() {
             return new GetBuildsResponse(
+                buildsV3Page,
                 contentType,
                 statusCode,
-                rawResponse,
-                classes);
+                rawResponse);
         }
     }
 }

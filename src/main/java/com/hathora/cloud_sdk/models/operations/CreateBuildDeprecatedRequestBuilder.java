@@ -4,23 +4,15 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
+import com.hathora.cloud_sdk.models.shared.CreateBuildParams;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class CreateBuildDeprecatedRequestBuilder {
 
-    private com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams;
-    private Optional<? extends String> appId = Optional.empty();
+    private CreateBuildParams createBuildParams;
+    private Optional<String> appId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateBuildDeprecated sdk;
 
     public CreateBuildDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallCreateBuildDeprecated sdk) {
@@ -33,13 +25,13 @@ public class CreateBuildDeprecatedRequestBuilder {
         return this;
     }
                 
-    public CreateBuildDeprecatedRequestBuilder appId(String appId) {
+    public CreateBuildDeprecatedRequestBuilder appId(java.lang.String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateBuildDeprecatedRequestBuilder appId(Optional<? extends String> appId) {
+    public CreateBuildDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

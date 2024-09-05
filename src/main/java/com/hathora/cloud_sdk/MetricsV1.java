@@ -5,26 +5,26 @@
 package com.hathora.cloud_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hathora.cloud_sdk.models.errors.ApiError;
 import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetMetricsRequest;
+import com.hathora.cloud_sdk.models.operations.GetMetricsRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetMetricsResponse;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
+import com.hathora.cloud_sdk.models.shared.MetricsData;
 import com.hathora.cloud_sdk.utils.HTTPClient;
 import com.hathora.cloud_sdk.utils.HTTPRequest;
 import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.JSON;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.apache.http.NameValuePair;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 /**
  * Operations to get metrics by [process](https://hathora.dev/docs/concepts/hathora-entities#process). We store 72 hours of metrics data.
@@ -43,8 +43,8 @@ public class MetricsV1 implements
      * Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetMetricsRequestBuilder getMetrics() {
-        return new com.hathora.cloud_sdk.models.operations.GetMetricsRequestBuilder(this);
+    public GetMetricsRequestBuilder getMetrics() {
+        return new GetMetricsRequestBuilder(this);
     }
 
     /**
@@ -53,11 +53,11 @@ public class MetricsV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetMetricsResponse getMetrics(
-            com.hathora.cloud_sdk.models.operations.GetMetricsRequest request) throws Exception {
+    public GetMetricsResponse getMetrics(
+            GetMetricsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetMetricsRequest.class,
+                GetMetricsRequest.class,
                 _baseUrl,
                 "/metrics/v1/{appId}/process/{processId}",
                 request, this.sdkConfiguration.globals);
@@ -68,7 +68,7 @@ public class MetricsV1 implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.hathora.cloud_sdk.models.operations.GetMetricsRequest.class,
+                GetMetricsRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -79,7 +79,10 @@ public class MetricsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetMetrics", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetMetrics", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -87,18 +90,28 @@ public class MetricsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetMetrics", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetMetrics",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetMetrics", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetMetrics",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetMetrics", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetMetrics",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -106,42 +119,42 @@ public class MetricsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetMetricsResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetMetricsResponse
+        GetMetricsResponse.Builder _resBuilder = 
+            GetMetricsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetMetricsResponse _res = _resBuilder.build();
+        GetMetricsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.MetricsData _out = Utils.mapper().readValue(
+                MetricsData _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.MetricsData>() {});
-                _res.withMetricsData(java.util.Optional.ofNullable(_out));
+                    new TypeReference<MetricsData>() {});
+                _res.withMetricsData(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -150,13 +163,13 @@ public class MetricsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

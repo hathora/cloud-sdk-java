@@ -4,25 +4,17 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
+import com.hathora.cloud_sdk.models.shared.CreateLobbyParams;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class CreateLobbyDeprecatedRequestBuilder {
 
     private CreateLobbyDeprecatedSecurity security;
-    private com.hathora.cloud_sdk.models.shared.CreateLobbyParams createLobbyParams;
-    private Optional<? extends String> appId = Optional.empty();
-    private Optional<? extends String> roomId = Optional.empty();
+    private CreateLobbyParams createLobbyParams;
+    private Optional<String> appId = Optional.empty();
+    private Optional<String> roomId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateLobbyDeprecated sdk;
 
     public CreateLobbyDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallCreateLobbyDeprecated sdk) {
@@ -41,25 +33,25 @@ public class CreateLobbyDeprecatedRequestBuilder {
         return this;
     }
                 
-    public CreateLobbyDeprecatedRequestBuilder appId(String appId) {
+    public CreateLobbyDeprecatedRequestBuilder appId(java.lang.String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateLobbyDeprecatedRequestBuilder appId(Optional<? extends String> appId) {
+    public CreateLobbyDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public CreateLobbyDeprecatedRequestBuilder roomId(String roomId) {
+    public CreateLobbyDeprecatedRequestBuilder roomId(java.lang.String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = Optional.of(roomId);
         return this;
     }
 
-    public CreateLobbyDeprecatedRequestBuilder roomId(Optional<? extends String> roomId) {
+    public CreateLobbyDeprecatedRequestBuilder roomId(java.util.Optional<java.lang.String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

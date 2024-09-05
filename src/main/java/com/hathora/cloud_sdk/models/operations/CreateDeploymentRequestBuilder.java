@@ -4,59 +4,43 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
+import com.hathora.cloud_sdk.models.shared.DeploymentConfigV3;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class CreateDeploymentRequestBuilder {
 
-    private com.hathora.cloud_sdk.models.shared.DeploymentConfigV2 deploymentConfigV2;
-    private Optional<? extends String> appId = Optional.empty();
-    private Integer buildId;
+    private DeploymentConfigV3 deploymentConfigV3;
+    private Optional<String> appId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateDeployment sdk;
 
     public CreateDeploymentRequestBuilder(SDKMethodInterfaces.MethodCallCreateDeployment sdk) {
         this.sdk = sdk;
     }
 
-    public CreateDeploymentRequestBuilder deploymentConfigV2(com.hathora.cloud_sdk.models.shared.DeploymentConfigV2 deploymentConfigV2) {
-        Utils.checkNotNull(deploymentConfigV2, "deploymentConfigV2");
-        this.deploymentConfigV2 = deploymentConfigV2;
+    public CreateDeploymentRequestBuilder deploymentConfigV3(com.hathora.cloud_sdk.models.shared.DeploymentConfigV3 deploymentConfigV3) {
+        Utils.checkNotNull(deploymentConfigV3, "deploymentConfigV3");
+        this.deploymentConfigV3 = deploymentConfigV3;
         return this;
     }
                 
-    public CreateDeploymentRequestBuilder appId(String appId) {
+    public CreateDeploymentRequestBuilder appId(java.lang.String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateDeploymentRequestBuilder appId(Optional<? extends String> appId) {
+    public CreateDeploymentRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
-        return this;
-    }
-
-    public CreateDeploymentRequestBuilder buildId(int buildId) {
-        Utils.checkNotNull(buildId, "buildId");
-        this.buildId = buildId;
         return this;
     }
 
     public CreateDeploymentResponse call() throws Exception {
 
         return sdk.createDeployment(
-            deploymentConfigV2,
-            appId,
-            buildId);
+            deploymentConfigV3,
+            appId);
     }
 }

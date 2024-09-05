@@ -3,17 +3,12 @@
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.AppConfig;
+import com.hathora.cloud_sdk.models.shared.AuthConfiguration;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -32,7 +27,7 @@ public class Application {
                         .build())
                 .build();
 
-            CreateAppResponse res = sdk.appsV1().createApp()
+            CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()
                 .request(req)
                 .call();
 
@@ -42,7 +37,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {

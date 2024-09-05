@@ -5,27 +5,56 @@
 package com.hathora.cloud_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hathora.cloud_sdk.models.errors.ApiError;
 import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateRoomRequest;
+import com.hathora.cloud_sdk.models.operations.CreateRoomRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.CreateRoomResponse;
+import com.hathora.cloud_sdk.models.operations.DestroyRoomRequest;
+import com.hathora.cloud_sdk.models.operations.DestroyRoomRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.DestroyRoomResponse;
+import com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessRequest;
+import com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessResponse;
+import com.hathora.cloud_sdk.models.operations.GetConnectionInfoRequest;
+import com.hathora.cloud_sdk.models.operations.GetConnectionInfoRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetConnectionInfoResponse;
+import com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessRequest;
+import com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessResponse;
+import com.hathora.cloud_sdk.models.operations.GetRoomInfoRequest;
+import com.hathora.cloud_sdk.models.operations.GetRoomInfoRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetRoomInfoResponse;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
+import com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.UpdateRoomConfigRequest;
+import com.hathora.cloud_sdk.models.operations.UpdateRoomConfigRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.UpdateRoomConfigResponse;
+import com.hathora.cloud_sdk.models.shared.ConnectionInfoV2;
+import com.hathora.cloud_sdk.models.shared.CreateRoomParams;
+import com.hathora.cloud_sdk.models.shared.Room;
+import com.hathora.cloud_sdk.models.shared.RoomConnectionData;
+import com.hathora.cloud_sdk.models.shared.RoomWithoutAllocations;
+import com.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams;
 import com.hathora.cloud_sdk.utils.HTTPClient;
 import com.hathora.cloud_sdk.utils.HTTPRequest;
 import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.JSON;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.SerializedBody;
+import com.hathora.cloud_sdk.utils.Utils.JsonShape;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Deprecated;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.apache.http.NameValuePair;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class RoomsV2 implements
             MethodCallCreateRoom,
@@ -48,8 +77,8 @@ public class RoomsV2 implements
      * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.CreateRoomRequestBuilder createRoom() {
-        return new com.hathora.cloud_sdk.models.operations.CreateRoomRequestBuilder(this);
+    public CreateRoomRequestBuilder createRoom() {
+        return new CreateRoomRequestBuilder(this);
     }
 
     /**
@@ -58,10 +87,11 @@ public class RoomsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.CreateRoomResponse createRoom(
-            com.hathora.cloud_sdk.models.shared.CreateRoomParams createRoomParams) throws Exception {
+    public CreateRoomResponse createRoom(
+            CreateRoomParams createRoomParams) throws Exception {
         return createRoom(createRoomParams, Optional.empty(), Optional.empty());
     }
+    
     /**
      * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
      * @param createRoomParams
@@ -70,12 +100,12 @@ public class RoomsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.CreateRoomResponse createRoom(
-            com.hathora.cloud_sdk.models.shared.CreateRoomParams createRoomParams,
-            Optional<? extends String> appId,
-            Optional<? extends String> roomId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.CreateRoomRequest request =
-            com.hathora.cloud_sdk.models.operations.CreateRoomRequest
+    public CreateRoomResponse createRoom(
+            CreateRoomParams createRoomParams,
+            Optional<String> appId,
+            Optional<String> roomId) throws Exception {
+        CreateRoomRequest request =
+            CreateRoomRequest
                 .builder()
                 .createRoomParams(createRoomParams)
                 .appId(appId)
@@ -84,16 +114,21 @@ public class RoomsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.CreateRoomRequest.class,
+                CreateRoomRequest.class,
                 _baseUrl,
                 "/rooms/v2/{appId}/create",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "createRoomParams", "json", false);
+                _convertedRequest, 
+                "createRoomParams",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -103,7 +138,7 @@ public class RoomsV2 implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.hathora.cloud_sdk.models.operations.CreateRoomRequest.class,
+                CreateRoomRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -114,26 +149,39 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "CreateRoom", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "403", "404", "422", "429", "4XX", "500", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "CreateRoom",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "CreateRoom",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreateRoom",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -141,42 +189,42 @@ public class RoomsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.CreateRoomResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.CreateRoomResponse
+        CreateRoomResponse.Builder _resBuilder = 
+            CreateRoomResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.CreateRoomResponse _res = _resBuilder.build();
+        CreateRoomResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.RoomConnectionData _out = Utils.mapper().readValue(
+                RoomConnectionData _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.RoomConnectionData>() {});
-                _res.withRoomConnectionData(java.util.Optional.ofNullable(_out));
+                    new TypeReference<RoomConnectionData>() {});
+                _res.withRoomConnectionData(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "403", "404", "422", "429", "500")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -185,13 +233,13 @@ public class RoomsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -200,8 +248,8 @@ public class RoomsV2 implements
      * Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.DestroyRoomRequestBuilder destroyRoom() {
-        return new com.hathora.cloud_sdk.models.operations.DestroyRoomRequestBuilder(this);
+    public DestroyRoomRequestBuilder destroyRoom() {
+        return new DestroyRoomRequestBuilder(this);
     }
 
     /**
@@ -210,10 +258,11 @@ public class RoomsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.DestroyRoomResponse destroyRoom(
+    public DestroyRoomResponse destroyRoom(
             String roomId) throws Exception {
         return destroyRoom(Optional.empty(), roomId);
     }
+    
     /**
      * Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
      * @param appId
@@ -221,11 +270,11 @@ public class RoomsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.DestroyRoomResponse destroyRoom(
-            Optional<? extends String> appId,
+    public DestroyRoomResponse destroyRoom(
+            Optional<String> appId,
             String roomId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.DestroyRoomRequest request =
-            com.hathora.cloud_sdk.models.operations.DestroyRoomRequest
+        DestroyRoomRequest request =
+            DestroyRoomRequest
                 .builder()
                 .appId(appId)
                 .roomId(roomId)
@@ -233,7 +282,7 @@ public class RoomsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.DestroyRoomRequest.class,
+                DestroyRoomRequest.class,
                 _baseUrl,
                 "/rooms/v2/{appId}/destroy/{roomId}",
                 request, this.sdkConfiguration.globals);
@@ -250,7 +299,10 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("DestroyRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "DestroyRoom", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -258,18 +310,28 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("DestroyRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "DestroyRoom",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("DestroyRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "DestroyRoom",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("DestroyRoom", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "DestroyRoom",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -277,14 +339,14 @@ public class RoomsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.DestroyRoomResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.DestroyRoomResponse
+        DestroyRoomResponse.Builder _resBuilder = 
+            DestroyRoomResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.DestroyRoomResponse _res = _resBuilder.build();
+        DestroyRoomResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -292,16 +354,16 @@ public class RoomsV2 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -310,13 +372,13 @@ public class RoomsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -325,8 +387,8 @@ public class RoomsV2 implements
      * Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessRequestBuilder getActiveRoomsForProcess() {
-        return new com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessRequestBuilder(this);
+    public GetActiveRoomsForProcessRequestBuilder getActiveRoomsForProcess() {
+        return new GetActiveRoomsForProcessRequestBuilder(this);
     }
 
     /**
@@ -335,10 +397,11 @@ public class RoomsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessResponse getActiveRoomsForProcess(
+    public GetActiveRoomsForProcessResponse getActiveRoomsForProcess(
             String processId) throws Exception {
         return getActiveRoomsForProcess(Optional.empty(), processId);
     }
+    
     /**
      * Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param appId
@@ -346,11 +409,11 @@ public class RoomsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessResponse getActiveRoomsForProcess(
-            Optional<? extends String> appId,
+    public GetActiveRoomsForProcessResponse getActiveRoomsForProcess(
+            Optional<String> appId,
             String processId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessRequest request =
-            com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessRequest
+        GetActiveRoomsForProcessRequest request =
+            GetActiveRoomsForProcessRequest
                 .builder()
                 .appId(appId)
                 .processId(processId)
@@ -358,7 +421,7 @@ public class RoomsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessRequest.class,
+                GetActiveRoomsForProcessRequest.class,
                 _baseUrl,
                 "/rooms/v2/{appId}/list/{processId}/active",
                 request, this.sdkConfiguration.globals);
@@ -375,7 +438,10 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetActiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetActiveRoomsForProcess", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -383,18 +449,28 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetActiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetActiveRoomsForProcess",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetActiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetActiveRoomsForProcess",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetActiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetActiveRoomsForProcess",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -402,42 +478,42 @@ public class RoomsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessResponse
+        GetActiveRoomsForProcessResponse.Builder _resBuilder = 
+            GetActiveRoomsForProcessResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessResponse _res = _resBuilder.build();
+        GetActiveRoomsForProcessResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                java.util.List<com.hathora.cloud_sdk.models.shared.RoomWithoutAllocations> _out = Utils.mapper().readValue(
+                List<RoomWithoutAllocations> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<java.util.List<com.hathora.cloud_sdk.models.shared.RoomWithoutAllocations>>() {});
-                _res.withClasses(java.util.Optional.ofNullable(_out));
+                    new TypeReference<List<RoomWithoutAllocations>>() {});
+                _res.withClasses(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -446,13 +522,13 @@ public class RoomsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -461,8 +537,8 @@ public class RoomsV2 implements
      * Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetConnectionInfoRequestBuilder getConnectionInfo() {
-        return new com.hathora.cloud_sdk.models.operations.GetConnectionInfoRequestBuilder(this);
+    public GetConnectionInfoRequestBuilder getConnectionInfo() {
+        return new GetConnectionInfoRequestBuilder(this);
     }
 
     /**
@@ -471,10 +547,11 @@ public class RoomsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetConnectionInfoResponse getConnectionInfo(
+    public GetConnectionInfoResponse getConnectionInfo(
             String roomId) throws Exception {
         return getConnectionInfo(Optional.empty(), roomId);
     }
+    
     /**
      * Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
      * @param appId
@@ -482,11 +559,11 @@ public class RoomsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetConnectionInfoResponse getConnectionInfo(
-            Optional<? extends String> appId,
+    public GetConnectionInfoResponse getConnectionInfo(
+            Optional<String> appId,
             String roomId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetConnectionInfoRequest request =
-            com.hathora.cloud_sdk.models.operations.GetConnectionInfoRequest
+        GetConnectionInfoRequest request =
+            GetConnectionInfoRequest
                 .builder()
                 .appId(appId)
                 .roomId(roomId)
@@ -494,7 +571,7 @@ public class RoomsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetConnectionInfoRequest.class,
+                GetConnectionInfoRequest.class,
                 _baseUrl,
                 "/rooms/v2/{appId}/connectioninfo/{roomId}",
                 request, this.sdkConfiguration.globals);
@@ -508,7 +585,10 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetConnectionInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetConnectionInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -516,18 +596,28 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "402", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetConnectionInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetConnectionInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetConnectionInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetConnectionInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetConnectionInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetConnectionInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -535,42 +625,42 @@ public class RoomsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetConnectionInfoResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetConnectionInfoResponse
+        GetConnectionInfoResponse.Builder _resBuilder = 
+            GetConnectionInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetConnectionInfoResponse _res = _resBuilder.build();
+        GetConnectionInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.ConnectionInfoV2 _out = Utils.mapper().readValue(
+                ConnectionInfoV2 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.ConnectionInfoV2>() {});
-                _res.withConnectionInfoV2(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ConnectionInfoV2>() {});
+                _res.withConnectionInfoV2(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "402", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -579,13 +669,13 @@ public class RoomsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -594,8 +684,8 @@ public class RoomsV2 implements
      * Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessRequestBuilder getInactiveRoomsForProcess() {
-        return new com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessRequestBuilder(this);
+    public GetInactiveRoomsForProcessRequestBuilder getInactiveRoomsForProcess() {
+        return new GetInactiveRoomsForProcessRequestBuilder(this);
     }
 
     /**
@@ -604,10 +694,11 @@ public class RoomsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(
+    public GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(
             String processId) throws Exception {
         return getInactiveRoomsForProcess(Optional.empty(), processId);
     }
+    
     /**
      * Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param appId
@@ -615,11 +706,11 @@ public class RoomsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(
-            Optional<? extends String> appId,
+    public GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(
+            Optional<String> appId,
             String processId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessRequest request =
-            com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessRequest
+        GetInactiveRoomsForProcessRequest request =
+            GetInactiveRoomsForProcessRequest
                 .builder()
                 .appId(appId)
                 .processId(processId)
@@ -627,7 +718,7 @@ public class RoomsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessRequest.class,
+                GetInactiveRoomsForProcessRequest.class,
                 _baseUrl,
                 "/rooms/v2/{appId}/list/{processId}/inactive",
                 request, this.sdkConfiguration.globals);
@@ -644,7 +735,10 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetInactiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetInactiveRoomsForProcess", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -652,18 +746,28 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetInactiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetInactiveRoomsForProcess",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetInactiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetInactiveRoomsForProcess",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetInactiveRoomsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetInactiveRoomsForProcess",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -671,42 +775,42 @@ public class RoomsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessResponse
+        GetInactiveRoomsForProcessResponse.Builder _resBuilder = 
+            GetInactiveRoomsForProcessResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessResponse _res = _resBuilder.build();
+        GetInactiveRoomsForProcessResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                java.util.List<com.hathora.cloud_sdk.models.shared.RoomWithoutAllocations> _out = Utils.mapper().readValue(
+                List<RoomWithoutAllocations> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<java.util.List<com.hathora.cloud_sdk.models.shared.RoomWithoutAllocations>>() {});
-                _res.withClasses(java.util.Optional.ofNullable(_out));
+                    new TypeReference<List<RoomWithoutAllocations>>() {});
+                _res.withClasses(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -715,13 +819,13 @@ public class RoomsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -730,8 +834,8 @@ public class RoomsV2 implements
      * Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetRoomInfoRequestBuilder getRoomInfo() {
-        return new com.hathora.cloud_sdk.models.operations.GetRoomInfoRequestBuilder(this);
+    public GetRoomInfoRequestBuilder getRoomInfo() {
+        return new GetRoomInfoRequestBuilder(this);
     }
 
     /**
@@ -740,10 +844,11 @@ public class RoomsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetRoomInfoResponse getRoomInfo(
+    public GetRoomInfoResponse getRoomInfo(
             String roomId) throws Exception {
         return getRoomInfo(Optional.empty(), roomId);
     }
+    
     /**
      * Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
      * @param appId
@@ -751,11 +856,11 @@ public class RoomsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetRoomInfoResponse getRoomInfo(
-            Optional<? extends String> appId,
+    public GetRoomInfoResponse getRoomInfo(
+            Optional<String> appId,
             String roomId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetRoomInfoRequest request =
-            com.hathora.cloud_sdk.models.operations.GetRoomInfoRequest
+        GetRoomInfoRequest request =
+            GetRoomInfoRequest
                 .builder()
                 .appId(appId)
                 .roomId(roomId)
@@ -763,7 +868,7 @@ public class RoomsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetRoomInfoRequest.class,
+                GetRoomInfoRequest.class,
                 _baseUrl,
                 "/rooms/v2/{appId}/info/{roomId}",
                 request, this.sdkConfiguration.globals);
@@ -780,7 +885,10 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetRoomInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetRoomInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -788,18 +896,28 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetRoomInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetRoomInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetRoomInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetRoomInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetRoomInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetRoomInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -807,42 +925,42 @@ public class RoomsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetRoomInfoResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetRoomInfoResponse
+        GetRoomInfoResponse.Builder _resBuilder = 
+            GetRoomInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetRoomInfoResponse _res = _resBuilder.build();
+        GetRoomInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Room _out = Utils.mapper().readValue(
+                Room _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Room>() {});
-                _res.withRoom(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Room>() {});
+                _res.withRoom(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -851,13 +969,13 @@ public class RoomsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -868,8 +986,8 @@ public class RoomsV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedRequestBuilder suspendRoomV2Deprecated() {
-        return new com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedRequestBuilder(this);
+    public SuspendRoomV2DeprecatedRequestBuilder suspendRoomV2Deprecated() {
+        return new SuspendRoomV2DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -880,10 +998,11 @@ public class RoomsV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedResponse suspendRoomV2Deprecated(
+    public SuspendRoomV2DeprecatedResponse suspendRoomV2Deprecated(
             String roomId) throws Exception {
         return suspendRoomV2Deprecated(Optional.empty(), roomId);
     }
+    
     /**
      * Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
      * @param appId
@@ -893,11 +1012,11 @@ public class RoomsV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedResponse suspendRoomV2Deprecated(
-            Optional<? extends String> appId,
+    public SuspendRoomV2DeprecatedResponse suspendRoomV2Deprecated(
+            Optional<String> appId,
             String roomId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedRequest request =
-            com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedRequest
+        SuspendRoomV2DeprecatedRequest request =
+            SuspendRoomV2DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .roomId(roomId)
@@ -905,7 +1024,7 @@ public class RoomsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedRequest.class,
+                SuspendRoomV2DeprecatedRequest.class,
                 _baseUrl,
                 "/rooms/v2/{appId}/suspend/{roomId}",
                 request, this.sdkConfiguration.globals);
@@ -922,7 +1041,10 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("SuspendRoomV2Deprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "SuspendRoomV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -930,18 +1052,28 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("SuspendRoomV2Deprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "SuspendRoomV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("SuspendRoomV2Deprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "SuspendRoomV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("SuspendRoomV2Deprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "SuspendRoomV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -949,14 +1081,14 @@ public class RoomsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedResponse
+        SuspendRoomV2DeprecatedResponse.Builder _resBuilder = 
+            SuspendRoomV2DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedResponse _res = _resBuilder.build();
+        SuspendRoomV2DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -964,16 +1096,16 @@ public class RoomsV2 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -982,32 +1114,33 @@ public class RoomsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
-    public com.hathora.cloud_sdk.models.operations.UpdateRoomConfigRequestBuilder updateRoomConfig() {
-        return new com.hathora.cloud_sdk.models.operations.UpdateRoomConfigRequestBuilder(this);
+    public UpdateRoomConfigRequestBuilder updateRoomConfig() {
+        return new UpdateRoomConfigRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.UpdateRoomConfigResponse updateRoomConfig(
-            com.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams updateRoomConfigParams,
+    public UpdateRoomConfigResponse updateRoomConfig(
+            UpdateRoomConfigParams updateRoomConfigParams,
             String roomId) throws Exception {
         return updateRoomConfig(updateRoomConfigParams, Optional.empty(), roomId);
     }
-    public com.hathora.cloud_sdk.models.operations.UpdateRoomConfigResponse updateRoomConfig(
-            com.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams updateRoomConfigParams,
-            Optional<? extends String> appId,
+    
+    public UpdateRoomConfigResponse updateRoomConfig(
+            UpdateRoomConfigParams updateRoomConfigParams,
+            Optional<String> appId,
             String roomId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.UpdateRoomConfigRequest request =
-            com.hathora.cloud_sdk.models.operations.UpdateRoomConfigRequest
+        UpdateRoomConfigRequest request =
+            UpdateRoomConfigRequest
                 .builder()
                 .updateRoomConfigParams(updateRoomConfigParams)
                 .appId(appId)
@@ -1016,16 +1149,21 @@ public class RoomsV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.UpdateRoomConfigRequest.class,
+                UpdateRoomConfigRequest.class,
                 _baseUrl,
                 "/rooms/v2/{appId}/update/{roomId}",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "updateRoomConfigParams", "json", false);
+                _convertedRequest, 
+                "updateRoomConfigParams",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -1041,7 +1179,10 @@ public class RoomsV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("UpdateRoomConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "UpdateRoomConfig", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1049,18 +1190,28 @@ public class RoomsV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("UpdateRoomConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "UpdateRoomConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("UpdateRoomConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "UpdateRoomConfig",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("UpdateRoomConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "UpdateRoomConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1068,14 +1219,14 @@ public class RoomsV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.UpdateRoomConfigResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.UpdateRoomConfigResponse
+        UpdateRoomConfigResponse.Builder _resBuilder = 
+            UpdateRoomConfigResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.UpdateRoomConfigResponse _res = _resBuilder.build();
+        UpdateRoomConfigResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -1083,16 +1234,16 @@ public class RoomsV2 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -1101,13 +1252,13 @@ public class RoomsV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

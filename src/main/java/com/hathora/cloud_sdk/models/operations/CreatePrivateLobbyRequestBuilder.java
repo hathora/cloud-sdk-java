@@ -4,25 +4,16 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class CreatePrivateLobbyRequestBuilder {
 
     private CreatePrivateLobbySecurity security;
     private CreatePrivateLobbyRequestBody requestBody;
-    private Optional<? extends String> appId = Optional.empty();
-    private Optional<? extends String> roomId = Optional.empty();
+    private Optional<String> appId = Optional.empty();
+    private Optional<String> roomId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreatePrivateLobby sdk;
 
     public CreatePrivateLobbyRequestBuilder(SDKMethodInterfaces.MethodCallCreatePrivateLobby sdk) {
@@ -35,31 +26,31 @@ public class CreatePrivateLobbyRequestBuilder {
         return this;
     }
 
-    public CreatePrivateLobbyRequestBuilder requestBody(CreatePrivateLobbyRequestBody requestBody) {
+    public CreatePrivateLobbyRequestBuilder requestBody(com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
                 
-    public CreatePrivateLobbyRequestBuilder appId(String appId) {
+    public CreatePrivateLobbyRequestBuilder appId(java.lang.String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreatePrivateLobbyRequestBuilder appId(Optional<? extends String> appId) {
+    public CreatePrivateLobbyRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public CreatePrivateLobbyRequestBuilder roomId(String roomId) {
+    public CreatePrivateLobbyRequestBuilder roomId(java.lang.String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = Optional.of(roomId);
         return this;
     }
 
-    public CreatePrivateLobbyRequestBuilder roomId(Optional<? extends String> roomId) {
+    public CreatePrivateLobbyRequestBuilder roomId(java.util.Optional<java.lang.String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

@@ -4,29 +4,28 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetProcessInfoDeprecatedRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=processId")
     private String processId;
 
     @JsonCreator
     public GetProcessInfoDeprecatedRequest(
-            Optional<? extends String> appId,
+            Optional<String> appId,
             String processId) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(processId, "processId");
@@ -39,10 +38,9 @@ public class GetProcessInfoDeprecatedRequest {
         this(Optional.empty(), processId);
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
     @JsonIgnore
@@ -60,7 +58,7 @@ public class GetProcessInfoDeprecatedRequest {
         return this;
     }
 
-    public GetProcessInfoDeprecatedRequest withAppId(Optional<? extends String> appId) {
+    public GetProcessInfoDeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -82,13 +80,13 @@ public class GetProcessInfoDeprecatedRequest {
         }
         GetProcessInfoDeprecatedRequest other = (GetProcessInfoDeprecatedRequest) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.processId, other.processId);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.processId, other.processId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             processId);
     }
@@ -102,7 +100,7 @@ public class GetProcessInfoDeprecatedRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
         private String processId;  
         
@@ -116,7 +114,7 @@ public class GetProcessInfoDeprecatedRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;

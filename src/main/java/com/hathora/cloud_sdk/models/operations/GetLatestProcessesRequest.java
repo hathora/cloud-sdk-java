@@ -4,34 +4,37 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.ProcessStatus;
+import com.hathora.cloud_sdk.models.shared.Region;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetLatestProcessesRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=region")
-    private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Region>> region;
+    private Optional<? extends List<Region>> region;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=status")
-    private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.ProcessStatus>> status;
+    private Optional<? extends List<ProcessStatus>> status;
 
     @JsonCreator
     public GetLatestProcessesRequest(
-            Optional<? extends String> appId,
-            Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Region>> region,
-            Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.ProcessStatus>> status) {
+            Optional<String> appId,
+            Optional<? extends List<Region>> region,
+            Optional<? extends List<ProcessStatus>> status) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(region, "region");
         Utils.checkNotNull(status, "status");
@@ -44,22 +47,21 @@ public class GetLatestProcessesRequest {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<com.hathora.cloud_sdk.models.shared.Region>> region() {
-        return (Optional<java.util.List<com.hathora.cloud_sdk.models.shared.Region>>) region;
+    public Optional<List<Region>> region() {
+        return (Optional<List<Region>>) region;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<com.hathora.cloud_sdk.models.shared.ProcessStatus>> status() {
-        return (Optional<java.util.List<com.hathora.cloud_sdk.models.shared.ProcessStatus>>) status;
+    public Optional<List<ProcessStatus>> status() {
+        return (Optional<List<ProcessStatus>>) status;
     }
 
     public final static Builder builder() {
@@ -72,31 +74,31 @@ public class GetLatestProcessesRequest {
         return this;
     }
 
-    public GetLatestProcessesRequest withAppId(Optional<? extends String> appId) {
+    public GetLatestProcessesRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public GetLatestProcessesRequest withRegion(java.util.List<com.hathora.cloud_sdk.models.shared.Region> region) {
+    public GetLatestProcessesRequest withRegion(List<Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.ofNullable(region);
         return this;
     }
 
-    public GetLatestProcessesRequest withRegion(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Region>> region) {
+    public GetLatestProcessesRequest withRegion(Optional<? extends List<Region>> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
     }
 
-    public GetLatestProcessesRequest withStatus(java.util.List<com.hathora.cloud_sdk.models.shared.ProcessStatus> status) {
+    public GetLatestProcessesRequest withStatus(List<ProcessStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
     }
 
-    public GetLatestProcessesRequest withStatus(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.ProcessStatus>> status) {
+    public GetLatestProcessesRequest withStatus(Optional<? extends List<ProcessStatus>> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -112,14 +114,14 @@ public class GetLatestProcessesRequest {
         }
         GetLatestProcessesRequest other = (GetLatestProcessesRequest) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.region, other.region) &&
-            java.util.Objects.deepEquals(this.status, other.status);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.region, other.region) &&
+            Objects.deepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             region,
             status);
@@ -135,11 +137,11 @@ public class GetLatestProcessesRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
-        private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Region>> region = Optional.empty();
+        private Optional<? extends List<Region>> region = Optional.empty();
  
-        private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.ProcessStatus>> status = Optional.empty();  
+        private Optional<? extends List<ProcessStatus>> status = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -151,31 +153,31 @@ public class GetLatestProcessesRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;
         }
 
-        public Builder region(java.util.List<com.hathora.cloud_sdk.models.shared.Region> region) {
+        public Builder region(List<Region> region) {
             Utils.checkNotNull(region, "region");
             this.region = Optional.ofNullable(region);
             return this;
         }
 
-        public Builder region(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Region>> region) {
+        public Builder region(Optional<? extends List<Region>> region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
 
-        public Builder status(java.util.List<com.hathora.cloud_sdk.models.shared.ProcessStatus> status) {
+        public Builder status(List<ProcessStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
-        public Builder status(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.ProcessStatus>> status) {
+        public Builder status(Optional<? extends List<ProcessStatus>> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

@@ -4,26 +4,30 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.CreatedOrgToken;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class CreateOrgTokenResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class CreateOrgTokenResponse implements Response {
 
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
 
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.CreatedOrgToken> createdOrgToken;
+    private Optional<? extends CreatedOrgToken> createdOrgToken;
 
     /**
      * HTTP response status code for this operation
@@ -38,7 +42,7 @@ public class CreateOrgTokenResponse implements com.hathora.cloud_sdk.utils.Respo
     @JsonCreator
     public CreateOrgTokenResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.CreatedOrgToken> createdOrgToken,
+            Optional<? extends CreatedOrgToken> createdOrgToken,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -68,8 +72,8 @@ public class CreateOrgTokenResponse implements com.hathora.cloud_sdk.utils.Respo
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.CreatedOrgToken> createdOrgToken() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.CreatedOrgToken>) createdOrgToken;
+    public Optional<CreatedOrgToken> createdOrgToken() {
+        return (Optional<CreatedOrgToken>) createdOrgToken;
     }
 
     /**
@@ -101,13 +105,13 @@ public class CreateOrgTokenResponse implements com.hathora.cloud_sdk.utils.Respo
         return this;
     }
 
-    public CreateOrgTokenResponse withCreatedOrgToken(com.hathora.cloud_sdk.models.shared.CreatedOrgToken createdOrgToken) {
+    public CreateOrgTokenResponse withCreatedOrgToken(CreatedOrgToken createdOrgToken) {
         Utils.checkNotNull(createdOrgToken, "createdOrgToken");
         this.createdOrgToken = Optional.ofNullable(createdOrgToken);
         return this;
     }
 
-    public CreateOrgTokenResponse withCreatedOrgToken(Optional<? extends com.hathora.cloud_sdk.models.shared.CreatedOrgToken> createdOrgToken) {
+    public CreateOrgTokenResponse withCreatedOrgToken(Optional<? extends CreatedOrgToken> createdOrgToken) {
         Utils.checkNotNull(createdOrgToken, "createdOrgToken");
         this.createdOrgToken = createdOrgToken;
         return this;
@@ -141,15 +145,15 @@ public class CreateOrgTokenResponse implements com.hathora.cloud_sdk.utils.Respo
         }
         CreateOrgTokenResponse other = (CreateOrgTokenResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.createdOrgToken, other.createdOrgToken) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.createdOrgToken, other.createdOrgToken) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             createdOrgToken,
             statusCode,
@@ -169,7 +173,7 @@ public class CreateOrgTokenResponse implements com.hathora.cloud_sdk.utils.Respo
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.CreatedOrgToken> createdOrgToken = Optional.empty();
+        private Optional<? extends CreatedOrgToken> createdOrgToken = Optional.empty();
  
         private Integer statusCode;
  
@@ -188,13 +192,13 @@ public class CreateOrgTokenResponse implements com.hathora.cloud_sdk.utils.Respo
             return this;
         }
 
-        public Builder createdOrgToken(com.hathora.cloud_sdk.models.shared.CreatedOrgToken createdOrgToken) {
+        public Builder createdOrgToken(CreatedOrgToken createdOrgToken) {
             Utils.checkNotNull(createdOrgToken, "createdOrgToken");
             this.createdOrgToken = Optional.ofNullable(createdOrgToken);
             return this;
         }
 
-        public Builder createdOrgToken(Optional<? extends com.hathora.cloud_sdk.models.shared.CreatedOrgToken> createdOrgToken) {
+        public Builder createdOrgToken(Optional<? extends CreatedOrgToken> createdOrgToken) {
             Utils.checkNotNull(createdOrgToken, "createdOrgToken");
             this.createdOrgToken = createdOrgToken;
             return this;

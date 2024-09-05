@@ -4,30 +4,30 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.Region;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateProcessRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=region")
-    private com.hathora.cloud_sdk.models.shared.Region region;
+    private Region region;
 
     @JsonCreator
     public CreateProcessRequest(
-            Optional<? extends String> appId,
-            com.hathora.cloud_sdk.models.shared.Region region) {
+            Optional<String> appId,
+            Region region) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(region, "region");
         this.appId = appId;
@@ -35,18 +35,17 @@ public class CreateProcessRequest {
     }
     
     public CreateProcessRequest(
-            com.hathora.cloud_sdk.models.shared.Region region) {
+            Region region) {
         this(Optional.empty(), region);
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.Region region() {
+    public Region region() {
         return region;
     }
 
@@ -60,13 +59,13 @@ public class CreateProcessRequest {
         return this;
     }
 
-    public CreateProcessRequest withAppId(Optional<? extends String> appId) {
+    public CreateProcessRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public CreateProcessRequest withRegion(com.hathora.cloud_sdk.models.shared.Region region) {
+    public CreateProcessRequest withRegion(Region region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
@@ -82,13 +81,13 @@ public class CreateProcessRequest {
         }
         CreateProcessRequest other = (CreateProcessRequest) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.region, other.region);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             region);
     }
@@ -102,9 +101,9 @@ public class CreateProcessRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
-        private com.hathora.cloud_sdk.models.shared.Region region;  
+        private Region region;  
         
         private Builder() {
           // force use of static builder() method
@@ -116,13 +115,13 @@ public class CreateProcessRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;
         }
 
-        public Builder region(com.hathora.cloud_sdk.models.shared.Region region) {
+        public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;

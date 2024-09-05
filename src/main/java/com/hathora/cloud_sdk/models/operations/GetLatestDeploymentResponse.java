@@ -4,19 +4,23 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.DeploymentV3;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetLatestDeploymentResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetLatestDeploymentResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetLatestDeploymentResponse implements com.hathora.cloud_sdk.utils.
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.DeploymentV2> deploymentV2;
+    private Optional<? extends DeploymentV3> deploymentV3;
 
     /**
      * HTTP response status code for this operation
@@ -41,15 +45,15 @@ public class GetLatestDeploymentResponse implements com.hathora.cloud_sdk.utils.
     @JsonCreator
     public GetLatestDeploymentResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.DeploymentV2> deploymentV2,
+            Optional<? extends DeploymentV3> deploymentV3,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(deploymentV2, "deploymentV2");
+        Utils.checkNotNull(deploymentV3, "deploymentV3");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.deploymentV2 = deploymentV2;
+        this.deploymentV3 = deploymentV3;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -74,8 +78,8 @@ public class GetLatestDeploymentResponse implements com.hathora.cloud_sdk.utils.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.DeploymentV2> deploymentV2() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.DeploymentV2>) deploymentV2;
+    public Optional<DeploymentV3> deploymentV3() {
+        return (Optional<DeploymentV3>) deploymentV3;
     }
 
     /**
@@ -110,18 +114,18 @@ public class GetLatestDeploymentResponse implements com.hathora.cloud_sdk.utils.
     /**
      * Ok
      */
-    public GetLatestDeploymentResponse withDeploymentV2(com.hathora.cloud_sdk.models.shared.DeploymentV2 deploymentV2) {
-        Utils.checkNotNull(deploymentV2, "deploymentV2");
-        this.deploymentV2 = Optional.ofNullable(deploymentV2);
+    public GetLatestDeploymentResponse withDeploymentV3(DeploymentV3 deploymentV3) {
+        Utils.checkNotNull(deploymentV3, "deploymentV3");
+        this.deploymentV3 = Optional.ofNullable(deploymentV3);
         return this;
     }
 
     /**
      * Ok
      */
-    public GetLatestDeploymentResponse withDeploymentV2(Optional<? extends com.hathora.cloud_sdk.models.shared.DeploymentV2> deploymentV2) {
-        Utils.checkNotNull(deploymentV2, "deploymentV2");
-        this.deploymentV2 = deploymentV2;
+    public GetLatestDeploymentResponse withDeploymentV3(Optional<? extends DeploymentV3> deploymentV3) {
+        Utils.checkNotNull(deploymentV3, "deploymentV3");
+        this.deploymentV3 = deploymentV3;
         return this;
     }
 
@@ -153,17 +157,17 @@ public class GetLatestDeploymentResponse implements com.hathora.cloud_sdk.utils.
         }
         GetLatestDeploymentResponse other = (GetLatestDeploymentResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.deploymentV2, other.deploymentV2) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.deploymentV3, other.deploymentV3) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
-            deploymentV2,
+            deploymentV3,
             statusCode,
             rawResponse);
     }
@@ -172,7 +176,7 @@ public class GetLatestDeploymentResponse implements com.hathora.cloud_sdk.utils.
     public String toString() {
         return Utils.toString(GetLatestDeploymentResponse.class,
                 "contentType", contentType,
-                "deploymentV2", deploymentV2,
+                "deploymentV3", deploymentV3,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -181,7 +185,7 @@ public class GetLatestDeploymentResponse implements com.hathora.cloud_sdk.utils.
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.DeploymentV2> deploymentV2 = Optional.empty();
+        private Optional<? extends DeploymentV3> deploymentV3 = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,18 +207,18 @@ public class GetLatestDeploymentResponse implements com.hathora.cloud_sdk.utils.
         /**
          * Ok
          */
-        public Builder deploymentV2(com.hathora.cloud_sdk.models.shared.DeploymentV2 deploymentV2) {
-            Utils.checkNotNull(deploymentV2, "deploymentV2");
-            this.deploymentV2 = Optional.ofNullable(deploymentV2);
+        public Builder deploymentV3(DeploymentV3 deploymentV3) {
+            Utils.checkNotNull(deploymentV3, "deploymentV3");
+            this.deploymentV3 = Optional.ofNullable(deploymentV3);
             return this;
         }
 
         /**
          * Ok
          */
-        public Builder deploymentV2(Optional<? extends com.hathora.cloud_sdk.models.shared.DeploymentV2> deploymentV2) {
-            Utils.checkNotNull(deploymentV2, "deploymentV2");
-            this.deploymentV2 = deploymentV2;
+        public Builder deploymentV3(Optional<? extends DeploymentV3> deploymentV3) {
+            Utils.checkNotNull(deploymentV3, "deploymentV3");
+            this.deploymentV3 = deploymentV3;
             return this;
         }
 
@@ -239,7 +243,7 @@ public class GetLatestDeploymentResponse implements com.hathora.cloud_sdk.utils.
         public GetLatestDeploymentResponse build() {
             return new GetLatestDeploymentResponse(
                 contentType,
-                deploymentV2,
+                deploymentV3,
                 statusCode,
                 rawResponse);
         }

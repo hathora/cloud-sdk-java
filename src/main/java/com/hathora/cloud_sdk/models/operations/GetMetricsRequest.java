@@ -4,35 +4,40 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.MetricName;
 import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Double;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetMetricsRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     /**
      * Unix timestamp. Default is current time.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=end")
-    private Optional<? extends Double> end;
+    private Optional<Double> end;
 
     /**
      * Available metrics to query over time.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=metrics")
-    private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.MetricName>> metrics;
+    private Optional<? extends List<MetricName>> metrics;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=processId")
     private String processId;
@@ -41,19 +46,19 @@ public class GetMetricsRequest {
      * Unix timestamp. Default is -1 hour from `end`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=start")
-    private Optional<? extends Double> start;
+    private Optional<Double> start;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=step")
-    private Optional<? extends Integer> step;
+    private Optional<Integer> step;
 
     @JsonCreator
     public GetMetricsRequest(
-            Optional<? extends String> appId,
-            Optional<? extends Double> end,
-            Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.MetricName>> metrics,
+            Optional<String> appId,
+            Optional<Double> end,
+            Optional<? extends List<MetricName>> metrics,
             String processId,
-            Optional<? extends Double> start,
-            Optional<? extends Integer> step) {
+            Optional<Double> start,
+            Optional<Integer> step) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(end, "end");
         Utils.checkNotNull(metrics, "metrics");
@@ -73,19 +78,17 @@ public class GetMetricsRequest {
         this(Optional.empty(), Optional.empty(), Optional.empty(), processId, Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
     /**
      * Unix timestamp. Default is current time.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Double> end() {
-        return (Optional<Double>) end;
+        return end;
     }
 
     /**
@@ -93,8 +96,8 @@ public class GetMetricsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<com.hathora.cloud_sdk.models.shared.MetricName>> metrics() {
-        return (Optional<java.util.List<com.hathora.cloud_sdk.models.shared.MetricName>>) metrics;
+    public Optional<List<MetricName>> metrics() {
+        return (Optional<List<MetricName>>) metrics;
     }
 
     @JsonIgnore
@@ -105,16 +108,14 @@ public class GetMetricsRequest {
     /**
      * Unix timestamp. Default is -1 hour from `end`.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Double> start() {
-        return (Optional<Double>) start;
+        return start;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Integer> step() {
-        return (Optional<Integer>) step;
+        return step;
     }
 
     public final static Builder builder() {
@@ -127,7 +128,7 @@ public class GetMetricsRequest {
         return this;
     }
 
-    public GetMetricsRequest withAppId(Optional<? extends String> appId) {
+    public GetMetricsRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -145,7 +146,7 @@ public class GetMetricsRequest {
     /**
      * Unix timestamp. Default is current time.
      */
-    public GetMetricsRequest withEnd(Optional<? extends Double> end) {
+    public GetMetricsRequest withEnd(Optional<Double> end) {
         Utils.checkNotNull(end, "end");
         this.end = end;
         return this;
@@ -154,7 +155,7 @@ public class GetMetricsRequest {
     /**
      * Available metrics to query over time.
      */
-    public GetMetricsRequest withMetrics(java.util.List<com.hathora.cloud_sdk.models.shared.MetricName> metrics) {
+    public GetMetricsRequest withMetrics(List<MetricName> metrics) {
         Utils.checkNotNull(metrics, "metrics");
         this.metrics = Optional.ofNullable(metrics);
         return this;
@@ -163,7 +164,7 @@ public class GetMetricsRequest {
     /**
      * Available metrics to query over time.
      */
-    public GetMetricsRequest withMetrics(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.MetricName>> metrics) {
+    public GetMetricsRequest withMetrics(Optional<? extends List<MetricName>> metrics) {
         Utils.checkNotNull(metrics, "metrics");
         this.metrics = metrics;
         return this;
@@ -187,7 +188,7 @@ public class GetMetricsRequest {
     /**
      * Unix timestamp. Default is -1 hour from `end`.
      */
-    public GetMetricsRequest withStart(Optional<? extends Double> start) {
+    public GetMetricsRequest withStart(Optional<Double> start) {
         Utils.checkNotNull(start, "start");
         this.start = start;
         return this;
@@ -199,7 +200,7 @@ public class GetMetricsRequest {
         return this;
     }
 
-    public GetMetricsRequest withStep(Optional<? extends Integer> step) {
+    public GetMetricsRequest withStep(Optional<Integer> step) {
         Utils.checkNotNull(step, "step");
         this.step = step;
         return this;
@@ -215,17 +216,17 @@ public class GetMetricsRequest {
         }
         GetMetricsRequest other = (GetMetricsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.end, other.end) &&
-            java.util.Objects.deepEquals(this.metrics, other.metrics) &&
-            java.util.Objects.deepEquals(this.processId, other.processId) &&
-            java.util.Objects.deepEquals(this.start, other.start) &&
-            java.util.Objects.deepEquals(this.step, other.step);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.end, other.end) &&
+            Objects.deepEquals(this.metrics, other.metrics) &&
+            Objects.deepEquals(this.processId, other.processId) &&
+            Objects.deepEquals(this.start, other.start) &&
+            Objects.deepEquals(this.step, other.step);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             end,
             metrics,
@@ -247,17 +248,17 @@ public class GetMetricsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
-        private Optional<? extends Double> end = Optional.empty();
+        private Optional<Double> end = Optional.empty();
  
-        private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.MetricName>> metrics = Optional.empty();
+        private Optional<? extends List<MetricName>> metrics = Optional.empty();
  
         private String processId;
  
-        private Optional<? extends Double> start = Optional.empty();
+        private Optional<Double> start = Optional.empty();
  
-        private Optional<? extends Integer> step;  
+        private Optional<Integer> step;  
         
         private Builder() {
           // force use of static builder() method
@@ -269,7 +270,7 @@ public class GetMetricsRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;
@@ -287,7 +288,7 @@ public class GetMetricsRequest {
         /**
          * Unix timestamp. Default is current time.
          */
-        public Builder end(Optional<? extends Double> end) {
+        public Builder end(Optional<Double> end) {
             Utils.checkNotNull(end, "end");
             this.end = end;
             return this;
@@ -296,7 +297,7 @@ public class GetMetricsRequest {
         /**
          * Available metrics to query over time.
          */
-        public Builder metrics(java.util.List<com.hathora.cloud_sdk.models.shared.MetricName> metrics) {
+        public Builder metrics(List<MetricName> metrics) {
             Utils.checkNotNull(metrics, "metrics");
             this.metrics = Optional.ofNullable(metrics);
             return this;
@@ -305,7 +306,7 @@ public class GetMetricsRequest {
         /**
          * Available metrics to query over time.
          */
-        public Builder metrics(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.MetricName>> metrics) {
+        public Builder metrics(Optional<? extends List<MetricName>> metrics) {
             Utils.checkNotNull(metrics, "metrics");
             this.metrics = metrics;
             return this;
@@ -329,7 +330,7 @@ public class GetMetricsRequest {
         /**
          * Unix timestamp. Default is -1 hour from `end`.
          */
-        public Builder start(Optional<? extends Double> start) {
+        public Builder start(Optional<Double> start) {
             Utils.checkNotNull(start, "start");
             this.start = start;
             return this;
@@ -341,7 +342,7 @@ public class GetMetricsRequest {
             return this;
         }
 
-        public Builder step(Optional<? extends Integer> step) {
+        public Builder step(Optional<Integer> step) {
             Utils.checkNotNull(step, "step");
             this.step = step;
             return this;
@@ -350,8 +351,7 @@ public class GetMetricsRequest {
         public GetMetricsRequest build() {
             if (step == null) {
                 step = _SINGLETON_VALUE_Step.value();
-            }
-            return new GetMetricsRequest(
+            }            return new GetMetricsRequest(
                 appId,
                 end,
                 metrics,
@@ -360,11 +360,11 @@ public class GetMetricsRequest {
                 step);
         }
 
-        private static final LazySingletonValue<Optional<? extends Integer>> _SINGLETON_VALUE_Step =
+        private static final LazySingletonValue<Optional<Integer>> _SINGLETON_VALUE_Step =
                 new LazySingletonValue<>(
                         "step",
                         "60",
-                        new TypeReference<Optional<? extends Integer>>() {});
+                        new TypeReference<Optional<Integer>>() {});
     }
 }
 

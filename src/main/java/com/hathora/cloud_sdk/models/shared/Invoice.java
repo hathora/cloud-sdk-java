@@ -4,19 +4,17 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Double;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
+
 
 public class Invoice {
 
@@ -157,18 +155,18 @@ public class Invoice {
         }
         Invoice other = (Invoice) o;
         return 
-            java.util.Objects.deepEquals(this.amountDue, other.amountDue) &&
-            java.util.Objects.deepEquals(this.dueDate, other.dueDate) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.month, other.month) &&
-            java.util.Objects.deepEquals(this.pdfUrl, other.pdfUrl) &&
-            java.util.Objects.deepEquals(this.status, other.status) &&
-            java.util.Objects.deepEquals(this.year, other.year);
+            Objects.deepEquals(this.amountDue, other.amountDue) &&
+            Objects.deepEquals(this.dueDate, other.dueDate) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.month, other.month) &&
+            Objects.deepEquals(this.pdfUrl, other.pdfUrl) &&
+            Objects.deepEquals(this.status, other.status) &&
+            Objects.deepEquals(this.year, other.year);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amountDue,
             dueDate,
             id,

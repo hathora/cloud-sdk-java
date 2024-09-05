@@ -5,26 +5,29 @@
 package com.hathora.cloud_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hathora.cloud_sdk.models.errors.ApiError;
 import com.hathora.cloud_sdk.models.errors.SDKError;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
+import com.hathora.cloud_sdk.models.operations.SendVerificationEmailRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.SendVerificationEmailResponse;
+import com.hathora.cloud_sdk.models.shared.VerificationEmailRequest;
+import com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess;
 import com.hathora.cloud_sdk.utils.HTTPClient;
 import com.hathora.cloud_sdk.utils.HTTPRequest;
 import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.JSON;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.SerializedBody;
+import com.hathora.cloud_sdk.utils.Utils.JsonShape;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 /**
  *  
@@ -39,22 +42,27 @@ public class ManagementV1 implements
     }
 
 
-    public com.hathora.cloud_sdk.models.operations.SendVerificationEmailRequestBuilder sendVerificationEmail() {
-        return new com.hathora.cloud_sdk.models.operations.SendVerificationEmailRequestBuilder(this);
+    public SendVerificationEmailRequestBuilder sendVerificationEmail() {
+        return new SendVerificationEmailRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.SendVerificationEmailResponse sendVerificationEmail(
-            com.hathora.cloud_sdk.models.shared.VerificationEmailRequest request) throws Exception {
+    public SendVerificationEmailResponse sendVerificationEmail(
+            VerificationEmailRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/management/v1/sendverificationemail");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.hathora.cloud_sdk.models.shared.VerificationEmailRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<VerificationEmailRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -67,7 +75,10 @@ public class ManagementV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("SendVerificationEmail", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "SendVerificationEmail", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -75,18 +86,28 @@ public class ManagementV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("SendVerificationEmail", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "SendVerificationEmail",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("SendVerificationEmail", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "SendVerificationEmail",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("SendVerificationEmail", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "SendVerificationEmail",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -94,42 +115,42 @@ public class ManagementV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.SendVerificationEmailResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.SendVerificationEmailResponse
+        SendVerificationEmailResponse.Builder _resBuilder = 
+            SendVerificationEmailResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.SendVerificationEmailResponse _res = _resBuilder.build();
+        SendVerificationEmailResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess _out = Utils.mapper().readValue(
+                VerificationEmailSuccess _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess>() {});
-                _res.withVerificationEmailSuccess(java.util.Optional.ofNullable(_out));
+                    new TypeReference<VerificationEmailSuccess>() {});
+                _res.withVerificationEmailSuccess(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -138,13 +159,13 @@ public class ManagementV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

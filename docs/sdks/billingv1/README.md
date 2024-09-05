@@ -10,6 +10,8 @@
 * [getBalance](#getbalance)
 * [getInvoices](#getinvoices)
 * [getPaymentMethod](#getpaymentmethod)
+* [getUpcomingInvoiceItems](#getupcominginvoiceitems)
+* [getUpcomingInvoiceTotal](#getupcominginvoicetotal)
 * [initStripeCustomerPortalUrl](#initstripecustomerportalurl)
 
 ## getBalance
@@ -20,17 +22,10 @@
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetBalanceResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -52,7 +47,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -64,16 +59,17 @@ public class Application {
 }
 ```
 
-
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetBalanceResponse](../../models/operations/GetBalanceResponse.md)**
+**[GetBalanceResponse](../../models/operations/GetBalanceResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## getInvoices
 
@@ -83,17 +79,10 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetInvoicesResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -115,7 +104,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -127,16 +116,17 @@ public class Application {
 }
 ```
 
-
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetInvoicesResponse](../../models/operations/GetInvoicesResponse.md)**
+**[GetInvoicesResponse](../../models/operations/GetInvoicesResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## getPaymentMethod
 
@@ -146,17 +136,10 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetPaymentMethodResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -178,7 +161,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -190,16 +173,131 @@ public class Application {
 }
 ```
 
-
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetPaymentMethodResponse](../../models/operations/GetPaymentMethodResponse.md)**
+**[GetPaymentMethodResponse](../../models/operations/GetPaymentMethodResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
+
+## getUpcomingInvoiceItems
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceItemsResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+        try {
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .build();
+
+            GetUpcomingInvoiceItemsResponse res = sdk.billingV1().getUpcomingInvoiceItems()
+                .call();
+
+            if (res.invoiceItemPage().isPresent()) {
+                // handle response
+            }
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+            // handle exception
+            throw e;
+        } catch (SDKError e) {
+            // handle exception
+            throw e;
+        } catch (Exception e) {
+            // handle exception
+            throw e;
+        }
+
+    }
+}
+```
+
+### Response
+
+**[GetUpcomingInvoiceItemsResponse](../../models/operations/GetUpcomingInvoiceItemsResponse.md)**
+
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,429            | application/json       |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
+
+## getUpcomingInvoiceTotal
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceTotalResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+        try {
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .build();
+
+            GetUpcomingInvoiceTotalResponse res = sdk.billingV1().getUpcomingInvoiceTotal()
+                .call();
+
+            if (res.object().isPresent()) {
+                // handle response
+            }
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+            // handle exception
+            throw e;
+        } catch (SDKError e) {
+            // handle exception
+            throw e;
+        } catch (Exception e) {
+            // handle exception
+            throw e;
+        }
+
+    }
+}
+```
+
+### Response
+
+**[GetUpcomingInvoiceTotalResponse](../../models/operations/GetUpcomingInvoiceTotalResponse.md)**
+
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,429            | application/json       |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## initStripeCustomerPortalUrl
 
@@ -209,17 +307,11 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlResponse;
+import com.hathora.cloud_sdk.models.shared.CustomerPortalUrl;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -246,7 +338,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -260,14 +352,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `request`                                                                                         | [com.hathora.cloud_sdk.models.shared.CustomerPortalUrl](../../models/shared/CustomerPortalUrl.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
-
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [CustomerPortalUrl](../../models/shared/CustomerPortalUrl.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlResponse](../../models/operations/InitStripeCustomerPortalUrlResponse.md)**
+**[InitStripeCustomerPortalUrlResponse](../../models/operations/InitStripeCustomerPortalUrlResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

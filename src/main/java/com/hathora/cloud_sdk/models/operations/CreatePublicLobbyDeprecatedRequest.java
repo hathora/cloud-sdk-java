@@ -4,35 +4,38 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.Region;
 import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreatePublicLobbyDeprecatedRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=local")
-    private Optional<? extends Boolean> local;
+    private Optional<Boolean> local;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=region")
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region;
+    private Optional<? extends Region> region;
 
     @JsonCreator
     public CreatePublicLobbyDeprecatedRequest(
-            Optional<? extends String> appId,
-            Optional<? extends Boolean> local,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region) {
+            Optional<String> appId,
+            Optional<Boolean> local,
+            Optional<? extends Region> region) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(local, "local");
         Utils.checkNotNull(region, "region");
@@ -45,22 +48,20 @@ public class CreatePublicLobbyDeprecatedRequest {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> local() {
-        return (Optional<Boolean>) local;
+        return local;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.Region> region() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.Region>) region;
+    public Optional<Region> region() {
+        return (Optional<Region>) region;
     }
 
     public final static Builder builder() {
@@ -73,7 +74,7 @@ public class CreatePublicLobbyDeprecatedRequest {
         return this;
     }
 
-    public CreatePublicLobbyDeprecatedRequest withAppId(Optional<? extends String> appId) {
+    public CreatePublicLobbyDeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -85,19 +86,19 @@ public class CreatePublicLobbyDeprecatedRequest {
         return this;
     }
 
-    public CreatePublicLobbyDeprecatedRequest withLocal(Optional<? extends Boolean> local) {
+    public CreatePublicLobbyDeprecatedRequest withLocal(Optional<Boolean> local) {
         Utils.checkNotNull(local, "local");
         this.local = local;
         return this;
     }
 
-    public CreatePublicLobbyDeprecatedRequest withRegion(com.hathora.cloud_sdk.models.shared.Region region) {
+    public CreatePublicLobbyDeprecatedRequest withRegion(Region region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.ofNullable(region);
         return this;
     }
 
-    public CreatePublicLobbyDeprecatedRequest withRegion(Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region) {
+    public CreatePublicLobbyDeprecatedRequest withRegion(Optional<? extends Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
@@ -113,14 +114,14 @@ public class CreatePublicLobbyDeprecatedRequest {
         }
         CreatePublicLobbyDeprecatedRequest other = (CreatePublicLobbyDeprecatedRequest) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.local, other.local) &&
-            java.util.Objects.deepEquals(this.region, other.region);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.local, other.local) &&
+            Objects.deepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             local,
             region);
@@ -136,11 +137,11 @@ public class CreatePublicLobbyDeprecatedRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
-        private Optional<? extends Boolean> local;
+        private Optional<Boolean> local;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region = Optional.empty();  
+        private Optional<? extends Region> region = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -152,7 +153,7 @@ public class CreatePublicLobbyDeprecatedRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;
@@ -164,19 +165,19 @@ public class CreatePublicLobbyDeprecatedRequest {
             return this;
         }
 
-        public Builder local(Optional<? extends Boolean> local) {
+        public Builder local(Optional<Boolean> local) {
             Utils.checkNotNull(local, "local");
             this.local = local;
             return this;
         }
 
-        public Builder region(com.hathora.cloud_sdk.models.shared.Region region) {
+        public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = Optional.ofNullable(region);
             return this;
         }
 
-        public Builder region(Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region) {
+        public Builder region(Optional<? extends Region> region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
@@ -185,18 +186,17 @@ public class CreatePublicLobbyDeprecatedRequest {
         public CreatePublicLobbyDeprecatedRequest build() {
             if (local == null) {
                 local = _SINGLETON_VALUE_Local.value();
-            }
-            return new CreatePublicLobbyDeprecatedRequest(
+            }            return new CreatePublicLobbyDeprecatedRequest(
                 appId,
                 local,
                 region);
         }
 
-        private static final LazySingletonValue<Optional<? extends Boolean>> _SINGLETON_VALUE_Local =
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Local =
                 new LazySingletonValue<>(
                         "local",
                         "false",
-                        new TypeReference<Optional<? extends Boolean>>() {});
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }
 

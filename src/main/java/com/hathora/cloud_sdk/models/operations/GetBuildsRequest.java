@@ -4,53 +4,51 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetBuildsRequest {
 
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
+    private Optional<String> orgId;
 
     @JsonCreator
     public GetBuildsRequest(
-            Optional<? extends String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+            Optional<String> orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = orgId;
     }
     
     public GetBuildsRequest() {
         this(Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> appId() {
-        return (Optional<String>) appId;
+    public Optional<String> orgId() {
+        return orgId;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public GetBuildsRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
+    public GetBuildsRequest withOrgId(String orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = Optional.ofNullable(orgId);
         return this;
     }
 
-    public GetBuildsRequest withAppId(Optional<? extends String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public GetBuildsRequest withOrgId(Optional<String> orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = orgId;
         return this;
     }
     
@@ -64,44 +62,44 @@ public class GetBuildsRequest {
         }
         GetBuildsRequest other = (GetBuildsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId);
+            Objects.deepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
-            appId);
+        return Objects.hash(
+            orgId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetBuildsRequest.class,
-                "appId", appId);
+                "orgId", orgId);
     }
     
     public final static class Builder {
  
-        private Optional<? extends String> appId = Optional.empty();  
+        private Optional<String> orgId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
+        public Builder orgId(String orgId) {
+            Utils.checkNotNull(orgId, "orgId");
+            this.orgId = Optional.ofNullable(orgId);
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = appId;
+        public Builder orgId(Optional<String> orgId) {
+            Utils.checkNotNull(orgId, "orgId");
+            this.orgId = orgId;
             return this;
         }
         
         public GetBuildsRequest build() {
             return new GetBuildsRequest(
-                appId);
+                orgId);
         }
     }
 }

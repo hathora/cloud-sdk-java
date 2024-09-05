@@ -4,71 +4,70 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateBuildRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams;
+    private CreateMultipartBuildParams createMultipartBuildParams;
 
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
+    private Optional<String> orgId;
 
     @JsonCreator
     public CreateBuildRequest(
-            com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams,
-            Optional<? extends String> appId) {
-        Utils.checkNotNull(createBuildParams, "createBuildParams");
-        Utils.checkNotNull(appId, "appId");
-        this.createBuildParams = createBuildParams;
-        this.appId = appId;
+            CreateMultipartBuildParams createMultipartBuildParams,
+            Optional<String> orgId) {
+        Utils.checkNotNull(createMultipartBuildParams, "createMultipartBuildParams");
+        Utils.checkNotNull(orgId, "orgId");
+        this.createMultipartBuildParams = createMultipartBuildParams;
+        this.orgId = orgId;
     }
     
     public CreateBuildRequest(
-            com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams) {
-        this(createBuildParams, Optional.empty());
+            CreateMultipartBuildParams createMultipartBuildParams) {
+        this(createMultipartBuildParams, Optional.empty());
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams() {
-        return createBuildParams;
+    public CreateMultipartBuildParams createMultipartBuildParams() {
+        return createMultipartBuildParams;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> appId() {
-        return (Optional<String>) appId;
+    public Optional<String> orgId() {
+        return orgId;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public CreateBuildRequest withCreateBuildParams(com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams) {
-        Utils.checkNotNull(createBuildParams, "createBuildParams");
-        this.createBuildParams = createBuildParams;
+    public CreateBuildRequest withCreateMultipartBuildParams(CreateMultipartBuildParams createMultipartBuildParams) {
+        Utils.checkNotNull(createMultipartBuildParams, "createMultipartBuildParams");
+        this.createMultipartBuildParams = createMultipartBuildParams;
         return this;
     }
 
-    public CreateBuildRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
+    public CreateBuildRequest withOrgId(String orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = Optional.ofNullable(orgId);
         return this;
     }
 
-    public CreateBuildRequest withAppId(Optional<? extends String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public CreateBuildRequest withOrgId(Optional<String> orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = orgId;
         return this;
     }
     
@@ -82,56 +81,56 @@ public class CreateBuildRequest {
         }
         CreateBuildRequest other = (CreateBuildRequest) o;
         return 
-            java.util.Objects.deepEquals(this.createBuildParams, other.createBuildParams) &&
-            java.util.Objects.deepEquals(this.appId, other.appId);
+            Objects.deepEquals(this.createMultipartBuildParams, other.createMultipartBuildParams) &&
+            Objects.deepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
-            createBuildParams,
-            appId);
+        return Objects.hash(
+            createMultipartBuildParams,
+            orgId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateBuildRequest.class,
-                "createBuildParams", createBuildParams,
-                "appId", appId);
+                "createMultipartBuildParams", createMultipartBuildParams,
+                "orgId", orgId);
     }
     
     public final static class Builder {
  
-        private com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams;
+        private CreateMultipartBuildParams createMultipartBuildParams;
  
-        private Optional<? extends String> appId = Optional.empty();  
+        private Optional<String> orgId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder createBuildParams(com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams) {
-            Utils.checkNotNull(createBuildParams, "createBuildParams");
-            this.createBuildParams = createBuildParams;
+        public Builder createMultipartBuildParams(CreateMultipartBuildParams createMultipartBuildParams) {
+            Utils.checkNotNull(createMultipartBuildParams, "createMultipartBuildParams");
+            this.createMultipartBuildParams = createMultipartBuildParams;
             return this;
         }
 
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
+        public Builder orgId(String orgId) {
+            Utils.checkNotNull(orgId, "orgId");
+            this.orgId = Optional.ofNullable(orgId);
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = appId;
+        public Builder orgId(Optional<String> orgId) {
+            Utils.checkNotNull(orgId, "orgId");
+            this.orgId = orgId;
             return this;
         }
         
         public CreateBuildRequest build() {
             return new CreateBuildRequest(
-                createBuildParams,
-                appId);
+                createMultipartBuildParams,
+                orgId);
         }
     }
 }

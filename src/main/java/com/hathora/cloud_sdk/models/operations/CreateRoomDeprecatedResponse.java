@@ -4,26 +4,28 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class CreateRoomDeprecatedResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class CreateRoomDeprecatedResponse implements Response {
 
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
 
-    private Optional<? extends String> roomId;
+    private Optional<String> roomId;
 
     /**
      * HTTP response status code for this operation
@@ -38,7 +40,7 @@ public class CreateRoomDeprecatedResponse implements com.hathora.cloud_sdk.utils
     @JsonCreator
     public CreateRoomDeprecatedResponse(
             String contentType,
-            Optional<? extends String> roomId,
+            Optional<String> roomId,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -66,10 +68,9 @@ public class CreateRoomDeprecatedResponse implements com.hathora.cloud_sdk.utils
         return contentType;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> roomId() {
-        return (Optional<String>) roomId;
+        return roomId;
     }
 
     /**
@@ -107,7 +108,7 @@ public class CreateRoomDeprecatedResponse implements com.hathora.cloud_sdk.utils
         return this;
     }
 
-    public CreateRoomDeprecatedResponse withRoomId(Optional<? extends String> roomId) {
+    public CreateRoomDeprecatedResponse withRoomId(Optional<String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;
@@ -141,15 +142,15 @@ public class CreateRoomDeprecatedResponse implements com.hathora.cloud_sdk.utils
         }
         CreateRoomDeprecatedResponse other = (CreateRoomDeprecatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.roomId, other.roomId) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.roomId, other.roomId) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             roomId,
             statusCode,
@@ -169,7 +170,7 @@ public class CreateRoomDeprecatedResponse implements com.hathora.cloud_sdk.utils
  
         private String contentType;
  
-        private Optional<? extends String> roomId = Optional.empty();
+        private Optional<String> roomId = Optional.empty();
  
         private Integer statusCode;
  
@@ -194,7 +195,7 @@ public class CreateRoomDeprecatedResponse implements com.hathora.cloud_sdk.utils
             return this;
         }
 
-        public Builder roomId(Optional<? extends String> roomId) {
+        public Builder roomId(Optional<String> roomId) {
             Utils.checkNotNull(roomId, "roomId");
             this.roomId = roomId;
             return this;

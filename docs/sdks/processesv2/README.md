@@ -7,12 +7,13 @@ Operations to get data on active and stopped [processes](https://hathora.dev/doc
 
 ### Available Operations
 
-* [createProcess](#createprocess) - Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
-* [getLatestProcesses](#getlatestprocesses) - Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
-* [getProcessInfo](#getprocessinfo) - Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
-* [stopProcess](#stopprocess) - Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
+* [createProcessV2Deprecated](#createprocessv2deprecated) - Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
+* [getLatestProcessesV2Deprecated](#getlatestprocessesv2deprecated) - Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
+* [getProcessInfoV2Deprecated](#getprocessinfov2deprecated) - Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+* [getProcessesCountExperimentalV2Deprecated](#getprocessescountexperimentalv2deprecated) - Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+* [stopProcessV2Deprecated](#stopprocessv2deprecated) - Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
 
-## createProcess
+## createProcessV2Deprecated
 
 Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
 
@@ -22,17 +23,11 @@ Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) 
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateProcessV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Region;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -45,9 +40,9 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            CreateProcessResponse res = sdk.processesV2().createProcess()
+            CreateProcessV2DeprecatedResponse res = sdk.processesV2().createProcessV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.TOKYO)
+                .region(Region.MUMBAI)
                 .call();
 
             if (res.processV2().isPresent()) {
@@ -56,7 +51,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -70,23 +65,24 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `appId`                                                                     | *Optional<? extends String>*                                                | :heavy_minus_sign:                                                          | N/A                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                    |
-| `region`                                                                    | [com.hathora.cloud_sdk.models.shared.Region](../../models/shared/Region.md) | :heavy_check_mark:                                                          | N/A                                                                         |                                                                             |
-
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `region`                                 | [Region](../../models/shared/Region.md)  | :heavy_check_mark:                       | N/A                                      |                                          |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.CreateProcessResponse](../../models/operations/CreateProcessResponse.md)**
+**[CreateProcessV2DeprecatedResponse](../../models/operations/CreateProcessV2DeprecatedResponse.md)**
+
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,402,404,429,500    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401,402,404,422,429,500 | application/json        |
+| models/errors/SDKError  | 4xx-5xx                 | \*\/*                   |
 
-## getLatestProcesses
+
+## getLatestProcessesV2Deprecated
 
 Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
 
@@ -96,17 +92,13 @@ Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathor
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetLatestProcessesV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.ProcessStatus;
+import com.hathora.cloud_sdk.models.shared.Region;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -119,12 +111,12 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetLatestProcessesResponse res = sdk.processesV2().getLatestProcesses()
+            GetLatestProcessesV2DeprecatedResponse res = sdk.processesV2().getLatestProcessesV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(java.util.List.of(
-                    Region.TOKYO))
-                .status(java.util.List.of(
-                    ProcessStatus.DRAINING))
+                .region(List.of(
+                    Region.MUMBAI))
+                .status(List.of(
+                    ProcessStatus.FAILED))
                 .call();
 
             if (res.classes().isPresent()) {
@@ -133,7 +125,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -147,16 +139,16 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
-| `region`                                                                                        | List<[com.hathora.cloud_sdk.models.shared.Region](../../models/shared/Region.md)>               | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
-| `status`                                                                                        | List<[com.hathora.cloud_sdk.models.shared.ProcessStatus](../../models/shared/ProcessStatus.md)> | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
-
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 | Example                                                     |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `appId`                                                     | *Optional<String>*                                          | :heavy_minus_sign:                                          | N/A                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                    |
+| `region`                                                    | List<[Region](../../models/shared/Region.md)>               | :heavy_minus_sign:                                          | N/A                                                         |                                                             |
+| `status`                                                    | List<[ProcessStatus](../../models/shared/ProcessStatus.md)> | :heavy_minus_sign:                                          | N/A                                                         |                                                             |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetLatestProcessesResponse](../../models/operations/GetLatestProcessesResponse.md)**
+**[GetLatestProcessesV2DeprecatedResponse](../../models/operations/GetLatestProcessesV2DeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -164,7 +156,8 @@ public class Application {
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
-## getProcessInfo
+
+## getProcessInfoV2Deprecated
 
 Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
 
@@ -174,17 +167,10 @@ Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetProcessInfoV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -197,7 +183,7 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetProcessInfoResponse res = sdk.processesV2().getProcessInfo()
+            GetProcessInfoV2DeprecatedResponse res = sdk.processesV2().getProcessInfoV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
@@ -208,7 +194,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -224,13 +210,13 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `processId`                              | *String*                                 | :heavy_check_mark:                       | N/A                                      | cbfcddd2-0006-43ae-996c-995fff7bed2e     |
-
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetProcessInfoResponse](../../models/operations/GetProcessInfoResponse.md)**
+**[GetProcessInfoV2DeprecatedResponse](../../models/operations/GetProcessInfoV2DeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -238,9 +224,10 @@ public class Application {
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
-## stopProcess
 
-Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
+## getProcessesCountExperimentalV2Deprecated
+
+Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
 
 ### Example Usage
 
@@ -248,17 +235,13 @@ Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) im
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.ProcessStatus;
+import com.hathora.cloud_sdk.models.shared.Region;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -271,7 +254,79 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            StopProcessResponse res = sdk.processesV2().stopProcess()
+            GetProcessesCountExperimentalV2DeprecatedResponse res = sdk.processesV2().getProcessesCountExperimentalV2Deprecated()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .region(List.of(
+                    Region.FRANKFURT))
+                .status(List.of(
+                    ProcessStatus.STOPPING))
+                .call();
+
+            if (res.object().isPresent()) {
+                // handle response
+            }
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+            // handle exception
+            throw e;
+        } catch (SDKError e) {
+            // handle exception
+            throw e;
+        } catch (Exception e) {
+            // handle exception
+            throw e;
+        }
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 | Example                                                     |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `appId`                                                     | *Optional<String>*                                          | :heavy_minus_sign:                                          | N/A                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                    |
+| `region`                                                    | List<[Region](../../models/shared/Region.md)>               | :heavy_minus_sign:                                          | N/A                                                         |                                                             |
+| `status`                                                    | List<[ProcessStatus](../../models/shared/ProcessStatus.md)> | :heavy_minus_sign:                                          | N/A                                                         |                                                             |
+
+### Response
+
+**[GetProcessesCountExperimentalV2DeprecatedResponse](../../models/operations/GetProcessesCountExperimentalV2DeprecatedResponse.md)**
+
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401,404,429            | application/json       |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
+
+## stopProcessV2Deprecated
+
+Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.StopProcessV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+        try {
+            HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .build();
+
+            StopProcessV2DeprecatedResponse res = sdk.processesV2().stopProcessV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
@@ -280,7 +335,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -296,13 +351,13 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `processId`                              | *String*                                 | :heavy_check_mark:                       | N/A                                      | cbfcddd2-0006-43ae-996c-995fff7bed2e     |
-
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.StopProcessResponse](../../models/operations/StopProcessResponse.md)**
+**[StopProcessV2DeprecatedResponse](../../models/operations/StopProcessV2DeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

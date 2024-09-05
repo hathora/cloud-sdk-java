@@ -4,19 +4,24 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.ProcessV3;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetLatestProcessesResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetLatestProcessesResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +41,14 @@ public class GetLatestProcessesResponse implements com.hathora.cloud_sdk.utils.R
     /**
      * Ok
      */
-    private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.ProcessV2>> classes;
+    private Optional<? extends List<ProcessV3>> classes;
 
     @JsonCreator
     public GetLatestProcessesResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.ProcessV2>> classes) {
+            Optional<? extends List<ProcessV3>> classes) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +95,8 @@ public class GetLatestProcessesResponse implements com.hathora.cloud_sdk.utils.R
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<com.hathora.cloud_sdk.models.shared.ProcessV2>> classes() {
-        return (Optional<java.util.List<com.hathora.cloud_sdk.models.shared.ProcessV2>>) classes;
+    public Optional<List<ProcessV3>> classes() {
+        return (Optional<List<ProcessV3>>) classes;
     }
 
     public final static Builder builder() {
@@ -128,7 +133,7 @@ public class GetLatestProcessesResponse implements com.hathora.cloud_sdk.utils.R
     /**
      * Ok
      */
-    public GetLatestProcessesResponse withClasses(java.util.List<com.hathora.cloud_sdk.models.shared.ProcessV2> classes) {
+    public GetLatestProcessesResponse withClasses(List<ProcessV3> classes) {
         Utils.checkNotNull(classes, "classes");
         this.classes = Optional.ofNullable(classes);
         return this;
@@ -137,7 +142,7 @@ public class GetLatestProcessesResponse implements com.hathora.cloud_sdk.utils.R
     /**
      * Ok
      */
-    public GetLatestProcessesResponse withClasses(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.ProcessV2>> classes) {
+    public GetLatestProcessesResponse withClasses(Optional<? extends List<ProcessV3>> classes) {
         Utils.checkNotNull(classes, "classes");
         this.classes = classes;
         return this;
@@ -153,15 +158,15 @@ public class GetLatestProcessesResponse implements com.hathora.cloud_sdk.utils.R
         }
         GetLatestProcessesResponse other = (GetLatestProcessesResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.classes, other.classes);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.classes, other.classes);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +190,7 @@ public class GetLatestProcessesResponse implements com.hathora.cloud_sdk.utils.R
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.ProcessV2>> classes = Optional.empty();  
+        private Optional<? extends List<ProcessV3>> classes = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +226,7 @@ public class GetLatestProcessesResponse implements com.hathora.cloud_sdk.utils.R
         /**
          * Ok
          */
-        public Builder classes(java.util.List<com.hathora.cloud_sdk.models.shared.ProcessV2> classes) {
+        public Builder classes(List<ProcessV3> classes) {
             Utils.checkNotNull(classes, "classes");
             this.classes = Optional.ofNullable(classes);
             return this;
@@ -230,7 +235,7 @@ public class GetLatestProcessesResponse implements com.hathora.cloud_sdk.utils.R
         /**
          * Ok
          */
-        public Builder classes(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.ProcessV2>> classes) {
+        public Builder classes(Optional<? extends List<ProcessV3>> classes) {
             Utils.checkNotNull(classes, "classes");
             this.classes = classes;
             return this;

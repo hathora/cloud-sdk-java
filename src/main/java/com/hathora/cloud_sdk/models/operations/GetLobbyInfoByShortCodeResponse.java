@@ -4,19 +4,23 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.LobbyV3;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetLobbyInfoByShortCodeResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetLobbyInfoByShortCodeResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetLobbyInfoByShortCodeResponse implements com.hathora.cloud_sdk.ut
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.LobbyV3> lobbyV3;
+    private Optional<? extends LobbyV3> lobbyV3;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetLobbyInfoByShortCodeResponse implements com.hathora.cloud_sdk.ut
     @JsonCreator
     public GetLobbyInfoByShortCodeResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.LobbyV3> lobbyV3,
+            Optional<? extends LobbyV3> lobbyV3,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetLobbyInfoByShortCodeResponse implements com.hathora.cloud_sdk.ut
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.LobbyV3> lobbyV3() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.LobbyV3>) lobbyV3;
+    public Optional<LobbyV3> lobbyV3() {
+        return (Optional<LobbyV3>) lobbyV3;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetLobbyInfoByShortCodeResponse implements com.hathora.cloud_sdk.ut
     /**
      * Ok
      */
-    public GetLobbyInfoByShortCodeResponse withLobbyV3(com.hathora.cloud_sdk.models.shared.LobbyV3 lobbyV3) {
+    public GetLobbyInfoByShortCodeResponse withLobbyV3(LobbyV3 lobbyV3) {
         Utils.checkNotNull(lobbyV3, "lobbyV3");
         this.lobbyV3 = Optional.ofNullable(lobbyV3);
         return this;
@@ -119,7 +123,7 @@ public class GetLobbyInfoByShortCodeResponse implements com.hathora.cloud_sdk.ut
     /**
      * Ok
      */
-    public GetLobbyInfoByShortCodeResponse withLobbyV3(Optional<? extends com.hathora.cloud_sdk.models.shared.LobbyV3> lobbyV3) {
+    public GetLobbyInfoByShortCodeResponse withLobbyV3(Optional<? extends LobbyV3> lobbyV3) {
         Utils.checkNotNull(lobbyV3, "lobbyV3");
         this.lobbyV3 = lobbyV3;
         return this;
@@ -153,15 +157,15 @@ public class GetLobbyInfoByShortCodeResponse implements com.hathora.cloud_sdk.ut
         }
         GetLobbyInfoByShortCodeResponse other = (GetLobbyInfoByShortCodeResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.lobbyV3, other.lobbyV3) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.lobbyV3, other.lobbyV3) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             lobbyV3,
             statusCode,
@@ -181,7 +185,7 @@ public class GetLobbyInfoByShortCodeResponse implements com.hathora.cloud_sdk.ut
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.LobbyV3> lobbyV3 = Optional.empty();
+        private Optional<? extends LobbyV3> lobbyV3 = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetLobbyInfoByShortCodeResponse implements com.hathora.cloud_sdk.ut
         /**
          * Ok
          */
-        public Builder lobbyV3(com.hathora.cloud_sdk.models.shared.LobbyV3 lobbyV3) {
+        public Builder lobbyV3(LobbyV3 lobbyV3) {
             Utils.checkNotNull(lobbyV3, "lobbyV3");
             this.lobbyV3 = Optional.ofNullable(lobbyV3);
             return this;
@@ -212,7 +216,7 @@ public class GetLobbyInfoByShortCodeResponse implements com.hathora.cloud_sdk.ut
         /**
          * Ok
          */
-        public Builder lobbyV3(Optional<? extends com.hathora.cloud_sdk.models.shared.LobbyV3> lobbyV3) {
+        public Builder lobbyV3(Optional<? extends LobbyV3> lobbyV3) {
             Utils.checkNotNull(lobbyV3, "lobbyV3");
             this.lobbyV3 = lobbyV3;
             return this;

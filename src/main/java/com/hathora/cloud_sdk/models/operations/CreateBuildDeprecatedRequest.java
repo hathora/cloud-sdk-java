@@ -4,30 +4,30 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.CreateBuildParams;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateBuildDeprecatedRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams;
+    private CreateBuildParams createBuildParams;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @JsonCreator
     public CreateBuildDeprecatedRequest(
-            com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams,
-            Optional<? extends String> appId) {
+            CreateBuildParams createBuildParams,
+            Optional<String> appId) {
         Utils.checkNotNull(createBuildParams, "createBuildParams");
         Utils.checkNotNull(appId, "appId");
         this.createBuildParams = createBuildParams;
@@ -35,26 +35,25 @@ public class CreateBuildDeprecatedRequest {
     }
     
     public CreateBuildDeprecatedRequest(
-            com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams) {
+            CreateBuildParams createBuildParams) {
         this(createBuildParams, Optional.empty());
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams() {
+    public CreateBuildParams createBuildParams() {
         return createBuildParams;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public CreateBuildDeprecatedRequest withCreateBuildParams(com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams) {
+    public CreateBuildDeprecatedRequest withCreateBuildParams(CreateBuildParams createBuildParams) {
         Utils.checkNotNull(createBuildParams, "createBuildParams");
         this.createBuildParams = createBuildParams;
         return this;
@@ -66,7 +65,7 @@ public class CreateBuildDeprecatedRequest {
         return this;
     }
 
-    public CreateBuildDeprecatedRequest withAppId(Optional<? extends String> appId) {
+    public CreateBuildDeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -82,13 +81,13 @@ public class CreateBuildDeprecatedRequest {
         }
         CreateBuildDeprecatedRequest other = (CreateBuildDeprecatedRequest) o;
         return 
-            java.util.Objects.deepEquals(this.createBuildParams, other.createBuildParams) &&
-            java.util.Objects.deepEquals(this.appId, other.appId);
+            Objects.deepEquals(this.createBuildParams, other.createBuildParams) &&
+            Objects.deepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             createBuildParams,
             appId);
     }
@@ -102,15 +101,15 @@ public class CreateBuildDeprecatedRequest {
     
     public final static class Builder {
  
-        private com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams;
+        private CreateBuildParams createBuildParams;
  
-        private Optional<? extends String> appId = Optional.empty();  
+        private Optional<String> appId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder createBuildParams(com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams) {
+        public Builder createBuildParams(CreateBuildParams createBuildParams) {
             Utils.checkNotNull(createBuildParams, "createBuildParams");
             this.createBuildParams = createBuildParams;
             return this;
@@ -122,7 +121,7 @@ public class CreateBuildDeprecatedRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;

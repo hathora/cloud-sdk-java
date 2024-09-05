@@ -4,43 +4,34 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class GetBuildsRequestBuilder {
 
-    private Optional<? extends String> appId = Optional.empty();
+    private Optional<String> orgId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetBuilds sdk;
 
     public GetBuildsRequestBuilder(SDKMethodInterfaces.MethodCallGetBuilds sdk) {
         this.sdk = sdk;
     }
                 
-    public GetBuildsRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+    public GetBuildsRequestBuilder orgId(java.lang.String orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = Optional.of(orgId);
         return this;
     }
 
-    public GetBuildsRequestBuilder appId(Optional<? extends String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public GetBuildsRequestBuilder orgId(java.util.Optional<java.lang.String> orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = orgId;
         return this;
     }
 
     public GetBuildsResponse call() throws Exception {
 
         return sdk.getBuilds(
-            appId);
+            orgId);
     }
 }

@@ -4,22 +4,13 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class GetConnectionInfoRequestBuilder {
 
-    private Optional<? extends String> appId = Optional.empty();
+    private Optional<String> appId = Optional.empty();
     private String roomId;
     private final SDKMethodInterfaces.MethodCallGetConnectionInfo sdk;
 
@@ -27,19 +18,19 @@ public class GetConnectionInfoRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetConnectionInfoRequestBuilder appId(String appId) {
+    public GetConnectionInfoRequestBuilder appId(java.lang.String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetConnectionInfoRequestBuilder appId(Optional<? extends String> appId) {
+    public GetConnectionInfoRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public GetConnectionInfoRequestBuilder roomId(String roomId) {
+    public GetConnectionInfoRequestBuilder roomId(java.lang.String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

@@ -4,29 +4,28 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetLobbyInfoByShortCodeRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=shortCode")
     private String shortCode;
 
     @JsonCreator
     public GetLobbyInfoByShortCodeRequest(
-            Optional<? extends String> appId,
+            Optional<String> appId,
             String shortCode) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(shortCode, "shortCode");
@@ -39,10 +38,9 @@ public class GetLobbyInfoByShortCodeRequest {
         this(Optional.empty(), shortCode);
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
     @JsonIgnore
@@ -60,7 +58,7 @@ public class GetLobbyInfoByShortCodeRequest {
         return this;
     }
 
-    public GetLobbyInfoByShortCodeRequest withAppId(Optional<? extends String> appId) {
+    public GetLobbyInfoByShortCodeRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -82,13 +80,13 @@ public class GetLobbyInfoByShortCodeRequest {
         }
         GetLobbyInfoByShortCodeRequest other = (GetLobbyInfoByShortCodeRequest) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.shortCode, other.shortCode);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.shortCode, other.shortCode);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             shortCode);
     }
@@ -102,7 +100,7 @@ public class GetLobbyInfoByShortCodeRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
         private String shortCode;  
         
@@ -116,7 +114,7 @@ public class GetLobbyInfoByShortCodeRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;

@@ -11,8 +11,8 @@ Types of lobbies a player can create.
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `PRIVATE_` | private    |
-| `PUBLIC_`  | public     |
-| `LOCAL`    | local      |
+| Name      | Value     |
+| --------- | --------- |
+| `PRIVATE` | private   |
+| `PUBLIC`  | public    |
+| `LOCAL`   | local     |

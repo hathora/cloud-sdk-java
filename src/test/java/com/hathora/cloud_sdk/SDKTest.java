@@ -132,24 +132,24 @@ public class SDKTest {
         int tries = 0;
         while (stillPoll) {
             System.out.println("poll try #" + tries + ":");
-            GetProcessInfoResponse processInfoResponse = hathoraCloudSdk.processesV2().getProcessInfo()
+            GetProcessResponse processResponse = hathoraCloudSdk.processesV3().getProcess()
                     .processId(createRoomResponse.roomConnectionData().get().processId())
                     .call();
-            if (processInfoResponse.processV2().isEmpty()) {
-                System.out.println("api error: " + processInfoResponse.rawResponse().toString());
+            if (processResponse.processV3().isEmpty()) {
+                System.out.println("api error: " + processResponse.rawResponse().toString());
             }
-            if (processInfoResponse.processV2().isPresent()
-                    && processInfoResponse.processV2().get().exposedPort().isPresent()) {
-                System.out.println("RES: " + processInfoResponse.statusCode() + ", Success!");
-                System.out.println("RoomId: " + processInfoResponse.processV2().get().processId());
-                System.out.println("ExposedPort: " + processInfoResponse.processV2().get().exposedPort());
+            if (processResponse.processV3().isPresent()
+                    && processResponse.processV3().get().exposedPort().isPresent()) {
+                System.out.println("RES: " + processResponse.statusCode() + ", Success!");
+                System.out.println("RoomId: " + processResponse.processV3().get().processId());
+                System.out.println("ExposedPort: " + processResponse.processV3().get().exposedPort());
                 long end = System.currentTimeMillis();
                 long elapsedTime = end - start;
                 System.out.println("POLLING TIME ELAPSED: " + elapsedTime + "ms");
                 stillPoll = false;
-                testGetMetrics(hathoraCloudSdk, processInfoResponse.processV2().get().processId());
+                testGetMetrics(hathoraCloudSdk, processResponse.processV3().get().processId());
             } else {
-                System.out.println("RES: " + processInfoResponse.statusCode()
+                System.out.println("RES: " + processResponse.statusCode()
                         + ", processV2.ExposedPort not present, keep polling");
             }
             if (stillPoll && tries > 15) {
@@ -199,7 +199,7 @@ public class SDKTest {
                         .createLobbyV3Params(CreateLobbyV3Params.builder()
                                 .region(region)
                                 .roomConfig(roomConfig)
-                                .visibility(LobbyVisibility.PUBLIC_)
+                                .visibility(LobbyVisibility.PUBLIC)
                                 .build())
                         .build())
                 .call();

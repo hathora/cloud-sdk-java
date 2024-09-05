@@ -5,36 +5,51 @@
 package com.hathora.cloud_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hathora.cloud_sdk.models.errors.ApiError;
 import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateProcessV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.CreateProcessV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.CreateProcessV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.GetLatestProcessesV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.GetLatestProcessesV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetLatestProcessesV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.GetProcessInfoV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.GetProcessInfoV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetProcessInfoV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedResponseBody;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
+import com.hathora.cloud_sdk.models.operations.StopProcessV2DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.StopProcessV2DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.StopProcessV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.ProcessStatus;
+import com.hathora.cloud_sdk.models.shared.ProcessV2;
+import com.hathora.cloud_sdk.models.shared.Region;
 import com.hathora.cloud_sdk.utils.HTTPClient;
 import com.hathora.cloud_sdk.utils.HTTPRequest;
 import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.JSON;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.apache.http.NameValuePair;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 /**
  * Operations to get data on active and stopped [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
  */
 public class ProcessesV2 implements
-            MethodCallCreateProcess,
-            MethodCallGetLatestProcesses,
-            MethodCallGetProcessInfo,
-            MethodCallStopProcess {
+            MethodCallCreateProcessV2Deprecated,
+            MethodCallGetLatestProcessesV2Deprecated,
+            MethodCallGetProcessInfoV2Deprecated,
+            MethodCallGetProcessesCountExperimentalV2Deprecated,
+            MethodCallStopProcessV2Deprecated {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -47,8 +62,8 @@ public class ProcessesV2 implements
      * Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.CreateProcessRequestBuilder createProcess() {
-        return new com.hathora.cloud_sdk.models.operations.CreateProcessRequestBuilder(this);
+    public CreateProcessV2DeprecatedRequestBuilder createProcessV2Deprecated() {
+        return new CreateProcessV2DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -57,10 +72,11 @@ public class ProcessesV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.CreateProcessResponse createProcess(
-            com.hathora.cloud_sdk.models.shared.Region region) throws Exception {
-        return createProcess(Optional.empty(), region);
+    public CreateProcessV2DeprecatedResponse createProcessV2Deprecated(
+            Region region) throws Exception {
+        return createProcessV2Deprecated(Optional.empty(), region);
     }
+    
     /**
      * Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
      * @param appId
@@ -68,11 +84,11 @@ public class ProcessesV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.CreateProcessResponse createProcess(
-            Optional<? extends String> appId,
-            com.hathora.cloud_sdk.models.shared.Region region) throws Exception {
-        com.hathora.cloud_sdk.models.operations.CreateProcessRequest request =
-            com.hathora.cloud_sdk.models.operations.CreateProcessRequest
+    public CreateProcessV2DeprecatedResponse createProcessV2Deprecated(
+            Optional<String> appId,
+            Region region) throws Exception {
+        CreateProcessV2DeprecatedRequest request =
+            CreateProcessV2DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .region(region)
@@ -80,7 +96,7 @@ public class ProcessesV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.CreateProcessRequest.class,
+                CreateProcessV2DeprecatedRequest.class,
                 _baseUrl,
                 "/processes/v2/{appId}/create/{region}",
                 request, this.sdkConfiguration.globals);
@@ -97,26 +113,39 @@ public class ProcessesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "CreateProcessV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "402", "404", "429", "4XX", "500", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "CreateProcessV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "CreateProcessV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreateProcessV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -124,42 +153,42 @@ public class ProcessesV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.CreateProcessResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.CreateProcessResponse
+        CreateProcessV2DeprecatedResponse.Builder _resBuilder = 
+            CreateProcessV2DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.CreateProcessResponse _res = _resBuilder.build();
+        CreateProcessV2DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.ProcessV2 _out = Utils.mapper().readValue(
+                ProcessV2 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.ProcessV2>() {});
-                _res.withProcessV2(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ProcessV2>() {});
+                _res.withProcessV2(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "402", "404", "429", "500")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "402", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -168,13 +197,13 @@ public class ProcessesV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -183,8 +212,8 @@ public class ProcessesV2 implements
      * Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetLatestProcessesRequestBuilder getLatestProcesses() {
-        return new com.hathora.cloud_sdk.models.operations.GetLatestProcessesRequestBuilder(this);
+    public GetLatestProcessesV2DeprecatedRequestBuilder getLatestProcessesV2Deprecated() {
+        return new GetLatestProcessesV2DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -192,9 +221,10 @@ public class ProcessesV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetLatestProcessesResponse getLatestProcessesDirect() throws Exception {
-        return getLatestProcesses(Optional.empty(), Optional.empty(), Optional.empty());
+    public GetLatestProcessesV2DeprecatedResponse getLatestProcessesV2DeprecatedDirect() throws Exception {
+        return getLatestProcessesV2Deprecated(Optional.empty(), Optional.empty(), Optional.empty());
     }
+    
     /**
      * Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
      * @param appId
@@ -203,12 +233,12 @@ public class ProcessesV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetLatestProcessesResponse getLatestProcesses(
-            Optional<? extends String> appId,
-            Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Region>> region,
-            Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.ProcessStatus>> status) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetLatestProcessesRequest request =
-            com.hathora.cloud_sdk.models.operations.GetLatestProcessesRequest
+    public GetLatestProcessesV2DeprecatedResponse getLatestProcessesV2Deprecated(
+            Optional<String> appId,
+            Optional<? extends List<Region>> region,
+            Optional<? extends List<ProcessStatus>> status) throws Exception {
+        GetLatestProcessesV2DeprecatedRequest request =
+            GetLatestProcessesV2DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .region(region)
@@ -217,7 +247,7 @@ public class ProcessesV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetLatestProcessesRequest.class,
+                GetLatestProcessesV2DeprecatedRequest.class,
                 _baseUrl,
                 "/processes/v2/{appId}/list/latest",
                 request, this.sdkConfiguration.globals);
@@ -228,7 +258,7 @@ public class ProcessesV2 implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.hathora.cloud_sdk.models.operations.GetLatestProcessesRequest.class,
+                GetLatestProcessesV2DeprecatedRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -239,7 +269,10 @@ public class ProcessesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetLatestProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetLatestProcessesV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -247,18 +280,28 @@ public class ProcessesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetLatestProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetLatestProcessesV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetLatestProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetLatestProcessesV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetLatestProcesses", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetLatestProcessesV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -266,42 +309,42 @@ public class ProcessesV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetLatestProcessesResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetLatestProcessesResponse
+        GetLatestProcessesV2DeprecatedResponse.Builder _resBuilder = 
+            GetLatestProcessesV2DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetLatestProcessesResponse _res = _resBuilder.build();
+        GetLatestProcessesV2DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                java.util.List<com.hathora.cloud_sdk.models.shared.ProcessV2> _out = Utils.mapper().readValue(
+                List<ProcessV2> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<java.util.List<com.hathora.cloud_sdk.models.shared.ProcessV2>>() {});
-                _res.withClasses(java.util.Optional.ofNullable(_out));
+                    new TypeReference<List<ProcessV2>>() {});
+                _res.withClasses(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -310,13 +353,13 @@ public class ProcessesV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -325,8 +368,8 @@ public class ProcessesV2 implements
      * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetProcessInfoRequestBuilder getProcessInfo() {
-        return new com.hathora.cloud_sdk.models.operations.GetProcessInfoRequestBuilder(this);
+    public GetProcessInfoV2DeprecatedRequestBuilder getProcessInfoV2Deprecated() {
+        return new GetProcessInfoV2DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -335,10 +378,11 @@ public class ProcessesV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetProcessInfoResponse getProcessInfo(
+    public GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(
             String processId) throws Exception {
-        return getProcessInfo(Optional.empty(), processId);
+        return getProcessInfoV2Deprecated(Optional.empty(), processId);
     }
+    
     /**
      * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param appId
@@ -346,11 +390,11 @@ public class ProcessesV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetProcessInfoResponse getProcessInfo(
-            Optional<? extends String> appId,
+    public GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(
+            Optional<String> appId,
             String processId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetProcessInfoRequest request =
-            com.hathora.cloud_sdk.models.operations.GetProcessInfoRequest
+        GetProcessInfoV2DeprecatedRequest request =
+            GetProcessInfoV2DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .processId(processId)
@@ -358,7 +402,7 @@ public class ProcessesV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetProcessInfoRequest.class,
+                GetProcessInfoV2DeprecatedRequest.class,
                 _baseUrl,
                 "/processes/v2/{appId}/info/{processId}",
                 request, this.sdkConfiguration.globals);
@@ -375,7 +419,10 @@ public class ProcessesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetProcessInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetProcessInfoV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -383,18 +430,28 @@ public class ProcessesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetProcessInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetProcessInfoV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetProcessInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetProcessInfoV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetProcessInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetProcessInfoV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -402,42 +459,42 @@ public class ProcessesV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetProcessInfoResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetProcessInfoResponse
+        GetProcessInfoV2DeprecatedResponse.Builder _resBuilder = 
+            GetProcessInfoV2DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetProcessInfoResponse _res = _resBuilder.build();
+        GetProcessInfoV2DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.ProcessV2 _out = Utils.mapper().readValue(
+                ProcessV2 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.ProcessV2>() {});
-                _res.withProcessV2(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ProcessV2>() {});
+                _res.withProcessV2(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -446,13 +503,169 @@ public class ProcessesV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+     * @return The call builder
+     */
+    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder getProcessesCountExperimentalV2Deprecated() {
+        return new GetProcessesCountExperimentalV2DeprecatedRequestBuilder(this);
+    }
+
+    /**
+     * Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetProcessesCountExperimentalV2DeprecatedResponse getProcessesCountExperimentalV2DeprecatedDirect() throws Exception {
+        return getProcessesCountExperimentalV2Deprecated(Optional.empty(), Optional.empty(), Optional.empty());
+    }
+    
+    /**
+     * Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+     * @param appId
+     * @param region
+     * @param status
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetProcessesCountExperimentalV2DeprecatedResponse getProcessesCountExperimentalV2Deprecated(
+            Optional<String> appId,
+            Optional<? extends List<Region>> region,
+            Optional<? extends List<ProcessStatus>> status) throws Exception {
+        GetProcessesCountExperimentalV2DeprecatedRequest request =
+            GetProcessesCountExperimentalV2DeprecatedRequest
+                .builder()
+                .appId(appId)
+                .region(region)
+                .status(status)
+                .build();
+        
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                GetProcessesCountExperimentalV2DeprecatedRequest.class,
+                _baseUrl,
+                "/processes/v2/{appId}/count",
+                request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetProcessesCountExperimentalV2DeprecatedRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "GetProcessesCountExperimentalV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetProcessesCountExperimentalV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "GetProcessesCountExperimentalV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetProcessesCountExperimentalV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        GetProcessesCountExperimentalV2DeprecatedResponse.Builder _resBuilder = 
+            GetProcessesCountExperimentalV2DeprecatedResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        GetProcessesCountExperimentalV2DeprecatedResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                GetProcessesCountExperimentalV2DeprecatedResponseBody _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<GetProcessesCountExperimentalV2DeprecatedResponseBody>() {});
+                _res.withObject(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -461,8 +674,8 @@ public class ProcessesV2 implements
      * Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.StopProcessRequestBuilder stopProcess() {
-        return new com.hathora.cloud_sdk.models.operations.StopProcessRequestBuilder(this);
+    public StopProcessV2DeprecatedRequestBuilder stopProcessV2Deprecated() {
+        return new StopProcessV2DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -471,10 +684,11 @@ public class ProcessesV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.StopProcessResponse stopProcess(
+    public StopProcessV2DeprecatedResponse stopProcessV2Deprecated(
             String processId) throws Exception {
-        return stopProcess(Optional.empty(), processId);
+        return stopProcessV2Deprecated(Optional.empty(), processId);
     }
+    
     /**
      * Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
      * @param appId
@@ -482,11 +696,11 @@ public class ProcessesV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.StopProcessResponse stopProcess(
-            Optional<? extends String> appId,
+    public StopProcessV2DeprecatedResponse stopProcessV2Deprecated(
+            Optional<String> appId,
             String processId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.StopProcessRequest request =
-            com.hathora.cloud_sdk.models.operations.StopProcessRequest
+        StopProcessV2DeprecatedRequest request =
+            StopProcessV2DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .processId(processId)
@@ -494,7 +708,7 @@ public class ProcessesV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.StopProcessRequest.class,
+                StopProcessV2DeprecatedRequest.class,
                 _baseUrl,
                 "/processes/v2/{appId}/stop/{processId}",
                 request, this.sdkConfiguration.globals);
@@ -511,7 +725,10 @@ public class ProcessesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("StopProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "StopProcessV2Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -519,18 +736,28 @@ public class ProcessesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("StopProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "StopProcessV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("StopProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "StopProcessV2Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("StopProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "StopProcessV2Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -538,14 +765,14 @@ public class ProcessesV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.StopProcessResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.StopProcessResponse
+        StopProcessV2DeprecatedResponse.Builder _resBuilder = 
+            StopProcessV2DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.StopProcessResponse _res = _resBuilder.build();
+        StopProcessV2DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -553,16 +780,16 @@ public class ProcessesV2 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -571,13 +798,13 @@ public class ProcessesV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

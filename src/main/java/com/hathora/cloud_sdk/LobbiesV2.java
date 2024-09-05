@@ -5,28 +5,58 @@
 package com.hathora.cloud_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hathora.cloud_sdk.models.errors.ApiError;
 import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedSecurity;
+import com.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequest;
+import com.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequestBody;
+import com.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.CreateLocalLobbyResponse;
+import com.hathora.cloud_sdk.models.operations.CreateLocalLobbySecurity;
+import com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequest;
+import com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequestBody;
+import com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyResponse;
+import com.hathora.cloud_sdk.models.operations.CreatePrivateLobbySecurity;
+import com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequest;
+import com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequestBody;
+import com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.CreatePublicLobbyResponse;
+import com.hathora.cloud_sdk.models.operations.CreatePublicLobbySecurity;
+import com.hathora.cloud_sdk.models.operations.GetLobbyInfoRequest;
+import com.hathora.cloud_sdk.models.operations.GetLobbyInfoRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetLobbyInfoResponse;
+import com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Request;
+import com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2RequestBuilder;
+import com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Response;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
+import com.hathora.cloud_sdk.models.operations.SetLobbyStateRequest;
+import com.hathora.cloud_sdk.models.operations.SetLobbyStateRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.SetLobbyStateResponse;
+import com.hathora.cloud_sdk.models.shared.CreateLobbyParams;
+import com.hathora.cloud_sdk.models.shared.Lobby;
+import com.hathora.cloud_sdk.models.shared.Region;
+import com.hathora.cloud_sdk.models.shared.SetLobbyStateParams;
 import com.hathora.cloud_sdk.utils.HTTPClient;
 import com.hathora.cloud_sdk.utils.HTTPRequest;
 import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.JSON;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.SerializedBody;
+import com.hathora.cloud_sdk.utils.Utils.JsonShape;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Deprecated;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.apache.http.NameValuePair;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class LobbiesV2 implements
             MethodCallCreateLobbyDeprecated,
@@ -50,8 +80,8 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedRequestBuilder createLobbyDeprecated() {
-        return new com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedRequestBuilder(this);
+    public CreateLobbyDeprecatedRequestBuilder createLobbyDeprecated() {
+        return new CreateLobbyDeprecatedRequestBuilder(this);
     }
 
     /**
@@ -63,11 +93,12 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedResponse createLobbyDeprecated(
-            com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedSecurity security,
-            com.hathora.cloud_sdk.models.shared.CreateLobbyParams createLobbyParams) throws Exception {
+    public CreateLobbyDeprecatedResponse createLobbyDeprecated(
+            CreateLobbyDeprecatedSecurity security,
+            CreateLobbyParams createLobbyParams) throws Exception {
         return createLobbyDeprecated(security, createLobbyParams, Optional.empty(), Optional.empty());
     }
+    
     /**
      * Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
      * @param security The security details to use for authentication.
@@ -79,13 +110,13 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedResponse createLobbyDeprecated(
-            com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedSecurity security,
-            com.hathora.cloud_sdk.models.shared.CreateLobbyParams createLobbyParams,
-            Optional<? extends String> appId,
-            Optional<? extends String> roomId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedRequest request =
-            com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedRequest
+    public CreateLobbyDeprecatedResponse createLobbyDeprecated(
+            CreateLobbyDeprecatedSecurity security,
+            CreateLobbyParams createLobbyParams,
+            Optional<String> appId,
+            Optional<String> roomId) throws Exception {
+        CreateLobbyDeprecatedRequest request =
+            CreateLobbyDeprecatedRequest
                 .builder()
                 .createLobbyParams(createLobbyParams)
                 .appId(appId)
@@ -94,16 +125,21 @@ public class LobbiesV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedRequest.class,
+                CreateLobbyDeprecatedRequest.class,
                 _baseUrl,
                 "/lobby/v2/{appId}/create",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "createLobbyParams", "json", false);
+                _convertedRequest, 
+                "createLobbyParams",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -113,7 +149,7 @@ public class LobbiesV2 implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedRequest.class,
+                CreateLobbyDeprecatedRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -123,7 +159,10 @@ public class LobbiesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateLobbyDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "CreateLobbyDeprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -131,18 +170,28 @@ public class LobbiesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateLobbyDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "CreateLobbyDeprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateLobbyDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "CreateLobbyDeprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateLobbyDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreateLobbyDeprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -150,42 +199,42 @@ public class LobbiesV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedResponse
+        CreateLobbyDeprecatedResponse.Builder _resBuilder = 
+            CreateLobbyDeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedResponse _res = _resBuilder.build();
+        CreateLobbyDeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Lobby _out = Utils.mapper().readValue(
+                Lobby _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Lobby>() {});
-                _res.withLobby(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Lobby>() {});
+                _res.withLobby(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -194,13 +243,13 @@ public class LobbiesV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -210,8 +259,8 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequestBuilder createLocalLobby() {
-        return new com.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequestBuilder(this);
+    public CreateLocalLobbyRequestBuilder createLocalLobby() {
+        return new CreateLocalLobbyRequestBuilder(this);
     }
 
     /**
@@ -222,11 +271,12 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreateLocalLobbyResponse createLocalLobby(
-            com.hathora.cloud_sdk.models.operations.CreateLocalLobbySecurity security,
-            com.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequestBody requestBody) throws Exception {
+    public CreateLocalLobbyResponse createLocalLobby(
+            CreateLocalLobbySecurity security,
+            CreateLocalLobbyRequestBody requestBody) throws Exception {
         return createLocalLobby(security, requestBody, Optional.empty(), Optional.empty());
     }
+    
     /**
      * @param security The security details to use for authentication.
      * @param requestBody
@@ -237,13 +287,13 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreateLocalLobbyResponse createLocalLobby(
-            com.hathora.cloud_sdk.models.operations.CreateLocalLobbySecurity security,
-            com.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequestBody requestBody,
-            Optional<? extends String> appId,
-            Optional<? extends String> roomId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequest request =
-            com.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequest
+    public CreateLocalLobbyResponse createLocalLobby(
+            CreateLocalLobbySecurity security,
+            CreateLocalLobbyRequestBody requestBody,
+            Optional<String> appId,
+            Optional<String> roomId) throws Exception {
+        CreateLocalLobbyRequest request =
+            CreateLocalLobbyRequest
                 .builder()
                 .requestBody(requestBody)
                 .appId(appId)
@@ -252,16 +302,21 @@ public class LobbiesV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequest.class,
+                CreateLocalLobbyRequest.class,
                 _baseUrl,
                 "/lobby/v2/{appId}/create/local",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -271,7 +326,7 @@ public class LobbiesV2 implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequest.class,
+                CreateLocalLobbyRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -281,7 +336,10 @@ public class LobbiesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateLocalLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "CreateLocalLobby", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -289,18 +347,28 @@ public class LobbiesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateLocalLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "CreateLocalLobby",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateLocalLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "CreateLocalLobby",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateLocalLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreateLocalLobby",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -308,42 +376,42 @@ public class LobbiesV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.CreateLocalLobbyResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.CreateLocalLobbyResponse
+        CreateLocalLobbyResponse.Builder _resBuilder = 
+            CreateLocalLobbyResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.CreateLocalLobbyResponse _res = _resBuilder.build();
+        CreateLocalLobbyResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Lobby _out = Utils.mapper().readValue(
+                Lobby _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Lobby>() {});
-                _res.withLobby(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Lobby>() {});
+                _res.withLobby(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -352,13 +420,13 @@ public class LobbiesV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -368,8 +436,8 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequestBuilder createPrivateLobby() {
-        return new com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequestBuilder(this);
+    public CreatePrivateLobbyRequestBuilder createPrivateLobby() {
+        return new CreatePrivateLobbyRequestBuilder(this);
     }
 
     /**
@@ -380,11 +448,12 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyResponse createPrivateLobby(
-            com.hathora.cloud_sdk.models.operations.CreatePrivateLobbySecurity security,
-            com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequestBody requestBody) throws Exception {
+    public CreatePrivateLobbyResponse createPrivateLobby(
+            CreatePrivateLobbySecurity security,
+            CreatePrivateLobbyRequestBody requestBody) throws Exception {
         return createPrivateLobby(security, requestBody, Optional.empty(), Optional.empty());
     }
+    
     /**
      * @param security The security details to use for authentication.
      * @param requestBody
@@ -395,13 +464,13 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyResponse createPrivateLobby(
-            com.hathora.cloud_sdk.models.operations.CreatePrivateLobbySecurity security,
-            com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequestBody requestBody,
-            Optional<? extends String> appId,
-            Optional<? extends String> roomId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequest request =
-            com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequest
+    public CreatePrivateLobbyResponse createPrivateLobby(
+            CreatePrivateLobbySecurity security,
+            CreatePrivateLobbyRequestBody requestBody,
+            Optional<String> appId,
+            Optional<String> roomId) throws Exception {
+        CreatePrivateLobbyRequest request =
+            CreatePrivateLobbyRequest
                 .builder()
                 .requestBody(requestBody)
                 .appId(appId)
@@ -410,16 +479,21 @@ public class LobbiesV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequest.class,
+                CreatePrivateLobbyRequest.class,
                 _baseUrl,
                 "/lobby/v2/{appId}/create/private",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -429,7 +503,7 @@ public class LobbiesV2 implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequest.class,
+                CreatePrivateLobbyRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -439,7 +513,10 @@ public class LobbiesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreatePrivateLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "CreatePrivateLobby", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -447,18 +524,28 @@ public class LobbiesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreatePrivateLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "CreatePrivateLobby",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreatePrivateLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "CreatePrivateLobby",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreatePrivateLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreatePrivateLobby",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -466,42 +553,42 @@ public class LobbiesV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyResponse
+        CreatePrivateLobbyResponse.Builder _resBuilder = 
+            CreatePrivateLobbyResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyResponse _res = _resBuilder.build();
+        CreatePrivateLobbyResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Lobby _out = Utils.mapper().readValue(
+                Lobby _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Lobby>() {});
-                _res.withLobby(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Lobby>() {});
+                _res.withLobby(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -510,13 +597,13 @@ public class LobbiesV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -526,8 +613,8 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequestBuilder createPublicLobby() {
-        return new com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequestBuilder(this);
+    public CreatePublicLobbyRequestBuilder createPublicLobby() {
+        return new CreatePublicLobbyRequestBuilder(this);
     }
 
     /**
@@ -538,11 +625,12 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreatePublicLobbyResponse createPublicLobby(
-            com.hathora.cloud_sdk.models.operations.CreatePublicLobbySecurity security,
-            com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequestBody requestBody) throws Exception {
+    public CreatePublicLobbyResponse createPublicLobby(
+            CreatePublicLobbySecurity security,
+            CreatePublicLobbyRequestBody requestBody) throws Exception {
         return createPublicLobby(security, requestBody, Optional.empty(), Optional.empty());
     }
+    
     /**
      * @param security The security details to use for authentication.
      * @param requestBody
@@ -553,13 +641,13 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreatePublicLobbyResponse createPublicLobby(
-            com.hathora.cloud_sdk.models.operations.CreatePublicLobbySecurity security,
-            com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequestBody requestBody,
-            Optional<? extends String> appId,
-            Optional<? extends String> roomId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequest request =
-            com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequest
+    public CreatePublicLobbyResponse createPublicLobby(
+            CreatePublicLobbySecurity security,
+            CreatePublicLobbyRequestBody requestBody,
+            Optional<String> appId,
+            Optional<String> roomId) throws Exception {
+        CreatePublicLobbyRequest request =
+            CreatePublicLobbyRequest
                 .builder()
                 .requestBody(requestBody)
                 .appId(appId)
@@ -568,16 +656,21 @@ public class LobbiesV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequest.class,
+                CreatePublicLobbyRequest.class,
                 _baseUrl,
                 "/lobby/v2/{appId}/create/public",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -587,7 +680,7 @@ public class LobbiesV2 implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequest.class,
+                CreatePublicLobbyRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -597,7 +690,10 @@ public class LobbiesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreatePublicLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "CreatePublicLobby", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -605,18 +701,28 @@ public class LobbiesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreatePublicLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "CreatePublicLobby",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreatePublicLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "CreatePublicLobby",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreatePublicLobby", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreatePublicLobby",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -624,42 +730,42 @@ public class LobbiesV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.CreatePublicLobbyResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.CreatePublicLobbyResponse
+        CreatePublicLobbyResponse.Builder _resBuilder = 
+            CreatePublicLobbyResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.CreatePublicLobbyResponse _res = _resBuilder.build();
+        CreatePublicLobbyResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Lobby _out = Utils.mapper().readValue(
+                Lobby _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Lobby>() {});
-                _res.withLobby(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Lobby>() {});
+                _res.withLobby(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -668,13 +774,13 @@ public class LobbiesV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -685,8 +791,8 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetLobbyInfoRequestBuilder getLobbyInfo() {
-        return new com.hathora.cloud_sdk.models.operations.GetLobbyInfoRequestBuilder(this);
+    public GetLobbyInfoRequestBuilder getLobbyInfo() {
+        return new GetLobbyInfoRequestBuilder(this);
     }
 
     /**
@@ -697,10 +803,11 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetLobbyInfoResponse getLobbyInfo(
+    public GetLobbyInfoResponse getLobbyInfo(
             String roomId) throws Exception {
         return getLobbyInfo(Optional.empty(), roomId);
     }
+    
     /**
      * Get details for a lobby.
      * @param appId
@@ -710,11 +817,11 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetLobbyInfoResponse getLobbyInfo(
-            Optional<? extends String> appId,
+    public GetLobbyInfoResponse getLobbyInfo(
+            Optional<String> appId,
             String roomId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetLobbyInfoRequest request =
-            com.hathora.cloud_sdk.models.operations.GetLobbyInfoRequest
+        GetLobbyInfoRequest request =
+            GetLobbyInfoRequest
                 .builder()
                 .appId(appId)
                 .roomId(roomId)
@@ -722,7 +829,7 @@ public class LobbiesV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetLobbyInfoRequest.class,
+                GetLobbyInfoRequest.class,
                 _baseUrl,
                 "/lobby/v2/{appId}/info/{roomId}",
                 request, this.sdkConfiguration.globals);
@@ -736,7 +843,10 @@ public class LobbiesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetLobbyInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetLobbyInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -744,18 +854,28 @@ public class LobbiesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetLobbyInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetLobbyInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetLobbyInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetLobbyInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetLobbyInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetLobbyInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -763,42 +883,42 @@ public class LobbiesV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetLobbyInfoResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetLobbyInfoResponse
+        GetLobbyInfoResponse.Builder _resBuilder = 
+            GetLobbyInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetLobbyInfoResponse _res = _resBuilder.build();
+        GetLobbyInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Lobby _out = Utils.mapper().readValue(
+                Lobby _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Lobby>() {});
-                _res.withLobby(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Lobby>() {});
+                _res.withLobby(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -807,13 +927,13 @@ public class LobbiesV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -824,8 +944,8 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2RequestBuilder listActivePublicLobbiesDeprecatedV2() {
-        return new com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2RequestBuilder(this);
+    public ListActivePublicLobbiesDeprecatedV2RequestBuilder listActivePublicLobbiesDeprecatedV2() {
+        return new ListActivePublicLobbiesDeprecatedV2RequestBuilder(this);
     }
 
     /**
@@ -835,9 +955,10 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Response listActivePublicLobbiesDeprecatedV2Direct() throws Exception {
+    public ListActivePublicLobbiesDeprecatedV2Response listActivePublicLobbiesDeprecatedV2Direct() throws Exception {
         return listActivePublicLobbiesDeprecatedV2(Optional.empty(), Optional.empty());
     }
+    
     /**
      * Get all active lobbies for a an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
      * @param appId
@@ -847,11 +968,11 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Response listActivePublicLobbiesDeprecatedV2(
-            Optional<? extends String> appId,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region) throws Exception {
-        com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Request request =
-            com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Request
+    public ListActivePublicLobbiesDeprecatedV2Response listActivePublicLobbiesDeprecatedV2(
+            Optional<String> appId,
+            Optional<? extends Region> region) throws Exception {
+        ListActivePublicLobbiesDeprecatedV2Request request =
+            ListActivePublicLobbiesDeprecatedV2Request
                 .builder()
                 .appId(appId)
                 .region(region)
@@ -859,7 +980,7 @@ public class LobbiesV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Request.class,
+                ListActivePublicLobbiesDeprecatedV2Request.class,
                 _baseUrl,
                 "/lobby/v2/{appId}/list/public",
                 request, this.sdkConfiguration.globals);
@@ -870,7 +991,7 @@ public class LobbiesV2 implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Request.class,
+                ListActivePublicLobbiesDeprecatedV2Request.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -878,7 +999,10 @@ public class LobbiesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("ListActivePublicLobbiesDeprecatedV2", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "ListActivePublicLobbiesDeprecatedV2", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -886,18 +1010,28 @@ public class LobbiesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("ListActivePublicLobbiesDeprecatedV2", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "ListActivePublicLobbiesDeprecatedV2",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("ListActivePublicLobbiesDeprecatedV2", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "ListActivePublicLobbiesDeprecatedV2",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("ListActivePublicLobbiesDeprecatedV2", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "ListActivePublicLobbiesDeprecatedV2",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -905,42 +1039,42 @@ public class LobbiesV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Response.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Response
+        ListActivePublicLobbiesDeprecatedV2Response.Builder _resBuilder = 
+            ListActivePublicLobbiesDeprecatedV2Response
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Response _res = _resBuilder.build();
+        ListActivePublicLobbiesDeprecatedV2Response _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                java.util.List<com.hathora.cloud_sdk.models.shared.Lobby> _out = Utils.mapper().readValue(
+                List<Lobby> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<java.util.List<com.hathora.cloud_sdk.models.shared.Lobby>>() {});
-                _res.withClasses(java.util.Optional.ofNullable(_out));
+                    new TypeReference<List<Lobby>>() {});
+                _res.withClasses(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -949,13 +1083,13 @@ public class LobbiesV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -966,8 +1100,8 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.SetLobbyStateRequestBuilder setLobbyState() {
-        return new com.hathora.cloud_sdk.models.operations.SetLobbyStateRequestBuilder(this);
+    public SetLobbyStateRequestBuilder setLobbyState() {
+        return new SetLobbyStateRequestBuilder(this);
     }
 
     /**
@@ -979,11 +1113,12 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.SetLobbyStateResponse setLobbyState(
-            com.hathora.cloud_sdk.models.shared.SetLobbyStateParams setLobbyStateParams,
+    public SetLobbyStateResponse setLobbyState(
+            SetLobbyStateParams setLobbyStateParams,
             String roomId) throws Exception {
         return setLobbyState(setLobbyStateParams, Optional.empty(), roomId);
     }
+    
     /**
      * Set the state of a lobby. State is intended to be set by the server and must be smaller than 1MB. Use this endpoint to store match data like live player count to enforce max number of clients or persist end-game data (i.e. winner or final scores).
      * @param setLobbyStateParams
@@ -994,12 +1129,12 @@ public class LobbiesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.SetLobbyStateResponse setLobbyState(
-            com.hathora.cloud_sdk.models.shared.SetLobbyStateParams setLobbyStateParams,
-            Optional<? extends String> appId,
+    public SetLobbyStateResponse setLobbyState(
+            SetLobbyStateParams setLobbyStateParams,
+            Optional<String> appId,
             String roomId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.SetLobbyStateRequest request =
-            com.hathora.cloud_sdk.models.operations.SetLobbyStateRequest
+        SetLobbyStateRequest request =
+            SetLobbyStateRequest
                 .builder()
                 .setLobbyStateParams(setLobbyStateParams)
                 .appId(appId)
@@ -1008,16 +1143,21 @@ public class LobbiesV2 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.SetLobbyStateRequest.class,
+                SetLobbyStateRequest.class,
                 _baseUrl,
                 "/lobby/v2/{appId}/setState/{roomId}",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "setLobbyStateParams", "json", false);
+                _convertedRequest, 
+                "setLobbyStateParams",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -1033,7 +1173,10 @@ public class LobbiesV2 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("SetLobbyState", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "SetLobbyState", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1041,18 +1184,28 @@ public class LobbiesV2 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("SetLobbyState", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "SetLobbyState",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("SetLobbyState", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "SetLobbyState",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("SetLobbyState", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "SetLobbyState",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1060,42 +1213,42 @@ public class LobbiesV2 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.SetLobbyStateResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.SetLobbyStateResponse
+        SetLobbyStateResponse.Builder _resBuilder = 
+            SetLobbyStateResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.SetLobbyStateResponse _res = _resBuilder.build();
+        SetLobbyStateResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Lobby _out = Utils.mapper().readValue(
+                Lobby _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Lobby>() {});
-                _res.withLobby(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Lobby>() {});
+                _res.withLobby(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -1104,13 +1257,13 @@ public class LobbiesV2 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

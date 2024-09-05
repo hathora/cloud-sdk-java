@@ -4,21 +4,25 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.Application;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class CreateAppResponse implements com.hathora.cloud_sdk.utils.Response {
 
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.Application> application;
+public class CreateAppResponse implements Response {
+
+    private Optional<? extends Application> application;
 
     /**
      * HTTP response content type for this operation
@@ -37,7 +41,7 @@ public class CreateAppResponse implements com.hathora.cloud_sdk.utils.Response {
 
     @JsonCreator
     public CreateAppResponse(
-            Optional<? extends com.hathora.cloud_sdk.models.shared.Application> application,
+            Optional<? extends Application> application,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -60,8 +64,8 @@ public class CreateAppResponse implements com.hathora.cloud_sdk.utils.Response {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.Application> application() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.Application>) application;
+    public Optional<Application> application() {
+        return (Optional<Application>) application;
     }
 
     /**
@@ -92,13 +96,13 @@ public class CreateAppResponse implements com.hathora.cloud_sdk.utils.Response {
         return new Builder();
     }
 
-    public CreateAppResponse withApplication(com.hathora.cloud_sdk.models.shared.Application application) {
+    public CreateAppResponse withApplication(Application application) {
         Utils.checkNotNull(application, "application");
         this.application = Optional.ofNullable(application);
         return this;
     }
 
-    public CreateAppResponse withApplication(Optional<? extends com.hathora.cloud_sdk.models.shared.Application> application) {
+    public CreateAppResponse withApplication(Optional<? extends Application> application) {
         Utils.checkNotNull(application, "application");
         this.application = application;
         return this;
@@ -141,15 +145,15 @@ public class CreateAppResponse implements com.hathora.cloud_sdk.utils.Response {
         }
         CreateAppResponse other = (CreateAppResponse) o;
         return 
-            java.util.Objects.deepEquals(this.application, other.application) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.application, other.application) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             application,
             contentType,
             statusCode,
@@ -167,7 +171,7 @@ public class CreateAppResponse implements com.hathora.cloud_sdk.utils.Response {
     
     public final static class Builder {
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.Application> application = Optional.empty();
+        private Optional<? extends Application> application = Optional.empty();
  
         private String contentType;
  
@@ -179,13 +183,13 @@ public class CreateAppResponse implements com.hathora.cloud_sdk.utils.Response {
           // force use of static builder() method
         }
 
-        public Builder application(com.hathora.cloud_sdk.models.shared.Application application) {
+        public Builder application(Application application) {
             Utils.checkNotNull(application, "application");
             this.application = Optional.ofNullable(application);
             return this;
         }
 
-        public Builder application(Optional<? extends com.hathora.cloud_sdk.models.shared.Application> application) {
+        public Builder application(Optional<? extends Application> application) {
             Utils.checkNotNull(application, "application");
             this.application = application;
             return this;

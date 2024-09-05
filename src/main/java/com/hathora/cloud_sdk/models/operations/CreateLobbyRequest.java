@@ -4,38 +4,38 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.CreateLobbyV3Params;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateLobbyRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.hathora.cloud_sdk.models.shared.CreateLobbyV3Params createLobbyV3Params;
+    private CreateLobbyV3Params createLobbyV3Params;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=roomId")
-    private Optional<? extends String> roomId;
+    private Optional<String> roomId;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=shortCode")
-    private Optional<? extends String> shortCode;
+    private Optional<String> shortCode;
 
     @JsonCreator
     public CreateLobbyRequest(
-            com.hathora.cloud_sdk.models.shared.CreateLobbyV3Params createLobbyV3Params,
-            Optional<? extends String> appId,
-            Optional<? extends String> roomId,
-            Optional<? extends String> shortCode) {
+            CreateLobbyV3Params createLobbyV3Params,
+            Optional<String> appId,
+            Optional<String> roomId,
+            Optional<String> shortCode) {
         Utils.checkNotNull(createLobbyV3Params, "createLobbyV3Params");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(roomId, "roomId");
@@ -47,38 +47,35 @@ public class CreateLobbyRequest {
     }
     
     public CreateLobbyRequest(
-            com.hathora.cloud_sdk.models.shared.CreateLobbyV3Params createLobbyV3Params) {
+            CreateLobbyV3Params createLobbyV3Params) {
         this(createLobbyV3Params, Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.CreateLobbyV3Params createLobbyV3Params() {
+    public CreateLobbyV3Params createLobbyV3Params() {
         return createLobbyV3Params;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> roomId() {
-        return (Optional<String>) roomId;
+        return roomId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> shortCode() {
-        return (Optional<String>) shortCode;
+        return shortCode;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public CreateLobbyRequest withCreateLobbyV3Params(com.hathora.cloud_sdk.models.shared.CreateLobbyV3Params createLobbyV3Params) {
+    public CreateLobbyRequest withCreateLobbyV3Params(CreateLobbyV3Params createLobbyV3Params) {
         Utils.checkNotNull(createLobbyV3Params, "createLobbyV3Params");
         this.createLobbyV3Params = createLobbyV3Params;
         return this;
@@ -90,7 +87,7 @@ public class CreateLobbyRequest {
         return this;
     }
 
-    public CreateLobbyRequest withAppId(Optional<? extends String> appId) {
+    public CreateLobbyRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -102,7 +99,7 @@ public class CreateLobbyRequest {
         return this;
     }
 
-    public CreateLobbyRequest withRoomId(Optional<? extends String> roomId) {
+    public CreateLobbyRequest withRoomId(Optional<String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;
@@ -114,7 +111,7 @@ public class CreateLobbyRequest {
         return this;
     }
 
-    public CreateLobbyRequest withShortCode(Optional<? extends String> shortCode) {
+    public CreateLobbyRequest withShortCode(Optional<String> shortCode) {
         Utils.checkNotNull(shortCode, "shortCode");
         this.shortCode = shortCode;
         return this;
@@ -130,15 +127,15 @@ public class CreateLobbyRequest {
         }
         CreateLobbyRequest other = (CreateLobbyRequest) o;
         return 
-            java.util.Objects.deepEquals(this.createLobbyV3Params, other.createLobbyV3Params) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.roomId, other.roomId) &&
-            java.util.Objects.deepEquals(this.shortCode, other.shortCode);
+            Objects.deepEquals(this.createLobbyV3Params, other.createLobbyV3Params) &&
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.roomId, other.roomId) &&
+            Objects.deepEquals(this.shortCode, other.shortCode);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             createLobbyV3Params,
             appId,
             roomId,
@@ -156,19 +153,19 @@ public class CreateLobbyRequest {
     
     public final static class Builder {
  
-        private com.hathora.cloud_sdk.models.shared.CreateLobbyV3Params createLobbyV3Params;
+        private CreateLobbyV3Params createLobbyV3Params;
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
-        private Optional<? extends String> roomId = Optional.empty();
+        private Optional<String> roomId = Optional.empty();
  
-        private Optional<? extends String> shortCode = Optional.empty();  
+        private Optional<String> shortCode = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder createLobbyV3Params(com.hathora.cloud_sdk.models.shared.CreateLobbyV3Params createLobbyV3Params) {
+        public Builder createLobbyV3Params(CreateLobbyV3Params createLobbyV3Params) {
             Utils.checkNotNull(createLobbyV3Params, "createLobbyV3Params");
             this.createLobbyV3Params = createLobbyV3Params;
             return this;
@@ -180,7 +177,7 @@ public class CreateLobbyRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;
@@ -192,7 +189,7 @@ public class CreateLobbyRequest {
             return this;
         }
 
-        public Builder roomId(Optional<? extends String> roomId) {
+        public Builder roomId(Optional<String> roomId) {
             Utils.checkNotNull(roomId, "roomId");
             this.roomId = roomId;
             return this;
@@ -204,7 +201,7 @@ public class CreateLobbyRequest {
             return this;
         }
 
-        public Builder shortCode(Optional<? extends String> shortCode) {
+        public Builder shortCode(Optional<String> shortCode) {
             Utils.checkNotNull(shortCode, "shortCode");
             this.shortCode = shortCode;
             return this;

@@ -4,26 +4,30 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.ProcessV3;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class CreateProcessResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class CreateProcessResponse implements Response {
 
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
 
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.ProcessV2> processV2;
+    private Optional<? extends ProcessV3> processV3;
 
     /**
      * HTTP response status code for this operation
@@ -38,15 +42,15 @@ public class CreateProcessResponse implements com.hathora.cloud_sdk.utils.Respon
     @JsonCreator
     public CreateProcessResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.ProcessV2> processV2,
+            Optional<? extends ProcessV3> processV3,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(processV2, "processV2");
+        Utils.checkNotNull(processV3, "processV3");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.processV2 = processV2;
+        this.processV3 = processV3;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -68,8 +72,8 @@ public class CreateProcessResponse implements com.hathora.cloud_sdk.utils.Respon
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.ProcessV2> processV2() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.ProcessV2>) processV2;
+    public Optional<ProcessV3> processV3() {
+        return (Optional<ProcessV3>) processV3;
     }
 
     /**
@@ -101,15 +105,15 @@ public class CreateProcessResponse implements com.hathora.cloud_sdk.utils.Respon
         return this;
     }
 
-    public CreateProcessResponse withProcessV2(com.hathora.cloud_sdk.models.shared.ProcessV2 processV2) {
-        Utils.checkNotNull(processV2, "processV2");
-        this.processV2 = Optional.ofNullable(processV2);
+    public CreateProcessResponse withProcessV3(ProcessV3 processV3) {
+        Utils.checkNotNull(processV3, "processV3");
+        this.processV3 = Optional.ofNullable(processV3);
         return this;
     }
 
-    public CreateProcessResponse withProcessV2(Optional<? extends com.hathora.cloud_sdk.models.shared.ProcessV2> processV2) {
-        Utils.checkNotNull(processV2, "processV2");
-        this.processV2 = processV2;
+    public CreateProcessResponse withProcessV3(Optional<? extends ProcessV3> processV3) {
+        Utils.checkNotNull(processV3, "processV3");
+        this.processV3 = processV3;
         return this;
     }
 
@@ -141,17 +145,17 @@ public class CreateProcessResponse implements com.hathora.cloud_sdk.utils.Respon
         }
         CreateProcessResponse other = (CreateProcessResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.processV2, other.processV2) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.processV3, other.processV3) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
-            processV2,
+            processV3,
             statusCode,
             rawResponse);
     }
@@ -160,7 +164,7 @@ public class CreateProcessResponse implements com.hathora.cloud_sdk.utils.Respon
     public String toString() {
         return Utils.toString(CreateProcessResponse.class,
                 "contentType", contentType,
-                "processV2", processV2,
+                "processV3", processV3,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -169,7 +173,7 @@ public class CreateProcessResponse implements com.hathora.cloud_sdk.utils.Respon
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.ProcessV2> processV2 = Optional.empty();
+        private Optional<? extends ProcessV3> processV3 = Optional.empty();
  
         private Integer statusCode;
  
@@ -188,15 +192,15 @@ public class CreateProcessResponse implements com.hathora.cloud_sdk.utils.Respon
             return this;
         }
 
-        public Builder processV2(com.hathora.cloud_sdk.models.shared.ProcessV2 processV2) {
-            Utils.checkNotNull(processV2, "processV2");
-            this.processV2 = Optional.ofNullable(processV2);
+        public Builder processV3(ProcessV3 processV3) {
+            Utils.checkNotNull(processV3, "processV3");
+            this.processV3 = Optional.ofNullable(processV3);
             return this;
         }
 
-        public Builder processV2(Optional<? extends com.hathora.cloud_sdk.models.shared.ProcessV2> processV2) {
-            Utils.checkNotNull(processV2, "processV2");
-            this.processV2 = processV2;
+        public Builder processV3(Optional<? extends ProcessV3> processV3) {
+            Utils.checkNotNull(processV3, "processV3");
+            this.processV3 = processV3;
             return this;
         }
 
@@ -221,7 +225,7 @@ public class CreateProcessResponse implements com.hathora.cloud_sdk.utils.Respon
         public CreateProcessResponse build() {
             return new CreateProcessResponse(
                 contentType,
-                processV2,
+                processV3,
                 statusCode,
                 rawResponse);
         }

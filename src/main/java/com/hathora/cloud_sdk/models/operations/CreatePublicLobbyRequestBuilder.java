@@ -4,25 +4,16 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class CreatePublicLobbyRequestBuilder {
 
     private CreatePublicLobbySecurity security;
     private CreatePublicLobbyRequestBody requestBody;
-    private Optional<? extends String> appId = Optional.empty();
-    private Optional<? extends String> roomId = Optional.empty();
+    private Optional<String> appId = Optional.empty();
+    private Optional<String> roomId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreatePublicLobby sdk;
 
     public CreatePublicLobbyRequestBuilder(SDKMethodInterfaces.MethodCallCreatePublicLobby sdk) {
@@ -35,31 +26,31 @@ public class CreatePublicLobbyRequestBuilder {
         return this;
     }
 
-    public CreatePublicLobbyRequestBuilder requestBody(CreatePublicLobbyRequestBody requestBody) {
+    public CreatePublicLobbyRequestBuilder requestBody(com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
                 
-    public CreatePublicLobbyRequestBuilder appId(String appId) {
+    public CreatePublicLobbyRequestBuilder appId(java.lang.String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreatePublicLobbyRequestBuilder appId(Optional<? extends String> appId) {
+    public CreatePublicLobbyRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public CreatePublicLobbyRequestBuilder roomId(String roomId) {
+    public CreatePublicLobbyRequestBuilder roomId(java.lang.String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = Optional.of(roomId);
         return this;
     }
 
-    public CreatePublicLobbyRequestBuilder roomId(Optional<? extends String> roomId) {
+    public CreatePublicLobbyRequestBuilder roomId(java.util.Optional<java.lang.String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

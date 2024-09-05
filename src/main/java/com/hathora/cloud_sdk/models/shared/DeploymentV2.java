@@ -4,19 +4,20 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Double;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Objects;
+
 
 public class DeploymentV2 {
 
@@ -24,7 +25,7 @@ public class DeploymentV2 {
      * Additional ports your server listens on.
      */
     @JsonProperty("additionalContainerPorts")
-    private java.util.List<ContainerPort> additionalContainerPorts;
+    private List<ContainerPort> additionalContainerPorts;
 
     /**
      * System generated unique identifier for an application.
@@ -63,7 +64,7 @@ public class DeploymentV2 {
      * The environment variable that our process will have access to at runtime.
      */
     @JsonProperty("env")
-    private java.util.List<DeploymentV2Env> env;
+    private List<DeploymentV2Env> env;
 
     /**
      * Option to shut down processes that have had no new connections or rooms
@@ -92,14 +93,14 @@ public class DeploymentV2 {
 
     @JsonCreator
     public DeploymentV2(
-            @JsonProperty("additionalContainerPorts") java.util.List<ContainerPort> additionalContainerPorts,
+            @JsonProperty("additionalContainerPorts") List<ContainerPort> additionalContainerPorts,
             @JsonProperty("appId") String appId,
             @JsonProperty("buildId") int buildId,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") String createdBy,
             @JsonProperty("defaultContainerPort") ContainerPort defaultContainerPort,
             @JsonProperty("deploymentId") int deploymentId,
-            @JsonProperty("env") java.util.List<DeploymentV2Env> env,
+            @JsonProperty("env") List<DeploymentV2Env> env,
             @JsonProperty("idleTimeoutEnabled") boolean idleTimeoutEnabled,
             @JsonProperty("requestedCPU") double requestedCPU,
             @JsonProperty("requestedMemoryMB") double requestedMemoryMB,
@@ -134,7 +135,7 @@ public class DeploymentV2 {
      * Additional ports your server listens on.
      */
     @JsonIgnore
-    public java.util.List<ContainerPort> additionalContainerPorts() {
+    public List<ContainerPort> additionalContainerPorts() {
         return additionalContainerPorts;
     }
 
@@ -187,7 +188,7 @@ public class DeploymentV2 {
      * The environment variable that our process will have access to at runtime.
      */
     @JsonIgnore
-    public java.util.List<DeploymentV2Env> env() {
+    public List<DeploymentV2Env> env() {
         return env;
     }
 
@@ -231,7 +232,7 @@ public class DeploymentV2 {
     /**
      * Additional ports your server listens on.
      */
-    public DeploymentV2 withAdditionalContainerPorts(java.util.List<ContainerPort> additionalContainerPorts) {
+    public DeploymentV2 withAdditionalContainerPorts(List<ContainerPort> additionalContainerPorts) {
         Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
         this.additionalContainerPorts = additionalContainerPorts;
         return this;
@@ -291,7 +292,7 @@ public class DeploymentV2 {
     /**
      * The environment variable that our process will have access to at runtime.
      */
-    public DeploymentV2 withEnv(java.util.List<DeploymentV2Env> env) {
+    public DeploymentV2 withEnv(List<DeploymentV2Env> env) {
         Utils.checkNotNull(env, "env");
         this.env = env;
         return this;
@@ -344,23 +345,23 @@ public class DeploymentV2 {
         }
         DeploymentV2 other = (DeploymentV2) o;
         return 
-            java.util.Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.buildId, other.buildId) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.createdBy, other.createdBy) &&
-            java.util.Objects.deepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
-            java.util.Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            java.util.Objects.deepEquals(this.env, other.env) &&
-            java.util.Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
-            java.util.Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
-            java.util.Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
-            java.util.Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess);
+            Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.buildId, other.buildId) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.createdBy, other.createdBy) &&
+            Objects.deepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
+            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
+            Objects.deepEquals(this.env, other.env) &&
+            Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
+            Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
+            Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
+            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             additionalContainerPorts,
             appId,
             buildId,
@@ -394,7 +395,7 @@ public class DeploymentV2 {
     
     public final static class Builder {
  
-        private java.util.List<ContainerPort> additionalContainerPorts;
+        private List<ContainerPort> additionalContainerPorts;
  
         private String appId;
  
@@ -408,7 +409,7 @@ public class DeploymentV2 {
  
         private Integer deploymentId;
  
-        private java.util.List<DeploymentV2Env> env;
+        private List<DeploymentV2Env> env;
  
         private Boolean idleTimeoutEnabled;
  
@@ -425,7 +426,7 @@ public class DeploymentV2 {
         /**
          * Additional ports your server listens on.
          */
-        public Builder additionalContainerPorts(java.util.List<ContainerPort> additionalContainerPorts) {
+        public Builder additionalContainerPorts(List<ContainerPort> additionalContainerPorts) {
             Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
             this.additionalContainerPorts = additionalContainerPorts;
             return this;
@@ -485,7 +486,7 @@ public class DeploymentV2 {
         /**
          * The environment variable that our process will have access to at runtime.
          */
-        public Builder env(java.util.List<DeploymentV2Env> env) {
+        public Builder env(List<DeploymentV2Env> env) {
             Utils.checkNotNull(env, "env");
             this.env = env;
             return this;

@@ -1,6 +1,8 @@
 # RoomsV1
 (*roomsV1()*)
 
+## Overview
+
 ### Available Operations
 
 * [~~createRoomDeprecated~~](#createroomdeprecated) - :warning: **Deprecated**
@@ -21,17 +23,12 @@
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateRoomDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.CreateRoomParams;
+import com.hathora.cloud_sdk.models.shared.Region;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -59,7 +56,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -73,22 +70,23 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `createRoomParams`                                                                              | [com.hathora.cloud_sdk.models.shared.CreateRoomParams](../../models/shared/CreateRoomParams.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |                                                                                                 |
-| `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
-| `roomId`                                                                                        | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | 2swovpy1fnunu                                                                                   |
-
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 | Example                                                     |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `createRoomParams`                                          | [CreateRoomParams](../../models/shared/CreateRoomParams.md) | :heavy_check_mark:                                          | N/A                                                         |                                                             |
+| `appId`                                                     | *Optional<String>*                                          | :heavy_minus_sign:                                          | N/A                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                    |
+| `roomId`                                                    | *Optional<String>*                                          | :heavy_minus_sign:                                          | N/A                                                         | 2swovpy1fnunu                                               |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.CreateRoomDeprecatedResponse](../../models/operations/CreateRoomDeprecatedResponse.md)**
+**[CreateRoomDeprecatedResponse](../../models/operations/CreateRoomDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ApiError      | 400,401,402,403,404,429,500 | application/json            |
+| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
 | models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
+
 
 ## ~~destroyRoomDeprecated~~
 
@@ -100,17 +98,10 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.DestroyRoomDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -132,7 +123,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -148,19 +139,20 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
-
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.DestroyRoomDeprecatedResponse](../../models/operations/DestroyRoomDeprecatedResponse.md)**
+**[DestroyRoomDeprecatedResponse](../../models/operations/DestroyRoomDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## ~~getActiveRoomsForProcessDeprecated~~
 
@@ -172,17 +164,10 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -206,7 +191,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -222,19 +207,20 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `processId`                              | *String*                                 | :heavy_check_mark:                       | N/A                                      | cbfcddd2-0006-43ae-996c-995fff7bed2e     |
-
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessDeprecatedResponse](../../models/operations/GetActiveRoomsForProcessDeprecatedResponse.md)**
+**[GetActiveRoomsForProcessDeprecatedResponse](../../models/operations/GetActiveRoomsForProcessDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## ~~getConnectionInfoDeprecated~~
 
@@ -246,17 +232,9 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetConnectionInfoDeprecatedResponse;
+import java.lang.Exception;
 
 public class Application {
 
@@ -277,7 +255,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -293,19 +271,20 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
-
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetConnectionInfoDeprecatedResponse](../../models/operations/GetConnectionInfoDeprecatedResponse.md)**
+**[GetConnectionInfoDeprecatedResponse](../../models/operations/GetConnectionInfoDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 400,402,404,429,500    | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## ~~getInactiveRoomsForProcessDeprecated~~
 
@@ -317,17 +296,10 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -351,7 +323,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -367,19 +339,20 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `processId`                              | *String*                                 | :heavy_check_mark:                       | N/A                                      | cbfcddd2-0006-43ae-996c-995fff7bed2e     |
-
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessDeprecatedResponse](../../models/operations/GetInactiveRoomsForProcessDeprecatedResponse.md)**
+**[GetInactiveRoomsForProcessDeprecatedResponse](../../models/operations/GetInactiveRoomsForProcessDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## ~~getRoomInfoDeprecated~~
 
@@ -391,17 +364,10 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetRoomInfoDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -425,7 +391,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -441,19 +407,20 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
-
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetRoomInfoDeprecatedResponse](../../models/operations/GetRoomInfoDeprecatedResponse.md)**
+**[GetRoomInfoDeprecatedResponse](../../models/operations/GetRoomInfoDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,422,429        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## ~~suspendRoomDeprecated~~
 
@@ -465,17 +432,10 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.SuspendRoomDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -497,7 +457,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -513,13 +473,13 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
-
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.SuspendRoomDeprecatedResponse](../../models/operations/SuspendRoomDeprecatedResponse.md)**
+**[SuspendRoomDeprecatedResponse](../../models/operations/SuspendRoomDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

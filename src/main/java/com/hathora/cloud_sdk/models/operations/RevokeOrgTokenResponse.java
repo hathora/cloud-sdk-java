@@ -4,19 +4,22 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class RevokeOrgTokenResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class RevokeOrgTokenResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +39,14 @@ public class RevokeOrgTokenResponse implements com.hathora.cloud_sdk.utils.Respo
     /**
      * Ok
      */
-    private Optional<? extends Boolean> boolean_;
+    private Optional<Boolean> boolean_;
 
     @JsonCreator
     public RevokeOrgTokenResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends Boolean> boolean_) {
+            Optional<Boolean> boolean_) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -88,10 +91,9 @@ public class RevokeOrgTokenResponse implements com.hathora.cloud_sdk.utils.Respo
     /**
      * Ok
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> boolean_() {
-        return (Optional<Boolean>) boolean_;
+        return boolean_;
     }
 
     public final static Builder builder() {
@@ -137,7 +139,7 @@ public class RevokeOrgTokenResponse implements com.hathora.cloud_sdk.utils.Respo
     /**
      * Ok
      */
-    public RevokeOrgTokenResponse withBoolean(Optional<? extends Boolean> boolean_) {
+    public RevokeOrgTokenResponse withBoolean(Optional<Boolean> boolean_) {
         Utils.checkNotNull(boolean_, "boolean_");
         this.boolean_ = boolean_;
         return this;
@@ -153,15 +155,15 @@ public class RevokeOrgTokenResponse implements com.hathora.cloud_sdk.utils.Respo
         }
         RevokeOrgTokenResponse other = (RevokeOrgTokenResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.boolean_, other.boolean_);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.boolean_, other.boolean_);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +187,7 @@ public class RevokeOrgTokenResponse implements com.hathora.cloud_sdk.utils.Respo
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends Boolean> boolean_ = Optional.empty();  
+        private Optional<Boolean> boolean_ = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -230,7 +232,7 @@ public class RevokeOrgTokenResponse implements com.hathora.cloud_sdk.utils.Respo
         /**
          * Ok
          */
-        public Builder boolean_(Optional<? extends Boolean> boolean_) {
+        public Builder boolean_(Optional<Boolean> boolean_) {
             Utils.checkNotNull(boolean_, "boolean_");
             this.boolean_ = boolean_;
             return this;

@@ -4,16 +4,15 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class StartingConnectionInfo {
 
@@ -81,13 +80,13 @@ public class StartingConnectionInfo {
         }
         StartingConnectionInfo other = (StartingConnectionInfo) o;
         return 
-            java.util.Objects.deepEquals(this.roomId, other.roomId) &&
-            java.util.Objects.deepEquals(this.status, other.status);
+            Objects.deepEquals(this.roomId, other.roomId) &&
+            Objects.deepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             roomId,
             status);
     }

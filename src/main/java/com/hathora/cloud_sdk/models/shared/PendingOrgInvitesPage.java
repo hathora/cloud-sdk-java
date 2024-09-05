@@ -4,31 +4,31 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class PendingOrgInvitesPage {
 
     @JsonProperty("invites")
-    private java.util.List<PendingOrgInvite> invites;
+    private List<PendingOrgInvite> invites;
 
     @JsonCreator
     public PendingOrgInvitesPage(
-            @JsonProperty("invites") java.util.List<PendingOrgInvite> invites) {
+            @JsonProperty("invites") List<PendingOrgInvite> invites) {
         Utils.checkNotNull(invites, "invites");
         this.invites = invites;
     }
 
     @JsonIgnore
-    public java.util.List<PendingOrgInvite> invites() {
+    public List<PendingOrgInvite> invites() {
         return invites;
     }
 
@@ -36,7 +36,7 @@ public class PendingOrgInvitesPage {
         return new Builder();
     }
 
-    public PendingOrgInvitesPage withInvites(java.util.List<PendingOrgInvite> invites) {
+    public PendingOrgInvitesPage withInvites(List<PendingOrgInvite> invites) {
         Utils.checkNotNull(invites, "invites");
         this.invites = invites;
         return this;
@@ -52,12 +52,12 @@ public class PendingOrgInvitesPage {
         }
         PendingOrgInvitesPage other = (PendingOrgInvitesPage) o;
         return 
-            java.util.Objects.deepEquals(this.invites, other.invites);
+            Objects.deepEquals(this.invites, other.invites);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             invites);
     }
     
@@ -69,13 +69,13 @@ public class PendingOrgInvitesPage {
     
     public final static class Builder {
  
-        private java.util.List<PendingOrgInvite> invites;  
+        private List<PendingOrgInvite> invites;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder invites(java.util.List<PendingOrgInvite> invites) {
+        public Builder invites(List<PendingOrgInvite> invites) {
             Utils.checkNotNull(invites, "invites");
             this.invites = invites;
             return this;

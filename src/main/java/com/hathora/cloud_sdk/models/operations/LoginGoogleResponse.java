@@ -4,19 +4,23 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.PlayerTokenObject;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class LoginGoogleResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class LoginGoogleResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class LoginGoogleResponse implements com.hathora.cloud_sdk.utils.Response
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.PlayerTokenObject> playerTokenObject;
+    private Optional<? extends PlayerTokenObject> playerTokenObject;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class LoginGoogleResponse implements com.hathora.cloud_sdk.utils.Response
     @JsonCreator
     public LoginGoogleResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.PlayerTokenObject> playerTokenObject,
+            Optional<? extends PlayerTokenObject> playerTokenObject,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class LoginGoogleResponse implements com.hathora.cloud_sdk.utils.Response
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.PlayerTokenObject> playerTokenObject() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.PlayerTokenObject>) playerTokenObject;
+    public Optional<PlayerTokenObject> playerTokenObject() {
+        return (Optional<PlayerTokenObject>) playerTokenObject;
     }
 
     /**
@@ -110,7 +114,7 @@ public class LoginGoogleResponse implements com.hathora.cloud_sdk.utils.Response
     /**
      * Ok
      */
-    public LoginGoogleResponse withPlayerTokenObject(com.hathora.cloud_sdk.models.shared.PlayerTokenObject playerTokenObject) {
+    public LoginGoogleResponse withPlayerTokenObject(PlayerTokenObject playerTokenObject) {
         Utils.checkNotNull(playerTokenObject, "playerTokenObject");
         this.playerTokenObject = Optional.ofNullable(playerTokenObject);
         return this;
@@ -119,7 +123,7 @@ public class LoginGoogleResponse implements com.hathora.cloud_sdk.utils.Response
     /**
      * Ok
      */
-    public LoginGoogleResponse withPlayerTokenObject(Optional<? extends com.hathora.cloud_sdk.models.shared.PlayerTokenObject> playerTokenObject) {
+    public LoginGoogleResponse withPlayerTokenObject(Optional<? extends PlayerTokenObject> playerTokenObject) {
         Utils.checkNotNull(playerTokenObject, "playerTokenObject");
         this.playerTokenObject = playerTokenObject;
         return this;
@@ -153,15 +157,15 @@ public class LoginGoogleResponse implements com.hathora.cloud_sdk.utils.Response
         }
         LoginGoogleResponse other = (LoginGoogleResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.playerTokenObject, other.playerTokenObject) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.playerTokenObject, other.playerTokenObject) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             playerTokenObject,
             statusCode,
@@ -181,7 +185,7 @@ public class LoginGoogleResponse implements com.hathora.cloud_sdk.utils.Response
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.PlayerTokenObject> playerTokenObject = Optional.empty();
+        private Optional<? extends PlayerTokenObject> playerTokenObject = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class LoginGoogleResponse implements com.hathora.cloud_sdk.utils.Response
         /**
          * Ok
          */
-        public Builder playerTokenObject(com.hathora.cloud_sdk.models.shared.PlayerTokenObject playerTokenObject) {
+        public Builder playerTokenObject(PlayerTokenObject playerTokenObject) {
             Utils.checkNotNull(playerTokenObject, "playerTokenObject");
             this.playerTokenObject = Optional.ofNullable(playerTokenObject);
             return this;
@@ -212,7 +216,7 @@ public class LoginGoogleResponse implements com.hathora.cloud_sdk.utils.Response
         /**
          * Ok
          */
-        public Builder playerTokenObject(Optional<? extends com.hathora.cloud_sdk.models.shared.PlayerTokenObject> playerTokenObject) {
+        public Builder playerTokenObject(Optional<? extends PlayerTokenObject> playerTokenObject) {
             Utils.checkNotNull(playerTokenObject, "playerTokenObject");
             this.playerTokenObject = playerTokenObject;
             return this;

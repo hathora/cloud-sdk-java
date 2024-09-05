@@ -5,27 +5,53 @@
 package com.hathora.cloud_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hathora.cloud_sdk.models.errors.ApiError;
 import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.AcceptInviteRequest;
+import com.hathora.cloud_sdk.models.operations.AcceptInviteRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.AcceptInviteResponse;
+import com.hathora.cloud_sdk.models.operations.GetOrgMembersRequest;
+import com.hathora.cloud_sdk.models.operations.GetOrgMembersRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetOrgMembersResponse;
+import com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesRequest;
+import com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse;
+import com.hathora.cloud_sdk.models.operations.GetOrgsRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetOrgsResponse;
+import com.hathora.cloud_sdk.models.operations.GetUserPendingInvitesRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse;
+import com.hathora.cloud_sdk.models.operations.InviteUserRequest;
+import com.hathora.cloud_sdk.models.operations.InviteUserRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.InviteUserResponse;
+import com.hathora.cloud_sdk.models.operations.RejectInviteRequest;
+import com.hathora.cloud_sdk.models.operations.RejectInviteRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.RejectInviteResponse;
+import com.hathora.cloud_sdk.models.operations.RescindInviteRequest;
+import com.hathora.cloud_sdk.models.operations.RescindInviteRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.RescindInviteResponse;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
+import com.hathora.cloud_sdk.models.shared.CreateUserInvite;
+import com.hathora.cloud_sdk.models.shared.OrgMembersPage;
+import com.hathora.cloud_sdk.models.shared.OrgsPage;
+import com.hathora.cloud_sdk.models.shared.PendingOrgInvite;
+import com.hathora.cloud_sdk.models.shared.PendingOrgInvitesPage;
+import com.hathora.cloud_sdk.models.shared.RescindUserInvite;
 import com.hathora.cloud_sdk.utils.HTTPClient;
 import com.hathora.cloud_sdk.utils.HTTPRequest;
 import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.JSON;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.SerializedBody;
+import com.hathora.cloud_sdk.utils.Utils.JsonShape;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class OrganizationsV1 implements
             MethodCallAcceptInvite,
@@ -44,21 +70,21 @@ public class OrganizationsV1 implements
     }
 
 
-    public com.hathora.cloud_sdk.models.operations.AcceptInviteRequestBuilder acceptInvite() {
-        return new com.hathora.cloud_sdk.models.operations.AcceptInviteRequestBuilder(this);
+    public AcceptInviteRequestBuilder acceptInvite() {
+        return new AcceptInviteRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.AcceptInviteResponse acceptInvite(
+    public AcceptInviteResponse acceptInvite(
             String orgId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.AcceptInviteRequest request =
-            com.hathora.cloud_sdk.models.operations.AcceptInviteRequest
+        AcceptInviteRequest request =
+            AcceptInviteRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.AcceptInviteRequest.class,
+                AcceptInviteRequest.class,
                 _baseUrl,
                 "/orgs/v1/{orgId}/invites/accept",
                 request, this.sdkConfiguration.globals);
@@ -75,7 +101,10 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("AcceptInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "AcceptInvite", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -83,18 +112,28 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("AcceptInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "AcceptInvite",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("AcceptInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "AcceptInvite",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("AcceptInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "AcceptInvite",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -102,14 +141,14 @@ public class OrganizationsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.AcceptInviteResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.AcceptInviteResponse
+        AcceptInviteResponse.Builder _resBuilder = 
+            AcceptInviteResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.AcceptInviteResponse _res = _resBuilder.build();
+        AcceptInviteResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -117,16 +156,16 @@ public class OrganizationsV1 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -135,32 +174,32 @@ public class OrganizationsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
-    public com.hathora.cloud_sdk.models.operations.GetOrgMembersRequestBuilder getOrgMembers() {
-        return new com.hathora.cloud_sdk.models.operations.GetOrgMembersRequestBuilder(this);
+    public GetOrgMembersRequestBuilder getOrgMembers() {
+        return new GetOrgMembersRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.GetOrgMembersResponse getOrgMembers(
+    public GetOrgMembersResponse getOrgMembers(
             String orgId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetOrgMembersRequest request =
-            com.hathora.cloud_sdk.models.operations.GetOrgMembersRequest
+        GetOrgMembersRequest request =
+            GetOrgMembersRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetOrgMembersRequest.class,
+                GetOrgMembersRequest.class,
                 _baseUrl,
                 "/orgs/v1/{orgId}/members",
                 request, this.sdkConfiguration.globals);
@@ -177,7 +216,10 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetOrgMembers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetOrgMembers", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -185,18 +227,28 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetOrgMembers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetOrgMembers",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetOrgMembers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetOrgMembers",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetOrgMembers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetOrgMembers",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -204,42 +256,42 @@ public class OrganizationsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetOrgMembersResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetOrgMembersResponse
+        GetOrgMembersResponse.Builder _resBuilder = 
+            GetOrgMembersResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetOrgMembersResponse _res = _resBuilder.build();
+        GetOrgMembersResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.OrgMembersPage _out = Utils.mapper().readValue(
+                OrgMembersPage _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.OrgMembersPage>() {});
-                _res.withOrgMembersPage(java.util.Optional.ofNullable(_out));
+                    new TypeReference<OrgMembersPage>() {});
+                _res.withOrgMembersPage(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -248,32 +300,32 @@ public class OrganizationsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
-    public com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesRequestBuilder getOrgPendingInvites() {
-        return new com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesRequestBuilder(this);
+    public GetOrgPendingInvitesRequestBuilder getOrgPendingInvites() {
+        return new GetOrgPendingInvitesRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse getOrgPendingInvites(
+    public GetOrgPendingInvitesResponse getOrgPendingInvites(
             String orgId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesRequest request =
-            com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesRequest
+        GetOrgPendingInvitesRequest request =
+            GetOrgPendingInvitesRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesRequest.class,
+                GetOrgPendingInvitesRequest.class,
                 _baseUrl,
                 "/orgs/v1/{orgId}/invites/pending",
                 request, this.sdkConfiguration.globals);
@@ -290,7 +342,10 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetOrgPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetOrgPendingInvites", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -298,18 +353,28 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetOrgPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetOrgPendingInvites",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetOrgPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetOrgPendingInvites",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetOrgPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetOrgPendingInvites",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -317,42 +382,42 @@ public class OrganizationsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse
+        GetOrgPendingInvitesResponse.Builder _resBuilder = 
+            GetOrgPendingInvitesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse _res = _resBuilder.build();
+        GetOrgPendingInvitesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.PendingOrgInvitesPage _out = Utils.mapper().readValue(
+                PendingOrgInvitesPage _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.PendingOrgInvitesPage>() {});
-                _res.withPendingOrgInvitesPage(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PendingOrgInvitesPage>() {});
+                _res.withPendingOrgInvitesPage(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -361,13 +426,13 @@ public class OrganizationsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -376,8 +441,8 @@ public class OrganizationsV1 implements
      * Returns an unsorted list of all organizations that you are a member of (an accepted membership invite). An organization is uniquely identified by an `orgId`.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetOrgsRequestBuilder getOrgs() {
-        return new com.hathora.cloud_sdk.models.operations.GetOrgsRequestBuilder(this);
+    public GetOrgsRequestBuilder getOrgs() {
+        return new GetOrgsRequestBuilder(this);
     }
 
     /**
@@ -385,7 +450,7 @@ public class OrganizationsV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetOrgsResponse getOrgsDirect() throws Exception {
+    public GetOrgsResponse getOrgsDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -403,7 +468,10 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetOrgs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetOrgs", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -411,18 +479,28 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetOrgs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetOrgs",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetOrgs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetOrgs",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetOrgs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetOrgs",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -430,42 +508,42 @@ public class OrganizationsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetOrgsResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetOrgsResponse
+        GetOrgsResponse.Builder _resBuilder = 
+            GetOrgsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetOrgsResponse _res = _resBuilder.build();
+        GetOrgsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.OrgsPage _out = Utils.mapper().readValue(
+                OrgsPage _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.OrgsPage>() {});
-                _res.withOrgsPage(java.util.Optional.ofNullable(_out));
+                    new TypeReference<OrgsPage>() {});
+                _res.withOrgsPage(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -474,22 +552,22 @@ public class OrganizationsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
-    public com.hathora.cloud_sdk.models.operations.GetUserPendingInvitesRequestBuilder getUserPendingInvites() {
-        return new com.hathora.cloud_sdk.models.operations.GetUserPendingInvitesRequestBuilder(this);
+    public GetUserPendingInvitesRequestBuilder getUserPendingInvites() {
+        return new GetUserPendingInvitesRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse getUserPendingInvitesDirect() throws Exception {
+    public GetUserPendingInvitesResponse getUserPendingInvitesDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -507,7 +585,10 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetUserPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetUserPendingInvites", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -515,18 +596,28 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetUserPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetUserPendingInvites",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetUserPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetUserPendingInvites",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetUserPendingInvites", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetUserPendingInvites",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -534,42 +625,42 @@ public class OrganizationsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse
+        GetUserPendingInvitesResponse.Builder _resBuilder = 
+            GetUserPendingInvitesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse _res = _resBuilder.build();
+        GetUserPendingInvitesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.PendingOrgInvitesPage _out = Utils.mapper().readValue(
+                PendingOrgInvitesPage _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.PendingOrgInvitesPage>() {});
-                _res.withPendingOrgInvitesPage(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PendingOrgInvitesPage>() {});
+                _res.withPendingOrgInvitesPage(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -578,26 +669,26 @@ public class OrganizationsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
-    public com.hathora.cloud_sdk.models.operations.InviteUserRequestBuilder inviteUser() {
-        return new com.hathora.cloud_sdk.models.operations.InviteUserRequestBuilder(this);
+    public InviteUserRequestBuilder inviteUser() {
+        return new InviteUserRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.InviteUserResponse inviteUser(
-            com.hathora.cloud_sdk.models.shared.CreateUserInvite createUserInvite,
+    public InviteUserResponse inviteUser(
+            CreateUserInvite createUserInvite,
             String orgId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.InviteUserRequest request =
-            com.hathora.cloud_sdk.models.operations.InviteUserRequest
+        InviteUserRequest request =
+            InviteUserRequest
                 .builder()
                 .createUserInvite(createUserInvite)
                 .orgId(orgId)
@@ -605,16 +696,21 @@ public class OrganizationsV1 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.InviteUserRequest.class,
+                InviteUserRequest.class,
                 _baseUrl,
                 "/orgs/v1/{orgId}/invites",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "PUT");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "createUserInvite", "json", false);
+                _convertedRequest, 
+                "createUserInvite",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -630,7 +726,10 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("InviteUser", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "InviteUser", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -638,18 +737,28 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "422", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("InviteUser", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "InviteUser",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("InviteUser", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "InviteUser",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("InviteUser", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "InviteUser",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -657,42 +766,42 @@ public class OrganizationsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.InviteUserResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.InviteUserResponse
+        InviteUserResponse.Builder _resBuilder = 
+            InviteUserResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.InviteUserResponse _res = _resBuilder.build();
+        InviteUserResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.PendingOrgInvite _out = Utils.mapper().readValue(
+                PendingOrgInvite _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.PendingOrgInvite>() {});
-                _res.withPendingOrgInvite(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PendingOrgInvite>() {});
+                _res.withPendingOrgInvite(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "422", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -701,32 +810,32 @@ public class OrganizationsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
-    public com.hathora.cloud_sdk.models.operations.RejectInviteRequestBuilder rejectInvite() {
-        return new com.hathora.cloud_sdk.models.operations.RejectInviteRequestBuilder(this);
+    public RejectInviteRequestBuilder rejectInvite() {
+        return new RejectInviteRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.RejectInviteResponse rejectInvite(
+    public RejectInviteResponse rejectInvite(
             String orgId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.RejectInviteRequest request =
-            com.hathora.cloud_sdk.models.operations.RejectInviteRequest
+        RejectInviteRequest request =
+            RejectInviteRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.RejectInviteRequest.class,
+                RejectInviteRequest.class,
                 _baseUrl,
                 "/orgs/v1/{orgId}/invites/reject",
                 request, this.sdkConfiguration.globals);
@@ -743,7 +852,10 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("RejectInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "RejectInvite", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -751,18 +863,28 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("RejectInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "RejectInvite",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("RejectInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "RejectInvite",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("RejectInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "RejectInvite",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -770,14 +892,14 @@ public class OrganizationsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.RejectInviteResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.RejectInviteResponse
+        RejectInviteResponse.Builder _resBuilder = 
+            RejectInviteResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.RejectInviteResponse _res = _resBuilder.build();
+        RejectInviteResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -785,16 +907,16 @@ public class OrganizationsV1 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -803,26 +925,26 @@ public class OrganizationsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
-    public com.hathora.cloud_sdk.models.operations.RescindInviteRequestBuilder rescindInvite() {
-        return new com.hathora.cloud_sdk.models.operations.RescindInviteRequestBuilder(this);
+    public RescindInviteRequestBuilder rescindInvite() {
+        return new RescindInviteRequestBuilder(this);
     }
 
-    public com.hathora.cloud_sdk.models.operations.RescindInviteResponse rescindInvite(
-            com.hathora.cloud_sdk.models.shared.RescindUserInvite rescindUserInvite,
+    public RescindInviteResponse rescindInvite(
+            RescindUserInvite rescindUserInvite,
             String orgId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.RescindInviteRequest request =
-            com.hathora.cloud_sdk.models.operations.RescindInviteRequest
+        RescindInviteRequest request =
+            RescindInviteRequest
                 .builder()
                 .rescindUserInvite(rescindUserInvite)
                 .orgId(orgId)
@@ -830,16 +952,21 @@ public class OrganizationsV1 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.RescindInviteRequest.class,
+                RescindInviteRequest.class,
                 _baseUrl,
                 "/orgs/v1/{orgId}/invites/rescind",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "rescindUserInvite", "json", false);
+                _convertedRequest, 
+                "rescindUserInvite",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -855,7 +982,10 @@ public class OrganizationsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("RescindInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "RescindInvite", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -863,18 +993,28 @@ public class OrganizationsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("RescindInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "RescindInvite",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("RescindInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "RescindInvite",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("RescindInvite", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "RescindInvite",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -882,14 +1022,14 @@ public class OrganizationsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.RescindInviteResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.RescindInviteResponse
+        RescindInviteResponse.Builder _resBuilder = 
+            RescindInviteResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.RescindInviteResponse _res = _resBuilder.build();
+        RescindInviteResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -897,16 +1037,16 @@ public class OrganizationsV1 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -915,13 +1055,13 @@ public class OrganizationsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

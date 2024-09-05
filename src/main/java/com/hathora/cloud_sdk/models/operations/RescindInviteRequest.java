@@ -4,28 +4,28 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.RescindUserInvite;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class RescindInviteRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.hathora.cloud_sdk.models.shared.RescindUserInvite rescindUserInvite;
+    private RescindUserInvite rescindUserInvite;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=orgId")
     private String orgId;
 
     @JsonCreator
     public RescindInviteRequest(
-            com.hathora.cloud_sdk.models.shared.RescindUserInvite rescindUserInvite,
+            RescindUserInvite rescindUserInvite,
             String orgId) {
         Utils.checkNotNull(rescindUserInvite, "rescindUserInvite");
         Utils.checkNotNull(orgId, "orgId");
@@ -34,7 +34,7 @@ public class RescindInviteRequest {
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.RescindUserInvite rescindUserInvite() {
+    public RescindUserInvite rescindUserInvite() {
         return rescindUserInvite;
     }
 
@@ -47,7 +47,7 @@ public class RescindInviteRequest {
         return new Builder();
     }
 
-    public RescindInviteRequest withRescindUserInvite(com.hathora.cloud_sdk.models.shared.RescindUserInvite rescindUserInvite) {
+    public RescindInviteRequest withRescindUserInvite(RescindUserInvite rescindUserInvite) {
         Utils.checkNotNull(rescindUserInvite, "rescindUserInvite");
         this.rescindUserInvite = rescindUserInvite;
         return this;
@@ -69,13 +69,13 @@ public class RescindInviteRequest {
         }
         RescindInviteRequest other = (RescindInviteRequest) o;
         return 
-            java.util.Objects.deepEquals(this.rescindUserInvite, other.rescindUserInvite) &&
-            java.util.Objects.deepEquals(this.orgId, other.orgId);
+            Objects.deepEquals(this.rescindUserInvite, other.rescindUserInvite) &&
+            Objects.deepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             rescindUserInvite,
             orgId);
     }
@@ -89,7 +89,7 @@ public class RescindInviteRequest {
     
     public final static class Builder {
  
-        private com.hathora.cloud_sdk.models.shared.RescindUserInvite rescindUserInvite;
+        private RescindUserInvite rescindUserInvite;
  
         private String orgId;  
         
@@ -97,7 +97,7 @@ public class RescindInviteRequest {
           // force use of static builder() method
         }
 
-        public Builder rescindUserInvite(com.hathora.cloud_sdk.models.shared.RescindUserInvite rescindUserInvite) {
+        public Builder rescindUserInvite(RescindUserInvite rescindUserInvite) {
             Utils.checkNotNull(rescindUserInvite, "rescindUserInvite");
             this.rescindUserInvite = rescindUserInvite;
             return this;

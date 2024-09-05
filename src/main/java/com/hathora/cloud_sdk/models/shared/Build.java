@@ -4,23 +4,24 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
 import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 /**
  * Build - A build represents a game server artifact and its associated metadata.
  */
@@ -41,7 +42,7 @@ public class Build {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buildTag")
-    private JsonNullable<? extends String> buildTag;
+    private JsonNullable<String> buildTag;
 
     /**
      * When [`CreateBuild()`](https://hathora.dev/api#tag/BuildV2/operation/CreateBuild) is called.
@@ -57,14 +58,14 @@ public class Build {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("deletedAt")
-    private Optional<? extends OffsetDateTime> deletedAt;
+    private Optional<OffsetDateTime> deletedAt;
 
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("finishedAt")
-    private Optional<? extends OffsetDateTime> finishedAt;
+    private Optional<OffsetDateTime> finishedAt;
 
     /**
      * The size (in bytes) of the Docker image built by Hathora.
@@ -77,14 +78,14 @@ public class Build {
      */
     @JsonProperty("regionalContainerTags")
     @Deprecated
-    private java.util.List<RegionalContainerTags> regionalContainerTags;
+    private List<RegionalContainerTags> regionalContainerTags;
 
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("startedAt")
-    private Optional<? extends OffsetDateTime> startedAt;
+    private Optional<OffsetDateTime> startedAt;
 
     @JsonProperty("status")
     private BuildStatus status;
@@ -93,14 +94,14 @@ public class Build {
     public Build(
             @JsonProperty("appId") String appId,
             @JsonProperty("buildId") int buildId,
-            @JsonProperty("buildTag") JsonNullable<? extends String> buildTag,
+            @JsonProperty("buildTag") JsonNullable<String> buildTag,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") String createdBy,
-            @JsonProperty("deletedAt") Optional<? extends OffsetDateTime> deletedAt,
-            @JsonProperty("finishedAt") Optional<? extends OffsetDateTime> finishedAt,
+            @JsonProperty("deletedAt") Optional<OffsetDateTime> deletedAt,
+            @JsonProperty("finishedAt") Optional<OffsetDateTime> finishedAt,
             @JsonProperty("imageSize") long imageSize,
-            @JsonProperty("regionalContainerTags") java.util.List<RegionalContainerTags> regionalContainerTags,
-            @JsonProperty("startedAt") Optional<? extends OffsetDateTime> startedAt,
+            @JsonProperty("regionalContainerTags") List<RegionalContainerTags> regionalContainerTags,
+            @JsonProperty("startedAt") Optional<OffsetDateTime> startedAt,
             @JsonProperty("status") BuildStatus status) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(buildId, "buildId");
@@ -132,7 +133,7 @@ public class Build {
             OffsetDateTime createdAt,
             String createdBy,
             long imageSize,
-            java.util.List<RegionalContainerTags> regionalContainerTags,
+            List<RegionalContainerTags> regionalContainerTags,
             BuildStatus status) {
         this(appId, buildId, JsonNullable.undefined(), createdAt, createdBy, Optional.empty(), Optional.empty(), imageSize, regionalContainerTags, Optional.empty(), status);
     }
@@ -153,10 +154,9 @@ public class Build {
         return buildId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<String> buildTag() {
-        return (JsonNullable<String>) buildTag;
+        return buildTag;
     }
 
     /**
@@ -175,19 +175,17 @@ public class Build {
     /**
      * When the build was deleted.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> deletedAt() {
-        return (Optional<OffsetDateTime>) deletedAt;
+        return deletedAt;
     }
 
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> finishedAt() {
-        return (Optional<OffsetDateTime>) finishedAt;
+        return finishedAt;
     }
 
     /**
@@ -203,17 +201,16 @@ public class Build {
      */
     @Deprecated
     @JsonIgnore
-    public java.util.List<RegionalContainerTags> regionalContainerTags() {
+    public List<RegionalContainerTags> regionalContainerTags() {
         return regionalContainerTags;
     }
 
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> startedAt() {
-        return (Optional<OffsetDateTime>) startedAt;
+        return startedAt;
     }
 
     @JsonIgnore
@@ -249,7 +246,7 @@ public class Build {
         return this;
     }
 
-    public Build withBuildTag(JsonNullable<? extends String> buildTag) {
+    public Build withBuildTag(JsonNullable<String> buildTag) {
         Utils.checkNotNull(buildTag, "buildTag");
         this.buildTag = buildTag;
         return this;
@@ -282,7 +279,7 @@ public class Build {
     /**
      * When the build was deleted.
      */
-    public Build withDeletedAt(Optional<? extends OffsetDateTime> deletedAt) {
+    public Build withDeletedAt(Optional<OffsetDateTime> deletedAt) {
         Utils.checkNotNull(deletedAt, "deletedAt");
         this.deletedAt = deletedAt;
         return this;
@@ -300,7 +297,7 @@ public class Build {
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
-    public Build withFinishedAt(Optional<? extends OffsetDateTime> finishedAt) {
+    public Build withFinishedAt(Optional<OffsetDateTime> finishedAt) {
         Utils.checkNotNull(finishedAt, "finishedAt");
         this.finishedAt = finishedAt;
         return this;
@@ -319,7 +316,7 @@ public class Build {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public Build withRegionalContainerTags(java.util.List<RegionalContainerTags> regionalContainerTags) {
+    public Build withRegionalContainerTags(List<RegionalContainerTags> regionalContainerTags) {
         Utils.checkNotNull(regionalContainerTags, "regionalContainerTags");
         this.regionalContainerTags = regionalContainerTags;
         return this;
@@ -337,7 +334,7 @@ public class Build {
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
-    public Build withStartedAt(Optional<? extends OffsetDateTime> startedAt) {
+    public Build withStartedAt(Optional<OffsetDateTime> startedAt) {
         Utils.checkNotNull(startedAt, "startedAt");
         this.startedAt = startedAt;
         return this;
@@ -359,22 +356,22 @@ public class Build {
         }
         Build other = (Build) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.buildId, other.buildId) &&
-            java.util.Objects.deepEquals(this.buildTag, other.buildTag) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.createdBy, other.createdBy) &&
-            java.util.Objects.deepEquals(this.deletedAt, other.deletedAt) &&
-            java.util.Objects.deepEquals(this.finishedAt, other.finishedAt) &&
-            java.util.Objects.deepEquals(this.imageSize, other.imageSize) &&
-            java.util.Objects.deepEquals(this.regionalContainerTags, other.regionalContainerTags) &&
-            java.util.Objects.deepEquals(this.startedAt, other.startedAt) &&
-            java.util.Objects.deepEquals(this.status, other.status);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.buildId, other.buildId) &&
+            Objects.deepEquals(this.buildTag, other.buildTag) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.createdBy, other.createdBy) &&
+            Objects.deepEquals(this.deletedAt, other.deletedAt) &&
+            Objects.deepEquals(this.finishedAt, other.finishedAt) &&
+            Objects.deepEquals(this.imageSize, other.imageSize) &&
+            Objects.deepEquals(this.regionalContainerTags, other.regionalContainerTags) &&
+            Objects.deepEquals(this.startedAt, other.startedAt) &&
+            Objects.deepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             buildId,
             buildTag,
@@ -410,22 +407,22 @@ public class Build {
  
         private Integer buildId;
  
-        private JsonNullable<? extends String> buildTag = JsonNullable.undefined();
+        private JsonNullable<String> buildTag = JsonNullable.undefined();
  
         private OffsetDateTime createdAt;
  
         private String createdBy;
  
-        private Optional<? extends OffsetDateTime> deletedAt = Optional.empty();
+        private Optional<OffsetDateTime> deletedAt = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> finishedAt = Optional.empty();
+        private Optional<OffsetDateTime> finishedAt = Optional.empty();
  
         private Long imageSize;
  
         @Deprecated
-        private java.util.List<RegionalContainerTags> regionalContainerTags;
+        private List<RegionalContainerTags> regionalContainerTags;
  
-        private Optional<? extends OffsetDateTime> startedAt = Optional.empty();
+        private Optional<OffsetDateTime> startedAt = Optional.empty();
  
         private BuildStatus status;  
         
@@ -457,7 +454,7 @@ public class Build {
             return this;
         }
 
-        public Builder buildTag(JsonNullable<? extends String> buildTag) {
+        public Builder buildTag(JsonNullable<String> buildTag) {
             Utils.checkNotNull(buildTag, "buildTag");
             this.buildTag = buildTag;
             return this;
@@ -490,7 +487,7 @@ public class Build {
         /**
          * When the build was deleted.
          */
-        public Builder deletedAt(Optional<? extends OffsetDateTime> deletedAt) {
+        public Builder deletedAt(Optional<OffsetDateTime> deletedAt) {
             Utils.checkNotNull(deletedAt, "deletedAt");
             this.deletedAt = deletedAt;
             return this;
@@ -508,7 +505,7 @@ public class Build {
         /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
          */
-        public Builder finishedAt(Optional<? extends OffsetDateTime> finishedAt) {
+        public Builder finishedAt(Optional<OffsetDateTime> finishedAt) {
             Utils.checkNotNull(finishedAt, "finishedAt");
             this.finishedAt = finishedAt;
             return this;
@@ -527,7 +524,7 @@ public class Build {
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder regionalContainerTags(java.util.List<RegionalContainerTags> regionalContainerTags) {
+        public Builder regionalContainerTags(List<RegionalContainerTags> regionalContainerTags) {
             Utils.checkNotNull(regionalContainerTags, "regionalContainerTags");
             this.regionalContainerTags = regionalContainerTags;
             return this;
@@ -545,7 +542,7 @@ public class Build {
         /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
          */
-        public Builder startedAt(Optional<? extends OffsetDateTime> startedAt) {
+        public Builder startedAt(Optional<OffsetDateTime> startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
             this.startedAt = startedAt;
             return this;

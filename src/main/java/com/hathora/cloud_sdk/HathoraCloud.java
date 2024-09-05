@@ -4,24 +4,13 @@
 
 package com.hathora.cloud_sdk;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
 import com.hathora.cloud_sdk.utils.HTTPClient;
-import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
-import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
-import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.RetryConfig;
 import com.hathora.cloud_sdk.utils.SpeakeasyHTTPClient;
-import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.http.HttpRequest;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
+import java.util.Map;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Hathora Cloud API: Welcome to the Hathora Cloud API documentation! Learn how to use the Hathora Cloud APIs to build and scale your game servers globally.
@@ -39,6 +28,8 @@ public class HathoraCloud {
 
     private final AppsV1 appsV1;
 
+    private final AppsV2 appsV2;
+
     /**
      * Operations that allow you to generate a Hathora-signed [JSON web token (JWT)](https://jwt.io/) for [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service).
      */
@@ -53,9 +44,13 @@ public class HathoraCloud {
 
     private final BuildsV2 buildsV2;
 
+    private final BuildsV3 buildsV3;
+
     private final DeploymentsV1 deploymentsV1;
 
     private final DeploymentsV2 deploymentsV2;
+
+    private final DeploymentsV3 deploymentsV3;
 
     /**
      * Deprecated. Does not include latest Regions (missing Dallas region). Use [DiscoveryV2](https://hathora.dev/api#tag/DiscoveryV2).
@@ -97,6 +92,8 @@ public class HathoraCloud {
      */
     private final ProcessesV2 processesV2;
 
+    private final ProcessesV3 processesV3;
+
     private final RoomsV1 roomsV1;
 
     private final RoomsV2 roomsV2;
@@ -108,6 +105,10 @@ public class HathoraCloud {
 
     public AppsV1 appsV1() {
         return appsV1;
+    }
+
+    public AppsV2 appsV2() {
+        return appsV2;
     }
 
     /**
@@ -132,12 +133,20 @@ public class HathoraCloud {
         return buildsV2;
     }
 
+    public BuildsV3 buildsV3() {
+        return buildsV3;
+    }
+
     public DeploymentsV1 deploymentsV1() {
         return deploymentsV1;
     }
 
     public DeploymentsV2 deploymentsV2() {
         return deploymentsV2;
+    }
+
+    public DeploymentsV3 deploymentsV3() {
+        return deploymentsV3;
     }
 
     /**
@@ -200,6 +209,10 @@ public class HathoraCloud {
      */
     public ProcessesV2 processesV2() {
         return processesV2;
+    }
+
+    public ProcessesV3 processesV3() {
+        return processesV3;
     }
 
     public RoomsV1 roomsV1() {
@@ -279,7 +292,7 @@ public class HathoraCloud {
          * @param params The parameters to use when templating the URL.
          * @return The builder instance.
          */
-        public Builder serverURL(String serverUrl, java.util.Map<String, String> params) {
+        public Builder serverURL(String serverUrl, Map<String, String> params) {
             this.sdkConfiguration.serverUrl = com.hathora.cloud_sdk.utils.Utils.templateUrl(serverUrl, params);
             return this;
         }
@@ -355,12 +368,15 @@ public class HathoraCloud {
     private HathoraCloud(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.appsV1 = new AppsV1(sdkConfiguration);
+        this.appsV2 = new AppsV2(sdkConfiguration);
         this.authV1 = new AuthV1(sdkConfiguration);
         this.billingV1 = new BillingV1(sdkConfiguration);
         this.buildsV1 = new BuildsV1(sdkConfiguration);
         this.buildsV2 = new BuildsV2(sdkConfiguration);
+        this.buildsV3 = new BuildsV3(sdkConfiguration);
         this.deploymentsV1 = new DeploymentsV1(sdkConfiguration);
         this.deploymentsV2 = new DeploymentsV2(sdkConfiguration);
+        this.deploymentsV3 = new DeploymentsV3(sdkConfiguration);
         this.discoveryV1 = new DiscoveryV1(sdkConfiguration);
         this.discoveryV2 = new DiscoveryV2(sdkConfiguration);
         this.lobbiesV1 = new LobbiesV1(sdkConfiguration);
@@ -372,6 +388,7 @@ public class HathoraCloud {
         this.organizationsV1 = new OrganizationsV1(sdkConfiguration);
         this.processesV1 = new ProcessesV1(sdkConfiguration);
         this.processesV2 = new ProcessesV2(sdkConfiguration);
+        this.processesV3 = new ProcessesV3(sdkConfiguration);
         this.roomsV1 = new RoomsV1(sdkConfiguration);
         this.roomsV2 = new RoomsV2(sdkConfiguration);
         this.tokensV1 = new TokensV1(sdkConfiguration);

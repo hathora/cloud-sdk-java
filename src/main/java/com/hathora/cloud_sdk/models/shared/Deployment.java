@@ -4,26 +4,23 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Double;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
-/**
- * Deployment - Deployment is a versioned configuration for a build that describes runtime behavior.
- */
+
 
 public class Deployment {
 
@@ -31,7 +28,7 @@ public class Deployment {
      * Additional ports your server listens on.
      */
     @JsonProperty("additionalContainerPorts")
-    private java.util.List<ContainerPort> additionalContainerPorts;
+    private List<ContainerPort> additionalContainerPorts;
 
     /**
      * System generated unique identifier for an application.
@@ -40,17 +37,23 @@ public class Deployment {
     private String appId;
 
     /**
-     * System generated id for a build. Increments by 1.
+     * A build represents a game server artifact and its associated metadata.
      */
-    @JsonProperty("buildId")
-    private int buildId;
+    @JsonProperty("build")
+    private BuildV3 build;
 
     /**
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * System generated id for a build. Can also be user defined when creating a build.
      */
-    @JsonProperty("containerPort")
-    @Deprecated
-    private double containerPort;
+    @JsonProperty("buildId")
+    private String buildId;
+
+    /**
+     * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("buildTag")
+    private Optional<String> buildTag;
 
     /**
      * When the deployment was created.
@@ -68,38 +71,23 @@ public class Deployment {
     private ContainerPort defaultContainerPort;
 
     /**
-     * System generated id for a deployment. Increments by 1.
+     * System generated id for a deployment.
      */
     @JsonProperty("deploymentId")
-    private int deploymentId;
+    private String deploymentId;
 
     /**
      * The environment variable that our process will have access to at runtime.
      */
     @JsonProperty("env")
-    private java.util.List<Env> env;
+    private List<ApplicationWithLatestDeploymentAndBuildEnv> env;
 
     /**
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("idleTimeoutEnabled")
-    private Optional<? extends Boolean> idleTimeoutEnabled;
-
-    /**
-     * A plan defines how much CPU and memory is required to run an instance of your game server.
-     * 
-     * `tiny`: shared core, 1gb memory
-     * 
-     * `small`: 1 core, 2gb memory
-     * 
-     * `medium`: 2 core, 4gb memory
-     * 
-     * `large`: 4 core, 8gb memory
-     */
-    @JsonProperty("planName")
-    private PlanName planName;
+    private boolean idleTimeoutEnabled;
 
     /**
      * The number of cores allocated to your process.
@@ -111,7 +99,7 @@ public class Deployment {
      * The amount of memory allocated to your process.
      */
     @JsonProperty("requestedMemoryMB")
-    private int requestedMemoryMB;
+    private double requestedMemoryMB;
 
     /**
      * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
@@ -119,85 +107,74 @@ public class Deployment {
     @JsonProperty("roomsPerProcess")
     private int roomsPerProcess;
 
-    /**
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @JsonProperty("transportType")
-    @Deprecated
-    private DeploymentTransportType transportType;
-
     @JsonCreator
     public Deployment(
-            @JsonProperty("additionalContainerPorts") java.util.List<ContainerPort> additionalContainerPorts,
+            @JsonProperty("additionalContainerPorts") List<ContainerPort> additionalContainerPorts,
             @JsonProperty("appId") String appId,
-            @JsonProperty("buildId") int buildId,
-            @JsonProperty("containerPort") double containerPort,
+            @JsonProperty("build") BuildV3 build,
+            @JsonProperty("buildId") String buildId,
+            @JsonProperty("buildTag") Optional<String> buildTag,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") String createdBy,
             @JsonProperty("defaultContainerPort") ContainerPort defaultContainerPort,
-            @JsonProperty("deploymentId") int deploymentId,
-            @JsonProperty("env") java.util.List<Env> env,
-            @JsonProperty("idleTimeoutEnabled") Optional<? extends Boolean> idleTimeoutEnabled,
-            @JsonProperty("planName") PlanName planName,
+            @JsonProperty("deploymentId") String deploymentId,
+            @JsonProperty("env") List<ApplicationWithLatestDeploymentAndBuildEnv> env,
+            @JsonProperty("idleTimeoutEnabled") boolean idleTimeoutEnabled,
             @JsonProperty("requestedCPU") double requestedCPU,
-            @JsonProperty("requestedMemoryMB") int requestedMemoryMB,
-            @JsonProperty("roomsPerProcess") int roomsPerProcess,
-            @JsonProperty("transportType") DeploymentTransportType transportType) {
+            @JsonProperty("requestedMemoryMB") double requestedMemoryMB,
+            @JsonProperty("roomsPerProcess") int roomsPerProcess) {
         Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
         Utils.checkNotNull(appId, "appId");
+        Utils.checkNotNull(build, "build");
         Utils.checkNotNull(buildId, "buildId");
-        Utils.checkNotNull(containerPort, "containerPort");
+        Utils.checkNotNull(buildTag, "buildTag");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(defaultContainerPort, "defaultContainerPort");
         Utils.checkNotNull(deploymentId, "deploymentId");
         Utils.checkNotNull(env, "env");
         Utils.checkNotNull(idleTimeoutEnabled, "idleTimeoutEnabled");
-        Utils.checkNotNull(planName, "planName");
         Utils.checkNotNull(requestedCPU, "requestedCPU");
         Utils.checkNotNull(requestedMemoryMB, "requestedMemoryMB");
         Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
-        Utils.checkNotNull(transportType, "transportType");
         this.additionalContainerPorts = additionalContainerPorts;
         this.appId = appId;
+        this.build = build;
         this.buildId = buildId;
-        this.containerPort = containerPort;
+        this.buildTag = buildTag;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.defaultContainerPort = defaultContainerPort;
         this.deploymentId = deploymentId;
         this.env = env;
         this.idleTimeoutEnabled = idleTimeoutEnabled;
-        this.planName = planName;
         this.requestedCPU = requestedCPU;
         this.requestedMemoryMB = requestedMemoryMB;
         this.roomsPerProcess = roomsPerProcess;
-        this.transportType = transportType;
     }
     
     public Deployment(
-            java.util.List<ContainerPort> additionalContainerPorts,
+            List<ContainerPort> additionalContainerPorts,
             String appId,
-            int buildId,
-            double containerPort,
+            BuildV3 build,
+            String buildId,
             OffsetDateTime createdAt,
             String createdBy,
             ContainerPort defaultContainerPort,
-            int deploymentId,
-            java.util.List<Env> env,
-            PlanName planName,
+            String deploymentId,
+            List<ApplicationWithLatestDeploymentAndBuildEnv> env,
+            boolean idleTimeoutEnabled,
             double requestedCPU,
-            int requestedMemoryMB,
-            int roomsPerProcess,
-            DeploymentTransportType transportType) {
-        this(additionalContainerPorts, appId, buildId, containerPort, createdAt, createdBy, defaultContainerPort, deploymentId, env, Optional.empty(), planName, requestedCPU, requestedMemoryMB, roomsPerProcess, transportType);
+            double requestedMemoryMB,
+            int roomsPerProcess) {
+        this(additionalContainerPorts, appId, build, buildId, Optional.empty(), createdAt, createdBy, defaultContainerPort, deploymentId, env, idleTimeoutEnabled, requestedCPU, requestedMemoryMB, roomsPerProcess);
     }
 
     /**
      * Additional ports your server listens on.
      */
     @JsonIgnore
-    public java.util.List<ContainerPort> additionalContainerPorts() {
+    public List<ContainerPort> additionalContainerPorts() {
         return additionalContainerPorts;
     }
 
@@ -210,20 +187,27 @@ public class Deployment {
     }
 
     /**
-     * System generated id for a build. Increments by 1.
+     * A build represents a game server artifact and its associated metadata.
      */
     @JsonIgnore
-    public int buildId() {
+    public BuildV3 build() {
+        return build;
+    }
+
+    /**
+     * System generated id for a build. Can also be user defined when creating a build.
+     */
+    @JsonIgnore
+    public String buildId() {
         return buildId;
     }
 
     /**
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
      */
-    @Deprecated
     @JsonIgnore
-    public double containerPort() {
-        return containerPort;
+    public Optional<String> buildTag() {
+        return buildTag;
     }
 
     /**
@@ -248,10 +232,10 @@ public class Deployment {
     }
 
     /**
-     * System generated id for a deployment. Increments by 1.
+     * System generated id for a deployment.
      */
     @JsonIgnore
-    public int deploymentId() {
+    public String deploymentId() {
         return deploymentId;
     }
 
@@ -259,7 +243,7 @@ public class Deployment {
      * The environment variable that our process will have access to at runtime.
      */
     @JsonIgnore
-    public java.util.List<Env> env() {
+    public List<ApplicationWithLatestDeploymentAndBuildEnv> env() {
         return env;
     }
 
@@ -267,26 +251,9 @@ public class Deployment {
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Boolean> idleTimeoutEnabled() {
-        return (Optional<Boolean>) idleTimeoutEnabled;
-    }
-
-    /**
-     * A plan defines how much CPU and memory is required to run an instance of your game server.
-     * 
-     * `tiny`: shared core, 1gb memory
-     * 
-     * `small`: 1 core, 2gb memory
-     * 
-     * `medium`: 2 core, 4gb memory
-     * 
-     * `large`: 4 core, 8gb memory
-     */
-    @JsonIgnore
-    public PlanName planName() {
-        return planName;
+    public boolean idleTimeoutEnabled() {
+        return idleTimeoutEnabled;
     }
 
     /**
@@ -301,7 +268,7 @@ public class Deployment {
      * The amount of memory allocated to your process.
      */
     @JsonIgnore
-    public int requestedMemoryMB() {
+    public double requestedMemoryMB() {
         return requestedMemoryMB;
     }
 
@@ -313,15 +280,6 @@ public class Deployment {
         return roomsPerProcess;
     }
 
-    /**
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    @JsonIgnore
-    public DeploymentTransportType transportType() {
-        return transportType;
-    }
-
     public final static Builder builder() {
         return new Builder();
     }
@@ -329,7 +287,7 @@ public class Deployment {
     /**
      * Additional ports your server listens on.
      */
-    public Deployment withAdditionalContainerPorts(java.util.List<ContainerPort> additionalContainerPorts) {
+    public Deployment withAdditionalContainerPorts(List<ContainerPort> additionalContainerPorts) {
         Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
         this.additionalContainerPorts = additionalContainerPorts;
         return this;
@@ -345,21 +303,38 @@ public class Deployment {
     }
 
     /**
-     * System generated id for a build. Increments by 1.
+     * A build represents a game server artifact and its associated metadata.
      */
-    public Deployment withBuildId(int buildId) {
+    public Deployment withBuild(BuildV3 build) {
+        Utils.checkNotNull(build, "build");
+        this.build = build;
+        return this;
+    }
+
+    /**
+     * System generated id for a build. Can also be user defined when creating a build.
+     */
+    public Deployment withBuildId(String buildId) {
         Utils.checkNotNull(buildId, "buildId");
         this.buildId = buildId;
         return this;
     }
 
     /**
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
      */
-    @Deprecated
-    public Deployment withContainerPort(double containerPort) {
-        Utils.checkNotNull(containerPort, "containerPort");
-        this.containerPort = containerPort;
+    public Deployment withBuildTag(String buildTag) {
+        Utils.checkNotNull(buildTag, "buildTag");
+        this.buildTag = Optional.ofNullable(buildTag);
+        return this;
+    }
+
+    /**
+     * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
+     */
+    public Deployment withBuildTag(Optional<String> buildTag) {
+        Utils.checkNotNull(buildTag, "buildTag");
+        this.buildTag = buildTag;
         return this;
     }
 
@@ -388,9 +363,9 @@ public class Deployment {
     }
 
     /**
-     * System generated id for a deployment. Increments by 1.
+     * System generated id for a deployment.
      */
-    public Deployment withDeploymentId(int deploymentId) {
+    public Deployment withDeploymentId(String deploymentId) {
         Utils.checkNotNull(deploymentId, "deploymentId");
         this.deploymentId = deploymentId;
         return this;
@@ -399,7 +374,7 @@ public class Deployment {
     /**
      * The environment variable that our process will have access to at runtime.
      */
-    public Deployment withEnv(java.util.List<Env> env) {
+    public Deployment withEnv(List<ApplicationWithLatestDeploymentAndBuildEnv> env) {
         Utils.checkNotNull(env, "env");
         this.env = env;
         return this;
@@ -411,34 +386,7 @@ public class Deployment {
      */
     public Deployment withIdleTimeoutEnabled(boolean idleTimeoutEnabled) {
         Utils.checkNotNull(idleTimeoutEnabled, "idleTimeoutEnabled");
-        this.idleTimeoutEnabled = Optional.ofNullable(idleTimeoutEnabled);
-        return this;
-    }
-
-    /**
-     * Option to shut down processes that have had no new connections or rooms
-     * for five minutes.
-     */
-    public Deployment withIdleTimeoutEnabled(Optional<? extends Boolean> idleTimeoutEnabled) {
-        Utils.checkNotNull(idleTimeoutEnabled, "idleTimeoutEnabled");
         this.idleTimeoutEnabled = idleTimeoutEnabled;
-        return this;
-    }
-
-    /**
-     * A plan defines how much CPU and memory is required to run an instance of your game server.
-     * 
-     * `tiny`: shared core, 1gb memory
-     * 
-     * `small`: 1 core, 2gb memory
-     * 
-     * `medium`: 2 core, 4gb memory
-     * 
-     * `large`: 4 core, 8gb memory
-     */
-    public Deployment withPlanName(PlanName planName) {
-        Utils.checkNotNull(planName, "planName");
-        this.planName = planName;
         return this;
     }
 
@@ -454,7 +402,7 @@ public class Deployment {
     /**
      * The amount of memory allocated to your process.
      */
-    public Deployment withRequestedMemoryMB(int requestedMemoryMB) {
+    public Deployment withRequestedMemoryMB(double requestedMemoryMB) {
         Utils.checkNotNull(requestedMemoryMB, "requestedMemoryMB");
         this.requestedMemoryMB = requestedMemoryMB;
         return this;
@@ -468,16 +416,6 @@ public class Deployment {
         this.roomsPerProcess = roomsPerProcess;
         return this;
     }
-
-    /**
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public Deployment withTransportType(DeploymentTransportType transportType) {
-        Utils.checkNotNull(transportType, "transportType");
-        this.transportType = transportType;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -489,41 +427,39 @@ public class Deployment {
         }
         Deployment other = (Deployment) o;
         return 
-            java.util.Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.buildId, other.buildId) &&
-            java.util.Objects.deepEquals(this.containerPort, other.containerPort) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.createdBy, other.createdBy) &&
-            java.util.Objects.deepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
-            java.util.Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            java.util.Objects.deepEquals(this.env, other.env) &&
-            java.util.Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
-            java.util.Objects.deepEquals(this.planName, other.planName) &&
-            java.util.Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
-            java.util.Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
-            java.util.Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            java.util.Objects.deepEquals(this.transportType, other.transportType);
+            Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.build, other.build) &&
+            Objects.deepEquals(this.buildId, other.buildId) &&
+            Objects.deepEquals(this.buildTag, other.buildTag) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.createdBy, other.createdBy) &&
+            Objects.deepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
+            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
+            Objects.deepEquals(this.env, other.env) &&
+            Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
+            Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
+            Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
+            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             additionalContainerPorts,
             appId,
+            build,
             buildId,
-            containerPort,
+            buildTag,
             createdAt,
             createdBy,
             defaultContainerPort,
             deploymentId,
             env,
             idleTimeoutEnabled,
-            planName,
             requestedCPU,
             requestedMemoryMB,
-            roomsPerProcess,
-            transportType);
+            roomsPerProcess);
     }
     
     @Override
@@ -531,31 +467,31 @@ public class Deployment {
         return Utils.toString(Deployment.class,
                 "additionalContainerPorts", additionalContainerPorts,
                 "appId", appId,
+                "build", build,
                 "buildId", buildId,
-                "containerPort", containerPort,
+                "buildTag", buildTag,
                 "createdAt", createdAt,
                 "createdBy", createdBy,
                 "defaultContainerPort", defaultContainerPort,
                 "deploymentId", deploymentId,
                 "env", env,
                 "idleTimeoutEnabled", idleTimeoutEnabled,
-                "planName", planName,
                 "requestedCPU", requestedCPU,
                 "requestedMemoryMB", requestedMemoryMB,
-                "roomsPerProcess", roomsPerProcess,
-                "transportType", transportType);
+                "roomsPerProcess", roomsPerProcess);
     }
     
     public final static class Builder {
  
-        private java.util.List<ContainerPort> additionalContainerPorts;
+        private List<ContainerPort> additionalContainerPorts;
  
         private String appId;
  
-        private Integer buildId;
+        private BuildV3 build;
  
-        @Deprecated
-        private Double containerPort;
+        private String buildId;
+ 
+        private Optional<String> buildTag = Optional.empty();
  
         private OffsetDateTime createdAt;
  
@@ -563,22 +499,17 @@ public class Deployment {
  
         private ContainerPort defaultContainerPort;
  
-        private Integer deploymentId;
+        private String deploymentId;
  
-        private java.util.List<Env> env;
+        private List<ApplicationWithLatestDeploymentAndBuildEnv> env;
  
-        private Optional<? extends Boolean> idleTimeoutEnabled;
- 
-        private PlanName planName;
+        private Boolean idleTimeoutEnabled;
  
         private Double requestedCPU;
  
-        private Integer requestedMemoryMB;
+        private Double requestedMemoryMB;
  
-        private Integer roomsPerProcess;
- 
-        @Deprecated
-        private DeploymentTransportType transportType;  
+        private Integer roomsPerProcess;  
         
         private Builder() {
           // force use of static builder() method
@@ -587,7 +518,7 @@ public class Deployment {
         /**
          * Additional ports your server listens on.
          */
-        public Builder additionalContainerPorts(java.util.List<ContainerPort> additionalContainerPorts) {
+        public Builder additionalContainerPorts(List<ContainerPort> additionalContainerPorts) {
             Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
             this.additionalContainerPorts = additionalContainerPorts;
             return this;
@@ -603,21 +534,38 @@ public class Deployment {
         }
 
         /**
-         * System generated id for a build. Increments by 1.
+         * A build represents a game server artifact and its associated metadata.
          */
-        public Builder buildId(int buildId) {
+        public Builder build(BuildV3 build) {
+            Utils.checkNotNull(build, "build");
+            this.build = build;
+            return this;
+        }
+
+        /**
+         * System generated id for a build. Can also be user defined when creating a build.
+         */
+        public Builder buildId(String buildId) {
             Utils.checkNotNull(buildId, "buildId");
             this.buildId = buildId;
             return this;
         }
 
         /**
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
          */
-        @Deprecated
-        public Builder containerPort(double containerPort) {
-            Utils.checkNotNull(containerPort, "containerPort");
-            this.containerPort = containerPort;
+        public Builder buildTag(String buildTag) {
+            Utils.checkNotNull(buildTag, "buildTag");
+            this.buildTag = Optional.ofNullable(buildTag);
+            return this;
+        }
+
+        /**
+         * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
+         */
+        public Builder buildTag(Optional<String> buildTag) {
+            Utils.checkNotNull(buildTag, "buildTag");
+            this.buildTag = buildTag;
             return this;
         }
 
@@ -646,9 +594,9 @@ public class Deployment {
         }
 
         /**
-         * System generated id for a deployment. Increments by 1.
+         * System generated id for a deployment.
          */
-        public Builder deploymentId(int deploymentId) {
+        public Builder deploymentId(String deploymentId) {
             Utils.checkNotNull(deploymentId, "deploymentId");
             this.deploymentId = deploymentId;
             return this;
@@ -657,7 +605,7 @@ public class Deployment {
         /**
          * The environment variable that our process will have access to at runtime.
          */
-        public Builder env(java.util.List<Env> env) {
+        public Builder env(List<ApplicationWithLatestDeploymentAndBuildEnv> env) {
             Utils.checkNotNull(env, "env");
             this.env = env;
             return this;
@@ -669,34 +617,7 @@ public class Deployment {
          */
         public Builder idleTimeoutEnabled(boolean idleTimeoutEnabled) {
             Utils.checkNotNull(idleTimeoutEnabled, "idleTimeoutEnabled");
-            this.idleTimeoutEnabled = Optional.ofNullable(idleTimeoutEnabled);
-            return this;
-        }
-
-        /**
-         * Option to shut down processes that have had no new connections or rooms
-         * for five minutes.
-         */
-        public Builder idleTimeoutEnabled(Optional<? extends Boolean> idleTimeoutEnabled) {
-            Utils.checkNotNull(idleTimeoutEnabled, "idleTimeoutEnabled");
             this.idleTimeoutEnabled = idleTimeoutEnabled;
-            return this;
-        }
-
-        /**
-         * A plan defines how much CPU and memory is required to run an instance of your game server.
-         * 
-         * `tiny`: shared core, 1gb memory
-         * 
-         * `small`: 1 core, 2gb memory
-         * 
-         * `medium`: 2 core, 4gb memory
-         * 
-         * `large`: 4 core, 8gb memory
-         */
-        public Builder planName(PlanName planName) {
-            Utils.checkNotNull(planName, "planName");
-            this.planName = planName;
             return this;
         }
 
@@ -712,7 +633,7 @@ public class Deployment {
         /**
          * The amount of memory allocated to your process.
          */
-        public Builder requestedMemoryMB(int requestedMemoryMB) {
+        public Builder requestedMemoryMB(double requestedMemoryMB) {
             Utils.checkNotNull(requestedMemoryMB, "requestedMemoryMB");
             this.requestedMemoryMB = requestedMemoryMB;
             return this;
@@ -726,44 +647,24 @@ public class Deployment {
             this.roomsPerProcess = roomsPerProcess;
             return this;
         }
-
-        /**
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder transportType(DeploymentTransportType transportType) {
-            Utils.checkNotNull(transportType, "transportType");
-            this.transportType = transportType;
-            return this;
-        }
         
         public Deployment build() {
-            if (idleTimeoutEnabled == null) {
-                idleTimeoutEnabled = _SINGLETON_VALUE_IdleTimeoutEnabled.value();
-            }
             return new Deployment(
                 additionalContainerPorts,
                 appId,
+                build,
                 buildId,
-                containerPort,
+                buildTag,
                 createdAt,
                 createdBy,
                 defaultContainerPort,
                 deploymentId,
                 env,
                 idleTimeoutEnabled,
-                planName,
                 requestedCPU,
                 requestedMemoryMB,
-                roomsPerProcess,
-                transportType);
+                roomsPerProcess);
         }
-
-        private static final LazySingletonValue<Optional<? extends Boolean>> _SINGLETON_VALUE_IdleTimeoutEnabled =
-                new LazySingletonValue<>(
-                        "idleTimeoutEnabled",
-                        "true",
-                        new TypeReference<Optional<? extends Boolean>>() {});
     }
 }
 

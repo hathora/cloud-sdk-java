@@ -1,14 +1,16 @@
 # DeploymentsV2
 (*deploymentsV2()*)
 
+## Overview
+
 ### Available Operations
 
-* [createDeployment](#createdeployment) - Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
-* [getDeploymentInfo](#getdeploymentinfo) - Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
-* [getDeployments](#getdeployments) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
-* [getLatestDeployment](#getlatestdeployment) - Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+* [createDeploymentV2Deprecated](#createdeploymentv2deprecated) - Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+* [getDeploymentInfoV2Deprecated](#getdeploymentinfov2deprecated) - Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
+* [getDeploymentsV2Deprecated](#getdeploymentsv2deprecated) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+* [getLatestDeploymentV2Deprecated](#getlatestdeploymentv2deprecated) - Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
 
-## createDeployment
+## createDeploymentV2Deprecated
 
 Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
 
@@ -18,17 +20,15 @@ Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#dep
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateDeploymentV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.ContainerPort;
+import com.hathora.cloud_sdk.models.shared.DeploymentConfigV2;
+import com.hathora.cloud_sdk.models.shared.DeploymentConfigV2Env;
+import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.cloud_sdk.models.shared.TransportType;
+import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -41,10 +41,10 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            CreateDeploymentResponse res = sdk.deploymentsV2().createDeployment()
+            CreateDeploymentV2DeprecatedResponse res = sdk.deploymentsV2().createDeploymentV2Deprecated()
                 .deploymentConfigV2(DeploymentConfigV2.builder()
                     .containerPort(4000)
-                    .env(java.util.List.of(
+                    .env(List.of(
                             DeploymentConfigV2Env.builder()
                                 .name("EULA")
                                 .value("TRUE")
@@ -53,8 +53,8 @@ public class Application {
                     .requestedCPU(0.5d)
                     .requestedMemoryMB(1024d)
                     .roomsPerProcess(3)
-                    .transportType(TransportType.UDP)
-                    .additionalContainerPorts(java.util.List.of(
+                    .transportType(TransportType.TLS)
+                    .additionalContainerPorts(List.of(
                         ContainerPort.builder()
                             .name("default")
                             .port(8000)
@@ -71,7 +71,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -85,16 +85,16 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         | Example                                                                                             |
-| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `deploymentConfigV2`                                                                                | [com.hathora.cloud_sdk.models.shared.DeploymentConfigV2](../../models/shared/DeploymentConfigV2.md) | :heavy_check_mark:                                                                                  | N/A                                                                                                 |                                                                                                     |
-| `appId`                                                                                             | *Optional<? extends String>*                                                                        | :heavy_minus_sign:                                                                                  | N/A                                                                                                 | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                            |
-| `buildId`                                                                                           | *int*                                                                                               | :heavy_check_mark:                                                                                  | N/A                                                                                                 | 1                                                                                                   |
-
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     | Example                                                         |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `deploymentConfigV2`                                            | [DeploymentConfigV2](../../models/shared/DeploymentConfigV2.md) | :heavy_check_mark:                                              | N/A                                                             |                                                                 |
+| `appId`                                                         | *Optional<String>*                                              | :heavy_minus_sign:                                              | N/A                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                        |
+| `buildId`                                                       | *int*                                                           | :heavy_check_mark:                                              | N/A                                                             | 1                                                               |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.CreateDeploymentResponse](../../models/operations/CreateDeploymentResponse.md)**
+**[CreateDeploymentV2DeprecatedResponse](../../models/operations/CreateDeploymentV2DeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object            | Status Code             | Content Type            |
@@ -102,7 +102,8 @@ public class Application {
 | models/errors/ApiError  | 400,401,404,422,429,500 | application/json        |
 | models/errors/SDKError  | 4xx-5xx                 | \*\/*                   |
 
-## getDeploymentInfo
+
+## getDeploymentInfoV2Deprecated
 
 Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
 
@@ -112,17 +113,10 @@ Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entitie
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetDeploymentInfoV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -135,7 +129,7 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetDeploymentInfoResponse res = sdk.deploymentsV2().getDeploymentInfo()
+            GetDeploymentInfoV2DeprecatedResponse res = sdk.deploymentsV2().getDeploymentInfoV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .deploymentId(1)
                 .call();
@@ -146,7 +140,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -162,13 +156,13 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `deploymentId`                           | *int*                                    | :heavy_check_mark:                       | N/A                                      | 1                                        |
-
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetDeploymentInfoResponse](../../models/operations/GetDeploymentInfoResponse.md)**
+**[GetDeploymentInfoV2DeprecatedResponse](../../models/operations/GetDeploymentInfoV2DeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -176,7 +170,8 @@ public class Application {
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
-## getDeployments
+
+## getDeploymentsV2Deprecated
 
 Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
 
@@ -186,17 +181,10 @@ Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-enti
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetDeploymentsV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -209,7 +197,7 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetDeploymentsResponse res = sdk.deploymentsV2().getDeployments()
+            GetDeploymentsV2DeprecatedResponse res = sdk.deploymentsV2().getDeploymentsV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
@@ -219,7 +207,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -235,12 +223,12 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
-
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetDeploymentsResponse](../../models/operations/GetDeploymentsResponse.md)**
+**[GetDeploymentsV2DeprecatedResponse](../../models/operations/GetDeploymentsV2DeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -248,7 +236,8 @@ public class Application {
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
-## getLatestDeployment
+
+## getLatestDeploymentV2Deprecated
 
 Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
 
@@ -258,17 +247,10 @@ Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#d
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetLatestDeploymentV2DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -281,7 +263,7 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetLatestDeploymentResponse res = sdk.deploymentsV2().getLatestDeployment()
+            GetLatestDeploymentV2DeprecatedResponse res = sdk.deploymentsV2().getLatestDeploymentV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
@@ -291,7 +273,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -307,15 +289,15 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
-
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetLatestDeploymentResponse](../../models/operations/GetLatestDeploymentResponse.md)**
+**[GetLatestDeploymentV2DeprecatedResponse](../../models/operations/GetLatestDeploymentV2DeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
+| models/errors/ApiError | 401,404,422,429        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |

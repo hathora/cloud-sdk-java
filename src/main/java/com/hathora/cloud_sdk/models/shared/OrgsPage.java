@@ -4,31 +4,31 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class OrgsPage {
 
     @JsonProperty("orgs")
-    private java.util.List<Organization> orgs;
+    private List<Organization> orgs;
 
     @JsonCreator
     public OrgsPage(
-            @JsonProperty("orgs") java.util.List<Organization> orgs) {
+            @JsonProperty("orgs") List<Organization> orgs) {
         Utils.checkNotNull(orgs, "orgs");
         this.orgs = orgs;
     }
 
     @JsonIgnore
-    public java.util.List<Organization> orgs() {
+    public List<Organization> orgs() {
         return orgs;
     }
 
@@ -36,7 +36,7 @@ public class OrgsPage {
         return new Builder();
     }
 
-    public OrgsPage withOrgs(java.util.List<Organization> orgs) {
+    public OrgsPage withOrgs(List<Organization> orgs) {
         Utils.checkNotNull(orgs, "orgs");
         this.orgs = orgs;
         return this;
@@ -52,12 +52,12 @@ public class OrgsPage {
         }
         OrgsPage other = (OrgsPage) o;
         return 
-            java.util.Objects.deepEquals(this.orgs, other.orgs);
+            Objects.deepEquals(this.orgs, other.orgs);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             orgs);
     }
     
@@ -69,13 +69,13 @@ public class OrgsPage {
     
     public final static class Builder {
  
-        private java.util.List<Organization> orgs;  
+        private List<Organization> orgs;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder orgs(java.util.List<Organization> orgs) {
+        public Builder orgs(List<Organization> orgs) {
             Utils.checkNotNull(orgs, "orgs");
             this.orgs = orgs;
             return this;

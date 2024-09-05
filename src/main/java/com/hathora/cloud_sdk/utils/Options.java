@@ -6,8 +6,6 @@ package com.hathora.cloud_sdk.utils;
 
 import java.util.Optional;
 import java.util.List;
-import com.hathora.cloud_sdk.utils.Utils;
-
 
 public class Options {
 

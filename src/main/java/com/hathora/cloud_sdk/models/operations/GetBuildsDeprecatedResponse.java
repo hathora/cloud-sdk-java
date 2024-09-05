@@ -4,19 +4,24 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.Build;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetBuildsDeprecatedResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetBuildsDeprecatedResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +41,14 @@ public class GetBuildsDeprecatedResponse implements com.hathora.cloud_sdk.utils.
     /**
      * Ok
      */
-    private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Build>> classes;
+    private Optional<? extends List<Build>> classes;
 
     @JsonCreator
     public GetBuildsDeprecatedResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Build>> classes) {
+            Optional<? extends List<Build>> classes) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +95,8 @@ public class GetBuildsDeprecatedResponse implements com.hathora.cloud_sdk.utils.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<com.hathora.cloud_sdk.models.shared.Build>> classes() {
-        return (Optional<java.util.List<com.hathora.cloud_sdk.models.shared.Build>>) classes;
+    public Optional<List<Build>> classes() {
+        return (Optional<List<Build>>) classes;
     }
 
     public final static Builder builder() {
@@ -128,7 +133,7 @@ public class GetBuildsDeprecatedResponse implements com.hathora.cloud_sdk.utils.
     /**
      * Ok
      */
-    public GetBuildsDeprecatedResponse withClasses(java.util.List<com.hathora.cloud_sdk.models.shared.Build> classes) {
+    public GetBuildsDeprecatedResponse withClasses(List<Build> classes) {
         Utils.checkNotNull(classes, "classes");
         this.classes = Optional.ofNullable(classes);
         return this;
@@ -137,7 +142,7 @@ public class GetBuildsDeprecatedResponse implements com.hathora.cloud_sdk.utils.
     /**
      * Ok
      */
-    public GetBuildsDeprecatedResponse withClasses(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Build>> classes) {
+    public GetBuildsDeprecatedResponse withClasses(Optional<? extends List<Build>> classes) {
         Utils.checkNotNull(classes, "classes");
         this.classes = classes;
         return this;
@@ -153,15 +158,15 @@ public class GetBuildsDeprecatedResponse implements com.hathora.cloud_sdk.utils.
         }
         GetBuildsDeprecatedResponse other = (GetBuildsDeprecatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.classes, other.classes);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.classes, other.classes);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +190,7 @@ public class GetBuildsDeprecatedResponse implements com.hathora.cloud_sdk.utils.
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Build>> classes = Optional.empty();  
+        private Optional<? extends List<Build>> classes = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +226,7 @@ public class GetBuildsDeprecatedResponse implements com.hathora.cloud_sdk.utils.
         /**
          * Ok
          */
-        public Builder classes(java.util.List<com.hathora.cloud_sdk.models.shared.Build> classes) {
+        public Builder classes(List<Build> classes) {
             Utils.checkNotNull(classes, "classes");
             this.classes = Optional.ofNullable(classes);
             return this;
@@ -230,7 +235,7 @@ public class GetBuildsDeprecatedResponse implements com.hathora.cloud_sdk.utils.
         /**
          * Ok
          */
-        public Builder classes(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.Build>> classes) {
+        public Builder classes(Optional<? extends List<Build>> classes) {
             Utils.checkNotNull(classes, "classes");
             this.classes = classes;
             return this;

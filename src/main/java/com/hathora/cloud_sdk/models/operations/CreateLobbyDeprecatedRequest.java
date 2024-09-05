@@ -4,34 +4,34 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.CreateLobbyParams;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateLobbyDeprecatedRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.hathora.cloud_sdk.models.shared.CreateLobbyParams createLobbyParams;
+    private CreateLobbyParams createLobbyParams;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=roomId")
-    private Optional<? extends String> roomId;
+    private Optional<String> roomId;
 
     @JsonCreator
     public CreateLobbyDeprecatedRequest(
-            com.hathora.cloud_sdk.models.shared.CreateLobbyParams createLobbyParams,
-            Optional<? extends String> appId,
-            Optional<? extends String> roomId) {
+            CreateLobbyParams createLobbyParams,
+            Optional<String> appId,
+            Optional<String> roomId) {
         Utils.checkNotNull(createLobbyParams, "createLobbyParams");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(roomId, "roomId");
@@ -41,32 +41,30 @@ public class CreateLobbyDeprecatedRequest {
     }
     
     public CreateLobbyDeprecatedRequest(
-            com.hathora.cloud_sdk.models.shared.CreateLobbyParams createLobbyParams) {
+            CreateLobbyParams createLobbyParams) {
         this(createLobbyParams, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.CreateLobbyParams createLobbyParams() {
+    public CreateLobbyParams createLobbyParams() {
         return createLobbyParams;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> roomId() {
-        return (Optional<String>) roomId;
+        return roomId;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public CreateLobbyDeprecatedRequest withCreateLobbyParams(com.hathora.cloud_sdk.models.shared.CreateLobbyParams createLobbyParams) {
+    public CreateLobbyDeprecatedRequest withCreateLobbyParams(CreateLobbyParams createLobbyParams) {
         Utils.checkNotNull(createLobbyParams, "createLobbyParams");
         this.createLobbyParams = createLobbyParams;
         return this;
@@ -78,7 +76,7 @@ public class CreateLobbyDeprecatedRequest {
         return this;
     }
 
-    public CreateLobbyDeprecatedRequest withAppId(Optional<? extends String> appId) {
+    public CreateLobbyDeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -90,7 +88,7 @@ public class CreateLobbyDeprecatedRequest {
         return this;
     }
 
-    public CreateLobbyDeprecatedRequest withRoomId(Optional<? extends String> roomId) {
+    public CreateLobbyDeprecatedRequest withRoomId(Optional<String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;
@@ -106,14 +104,14 @@ public class CreateLobbyDeprecatedRequest {
         }
         CreateLobbyDeprecatedRequest other = (CreateLobbyDeprecatedRequest) o;
         return 
-            java.util.Objects.deepEquals(this.createLobbyParams, other.createLobbyParams) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.roomId, other.roomId);
+            Objects.deepEquals(this.createLobbyParams, other.createLobbyParams) &&
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.roomId, other.roomId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             createLobbyParams,
             appId,
             roomId);
@@ -129,17 +127,17 @@ public class CreateLobbyDeprecatedRequest {
     
     public final static class Builder {
  
-        private com.hathora.cloud_sdk.models.shared.CreateLobbyParams createLobbyParams;
+        private CreateLobbyParams createLobbyParams;
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
-        private Optional<? extends String> roomId = Optional.empty();  
+        private Optional<String> roomId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder createLobbyParams(com.hathora.cloud_sdk.models.shared.CreateLobbyParams createLobbyParams) {
+        public Builder createLobbyParams(CreateLobbyParams createLobbyParams) {
             Utils.checkNotNull(createLobbyParams, "createLobbyParams");
             this.createLobbyParams = createLobbyParams;
             return this;
@@ -151,7 +149,7 @@ public class CreateLobbyDeprecatedRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;
@@ -163,7 +161,7 @@ public class CreateLobbyDeprecatedRequest {
             return this;
         }
 
-        public Builder roomId(Optional<? extends String> roomId) {
+        public Builder roomId(Optional<String> roomId) {
             Utils.checkNotNull(roomId, "roomId");
             this.roomId = roomId;
             return this;

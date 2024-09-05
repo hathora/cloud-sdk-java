@@ -4,34 +4,34 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.CreateRoomParams;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateRoomDeprecatedRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.hathora.cloud_sdk.models.shared.CreateRoomParams createRoomParams;
+    private CreateRoomParams createRoomParams;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=roomId")
-    private Optional<? extends String> roomId;
+    private Optional<String> roomId;
 
     @JsonCreator
     public CreateRoomDeprecatedRequest(
-            com.hathora.cloud_sdk.models.shared.CreateRoomParams createRoomParams,
-            Optional<? extends String> appId,
-            Optional<? extends String> roomId) {
+            CreateRoomParams createRoomParams,
+            Optional<String> appId,
+            Optional<String> roomId) {
         Utils.checkNotNull(createRoomParams, "createRoomParams");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(roomId, "roomId");
@@ -41,32 +41,30 @@ public class CreateRoomDeprecatedRequest {
     }
     
     public CreateRoomDeprecatedRequest(
-            com.hathora.cloud_sdk.models.shared.CreateRoomParams createRoomParams) {
+            CreateRoomParams createRoomParams) {
         this(createRoomParams, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.CreateRoomParams createRoomParams() {
+    public CreateRoomParams createRoomParams() {
         return createRoomParams;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> roomId() {
-        return (Optional<String>) roomId;
+        return roomId;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public CreateRoomDeprecatedRequest withCreateRoomParams(com.hathora.cloud_sdk.models.shared.CreateRoomParams createRoomParams) {
+    public CreateRoomDeprecatedRequest withCreateRoomParams(CreateRoomParams createRoomParams) {
         Utils.checkNotNull(createRoomParams, "createRoomParams");
         this.createRoomParams = createRoomParams;
         return this;
@@ -78,7 +76,7 @@ public class CreateRoomDeprecatedRequest {
         return this;
     }
 
-    public CreateRoomDeprecatedRequest withAppId(Optional<? extends String> appId) {
+    public CreateRoomDeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -90,7 +88,7 @@ public class CreateRoomDeprecatedRequest {
         return this;
     }
 
-    public CreateRoomDeprecatedRequest withRoomId(Optional<? extends String> roomId) {
+    public CreateRoomDeprecatedRequest withRoomId(Optional<String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;
@@ -106,14 +104,14 @@ public class CreateRoomDeprecatedRequest {
         }
         CreateRoomDeprecatedRequest other = (CreateRoomDeprecatedRequest) o;
         return 
-            java.util.Objects.deepEquals(this.createRoomParams, other.createRoomParams) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.roomId, other.roomId);
+            Objects.deepEquals(this.createRoomParams, other.createRoomParams) &&
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.roomId, other.roomId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             createRoomParams,
             appId,
             roomId);
@@ -129,17 +127,17 @@ public class CreateRoomDeprecatedRequest {
     
     public final static class Builder {
  
-        private com.hathora.cloud_sdk.models.shared.CreateRoomParams createRoomParams;
+        private CreateRoomParams createRoomParams;
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
-        private Optional<? extends String> roomId = Optional.empty();  
+        private Optional<String> roomId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder createRoomParams(com.hathora.cloud_sdk.models.shared.CreateRoomParams createRoomParams) {
+        public Builder createRoomParams(CreateRoomParams createRoomParams) {
             Utils.checkNotNull(createRoomParams, "createRoomParams");
             this.createRoomParams = createRoomParams;
             return this;
@@ -151,7 +149,7 @@ public class CreateRoomDeprecatedRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;
@@ -163,7 +161,7 @@ public class CreateRoomDeprecatedRequest {
             return this;
         }
 
-        public Builder roomId(Optional<? extends String> roomId) {
+        public Builder roomId(Optional<String> roomId) {
             Utils.checkNotNull(roomId, "roomId");
             this.roomId = roomId;
             return this;

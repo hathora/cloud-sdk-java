@@ -4,24 +4,28 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.ConnectionInfoV2;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetConnectionInfoResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetConnectionInfoResponse implements Response {
 
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.ConnectionInfoV2> connectionInfoV2;
+    private Optional<? extends ConnectionInfoV2> connectionInfoV2;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class GetConnectionInfoResponse implements com.hathora.cloud_sdk.utils.Re
 
     @JsonCreator
     public GetConnectionInfoResponse(
-            Optional<? extends com.hathora.cloud_sdk.models.shared.ConnectionInfoV2> connectionInfoV2,
+            Optional<? extends ConnectionInfoV2> connectionInfoV2,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class GetConnectionInfoResponse implements com.hathora.cloud_sdk.utils.Re
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.ConnectionInfoV2> connectionInfoV2() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.ConnectionInfoV2>) connectionInfoV2;
+    public Optional<ConnectionInfoV2> connectionInfoV2() {
+        return (Optional<ConnectionInfoV2>) connectionInfoV2;
     }
 
     /**
@@ -101,7 +105,7 @@ public class GetConnectionInfoResponse implements com.hathora.cloud_sdk.utils.Re
     /**
      * Ok
      */
-    public GetConnectionInfoResponse withConnectionInfoV2(com.hathora.cloud_sdk.models.shared.ConnectionInfoV2 connectionInfoV2) {
+    public GetConnectionInfoResponse withConnectionInfoV2(ConnectionInfoV2 connectionInfoV2) {
         Utils.checkNotNull(connectionInfoV2, "connectionInfoV2");
         this.connectionInfoV2 = Optional.ofNullable(connectionInfoV2);
         return this;
@@ -110,7 +114,7 @@ public class GetConnectionInfoResponse implements com.hathora.cloud_sdk.utils.Re
     /**
      * Ok
      */
-    public GetConnectionInfoResponse withConnectionInfoV2(Optional<? extends com.hathora.cloud_sdk.models.shared.ConnectionInfoV2> connectionInfoV2) {
+    public GetConnectionInfoResponse withConnectionInfoV2(Optional<? extends ConnectionInfoV2> connectionInfoV2) {
         Utils.checkNotNull(connectionInfoV2, "connectionInfoV2");
         this.connectionInfoV2 = connectionInfoV2;
         return this;
@@ -153,15 +157,15 @@ public class GetConnectionInfoResponse implements com.hathora.cloud_sdk.utils.Re
         }
         GetConnectionInfoResponse other = (GetConnectionInfoResponse) o;
         return 
-            java.util.Objects.deepEquals(this.connectionInfoV2, other.connectionInfoV2) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.connectionInfoV2, other.connectionInfoV2) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             connectionInfoV2,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class GetConnectionInfoResponse implements com.hathora.cloud_sdk.utils.Re
     
     public final static class Builder {
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.ConnectionInfoV2> connectionInfoV2 = Optional.empty();
+        private Optional<? extends ConnectionInfoV2> connectionInfoV2 = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class GetConnectionInfoResponse implements com.hathora.cloud_sdk.utils.Re
         /**
          * Ok
          */
-        public Builder connectionInfoV2(com.hathora.cloud_sdk.models.shared.ConnectionInfoV2 connectionInfoV2) {
+        public Builder connectionInfoV2(ConnectionInfoV2 connectionInfoV2) {
             Utils.checkNotNull(connectionInfoV2, "connectionInfoV2");
             this.connectionInfoV2 = Optional.ofNullable(connectionInfoV2);
             return this;
@@ -203,7 +207,7 @@ public class GetConnectionInfoResponse implements com.hathora.cloud_sdk.utils.Re
         /**
          * Ok
          */
-        public Builder connectionInfoV2(Optional<? extends com.hathora.cloud_sdk.models.shared.ConnectionInfoV2> connectionInfoV2) {
+        public Builder connectionInfoV2(Optional<? extends ConnectionInfoV2> connectionInfoV2) {
             Utils.checkNotNull(connectionInfoV2, "connectionInfoV2");
             this.connectionInfoV2 = connectionInfoV2;
             return this;

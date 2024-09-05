@@ -4,33 +4,34 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.Region;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ListActivePublicLobbiesDeprecatedV2Request {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     /**
      * Region to filter by. If omitted, active public lobbies in all regions will be returned.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=region")
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region;
+    private Optional<? extends Region> region;
 
     @JsonCreator
     public ListActivePublicLobbiesDeprecatedV2Request(
-            Optional<? extends String> appId,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region) {
+            Optional<String> appId,
+            Optional<? extends Region> region) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(region, "region");
         this.appId = appId;
@@ -41,10 +42,9 @@ public class ListActivePublicLobbiesDeprecatedV2Request {
         this(Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
     /**
@@ -52,8 +52,8 @@ public class ListActivePublicLobbiesDeprecatedV2Request {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.Region> region() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.Region>) region;
+    public Optional<Region> region() {
+        return (Optional<Region>) region;
     }
 
     public final static Builder builder() {
@@ -66,7 +66,7 @@ public class ListActivePublicLobbiesDeprecatedV2Request {
         return this;
     }
 
-    public ListActivePublicLobbiesDeprecatedV2Request withAppId(Optional<? extends String> appId) {
+    public ListActivePublicLobbiesDeprecatedV2Request withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -75,7 +75,7 @@ public class ListActivePublicLobbiesDeprecatedV2Request {
     /**
      * Region to filter by. If omitted, active public lobbies in all regions will be returned.
      */
-    public ListActivePublicLobbiesDeprecatedV2Request withRegion(com.hathora.cloud_sdk.models.shared.Region region) {
+    public ListActivePublicLobbiesDeprecatedV2Request withRegion(Region region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.ofNullable(region);
         return this;
@@ -84,7 +84,7 @@ public class ListActivePublicLobbiesDeprecatedV2Request {
     /**
      * Region to filter by. If omitted, active public lobbies in all regions will be returned.
      */
-    public ListActivePublicLobbiesDeprecatedV2Request withRegion(Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region) {
+    public ListActivePublicLobbiesDeprecatedV2Request withRegion(Optional<? extends Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
@@ -100,13 +100,13 @@ public class ListActivePublicLobbiesDeprecatedV2Request {
         }
         ListActivePublicLobbiesDeprecatedV2Request other = (ListActivePublicLobbiesDeprecatedV2Request) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.region, other.region);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             region);
     }
@@ -120,9 +120,9 @@ public class ListActivePublicLobbiesDeprecatedV2Request {
     
     public final static class Builder {
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region = Optional.empty();  
+        private Optional<? extends Region> region = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -134,7 +134,7 @@ public class ListActivePublicLobbiesDeprecatedV2Request {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;
@@ -143,7 +143,7 @@ public class ListActivePublicLobbiesDeprecatedV2Request {
         /**
          * Region to filter by. If omitted, active public lobbies in all regions will be returned.
          */
-        public Builder region(com.hathora.cloud_sdk.models.shared.Region region) {
+        public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = Optional.ofNullable(region);
             return this;
@@ -152,7 +152,7 @@ public class ListActivePublicLobbiesDeprecatedV2Request {
         /**
          * Region to filter by. If omitted, active public lobbies in all regions will be returned.
          */
-        public Builder region(Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region) {
+        public Builder region(Optional<? extends Region> region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;

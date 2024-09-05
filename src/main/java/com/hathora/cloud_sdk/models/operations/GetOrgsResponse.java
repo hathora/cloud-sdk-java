@@ -4,19 +4,23 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.OrgsPage;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetOrgsResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetOrgsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetOrgsResponse implements com.hathora.cloud_sdk.utils.Response {
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.OrgsPage> orgsPage;
+    private Optional<? extends OrgsPage> orgsPage;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetOrgsResponse implements com.hathora.cloud_sdk.utils.Response {
     @JsonCreator
     public GetOrgsResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.OrgsPage> orgsPage,
+            Optional<? extends OrgsPage> orgsPage,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetOrgsResponse implements com.hathora.cloud_sdk.utils.Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.OrgsPage> orgsPage() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.OrgsPage>) orgsPage;
+    public Optional<OrgsPage> orgsPage() {
+        return (Optional<OrgsPage>) orgsPage;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetOrgsResponse implements com.hathora.cloud_sdk.utils.Response {
     /**
      * Ok
      */
-    public GetOrgsResponse withOrgsPage(com.hathora.cloud_sdk.models.shared.OrgsPage orgsPage) {
+    public GetOrgsResponse withOrgsPage(OrgsPage orgsPage) {
         Utils.checkNotNull(orgsPage, "orgsPage");
         this.orgsPage = Optional.ofNullable(orgsPage);
         return this;
@@ -119,7 +123,7 @@ public class GetOrgsResponse implements com.hathora.cloud_sdk.utils.Response {
     /**
      * Ok
      */
-    public GetOrgsResponse withOrgsPage(Optional<? extends com.hathora.cloud_sdk.models.shared.OrgsPage> orgsPage) {
+    public GetOrgsResponse withOrgsPage(Optional<? extends OrgsPage> orgsPage) {
         Utils.checkNotNull(orgsPage, "orgsPage");
         this.orgsPage = orgsPage;
         return this;
@@ -153,15 +157,15 @@ public class GetOrgsResponse implements com.hathora.cloud_sdk.utils.Response {
         }
         GetOrgsResponse other = (GetOrgsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.orgsPage, other.orgsPage) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.orgsPage, other.orgsPage) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             orgsPage,
             statusCode,
@@ -181,7 +185,7 @@ public class GetOrgsResponse implements com.hathora.cloud_sdk.utils.Response {
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.OrgsPage> orgsPage = Optional.empty();
+        private Optional<? extends OrgsPage> orgsPage = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetOrgsResponse implements com.hathora.cloud_sdk.utils.Response {
         /**
          * Ok
          */
-        public Builder orgsPage(com.hathora.cloud_sdk.models.shared.OrgsPage orgsPage) {
+        public Builder orgsPage(OrgsPage orgsPage) {
             Utils.checkNotNull(orgsPage, "orgsPage");
             this.orgsPage = Optional.ofNullable(orgsPage);
             return this;
@@ -212,7 +216,7 @@ public class GetOrgsResponse implements com.hathora.cloud_sdk.utils.Response {
         /**
          * Ok
          */
-        public Builder orgsPage(Optional<? extends com.hathora.cloud_sdk.models.shared.OrgsPage> orgsPage) {
+        public Builder orgsPage(Optional<? extends OrgsPage> orgsPage) {
             Utils.checkNotNull(orgsPage, "orgsPage");
             this.orgsPage = orgsPage;
             return this;

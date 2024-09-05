@@ -4,22 +4,19 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 /**
  * Application - An application object is the top level namespace for the game server.
  */
@@ -64,14 +61,14 @@ public class Application {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("deletedAt")
-    private Optional<? extends OffsetDateTime> deletedAt;
+    private Optional<OffsetDateTime> deletedAt;
 
     /**
      * The email address or token id for the user that deleted the application.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("deletedBy")
-    private Optional<? extends String> deletedBy;
+    private Optional<String> deletedBy;
 
     /**
      * System generated unique identifier for an organization. Not guaranteed to have a specific format.
@@ -87,8 +84,8 @@ public class Application {
             @JsonProperty("authConfiguration") AuthConfiguration authConfiguration,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") String createdBy,
-            @JsonProperty("deletedAt") Optional<? extends OffsetDateTime> deletedAt,
-            @JsonProperty("deletedBy") Optional<? extends String> deletedBy,
+            @JsonProperty("deletedAt") Optional<OffsetDateTime> deletedAt,
+            @JsonProperty("deletedBy") Optional<String> deletedBy,
             @JsonProperty("orgId") String orgId) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(appName, "appName");
@@ -169,19 +166,17 @@ public class Application {
     /**
      * When the application was deleted.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> deletedAt() {
-        return (Optional<OffsetDateTime>) deletedAt;
+        return deletedAt;
     }
 
     /**
      * The email address or token id for the user that deleted the application.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> deletedBy() {
-        return (Optional<String>) deletedBy;
+        return deletedBy;
     }
 
     /**
@@ -259,7 +254,7 @@ public class Application {
     /**
      * When the application was deleted.
      */
-    public Application withDeletedAt(Optional<? extends OffsetDateTime> deletedAt) {
+    public Application withDeletedAt(Optional<OffsetDateTime> deletedAt) {
         Utils.checkNotNull(deletedAt, "deletedAt");
         this.deletedAt = deletedAt;
         return this;
@@ -277,7 +272,7 @@ public class Application {
     /**
      * The email address or token id for the user that deleted the application.
      */
-    public Application withDeletedBy(Optional<? extends String> deletedBy) {
+    public Application withDeletedBy(Optional<String> deletedBy) {
         Utils.checkNotNull(deletedBy, "deletedBy");
         this.deletedBy = deletedBy;
         return this;
@@ -302,20 +297,20 @@ public class Application {
         }
         Application other = (Application) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.appName, other.appName) &&
-            java.util.Objects.deepEquals(this.appSecret, other.appSecret) &&
-            java.util.Objects.deepEquals(this.authConfiguration, other.authConfiguration) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.createdBy, other.createdBy) &&
-            java.util.Objects.deepEquals(this.deletedAt, other.deletedAt) &&
-            java.util.Objects.deepEquals(this.deletedBy, other.deletedBy) &&
-            java.util.Objects.deepEquals(this.orgId, other.orgId);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.appName, other.appName) &&
+            Objects.deepEquals(this.appSecret, other.appSecret) &&
+            Objects.deepEquals(this.authConfiguration, other.authConfiguration) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.createdBy, other.createdBy) &&
+            Objects.deepEquals(this.deletedAt, other.deletedAt) &&
+            Objects.deepEquals(this.deletedBy, other.deletedBy) &&
+            Objects.deepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             appName,
             appSecret,
@@ -355,9 +350,9 @@ public class Application {
  
         private String createdBy;
  
-        private Optional<? extends OffsetDateTime> deletedAt = Optional.empty();
+        private Optional<OffsetDateTime> deletedAt = Optional.empty();
  
-        private Optional<? extends String> deletedBy = Optional.empty();
+        private Optional<String> deletedBy = Optional.empty();
  
         private String orgId;  
         
@@ -428,7 +423,7 @@ public class Application {
         /**
          * When the application was deleted.
          */
-        public Builder deletedAt(Optional<? extends OffsetDateTime> deletedAt) {
+        public Builder deletedAt(Optional<OffsetDateTime> deletedAt) {
             Utils.checkNotNull(deletedAt, "deletedAt");
             this.deletedAt = deletedAt;
             return this;
@@ -446,7 +441,7 @@ public class Application {
         /**
          * The email address or token id for the user that deleted the application.
          */
-        public Builder deletedBy(Optional<? extends String> deletedBy) {
+        public Builder deletedBy(Optional<String> deletedBy) {
             Utils.checkNotNull(deletedBy, "deletedBy");
             this.deletedBy = deletedBy;
             return this;
