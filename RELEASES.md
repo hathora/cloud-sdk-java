@@ -485,53 +485,87 @@ Based on:
 
 - [Maven Central v2.7.7] https://central.sonatype.com/artifact/com.hathora/cloud-api/2.7.7 - .
 
-
 ## 2024-07-30 19:09:17
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.348.2 (2.380.2) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.7.8] .
+
 ### Releases
+
 - [Maven Central v2.7.8] https://central.sonatype.com/artifact/com.hathora/cloud-api/2.7.8 - .
 
 ## 2024-08-05 09:35:59
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.352.1 (2.385.1) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.8.0] .
+
 ### Releases
+
 - [Maven Central v2.8.0] https://central.sonatype.com/artifact/com.hathora/cloud-sdk/2.8.0 - .
 
 ## 2024-09-05 00:07:25
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.390.5 (2.409.3) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.9.0] .
+
 ### Releases
+
 - [Maven Central v2.9.0] https://central.sonatype.com/artifact/com.hathora/cloud-sdk/2.9.0 - .
 
 ## 2024-09-05 18:06:26
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.390.7 (2.409.8) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.9.2] .
+
 ### Releases
+
 - [Maven Central v2.9.2] https://central.sonatype.com/artifact/com.hathora/cloud-sdk/2.9.2 - .
 
 ## 2024-09-05 18:28:30
+
 ### Changes
+
 Based on:
-- OpenAPI Doc  
+
+- OpenAPI Doc
 - Speakeasy CLI 1.390.7 (2.409.8) https://github.com/speakeasy-api/speakeasy
+
 ### Generated
+
 - [java v2.9.3] .
+
 ### Releases
-- [Maven Central v2.9.3] https://central.sonatype.com/artifact/com.hathora/hathora-cloud-sdk/2.9.3 - .
+
+- [Maven Central v2.9.3] https://central.sonatype.com/artifact/com.hathora/cloud-sdk/2.9.3 - .
