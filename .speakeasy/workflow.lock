@@ -2,17 +2,18 @@ speakeasyVersion: 1.390.7
 sources:
     java-source:
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:813f4fd0623fe37254de18e67e32f46ca8b37ad1542e1ccb089515cae30b805c
-        sourceBlobDigest: sha256:ca93acffa1c2c6fdbdc900d7fbf7409f9f0488fdb3a8ffc33a5c611d713bb4a5
+        sourceRevisionDigest: sha256:a9296be903a4b2c7a031314633630a575dddf039090eacbfa98da2da8b420b99
+        sourceBlobDigest: sha256:2443386b55189d2041dcbd4d7f5b138ac33c9e29d201158a06d4026adc77f95a
         tags:
             - latest
+            - main
 targets:
     hathora-java:
         source: java-source
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:813f4fd0623fe37254de18e67e32f46ca8b37ad1542e1ccb089515cae30b805c
-        sourceBlobDigest: sha256:ca93acffa1c2c6fdbdc900d7fbf7409f9f0488fdb3a8ffc33a5c611d713bb4a5
-        outLocation: /Users/george/repos/cloud-sdk-java
+        sourceRevisionDigest: sha256:a9296be903a4b2c7a031314633630a575dddf039090eacbfa98da2da8b420b99
+        sourceBlobDigest: sha256:2443386b55189d2041dcbd4d7f5b138ac33c9e29d201158a06d4026adc77f95a
+        outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

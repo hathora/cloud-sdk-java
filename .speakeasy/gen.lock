@@ -5,8 +5,8 @@ management:
   docVersion: 0.0.1
   speakeasyVersion: 1.390.7
   generationVersion: 2.409.8
-  releaseVersion: 2.9.1
-  configChecksum: c94d466a0671c6b366aa3b38947f7da7
+  releaseVersion: 2.9.2
+  configChecksum: 1a2e78b66d79189ad3172e82f97d5ecf
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
