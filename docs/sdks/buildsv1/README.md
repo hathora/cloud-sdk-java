@@ -22,11 +22,11 @@ Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build).
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.CreateBuildDeprecatedResponse;
-import com.hathora.hathora_cloud_sdk.models.shared.CreateBuildParams;
-import com.hathora.hathora_cloud_sdk.models.shared.Security;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateBuildDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.CreateBuildParams;
+import com.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -50,7 +50,7 @@ public class Application {
             if (res.build().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -95,10 +95,10 @@ Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All 
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.DeleteBuildDeprecatedResponse;
-import com.hathora.hathora_cloud_sdk.models.shared.Security;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.DeleteBuildDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -118,7 +118,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -163,10 +163,10 @@ Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#bui
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.GetBuildInfoDeprecatedResponse;
-import com.hathora.hathora_cloud_sdk.models.shared.Security;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetBuildInfoDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -188,7 +188,7 @@ public class Application {
             if (res.build().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -233,10 +233,10 @@ Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.GetBuildsDeprecatedResponse;
-import com.hathora.hathora_cloud_sdk.models.shared.Security;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetBuildsDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -257,7 +257,7 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -301,12 +301,12 @@ Builds a game server artifact from a tarball you provide. Pass in the `buildId` 
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.File;
-import com.hathora.hathora_cloud_sdk.models.operations.RunBuildDeprecatedRequestBody;
-import com.hathora.hathora_cloud_sdk.models.operations.RunBuildDeprecatedResponse;
-import com.hathora.hathora_cloud_sdk.models.shared.Security;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.File;
+import com.hathora.cloud_sdk.models.operations.RunBuildDeprecatedRequestBody;
+import com.hathora.cloud_sdk.models.operations.RunBuildDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -334,7 +334,7 @@ public class Application {
             if (res.res().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {

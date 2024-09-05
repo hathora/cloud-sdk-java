@@ -19,10 +19,10 @@ Download entire log file for a stopped process.
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.DownloadLogForProcessResponse;
-import com.hathora.hathora_cloud_sdk.models.shared.Security;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.DownloadLogForProcessResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -44,7 +44,7 @@ public class Application {
             if (res.responseStream().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -89,11 +89,11 @@ Returns a stream of logs for an [application](https://hathora.dev/docs/concepts/
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.GetLogsForAppRequest;
-import com.hathora.hathora_cloud_sdk.models.operations.GetLogsForAppResponse;
-import com.hathora.hathora_cloud_sdk.models.shared.Security;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetLogsForAppRequest;
+import com.hathora.cloud_sdk.models.operations.GetLogsForAppResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -118,7 +118,7 @@ public class Application {
             if (res.responseStream().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -162,11 +162,11 @@ Returns a stream of logs for a [deployment](https://hathora.dev/docs/concepts/ha
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.GetLogsForDeploymentRequest;
-import com.hathora.hathora_cloud_sdk.models.operations.GetLogsForDeploymentResponse;
-import com.hathora.hathora_cloud_sdk.models.shared.Security;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentRequest;
+import com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -192,7 +192,7 @@ public class Application {
             if (res.responseStream().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -234,11 +234,11 @@ Returns a stream of logs for a [process](https://hathora.dev/docs/concepts/hatho
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.GetLogsForProcessRequest;
-import com.hathora.hathora_cloud_sdk.models.operations.GetLogsForProcessResponse;
-import com.hathora.hathora_cloud_sdk.models.shared.Security;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetLogsForProcessRequest;
+import com.hathora.cloud_sdk.models.operations.GetLogsForProcessResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -264,7 +264,7 @@ public class Application {
             if (res.responseStream().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
