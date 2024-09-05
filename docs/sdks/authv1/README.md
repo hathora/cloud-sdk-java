@@ -20,9 +20,9 @@ Returns a unique player token for an anonymous user.
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.LoginAnonymousResponse;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.LoginAnonymousResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -40,7 +40,7 @@ public class Application {
             if (res.playerTokenObject().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -82,10 +82,10 @@ Returns a unique player token using a Google-signed OIDC `idToken`.
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.LoginGoogleResponse;
-import com.hathora.hathora_cloud_sdk.models.shared.GoogleIdTokenObject;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.LoginGoogleResponse;
+import com.hathora.cloud_sdk.models.shared.GoogleIdTokenObject;
 import java.lang.Exception;
 
 public class Application {
@@ -106,7 +106,7 @@ public class Application {
             if (res.playerTokenObject().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -149,10 +149,10 @@ Returns a unique player token with a specified nickname for a user.
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.LoginNicknameResponse;
-import com.hathora.hathora_cloud_sdk.models.shared.NicknameObject;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.LoginNicknameResponse;
+import com.hathora.cloud_sdk.models.shared.NicknameObject;
 import java.lang.Exception;
 
 public class Application {
@@ -173,7 +173,7 @@ public class Application {
             if (res.playerTokenObject().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
