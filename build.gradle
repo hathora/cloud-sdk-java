@@ -41,7 +41,7 @@ model {
 jar {
     dependsOn(":generatePomFileForMavenPublication")
 
-    into("META-INF/maven/com.hathora/cloud-sdk") {
+    into("META-INF/maven/com.hathora/hathora-cloud-sdk") {
         from("$buildDir/pom.xml")
     }
 }
@@ -61,14 +61,14 @@ tasks.withType(Javadoc) {
 }
 
 group = "com.hathora"
-version = "2.9.2"
+version = "2.9.3"
 
 sourcesJar {
-    archiveBaseName = "cloud-sdk"
+    archiveBaseName = "hathora-cloud-sdk"
 }
 
 javadocJar {
-    archiveBaseName = "cloud-sdk"
+    archiveBaseName = "hathora-cloud-sdk"
 }
 
 
@@ -87,8 +87,8 @@ publishing {
     publications {
         maven(MavenPublication) {
             groupId = 'com.hathora'
-            artifactId = 'cloud-sdk'
-            version = '2.9.2'
+            artifactId = 'hathora-cloud-sdk'
+            version = '2.9.3'
 
             from components.java
 

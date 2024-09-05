@@ -20,9 +20,9 @@ Returns an array of V1 regions with a host and port that a client can directly p
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsDeprecatedResponse;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.GetPingServiceEndpointsDeprecatedResponse;
 import java.lang.Exception;
 
 public class Application {

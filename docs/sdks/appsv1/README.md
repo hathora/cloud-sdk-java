@@ -20,12 +20,12 @@ Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#ap
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.AppConfig;
-import com.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.AppConfig;
+import com.hathora.hathora_cloud_sdk.models.shared.AuthConfiguration;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -52,7 +52,7 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -94,10 +94,10 @@ Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#appli
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.DeleteAppV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.DeleteAppV1DeprecatedResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -116,7 +116,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -158,10 +158,10 @@ Get details for an [application](https://hathora.dev/docs/concepts/hathora-entit
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetAppInfoV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.GetAppInfoV1DeprecatedResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -182,7 +182,7 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -224,10 +224,10 @@ Returns an unsorted list of your organization’s [applications](https://hathora
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetAppsV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.GetAppsV1DeprecatedResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -247,7 +247,7 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -283,12 +283,12 @@ Update data for an existing [application](https://hathora.dev/docs/concepts/hath
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.UpdateAppV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.AppConfig;
-import com.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.UpdateAppV1DeprecatedResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.AppConfig;
+import com.hathora.hathora_cloud_sdk.models.shared.AuthConfiguration;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -314,7 +314,7 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {

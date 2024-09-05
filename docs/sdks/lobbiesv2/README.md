@@ -24,13 +24,13 @@ Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathor
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedResponse;
-import com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedSecurity;
-import com.hathora.cloud_sdk.models.shared.CreateLobbyParams;
-import com.hathora.cloud_sdk.models.shared.LobbyVisibility;
-import com.hathora.cloud_sdk.models.shared.Region;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.CreateLobbyDeprecatedResponse;
+import com.hathora.hathora_cloud_sdk.models.operations.CreateLobbyDeprecatedSecurity;
+import com.hathora.hathora_cloud_sdk.models.shared.CreateLobbyParams;
+import com.hathora.hathora_cloud_sdk.models.shared.LobbyVisibility;
+import com.hathora.hathora_cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
@@ -57,7 +57,7 @@ public class Application {
             if (res.lobby().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -74,12 +74,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       | Example                                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                        | [com.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedSecurity](../../models/operations/CreateLobbyDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                | The security requirements to use for the request.                                                                                 |                                                                                                                                   |
-| `createLobbyParams`                                                                                                               | [CreateLobbyParams](../../models/shared/CreateLobbyParams.md)                                                                     | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               |                                                                                                                                   |
-| `appId`                                                                                                                           | *Optional<String>*                                                                                                                | :heavy_minus_sign:                                                                                                                | N/A                                                                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                          |
-| `roomId`                                                                                                                          | *Optional<String>*                                                                                                                | :heavy_minus_sign:                                                                                                                | N/A                                                                                                                               | 2swovpy1fnunu                                                                                                                     |
+| Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               | Example                                                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                                                | [com.hathora.hathora_cloud_sdk.models.operations.CreateLobbyDeprecatedSecurity](../../models/operations/CreateLobbyDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                        | The security requirements to use for the request.                                                                                         |                                                                                                                                           |
+| `createLobbyParams`                                                                                                                       | [CreateLobbyParams](../../models/shared/CreateLobbyParams.md)                                                                             | :heavy_check_mark:                                                                                                                        | N/A                                                                                                                                       |                                                                                                                                           |
+| `appId`                                                                                                                                   | *Optional<String>*                                                                                                                        | :heavy_minus_sign:                                                                                                                        | N/A                                                                                                                                       | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                  |
+| `roomId`                                                                                                                                  | *Optional<String>*                                                                                                                        | :heavy_minus_sign:                                                                                                                        | N/A                                                                                                                                       | 2swovpy1fnunu                                                                                                                             |
 
 ### Response
 
@@ -102,12 +102,12 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequestBody;
-import com.hathora.cloud_sdk.models.operations.CreateLocalLobbyResponse;
-import com.hathora.cloud_sdk.models.operations.CreateLocalLobbySecurity;
-import com.hathora.cloud_sdk.models.shared.Region;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.CreateLocalLobbyRequestBody;
+import com.hathora.hathora_cloud_sdk.models.operations.CreateLocalLobbyResponse;
+import com.hathora.hathora_cloud_sdk.models.operations.CreateLocalLobbySecurity;
+import com.hathora.hathora_cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
@@ -133,7 +133,7 @@ public class Application {
             if (res.lobby().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -150,12 +150,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             | Example                                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                              | [com.hathora.cloud_sdk.models.operations.CreateLocalLobbySecurity](../../models/operations/CreateLocalLobbySecurity.md) | :heavy_check_mark:                                                                                                      | The security requirements to use for the request.                                                                       |                                                                                                                         |
-| `requestBody`                                                                                                           | [CreateLocalLobbyRequestBody](../../models/operations/CreateLocalLobbyRequestBody.md)                                   | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |                                                                                                                         |
-| `appId`                                                                                                                 | *Optional<String>*                                                                                                      | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                |
-| `roomId`                                                                                                                | *Optional<String>*                                                                                                      | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     | 2swovpy1fnunu                                                                                                           |
+| Parameter                                                                                                                       | Type                                                                                                                            | Required                                                                                                                        | Description                                                                                                                     | Example                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                                      | [com.hathora.hathora_cloud_sdk.models.operations.CreateLocalLobbySecurity](../../models/operations/CreateLocalLobbySecurity.md) | :heavy_check_mark:                                                                                                              | The security requirements to use for the request.                                                                               |                                                                                                                                 |
+| `requestBody`                                                                                                                   | [CreateLocalLobbyRequestBody](../../models/operations/CreateLocalLobbyRequestBody.md)                                           | :heavy_check_mark:                                                                                                              | N/A                                                                                                                             |                                                                                                                                 |
+| `appId`                                                                                                                         | *Optional<String>*                                                                                                              | :heavy_minus_sign:                                                                                                              | N/A                                                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                        |
+| `roomId`                                                                                                                        | *Optional<String>*                                                                                                              | :heavy_minus_sign:                                                                                                              | N/A                                                                                                                             | 2swovpy1fnunu                                                                                                                   |
 
 ### Response
 
@@ -178,12 +178,12 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequestBody;
-import com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyResponse;
-import com.hathora.cloud_sdk.models.operations.CreatePrivateLobbySecurity;
-import com.hathora.cloud_sdk.models.shared.Region;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.CreatePrivateLobbyRequestBody;
+import com.hathora.hathora_cloud_sdk.models.operations.CreatePrivateLobbyResponse;
+import com.hathora.hathora_cloud_sdk.models.operations.CreatePrivateLobbySecurity;
+import com.hathora.hathora_cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
@@ -209,7 +209,7 @@ public class Application {
             if (res.lobby().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -226,12 +226,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                   | Type                                                                                                                        | Required                                                                                                                    | Description                                                                                                                 | Example                                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                  | [com.hathora.cloud_sdk.models.operations.CreatePrivateLobbySecurity](../../models/operations/CreatePrivateLobbySecurity.md) | :heavy_check_mark:                                                                                                          | The security requirements to use for the request.                                                                           |                                                                                                                             |
-| `requestBody`                                                                                                               | [CreatePrivateLobbyRequestBody](../../models/operations/CreatePrivateLobbyRequestBody.md)                                   | :heavy_check_mark:                                                                                                          | N/A                                                                                                                         |                                                                                                                             |
-| `appId`                                                                                                                     | *Optional<String>*                                                                                                          | :heavy_minus_sign:                                                                                                          | N/A                                                                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                    |
-| `roomId`                                                                                                                    | *Optional<String>*                                                                                                          | :heavy_minus_sign:                                                                                                          | N/A                                                                                                                         | 2swovpy1fnunu                                                                                                               |
+| Parameter                                                                                                                           | Type                                                                                                                                | Required                                                                                                                            | Description                                                                                                                         | Example                                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                                          | [com.hathora.hathora_cloud_sdk.models.operations.CreatePrivateLobbySecurity](../../models/operations/CreatePrivateLobbySecurity.md) | :heavy_check_mark:                                                                                                                  | The security requirements to use for the request.                                                                                   |                                                                                                                                     |
+| `requestBody`                                                                                                                       | [CreatePrivateLobbyRequestBody](../../models/operations/CreatePrivateLobbyRequestBody.md)                                           | :heavy_check_mark:                                                                                                                  | N/A                                                                                                                                 |                                                                                                                                     |
+| `appId`                                                                                                                             | *Optional<String>*                                                                                                                  | :heavy_minus_sign:                                                                                                                  | N/A                                                                                                                                 | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                            |
+| `roomId`                                                                                                                            | *Optional<String>*                                                                                                                  | :heavy_minus_sign:                                                                                                                  | N/A                                                                                                                                 | 2swovpy1fnunu                                                                                                                       |
 
 ### Response
 
@@ -254,12 +254,12 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequestBody;
-import com.hathora.cloud_sdk.models.operations.CreatePublicLobbyResponse;
-import com.hathora.cloud_sdk.models.operations.CreatePublicLobbySecurity;
-import com.hathora.cloud_sdk.models.shared.Region;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.CreatePublicLobbyRequestBody;
+import com.hathora.hathora_cloud_sdk.models.operations.CreatePublicLobbyResponse;
+import com.hathora.hathora_cloud_sdk.models.operations.CreatePublicLobbySecurity;
+import com.hathora.hathora_cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
@@ -285,7 +285,7 @@ public class Application {
             if (res.lobby().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -302,12 +302,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               | Example                                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                | [com.hathora.cloud_sdk.models.operations.CreatePublicLobbySecurity](../../models/operations/CreatePublicLobbySecurity.md) | :heavy_check_mark:                                                                                                        | The security requirements to use for the request.                                                                         |                                                                                                                           |
-| `requestBody`                                                                                                             | [CreatePublicLobbyRequestBody](../../models/operations/CreatePublicLobbyRequestBody.md)                                   | :heavy_check_mark:                                                                                                        | N/A                                                                                                                       |                                                                                                                           |
-| `appId`                                                                                                                   | *Optional<String>*                                                                                                        | :heavy_minus_sign:                                                                                                        | N/A                                                                                                                       | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                  |
-| `roomId`                                                                                                                  | *Optional<String>*                                                                                                        | :heavy_minus_sign:                                                                                                        | N/A                                                                                                                       | 2swovpy1fnunu                                                                                                             |
+| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       | Example                                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                                        | [com.hathora.hathora_cloud_sdk.models.operations.CreatePublicLobbySecurity](../../models/operations/CreatePublicLobbySecurity.md) | :heavy_check_mark:                                                                                                                | The security requirements to use for the request.                                                                                 |                                                                                                                                   |
+| `requestBody`                                                                                                                     | [CreatePublicLobbyRequestBody](../../models/operations/CreatePublicLobbyRequestBody.md)                                           | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               |                                                                                                                                   |
+| `appId`                                                                                                                           | *Optional<String>*                                                                                                                | :heavy_minus_sign:                                                                                                                | N/A                                                                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                          |
+| `roomId`                                                                                                                          | *Optional<String>*                                                                                                                | :heavy_minus_sign:                                                                                                                | N/A                                                                                                                               | 2swovpy1fnunu                                                                                                                     |
 
 ### Response
 
@@ -332,9 +332,9 @@ Get details for a lobby.
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetLobbyInfoResponse;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.GetLobbyInfoResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -353,7 +353,7 @@ public class Application {
             if (res.lobby().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -398,10 +398,10 @@ Get all active lobbies for a an [application](https://hathora.dev/docs/concepts/
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Response;
-import com.hathora.cloud_sdk.models.shared.Region;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Response;
+import com.hathora.hathora_cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
@@ -420,7 +420,7 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -465,11 +465,11 @@ Set the state of a lobby. State is intended to be set by the server and must be 
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.SetLobbyStateResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
-import com.hathora.cloud_sdk.models.shared.SetLobbyStateParams;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.SetLobbyStateResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.models.shared.SetLobbyStateParams;
 import java.lang.Exception;
 
 public class Application {
@@ -494,7 +494,7 @@ public class Application {
             if (res.lobby().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
