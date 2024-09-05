@@ -5,26 +5,38 @@
 package com.hathora.cloud_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hathora.cloud_sdk.models.errors.ApiError;
 import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateOrgTokenRequest;
+import com.hathora.cloud_sdk.models.operations.CreateOrgTokenRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.CreateOrgTokenResponse;
+import com.hathora.cloud_sdk.models.operations.GetOrgTokensRequest;
+import com.hathora.cloud_sdk.models.operations.GetOrgTokensRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetOrgTokensResponse;
+import com.hathora.cloud_sdk.models.operations.RevokeOrgTokenRequest;
+import com.hathora.cloud_sdk.models.operations.RevokeOrgTokenRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.RevokeOrgTokenResponse;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
+import com.hathora.cloud_sdk.models.shared.CreateOrgToken;
+import com.hathora.cloud_sdk.models.shared.CreatedOrgToken;
+import com.hathora.cloud_sdk.models.shared.ListOrgTokens;
 import com.hathora.cloud_sdk.utils.HTTPClient;
 import com.hathora.cloud_sdk.utils.HTTPRequest;
 import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.JSON;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.SerializedBody;
+import com.hathora.cloud_sdk.utils.Utils.JsonShape;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 /**
  *  
@@ -45,8 +57,8 @@ public class TokensV1 implements
      * Create a new organization token.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.CreateOrgTokenRequestBuilder createOrgToken() {
-        return new com.hathora.cloud_sdk.models.operations.CreateOrgTokenRequestBuilder(this);
+    public CreateOrgTokenRequestBuilder createOrgToken() {
+        return new CreateOrgTokenRequestBuilder(this);
     }
 
     /**
@@ -56,11 +68,11 @@ public class TokensV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.CreateOrgTokenResponse createOrgToken(
-            com.hathora.cloud_sdk.models.shared.CreateOrgToken createOrgToken,
+    public CreateOrgTokenResponse createOrgToken(
+            CreateOrgToken createOrgToken,
             String orgId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.CreateOrgTokenRequest request =
-            com.hathora.cloud_sdk.models.operations.CreateOrgTokenRequest
+        CreateOrgTokenRequest request =
+            CreateOrgTokenRequest
                 .builder()
                 .createOrgToken(createOrgToken)
                 .orgId(orgId)
@@ -68,16 +80,21 @@ public class TokensV1 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.CreateOrgTokenRequest.class,
+                CreateOrgTokenRequest.class,
                 _baseUrl,
                 "/tokens/v1/orgs/{orgId}/create",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "createOrgToken", "json", false);
+                _convertedRequest, 
+                "createOrgToken",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -93,7 +110,10 @@ public class TokensV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateOrgToken", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "CreateOrgToken", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -101,18 +121,28 @@ public class TokensV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateOrgToken", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "CreateOrgToken",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateOrgToken", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "CreateOrgToken",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateOrgToken", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreateOrgToken",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -120,42 +150,42 @@ public class TokensV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.CreateOrgTokenResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.CreateOrgTokenResponse
+        CreateOrgTokenResponse.Builder _resBuilder = 
+            CreateOrgTokenResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.CreateOrgTokenResponse _res = _resBuilder.build();
+        CreateOrgTokenResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.CreatedOrgToken _out = Utils.mapper().readValue(
+                CreatedOrgToken _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.CreatedOrgToken>() {});
-                _res.withCreatedOrgToken(java.util.Optional.ofNullable(_out));
+                    new TypeReference<CreatedOrgToken>() {});
+                _res.withCreatedOrgToken(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -164,13 +194,13 @@ public class TokensV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -179,8 +209,8 @@ public class TokensV1 implements
      * List all organization tokens for a given org.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetOrgTokensRequestBuilder getOrgTokens() {
-        return new com.hathora.cloud_sdk.models.operations.GetOrgTokensRequestBuilder(this);
+    public GetOrgTokensRequestBuilder getOrgTokens() {
+        return new GetOrgTokensRequestBuilder(this);
     }
 
     /**
@@ -189,17 +219,17 @@ public class TokensV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetOrgTokensResponse getOrgTokens(
+    public GetOrgTokensResponse getOrgTokens(
             String orgId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetOrgTokensRequest request =
-            com.hathora.cloud_sdk.models.operations.GetOrgTokensRequest
+        GetOrgTokensRequest request =
+            GetOrgTokensRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetOrgTokensRequest.class,
+                GetOrgTokensRequest.class,
                 _baseUrl,
                 "/tokens/v1/orgs/{orgId}",
                 request, this.sdkConfiguration.globals);
@@ -216,7 +246,10 @@ public class TokensV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetOrgTokens", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetOrgTokens", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -224,18 +257,28 @@ public class TokensV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetOrgTokens", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetOrgTokens",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetOrgTokens", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetOrgTokens",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetOrgTokens", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetOrgTokens",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -243,42 +286,42 @@ public class TokensV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetOrgTokensResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetOrgTokensResponse
+        GetOrgTokensResponse.Builder _resBuilder = 
+            GetOrgTokensResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetOrgTokensResponse _res = _resBuilder.build();
+        GetOrgTokensResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.ListOrgTokens _out = Utils.mapper().readValue(
+                ListOrgTokens _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.ListOrgTokens>() {});
-                _res.withListOrgTokens(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ListOrgTokens>() {});
+                _res.withListOrgTokens(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -287,13 +330,13 @@ public class TokensV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -302,8 +345,8 @@ public class TokensV1 implements
      * Revoke an organization token.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.RevokeOrgTokenRequestBuilder revokeOrgToken() {
-        return new com.hathora.cloud_sdk.models.operations.RevokeOrgTokenRequestBuilder(this);
+    public RevokeOrgTokenRequestBuilder revokeOrgToken() {
+        return new RevokeOrgTokenRequestBuilder(this);
     }
 
     /**
@@ -313,11 +356,11 @@ public class TokensV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.RevokeOrgTokenResponse revokeOrgToken(
+    public RevokeOrgTokenResponse revokeOrgToken(
             String orgId,
             String orgTokenId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.RevokeOrgTokenRequest request =
-            com.hathora.cloud_sdk.models.operations.RevokeOrgTokenRequest
+        RevokeOrgTokenRequest request =
+            RevokeOrgTokenRequest
                 .builder()
                 .orgId(orgId)
                 .orgTokenId(orgTokenId)
@@ -325,7 +368,7 @@ public class TokensV1 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.RevokeOrgTokenRequest.class,
+                RevokeOrgTokenRequest.class,
                 _baseUrl,
                 "/tokens/v1/orgs/{orgId}/tokens/{orgTokenId}/revoke",
                 request, this.sdkConfiguration.globals);
@@ -342,7 +385,10 @@ public class TokensV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("RevokeOrgToken", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "RevokeOrgToken", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -350,18 +396,28 @@ public class TokensV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("RevokeOrgToken", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "RevokeOrgToken",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("RevokeOrgToken", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "RevokeOrgToken",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("RevokeOrgToken", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "RevokeOrgToken",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -369,42 +425,42 @@ public class TokensV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.RevokeOrgTokenResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.RevokeOrgTokenResponse
+        RevokeOrgTokenResponse.Builder _resBuilder = 
+            RevokeOrgTokenResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.RevokeOrgTokenResponse _res = _resBuilder.build();
+        RevokeOrgTokenResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 boolean _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<Boolean>() {});
-                _res.withBoolean(java.util.Optional.ofNullable(_out));
+                _res.withBoolean(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -413,13 +469,13 @@ public class TokensV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

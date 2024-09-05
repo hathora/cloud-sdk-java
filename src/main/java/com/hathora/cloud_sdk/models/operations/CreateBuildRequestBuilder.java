@@ -4,51 +4,43 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
+import com.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class CreateBuildRequestBuilder {
 
-    private com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams;
-    private Optional<? extends String> appId = Optional.empty();
+    private CreateMultipartBuildParams createMultipartBuildParams;
+    private Optional<String> orgId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateBuild sdk;
 
     public CreateBuildRequestBuilder(SDKMethodInterfaces.MethodCallCreateBuild sdk) {
         this.sdk = sdk;
     }
 
-    public CreateBuildRequestBuilder createBuildParams(com.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams) {
-        Utils.checkNotNull(createBuildParams, "createBuildParams");
-        this.createBuildParams = createBuildParams;
+    public CreateBuildRequestBuilder createMultipartBuildParams(com.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams createMultipartBuildParams) {
+        Utils.checkNotNull(createMultipartBuildParams, "createMultipartBuildParams");
+        this.createMultipartBuildParams = createMultipartBuildParams;
         return this;
     }
                 
-    public CreateBuildRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+    public CreateBuildRequestBuilder orgId(java.lang.String orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = Optional.of(orgId);
         return this;
     }
 
-    public CreateBuildRequestBuilder appId(Optional<? extends String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public CreateBuildRequestBuilder orgId(java.util.Optional<java.lang.String> orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = orgId;
         return this;
     }
 
     public CreateBuildResponse call() throws Exception {
 
         return sdk.createBuild(
-            createBuildParams,
-            appId);
+            createMultipartBuildParams,
+            orgId);
     }
 }

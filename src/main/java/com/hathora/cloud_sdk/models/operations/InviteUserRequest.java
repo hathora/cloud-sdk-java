@@ -4,28 +4,28 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.CreateUserInvite;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class InviteUserRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.hathora.cloud_sdk.models.shared.CreateUserInvite createUserInvite;
+    private CreateUserInvite createUserInvite;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=orgId")
     private String orgId;
 
     @JsonCreator
     public InviteUserRequest(
-            com.hathora.cloud_sdk.models.shared.CreateUserInvite createUserInvite,
+            CreateUserInvite createUserInvite,
             String orgId) {
         Utils.checkNotNull(createUserInvite, "createUserInvite");
         Utils.checkNotNull(orgId, "orgId");
@@ -34,7 +34,7 @@ public class InviteUserRequest {
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.CreateUserInvite createUserInvite() {
+    public CreateUserInvite createUserInvite() {
         return createUserInvite;
     }
 
@@ -47,7 +47,7 @@ public class InviteUserRequest {
         return new Builder();
     }
 
-    public InviteUserRequest withCreateUserInvite(com.hathora.cloud_sdk.models.shared.CreateUserInvite createUserInvite) {
+    public InviteUserRequest withCreateUserInvite(CreateUserInvite createUserInvite) {
         Utils.checkNotNull(createUserInvite, "createUserInvite");
         this.createUserInvite = createUserInvite;
         return this;
@@ -69,13 +69,13 @@ public class InviteUserRequest {
         }
         InviteUserRequest other = (InviteUserRequest) o;
         return 
-            java.util.Objects.deepEquals(this.createUserInvite, other.createUserInvite) &&
-            java.util.Objects.deepEquals(this.orgId, other.orgId);
+            Objects.deepEquals(this.createUserInvite, other.createUserInvite) &&
+            Objects.deepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             createUserInvite,
             orgId);
     }
@@ -89,7 +89,7 @@ public class InviteUserRequest {
     
     public final static class Builder {
  
-        private com.hathora.cloud_sdk.models.shared.CreateUserInvite createUserInvite;
+        private CreateUserInvite createUserInvite;
  
         private String orgId;  
         
@@ -97,7 +97,7 @@ public class InviteUserRequest {
           // force use of static builder() method
         }
 
-        public Builder createUserInvite(com.hathora.cloud_sdk.models.shared.CreateUserInvite createUserInvite) {
+        public Builder createUserInvite(CreateUserInvite createUserInvite) {
             Utils.checkNotNull(createUserInvite, "createUserInvite");
             this.createUserInvite = createUserInvite;
             return this;

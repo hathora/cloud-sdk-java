@@ -4,33 +4,33 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class UpdateRoomConfigRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams updateRoomConfigParams;
+    private UpdateRoomConfigParams updateRoomConfigParams;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=roomId")
     private String roomId;
 
     @JsonCreator
     public UpdateRoomConfigRequest(
-            com.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams updateRoomConfigParams,
-            Optional<? extends String> appId,
+            UpdateRoomConfigParams updateRoomConfigParams,
+            Optional<String> appId,
             String roomId) {
         Utils.checkNotNull(updateRoomConfigParams, "updateRoomConfigParams");
         Utils.checkNotNull(appId, "appId");
@@ -41,20 +41,19 @@ public class UpdateRoomConfigRequest {
     }
     
     public UpdateRoomConfigRequest(
-            com.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams updateRoomConfigParams,
+            UpdateRoomConfigParams updateRoomConfigParams,
             String roomId) {
         this(updateRoomConfigParams, Optional.empty(), roomId);
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams updateRoomConfigParams() {
+    public UpdateRoomConfigParams updateRoomConfigParams() {
         return updateRoomConfigParams;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
     @JsonIgnore
@@ -66,7 +65,7 @@ public class UpdateRoomConfigRequest {
         return new Builder();
     }
 
-    public UpdateRoomConfigRequest withUpdateRoomConfigParams(com.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams updateRoomConfigParams) {
+    public UpdateRoomConfigRequest withUpdateRoomConfigParams(UpdateRoomConfigParams updateRoomConfigParams) {
         Utils.checkNotNull(updateRoomConfigParams, "updateRoomConfigParams");
         this.updateRoomConfigParams = updateRoomConfigParams;
         return this;
@@ -78,7 +77,7 @@ public class UpdateRoomConfigRequest {
         return this;
     }
 
-    public UpdateRoomConfigRequest withAppId(Optional<? extends String> appId) {
+    public UpdateRoomConfigRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -100,14 +99,14 @@ public class UpdateRoomConfigRequest {
         }
         UpdateRoomConfigRequest other = (UpdateRoomConfigRequest) o;
         return 
-            java.util.Objects.deepEquals(this.updateRoomConfigParams, other.updateRoomConfigParams) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.roomId, other.roomId);
+            Objects.deepEquals(this.updateRoomConfigParams, other.updateRoomConfigParams) &&
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.roomId, other.roomId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             updateRoomConfigParams,
             appId,
             roomId);
@@ -123,9 +122,9 @@ public class UpdateRoomConfigRequest {
     
     public final static class Builder {
  
-        private com.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams updateRoomConfigParams;
+        private UpdateRoomConfigParams updateRoomConfigParams;
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
         private String roomId;  
         
@@ -133,7 +132,7 @@ public class UpdateRoomConfigRequest {
           // force use of static builder() method
         }
 
-        public Builder updateRoomConfigParams(com.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams updateRoomConfigParams) {
+        public Builder updateRoomConfigParams(UpdateRoomConfigParams updateRoomConfigParams) {
             Utils.checkNotNull(updateRoomConfigParams, "updateRoomConfigParams");
             this.updateRoomConfigParams = updateRoomConfigParams;
             return this;
@@ -145,7 +144,7 @@ public class UpdateRoomConfigRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;

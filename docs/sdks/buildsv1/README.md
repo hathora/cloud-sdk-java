@@ -1,6 +1,8 @@
 # BuildsV1
 (*buildsV1()*)
 
+## Overview
+
 ### Available Operations
 
 * [~~createBuildDeprecated~~](#createbuilddeprecated) - Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build. :warning: **Deprecated**
@@ -21,17 +23,11 @@ Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build).
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateBuildDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.CreateBuildParams;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -57,7 +53,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -71,21 +67,22 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       | Example                                                                                           |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `createBuildParams`                                                                               | [com.hathora.cloud_sdk.models.shared.CreateBuildParams](../../models/shared/CreateBuildParams.md) | :heavy_check_mark:                                                                                | N/A                                                                                               |                                                                                                   |
-| `appId`                                                                                           | *Optional<? extends String>*                                                                      | :heavy_minus_sign:                                                                                | N/A                                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                          |
-
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `createBuildParams`                                           | [CreateBuildParams](../../models/shared/CreateBuildParams.md) | :heavy_check_mark:                                            | N/A                                                           |                                                               |
+| `appId`                                                       | *Optional<String>*                                            | :heavy_minus_sign:                                            | N/A                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                      |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.CreateBuildDeprecatedResponse](../../models/operations/CreateBuildDeprecatedResponse.md)**
+**[CreateBuildDeprecatedResponse](../../models/operations/CreateBuildDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## ~~deleteBuildDeprecated~~
 
@@ -99,17 +96,10 @@ Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All 
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.DeleteBuildDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -131,7 +121,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -147,19 +137,20 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `buildId`                                | *int*                                    | :heavy_check_mark:                       | N/A                                      | 1                                        |
-
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.DeleteBuildDeprecatedResponse](../../models/operations/DeleteBuildDeprecatedResponse.md)**
+**[DeleteBuildDeprecatedResponse](../../models/operations/DeleteBuildDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,422,429,500    | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## ~~getBuildInfoDeprecated~~
 
@@ -173,17 +164,10 @@ Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#bui
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetBuildInfoDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -207,7 +191,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -223,19 +207,20 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `buildId`                                | *int*                                    | :heavy_check_mark:                       | N/A                                      | 1                                        |
-
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetBuildInfoDeprecatedResponse](../../models/operations/GetBuildInfoDeprecatedResponse.md)**
+**[GetBuildInfoDeprecatedResponse](../../models/operations/GetBuildInfoDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## ~~getBuildsDeprecated~~
 
@@ -249,17 +234,10 @@ Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetBuildsDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -282,7 +260,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -298,18 +276,19 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
-
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetBuildsDeprecatedResponse](../../models/operations/GetBuildsDeprecatedResponse.md)**
+**[GetBuildsDeprecatedResponse](../../models/operations/GetBuildsDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## ~~runBuildDeprecated~~
 
@@ -323,17 +302,12 @@ Builds a game server artifact from a tarball you provide. Pass in the `buildId` 
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.File;
+import com.hathora.cloud_sdk.models.operations.RunBuildDeprecatedRequestBody;
+import com.hathora.cloud_sdk.models.operations.RunBuildDeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -363,7 +337,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -377,16 +351,16 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       | Example                                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `requestBody`                                                                                                                     | [com.hathora.cloud_sdk.models.operations.RunBuildDeprecatedRequestBody](../../models/operations/RunBuildDeprecatedRequestBody.md) | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               |                                                                                                                                   |
-| `appId`                                                                                                                           | *Optional<? extends String>*                                                                                                      | :heavy_minus_sign:                                                                                                                | N/A                                                                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                          |
-| `buildId`                                                                                                                         | *int*                                                                                                                             | :heavy_check_mark:                                                                                                                | N/A                                                                                                                               | 1                                                                                                                                 |
-
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `requestBody`                                                                             | [RunBuildDeprecatedRequestBody](../../models/operations/RunBuildDeprecatedRequestBody.md) | :heavy_check_mark:                                                                        | N/A                                                                                       |                                                                                           |
+| `appId`                                                                                   | *Optional<String>*                                                                        | :heavy_minus_sign:                                                                        | N/A                                                                                       | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                  |
+| `buildId`                                                                                 | *int*                                                                                     | :heavy_check_mark:                                                                        | N/A                                                                                       | 1                                                                                         |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.RunBuildDeprecatedResponse](../../models/operations/RunBuildDeprecatedResponse.md)**
+**[RunBuildDeprecatedResponse](../../models/operations/RunBuildDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

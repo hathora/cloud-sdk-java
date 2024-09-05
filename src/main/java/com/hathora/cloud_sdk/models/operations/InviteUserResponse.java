@@ -4,19 +4,23 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.PendingOrgInvite;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class InviteUserResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class InviteUserResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class InviteUserResponse implements com.hathora.cloud_sdk.utils.Response 
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.PendingOrgInvite> pendingOrgInvite;
+    private Optional<? extends PendingOrgInvite> pendingOrgInvite;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class InviteUserResponse implements com.hathora.cloud_sdk.utils.Response 
     @JsonCreator
     public InviteUserResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.PendingOrgInvite> pendingOrgInvite,
+            Optional<? extends PendingOrgInvite> pendingOrgInvite,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class InviteUserResponse implements com.hathora.cloud_sdk.utils.Response 
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.PendingOrgInvite> pendingOrgInvite() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.PendingOrgInvite>) pendingOrgInvite;
+    public Optional<PendingOrgInvite> pendingOrgInvite() {
+        return (Optional<PendingOrgInvite>) pendingOrgInvite;
     }
 
     /**
@@ -110,7 +114,7 @@ public class InviteUserResponse implements com.hathora.cloud_sdk.utils.Response 
     /**
      * Ok
      */
-    public InviteUserResponse withPendingOrgInvite(com.hathora.cloud_sdk.models.shared.PendingOrgInvite pendingOrgInvite) {
+    public InviteUserResponse withPendingOrgInvite(PendingOrgInvite pendingOrgInvite) {
         Utils.checkNotNull(pendingOrgInvite, "pendingOrgInvite");
         this.pendingOrgInvite = Optional.ofNullable(pendingOrgInvite);
         return this;
@@ -119,7 +123,7 @@ public class InviteUserResponse implements com.hathora.cloud_sdk.utils.Response 
     /**
      * Ok
      */
-    public InviteUserResponse withPendingOrgInvite(Optional<? extends com.hathora.cloud_sdk.models.shared.PendingOrgInvite> pendingOrgInvite) {
+    public InviteUserResponse withPendingOrgInvite(Optional<? extends PendingOrgInvite> pendingOrgInvite) {
         Utils.checkNotNull(pendingOrgInvite, "pendingOrgInvite");
         this.pendingOrgInvite = pendingOrgInvite;
         return this;
@@ -153,15 +157,15 @@ public class InviteUserResponse implements com.hathora.cloud_sdk.utils.Response 
         }
         InviteUserResponse other = (InviteUserResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.pendingOrgInvite, other.pendingOrgInvite) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.pendingOrgInvite, other.pendingOrgInvite) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             pendingOrgInvite,
             statusCode,
@@ -181,7 +185,7 @@ public class InviteUserResponse implements com.hathora.cloud_sdk.utils.Response 
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.PendingOrgInvite> pendingOrgInvite = Optional.empty();
+        private Optional<? extends PendingOrgInvite> pendingOrgInvite = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class InviteUserResponse implements com.hathora.cloud_sdk.utils.Response 
         /**
          * Ok
          */
-        public Builder pendingOrgInvite(com.hathora.cloud_sdk.models.shared.PendingOrgInvite pendingOrgInvite) {
+        public Builder pendingOrgInvite(PendingOrgInvite pendingOrgInvite) {
             Utils.checkNotNull(pendingOrgInvite, "pendingOrgInvite");
             this.pendingOrgInvite = Optional.ofNullable(pendingOrgInvite);
             return this;
@@ -212,7 +216,7 @@ public class InviteUserResponse implements com.hathora.cloud_sdk.utils.Response 
         /**
          * Ok
          */
-        public Builder pendingOrgInvite(Optional<? extends com.hathora.cloud_sdk.models.shared.PendingOrgInvite> pendingOrgInvite) {
+        public Builder pendingOrgInvite(Optional<? extends PendingOrgInvite> pendingOrgInvite) {
             Utils.checkNotNull(pendingOrgInvite, "pendingOrgInvite");
             this.pendingOrgInvite = pendingOrgInvite;
             return this;

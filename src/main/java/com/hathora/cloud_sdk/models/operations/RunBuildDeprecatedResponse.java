@@ -4,19 +4,21 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class RunBuildDeprecatedResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class RunBuildDeprecatedResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +38,14 @@ public class RunBuildDeprecatedResponse implements com.hathora.cloud_sdk.utils.R
     /**
      * Ok
      */
-    private Optional<? extends String> res;
+    private Optional<String> res;
 
     @JsonCreator
     public RunBuildDeprecatedResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends String> res) {
+            Optional<String> res) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -88,10 +90,9 @@ public class RunBuildDeprecatedResponse implements com.hathora.cloud_sdk.utils.R
     /**
      * Ok
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> res() {
-        return (Optional<String>) res;
+        return res;
     }
 
     public final static Builder builder() {
@@ -137,7 +138,7 @@ public class RunBuildDeprecatedResponse implements com.hathora.cloud_sdk.utils.R
     /**
      * Ok
      */
-    public RunBuildDeprecatedResponse withRes(Optional<? extends String> res) {
+    public RunBuildDeprecatedResponse withRes(Optional<String> res) {
         Utils.checkNotNull(res, "res");
         this.res = res;
         return this;
@@ -153,15 +154,15 @@ public class RunBuildDeprecatedResponse implements com.hathora.cloud_sdk.utils.R
         }
         RunBuildDeprecatedResponse other = (RunBuildDeprecatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.res, other.res);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.res, other.res);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +186,7 @@ public class RunBuildDeprecatedResponse implements com.hathora.cloud_sdk.utils.R
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends String> res = Optional.empty();  
+        private Optional<String> res = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -230,7 +231,7 @@ public class RunBuildDeprecatedResponse implements com.hathora.cloud_sdk.utils.R
         /**
          * Ok
          */
-        public Builder res(Optional<? extends String> res) {
+        public Builder res(Optional<String> res) {
             Utils.checkNotNull(res, "res");
             this.res = res;
             return this;

@@ -4,59 +4,42 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class RunBuildRequestBuilder {
 
-    private RunBuildRequestBody requestBody;
-    private Optional<? extends String> appId = Optional.empty();
-    private Integer buildId;
+    private String buildId;
+    private Optional<String> orgId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallRunBuild sdk;
 
     public RunBuildRequestBuilder(SDKMethodInterfaces.MethodCallRunBuild sdk) {
         this.sdk = sdk;
     }
 
-    public RunBuildRequestBuilder requestBody(RunBuildRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public RunBuildRequestBuilder buildId(java.lang.String buildId) {
+        Utils.checkNotNull(buildId, "buildId");
+        this.buildId = buildId;
         return this;
     }
                 
-    public RunBuildRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+    public RunBuildRequestBuilder orgId(java.lang.String orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = Optional.of(orgId);
         return this;
     }
 
-    public RunBuildRequestBuilder appId(Optional<? extends String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
-        return this;
-    }
-
-    public RunBuildRequestBuilder buildId(int buildId) {
-        Utils.checkNotNull(buildId, "buildId");
-        this.buildId = buildId;
+    public RunBuildRequestBuilder orgId(java.util.Optional<java.lang.String> orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = orgId;
         return this;
     }
 
     public RunBuildResponse call() throws Exception {
 
         return sdk.runBuild(
-            requestBody,
-            appId,
-            buildId);
+            buildId,
+            orgId);
     }
 }

@@ -4,30 +4,30 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.NicknameObject;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class LoginNicknameRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.hathora.cloud_sdk.models.shared.NicknameObject nicknameObject;
+    private NicknameObject nicknameObject;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @JsonCreator
     public LoginNicknameRequest(
-            com.hathora.cloud_sdk.models.shared.NicknameObject nicknameObject,
-            Optional<? extends String> appId) {
+            NicknameObject nicknameObject,
+            Optional<String> appId) {
         Utils.checkNotNull(nicknameObject, "nicknameObject");
         Utils.checkNotNull(appId, "appId");
         this.nicknameObject = nicknameObject;
@@ -35,26 +35,25 @@ public class LoginNicknameRequest {
     }
     
     public LoginNicknameRequest(
-            com.hathora.cloud_sdk.models.shared.NicknameObject nicknameObject) {
+            NicknameObject nicknameObject) {
         this(nicknameObject, Optional.empty());
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.NicknameObject nicknameObject() {
+    public NicknameObject nicknameObject() {
         return nicknameObject;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public LoginNicknameRequest withNicknameObject(com.hathora.cloud_sdk.models.shared.NicknameObject nicknameObject) {
+    public LoginNicknameRequest withNicknameObject(NicknameObject nicknameObject) {
         Utils.checkNotNull(nicknameObject, "nicknameObject");
         this.nicknameObject = nicknameObject;
         return this;
@@ -66,7 +65,7 @@ public class LoginNicknameRequest {
         return this;
     }
 
-    public LoginNicknameRequest withAppId(Optional<? extends String> appId) {
+    public LoginNicknameRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -82,13 +81,13 @@ public class LoginNicknameRequest {
         }
         LoginNicknameRequest other = (LoginNicknameRequest) o;
         return 
-            java.util.Objects.deepEquals(this.nicknameObject, other.nicknameObject) &&
-            java.util.Objects.deepEquals(this.appId, other.appId);
+            Objects.deepEquals(this.nicknameObject, other.nicknameObject) &&
+            Objects.deepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             nicknameObject,
             appId);
     }
@@ -102,15 +101,15 @@ public class LoginNicknameRequest {
     
     public final static class Builder {
  
-        private com.hathora.cloud_sdk.models.shared.NicknameObject nicknameObject;
+        private NicknameObject nicknameObject;
  
-        private Optional<? extends String> appId = Optional.empty();  
+        private Optional<String> appId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder nicknameObject(com.hathora.cloud_sdk.models.shared.NicknameObject nicknameObject) {
+        public Builder nicknameObject(NicknameObject nicknameObject) {
             Utils.checkNotNull(nicknameObject, "nicknameObject");
             this.nicknameObject = nicknameObject;
             return this;
@@ -122,7 +121,7 @@ public class LoginNicknameRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;

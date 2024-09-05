@@ -4,89 +4,69 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class RunBuildRequest {
 
-    @SpeakeasyMetadata("request:mediaType=multipart/form-data")
-    private RunBuildRequestBody requestBody;
-
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
-
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buildId")
-    private int buildId;
+    private String buildId;
+
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
+    private Optional<String> orgId;
 
     @JsonCreator
     public RunBuildRequest(
-            RunBuildRequestBody requestBody,
-            Optional<? extends String> appId,
-            int buildId) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        Utils.checkNotNull(appId, "appId");
+            String buildId,
+            Optional<String> orgId) {
         Utils.checkNotNull(buildId, "buildId");
-        this.requestBody = requestBody;
-        this.appId = appId;
+        Utils.checkNotNull(orgId, "orgId");
         this.buildId = buildId;
+        this.orgId = orgId;
     }
     
     public RunBuildRequest(
-            RunBuildRequestBody requestBody,
-            int buildId) {
-        this(requestBody, Optional.empty(), buildId);
+            String buildId) {
+        this(buildId, Optional.empty());
     }
 
     @JsonIgnore
-    public RunBuildRequestBody requestBody() {
-        return requestBody;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<String> appId() {
-        return (Optional<String>) appId;
-    }
-
-    @JsonIgnore
-    public int buildId() {
+    public String buildId() {
         return buildId;
+    }
+
+    @JsonIgnore
+    public Optional<String> orgId() {
+        return orgId;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public RunBuildRequest withRequestBody(RunBuildRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
-        return this;
-    }
-
-    public RunBuildRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
-    public RunBuildRequest withAppId(Optional<? extends String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
-        return this;
-    }
-
-    public RunBuildRequest withBuildId(int buildId) {
+    public RunBuildRequest withBuildId(String buildId) {
         Utils.checkNotNull(buildId, "buildId");
         this.buildId = buildId;
+        return this;
+    }
+
+    public RunBuildRequest withOrgId(String orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = Optional.ofNullable(orgId);
+        return this;
+    }
+
+    public RunBuildRequest withOrgId(Optional<String> orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = orgId;
         return this;
     }
     
@@ -100,68 +80,56 @@ public class RunBuildRequest {
         }
         RunBuildRequest other = (RunBuildRequest) o;
         return 
-            java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.buildId, other.buildId);
+            Objects.deepEquals(this.buildId, other.buildId) &&
+            Objects.deepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
-            requestBody,
-            appId,
-            buildId);
+        return Objects.hash(
+            buildId,
+            orgId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(RunBuildRequest.class,
-                "requestBody", requestBody,
-                "appId", appId,
-                "buildId", buildId);
+                "buildId", buildId,
+                "orgId", orgId);
     }
     
     public final static class Builder {
  
-        private RunBuildRequestBody requestBody;
+        private String buildId;
  
-        private Optional<? extends String> appId = Optional.empty();
- 
-        private Integer buildId;  
+        private Optional<String> orgId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder requestBody(RunBuildRequestBody requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
-            return this;
-        }
-
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        public Builder appId(Optional<? extends String> appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = appId;
-            return this;
-        }
-
-        public Builder buildId(int buildId) {
+        public Builder buildId(String buildId) {
             Utils.checkNotNull(buildId, "buildId");
             this.buildId = buildId;
+            return this;
+        }
+
+        public Builder orgId(String orgId) {
+            Utils.checkNotNull(orgId, "orgId");
+            this.orgId = Optional.ofNullable(orgId);
+            return this;
+        }
+
+        public Builder orgId(Optional<String> orgId) {
+            Utils.checkNotNull(orgId, "orgId");
+            this.orgId = orgId;
             return this;
         }
         
         public RunBuildRequest build() {
             return new RunBuildRequest(
-                requestBody,
-                appId,
-                buildId);
+                buildId,
+                orgId);
         }
     }
 }

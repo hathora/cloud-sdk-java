@@ -4,21 +4,25 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.Build;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class CreateBuildDeprecatedResponse implements com.hathora.cloud_sdk.utils.Response {
 
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build;
+public class CreateBuildDeprecatedResponse implements Response {
+
+    private Optional<? extends Build> build;
 
     /**
      * HTTP response content type for this operation
@@ -37,7 +41,7 @@ public class CreateBuildDeprecatedResponse implements com.hathora.cloud_sdk.util
 
     @JsonCreator
     public CreateBuildDeprecatedResponse(
-            Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build,
+            Optional<? extends Build> build,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -60,8 +64,8 @@ public class CreateBuildDeprecatedResponse implements com.hathora.cloud_sdk.util
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.Build> build() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.Build>) build;
+    public Optional<Build> build() {
+        return (Optional<Build>) build;
     }
 
     /**
@@ -92,13 +96,13 @@ public class CreateBuildDeprecatedResponse implements com.hathora.cloud_sdk.util
         return new Builder();
     }
 
-    public CreateBuildDeprecatedResponse withBuild(com.hathora.cloud_sdk.models.shared.Build build) {
+    public CreateBuildDeprecatedResponse withBuild(Build build) {
         Utils.checkNotNull(build, "build");
         this.build = Optional.ofNullable(build);
         return this;
     }
 
-    public CreateBuildDeprecatedResponse withBuild(Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build) {
+    public CreateBuildDeprecatedResponse withBuild(Optional<? extends Build> build) {
         Utils.checkNotNull(build, "build");
         this.build = build;
         return this;
@@ -141,15 +145,15 @@ public class CreateBuildDeprecatedResponse implements com.hathora.cloud_sdk.util
         }
         CreateBuildDeprecatedResponse other = (CreateBuildDeprecatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.build, other.build) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.build, other.build) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             build,
             contentType,
             statusCode,
@@ -167,7 +171,7 @@ public class CreateBuildDeprecatedResponse implements com.hathora.cloud_sdk.util
     
     public final static class Builder {
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build = Optional.empty();
+        private Optional<? extends Build> build = Optional.empty();
  
         private String contentType;
  
@@ -179,13 +183,13 @@ public class CreateBuildDeprecatedResponse implements com.hathora.cloud_sdk.util
           // force use of static builder() method
         }
 
-        public Builder build(com.hathora.cloud_sdk.models.shared.Build build) {
+        public Builder build(Build build) {
             Utils.checkNotNull(build, "build");
             this.build = Optional.ofNullable(build);
             return this;
         }
 
-        public Builder build(Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build) {
+        public Builder build(Optional<? extends Build> build) {
             Utils.checkNotNull(build, "build");
             this.build = build;
             return this;

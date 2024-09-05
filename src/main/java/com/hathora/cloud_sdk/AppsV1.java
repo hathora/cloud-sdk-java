@@ -5,34 +5,48 @@
 package com.hathora.cloud_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hathora.cloud_sdk.models.errors.ApiError;
 import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.DeleteAppV1DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.DeleteAppV1DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.DeleteAppV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.GetAppInfoV1DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.GetAppInfoV1DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetAppInfoV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.GetAppsV1DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetAppsV1DeprecatedResponse;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
+import com.hathora.cloud_sdk.models.operations.UpdateAppV1DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.UpdateAppV1DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.UpdateAppV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.AppConfig;
+import com.hathora.cloud_sdk.models.shared.Application;
+import com.hathora.cloud_sdk.models.shared.ApplicationWithLatestDeploymentAndBuildDeprecated;
 import com.hathora.cloud_sdk.utils.HTTPClient;
 import com.hathora.cloud_sdk.utils.HTTPRequest;
 import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.JSON;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.SerializedBody;
+import com.hathora.cloud_sdk.utils.Utils.JsonShape;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class AppsV1 implements
-            MethodCallCreateApp,
-            MethodCallDeleteApp,
-            MethodCallGetAppInfo,
-            MethodCallGetApps,
-            MethodCallUpdateApp {
+            MethodCallCreateAppV1Deprecated,
+            MethodCallDeleteAppV1Deprecated,
+            MethodCallGetAppInfoV1Deprecated,
+            MethodCallGetAppsV1Deprecated,
+            MethodCallUpdateAppV1Deprecated {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -45,8 +59,8 @@ public class AppsV1 implements
      * Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.CreateAppRequestBuilder createApp() {
-        return new com.hathora.cloud_sdk.models.operations.CreateAppRequestBuilder(this);
+    public CreateAppV1DeprecatedRequestBuilder createAppV1Deprecated() {
+        return new CreateAppV1DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -55,18 +69,23 @@ public class AppsV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.CreateAppResponse createApp(
-            com.hathora.cloud_sdk.models.shared.AppConfig request) throws Exception {
+    public CreateAppV1DeprecatedResponse createAppV1Deprecated(
+            AppConfig request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/apps/v1/create");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.hathora.cloud_sdk.models.shared.AppConfig>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<AppConfig>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -82,7 +101,10 @@ public class AppsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "CreateAppV1Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -90,18 +112,28 @@ public class AppsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "CreateAppV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "CreateAppV1Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreateAppV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -109,42 +141,42 @@ public class AppsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.CreateAppResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.CreateAppResponse
+        CreateAppV1DeprecatedResponse.Builder _resBuilder = 
+            CreateAppV1DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.CreateAppResponse _res = _resBuilder.build();
+        CreateAppV1DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Application _out = Utils.mapper().readValue(
+                Application _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Application>() {});
-                _res.withApplication(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Application>() {});
+                _res.withApplication(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -153,13 +185,13 @@ public class AppsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -168,8 +200,8 @@ public class AppsV1 implements
      * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.DeleteAppRequestBuilder deleteApp() {
-        return new com.hathora.cloud_sdk.models.operations.DeleteAppRequestBuilder(this);
+    public DeleteAppV1DeprecatedRequestBuilder deleteAppV1Deprecated() {
+        return new DeleteAppV1DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -177,26 +209,27 @@ public class AppsV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.DeleteAppResponse deleteAppDirect() throws Exception {
-        return deleteApp(Optional.empty());
+    public DeleteAppV1DeprecatedResponse deleteAppV1DeprecatedDirect() throws Exception {
+        return deleteAppV1Deprecated(Optional.empty());
     }
+    
     /**
      * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
      * @param appId
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.DeleteAppResponse deleteApp(
-            Optional<? extends String> appId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.DeleteAppRequest request =
-            com.hathora.cloud_sdk.models.operations.DeleteAppRequest
+    public DeleteAppV1DeprecatedResponse deleteAppV1Deprecated(
+            Optional<String> appId) throws Exception {
+        DeleteAppV1DeprecatedRequest request =
+            DeleteAppV1DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.DeleteAppRequest.class,
+                DeleteAppV1DeprecatedRequest.class,
                 _baseUrl,
                 "/apps/v1/delete/{appId}",
                 request, this.sdkConfiguration.globals);
@@ -213,7 +246,10 @@ public class AppsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("DeleteApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "DeleteAppV1Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -221,18 +257,28 @@ public class AppsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("DeleteApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "DeleteAppV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("DeleteApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "DeleteAppV1Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("DeleteApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "DeleteAppV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -240,14 +286,14 @@ public class AppsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.DeleteAppResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.DeleteAppResponse
+        DeleteAppV1DeprecatedResponse.Builder _resBuilder = 
+            DeleteAppV1DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.DeleteAppResponse _res = _resBuilder.build();
+        DeleteAppV1DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -255,16 +301,16 @@ public class AppsV1 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -273,13 +319,13 @@ public class AppsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -288,8 +334,8 @@ public class AppsV1 implements
      * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetAppInfoRequestBuilder getAppInfo() {
-        return new com.hathora.cloud_sdk.models.operations.GetAppInfoRequestBuilder(this);
+    public GetAppInfoV1DeprecatedRequestBuilder getAppInfoV1Deprecated() {
+        return new GetAppInfoV1DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -297,26 +343,27 @@ public class AppsV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetAppInfoResponse getAppInfoDirect() throws Exception {
-        return getAppInfo(Optional.empty());
+    public GetAppInfoV1DeprecatedResponse getAppInfoV1DeprecatedDirect() throws Exception {
+        return getAppInfoV1Deprecated(Optional.empty());
     }
+    
     /**
      * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @param appId
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetAppInfoResponse getAppInfo(
-            Optional<? extends String> appId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetAppInfoRequest request =
-            com.hathora.cloud_sdk.models.operations.GetAppInfoRequest
+    public GetAppInfoV1DeprecatedResponse getAppInfoV1Deprecated(
+            Optional<String> appId) throws Exception {
+        GetAppInfoV1DeprecatedRequest request =
+            GetAppInfoV1DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetAppInfoRequest.class,
+                GetAppInfoV1DeprecatedRequest.class,
                 _baseUrl,
                 "/apps/v1/info/{appId}",
                 request, this.sdkConfiguration.globals);
@@ -333,7 +380,10 @@ public class AppsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetAppInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetAppInfoV1Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -341,18 +391,28 @@ public class AppsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetAppInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetAppInfoV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetAppInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetAppInfoV1Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetAppInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetAppInfoV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -360,42 +420,42 @@ public class AppsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetAppInfoResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetAppInfoResponse
+        GetAppInfoV1DeprecatedResponse.Builder _resBuilder = 
+            GetAppInfoV1DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetAppInfoResponse _res = _resBuilder.build();
+        GetAppInfoV1DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Application _out = Utils.mapper().readValue(
+                Application _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Application>() {});
-                _res.withApplication(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Application>() {});
+                _res.withApplication(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -404,13 +464,13 @@ public class AppsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -419,8 +479,8 @@ public class AppsV1 implements
      * Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetAppsRequestBuilder getApps() {
-        return new com.hathora.cloud_sdk.models.operations.GetAppsRequestBuilder(this);
+    public GetAppsV1DeprecatedRequestBuilder getAppsV1Deprecated() {
+        return new GetAppsV1DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -428,7 +488,7 @@ public class AppsV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetAppsResponse getAppsDirect() throws Exception {
+    public GetAppsV1DeprecatedResponse getAppsV1DeprecatedDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -446,7 +506,10 @@ public class AppsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetApps", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetAppsV1Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -454,18 +517,28 @@ public class AppsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetApps", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetAppsV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetApps", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetAppsV1Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetApps", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetAppsV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -473,42 +546,42 @@ public class AppsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetAppsResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetAppsResponse
+        GetAppsV1DeprecatedResponse.Builder _resBuilder = 
+            GetAppsV1DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetAppsResponse _res = _resBuilder.build();
+        GetAppsV1DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                java.util.List<com.hathora.cloud_sdk.models.shared.ApplicationWithLatestDeploymentAndBuild> _out = Utils.mapper().readValue(
+                List<ApplicationWithLatestDeploymentAndBuildDeprecated> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<java.util.List<com.hathora.cloud_sdk.models.shared.ApplicationWithLatestDeploymentAndBuild>>() {});
-                _res.withClasses(java.util.Optional.ofNullable(_out));
+                    new TypeReference<List<ApplicationWithLatestDeploymentAndBuildDeprecated>>() {});
+                _res.withClasses(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -517,13 +590,13 @@ public class AppsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -532,8 +605,8 @@ public class AppsV1 implements
      * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.UpdateAppRequestBuilder updateApp() {
-        return new com.hathora.cloud_sdk.models.operations.UpdateAppRequestBuilder(this);
+    public UpdateAppV1DeprecatedRequestBuilder updateAppV1Deprecated() {
+        return new UpdateAppV1DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -542,10 +615,11 @@ public class AppsV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.UpdateAppResponse updateApp(
-            com.hathora.cloud_sdk.models.shared.AppConfig appConfig) throws Exception {
-        return updateApp(appConfig, Optional.empty());
+    public UpdateAppV1DeprecatedResponse updateAppV1Deprecated(
+            AppConfig appConfig) throws Exception {
+        return updateAppV1Deprecated(appConfig, Optional.empty());
     }
+    
     /**
      * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @param appConfig
@@ -553,11 +627,11 @@ public class AppsV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.UpdateAppResponse updateApp(
-            com.hathora.cloud_sdk.models.shared.AppConfig appConfig,
-            Optional<? extends String> appId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.UpdateAppRequest request =
-            com.hathora.cloud_sdk.models.operations.UpdateAppRequest
+    public UpdateAppV1DeprecatedResponse updateAppV1Deprecated(
+            AppConfig appConfig,
+            Optional<String> appId) throws Exception {
+        UpdateAppV1DeprecatedRequest request =
+            UpdateAppV1DeprecatedRequest
                 .builder()
                 .appConfig(appConfig)
                 .appId(appId)
@@ -565,16 +639,21 @@ public class AppsV1 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.UpdateAppRequest.class,
+                UpdateAppV1DeprecatedRequest.class,
                 _baseUrl,
                 "/apps/v1/update/{appId}",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "appConfig", "json", false);
+                _convertedRequest, 
+                "appConfig",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -590,7 +669,10 @@ public class AppsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("UpdateApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "UpdateAppV1Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -598,18 +680,28 @@ public class AppsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("UpdateApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "UpdateAppV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("UpdateApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "UpdateAppV1Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("UpdateApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "UpdateAppV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -617,42 +709,42 @@ public class AppsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.UpdateAppResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.UpdateAppResponse
+        UpdateAppV1DeprecatedResponse.Builder _resBuilder = 
+            UpdateAppV1DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.UpdateAppResponse _res = _resBuilder.build();
+        UpdateAppV1DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Application _out = Utils.mapper().readValue(
+                Application _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Application>() {});
-                _res.withApplication(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Application>() {});
+                _res.withApplication(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -661,13 +753,13 @@ public class AppsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

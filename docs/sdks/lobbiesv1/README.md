@@ -1,6 +1,8 @@
 # LobbiesV1
 (*lobbiesV1()*)
 
+## Overview
+
 ### Available Operations
 
 * [~~createPrivateLobbyDeprecated~~](#createprivatelobbydeprecated) - :warning: **Deprecated**
@@ -17,17 +19,11 @@
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedSecurity;
+import com.hathora.cloud_sdk.models.shared.Region;
+import java.lang.Exception;
 
 public class Application {
 
@@ -52,7 +48,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -69,20 +65,21 @@ public class Application {
 | Parameter                                                                                                                                       | Type                                                                                                                                            | Required                                                                                                                                        | Description                                                                                                                                     | Example                                                                                                                                         |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `security`                                                                                                                                      | [com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedSecurity](../../models/operations/CreatePrivateLobbyDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                              | The security requirements to use for the request.                                                                                               |                                                                                                                                                 |
-| `appId`                                                                                                                                         | *Optional<? extends String>*                                                                                                                    | :heavy_minus_sign:                                                                                                                              | N/A                                                                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                        |
-| `local`                                                                                                                                         | *Optional<? extends Boolean>*                                                                                                                   | :heavy_minus_sign:                                                                                                                              | N/A                                                                                                                                             |                                                                                                                                                 |
-| `region`                                                                                                                                        | [Optional<? extends com.hathora.cloud_sdk.models.shared.Region>](../../models/shared/Region.md)                                                 | :heavy_minus_sign:                                                                                                                              | N/A                                                                                                                                             |                                                                                                                                                 |
-
+| `appId`                                                                                                                                         | *Optional<String>*                                                                                                                              | :heavy_minus_sign:                                                                                                                              | N/A                                                                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                        |
+| `local`                                                                                                                                         | *Optional<Boolean>*                                                                                                                             | :heavy_minus_sign:                                                                                                                              | N/A                                                                                                                                             |                                                                                                                                                 |
+| `region`                                                                                                                                        | [Optional<Region>](../../models/shared/Region.md)                                                                                               | :heavy_minus_sign:                                                                                                                              | N/A                                                                                                                                             |                                                                                                                                                 |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedResponse](../../models/operations/CreatePrivateLobbyDeprecatedResponse.md)**
+**[CreatePrivateLobbyDeprecatedResponse](../../models/operations/CreatePrivateLobbyDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
 | models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
+
 
 ## ~~createPublicLobbyDeprecated~~
 
@@ -94,17 +91,11 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreatePublicLobbyDeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.CreatePublicLobbyDeprecatedSecurity;
+import com.hathora.cloud_sdk.models.shared.Region;
+import java.lang.Exception;
 
 public class Application {
 
@@ -129,7 +120,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -146,20 +137,21 @@ public class Application {
 | Parameter                                                                                                                                     | Type                                                                                                                                          | Required                                                                                                                                      | Description                                                                                                                                   | Example                                                                                                                                       |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `security`                                                                                                                                    | [com.hathora.cloud_sdk.models.operations.CreatePublicLobbyDeprecatedSecurity](../../models/operations/CreatePublicLobbyDeprecatedSecurity.md) | :heavy_check_mark:                                                                                                                            | The security requirements to use for the request.                                                                                             |                                                                                                                                               |
-| `appId`                                                                                                                                       | *Optional<? extends String>*                                                                                                                  | :heavy_minus_sign:                                                                                                                            | N/A                                                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                      |
-| `local`                                                                                                                                       | *Optional<? extends Boolean>*                                                                                                                 | :heavy_minus_sign:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |
-| `region`                                                                                                                                      | [Optional<? extends com.hathora.cloud_sdk.models.shared.Region>](../../models/shared/Region.md)                                               | :heavy_minus_sign:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |
-
+| `appId`                                                                                                                                       | *Optional<String>*                                                                                                                            | :heavy_minus_sign:                                                                                                                            | N/A                                                                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                                                                      |
+| `local`                                                                                                                                       | *Optional<Boolean>*                                                                                                                           | :heavy_minus_sign:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |
+| `region`                                                                                                                                      | [Optional<Region>](../../models/shared/Region.md)                                                                                             | :heavy_minus_sign:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.CreatePublicLobbyDeprecatedResponse](../../models/operations/CreatePublicLobbyDeprecatedResponse.md)**
+**[CreatePublicLobbyDeprecatedResponse](../../models/operations/CreatePublicLobbyDeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
 | models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
+
 
 ## ~~listActivePublicLobbiesDeprecatedV1~~
 
@@ -171,17 +163,10 @@ public class Application {
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV1Response;
+import com.hathora.cloud_sdk.models.shared.Region;
+import java.lang.Exception;
 
 public class Application {
 
@@ -203,7 +188,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -217,16 +202,16 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
-| `local`                                                                                         | *Optional<? extends Boolean>*                                                                   | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
-| `region`                                                                                        | [Optional<? extends com.hathora.cloud_sdk.models.shared.Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
-
+| Parameter                                         | Type                                              | Required                                          | Description                                       | Example                                           |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `appId`                                           | *Optional<String>*                                | :heavy_minus_sign:                                | N/A                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2          |
+| `local`                                           | *Optional<Boolean>*                               | :heavy_minus_sign:                                | N/A                                               |                                                   |
+| `region`                                          | [Optional<Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                | N/A                                               |                                                   |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV1Response](../../models/operations/ListActivePublicLobbiesDeprecatedV1Response.md)**
+**[ListActivePublicLobbiesDeprecatedV1Response](../../models/operations/ListActivePublicLobbiesDeprecatedV1Response.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

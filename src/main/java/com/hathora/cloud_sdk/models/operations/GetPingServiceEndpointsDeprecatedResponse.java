@@ -4,19 +4,24 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.PingEndpoints;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetPingServiceEndpointsDeprecatedResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetPingServiceEndpointsDeprecatedResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +31,7 @@ public class GetPingServiceEndpointsDeprecatedResponse implements com.hathora.cl
     /**
      * Ok
      */
-    private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.PingEndpoints>> pingEndpoints;
+    private Optional<? extends List<PingEndpoints>> pingEndpoints;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +46,7 @@ public class GetPingServiceEndpointsDeprecatedResponse implements com.hathora.cl
     @JsonCreator
     public GetPingServiceEndpointsDeprecatedResponse(
             String contentType,
-            Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.PingEndpoints>> pingEndpoints,
+            Optional<? extends List<PingEndpoints>> pingEndpoints,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +79,8 @@ public class GetPingServiceEndpointsDeprecatedResponse implements com.hathora.cl
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<com.hathora.cloud_sdk.models.shared.PingEndpoints>> pingEndpoints() {
-        return (Optional<java.util.List<com.hathora.cloud_sdk.models.shared.PingEndpoints>>) pingEndpoints;
+    public Optional<List<PingEndpoints>> pingEndpoints() {
+        return (Optional<List<PingEndpoints>>) pingEndpoints;
     }
 
     /**
@@ -110,7 +115,7 @@ public class GetPingServiceEndpointsDeprecatedResponse implements com.hathora.cl
     /**
      * Ok
      */
-    public GetPingServiceEndpointsDeprecatedResponse withPingEndpoints(java.util.List<com.hathora.cloud_sdk.models.shared.PingEndpoints> pingEndpoints) {
+    public GetPingServiceEndpointsDeprecatedResponse withPingEndpoints(List<PingEndpoints> pingEndpoints) {
         Utils.checkNotNull(pingEndpoints, "pingEndpoints");
         this.pingEndpoints = Optional.ofNullable(pingEndpoints);
         return this;
@@ -119,7 +124,7 @@ public class GetPingServiceEndpointsDeprecatedResponse implements com.hathora.cl
     /**
      * Ok
      */
-    public GetPingServiceEndpointsDeprecatedResponse withPingEndpoints(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.PingEndpoints>> pingEndpoints) {
+    public GetPingServiceEndpointsDeprecatedResponse withPingEndpoints(Optional<? extends List<PingEndpoints>> pingEndpoints) {
         Utils.checkNotNull(pingEndpoints, "pingEndpoints");
         this.pingEndpoints = pingEndpoints;
         return this;
@@ -153,15 +158,15 @@ public class GetPingServiceEndpointsDeprecatedResponse implements com.hathora.cl
         }
         GetPingServiceEndpointsDeprecatedResponse other = (GetPingServiceEndpointsDeprecatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.pingEndpoints, other.pingEndpoints) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.pingEndpoints, other.pingEndpoints) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             pingEndpoints,
             statusCode,
@@ -181,7 +186,7 @@ public class GetPingServiceEndpointsDeprecatedResponse implements com.hathora.cl
  
         private String contentType;
  
-        private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.PingEndpoints>> pingEndpoints = Optional.empty();
+        private Optional<? extends List<PingEndpoints>> pingEndpoints = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +208,7 @@ public class GetPingServiceEndpointsDeprecatedResponse implements com.hathora.cl
         /**
          * Ok
          */
-        public Builder pingEndpoints(java.util.List<com.hathora.cloud_sdk.models.shared.PingEndpoints> pingEndpoints) {
+        public Builder pingEndpoints(List<PingEndpoints> pingEndpoints) {
             Utils.checkNotNull(pingEndpoints, "pingEndpoints");
             this.pingEndpoints = Optional.ofNullable(pingEndpoints);
             return this;
@@ -212,7 +217,7 @@ public class GetPingServiceEndpointsDeprecatedResponse implements com.hathora.cl
         /**
          * Ok
          */
-        public Builder pingEndpoints(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.PingEndpoints>> pingEndpoints) {
+        public Builder pingEndpoints(Optional<? extends List<PingEndpoints>> pingEndpoints) {
             Utils.checkNotNull(pingEndpoints, "pingEndpoints");
             this.pingEndpoints = pingEndpoints;
             return this;

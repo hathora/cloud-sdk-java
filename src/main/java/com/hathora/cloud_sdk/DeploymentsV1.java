@@ -5,33 +5,46 @@
 package com.hathora.cloud_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hathora.cloud_sdk.models.errors.ApiError;
 import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateDeploymentV1DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.CreateDeploymentV1DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.CreateDeploymentV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.GetDeploymentInfoV1DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.GetDeploymentInfoV1DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetDeploymentInfoV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.GetDeploymentsV1DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.GetDeploymentsV1DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetDeploymentsV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.operations.GetLatestDeploymentV1DeprecatedRequest;
+import com.hathora.cloud_sdk.models.operations.GetLatestDeploymentV1DeprecatedRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetLatestDeploymentV1DeprecatedResponse;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
+import com.hathora.cloud_sdk.models.shared.DeploymentConfig;
+import com.hathora.cloud_sdk.models.shared.DeploymentV1;
 import com.hathora.cloud_sdk.utils.HTTPClient;
 import com.hathora.cloud_sdk.utils.HTTPRequest;
 import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.JSON;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.SerializedBody;
+import com.hathora.cloud_sdk.utils.Utils.JsonShape;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Deprecated;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class DeploymentsV1 implements
-            MethodCallCreateDeploymentDeprecated,
-            MethodCallGetDeploymentInfoDeprecated,
-            MethodCallGetDeploymentsDeprecated,
-            MethodCallGetLatestDeploymentDeprecated {
+            MethodCallCreateDeploymentV1Deprecated,
+            MethodCallGetDeploymentInfoV1Deprecated,
+            MethodCallGetDeploymentsV1Deprecated,
+            MethodCallGetLatestDeploymentV1Deprecated {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -46,8 +59,8 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreateDeploymentDeprecatedRequestBuilder createDeploymentDeprecated() {
-        return new com.hathora.cloud_sdk.models.operations.CreateDeploymentDeprecatedRequestBuilder(this);
+    public CreateDeploymentV1DeprecatedRequestBuilder createDeploymentV1Deprecated() {
+        return new CreateDeploymentV1DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -59,11 +72,12 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreateDeploymentDeprecatedResponse createDeploymentDeprecated(
-            com.hathora.cloud_sdk.models.shared.DeploymentConfig deploymentConfig,
+    public CreateDeploymentV1DeprecatedResponse createDeploymentV1Deprecated(
+            DeploymentConfig deploymentConfig,
             int buildId) throws Exception {
-        return createDeploymentDeprecated(deploymentConfig, Optional.empty(), buildId);
+        return createDeploymentV1Deprecated(deploymentConfig, Optional.empty(), buildId);
     }
+    
     /**
      * Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
      * @param deploymentConfig User specified deployment configuration for your application at runtime.
@@ -74,12 +88,12 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.CreateDeploymentDeprecatedResponse createDeploymentDeprecated(
-            com.hathora.cloud_sdk.models.shared.DeploymentConfig deploymentConfig,
-            Optional<? extends String> appId,
+    public CreateDeploymentV1DeprecatedResponse createDeploymentV1Deprecated(
+            DeploymentConfig deploymentConfig,
+            Optional<String> appId,
             int buildId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.CreateDeploymentDeprecatedRequest request =
-            com.hathora.cloud_sdk.models.operations.CreateDeploymentDeprecatedRequest
+        CreateDeploymentV1DeprecatedRequest request =
+            CreateDeploymentV1DeprecatedRequest
                 .builder()
                 .deploymentConfig(deploymentConfig)
                 .appId(appId)
@@ -88,16 +102,21 @@ public class DeploymentsV1 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.CreateDeploymentDeprecatedRequest.class,
+                CreateDeploymentV1DeprecatedRequest.class,
                 _baseUrl,
                 "/deployments/v1/{appId}/create/{buildId}",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<java.lang.Object>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "deploymentConfig", "json", false);
+                _convertedRequest, 
+                "deploymentConfig",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -113,7 +132,10 @@ public class DeploymentsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateDeploymentDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "CreateDeploymentV1Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -121,18 +143,28 @@ public class DeploymentsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "422", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateDeploymentDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "CreateDeploymentV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateDeploymentDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "CreateDeploymentV1Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateDeploymentDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreateDeploymentV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -140,42 +172,42 @@ public class DeploymentsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.CreateDeploymentDeprecatedResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.CreateDeploymentDeprecatedResponse
+        CreateDeploymentV1DeprecatedResponse.Builder _resBuilder = 
+            CreateDeploymentV1DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.CreateDeploymentDeprecatedResponse _res = _resBuilder.build();
+        CreateDeploymentV1DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Deployment _out = Utils.mapper().readValue(
+                DeploymentV1 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Deployment>() {});
-                _res.withDeployment(java.util.Optional.ofNullable(_out));
+                    new TypeReference<DeploymentV1>() {});
+                _res.withDeploymentV1(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -184,13 +216,13 @@ public class DeploymentsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -201,8 +233,8 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetDeploymentInfoDeprecatedRequestBuilder getDeploymentInfoDeprecated() {
-        return new com.hathora.cloud_sdk.models.operations.GetDeploymentInfoDeprecatedRequestBuilder(this);
+    public GetDeploymentInfoV1DeprecatedRequestBuilder getDeploymentInfoV1Deprecated() {
+        return new GetDeploymentInfoV1DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -213,10 +245,11 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetDeploymentInfoDeprecatedResponse getDeploymentInfoDeprecated(
+    public GetDeploymentInfoV1DeprecatedResponse getDeploymentInfoV1Deprecated(
             int deploymentId) throws Exception {
-        return getDeploymentInfoDeprecated(Optional.empty(), deploymentId);
+        return getDeploymentInfoV1Deprecated(Optional.empty(), deploymentId);
     }
+    
     /**
      * Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
      * @param appId
@@ -226,11 +259,11 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetDeploymentInfoDeprecatedResponse getDeploymentInfoDeprecated(
-            Optional<? extends String> appId,
+    public GetDeploymentInfoV1DeprecatedResponse getDeploymentInfoV1Deprecated(
+            Optional<String> appId,
             int deploymentId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetDeploymentInfoDeprecatedRequest request =
-            com.hathora.cloud_sdk.models.operations.GetDeploymentInfoDeprecatedRequest
+        GetDeploymentInfoV1DeprecatedRequest request =
+            GetDeploymentInfoV1DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .deploymentId(deploymentId)
@@ -238,7 +271,7 @@ public class DeploymentsV1 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetDeploymentInfoDeprecatedRequest.class,
+                GetDeploymentInfoV1DeprecatedRequest.class,
                 _baseUrl,
                 "/deployments/v1/{appId}/info/{deploymentId}",
                 request, this.sdkConfiguration.globals);
@@ -255,7 +288,10 @@ public class DeploymentsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetDeploymentInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetDeploymentInfoV1Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -263,18 +299,28 @@ public class DeploymentsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetDeploymentInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetDeploymentInfoV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetDeploymentInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetDeploymentInfoV1Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetDeploymentInfoDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetDeploymentInfoV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -282,42 +328,42 @@ public class DeploymentsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetDeploymentInfoDeprecatedResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetDeploymentInfoDeprecatedResponse
+        GetDeploymentInfoV1DeprecatedResponse.Builder _resBuilder = 
+            GetDeploymentInfoV1DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetDeploymentInfoDeprecatedResponse _res = _resBuilder.build();
+        GetDeploymentInfoV1DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Deployment _out = Utils.mapper().readValue(
+                DeploymentV1 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Deployment>() {});
-                _res.withDeployment(java.util.Optional.ofNullable(_out));
+                    new TypeReference<DeploymentV1>() {});
+                _res.withDeploymentV1(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -326,13 +372,13 @@ public class DeploymentsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -343,8 +389,8 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetDeploymentsDeprecatedRequestBuilder getDeploymentsDeprecated() {
-        return new com.hathora.cloud_sdk.models.operations.GetDeploymentsDeprecatedRequestBuilder(this);
+    public GetDeploymentsV1DeprecatedRequestBuilder getDeploymentsV1Deprecated() {
+        return new GetDeploymentsV1DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -354,9 +400,10 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetDeploymentsDeprecatedResponse getDeploymentsDeprecatedDirect() throws Exception {
-        return getDeploymentsDeprecated(Optional.empty());
+    public GetDeploymentsV1DeprecatedResponse getDeploymentsV1DeprecatedDirect() throws Exception {
+        return getDeploymentsV1Deprecated(Optional.empty());
     }
+    
     /**
      * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @param appId
@@ -365,17 +412,17 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetDeploymentsDeprecatedResponse getDeploymentsDeprecated(
-            Optional<? extends String> appId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetDeploymentsDeprecatedRequest request =
-            com.hathora.cloud_sdk.models.operations.GetDeploymentsDeprecatedRequest
+    public GetDeploymentsV1DeprecatedResponse getDeploymentsV1Deprecated(
+            Optional<String> appId) throws Exception {
+        GetDeploymentsV1DeprecatedRequest request =
+            GetDeploymentsV1DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetDeploymentsDeprecatedRequest.class,
+                GetDeploymentsV1DeprecatedRequest.class,
                 _baseUrl,
                 "/deployments/v1/{appId}/list",
                 request, this.sdkConfiguration.globals);
@@ -392,7 +439,10 @@ public class DeploymentsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetDeploymentsDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetDeploymentsV1Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -400,18 +450,28 @@ public class DeploymentsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetDeploymentsDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetDeploymentsV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetDeploymentsDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetDeploymentsV1Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetDeploymentsDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetDeploymentsV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -419,42 +479,42 @@ public class DeploymentsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetDeploymentsDeprecatedResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetDeploymentsDeprecatedResponse
+        GetDeploymentsV1DeprecatedResponse.Builder _resBuilder = 
+            GetDeploymentsV1DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetDeploymentsDeprecatedResponse _res = _resBuilder.build();
+        GetDeploymentsV1DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                java.util.List<com.hathora.cloud_sdk.models.shared.Deployment> _out = Utils.mapper().readValue(
+                List<DeploymentV1> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<java.util.List<com.hathora.cloud_sdk.models.shared.Deployment>>() {});
-                _res.withClasses(java.util.Optional.ofNullable(_out));
+                    new TypeReference<List<DeploymentV1>>() {});
+                _res.withClasses(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -463,13 +523,13 @@ public class DeploymentsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -480,8 +540,8 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetLatestDeploymentDeprecatedRequestBuilder getLatestDeploymentDeprecated() {
-        return new com.hathora.cloud_sdk.models.operations.GetLatestDeploymentDeprecatedRequestBuilder(this);
+    public GetLatestDeploymentV1DeprecatedRequestBuilder getLatestDeploymentV1Deprecated() {
+        return new GetLatestDeploymentV1DeprecatedRequestBuilder(this);
     }
 
     /**
@@ -491,9 +551,10 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetLatestDeploymentDeprecatedResponse getLatestDeploymentDeprecatedDirect() throws Exception {
-        return getLatestDeploymentDeprecated(Optional.empty());
+    public GetLatestDeploymentV1DeprecatedResponse getLatestDeploymentV1DeprecatedDirect() throws Exception {
+        return getLatestDeploymentV1Deprecated(Optional.empty());
     }
+    
     /**
      * Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @param appId
@@ -502,17 +563,17 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetLatestDeploymentDeprecatedResponse getLatestDeploymentDeprecated(
-            Optional<? extends String> appId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.GetLatestDeploymentDeprecatedRequest request =
-            com.hathora.cloud_sdk.models.operations.GetLatestDeploymentDeprecatedRequest
+    public GetLatestDeploymentV1DeprecatedResponse getLatestDeploymentV1Deprecated(
+            Optional<String> appId) throws Exception {
+        GetLatestDeploymentV1DeprecatedRequest request =
+            GetLatestDeploymentV1DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetLatestDeploymentDeprecatedRequest.class,
+                GetLatestDeploymentV1DeprecatedRequest.class,
                 _baseUrl,
                 "/deployments/v1/{appId}/latest",
                 request, this.sdkConfiguration.globals);
@@ -529,26 +590,39 @@ public class DeploymentsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetLatestDeploymentDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetLatestDeploymentV1Deprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetLatestDeploymentDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetLatestDeploymentV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetLatestDeploymentDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetLatestDeploymentV1Deprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetLatestDeploymentDeprecated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetLatestDeploymentV1Deprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -556,42 +630,42 @@ public class DeploymentsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetLatestDeploymentDeprecatedResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetLatestDeploymentDeprecatedResponse
+        GetLatestDeploymentV1DeprecatedResponse.Builder _resBuilder = 
+            GetLatestDeploymentV1DeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.hathora.cloud_sdk.models.operations.GetLatestDeploymentDeprecatedResponse _res = _resBuilder.build();
+        GetLatestDeploymentV1DeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.shared.Deployment _out = Utils.mapper().readValue(
+                DeploymentV1 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.shared.Deployment>() {});
-                _res.withDeployment(java.util.Optional.ofNullable(_out));
+                    new TypeReference<DeploymentV1>() {});
+                _res.withDeploymentV1(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -600,13 +674,13 @@ public class DeploymentsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

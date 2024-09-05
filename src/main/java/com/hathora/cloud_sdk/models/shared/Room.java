@@ -4,20 +4,21 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 /**
  * Room - A room object represents a game session or match.
  */
@@ -25,7 +26,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class Room {
 
     @JsonProperty("allocations")
-    private java.util.List<RoomAllocation> allocations;
+    private List<RoomAllocation> allocations;
 
     /**
      * System generated unique identifier for an application.
@@ -39,7 +40,7 @@ public class Room {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("roomConfig")
-    private JsonNullable<? extends String> roomConfig;
+    private JsonNullable<String> roomConfig;
 
     /**
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
@@ -62,10 +63,10 @@ public class Room {
 
     @JsonCreator
     public Room(
-            @JsonProperty("allocations") java.util.List<RoomAllocation> allocations,
+            @JsonProperty("allocations") List<RoomAllocation> allocations,
             @JsonProperty("appId") String appId,
             @JsonProperty("currentAllocation") Optional<? extends CurrentAllocation> currentAllocation,
-            @JsonProperty("roomConfig") JsonNullable<? extends String> roomConfig,
+            @JsonProperty("roomConfig") JsonNullable<String> roomConfig,
             @JsonProperty("roomId") String roomId,
             @JsonProperty("status") RoomStatus status) {
         Utils.checkNotNull(allocations, "allocations");
@@ -83,7 +84,7 @@ public class Room {
     }
     
     public Room(
-            java.util.List<RoomAllocation> allocations,
+            List<RoomAllocation> allocations,
             String appId,
             String roomId,
             RoomStatus status) {
@@ -91,7 +92,7 @@ public class Room {
     }
 
     @JsonIgnore
-    public java.util.List<RoomAllocation> allocations() {
+    public List<RoomAllocation> allocations() {
         return allocations;
     }
 
@@ -109,10 +110,9 @@ public class Room {
         return (Optional<CurrentAllocation>) currentAllocation;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<String> roomConfig() {
-        return (JsonNullable<String>) roomConfig;
+        return roomConfig;
     }
 
     /**
@@ -142,7 +142,7 @@ public class Room {
         return new Builder();
     }
 
-    public Room withAllocations(java.util.List<RoomAllocation> allocations) {
+    public Room withAllocations(List<RoomAllocation> allocations) {
         Utils.checkNotNull(allocations, "allocations");
         this.allocations = allocations;
         return this;
@@ -175,7 +175,7 @@ public class Room {
         return this;
     }
 
-    public Room withRoomConfig(JsonNullable<? extends String> roomConfig) {
+    public Room withRoomConfig(JsonNullable<String> roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
         this.roomConfig = roomConfig;
         return this;
@@ -216,17 +216,17 @@ public class Room {
         }
         Room other = (Room) o;
         return 
-            java.util.Objects.deepEquals(this.allocations, other.allocations) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.currentAllocation, other.currentAllocation) &&
-            java.util.Objects.deepEquals(this.roomConfig, other.roomConfig) &&
-            java.util.Objects.deepEquals(this.roomId, other.roomId) &&
-            java.util.Objects.deepEquals(this.status, other.status);
+            Objects.deepEquals(this.allocations, other.allocations) &&
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.currentAllocation, other.currentAllocation) &&
+            Objects.deepEquals(this.roomConfig, other.roomConfig) &&
+            Objects.deepEquals(this.roomId, other.roomId) &&
+            Objects.deepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             allocations,
             appId,
             currentAllocation,
@@ -248,13 +248,13 @@ public class Room {
     
     public final static class Builder {
  
-        private java.util.List<RoomAllocation> allocations;
+        private List<RoomAllocation> allocations;
  
         private String appId;
  
         private Optional<? extends CurrentAllocation> currentAllocation = Optional.empty();
  
-        private JsonNullable<? extends String> roomConfig = JsonNullable.undefined();
+        private JsonNullable<String> roomConfig = JsonNullable.undefined();
  
         private String roomId;
  
@@ -264,7 +264,7 @@ public class Room {
           // force use of static builder() method
         }
 
-        public Builder allocations(java.util.List<RoomAllocation> allocations) {
+        public Builder allocations(List<RoomAllocation> allocations) {
             Utils.checkNotNull(allocations, "allocations");
             this.allocations = allocations;
             return this;
@@ -297,7 +297,7 @@ public class Room {
             return this;
         }
 
-        public Builder roomConfig(JsonNullable<? extends String> roomConfig) {
+        public Builder roomConfig(JsonNullable<String> roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
             this.roomConfig = roomConfig;
             return this;

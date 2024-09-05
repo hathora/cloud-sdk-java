@@ -4,28 +4,28 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.CreateOrgToken;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class CreateOrgTokenRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.hathora.cloud_sdk.models.shared.CreateOrgToken createOrgToken;
+    private CreateOrgToken createOrgToken;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=orgId")
     private String orgId;
 
     @JsonCreator
     public CreateOrgTokenRequest(
-            com.hathora.cloud_sdk.models.shared.CreateOrgToken createOrgToken,
+            CreateOrgToken createOrgToken,
             String orgId) {
         Utils.checkNotNull(createOrgToken, "createOrgToken");
         Utils.checkNotNull(orgId, "orgId");
@@ -34,7 +34,7 @@ public class CreateOrgTokenRequest {
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.CreateOrgToken createOrgToken() {
+    public CreateOrgToken createOrgToken() {
         return createOrgToken;
     }
 
@@ -47,7 +47,7 @@ public class CreateOrgTokenRequest {
         return new Builder();
     }
 
-    public CreateOrgTokenRequest withCreateOrgToken(com.hathora.cloud_sdk.models.shared.CreateOrgToken createOrgToken) {
+    public CreateOrgTokenRequest withCreateOrgToken(CreateOrgToken createOrgToken) {
         Utils.checkNotNull(createOrgToken, "createOrgToken");
         this.createOrgToken = createOrgToken;
         return this;
@@ -69,13 +69,13 @@ public class CreateOrgTokenRequest {
         }
         CreateOrgTokenRequest other = (CreateOrgTokenRequest) o;
         return 
-            java.util.Objects.deepEquals(this.createOrgToken, other.createOrgToken) &&
-            java.util.Objects.deepEquals(this.orgId, other.orgId);
+            Objects.deepEquals(this.createOrgToken, other.createOrgToken) &&
+            Objects.deepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             createOrgToken,
             orgId);
     }
@@ -89,7 +89,7 @@ public class CreateOrgTokenRequest {
     
     public final static class Builder {
  
-        private com.hathora.cloud_sdk.models.shared.CreateOrgToken createOrgToken;
+        private CreateOrgToken createOrgToken;
  
         private String orgId;  
         
@@ -97,7 +97,7 @@ public class CreateOrgTokenRequest {
           // force use of static builder() method
         }
 
-        public Builder createOrgToken(com.hathora.cloud_sdk.models.shared.CreateOrgToken createOrgToken) {
+        public Builder createOrgToken(CreateOrgToken createOrgToken) {
             Utils.checkNotNull(createOrgToken, "createOrgToken");
             this.createOrgToken = createOrgToken;
             return this;

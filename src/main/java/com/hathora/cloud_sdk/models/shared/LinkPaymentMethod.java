@@ -4,29 +4,28 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class LinkPaymentMethod {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
-    private Optional<? extends String> email;
+    private Optional<String> email;
 
     @JsonCreator
     public LinkPaymentMethod(
-            @JsonProperty("email") Optional<? extends String> email) {
+            @JsonProperty("email") Optional<String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
     }
@@ -35,10 +34,9 @@ public class LinkPaymentMethod {
         this(Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> email() {
-        return (Optional<String>) email;
+        return email;
     }
 
     public final static Builder builder() {
@@ -51,7 +49,7 @@ public class LinkPaymentMethod {
         return this;
     }
 
-    public LinkPaymentMethod withEmail(Optional<? extends String> email) {
+    public LinkPaymentMethod withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
@@ -67,12 +65,12 @@ public class LinkPaymentMethod {
         }
         LinkPaymentMethod other = (LinkPaymentMethod) o;
         return 
-            java.util.Objects.deepEquals(this.email, other.email);
+            Objects.deepEquals(this.email, other.email);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             email);
     }
     
@@ -84,7 +82,7 @@ public class LinkPaymentMethod {
     
     public final static class Builder {
  
-        private Optional<? extends String> email = Optional.empty();  
+        private Optional<String> email = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -96,7 +94,7 @@ public class LinkPaymentMethod {
             return this;
         }
 
-        public Builder email(Optional<? extends String> email) {
+        public Builder email(Optional<String> email) {
             Utils.checkNotNull(email, "email");
             this.email = email;
             return this;

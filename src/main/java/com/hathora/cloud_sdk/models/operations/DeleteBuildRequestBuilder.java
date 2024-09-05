@@ -4,51 +4,42 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class DeleteBuildRequestBuilder {
 
-    private Optional<? extends String> appId = Optional.empty();
-    private Integer buildId;
+    private String buildId;
+    private Optional<String> orgId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallDeleteBuild sdk;
 
     public DeleteBuildRequestBuilder(SDKMethodInterfaces.MethodCallDeleteBuild sdk) {
         this.sdk = sdk;
     }
-                
-    public DeleteBuildRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
-        return this;
-    }
 
-    public DeleteBuildRequestBuilder appId(Optional<? extends String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
-        return this;
-    }
-
-    public DeleteBuildRequestBuilder buildId(int buildId) {
+    public DeleteBuildRequestBuilder buildId(java.lang.String buildId) {
         Utils.checkNotNull(buildId, "buildId");
         this.buildId = buildId;
+        return this;
+    }
+                
+    public DeleteBuildRequestBuilder orgId(java.lang.String orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = Optional.of(orgId);
+        return this;
+    }
+
+    public DeleteBuildRequestBuilder orgId(java.util.Optional<java.lang.String> orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = orgId;
         return this;
     }
 
     public DeleteBuildResponse call() throws Exception {
 
         return sdk.deleteBuild(
-            appId,
-            buildId);
+            buildId,
+            orgId);
     }
 }

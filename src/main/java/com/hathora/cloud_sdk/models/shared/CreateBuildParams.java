@@ -4,19 +4,18 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateBuildParams {
 
@@ -25,11 +24,11 @@ public class CreateBuildParams {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buildTag")
-    private Optional<? extends String> buildTag;
+    private Optional<String> buildTag;
 
     @JsonCreator
     public CreateBuildParams(
-            @JsonProperty("buildTag") Optional<? extends String> buildTag) {
+            @JsonProperty("buildTag") Optional<String> buildTag) {
         Utils.checkNotNull(buildTag, "buildTag");
         this.buildTag = buildTag;
     }
@@ -41,10 +40,9 @@ public class CreateBuildParams {
     /**
      * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> buildTag() {
-        return (Optional<String>) buildTag;
+        return buildTag;
     }
 
     public final static Builder builder() {
@@ -63,7 +61,7 @@ public class CreateBuildParams {
     /**
      * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
      */
-    public CreateBuildParams withBuildTag(Optional<? extends String> buildTag) {
+    public CreateBuildParams withBuildTag(Optional<String> buildTag) {
         Utils.checkNotNull(buildTag, "buildTag");
         this.buildTag = buildTag;
         return this;
@@ -79,12 +77,12 @@ public class CreateBuildParams {
         }
         CreateBuildParams other = (CreateBuildParams) o;
         return 
-            java.util.Objects.deepEquals(this.buildTag, other.buildTag);
+            Objects.deepEquals(this.buildTag, other.buildTag);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             buildTag);
     }
     
@@ -96,7 +94,7 @@ public class CreateBuildParams {
     
     public final static class Builder {
  
-        private Optional<? extends String> buildTag = Optional.empty();  
+        private Optional<String> buildTag = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -114,7 +112,7 @@ public class CreateBuildParams {
         /**
          * Tag to associate an external version with a build. It is accessible via [`GetBuildInfo()`](https://hathora.dev/api#tag/BuildV2/operation/GetBuildInfo).
          */
-        public Builder buildTag(Optional<? extends String> buildTag) {
+        public Builder buildTag(Optional<String> buildTag) {
             Utils.checkNotNull(buildTag, "buildTag");
             this.buildTag = buildTag;
             return this;

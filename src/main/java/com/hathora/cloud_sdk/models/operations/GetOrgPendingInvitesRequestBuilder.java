@@ -4,18 +4,8 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
+import java.lang.String;
 
 public class GetOrgPendingInvitesRequestBuilder {
 
@@ -26,7 +16,7 @@ public class GetOrgPendingInvitesRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetOrgPendingInvitesRequestBuilder orgId(String orgId) {
+    public GetOrgPendingInvitesRequestBuilder orgId(java.lang.String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

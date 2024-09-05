@@ -4,16 +4,16 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class CreateLobbyParams {
 
@@ -21,7 +21,7 @@ public class CreateLobbyParams {
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
     @JsonProperty("initialConfig")
-    private java.lang.Object initialConfig;
+    private Object initialConfig;
 
     @JsonProperty("region")
     private Region region;
@@ -40,7 +40,7 @@ public class CreateLobbyParams {
 
     @JsonCreator
     public CreateLobbyParams(
-            @JsonProperty("initialConfig") java.lang.Object initialConfig,
+            @JsonProperty("initialConfig") Object initialConfig,
             @JsonProperty("region") Region region,
             @JsonProperty("visibility") LobbyVisibility visibility) {
         Utils.checkNotNull(initialConfig, "initialConfig");
@@ -55,7 +55,7 @@ public class CreateLobbyParams {
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
     @JsonIgnore
-    public java.lang.Object initialConfig() {
+    public Object initialConfig() {
         return initialConfig;
     }
 
@@ -85,7 +85,7 @@ public class CreateLobbyParams {
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
-    public CreateLobbyParams withInitialConfig(java.lang.Object initialConfig) {
+    public CreateLobbyParams withInitialConfig(Object initialConfig) {
         Utils.checkNotNull(initialConfig, "initialConfig");
         this.initialConfig = initialConfig;
         return this;
@@ -122,14 +122,14 @@ public class CreateLobbyParams {
         }
         CreateLobbyParams other = (CreateLobbyParams) o;
         return 
-            java.util.Objects.deepEquals(this.initialConfig, other.initialConfig) &&
-            java.util.Objects.deepEquals(this.region, other.region) &&
-            java.util.Objects.deepEquals(this.visibility, other.visibility);
+            Objects.deepEquals(this.initialConfig, other.initialConfig) &&
+            Objects.deepEquals(this.region, other.region) &&
+            Objects.deepEquals(this.visibility, other.visibility);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             initialConfig,
             region,
             visibility);
@@ -145,7 +145,7 @@ public class CreateLobbyParams {
     
     public final static class Builder {
  
-        private java.lang.Object initialConfig;
+        private Object initialConfig;
  
         private Region region;
  
@@ -158,7 +158,7 @@ public class CreateLobbyParams {
         /**
          * User input to initialize the game state. Object must be smaller than 64KB.
          */
-        public Builder initialConfig(java.lang.Object initialConfig) {
+        public Builder initialConfig(Object initialConfig) {
             Utils.checkNotNull(initialConfig, "initialConfig");
             this.initialConfig = initialConfig;
             return this;

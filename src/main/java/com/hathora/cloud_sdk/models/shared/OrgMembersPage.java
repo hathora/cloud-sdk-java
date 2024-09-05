@@ -4,31 +4,31 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class OrgMembersPage {
 
     @JsonProperty("members")
-    private java.util.List<OrgMember> members;
+    private List<OrgMember> members;
 
     @JsonCreator
     public OrgMembersPage(
-            @JsonProperty("members") java.util.List<OrgMember> members) {
+            @JsonProperty("members") List<OrgMember> members) {
         Utils.checkNotNull(members, "members");
         this.members = members;
     }
 
     @JsonIgnore
-    public java.util.List<OrgMember> members() {
+    public List<OrgMember> members() {
         return members;
     }
 
@@ -36,7 +36,7 @@ public class OrgMembersPage {
         return new Builder();
     }
 
-    public OrgMembersPage withMembers(java.util.List<OrgMember> members) {
+    public OrgMembersPage withMembers(List<OrgMember> members) {
         Utils.checkNotNull(members, "members");
         this.members = members;
         return this;
@@ -52,12 +52,12 @@ public class OrgMembersPage {
         }
         OrgMembersPage other = (OrgMembersPage) o;
         return 
-            java.util.Objects.deepEquals(this.members, other.members);
+            Objects.deepEquals(this.members, other.members);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             members);
     }
     
@@ -69,13 +69,13 @@ public class OrgMembersPage {
     
     public final static class Builder {
  
-        private java.util.List<OrgMember> members;  
+        private List<OrgMember> members;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder members(java.util.List<OrgMember> members) {
+        public Builder members(List<OrgMember> members) {
             Utils.checkNotNull(members, "members");
             this.members = members;
             return this;

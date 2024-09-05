@@ -4,24 +4,28 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.Build;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetBuildInfoDeprecatedResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetBuildInfoDeprecatedResponse implements Response {
 
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build;
+    private Optional<? extends Build> build;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class GetBuildInfoDeprecatedResponse implements com.hathora.cloud_sdk.uti
 
     @JsonCreator
     public GetBuildInfoDeprecatedResponse(
-            Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build,
+            Optional<? extends Build> build,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class GetBuildInfoDeprecatedResponse implements com.hathora.cloud_sdk.uti
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.Build> build() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.Build>) build;
+    public Optional<Build> build() {
+        return (Optional<Build>) build;
     }
 
     /**
@@ -101,7 +105,7 @@ public class GetBuildInfoDeprecatedResponse implements com.hathora.cloud_sdk.uti
     /**
      * Ok
      */
-    public GetBuildInfoDeprecatedResponse withBuild(com.hathora.cloud_sdk.models.shared.Build build) {
+    public GetBuildInfoDeprecatedResponse withBuild(Build build) {
         Utils.checkNotNull(build, "build");
         this.build = Optional.ofNullable(build);
         return this;
@@ -110,7 +114,7 @@ public class GetBuildInfoDeprecatedResponse implements com.hathora.cloud_sdk.uti
     /**
      * Ok
      */
-    public GetBuildInfoDeprecatedResponse withBuild(Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build) {
+    public GetBuildInfoDeprecatedResponse withBuild(Optional<? extends Build> build) {
         Utils.checkNotNull(build, "build");
         this.build = build;
         return this;
@@ -153,15 +157,15 @@ public class GetBuildInfoDeprecatedResponse implements com.hathora.cloud_sdk.uti
         }
         GetBuildInfoDeprecatedResponse other = (GetBuildInfoDeprecatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.build, other.build) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.build, other.build) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             build,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class GetBuildInfoDeprecatedResponse implements com.hathora.cloud_sdk.uti
     
     public final static class Builder {
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build = Optional.empty();
+        private Optional<? extends Build> build = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class GetBuildInfoDeprecatedResponse implements com.hathora.cloud_sdk.uti
         /**
          * Ok
          */
-        public Builder build(com.hathora.cloud_sdk.models.shared.Build build) {
+        public Builder build(Build build) {
             Utils.checkNotNull(build, "build");
             this.build = Optional.ofNullable(build);
             return this;
@@ -203,7 +207,7 @@ public class GetBuildInfoDeprecatedResponse implements com.hathora.cloud_sdk.uti
         /**
          * Ok
          */
-        public Builder build(Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build) {
+        public Builder build(Optional<? extends Build> build) {
             Utils.checkNotNull(build, "build");
             this.build = build;
             return this;

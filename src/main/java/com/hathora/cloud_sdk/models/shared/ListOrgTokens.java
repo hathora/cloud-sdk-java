@@ -4,31 +4,31 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class ListOrgTokens {
 
     @JsonProperty("tokens")
-    private java.util.List<OrgToken> tokens;
+    private List<OrgToken> tokens;
 
     @JsonCreator
     public ListOrgTokens(
-            @JsonProperty("tokens") java.util.List<OrgToken> tokens) {
+            @JsonProperty("tokens") List<OrgToken> tokens) {
         Utils.checkNotNull(tokens, "tokens");
         this.tokens = tokens;
     }
 
     @JsonIgnore
-    public java.util.List<OrgToken> tokens() {
+    public List<OrgToken> tokens() {
         return tokens;
     }
 
@@ -36,7 +36,7 @@ public class ListOrgTokens {
         return new Builder();
     }
 
-    public ListOrgTokens withTokens(java.util.List<OrgToken> tokens) {
+    public ListOrgTokens withTokens(List<OrgToken> tokens) {
         Utils.checkNotNull(tokens, "tokens");
         this.tokens = tokens;
         return this;
@@ -52,12 +52,12 @@ public class ListOrgTokens {
         }
         ListOrgTokens other = (ListOrgTokens) o;
         return 
-            java.util.Objects.deepEquals(this.tokens, other.tokens);
+            Objects.deepEquals(this.tokens, other.tokens);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             tokens);
     }
     
@@ -69,13 +69,13 @@ public class ListOrgTokens {
     
     public final static class Builder {
  
-        private java.util.List<OrgToken> tokens;  
+        private List<OrgToken> tokens;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder tokens(java.util.List<OrgToken> tokens) {
+        public Builder tokens(List<OrgToken> tokens) {
             Utils.checkNotNull(tokens, "tokens");
             this.tokens = tokens;
             return this;

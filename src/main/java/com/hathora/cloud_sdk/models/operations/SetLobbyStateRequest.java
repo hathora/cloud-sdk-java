@@ -4,33 +4,33 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.SetLobbyStateParams;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class SetLobbyStateRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.hathora.cloud_sdk.models.shared.SetLobbyStateParams setLobbyStateParams;
+    private SetLobbyStateParams setLobbyStateParams;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=roomId")
     private String roomId;
 
     @JsonCreator
     public SetLobbyStateRequest(
-            com.hathora.cloud_sdk.models.shared.SetLobbyStateParams setLobbyStateParams,
-            Optional<? extends String> appId,
+            SetLobbyStateParams setLobbyStateParams,
+            Optional<String> appId,
             String roomId) {
         Utils.checkNotNull(setLobbyStateParams, "setLobbyStateParams");
         Utils.checkNotNull(appId, "appId");
@@ -41,20 +41,19 @@ public class SetLobbyStateRequest {
     }
     
     public SetLobbyStateRequest(
-            com.hathora.cloud_sdk.models.shared.SetLobbyStateParams setLobbyStateParams,
+            SetLobbyStateParams setLobbyStateParams,
             String roomId) {
         this(setLobbyStateParams, Optional.empty(), roomId);
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.SetLobbyStateParams setLobbyStateParams() {
+    public SetLobbyStateParams setLobbyStateParams() {
         return setLobbyStateParams;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
     @JsonIgnore
@@ -66,7 +65,7 @@ public class SetLobbyStateRequest {
         return new Builder();
     }
 
-    public SetLobbyStateRequest withSetLobbyStateParams(com.hathora.cloud_sdk.models.shared.SetLobbyStateParams setLobbyStateParams) {
+    public SetLobbyStateRequest withSetLobbyStateParams(SetLobbyStateParams setLobbyStateParams) {
         Utils.checkNotNull(setLobbyStateParams, "setLobbyStateParams");
         this.setLobbyStateParams = setLobbyStateParams;
         return this;
@@ -78,7 +77,7 @@ public class SetLobbyStateRequest {
         return this;
     }
 
-    public SetLobbyStateRequest withAppId(Optional<? extends String> appId) {
+    public SetLobbyStateRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -100,14 +99,14 @@ public class SetLobbyStateRequest {
         }
         SetLobbyStateRequest other = (SetLobbyStateRequest) o;
         return 
-            java.util.Objects.deepEquals(this.setLobbyStateParams, other.setLobbyStateParams) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.roomId, other.roomId);
+            Objects.deepEquals(this.setLobbyStateParams, other.setLobbyStateParams) &&
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.roomId, other.roomId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             setLobbyStateParams,
             appId,
             roomId);
@@ -123,9 +122,9 @@ public class SetLobbyStateRequest {
     
     public final static class Builder {
  
-        private com.hathora.cloud_sdk.models.shared.SetLobbyStateParams setLobbyStateParams;
+        private SetLobbyStateParams setLobbyStateParams;
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
         private String roomId;  
         
@@ -133,7 +132,7 @@ public class SetLobbyStateRequest {
           // force use of static builder() method
         }
 
-        public Builder setLobbyStateParams(com.hathora.cloud_sdk.models.shared.SetLobbyStateParams setLobbyStateParams) {
+        public Builder setLobbyStateParams(SetLobbyStateParams setLobbyStateParams) {
             Utils.checkNotNull(setLobbyStateParams, "setLobbyStateParams");
             this.setLobbyStateParams = setLobbyStateParams;
             return this;
@@ -145,7 +144,7 @@ public class SetLobbyStateRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;

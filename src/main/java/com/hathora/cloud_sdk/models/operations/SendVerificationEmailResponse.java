@@ -4,19 +4,23 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class SendVerificationEmailResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class SendVerificationEmailResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class SendVerificationEmailResponse implements com.hathora.cloud_sdk.util
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess> verificationEmailSuccess;
+    private Optional<? extends VerificationEmailSuccess> verificationEmailSuccess;
 
     @JsonCreator
     public SendVerificationEmailResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess> verificationEmailSuccess) {
+            Optional<? extends VerificationEmailSuccess> verificationEmailSuccess) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class SendVerificationEmailResponse implements com.hathora.cloud_sdk.util
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess> verificationEmailSuccess() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess>) verificationEmailSuccess;
+    public Optional<VerificationEmailSuccess> verificationEmailSuccess() {
+        return (Optional<VerificationEmailSuccess>) verificationEmailSuccess;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class SendVerificationEmailResponse implements com.hathora.cloud_sdk.util
     /**
      * Ok
      */
-    public SendVerificationEmailResponse withVerificationEmailSuccess(com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess verificationEmailSuccess) {
+    public SendVerificationEmailResponse withVerificationEmailSuccess(VerificationEmailSuccess verificationEmailSuccess) {
         Utils.checkNotNull(verificationEmailSuccess, "verificationEmailSuccess");
         this.verificationEmailSuccess = Optional.ofNullable(verificationEmailSuccess);
         return this;
@@ -137,7 +141,7 @@ public class SendVerificationEmailResponse implements com.hathora.cloud_sdk.util
     /**
      * Ok
      */
-    public SendVerificationEmailResponse withVerificationEmailSuccess(Optional<? extends com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess> verificationEmailSuccess) {
+    public SendVerificationEmailResponse withVerificationEmailSuccess(Optional<? extends VerificationEmailSuccess> verificationEmailSuccess) {
         Utils.checkNotNull(verificationEmailSuccess, "verificationEmailSuccess");
         this.verificationEmailSuccess = verificationEmailSuccess;
         return this;
@@ -153,15 +157,15 @@ public class SendVerificationEmailResponse implements com.hathora.cloud_sdk.util
         }
         SendVerificationEmailResponse other = (SendVerificationEmailResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.verificationEmailSuccess, other.verificationEmailSuccess);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.verificationEmailSuccess, other.verificationEmailSuccess);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class SendVerificationEmailResponse implements com.hathora.cloud_sdk.util
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess> verificationEmailSuccess = Optional.empty();  
+        private Optional<? extends VerificationEmailSuccess> verificationEmailSuccess = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class SendVerificationEmailResponse implements com.hathora.cloud_sdk.util
         /**
          * Ok
          */
-        public Builder verificationEmailSuccess(com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess verificationEmailSuccess) {
+        public Builder verificationEmailSuccess(VerificationEmailSuccess verificationEmailSuccess) {
             Utils.checkNotNull(verificationEmailSuccess, "verificationEmailSuccess");
             this.verificationEmailSuccess = Optional.ofNullable(verificationEmailSuccess);
             return this;
@@ -230,7 +234,7 @@ public class SendVerificationEmailResponse implements com.hathora.cloud_sdk.util
         /**
          * Ok
          */
-        public Builder verificationEmailSuccess(Optional<? extends com.hathora.cloud_sdk.models.shared.VerificationEmailSuccess> verificationEmailSuccess) {
+        public Builder verificationEmailSuccess(Optional<? extends VerificationEmailSuccess> verificationEmailSuccess) {
             Utils.checkNotNull(verificationEmailSuccess, "verificationEmailSuccess");
             this.verificationEmailSuccess = verificationEmailSuccess;
             return this;

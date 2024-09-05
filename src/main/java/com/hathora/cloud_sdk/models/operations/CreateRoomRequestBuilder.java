@@ -4,24 +4,16 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
+import com.hathora.cloud_sdk.models.shared.CreateRoomParams;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class CreateRoomRequestBuilder {
 
-    private com.hathora.cloud_sdk.models.shared.CreateRoomParams createRoomParams;
-    private Optional<? extends String> appId = Optional.empty();
-    private Optional<? extends String> roomId = Optional.empty();
+    private CreateRoomParams createRoomParams;
+    private Optional<String> appId = Optional.empty();
+    private Optional<String> roomId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateRoom sdk;
 
     public CreateRoomRequestBuilder(SDKMethodInterfaces.MethodCallCreateRoom sdk) {
@@ -34,25 +26,25 @@ public class CreateRoomRequestBuilder {
         return this;
     }
                 
-    public CreateRoomRequestBuilder appId(String appId) {
+    public CreateRoomRequestBuilder appId(java.lang.String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateRoomRequestBuilder appId(Optional<? extends String> appId) {
+    public CreateRoomRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public CreateRoomRequestBuilder roomId(String roomId) {
+    public CreateRoomRequestBuilder roomId(java.lang.String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = Optional.of(roomId);
         return this;
     }
 
-    public CreateRoomRequestBuilder roomId(Optional<? extends String> roomId) {
+    public CreateRoomRequestBuilder roomId(java.util.Optional<java.lang.String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

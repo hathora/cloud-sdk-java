@@ -4,22 +4,19 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 /**
  * RoomWithoutAllocationsCurrentAllocation - Metadata on an allocated instance of a room.
  */
@@ -43,14 +40,14 @@ public class RoomWithoutAllocationsCurrentAllocation {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("unscheduledAt")
-    private Optional<? extends OffsetDateTime> unscheduledAt;
+    private Optional<OffsetDateTime> unscheduledAt;
 
     @JsonCreator
     public RoomWithoutAllocationsCurrentAllocation(
             @JsonProperty("processId") String processId,
             @JsonProperty("roomAllocationId") String roomAllocationId,
             @JsonProperty("scheduledAt") OffsetDateTime scheduledAt,
-            @JsonProperty("unscheduledAt") Optional<? extends OffsetDateTime> unscheduledAt) {
+            @JsonProperty("unscheduledAt") Optional<OffsetDateTime> unscheduledAt) {
         Utils.checkNotNull(processId, "processId");
         Utils.checkNotNull(roomAllocationId, "roomAllocationId");
         Utils.checkNotNull(scheduledAt, "scheduledAt");
@@ -89,10 +86,9 @@ public class RoomWithoutAllocationsCurrentAllocation {
         return scheduledAt;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> unscheduledAt() {
-        return (Optional<OffsetDateTime>) unscheduledAt;
+        return unscheduledAt;
     }
 
     public final static Builder builder() {
@@ -129,7 +125,7 @@ public class RoomWithoutAllocationsCurrentAllocation {
         return this;
     }
 
-    public RoomWithoutAllocationsCurrentAllocation withUnscheduledAt(Optional<? extends OffsetDateTime> unscheduledAt) {
+    public RoomWithoutAllocationsCurrentAllocation withUnscheduledAt(Optional<OffsetDateTime> unscheduledAt) {
         Utils.checkNotNull(unscheduledAt, "unscheduledAt");
         this.unscheduledAt = unscheduledAt;
         return this;
@@ -145,15 +141,15 @@ public class RoomWithoutAllocationsCurrentAllocation {
         }
         RoomWithoutAllocationsCurrentAllocation other = (RoomWithoutAllocationsCurrentAllocation) o;
         return 
-            java.util.Objects.deepEquals(this.processId, other.processId) &&
-            java.util.Objects.deepEquals(this.roomAllocationId, other.roomAllocationId) &&
-            java.util.Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
-            java.util.Objects.deepEquals(this.unscheduledAt, other.unscheduledAt);
+            Objects.deepEquals(this.processId, other.processId) &&
+            Objects.deepEquals(this.roomAllocationId, other.roomAllocationId) &&
+            Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
+            Objects.deepEquals(this.unscheduledAt, other.unscheduledAt);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             processId,
             roomAllocationId,
             scheduledAt,
@@ -177,7 +173,7 @@ public class RoomWithoutAllocationsCurrentAllocation {
  
         private OffsetDateTime scheduledAt;
  
-        private Optional<? extends OffsetDateTime> unscheduledAt = Optional.empty();  
+        private Optional<OffsetDateTime> unscheduledAt = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -213,7 +209,7 @@ public class RoomWithoutAllocationsCurrentAllocation {
             return this;
         }
 
-        public Builder unscheduledAt(Optional<? extends OffsetDateTime> unscheduledAt) {
+        public Builder unscheduledAt(Optional<OffsetDateTime> unscheduledAt) {
             Utils.checkNotNull(unscheduledAt, "unscheduledAt");
             this.unscheduledAt = unscheduledAt;
             return this;

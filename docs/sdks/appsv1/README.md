@@ -1,15 +1,17 @@
 # AppsV1
 (*appsV1()*)
 
+## Overview
+
 ### Available Operations
 
-* [createApp](#createapp) - Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
-* [deleteApp](#deleteapp) - Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
-* [getAppInfo](#getappinfo) - Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-* [getApps](#getapps) - Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
-* [updateApp](#updateapp) - Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+* [createAppV1Deprecated](#createappv1deprecated) - Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+* [deleteAppV1Deprecated](#deleteappv1deprecated) - Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+* [getAppInfoV1Deprecated](#getappinfov1deprecated) - Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+* [getAppsV1Deprecated](#getappsv1deprecated) - Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+* [updateAppV1Deprecated](#updateappv1deprecated) - Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
 
-## createApp
+## createAppV1Deprecated
 
 Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
 
@@ -19,17 +21,12 @@ Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#ap
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.AppConfig;
+import com.hathora.cloud_sdk.models.shared.AuthConfiguration;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -48,7 +45,7 @@ public class Application {
                         .build())
                 .build();
 
-            CreateAppResponse res = sdk.appsV1().createApp()
+            CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()
                 .request(req)
                 .call();
 
@@ -58,7 +55,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -72,14 +69,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `request`                                                                         | [com.hathora.cloud_sdk.models.shared.AppConfig](../../models/shared/AppConfig.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
-
+| Parameter                                     | Type                                          | Required                                      | Description                                   |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| `request`                                     | [AppConfig](../../models/shared/AppConfig.md) | :heavy_check_mark:                            | The request object to use for the request.    |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.CreateAppResponse](../../models/operations/CreateAppResponse.md)**
+**[CreateAppV1DeprecatedResponse](../../models/operations/CreateAppV1DeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -87,7 +84,8 @@ public class Application {
 | models/errors/ApiError | 401,422,429,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
-## deleteApp
+
+## deleteAppV1Deprecated
 
 Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
 
@@ -97,17 +95,10 @@ Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#appli
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.DeleteAppV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -120,7 +111,7 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            DeleteAppResponse res = sdk.appsV1().deleteApp()
+            DeleteAppV1DeprecatedResponse res = sdk.appsV1().deleteAppV1Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
@@ -128,7 +119,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -144,12 +135,12 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
-
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.DeleteAppResponse](../../models/operations/DeleteAppResponse.md)**
+**[DeleteAppV1DeprecatedResponse](../../models/operations/DeleteAppV1DeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -157,7 +148,8 @@ public class Application {
 | models/errors/ApiError | 401,404,429,500        | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
-## getAppInfo
+
+## getAppInfoV1Deprecated
 
 Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
 
@@ -167,17 +159,10 @@ Get details for an [application](https://hathora.dev/docs/concepts/hathora-entit
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetAppInfoV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -190,7 +175,7 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetAppInfoResponse res = sdk.appsV1().getAppInfo()
+            GetAppInfoV1DeprecatedResponse res = sdk.appsV1().getAppInfoV1Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
@@ -200,7 +185,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -216,12 +201,12 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
-
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetAppInfoResponse](../../models/operations/GetAppInfoResponse.md)**
+**[GetAppInfoV1DeprecatedResponse](../../models/operations/GetAppInfoV1DeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -229,7 +214,8 @@ public class Application {
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
-## getApps
+
+## getAppsV1Deprecated
 
 Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
 
@@ -239,17 +225,10 @@ Returns an unsorted list of your organization’s [applications](https://hathora
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetAppsV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -262,7 +241,7 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            GetAppsResponse res = sdk.appsV1().getApps()
+            GetAppsV1DeprecatedResponse res = sdk.appsV1().getAppsV1Deprecated()
                 .call();
 
             if (res.classes().isPresent()) {
@@ -271,7 +250,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -283,10 +262,10 @@ public class Application {
 }
 ```
 
-
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetAppsResponse](../../models/operations/GetAppsResponse.md)**
+**[GetAppsV1DeprecatedResponse](../../models/operations/GetAppsV1DeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -294,7 +273,8 @@ public class Application {
 | models/errors/ApiError | 401,429                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
-## updateApp
+
+## updateAppV1Deprecated
 
 Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
 
@@ -304,17 +284,12 @@ Update data for an existing [application](https://hathora.dev/docs/concepts/hath
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.UpdateAppV1DeprecatedResponse;
+import com.hathora.cloud_sdk.models.shared.AppConfig;
+import com.hathora.cloud_sdk.models.shared.AuthConfiguration;
+import com.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -327,7 +302,7 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
-            UpdateAppResponse res = sdk.appsV1().updateApp()
+            UpdateAppV1DeprecatedResponse res = sdk.appsV1().updateAppV1Deprecated()
                 .appConfig(AppConfig.builder()
                     .appName("minecraft")
                     .authConfiguration(AuthConfiguration.builder()
@@ -342,7 +317,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -356,15 +331,15 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `appConfig`                                                                       | [com.hathora.cloud_sdk.models.shared.AppConfig](../../models/shared/AppConfig.md) | :heavy_check_mark:                                                                | N/A                                                                               |                                                                                   |
-| `appId`                                                                           | *Optional<? extends String>*                                                      | :heavy_minus_sign:                                                                | N/A                                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                                          |
-
+| Parameter                                     | Type                                          | Required                                      | Description                                   | Example                                       |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| `appConfig`                                   | [AppConfig](../../models/shared/AppConfig.md) | :heavy_check_mark:                            | N/A                                           |                                               |
+| `appId`                                       | *Optional<String>*                            | :heavy_minus_sign:                            | N/A                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2      |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.UpdateAppResponse](../../models/operations/UpdateAppResponse.md)**
+**[UpdateAppV1DeprecatedResponse](../../models/operations/UpdateAppV1DeprecatedResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

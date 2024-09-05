@@ -4,23 +4,24 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
+import java.lang.Boolean;
 import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 /**
  * Lobby - A lobby object allows you to store and manage metadata for your rooms.
  */
@@ -49,7 +50,7 @@ public class Lobby {
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
     @JsonProperty("initialConfig")
-    private java.lang.Object initialConfig;
+    private Object initialConfig;
 
     /**
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -70,14 +71,14 @@ public class Lobby {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("shortCode")
-    private Optional<? extends String> shortCode;
+    private Optional<String> shortCode;
 
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
-    private JsonNullable<? extends java.lang.Object> state;
+    private JsonNullable<? extends Object> state;
 
     /**
      * Types of lobbies a player can create.
@@ -96,12 +97,12 @@ public class Lobby {
             @JsonProperty("appId") String appId,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") CreatedBy createdBy,
-            @JsonProperty("initialConfig") java.lang.Object initialConfig,
+            @JsonProperty("initialConfig") Object initialConfig,
             @JsonProperty("local") boolean local,
             @JsonProperty("region") Region region,
             @JsonProperty("roomId") String roomId,
-            @JsonProperty("shortCode") Optional<? extends String> shortCode,
-            @JsonProperty("state") JsonNullable<? extends java.lang.Object> state,
+            @JsonProperty("shortCode") Optional<String> shortCode,
+            @JsonProperty("state") JsonNullable<? extends Object> state,
             @JsonProperty("visibility") LobbyVisibility visibility) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(createdAt, "createdAt");
@@ -129,7 +130,7 @@ public class Lobby {
             String appId,
             OffsetDateTime createdAt,
             CreatedBy createdBy,
-            java.lang.Object initialConfig,
+            Object initialConfig,
             boolean local,
             Region region,
             String roomId,
@@ -165,7 +166,7 @@ public class Lobby {
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
     @JsonIgnore
-    public java.lang.Object initialConfig() {
+    public Object initialConfig() {
         return initialConfig;
     }
 
@@ -192,10 +193,9 @@ public class Lobby {
         return roomId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> shortCode() {
-        return (Optional<String>) shortCode;
+        return shortCode;
     }
 
     /**
@@ -203,8 +203,8 @@ public class Lobby {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<java.lang.Object> state() {
-        return (JsonNullable<java.lang.Object>) state;
+    public JsonNullable<Object> state() {
+        return (JsonNullable<Object>) state;
     }
 
     /**
@@ -255,7 +255,7 @@ public class Lobby {
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
-    public Lobby withInitialConfig(java.lang.Object initialConfig) {
+    public Lobby withInitialConfig(Object initialConfig) {
         Utils.checkNotNull(initialConfig, "initialConfig");
         this.initialConfig = initialConfig;
         return this;
@@ -293,7 +293,7 @@ public class Lobby {
         return this;
     }
 
-    public Lobby withShortCode(Optional<? extends String> shortCode) {
+    public Lobby withShortCode(Optional<String> shortCode) {
         Utils.checkNotNull(shortCode, "shortCode");
         this.shortCode = shortCode;
         return this;
@@ -302,7 +302,7 @@ public class Lobby {
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
-    public Lobby withState(java.lang.Object state) {
+    public Lobby withState(Object state) {
         Utils.checkNotNull(state, "state");
         this.state = JsonNullable.of(state);
         return this;
@@ -311,7 +311,7 @@ public class Lobby {
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
-    public Lobby withState(JsonNullable<? extends java.lang.Object> state) {
+    public Lobby withState(JsonNullable<? extends Object> state) {
         Utils.checkNotNull(state, "state");
         this.state = state;
         return this;
@@ -342,21 +342,21 @@ public class Lobby {
         }
         Lobby other = (Lobby) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.createdBy, other.createdBy) &&
-            java.util.Objects.deepEquals(this.initialConfig, other.initialConfig) &&
-            java.util.Objects.deepEquals(this.local, other.local) &&
-            java.util.Objects.deepEquals(this.region, other.region) &&
-            java.util.Objects.deepEquals(this.roomId, other.roomId) &&
-            java.util.Objects.deepEquals(this.shortCode, other.shortCode) &&
-            java.util.Objects.deepEquals(this.state, other.state) &&
-            java.util.Objects.deepEquals(this.visibility, other.visibility);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.createdBy, other.createdBy) &&
+            Objects.deepEquals(this.initialConfig, other.initialConfig) &&
+            Objects.deepEquals(this.local, other.local) &&
+            Objects.deepEquals(this.region, other.region) &&
+            Objects.deepEquals(this.roomId, other.roomId) &&
+            Objects.deepEquals(this.shortCode, other.shortCode) &&
+            Objects.deepEquals(this.state, other.state) &&
+            Objects.deepEquals(this.visibility, other.visibility);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             createdAt,
             createdBy,
@@ -392,7 +392,7 @@ public class Lobby {
  
         private CreatedBy createdBy;
  
-        private java.lang.Object initialConfig;
+        private Object initialConfig;
  
         @Deprecated
         private Boolean local;
@@ -401,9 +401,9 @@ public class Lobby {
  
         private String roomId;
  
-        private Optional<? extends String> shortCode = Optional.empty();
+        private Optional<String> shortCode = Optional.empty();
  
-        private JsonNullable<? extends java.lang.Object> state = JsonNullable.undefined();
+        private JsonNullable<? extends Object> state = JsonNullable.undefined();
  
         private LobbyVisibility visibility;  
         
@@ -441,7 +441,7 @@ public class Lobby {
         /**
          * User input to initialize the game state. Object must be smaller than 64KB.
          */
-        public Builder initialConfig(java.lang.Object initialConfig) {
+        public Builder initialConfig(Object initialConfig) {
             Utils.checkNotNull(initialConfig, "initialConfig");
             this.initialConfig = initialConfig;
             return this;
@@ -479,7 +479,7 @@ public class Lobby {
             return this;
         }
 
-        public Builder shortCode(Optional<? extends String> shortCode) {
+        public Builder shortCode(Optional<String> shortCode) {
             Utils.checkNotNull(shortCode, "shortCode");
             this.shortCode = shortCode;
             return this;
@@ -488,7 +488,7 @@ public class Lobby {
         /**
          * JSON blob to store metadata for a room. Must be smaller than 1MB.
          */
-        public Builder state(java.lang.Object state) {
+        public Builder state(Object state) {
             Utils.checkNotNull(state, "state");
             this.state = JsonNullable.of(state);
             return this;
@@ -497,7 +497,7 @@ public class Lobby {
         /**
          * JSON blob to store metadata for a room. Must be smaller than 1MB.
          */
-        public Builder state(JsonNullable<? extends java.lang.Object> state) {
+        public Builder state(JsonNullable<? extends Object> state) {
             Utils.checkNotNull(state, "state");
             this.state = state;
             return this;

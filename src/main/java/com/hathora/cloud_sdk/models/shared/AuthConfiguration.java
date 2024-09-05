@@ -4,19 +4,19 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 /**
  * AuthConfiguration - Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
  */
@@ -156,14 +156,14 @@ public class AuthConfiguration {
         }
         AuthConfiguration other = (AuthConfiguration) o;
         return 
-            java.util.Objects.deepEquals(this.anonymous, other.anonymous) &&
-            java.util.Objects.deepEquals(this.google, other.google) &&
-            java.util.Objects.deepEquals(this.nickname, other.nickname);
+            Objects.deepEquals(this.anonymous, other.anonymous) &&
+            Objects.deepEquals(this.google, other.google) &&
+            Objects.deepEquals(this.nickname, other.nickname);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             anonymous,
             google,
             nickname);

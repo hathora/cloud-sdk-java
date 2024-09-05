@@ -4,22 +4,25 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
+import java.lang.Boolean;
 import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Double;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 /**
  * ProcessWithRooms - A process object represents a runtime instance of your game server and its metadata.
  */
@@ -42,7 +45,7 @@ public class ProcessWithRooms {
     private OffsetDateTime activeConnectionsUpdatedAt;
 
     @JsonProperty("additionalExposedPorts")
-    private java.util.List<ExposedPort> additionalExposedPorts;
+    private List<ExposedPort> additionalExposedPorts;
 
     /**
      * System generated unique identifier for an application.
@@ -85,7 +88,7 @@ public class ProcessWithRooms {
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("idleSince")
     @Deprecated
-    private Optional<? extends OffsetDateTime> idleSince;
+    private Optional<OffsetDateTime> idleSince;
 
     /**
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -118,7 +121,7 @@ public class ProcessWithRooms {
     private OffsetDateTime roomSlotsAvailableUpdatedAt;
 
     @JsonProperty("rooms")
-    private java.util.List<RoomWithoutAllocations> rooms;
+    private List<RoomWithoutAllocations> rooms;
 
     /**
      * Tracks the number of rooms that have been allocated to the process.
@@ -140,7 +143,7 @@ public class ProcessWithRooms {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("startedAt")
-    private Optional<? extends OffsetDateTime> startedAt;
+    private Optional<OffsetDateTime> startedAt;
 
     /**
      * When the process started being provisioned.
@@ -153,14 +156,14 @@ public class ProcessWithRooms {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("stoppingAt")
-    private Optional<? extends OffsetDateTime> stoppingAt;
+    private Optional<OffsetDateTime> stoppingAt;
 
     /**
      * When the process has been terminated.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("terminatedAt")
-    private Optional<? extends OffsetDateTime> terminatedAt;
+    private Optional<OffsetDateTime> terminatedAt;
 
     @JsonProperty("totalRooms")
     private int totalRooms;
@@ -169,27 +172,27 @@ public class ProcessWithRooms {
     public ProcessWithRooms(
             @JsonProperty("activeConnections") int activeConnections,
             @JsonProperty("activeConnectionsUpdatedAt") OffsetDateTime activeConnectionsUpdatedAt,
-            @JsonProperty("additionalExposedPorts") java.util.List<ExposedPort> additionalExposedPorts,
+            @JsonProperty("additionalExposedPorts") List<ExposedPort> additionalExposedPorts,
             @JsonProperty("appId") String appId,
             @JsonProperty("deploymentId") int deploymentId,
             @JsonProperty("draining") boolean draining,
             @JsonProperty("egressedBytes") int egressedBytes,
             @JsonProperty("exposedPort") Optional<? extends ProcessWithRoomsExposedPort> exposedPort,
             @JsonProperty("host") String host,
-            @JsonProperty("idleSince") Optional<? extends OffsetDateTime> idleSince,
+            @JsonProperty("idleSince") Optional<OffsetDateTime> idleSince,
             @JsonProperty("port") double port,
             @JsonProperty("processId") String processId,
             @JsonProperty("region") Region region,
             @JsonProperty("roomSlotsAvailable") double roomSlotsAvailable,
             @JsonProperty("roomSlotsAvailableUpdatedAt") OffsetDateTime roomSlotsAvailableUpdatedAt,
-            @JsonProperty("rooms") java.util.List<RoomWithoutAllocations> rooms,
+            @JsonProperty("rooms") List<RoomWithoutAllocations> rooms,
             @JsonProperty("roomsAllocated") int roomsAllocated,
             @JsonProperty("roomsAllocatedUpdatedAt") OffsetDateTime roomsAllocatedUpdatedAt,
             @JsonProperty("roomsPerProcess") int roomsPerProcess,
-            @JsonProperty("startedAt") Optional<? extends OffsetDateTime> startedAt,
+            @JsonProperty("startedAt") Optional<OffsetDateTime> startedAt,
             @JsonProperty("startingAt") OffsetDateTime startingAt,
-            @JsonProperty("stoppingAt") Optional<? extends OffsetDateTime> stoppingAt,
-            @JsonProperty("terminatedAt") Optional<? extends OffsetDateTime> terminatedAt,
+            @JsonProperty("stoppingAt") Optional<OffsetDateTime> stoppingAt,
+            @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt,
             @JsonProperty("totalRooms") int totalRooms) {
         Utils.checkNotNull(activeConnections, "activeConnections");
         Utils.checkNotNull(activeConnectionsUpdatedAt, "activeConnectionsUpdatedAt");
@@ -244,7 +247,7 @@ public class ProcessWithRooms {
     public ProcessWithRooms(
             int activeConnections,
             OffsetDateTime activeConnectionsUpdatedAt,
-            java.util.List<ExposedPort> additionalExposedPorts,
+            List<ExposedPort> additionalExposedPorts,
             String appId,
             int deploymentId,
             boolean draining,
@@ -255,7 +258,7 @@ public class ProcessWithRooms {
             Region region,
             double roomSlotsAvailable,
             OffsetDateTime roomSlotsAvailableUpdatedAt,
-            java.util.List<RoomWithoutAllocations> rooms,
+            List<RoomWithoutAllocations> rooms,
             int roomsAllocated,
             OffsetDateTime roomsAllocatedUpdatedAt,
             int roomsPerProcess,
@@ -284,7 +287,7 @@ public class ProcessWithRooms {
     }
 
     @JsonIgnore
-    public java.util.List<ExposedPort> additionalExposedPorts() {
+    public List<ExposedPort> additionalExposedPorts() {
         return additionalExposedPorts;
     }
 
@@ -339,10 +342,9 @@ public class ProcessWithRooms {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> idleSince() {
-        return (Optional<OffsetDateTime>) idleSince;
+        return idleSince;
     }
 
     /**
@@ -386,7 +388,7 @@ public class ProcessWithRooms {
     }
 
     @JsonIgnore
-    public java.util.List<RoomWithoutAllocations> rooms() {
+    public List<RoomWithoutAllocations> rooms() {
         return rooms;
     }
 
@@ -414,10 +416,9 @@ public class ProcessWithRooms {
     /**
      * When the process bound to the specified port. We use this to determine when we should start billing.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> startedAt() {
-        return (Optional<OffsetDateTime>) startedAt;
+        return startedAt;
     }
 
     /**
@@ -431,19 +432,17 @@ public class ProcessWithRooms {
     /**
      * When the process is issued to stop. We use this to determine when we should stop billing.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> stoppingAt() {
-        return (Optional<OffsetDateTime>) stoppingAt;
+        return stoppingAt;
     }
 
     /**
      * When the process has been terminated.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> terminatedAt() {
-        return (Optional<OffsetDateTime>) terminatedAt;
+        return terminatedAt;
     }
 
     @JsonIgnore
@@ -476,7 +475,7 @@ public class ProcessWithRooms {
         return this;
     }
 
-    public ProcessWithRooms withAdditionalExposedPorts(java.util.List<ExposedPort> additionalExposedPorts) {
+    public ProcessWithRooms withAdditionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
         Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
         this.additionalExposedPorts = additionalExposedPorts;
         return this;
@@ -554,7 +553,7 @@ public class ProcessWithRooms {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public ProcessWithRooms withIdleSince(Optional<? extends OffsetDateTime> idleSince) {
+    public ProcessWithRooms withIdleSince(Optional<OffsetDateTime> idleSince) {
         Utils.checkNotNull(idleSince, "idleSince");
         this.idleSince = idleSince;
         return this;
@@ -605,7 +604,7 @@ public class ProcessWithRooms {
         return this;
     }
 
-    public ProcessWithRooms withRooms(java.util.List<RoomWithoutAllocations> rooms) {
+    public ProcessWithRooms withRooms(List<RoomWithoutAllocations> rooms) {
         Utils.checkNotNull(rooms, "rooms");
         this.rooms = rooms;
         return this;
@@ -647,7 +646,7 @@ public class ProcessWithRooms {
     /**
      * When the process bound to the specified port. We use this to determine when we should start billing.
      */
-    public ProcessWithRooms withStartedAt(Optional<? extends OffsetDateTime> startedAt) {
+    public ProcessWithRooms withStartedAt(Optional<OffsetDateTime> startedAt) {
         Utils.checkNotNull(startedAt, "startedAt");
         this.startedAt = startedAt;
         return this;
@@ -674,7 +673,7 @@ public class ProcessWithRooms {
     /**
      * When the process is issued to stop. We use this to determine when we should stop billing.
      */
-    public ProcessWithRooms withStoppingAt(Optional<? extends OffsetDateTime> stoppingAt) {
+    public ProcessWithRooms withStoppingAt(Optional<OffsetDateTime> stoppingAt) {
         Utils.checkNotNull(stoppingAt, "stoppingAt");
         this.stoppingAt = stoppingAt;
         return this;
@@ -692,7 +691,7 @@ public class ProcessWithRooms {
     /**
      * When the process has been terminated.
      */
-    public ProcessWithRooms withTerminatedAt(Optional<? extends OffsetDateTime> terminatedAt) {
+    public ProcessWithRooms withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
         return this;
@@ -714,35 +713,35 @@ public class ProcessWithRooms {
         }
         ProcessWithRooms other = (ProcessWithRooms) o;
         return 
-            java.util.Objects.deepEquals(this.activeConnections, other.activeConnections) &&
-            java.util.Objects.deepEquals(this.activeConnectionsUpdatedAt, other.activeConnectionsUpdatedAt) &&
-            java.util.Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            java.util.Objects.deepEquals(this.draining, other.draining) &&
-            java.util.Objects.deepEquals(this.egressedBytes, other.egressedBytes) &&
-            java.util.Objects.deepEquals(this.exposedPort, other.exposedPort) &&
-            java.util.Objects.deepEquals(this.host, other.host) &&
-            java.util.Objects.deepEquals(this.idleSince, other.idleSince) &&
-            java.util.Objects.deepEquals(this.port, other.port) &&
-            java.util.Objects.deepEquals(this.processId, other.processId) &&
-            java.util.Objects.deepEquals(this.region, other.region) &&
-            java.util.Objects.deepEquals(this.roomSlotsAvailable, other.roomSlotsAvailable) &&
-            java.util.Objects.deepEquals(this.roomSlotsAvailableUpdatedAt, other.roomSlotsAvailableUpdatedAt) &&
-            java.util.Objects.deepEquals(this.rooms, other.rooms) &&
-            java.util.Objects.deepEquals(this.roomsAllocated, other.roomsAllocated) &&
-            java.util.Objects.deepEquals(this.roomsAllocatedUpdatedAt, other.roomsAllocatedUpdatedAt) &&
-            java.util.Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            java.util.Objects.deepEquals(this.startedAt, other.startedAt) &&
-            java.util.Objects.deepEquals(this.startingAt, other.startingAt) &&
-            java.util.Objects.deepEquals(this.stoppingAt, other.stoppingAt) &&
-            java.util.Objects.deepEquals(this.terminatedAt, other.terminatedAt) &&
-            java.util.Objects.deepEquals(this.totalRooms, other.totalRooms);
+            Objects.deepEquals(this.activeConnections, other.activeConnections) &&
+            Objects.deepEquals(this.activeConnectionsUpdatedAt, other.activeConnectionsUpdatedAt) &&
+            Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
+            Objects.deepEquals(this.draining, other.draining) &&
+            Objects.deepEquals(this.egressedBytes, other.egressedBytes) &&
+            Objects.deepEquals(this.exposedPort, other.exposedPort) &&
+            Objects.deepEquals(this.host, other.host) &&
+            Objects.deepEquals(this.idleSince, other.idleSince) &&
+            Objects.deepEquals(this.port, other.port) &&
+            Objects.deepEquals(this.processId, other.processId) &&
+            Objects.deepEquals(this.region, other.region) &&
+            Objects.deepEquals(this.roomSlotsAvailable, other.roomSlotsAvailable) &&
+            Objects.deepEquals(this.roomSlotsAvailableUpdatedAt, other.roomSlotsAvailableUpdatedAt) &&
+            Objects.deepEquals(this.rooms, other.rooms) &&
+            Objects.deepEquals(this.roomsAllocated, other.roomsAllocated) &&
+            Objects.deepEquals(this.roomsAllocatedUpdatedAt, other.roomsAllocatedUpdatedAt) &&
+            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Objects.deepEquals(this.startedAt, other.startedAt) &&
+            Objects.deepEquals(this.startingAt, other.startingAt) &&
+            Objects.deepEquals(this.stoppingAt, other.stoppingAt) &&
+            Objects.deepEquals(this.terminatedAt, other.terminatedAt) &&
+            Objects.deepEquals(this.totalRooms, other.totalRooms);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             activeConnections,
             activeConnectionsUpdatedAt,
             additionalExposedPorts,
@@ -806,7 +805,7 @@ public class ProcessWithRooms {
         @Deprecated
         private OffsetDateTime activeConnectionsUpdatedAt;
  
-        private java.util.List<ExposedPort> additionalExposedPorts;
+        private List<ExposedPort> additionalExposedPorts;
  
         private String appId;
  
@@ -822,7 +821,7 @@ public class ProcessWithRooms {
         private String host;
  
         @Deprecated
-        private Optional<? extends OffsetDateTime> idleSince = Optional.empty();
+        private Optional<OffsetDateTime> idleSince = Optional.empty();
  
         @Deprecated
         private Double port;
@@ -837,7 +836,7 @@ public class ProcessWithRooms {
         @Deprecated
         private OffsetDateTime roomSlotsAvailableUpdatedAt;
  
-        private java.util.List<RoomWithoutAllocations> rooms;
+        private List<RoomWithoutAllocations> rooms;
  
         private Integer roomsAllocated;
  
@@ -845,13 +844,13 @@ public class ProcessWithRooms {
  
         private Integer roomsPerProcess;
  
-        private Optional<? extends OffsetDateTime> startedAt = Optional.empty();
+        private Optional<OffsetDateTime> startedAt = Optional.empty();
  
         private OffsetDateTime startingAt;
  
-        private Optional<? extends OffsetDateTime> stoppingAt = Optional.empty();
+        private Optional<OffsetDateTime> stoppingAt = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> terminatedAt = Optional.empty();
+        private Optional<OffsetDateTime> terminatedAt = Optional.empty();
  
         private Integer totalRooms;  
         
@@ -880,7 +879,7 @@ public class ProcessWithRooms {
             return this;
         }
 
-        public Builder additionalExposedPorts(java.util.List<ExposedPort> additionalExposedPorts) {
+        public Builder additionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
             Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
             this.additionalExposedPorts = additionalExposedPorts;
             return this;
@@ -958,7 +957,7 @@ public class ProcessWithRooms {
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder idleSince(Optional<? extends OffsetDateTime> idleSince) {
+        public Builder idleSince(Optional<OffsetDateTime> idleSince) {
             Utils.checkNotNull(idleSince, "idleSince");
             this.idleSince = idleSince;
             return this;
@@ -1009,7 +1008,7 @@ public class ProcessWithRooms {
             return this;
         }
 
-        public Builder rooms(java.util.List<RoomWithoutAllocations> rooms) {
+        public Builder rooms(List<RoomWithoutAllocations> rooms) {
             Utils.checkNotNull(rooms, "rooms");
             this.rooms = rooms;
             return this;
@@ -1051,7 +1050,7 @@ public class ProcessWithRooms {
         /**
          * When the process bound to the specified port. We use this to determine when we should start billing.
          */
-        public Builder startedAt(Optional<? extends OffsetDateTime> startedAt) {
+        public Builder startedAt(Optional<OffsetDateTime> startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
             this.startedAt = startedAt;
             return this;
@@ -1078,7 +1077,7 @@ public class ProcessWithRooms {
         /**
          * When the process is issued to stop. We use this to determine when we should stop billing.
          */
-        public Builder stoppingAt(Optional<? extends OffsetDateTime> stoppingAt) {
+        public Builder stoppingAt(Optional<OffsetDateTime> stoppingAt) {
             Utils.checkNotNull(stoppingAt, "stoppingAt");
             this.stoppingAt = stoppingAt;
             return this;
@@ -1096,7 +1095,7 @@ public class ProcessWithRooms {
         /**
          * When the process has been terminated.
          */
-        public Builder terminatedAt(Optional<? extends OffsetDateTime> terminatedAt) {
+        public Builder terminatedAt(Optional<OffsetDateTime> terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = terminatedAt;
             return this;

@@ -4,24 +4,33 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.DeploymentsV3Page;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetDeploymentsResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetDeploymentsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
+
+    /**
+     * Ok
+     */
+    private Optional<? extends DeploymentsV3Page> deploymentsV3Page;
 
     /**
      * HTTP response status code for this operation
@@ -33,32 +42,27 @@ public class GetDeploymentsResponse implements com.hathora.cloud_sdk.utils.Respo
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * Ok
-     */
-    private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.DeploymentV2>> classes;
-
     @JsonCreator
     public GetDeploymentsResponse(
             String contentType,
+            Optional<? extends DeploymentsV3Page> deploymentsV3Page,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.DeploymentV2>> classes) {
+            HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(deploymentsV3Page, "deploymentsV3Page");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(classes, "classes");
         this.contentType = contentType;
+        this.deploymentsV3Page = deploymentsV3Page;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.classes = classes;
     }
     
     public GetDeploymentsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
@@ -67,6 +71,15 @@ public class GetDeploymentsResponse implements com.hathora.cloud_sdk.utils.Respo
     @JsonIgnore
     public String contentType() {
         return contentType;
+    }
+
+    /**
+     * Ok
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<DeploymentsV3Page> deploymentsV3Page() {
+        return (Optional<DeploymentsV3Page>) deploymentsV3Page;
     }
 
     /**
@@ -85,15 +98,6 @@ public class GetDeploymentsResponse implements com.hathora.cloud_sdk.utils.Respo
         return rawResponse;
     }
 
-    /**
-     * Ok
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<java.util.List<com.hathora.cloud_sdk.models.shared.DeploymentV2>> classes() {
-        return (Optional<java.util.List<com.hathora.cloud_sdk.models.shared.DeploymentV2>>) classes;
-    }
-
     public final static Builder builder() {
         return new Builder();
     }
@@ -104,6 +108,24 @@ public class GetDeploymentsResponse implements com.hathora.cloud_sdk.utils.Respo
     public GetDeploymentsResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
+        return this;
+    }
+
+    /**
+     * Ok
+     */
+    public GetDeploymentsResponse withDeploymentsV3Page(DeploymentsV3Page deploymentsV3Page) {
+        Utils.checkNotNull(deploymentsV3Page, "deploymentsV3Page");
+        this.deploymentsV3Page = Optional.ofNullable(deploymentsV3Page);
+        return this;
+    }
+
+    /**
+     * Ok
+     */
+    public GetDeploymentsResponse withDeploymentsV3Page(Optional<? extends DeploymentsV3Page> deploymentsV3Page) {
+        Utils.checkNotNull(deploymentsV3Page, "deploymentsV3Page");
+        this.deploymentsV3Page = deploymentsV3Page;
         return this;
     }
 
@@ -124,24 +146,6 @@ public class GetDeploymentsResponse implements com.hathora.cloud_sdk.utils.Respo
         this.rawResponse = rawResponse;
         return this;
     }
-
-    /**
-     * Ok
-     */
-    public GetDeploymentsResponse withClasses(java.util.List<com.hathora.cloud_sdk.models.shared.DeploymentV2> classes) {
-        Utils.checkNotNull(classes, "classes");
-        this.classes = Optional.ofNullable(classes);
-        return this;
-    }
-
-    /**
-     * Ok
-     */
-    public GetDeploymentsResponse withClasses(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.DeploymentV2>> classes) {
-        Utils.checkNotNull(classes, "classes");
-        this.classes = classes;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -153,39 +157,39 @@ public class GetDeploymentsResponse implements com.hathora.cloud_sdk.utils.Respo
         }
         GetDeploymentsResponse other = (GetDeploymentsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.classes, other.classes);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.deploymentsV3Page, other.deploymentsV3Page) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
+            deploymentsV3Page,
             statusCode,
-            rawResponse,
-            classes);
+            rawResponse);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetDeploymentsResponse.class,
                 "contentType", contentType,
+                "deploymentsV3Page", deploymentsV3Page,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "classes", classes);
+                "rawResponse", rawResponse);
     }
     
     public final static class Builder {
  
         private String contentType;
  
+        private Optional<? extends DeploymentsV3Page> deploymentsV3Page = Optional.empty();
+ 
         private Integer statusCode;
  
-        private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.DeploymentV2>> classes = Optional.empty();  
+        private HttpResponse<InputStream> rawResponse;  
         
         private Builder() {
           // force use of static builder() method
@@ -197,6 +201,24 @@ public class GetDeploymentsResponse implements com.hathora.cloud_sdk.utils.Respo
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder deploymentsV3Page(DeploymentsV3Page deploymentsV3Page) {
+            Utils.checkNotNull(deploymentsV3Page, "deploymentsV3Page");
+            this.deploymentsV3Page = Optional.ofNullable(deploymentsV3Page);
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder deploymentsV3Page(Optional<? extends DeploymentsV3Page> deploymentsV3Page) {
+            Utils.checkNotNull(deploymentsV3Page, "deploymentsV3Page");
+            this.deploymentsV3Page = deploymentsV3Page;
             return this;
         }
 
@@ -217,31 +239,13 @@ public class GetDeploymentsResponse implements com.hathora.cloud_sdk.utils.Respo
             this.rawResponse = rawResponse;
             return this;
         }
-
-        /**
-         * Ok
-         */
-        public Builder classes(java.util.List<com.hathora.cloud_sdk.models.shared.DeploymentV2> classes) {
-            Utils.checkNotNull(classes, "classes");
-            this.classes = Optional.ofNullable(classes);
-            return this;
-        }
-
-        /**
-         * Ok
-         */
-        public Builder classes(Optional<? extends java.util.List<com.hathora.cloud_sdk.models.shared.DeploymentV2>> classes) {
-            Utils.checkNotNull(classes, "classes");
-            this.classes = classes;
-            return this;
-        }
         
         public GetDeploymentsResponse build() {
             return new GetDeploymentsResponse(
                 contentType,
+                deploymentsV3Page,
                 statusCode,
-                rawResponse,
-                classes);
+                rawResponse);
         }
     }
 }

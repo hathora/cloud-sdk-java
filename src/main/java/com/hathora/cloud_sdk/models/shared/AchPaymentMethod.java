@@ -4,34 +4,33 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class AchPaymentMethod {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bankName")
-    private Optional<? extends String> bankName;
+    private Optional<String> bankName;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("last4")
-    private Optional<? extends String> last4;
+    private Optional<String> last4;
 
     @JsonCreator
     public AchPaymentMethod(
-            @JsonProperty("bankName") Optional<? extends String> bankName,
-            @JsonProperty("last4") Optional<? extends String> last4) {
+            @JsonProperty("bankName") Optional<String> bankName,
+            @JsonProperty("last4") Optional<String> last4) {
         Utils.checkNotNull(bankName, "bankName");
         Utils.checkNotNull(last4, "last4");
         this.bankName = bankName;
@@ -42,16 +41,14 @@ public class AchPaymentMethod {
         this(Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> bankName() {
-        return (Optional<String>) bankName;
+        return bankName;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> last4() {
-        return (Optional<String>) last4;
+        return last4;
     }
 
     public final static Builder builder() {
@@ -64,7 +61,7 @@ public class AchPaymentMethod {
         return this;
     }
 
-    public AchPaymentMethod withBankName(Optional<? extends String> bankName) {
+    public AchPaymentMethod withBankName(Optional<String> bankName) {
         Utils.checkNotNull(bankName, "bankName");
         this.bankName = bankName;
         return this;
@@ -76,7 +73,7 @@ public class AchPaymentMethod {
         return this;
     }
 
-    public AchPaymentMethod withLast4(Optional<? extends String> last4) {
+    public AchPaymentMethod withLast4(Optional<String> last4) {
         Utils.checkNotNull(last4, "last4");
         this.last4 = last4;
         return this;
@@ -92,13 +89,13 @@ public class AchPaymentMethod {
         }
         AchPaymentMethod other = (AchPaymentMethod) o;
         return 
-            java.util.Objects.deepEquals(this.bankName, other.bankName) &&
-            java.util.Objects.deepEquals(this.last4, other.last4);
+            Objects.deepEquals(this.bankName, other.bankName) &&
+            Objects.deepEquals(this.last4, other.last4);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             bankName,
             last4);
     }
@@ -112,9 +109,9 @@ public class AchPaymentMethod {
     
     public final static class Builder {
  
-        private Optional<? extends String> bankName = Optional.empty();
+        private Optional<String> bankName = Optional.empty();
  
-        private Optional<? extends String> last4 = Optional.empty();  
+        private Optional<String> last4 = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -126,7 +123,7 @@ public class AchPaymentMethod {
             return this;
         }
 
-        public Builder bankName(Optional<? extends String> bankName) {
+        public Builder bankName(Optional<String> bankName) {
             Utils.checkNotNull(bankName, "bankName");
             this.bankName = bankName;
             return this;
@@ -138,7 +135,7 @@ public class AchPaymentMethod {
             return this;
         }
 
-        public Builder last4(Optional<? extends String> last4) {
+        public Builder last4(Optional<String> last4) {
             Utils.checkNotNull(last4, "last4");
             this.last4 = last4;
             return this;

@@ -4,16 +4,8 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.String;
 
 /**
  * LobbyVisibility - Types of lobbies a player can create.
@@ -25,8 +17,8 @@ import java.math.BigInteger;
  * `local`: for testing with a server running locally
  */
 public enum LobbyVisibility {
-    PRIVATE_("private"),
-    PUBLIC_("public"),
+    PRIVATE("private"),
+    PUBLIC("public"),
     LOCAL("local");
 
     @JsonValue

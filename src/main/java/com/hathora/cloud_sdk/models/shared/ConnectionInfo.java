@@ -4,22 +4,19 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
-import java.time.OffsetDateTime;
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.hathora.cloud_sdk.utils.OneOfDeserializer;
 import com.hathora.cloud_sdk.utils.TypedObject;
 import com.hathora.cloud_sdk.utils.Utils.JsonShape;
+import com.hathora.cloud_sdk.utils.Utils.TypeReferenceWithShape;
+import com.hathora.cloud_sdk.utils.Utils;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 
 /**
  * ConnectionInfo - Connection information to the default port.
@@ -28,7 +25,7 @@ import com.hathora.cloud_sdk.utils.Utils.JsonShape;
 @JsonDeserialize(using = ConnectionInfo._Deserializer.class)
 public class ConnectionInfo {
 
-    @com.fasterxml.jackson.annotation.JsonValue
+    @JsonValue
     private TypedObject value;
     
     private ConnectionInfo(TypedObject value) {
@@ -48,8 +45,8 @@ public class ConnectionInfo {
     /**
      * Returns an instance of one of these types:
      * <ul>
-     * <li>{@code StartingConnectionInfo}</li>
-     * <li>{@code ActiveConnectionInfo}</li>
+     * <li>{@code com.hathora.cloud_sdk.models.shared.StartingConnectionInfo}</li>
+     * <li>{@code com.hathora.cloud_sdk.models.shared.ActiveConnectionInfo}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -76,21 +73,21 @@ public class ConnectionInfo {
             return false;
         }
         ConnectionInfo other = (ConnectionInfo) o;
-        return java.util.Objects.deepEquals(this.value.value(), other.value.value()); 
+        return Objects.deepEquals(this.value.value(), other.value.value()); 
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(value.value());
+        return Objects.hash(value.value());
     }
     
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends com.hathora.cloud_sdk.utils.OneOfDeserializer<ConnectionInfo> {
+    public static final class _Deserializer extends OneOfDeserializer<ConnectionInfo> {
 
         public _Deserializer() {
-            super(ConnectionInfo.class,
-                  Utils.TypeReferenceWithShape.of(new TypeReference<StartingConnectionInfo>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<ActiveConnectionInfo>() {}, Utils.JsonShape.DEFAULT));
+            super(ConnectionInfo.class, false,
+                  TypeReferenceWithShape.of(new TypeReference<com.hathora.cloud_sdk.models.shared.ActiveConnectionInfo>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.hathora.cloud_sdk.models.shared.StartingConnectionInfo>() {}, JsonShape.DEFAULT));
         }
     }
     

@@ -4,27 +4,27 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ProcessV2 {
 
     @JsonProperty("additionalExposedPorts")
-    private java.util.List<ExposedPort> additionalExposedPorts;
+    private List<ExposedPort> additionalExposedPorts;
 
     /**
      * System generated unique identifier for an application.
@@ -74,7 +74,7 @@ public class ProcessV2 {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("startedAt")
-    private Optional<? extends OffsetDateTime> startedAt;
+    private Optional<OffsetDateTime> startedAt;
 
     @JsonProperty("status")
     private ProcessStatus status;
@@ -84,18 +84,18 @@ public class ProcessV2 {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("stoppingAt")
-    private Optional<? extends OffsetDateTime> stoppingAt;
+    private Optional<OffsetDateTime> stoppingAt;
 
     /**
      * When the process has been terminated.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("terminatedAt")
-    private Optional<? extends OffsetDateTime> terminatedAt;
+    private Optional<OffsetDateTime> terminatedAt;
 
     @JsonCreator
     public ProcessV2(
-            @JsonProperty("additionalExposedPorts") java.util.List<ExposedPort> additionalExposedPorts,
+            @JsonProperty("additionalExposedPorts") List<ExposedPort> additionalExposedPorts,
             @JsonProperty("appId") String appId,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("deploymentId") int deploymentId,
@@ -104,10 +104,10 @@ public class ProcessV2 {
             @JsonProperty("region") Region region,
             @JsonProperty("roomsAllocated") int roomsAllocated,
             @JsonProperty("roomsPerProcess") int roomsPerProcess,
-            @JsonProperty("startedAt") Optional<? extends OffsetDateTime> startedAt,
+            @JsonProperty("startedAt") Optional<OffsetDateTime> startedAt,
             @JsonProperty("status") ProcessStatus status,
-            @JsonProperty("stoppingAt") Optional<? extends OffsetDateTime> stoppingAt,
-            @JsonProperty("terminatedAt") Optional<? extends OffsetDateTime> terminatedAt) {
+            @JsonProperty("stoppingAt") Optional<OffsetDateTime> stoppingAt,
+            @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(createdAt, "createdAt");
@@ -137,7 +137,7 @@ public class ProcessV2 {
     }
     
     public ProcessV2(
-            java.util.List<ExposedPort> additionalExposedPorts,
+            List<ExposedPort> additionalExposedPorts,
             String appId,
             OffsetDateTime createdAt,
             int deploymentId,
@@ -150,7 +150,7 @@ public class ProcessV2 {
     }
 
     @JsonIgnore
-    public java.util.List<ExposedPort> additionalExposedPorts() {
+    public List<ExposedPort> additionalExposedPorts() {
         return additionalExposedPorts;
     }
 
@@ -216,10 +216,9 @@ public class ProcessV2 {
     /**
      * When the process bound to the specified port. We use this to determine when we should start billing.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> startedAt() {
-        return (Optional<OffsetDateTime>) startedAt;
+        return startedAt;
     }
 
     @JsonIgnore
@@ -230,26 +229,24 @@ public class ProcessV2 {
     /**
      * When the process is issued to stop. We use this to determine when we should stop billing.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> stoppingAt() {
-        return (Optional<OffsetDateTime>) stoppingAt;
+        return stoppingAt;
     }
 
     /**
      * When the process has been terminated.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> terminatedAt() {
-        return (Optional<OffsetDateTime>) terminatedAt;
+        return terminatedAt;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public ProcessV2 withAdditionalExposedPorts(java.util.List<ExposedPort> additionalExposedPorts) {
+    public ProcessV2 withAdditionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
         Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
         this.additionalExposedPorts = additionalExposedPorts;
         return this;
@@ -339,7 +336,7 @@ public class ProcessV2 {
     /**
      * When the process bound to the specified port. We use this to determine when we should start billing.
      */
-    public ProcessV2 withStartedAt(Optional<? extends OffsetDateTime> startedAt) {
+    public ProcessV2 withStartedAt(Optional<OffsetDateTime> startedAt) {
         Utils.checkNotNull(startedAt, "startedAt");
         this.startedAt = startedAt;
         return this;
@@ -363,7 +360,7 @@ public class ProcessV2 {
     /**
      * When the process is issued to stop. We use this to determine when we should stop billing.
      */
-    public ProcessV2 withStoppingAt(Optional<? extends OffsetDateTime> stoppingAt) {
+    public ProcessV2 withStoppingAt(Optional<OffsetDateTime> stoppingAt) {
         Utils.checkNotNull(stoppingAt, "stoppingAt");
         this.stoppingAt = stoppingAt;
         return this;
@@ -381,7 +378,7 @@ public class ProcessV2 {
     /**
      * When the process has been terminated.
      */
-    public ProcessV2 withTerminatedAt(Optional<? extends OffsetDateTime> terminatedAt) {
+    public ProcessV2 withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
         return this;
@@ -397,24 +394,24 @@ public class ProcessV2 {
         }
         ProcessV2 other = (ProcessV2) o;
         return 
-            java.util.Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            java.util.Objects.deepEquals(this.exposedPort, other.exposedPort) &&
-            java.util.Objects.deepEquals(this.processId, other.processId) &&
-            java.util.Objects.deepEquals(this.region, other.region) &&
-            java.util.Objects.deepEquals(this.roomsAllocated, other.roomsAllocated) &&
-            java.util.Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            java.util.Objects.deepEquals(this.startedAt, other.startedAt) &&
-            java.util.Objects.deepEquals(this.status, other.status) &&
-            java.util.Objects.deepEquals(this.stoppingAt, other.stoppingAt) &&
-            java.util.Objects.deepEquals(this.terminatedAt, other.terminatedAt);
+            Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
+            Objects.deepEquals(this.exposedPort, other.exposedPort) &&
+            Objects.deepEquals(this.processId, other.processId) &&
+            Objects.deepEquals(this.region, other.region) &&
+            Objects.deepEquals(this.roomsAllocated, other.roomsAllocated) &&
+            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Objects.deepEquals(this.startedAt, other.startedAt) &&
+            Objects.deepEquals(this.status, other.status) &&
+            Objects.deepEquals(this.stoppingAt, other.stoppingAt) &&
+            Objects.deepEquals(this.terminatedAt, other.terminatedAt);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             additionalExposedPorts,
             appId,
             createdAt,
@@ -450,7 +447,7 @@ public class ProcessV2 {
     
     public final static class Builder {
  
-        private java.util.List<ExposedPort> additionalExposedPorts;
+        private List<ExposedPort> additionalExposedPorts;
  
         private String appId;
  
@@ -468,19 +465,19 @@ public class ProcessV2 {
  
         private Integer roomsPerProcess;
  
-        private Optional<? extends OffsetDateTime> startedAt = Optional.empty();
+        private Optional<OffsetDateTime> startedAt = Optional.empty();
  
         private ProcessStatus status;
  
-        private Optional<? extends OffsetDateTime> stoppingAt = Optional.empty();
+        private Optional<OffsetDateTime> stoppingAt = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> terminatedAt = Optional.empty();  
+        private Optional<OffsetDateTime> terminatedAt = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder additionalExposedPorts(java.util.List<ExposedPort> additionalExposedPorts) {
+        public Builder additionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
             Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
             this.additionalExposedPorts = additionalExposedPorts;
             return this;
@@ -570,7 +567,7 @@ public class ProcessV2 {
         /**
          * When the process bound to the specified port. We use this to determine when we should start billing.
          */
-        public Builder startedAt(Optional<? extends OffsetDateTime> startedAt) {
+        public Builder startedAt(Optional<OffsetDateTime> startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
             this.startedAt = startedAt;
             return this;
@@ -594,7 +591,7 @@ public class ProcessV2 {
         /**
          * When the process is issued to stop. We use this to determine when we should stop billing.
          */
-        public Builder stoppingAt(Optional<? extends OffsetDateTime> stoppingAt) {
+        public Builder stoppingAt(Optional<OffsetDateTime> stoppingAt) {
             Utils.checkNotNull(stoppingAt, "stoppingAt");
             this.stoppingAt = stoppingAt;
             return this;
@@ -612,7 +609,7 @@ public class ProcessV2 {
         /**
          * When the process has been terminated.
          */
-        public Builder terminatedAt(Optional<? extends OffsetDateTime> terminatedAt) {
+        public Builder terminatedAt(Optional<OffsetDateTime> terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = terminatedAt;
             return this;

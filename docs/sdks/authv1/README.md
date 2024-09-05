@@ -21,17 +21,9 @@ Returns a unique player token for an anonymous user.
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.LoginAnonymousResponse;
+import java.lang.Exception;
 
 public class Application {
 
@@ -51,7 +43,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -67,18 +59,19 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
-
+| `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.LoginAnonymousResponse](../../models/operations/LoginAnonymousResponse.md)**
+**[LoginAnonymousResponse](../../models/operations/LoginAnonymousResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 404,429                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## loginGoogle
 
@@ -90,17 +83,10 @@ Returns a unique player token using a Google-signed OIDC `idToken`.
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.LoginGoogleResponse;
+import com.hathora.cloud_sdk.models.shared.GoogleIdTokenObject;
+import java.lang.Exception;
 
 public class Application {
 
@@ -123,7 +109,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -137,21 +123,22 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           | Example                                                                                               |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `googleIdTokenObject`                                                                                 | [com.hathora.cloud_sdk.models.shared.GoogleIdTokenObject](../../models/shared/GoogleIdTokenObject.md) | :heavy_check_mark:                                                                                    | N/A                                                                                                   |                                                                                                       |
-| `appId`                                                                                               | *Optional<? extends String>*                                                                          | :heavy_minus_sign:                                                                                    | N/A                                                                                                   | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                              |
-
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `googleIdTokenObject`                                             | [GoogleIdTokenObject](../../models/shared/GoogleIdTokenObject.md) | :heavy_check_mark:                                                | N/A                                                               |                                                                   |
+| `appId`                                                           | *Optional<String>*                                                | :heavy_minus_sign:                                                | N/A                                                               | app-af469a92-5b45-4565-b3c4-b79878de67d2                          |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.LoginGoogleResponse](../../models/operations/LoginGoogleResponse.md)**
+**[LoginGoogleResponse](../../models/operations/LoginGoogleResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401,404,429            | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## loginNickname
 
@@ -163,17 +150,10 @@ Returns a unique player token with a specified nickname for a user.
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.LoginNicknameResponse;
+import com.hathora.cloud_sdk.models.shared.NicknameObject;
+import java.lang.Exception;
 
 public class Application {
 
@@ -196,7 +176,7 @@ public class Application {
         } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -210,15 +190,15 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `nicknameObject`                                                                            | [com.hathora.cloud_sdk.models.shared.NicknameObject](../../models/shared/NicknameObject.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
-| `appId`                                                                                     | *Optional<? extends String>*                                                                | :heavy_minus_sign:                                                                          | N/A                                                                                         | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                    |
-
+| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `nicknameObject`                                        | [NicknameObject](../../models/shared/NicknameObject.md) | :heavy_check_mark:                                      | N/A                                                     |                                                         |
+| `appId`                                                 | *Optional<String>*                                      | :heavy_minus_sign:                                      | N/A                                                     | app-af469a92-5b45-4565-b3c4-b79878de67d2                |
 
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.LoginNicknameResponse](../../models/operations/LoginNicknameResponse.md)**
+**[LoginNicknameResponse](../../models/operations/LoginNicknameResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

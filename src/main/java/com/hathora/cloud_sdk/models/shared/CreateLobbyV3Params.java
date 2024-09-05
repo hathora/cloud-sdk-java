@@ -4,19 +4,18 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateLobbyV3Params {
 
@@ -28,7 +27,7 @@ public class CreateLobbyV3Params {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("roomConfig")
-    private Optional<? extends String> roomConfig;
+    private Optional<String> roomConfig;
 
     /**
      * Types of lobbies a player can create.
@@ -45,7 +44,7 @@ public class CreateLobbyV3Params {
     @JsonCreator
     public CreateLobbyV3Params(
             @JsonProperty("region") Region region,
-            @JsonProperty("roomConfig") Optional<? extends String> roomConfig,
+            @JsonProperty("roomConfig") Optional<String> roomConfig,
             @JsonProperty("visibility") LobbyVisibility visibility) {
         Utils.checkNotNull(region, "region");
         Utils.checkNotNull(roomConfig, "roomConfig");
@@ -69,10 +68,9 @@ public class CreateLobbyV3Params {
     /**
      * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> roomConfig() {
-        return (Optional<String>) roomConfig;
+        return roomConfig;
     }
 
     /**
@@ -111,7 +109,7 @@ public class CreateLobbyV3Params {
     /**
      * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
-    public CreateLobbyV3Params withRoomConfig(Optional<? extends String> roomConfig) {
+    public CreateLobbyV3Params withRoomConfig(Optional<String> roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
         this.roomConfig = roomConfig;
         return this;
@@ -142,14 +140,14 @@ public class CreateLobbyV3Params {
         }
         CreateLobbyV3Params other = (CreateLobbyV3Params) o;
         return 
-            java.util.Objects.deepEquals(this.region, other.region) &&
-            java.util.Objects.deepEquals(this.roomConfig, other.roomConfig) &&
-            java.util.Objects.deepEquals(this.visibility, other.visibility);
+            Objects.deepEquals(this.region, other.region) &&
+            Objects.deepEquals(this.roomConfig, other.roomConfig) &&
+            Objects.deepEquals(this.visibility, other.visibility);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             region,
             roomConfig,
             visibility);
@@ -167,7 +165,7 @@ public class CreateLobbyV3Params {
  
         private Region region;
  
-        private Optional<? extends String> roomConfig = Optional.empty();
+        private Optional<String> roomConfig = Optional.empty();
  
         private LobbyVisibility visibility;  
         
@@ -193,7 +191,7 @@ public class CreateLobbyV3Params {
         /**
          * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
          */
-        public Builder roomConfig(Optional<? extends String> roomConfig) {
+        public Builder roomConfig(Optional<String> roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
             this.roomConfig = roomConfig;
             return this;

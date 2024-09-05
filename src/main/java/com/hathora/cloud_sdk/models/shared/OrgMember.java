@@ -4,22 +4,19 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrgMember {
 
@@ -34,7 +31,7 @@ public class OrgMember {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastLogin")
-    private Optional<? extends OffsetDateTime> lastLogin;
+    private Optional<OffsetDateTime> lastLogin;
 
     /**
      * System generated unique identifier for an organization. Not guaranteed to have a specific format.
@@ -53,7 +50,7 @@ public class OrgMember {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("invitedBy") String invitedBy,
             @JsonProperty("joinedAt") OffsetDateTime joinedAt,
-            @JsonProperty("lastLogin") Optional<? extends OffsetDateTime> lastLogin,
+            @JsonProperty("lastLogin") Optional<OffsetDateTime> lastLogin,
             @JsonProperty("orgId") String orgId,
             @JsonProperty("userEmail") String userEmail) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -94,10 +91,9 @@ public class OrgMember {
         return joinedAt;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> lastLogin() {
-        return (Optional<OffsetDateTime>) lastLogin;
+        return lastLogin;
     }
 
     /**
@@ -144,7 +140,7 @@ public class OrgMember {
         return this;
     }
 
-    public OrgMember withLastLogin(Optional<? extends OffsetDateTime> lastLogin) {
+    public OrgMember withLastLogin(Optional<OffsetDateTime> lastLogin) {
         Utils.checkNotNull(lastLogin, "lastLogin");
         this.lastLogin = lastLogin;
         return this;
@@ -178,17 +174,17 @@ public class OrgMember {
         }
         OrgMember other = (OrgMember) o;
         return 
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.invitedBy, other.invitedBy) &&
-            java.util.Objects.deepEquals(this.joinedAt, other.joinedAt) &&
-            java.util.Objects.deepEquals(this.lastLogin, other.lastLogin) &&
-            java.util.Objects.deepEquals(this.orgId, other.orgId) &&
-            java.util.Objects.deepEquals(this.userEmail, other.userEmail);
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.invitedBy, other.invitedBy) &&
+            Objects.deepEquals(this.joinedAt, other.joinedAt) &&
+            Objects.deepEquals(this.lastLogin, other.lastLogin) &&
+            Objects.deepEquals(this.orgId, other.orgId) &&
+            Objects.deepEquals(this.userEmail, other.userEmail);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             createdAt,
             invitedBy,
             joinedAt,
@@ -216,7 +212,7 @@ public class OrgMember {
  
         private OffsetDateTime joinedAt;
  
-        private Optional<? extends OffsetDateTime> lastLogin = Optional.empty();
+        private Optional<OffsetDateTime> lastLogin = Optional.empty();
  
         private String orgId;
  
@@ -250,7 +246,7 @@ public class OrgMember {
             return this;
         }
 
-        public Builder lastLogin(Optional<? extends OffsetDateTime> lastLogin) {
+        public Builder lastLogin(Optional<OffsetDateTime> lastLogin) {
             Utils.checkNotNull(lastLogin, "lastLogin");
             this.lastLogin = lastLogin;
             return this;

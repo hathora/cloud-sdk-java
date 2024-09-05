@@ -4,22 +4,19 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
-import java.time.OffsetDateTime;
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.hathora.cloud_sdk.utils.OneOfDeserializer;
 import com.hathora.cloud_sdk.utils.TypedObject;
 import com.hathora.cloud_sdk.utils.Utils.JsonShape;
+import com.hathora.cloud_sdk.utils.Utils.TypeReferenceWithShape;
+import com.hathora.cloud_sdk.utils.Utils;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 
 /**
  * LobbyV3CreatedBy - UserId or email address for the user that created the lobby.
@@ -28,7 +25,7 @@ import com.hathora.cloud_sdk.utils.Utils.JsonShape;
 @JsonDeserialize(using = LobbyV3CreatedBy._Deserializer.class)
 public class LobbyV3CreatedBy {
 
-    @com.fasterxml.jackson.annotation.JsonValue
+    @JsonValue
     private TypedObject value;
     
     private LobbyV3CreatedBy(TypedObject value) {
@@ -42,13 +39,13 @@ public class LobbyV3CreatedBy {
 
     public static LobbyV3CreatedBy of(double value) {
         Utils.checkNotNull(value, "value");
-        return new LobbyV3CreatedBy(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Double>(){}));
+        return new LobbyV3CreatedBy(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Double>(){}));
     }
     
     /**
      * Returns an instance of one of these types:
      * <ul>
-     * <li>{@code String}</li>
+     * <li>{@code java.lang.String}</li>
      * <li>{@code double}</li>
      * </ul>
      * 
@@ -76,21 +73,21 @@ public class LobbyV3CreatedBy {
             return false;
         }
         LobbyV3CreatedBy other = (LobbyV3CreatedBy) o;
-        return java.util.Objects.deepEquals(this.value.value(), other.value.value()); 
+        return Objects.deepEquals(this.value.value(), other.value.value()); 
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(value.value());
+        return Objects.hash(value.value());
     }
     
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends com.hathora.cloud_sdk.utils.OneOfDeserializer<LobbyV3CreatedBy> {
+    public static final class _Deserializer extends OneOfDeserializer<LobbyV3CreatedBy> {
 
         public _Deserializer() {
-            super(LobbyV3CreatedBy.class,
-                  Utils.TypeReferenceWithShape.of(new TypeReference<String>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<Double>() {}, Utils.JsonShape.DEFAULT));
+            super(LobbyV3CreatedBy.class, false,
+                  TypeReferenceWithShape.of(new TypeReference<java.lang.Double>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<java.lang.String>() {}, JsonShape.DEFAULT));
         }
     }
     

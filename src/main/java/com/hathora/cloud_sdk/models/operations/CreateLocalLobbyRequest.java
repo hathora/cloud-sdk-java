@@ -4,17 +4,16 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateLocalLobbyRequest {
 
@@ -22,16 +21,16 @@ public class CreateLocalLobbyRequest {
     private CreateLocalLobbyRequestBody requestBody;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=roomId")
-    private Optional<? extends String> roomId;
+    private Optional<String> roomId;
 
     @JsonCreator
     public CreateLocalLobbyRequest(
             CreateLocalLobbyRequestBody requestBody,
-            Optional<? extends String> appId,
-            Optional<? extends String> roomId) {
+            Optional<String> appId,
+            Optional<String> roomId) {
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(roomId, "roomId");
@@ -50,16 +49,14 @@ public class CreateLocalLobbyRequest {
         return requestBody;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> roomId() {
-        return (Optional<String>) roomId;
+        return roomId;
     }
 
     public final static Builder builder() {
@@ -78,7 +75,7 @@ public class CreateLocalLobbyRequest {
         return this;
     }
 
-    public CreateLocalLobbyRequest withAppId(Optional<? extends String> appId) {
+    public CreateLocalLobbyRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -90,7 +87,7 @@ public class CreateLocalLobbyRequest {
         return this;
     }
 
-    public CreateLocalLobbyRequest withRoomId(Optional<? extends String> roomId) {
+    public CreateLocalLobbyRequest withRoomId(Optional<String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;
@@ -106,14 +103,14 @@ public class CreateLocalLobbyRequest {
         }
         CreateLocalLobbyRequest other = (CreateLocalLobbyRequest) o;
         return 
-            java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.roomId, other.roomId);
+            Objects.deepEquals(this.requestBody, other.requestBody) &&
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.roomId, other.roomId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             requestBody,
             appId,
             roomId);
@@ -131,9 +128,9 @@ public class CreateLocalLobbyRequest {
  
         private CreateLocalLobbyRequestBody requestBody;
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
-        private Optional<? extends String> roomId = Optional.empty();  
+        private Optional<String> roomId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -151,7 +148,7 @@ public class CreateLocalLobbyRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;
@@ -163,7 +160,7 @@ public class CreateLocalLobbyRequest {
             return this;
         }
 
-        public Builder roomId(Optional<? extends String> roomId) {
+        public Builder roomId(Optional<String> roomId) {
             Utils.checkNotNull(roomId, "roomId");
             this.roomId = roomId;
             return this;

@@ -4,19 +4,23 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.PaymentMethod;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetPaymentMethodResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetPaymentMethodResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetPaymentMethodResponse implements com.hathora.cloud_sdk.utils.Res
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.PaymentMethod> paymentMethod;
+    private Optional<? extends PaymentMethod> paymentMethod;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetPaymentMethodResponse implements com.hathora.cloud_sdk.utils.Res
     @JsonCreator
     public GetPaymentMethodResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.PaymentMethod> paymentMethod,
+            Optional<? extends PaymentMethod> paymentMethod,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetPaymentMethodResponse implements com.hathora.cloud_sdk.utils.Res
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.PaymentMethod> paymentMethod() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.PaymentMethod>) paymentMethod;
+    public Optional<PaymentMethod> paymentMethod() {
+        return (Optional<PaymentMethod>) paymentMethod;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetPaymentMethodResponse implements com.hathora.cloud_sdk.utils.Res
     /**
      * Ok
      */
-    public GetPaymentMethodResponse withPaymentMethod(com.hathora.cloud_sdk.models.shared.PaymentMethod paymentMethod) {
+    public GetPaymentMethodResponse withPaymentMethod(PaymentMethod paymentMethod) {
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         this.paymentMethod = Optional.ofNullable(paymentMethod);
         return this;
@@ -119,7 +123,7 @@ public class GetPaymentMethodResponse implements com.hathora.cloud_sdk.utils.Res
     /**
      * Ok
      */
-    public GetPaymentMethodResponse withPaymentMethod(Optional<? extends com.hathora.cloud_sdk.models.shared.PaymentMethod> paymentMethod) {
+    public GetPaymentMethodResponse withPaymentMethod(Optional<? extends PaymentMethod> paymentMethod) {
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         this.paymentMethod = paymentMethod;
         return this;
@@ -153,15 +157,15 @@ public class GetPaymentMethodResponse implements com.hathora.cloud_sdk.utils.Res
         }
         GetPaymentMethodResponse other = (GetPaymentMethodResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             paymentMethod,
             statusCode,
@@ -181,7 +185,7 @@ public class GetPaymentMethodResponse implements com.hathora.cloud_sdk.utils.Res
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.PaymentMethod> paymentMethod = Optional.empty();
+        private Optional<? extends PaymentMethod> paymentMethod = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetPaymentMethodResponse implements com.hathora.cloud_sdk.utils.Res
         /**
          * Ok
          */
-        public Builder paymentMethod(com.hathora.cloud_sdk.models.shared.PaymentMethod paymentMethod) {
+        public Builder paymentMethod(PaymentMethod paymentMethod) {
             Utils.checkNotNull(paymentMethod, "paymentMethod");
             this.paymentMethod = Optional.ofNullable(paymentMethod);
             return this;
@@ -212,7 +216,7 @@ public class GetPaymentMethodResponse implements com.hathora.cloud_sdk.utils.Res
         /**
          * Ok
          */
-        public Builder paymentMethod(Optional<? extends com.hathora.cloud_sdk.models.shared.PaymentMethod> paymentMethod) {
+        public Builder paymentMethod(Optional<? extends PaymentMethod> paymentMethod) {
             Utils.checkNotNull(paymentMethod, "paymentMethod");
             this.paymentMethod = paymentMethod;
             return this;

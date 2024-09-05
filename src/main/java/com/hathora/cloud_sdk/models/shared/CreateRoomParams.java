@@ -4,21 +4,26 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
+
 public class CreateRoomParams {
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("clientIPs")
+    private Optional<? extends List<String>> clientIPs;
 
     @JsonProperty("region")
     private Region region;
@@ -28,21 +33,30 @@ public class CreateRoomParams {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("roomConfig")
-    private Optional<? extends String> roomConfig;
+    private Optional<String> roomConfig;
 
     @JsonCreator
     public CreateRoomParams(
+            @JsonProperty("clientIPs") Optional<? extends List<String>> clientIPs,
             @JsonProperty("region") Region region,
-            @JsonProperty("roomConfig") Optional<? extends String> roomConfig) {
+            @JsonProperty("roomConfig") Optional<String> roomConfig) {
+        Utils.checkNotNull(clientIPs, "clientIPs");
         Utils.checkNotNull(region, "region");
         Utils.checkNotNull(roomConfig, "roomConfig");
+        this.clientIPs = clientIPs;
         this.region = region;
         this.roomConfig = roomConfig;
     }
     
     public CreateRoomParams(
             Region region) {
-        this(region, Optional.empty());
+        this(Optional.empty(), region, Optional.empty());
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> clientIPs() {
+        return (Optional<List<String>>) clientIPs;
     }
 
     @JsonIgnore
@@ -53,14 +67,25 @@ public class CreateRoomParams {
     /**
      * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> roomConfig() {
-        return (Optional<String>) roomConfig;
+        return roomConfig;
     }
 
     public final static Builder builder() {
         return new Builder();
+    }
+
+    public CreateRoomParams withClientIPs(List<String> clientIPs) {
+        Utils.checkNotNull(clientIPs, "clientIPs");
+        this.clientIPs = Optional.ofNullable(clientIPs);
+        return this;
+    }
+
+    public CreateRoomParams withClientIPs(Optional<? extends List<String>> clientIPs) {
+        Utils.checkNotNull(clientIPs, "clientIPs");
+        this.clientIPs = clientIPs;
+        return this;
     }
 
     public CreateRoomParams withRegion(Region region) {
@@ -81,7 +106,7 @@ public class CreateRoomParams {
     /**
      * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
-    public CreateRoomParams withRoomConfig(Optional<? extends String> roomConfig) {
+    public CreateRoomParams withRoomConfig(Optional<String> roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
         this.roomConfig = roomConfig;
         return this;
@@ -97,13 +122,15 @@ public class CreateRoomParams {
         }
         CreateRoomParams other = (CreateRoomParams) o;
         return 
-            java.util.Objects.deepEquals(this.region, other.region) &&
-            java.util.Objects.deepEquals(this.roomConfig, other.roomConfig);
+            Objects.deepEquals(this.clientIPs, other.clientIPs) &&
+            Objects.deepEquals(this.region, other.region) &&
+            Objects.deepEquals(this.roomConfig, other.roomConfig);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
+            clientIPs,
             region,
             roomConfig);
     }
@@ -111,18 +138,33 @@ public class CreateRoomParams {
     @Override
     public String toString() {
         return Utils.toString(CreateRoomParams.class,
+                "clientIPs", clientIPs,
                 "region", region,
                 "roomConfig", roomConfig);
     }
     
     public final static class Builder {
  
+        private Optional<? extends List<String>> clientIPs = Optional.empty();
+ 
         private Region region;
  
-        private Optional<? extends String> roomConfig = Optional.empty();  
+        private Optional<String> roomConfig = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder clientIPs(List<String> clientIPs) {
+            Utils.checkNotNull(clientIPs, "clientIPs");
+            this.clientIPs = Optional.ofNullable(clientIPs);
+            return this;
+        }
+
+        public Builder clientIPs(Optional<? extends List<String>> clientIPs) {
+            Utils.checkNotNull(clientIPs, "clientIPs");
+            this.clientIPs = clientIPs;
+            return this;
         }
 
         public Builder region(Region region) {
@@ -143,7 +185,7 @@ public class CreateRoomParams {
         /**
          * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
          */
-        public Builder roomConfig(Optional<? extends String> roomConfig) {
+        public Builder roomConfig(Optional<String> roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
             this.roomConfig = roomConfig;
             return this;
@@ -151,6 +193,7 @@ public class CreateRoomParams {
         
         public CreateRoomParams build() {
             return new CreateRoomParams(
+                clientIPs,
                 region,
                 roomConfig);
         }

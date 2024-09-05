@@ -4,19 +4,23 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.Room;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetRoomInfoDeprecatedResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetRoomInfoDeprecatedResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetRoomInfoDeprecatedResponse implements com.hathora.cloud_sdk.util
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.Room> room;
+    private Optional<? extends Room> room;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetRoomInfoDeprecatedResponse implements com.hathora.cloud_sdk.util
     @JsonCreator
     public GetRoomInfoDeprecatedResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.Room> room,
+            Optional<? extends Room> room,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetRoomInfoDeprecatedResponse implements com.hathora.cloud_sdk.util
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.Room> room() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.Room>) room;
+    public Optional<Room> room() {
+        return (Optional<Room>) room;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetRoomInfoDeprecatedResponse implements com.hathora.cloud_sdk.util
     /**
      * Ok
      */
-    public GetRoomInfoDeprecatedResponse withRoom(com.hathora.cloud_sdk.models.shared.Room room) {
+    public GetRoomInfoDeprecatedResponse withRoom(Room room) {
         Utils.checkNotNull(room, "room");
         this.room = Optional.ofNullable(room);
         return this;
@@ -119,7 +123,7 @@ public class GetRoomInfoDeprecatedResponse implements com.hathora.cloud_sdk.util
     /**
      * Ok
      */
-    public GetRoomInfoDeprecatedResponse withRoom(Optional<? extends com.hathora.cloud_sdk.models.shared.Room> room) {
+    public GetRoomInfoDeprecatedResponse withRoom(Optional<? extends Room> room) {
         Utils.checkNotNull(room, "room");
         this.room = room;
         return this;
@@ -153,15 +157,15 @@ public class GetRoomInfoDeprecatedResponse implements com.hathora.cloud_sdk.util
         }
         GetRoomInfoDeprecatedResponse other = (GetRoomInfoDeprecatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.room, other.room) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.room, other.room) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             room,
             statusCode,
@@ -181,7 +185,7 @@ public class GetRoomInfoDeprecatedResponse implements com.hathora.cloud_sdk.util
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.Room> room = Optional.empty();
+        private Optional<? extends Room> room = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetRoomInfoDeprecatedResponse implements com.hathora.cloud_sdk.util
         /**
          * Ok
          */
-        public Builder room(com.hathora.cloud_sdk.models.shared.Room room) {
+        public Builder room(Room room) {
             Utils.checkNotNull(room, "room");
             this.room = Optional.ofNullable(room);
             return this;
@@ -212,7 +216,7 @@ public class GetRoomInfoDeprecatedResponse implements com.hathora.cloud_sdk.util
         /**
          * Ok
          */
-        public Builder room(Optional<? extends com.hathora.cloud_sdk.models.shared.Room> room) {
+        public Builder room(Optional<? extends Room> room) {
             Utils.checkNotNull(room, "room");
             this.room = room;
             return this;

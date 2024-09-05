@@ -4,19 +4,22 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Double;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetBalanceResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetBalanceResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +39,14 @@ public class GetBalanceResponse implements com.hathora.cloud_sdk.utils.Response 
     /**
      * Ok
      */
-    private Optional<? extends Double> number;
+    private Optional<Double> number;
 
     @JsonCreator
     public GetBalanceResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends Double> number) {
+            Optional<Double> number) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -88,10 +91,9 @@ public class GetBalanceResponse implements com.hathora.cloud_sdk.utils.Response 
     /**
      * Ok
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Double> number() {
-        return (Optional<Double>) number;
+        return number;
     }
 
     public final static Builder builder() {
@@ -137,7 +139,7 @@ public class GetBalanceResponse implements com.hathora.cloud_sdk.utils.Response 
     /**
      * Ok
      */
-    public GetBalanceResponse withNumber(Optional<? extends Double> number) {
+    public GetBalanceResponse withNumber(Optional<Double> number) {
         Utils.checkNotNull(number, "number");
         this.number = number;
         return this;
@@ -153,15 +155,15 @@ public class GetBalanceResponse implements com.hathora.cloud_sdk.utils.Response 
         }
         GetBalanceResponse other = (GetBalanceResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.number, other.number);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.number, other.number);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +187,7 @@ public class GetBalanceResponse implements com.hathora.cloud_sdk.utils.Response 
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends Double> number = Optional.empty();  
+        private Optional<Double> number = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -230,7 +232,7 @@ public class GetBalanceResponse implements com.hathora.cloud_sdk.utils.Response 
         /**
          * Ok
          */
-        public Builder number(Optional<? extends Double> number) {
+        public Builder number(Optional<Double> number) {
             Utils.checkNotNull(number, "number");
             this.number = number;
             return this;

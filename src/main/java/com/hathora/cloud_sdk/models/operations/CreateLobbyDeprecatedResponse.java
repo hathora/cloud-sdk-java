@@ -4,26 +4,30 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.Lobby;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class CreateLobbyDeprecatedResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class CreateLobbyDeprecatedResponse implements Response {
 
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
 
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.Lobby> lobby;
+    private Optional<? extends Lobby> lobby;
 
     /**
      * HTTP response status code for this operation
@@ -38,7 +42,7 @@ public class CreateLobbyDeprecatedResponse implements com.hathora.cloud_sdk.util
     @JsonCreator
     public CreateLobbyDeprecatedResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.Lobby> lobby,
+            Optional<? extends Lobby> lobby,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -68,8 +72,8 @@ public class CreateLobbyDeprecatedResponse implements com.hathora.cloud_sdk.util
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.Lobby> lobby() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.Lobby>) lobby;
+    public Optional<Lobby> lobby() {
+        return (Optional<Lobby>) lobby;
     }
 
     /**
@@ -101,13 +105,13 @@ public class CreateLobbyDeprecatedResponse implements com.hathora.cloud_sdk.util
         return this;
     }
 
-    public CreateLobbyDeprecatedResponse withLobby(com.hathora.cloud_sdk.models.shared.Lobby lobby) {
+    public CreateLobbyDeprecatedResponse withLobby(Lobby lobby) {
         Utils.checkNotNull(lobby, "lobby");
         this.lobby = Optional.ofNullable(lobby);
         return this;
     }
 
-    public CreateLobbyDeprecatedResponse withLobby(Optional<? extends com.hathora.cloud_sdk.models.shared.Lobby> lobby) {
+    public CreateLobbyDeprecatedResponse withLobby(Optional<? extends Lobby> lobby) {
         Utils.checkNotNull(lobby, "lobby");
         this.lobby = lobby;
         return this;
@@ -141,15 +145,15 @@ public class CreateLobbyDeprecatedResponse implements com.hathora.cloud_sdk.util
         }
         CreateLobbyDeprecatedResponse other = (CreateLobbyDeprecatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.lobby, other.lobby) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.lobby, other.lobby) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             lobby,
             statusCode,
@@ -169,7 +173,7 @@ public class CreateLobbyDeprecatedResponse implements com.hathora.cloud_sdk.util
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.Lobby> lobby = Optional.empty();
+        private Optional<? extends Lobby> lobby = Optional.empty();
  
         private Integer statusCode;
  
@@ -188,13 +192,13 @@ public class CreateLobbyDeprecatedResponse implements com.hathora.cloud_sdk.util
             return this;
         }
 
-        public Builder lobby(com.hathora.cloud_sdk.models.shared.Lobby lobby) {
+        public Builder lobby(Lobby lobby) {
             Utils.checkNotNull(lobby, "lobby");
             this.lobby = Optional.ofNullable(lobby);
             return this;
         }
 
-        public Builder lobby(Optional<? extends com.hathora.cloud_sdk.models.shared.Lobby> lobby) {
+        public Builder lobby(Optional<? extends Lobby> lobby) {
             Utils.checkNotNull(lobby, "lobby");
             this.lobby = lobby;
             return this;

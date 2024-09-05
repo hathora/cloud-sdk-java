@@ -4,19 +4,19 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 /**
  * PaymentMethod - Make all properties in T optional
  */
@@ -120,14 +120,14 @@ public class PaymentMethod {
         }
         PaymentMethod other = (PaymentMethod) o;
         return 
-            java.util.Objects.deepEquals(this.ach, other.ach) &&
-            java.util.Objects.deepEquals(this.card, other.card) &&
-            java.util.Objects.deepEquals(this.link, other.link);
+            Objects.deepEquals(this.ach, other.ach) &&
+            Objects.deepEquals(this.card, other.card) &&
+            Objects.deepEquals(this.link, other.link);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             ach,
             card,
             link);

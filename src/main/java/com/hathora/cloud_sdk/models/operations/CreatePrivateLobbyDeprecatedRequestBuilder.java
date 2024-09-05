@@ -5,27 +5,22 @@
 package com.hathora.cloud_sdk.models.operations;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.shared.Region;
 import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.Boolean;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class CreatePrivateLobbyDeprecatedRequestBuilder {
 
     private CreatePrivateLobbyDeprecatedSecurity security;
-    private Optional<? extends String> appId = Optional.empty();
-    private Optional<? extends Boolean> local = Utils.readDefaultOrConstValue(
+    private Optional<String> appId = Optional.empty();
+    private Optional<Boolean> local = Utils.readDefaultOrConstValue(
                             "local",
                             "false",
-                            new TypeReference<Optional<? extends Boolean>>() {});
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region = Optional.empty();
+                            new TypeReference<Optional<Boolean>>() {});
+    private Optional<? extends Region> region = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreatePrivateLobbyDeprecated sdk;
 
     public CreatePrivateLobbyDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallCreatePrivateLobbyDeprecated sdk) {
@@ -38,13 +33,13 @@ public class CreatePrivateLobbyDeprecatedRequestBuilder {
         return this;
     }
                 
-    public CreatePrivateLobbyDeprecatedRequestBuilder appId(String appId) {
+    public CreatePrivateLobbyDeprecatedRequestBuilder appId(java.lang.String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreatePrivateLobbyDeprecatedRequestBuilder appId(Optional<? extends String> appId) {
+    public CreatePrivateLobbyDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -56,7 +51,7 @@ public class CreatePrivateLobbyDeprecatedRequestBuilder {
         return this;
     }
 
-    public CreatePrivateLobbyDeprecatedRequestBuilder local(Optional<? extends Boolean> local) {
+    public CreatePrivateLobbyDeprecatedRequestBuilder local(java.util.Optional<java.lang.Boolean> local) {
         Utils.checkNotNull(local, "local");
         this.local = local;
         return this;
@@ -68,7 +63,7 @@ public class CreatePrivateLobbyDeprecatedRequestBuilder {
         return this;
     }
 
-    public CreatePrivateLobbyDeprecatedRequestBuilder region(Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region) {
+    public CreatePrivateLobbyDeprecatedRequestBuilder region(java.util.Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
@@ -78,7 +73,6 @@ public class CreatePrivateLobbyDeprecatedRequestBuilder {
         if (local == null) {
             local = _SINGLETON_VALUE_Local.value();
         }
-
         return sdk.createPrivateLobbyDeprecated(
             security,
             appId,
@@ -86,9 +80,9 @@ public class CreatePrivateLobbyDeprecatedRequestBuilder {
             region);
     }
 
-    private static final LazySingletonValue<Optional<? extends Boolean>> _SINGLETON_VALUE_Local =
+    private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Local =
             new LazySingletonValue<>(
                     "local",
                     "false",
-                    new TypeReference<Optional<? extends Boolean>>() {});
+                    new TypeReference<Optional<Boolean>>() {});
 }

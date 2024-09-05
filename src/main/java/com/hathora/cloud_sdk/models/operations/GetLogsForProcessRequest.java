@@ -4,39 +4,41 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetLogsForProcessRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=follow")
-    private Optional<? extends Boolean> follow;
+    private Optional<Boolean> follow;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=processId")
     private String processId;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=tailLines")
-    private Optional<? extends Integer> tailLines;
+    private Optional<Integer> tailLines;
 
     @JsonCreator
     public GetLogsForProcessRequest(
-            Optional<? extends String> appId,
-            Optional<? extends Boolean> follow,
+            Optional<String> appId,
+            Optional<Boolean> follow,
             String processId,
-            Optional<? extends Integer> tailLines) {
+            Optional<Integer> tailLines) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(follow, "follow");
         Utils.checkNotNull(processId, "processId");
@@ -52,16 +54,14 @@ public class GetLogsForProcessRequest {
         this(Optional.empty(), Optional.empty(), processId, Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> follow() {
-        return (Optional<Boolean>) follow;
+        return follow;
     }
 
     @JsonIgnore
@@ -69,10 +69,9 @@ public class GetLogsForProcessRequest {
         return processId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Integer> tailLines() {
-        return (Optional<Integer>) tailLines;
+        return tailLines;
     }
 
     public final static Builder builder() {
@@ -85,7 +84,7 @@ public class GetLogsForProcessRequest {
         return this;
     }
 
-    public GetLogsForProcessRequest withAppId(Optional<? extends String> appId) {
+    public GetLogsForProcessRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -97,7 +96,7 @@ public class GetLogsForProcessRequest {
         return this;
     }
 
-    public GetLogsForProcessRequest withFollow(Optional<? extends Boolean> follow) {
+    public GetLogsForProcessRequest withFollow(Optional<Boolean> follow) {
         Utils.checkNotNull(follow, "follow");
         this.follow = follow;
         return this;
@@ -115,7 +114,7 @@ public class GetLogsForProcessRequest {
         return this;
     }
 
-    public GetLogsForProcessRequest withTailLines(Optional<? extends Integer> tailLines) {
+    public GetLogsForProcessRequest withTailLines(Optional<Integer> tailLines) {
         Utils.checkNotNull(tailLines, "tailLines");
         this.tailLines = tailLines;
         return this;
@@ -131,15 +130,15 @@ public class GetLogsForProcessRequest {
         }
         GetLogsForProcessRequest other = (GetLogsForProcessRequest) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.follow, other.follow) &&
-            java.util.Objects.deepEquals(this.processId, other.processId) &&
-            java.util.Objects.deepEquals(this.tailLines, other.tailLines);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.follow, other.follow) &&
+            Objects.deepEquals(this.processId, other.processId) &&
+            Objects.deepEquals(this.tailLines, other.tailLines);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             follow,
             processId,
@@ -157,13 +156,13 @@ public class GetLogsForProcessRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
-        private Optional<? extends Boolean> follow = Optional.empty();
+        private Optional<Boolean> follow = Optional.empty();
  
         private String processId;
  
-        private Optional<? extends Integer> tailLines;  
+        private Optional<Integer> tailLines;  
         
         private Builder() {
           // force use of static builder() method
@@ -175,7 +174,7 @@ public class GetLogsForProcessRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;
@@ -187,7 +186,7 @@ public class GetLogsForProcessRequest {
             return this;
         }
 
-        public Builder follow(Optional<? extends Boolean> follow) {
+        public Builder follow(Optional<Boolean> follow) {
             Utils.checkNotNull(follow, "follow");
             this.follow = follow;
             return this;
@@ -205,7 +204,7 @@ public class GetLogsForProcessRequest {
             return this;
         }
 
-        public Builder tailLines(Optional<? extends Integer> tailLines) {
+        public Builder tailLines(Optional<Integer> tailLines) {
             Utils.checkNotNull(tailLines, "tailLines");
             this.tailLines = tailLines;
             return this;
@@ -214,19 +213,18 @@ public class GetLogsForProcessRequest {
         public GetLogsForProcessRequest build() {
             if (tailLines == null) {
                 tailLines = _SINGLETON_VALUE_TailLines.value();
-            }
-            return new GetLogsForProcessRequest(
+            }            return new GetLogsForProcessRequest(
                 appId,
                 follow,
                 processId,
                 tailLines);
         }
 
-        private static final LazySingletonValue<Optional<? extends Integer>> _SINGLETON_VALUE_TailLines =
+        private static final LazySingletonValue<Optional<Integer>> _SINGLETON_VALUE_TailLines =
                 new LazySingletonValue<>(
                         "tailLines",
                         "100",
-                        new TypeReference<Optional<? extends Integer>>() {});
+                        new TypeReference<Optional<Integer>>() {});
     }
 }
 

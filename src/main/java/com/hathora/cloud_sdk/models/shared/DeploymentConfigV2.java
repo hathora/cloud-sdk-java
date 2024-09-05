@@ -4,19 +4,23 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Double;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class DeploymentConfigV2 {
 
@@ -25,7 +29,7 @@ public class DeploymentConfigV2 {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("additionalContainerPorts")
-    private Optional<? extends java.util.List<ContainerPort>> additionalContainerPorts;
+    private Optional<? extends List<ContainerPort>> additionalContainerPorts;
 
     /**
      * Default port the server listens on.
@@ -37,7 +41,7 @@ public class DeploymentConfigV2 {
      * The environment variable that our process will have access to at runtime.
      */
     @JsonProperty("env")
-    private java.util.List<DeploymentConfigV2Env> env;
+    private List<DeploymentConfigV2Env> env;
 
     /**
      * Option to shut down processes that have had no new connections or rooms
@@ -72,9 +76,9 @@ public class DeploymentConfigV2 {
 
     @JsonCreator
     public DeploymentConfigV2(
-            @JsonProperty("additionalContainerPorts") Optional<? extends java.util.List<ContainerPort>> additionalContainerPorts,
+            @JsonProperty("additionalContainerPorts") Optional<? extends List<ContainerPort>> additionalContainerPorts,
             @JsonProperty("containerPort") int containerPort,
-            @JsonProperty("env") java.util.List<DeploymentConfigV2Env> env,
+            @JsonProperty("env") List<DeploymentConfigV2Env> env,
             @JsonProperty("idleTimeoutEnabled") boolean idleTimeoutEnabled,
             @JsonProperty("requestedCPU") double requestedCPU,
             @JsonProperty("requestedMemoryMB") double requestedMemoryMB,
@@ -100,7 +104,7 @@ public class DeploymentConfigV2 {
     
     public DeploymentConfigV2(
             int containerPort,
-            java.util.List<DeploymentConfigV2Env> env,
+            List<DeploymentConfigV2Env> env,
             boolean idleTimeoutEnabled,
             double requestedCPU,
             double requestedMemoryMB,
@@ -114,8 +118,8 @@ public class DeploymentConfigV2 {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<ContainerPort>> additionalContainerPorts() {
-        return (Optional<java.util.List<ContainerPort>>) additionalContainerPorts;
+    public Optional<List<ContainerPort>> additionalContainerPorts() {
+        return (Optional<List<ContainerPort>>) additionalContainerPorts;
     }
 
     /**
@@ -130,7 +134,7 @@ public class DeploymentConfigV2 {
      * The environment variable that our process will have access to at runtime.
      */
     @JsonIgnore
-    public java.util.List<DeploymentConfigV2Env> env() {
+    public List<DeploymentConfigV2Env> env() {
         return env;
     }
 
@@ -182,7 +186,7 @@ public class DeploymentConfigV2 {
     /**
      * Additional ports your server listens on.
      */
-    public DeploymentConfigV2 withAdditionalContainerPorts(java.util.List<ContainerPort> additionalContainerPorts) {
+    public DeploymentConfigV2 withAdditionalContainerPorts(List<ContainerPort> additionalContainerPorts) {
         Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
         this.additionalContainerPorts = Optional.ofNullable(additionalContainerPorts);
         return this;
@@ -191,7 +195,7 @@ public class DeploymentConfigV2 {
     /**
      * Additional ports your server listens on.
      */
-    public DeploymentConfigV2 withAdditionalContainerPorts(Optional<? extends java.util.List<ContainerPort>> additionalContainerPorts) {
+    public DeploymentConfigV2 withAdditionalContainerPorts(Optional<? extends List<ContainerPort>> additionalContainerPorts) {
         Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
         this.additionalContainerPorts = additionalContainerPorts;
         return this;
@@ -209,7 +213,7 @@ public class DeploymentConfigV2 {
     /**
      * The environment variable that our process will have access to at runtime.
      */
-    public DeploymentConfigV2 withEnv(java.util.List<DeploymentConfigV2Env> env) {
+    public DeploymentConfigV2 withEnv(List<DeploymentConfigV2Env> env) {
         Utils.checkNotNull(env, "env");
         this.env = env;
         return this;
@@ -271,19 +275,19 @@ public class DeploymentConfigV2 {
         }
         DeploymentConfigV2 other = (DeploymentConfigV2) o;
         return 
-            java.util.Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
-            java.util.Objects.deepEquals(this.containerPort, other.containerPort) &&
-            java.util.Objects.deepEquals(this.env, other.env) &&
-            java.util.Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
-            java.util.Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
-            java.util.Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
-            java.util.Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            java.util.Objects.deepEquals(this.transportType, other.transportType);
+            Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            Objects.deepEquals(this.containerPort, other.containerPort) &&
+            Objects.deepEquals(this.env, other.env) &&
+            Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
+            Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
+            Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
+            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Objects.deepEquals(this.transportType, other.transportType);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             additionalContainerPorts,
             containerPort,
             env,
@@ -309,11 +313,11 @@ public class DeploymentConfigV2 {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.List<ContainerPort>> additionalContainerPorts = Optional.empty();
+        private Optional<? extends List<ContainerPort>> additionalContainerPorts = Optional.empty();
  
         private Integer containerPort;
  
-        private java.util.List<DeploymentConfigV2Env> env;
+        private List<DeploymentConfigV2Env> env;
  
         private Boolean idleTimeoutEnabled;
  
@@ -332,7 +336,7 @@ public class DeploymentConfigV2 {
         /**
          * Additional ports your server listens on.
          */
-        public Builder additionalContainerPorts(java.util.List<ContainerPort> additionalContainerPorts) {
+        public Builder additionalContainerPorts(List<ContainerPort> additionalContainerPorts) {
             Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
             this.additionalContainerPorts = Optional.ofNullable(additionalContainerPorts);
             return this;
@@ -341,7 +345,7 @@ public class DeploymentConfigV2 {
         /**
          * Additional ports your server listens on.
          */
-        public Builder additionalContainerPorts(Optional<? extends java.util.List<ContainerPort>> additionalContainerPorts) {
+        public Builder additionalContainerPorts(Optional<? extends List<ContainerPort>> additionalContainerPorts) {
             Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
             this.additionalContainerPorts = additionalContainerPorts;
             return this;
@@ -359,7 +363,7 @@ public class DeploymentConfigV2 {
         /**
          * The environment variable that our process will have access to at runtime.
          */
-        public Builder env(java.util.List<DeploymentConfigV2Env> env) {
+        public Builder env(List<DeploymentConfigV2Env> env) {
             Utils.checkNotNull(env, "env");
             this.env = env;
             return this;

@@ -5,16 +5,11 @@
 package com.hathora.cloud_sdk.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.http.HttpResponse;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 
 public class ApiError extends RuntimeException {
 
@@ -52,7 +47,7 @@ public class ApiError extends RuntimeException {
         }
         ApiError other = (ApiError) o;
         return
-            java.util.Objects.deepEquals(this.message, other.message);
+            Objects.deepEquals(this.message, other.message);
     }
 
     @Override

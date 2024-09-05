@@ -4,16 +4,15 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class CreatePrivateLobbyDeprecatedSecurity {
 
@@ -52,12 +51,12 @@ public class CreatePrivateLobbyDeprecatedSecurity {
         }
         CreatePrivateLobbyDeprecatedSecurity other = (CreatePrivateLobbyDeprecatedSecurity) o;
         return 
-            java.util.Objects.deepEquals(this.playerAuth, other.playerAuth);
+            Objects.deepEquals(this.playerAuth, other.playerAuth);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             playerAuth);
     }
     

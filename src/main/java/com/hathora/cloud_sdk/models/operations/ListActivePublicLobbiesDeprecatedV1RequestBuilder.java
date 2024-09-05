@@ -5,39 +5,34 @@
 package com.hathora.cloud_sdk.models.operations;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.shared.Region;
 import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.Boolean;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class ListActivePublicLobbiesDeprecatedV1RequestBuilder {
 
-    private Optional<? extends String> appId = Optional.empty();
-    private Optional<? extends Boolean> local = Utils.readDefaultOrConstValue(
+    private Optional<String> appId = Optional.empty();
+    private Optional<Boolean> local = Utils.readDefaultOrConstValue(
                             "local",
                             "false",
-                            new TypeReference<Optional<? extends Boolean>>() {});
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region = Optional.empty();
+                            new TypeReference<Optional<Boolean>>() {});
+    private Optional<? extends Region> region = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListActivePublicLobbiesDeprecatedV1 sdk;
 
     public ListActivePublicLobbiesDeprecatedV1RequestBuilder(SDKMethodInterfaces.MethodCallListActivePublicLobbiesDeprecatedV1 sdk) {
         this.sdk = sdk;
     }
                 
-    public ListActivePublicLobbiesDeprecatedV1RequestBuilder appId(String appId) {
+    public ListActivePublicLobbiesDeprecatedV1RequestBuilder appId(java.lang.String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public ListActivePublicLobbiesDeprecatedV1RequestBuilder appId(Optional<? extends String> appId) {
+    public ListActivePublicLobbiesDeprecatedV1RequestBuilder appId(java.util.Optional<java.lang.String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -49,7 +44,7 @@ public class ListActivePublicLobbiesDeprecatedV1RequestBuilder {
         return this;
     }
 
-    public ListActivePublicLobbiesDeprecatedV1RequestBuilder local(Optional<? extends Boolean> local) {
+    public ListActivePublicLobbiesDeprecatedV1RequestBuilder local(java.util.Optional<java.lang.Boolean> local) {
         Utils.checkNotNull(local, "local");
         this.local = local;
         return this;
@@ -61,7 +56,7 @@ public class ListActivePublicLobbiesDeprecatedV1RequestBuilder {
         return this;
     }
 
-    public ListActivePublicLobbiesDeprecatedV1RequestBuilder region(Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region) {
+    public ListActivePublicLobbiesDeprecatedV1RequestBuilder region(java.util.Optional<? extends com.hathora.cloud_sdk.models.shared.Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
@@ -71,16 +66,15 @@ public class ListActivePublicLobbiesDeprecatedV1RequestBuilder {
         if (local == null) {
             local = _SINGLETON_VALUE_Local.value();
         }
-
         return sdk.listActivePublicLobbiesDeprecatedV1(
             appId,
             local,
             region);
     }
 
-    private static final LazySingletonValue<Optional<? extends Boolean>> _SINGLETON_VALUE_Local =
+    private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Local =
             new LazySingletonValue<>(
                     "local",
                     "false",
-                    new TypeReference<Optional<? extends Boolean>>() {});
+                    new TypeReference<Optional<Boolean>>() {});
 }

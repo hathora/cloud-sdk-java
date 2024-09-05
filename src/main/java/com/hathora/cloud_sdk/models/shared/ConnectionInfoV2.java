@@ -4,19 +4,20 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 /**
  * ConnectionInfoV2 - Connection information for the default and additional ports.
  */
@@ -24,7 +25,7 @@ import java.util.Optional;
 public class ConnectionInfoV2 {
 
     @JsonProperty("additionalExposedPorts")
-    private java.util.List<ExposedPort> additionalExposedPorts;
+    private List<ExposedPort> additionalExposedPorts;
 
     /**
      * Connection details for an active process.
@@ -45,7 +46,7 @@ public class ConnectionInfoV2 {
 
     @JsonCreator
     public ConnectionInfoV2(
-            @JsonProperty("additionalExposedPorts") java.util.List<ExposedPort> additionalExposedPorts,
+            @JsonProperty("additionalExposedPorts") List<ExposedPort> additionalExposedPorts,
             @JsonProperty("exposedPort") Optional<? extends ExposedPort> exposedPort,
             @JsonProperty("roomId") String roomId,
             @JsonProperty("status") RoomReadyStatus status) {
@@ -60,14 +61,14 @@ public class ConnectionInfoV2 {
     }
     
     public ConnectionInfoV2(
-            java.util.List<ExposedPort> additionalExposedPorts,
+            List<ExposedPort> additionalExposedPorts,
             String roomId,
             RoomReadyStatus status) {
         this(additionalExposedPorts, Optional.empty(), roomId, status);
     }
 
     @JsonIgnore
-    public java.util.List<ExposedPort> additionalExposedPorts() {
+    public List<ExposedPort> additionalExposedPorts() {
         return additionalExposedPorts;
     }
 
@@ -98,7 +99,7 @@ public class ConnectionInfoV2 {
         return new Builder();
     }
 
-    public ConnectionInfoV2 withAdditionalExposedPorts(java.util.List<ExposedPort> additionalExposedPorts) {
+    public ConnectionInfoV2 withAdditionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
         Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
         this.additionalExposedPorts = additionalExposedPorts;
         return this;
@@ -148,15 +149,15 @@ public class ConnectionInfoV2 {
         }
         ConnectionInfoV2 other = (ConnectionInfoV2) o;
         return 
-            java.util.Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
-            java.util.Objects.deepEquals(this.exposedPort, other.exposedPort) &&
-            java.util.Objects.deepEquals(this.roomId, other.roomId) &&
-            java.util.Objects.deepEquals(this.status, other.status);
+            Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
+            Objects.deepEquals(this.exposedPort, other.exposedPort) &&
+            Objects.deepEquals(this.roomId, other.roomId) &&
+            Objects.deepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             additionalExposedPorts,
             exposedPort,
             roomId,
@@ -174,7 +175,7 @@ public class ConnectionInfoV2 {
     
     public final static class Builder {
  
-        private java.util.List<ExposedPort> additionalExposedPorts;
+        private List<ExposedPort> additionalExposedPorts;
  
         private Optional<? extends ExposedPort> exposedPort = Optional.empty();
  
@@ -186,7 +187,7 @@ public class ConnectionInfoV2 {
           // force use of static builder() method
         }
 
-        public Builder additionalExposedPorts(java.util.List<ExposedPort> additionalExposedPorts) {
+        public Builder additionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
             Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
             this.additionalExposedPorts = additionalExposedPorts;
             return this;

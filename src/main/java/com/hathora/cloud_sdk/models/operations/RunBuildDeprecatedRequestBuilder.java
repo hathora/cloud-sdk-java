@@ -4,23 +4,15 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.Integer;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class RunBuildDeprecatedRequestBuilder {
 
     private RunBuildDeprecatedRequestBody requestBody;
-    private Optional<? extends String> appId = Optional.empty();
+    private Optional<String> appId = Optional.empty();
     private Integer buildId;
     private final SDKMethodInterfaces.MethodCallRunBuildDeprecated sdk;
 
@@ -28,19 +20,19 @@ public class RunBuildDeprecatedRequestBuilder {
         this.sdk = sdk;
     }
 
-    public RunBuildDeprecatedRequestBuilder requestBody(RunBuildDeprecatedRequestBody requestBody) {
+    public RunBuildDeprecatedRequestBuilder requestBody(com.hathora.cloud_sdk.models.operations.RunBuildDeprecatedRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
                 
-    public RunBuildDeprecatedRequestBuilder appId(String appId) {
+    public RunBuildDeprecatedRequestBuilder appId(java.lang.String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public RunBuildDeprecatedRequestBuilder appId(Optional<? extends String> appId) {
+    public RunBuildDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

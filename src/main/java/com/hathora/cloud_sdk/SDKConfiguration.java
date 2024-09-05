@@ -4,12 +4,14 @@
 
 package com.hathora.cloud_sdk;
 
-import com.hathora.cloud_sdk.utils.Hook.SdkInitData;
 import com.hathora.cloud_sdk.utils.HTTPClient;
+import com.hathora.cloud_sdk.utils.Hooks;
 import com.hathora.cloud_sdk.utils.RetryConfig;
-import com.hathora.cloud_sdk.models.shared.Security;
-import java.util.Map;
+import java.lang.Object;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 class SDKConfiguration {
@@ -19,26 +21,26 @@ class SDKConfiguration {
         return Optional.ofNullable(securitySource);
     }
     public HTTPClient defaultClient;
-      public String serverUrl;
+    public String serverUrl;
     public int serverIdx = 0;
     public String language = "java";
     public String openapiDocVersion = "0.0.1";
-    public String sdkVersion = "2.8.0";
-    public String genVersion = "2.385.1";
-    public String userAgent = "speakeasy-sdk/java 2.8.0 2.385.1 0.0.1 com.hathora.cloud_sdk";
+    public String sdkVersion = "2.9.0";
+    public String genVersion = "2.409.3";
+    public String userAgent = "speakeasy-sdk/java 2.9.0 2.409.3 0.0.1 com.hathora.cloud_sdk";
 
-    private com.hathora.cloud_sdk.utils.Hooks _hooks = createHooks();
+    private Hooks _hooks = createHooks();
 
-    private static com.hathora.cloud_sdk.utils.Hooks createHooks() {
-        com.hathora.cloud_sdk.utils.Hooks hooks = new com.hathora.cloud_sdk.utils.Hooks();
+    private static Hooks createHooks() {
+        Hooks hooks = new Hooks();
         return hooks;
     }
     
-    public com.hathora.cloud_sdk.utils.Hooks hooks() {
+    public Hooks hooks() {
         return _hooks;
     }
 
-    public void setHooks(com.hathora.cloud_sdk.utils.Hooks hooks) {
+    public void setHooks(Hooks hooks) {
         this._hooks = hooks;
     }
 
@@ -49,9 +51,10 @@ class SDKConfiguration {
 
     }
 
-    public Map<String, Map<String, Map<String, java.lang.Object>>> globals = new HashMap<>(){{
+    @SuppressWarnings("serial")
+    public Map<String, Map<String, Map<String,Object>>> globals = new HashMap<>(){ {
         put("parameters", new HashMap<>());
-    }};
+    } };
     
     public Optional<RetryConfig> retryConfig = Optional.empty();
 }

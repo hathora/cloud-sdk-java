@@ -5,26 +5,35 @@
 package com.hathora.cloud_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hathora.cloud_sdk.models.errors.ApiError;
 import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.DownloadLogForProcessRequest;
+import com.hathora.cloud_sdk.models.operations.DownloadLogForProcessRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.DownloadLogForProcessResponse;
+import com.hathora.cloud_sdk.models.operations.GetLogsForAppRequest;
+import com.hathora.cloud_sdk.models.operations.GetLogsForAppRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetLogsForAppResponse;
+import com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentRequest;
+import com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentResponse;
+import com.hathora.cloud_sdk.models.operations.GetLogsForProcessRequest;
+import com.hathora.cloud_sdk.models.operations.GetLogsForProcessRequestBuilder;
+import com.hathora.cloud_sdk.models.operations.GetLogsForProcessResponse;
 import com.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
 import com.hathora.cloud_sdk.utils.HTTPClient;
 import com.hathora.cloud_sdk.utils.HTTPRequest;
 import com.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.hathora.cloud_sdk.utils.JSON;
-import com.hathora.cloud_sdk.utils.Retries.NonRetryableException;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Deprecated;
+import java.lang.Exception;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.apache.http.NameValuePair;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class LogsV1 implements
             MethodCallDownloadLogForProcess,
@@ -43,8 +52,8 @@ public class LogsV1 implements
      * Download entire log file for a stopped process.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.DownloadLogForProcessRequestBuilder downloadLogForProcess() {
-        return new com.hathora.cloud_sdk.models.operations.DownloadLogForProcessRequestBuilder(this);
+    public DownloadLogForProcessRequestBuilder downloadLogForProcess() {
+        return new DownloadLogForProcessRequestBuilder(this);
     }
 
     /**
@@ -53,10 +62,11 @@ public class LogsV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.DownloadLogForProcessResponse downloadLogForProcess(
+    public DownloadLogForProcessResponse downloadLogForProcess(
             String processId) throws Exception {
         return downloadLogForProcess(Optional.empty(), processId);
     }
+    
     /**
      * Download entire log file for a stopped process.
      * @param appId
@@ -64,11 +74,11 @@ public class LogsV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.DownloadLogForProcessResponse downloadLogForProcess(
-            Optional<? extends String> appId,
+    public DownloadLogForProcessResponse downloadLogForProcess(
+            Optional<String> appId,
             String processId) throws Exception {
-        com.hathora.cloud_sdk.models.operations.DownloadLogForProcessRequest request =
-            com.hathora.cloud_sdk.models.operations.DownloadLogForProcessRequest
+        DownloadLogForProcessRequest request =
+            DownloadLogForProcessRequest
                 .builder()
                 .appId(appId)
                 .processId(processId)
@@ -76,7 +86,7 @@ public class LogsV1 implements
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.DownloadLogForProcessRequest.class,
+                DownloadLogForProcessRequest.class,
                 _baseUrl,
                 "/logs/v1/{appId}/process/{processId}/download",
                 request, this.sdkConfiguration.globals);
@@ -93,7 +103,10 @@ public class LogsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("DownloadLogForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "DownloadLogForProcess", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -101,18 +114,28 @@ public class LogsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "410", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("DownloadLogForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "DownloadLogForProcess",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("DownloadLogForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "DownloadLogForProcess",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("DownloadLogForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "DownloadLogForProcess",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -120,8 +143,8 @@ public class LogsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.DownloadLogForProcessResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.DownloadLogForProcessResponse
+        DownloadLogForProcessResponse.Builder _resBuilder = 
+            DownloadLogForProcessResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
@@ -130,7 +153,7 @@ public class LogsV1 implements
             _resBuilder.responseStream(_httpRes.body());
         }
 
-        com.hathora.cloud_sdk.models.operations.DownloadLogForProcessResponse _res = _resBuilder.build();
+        DownloadLogForProcessResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/octet-stream")) {
@@ -140,21 +163,21 @@ public class LogsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "410", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -163,13 +186,13 @@ public class LogsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -180,8 +203,8 @@ public class LogsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetLogsForAppRequestBuilder getLogsForApp() {
-        return new com.hathora.cloud_sdk.models.operations.GetLogsForAppRequestBuilder(this);
+    public GetLogsForAppRequestBuilder getLogsForApp() {
+        return new GetLogsForAppRequestBuilder(this);
     }
 
     /**
@@ -192,11 +215,11 @@ public class LogsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetLogsForAppResponse getLogsForApp(
-            com.hathora.cloud_sdk.models.operations.GetLogsForAppRequest request) throws Exception {
+    public GetLogsForAppResponse getLogsForApp(
+            GetLogsForAppRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetLogsForAppRequest.class,
+                GetLogsForAppRequest.class,
                 _baseUrl,
                 "/logs/v1/{appId}/all",
                 request, this.sdkConfiguration.globals);
@@ -207,7 +230,7 @@ public class LogsV1 implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.hathora.cloud_sdk.models.operations.GetLogsForAppRequest.class,
+                GetLogsForAppRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -218,7 +241,10 @@ public class LogsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetLogsForApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetLogsForApp", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -226,18 +252,28 @@ public class LogsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetLogsForApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetLogsForApp",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetLogsForApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetLogsForApp",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetLogsForApp", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetLogsForApp",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -245,8 +281,8 @@ public class LogsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetLogsForAppResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetLogsForAppResponse
+        GetLogsForAppResponse.Builder _resBuilder = 
+            GetLogsForAppResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
@@ -255,7 +291,7 @@ public class LogsV1 implements
             _resBuilder.responseStream(_httpRes.body());
         }
 
-        com.hathora.cloud_sdk.models.operations.GetLogsForAppResponse _res = _resBuilder.build();
+        GetLogsForAppResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/octet-stream")) {
@@ -265,21 +301,21 @@ public class LogsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -288,13 +324,13 @@ public class LogsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -305,8 +341,8 @@ public class LogsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentRequestBuilder getLogsForDeployment() {
-        return new com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentRequestBuilder(this);
+    public GetLogsForDeploymentRequestBuilder getLogsForDeployment() {
+        return new GetLogsForDeploymentRequestBuilder(this);
     }
 
     /**
@@ -317,11 +353,11 @@ public class LogsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentResponse getLogsForDeployment(
-            com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentRequest request) throws Exception {
+    public GetLogsForDeploymentResponse getLogsForDeployment(
+            GetLogsForDeploymentRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentRequest.class,
+                GetLogsForDeploymentRequest.class,
                 _baseUrl,
                 "/logs/v1/{appId}/deployment/{deploymentId}",
                 request, this.sdkConfiguration.globals);
@@ -332,7 +368,7 @@ public class LogsV1 implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentRequest.class,
+                GetLogsForDeploymentRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -343,7 +379,10 @@ public class LogsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetLogsForDeployment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetLogsForDeployment", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -351,18 +390,28 @@ public class LogsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetLogsForDeployment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetLogsForDeployment",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetLogsForDeployment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetLogsForDeployment",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetLogsForDeployment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetLogsForDeployment",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -370,8 +419,8 @@ public class LogsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentResponse
+        GetLogsForDeploymentResponse.Builder _resBuilder = 
+            GetLogsForDeploymentResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
@@ -380,7 +429,7 @@ public class LogsV1 implements
             _resBuilder.responseStream(_httpRes.body());
         }
 
-        com.hathora.cloud_sdk.models.operations.GetLogsForDeploymentResponse _res = _resBuilder.build();
+        GetLogsForDeploymentResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/octet-stream")) {
@@ -390,21 +439,21 @@ public class LogsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -413,13 +462,13 @@ public class LogsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -428,8 +477,8 @@ public class LogsV1 implements
      * Returns a stream of logs for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
      * @return The call builder
      */
-    public com.hathora.cloud_sdk.models.operations.GetLogsForProcessRequestBuilder getLogsForProcess() {
-        return new com.hathora.cloud_sdk.models.operations.GetLogsForProcessRequestBuilder(this);
+    public GetLogsForProcessRequestBuilder getLogsForProcess() {
+        return new GetLogsForProcessRequestBuilder(this);
     }
 
     /**
@@ -438,11 +487,11 @@ public class LogsV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.hathora.cloud_sdk.models.operations.GetLogsForProcessResponse getLogsForProcess(
-            com.hathora.cloud_sdk.models.operations.GetLogsForProcessRequest request) throws Exception {
+    public GetLogsForProcessResponse getLogsForProcess(
+            GetLogsForProcessRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.hathora.cloud_sdk.models.operations.GetLogsForProcessRequest.class,
+                GetLogsForProcessRequest.class,
                 _baseUrl,
                 "/logs/v1/{appId}/process/{processId}",
                 request, this.sdkConfiguration.globals);
@@ -453,7 +502,7 @@ public class LogsV1 implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.hathora.cloud_sdk.models.operations.GetLogsForProcessRequest.class,
+                GetLogsForProcessRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -464,7 +513,10 @@ public class LogsV1 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("GetLogsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "GetLogsForProcess", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -472,18 +524,28 @@ public class LogsV1 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "410", "429", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("GetLogsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "GetLogsForProcess",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("GetLogsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "GetLogsForProcess",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("GetLogsForProcess", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetLogsForProcess",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -491,8 +553,8 @@ public class LogsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.hathora.cloud_sdk.models.operations.GetLogsForProcessResponse.Builder _resBuilder = 
-            com.hathora.cloud_sdk.models.operations.GetLogsForProcessResponse
+        GetLogsForProcessResponse.Builder _resBuilder = 
+            GetLogsForProcessResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
@@ -501,7 +563,7 @@ public class LogsV1 implements
             _resBuilder.responseStream(_httpRes.body());
         }
 
-        com.hathora.cloud_sdk.models.operations.GetLogsForProcessResponse _res = _resBuilder.build();
+        GetLogsForProcessResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/octet-stream")) {
@@ -511,21 +573,21 @@ public class LogsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "410", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.hathora.cloud_sdk.models.errors.ApiError _out = Utils.mapper().readValue(
+                ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.hathora.cloud_sdk.models.errors.ApiError>() {});
+                    new TypeReference<ApiError>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -534,13 +596,13 @@ public class LogsV1 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

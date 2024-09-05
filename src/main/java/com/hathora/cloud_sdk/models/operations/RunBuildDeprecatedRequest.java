@@ -4,17 +4,17 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class RunBuildDeprecatedRequest {
 
@@ -22,7 +22,7 @@ public class RunBuildDeprecatedRequest {
     private RunBuildDeprecatedRequestBody requestBody;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
-    private Optional<? extends String> appId;
+    private Optional<String> appId;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buildId")
     private int buildId;
@@ -30,7 +30,7 @@ public class RunBuildDeprecatedRequest {
     @JsonCreator
     public RunBuildDeprecatedRequest(
             RunBuildDeprecatedRequestBody requestBody,
-            Optional<? extends String> appId,
+            Optional<String> appId,
             int buildId) {
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(appId, "appId");
@@ -51,10 +51,9 @@ public class RunBuildDeprecatedRequest {
         return requestBody;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> appId() {
-        return (Optional<String>) appId;
+        return appId;
     }
 
     @JsonIgnore
@@ -78,7 +77,7 @@ public class RunBuildDeprecatedRequest {
         return this;
     }
 
-    public RunBuildDeprecatedRequest withAppId(Optional<? extends String> appId) {
+    public RunBuildDeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -100,14 +99,14 @@ public class RunBuildDeprecatedRequest {
         }
         RunBuildDeprecatedRequest other = (RunBuildDeprecatedRequest) o;
         return 
-            java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.buildId, other.buildId);
+            Objects.deepEquals(this.requestBody, other.requestBody) &&
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.buildId, other.buildId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             requestBody,
             appId,
             buildId);
@@ -125,7 +124,7 @@ public class RunBuildDeprecatedRequest {
  
         private RunBuildDeprecatedRequestBody requestBody;
  
-        private Optional<? extends String> appId = Optional.empty();
+        private Optional<String> appId = Optional.empty();
  
         private Integer buildId;  
         
@@ -145,7 +144,7 @@ public class RunBuildDeprecatedRequest {
             return this;
         }
 
-        public Builder appId(Optional<? extends String> appId) {
+        public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
             return this;

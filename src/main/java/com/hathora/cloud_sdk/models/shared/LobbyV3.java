@@ -4,22 +4,19 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 /**
  * LobbyV3 - A lobby object allows you to store and manage metadata for your rooms.
  */
@@ -49,7 +46,7 @@ public class LobbyV3 {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("roomConfig")
-    private JsonNullable<? extends String> roomConfig;
+    private JsonNullable<String> roomConfig;
 
     /**
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
@@ -82,7 +79,7 @@ public class LobbyV3 {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") LobbyV3CreatedBy createdBy,
             @JsonProperty("region") Region region,
-            @JsonProperty("roomConfig") JsonNullable<? extends String> roomConfig,
+            @JsonProperty("roomConfig") JsonNullable<String> roomConfig,
             @JsonProperty("roomId") String roomId,
             @JsonProperty("shortCode") String shortCode,
             @JsonProperty("visibility") LobbyVisibility visibility) {
@@ -144,10 +141,9 @@ public class LobbyV3 {
         return region;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<String> roomConfig() {
-        return (JsonNullable<String>) roomConfig;
+        return roomConfig;
     }
 
     /**
@@ -224,7 +220,7 @@ public class LobbyV3 {
         return this;
     }
 
-    public LobbyV3 withRoomConfig(JsonNullable<? extends String> roomConfig) {
+    public LobbyV3 withRoomConfig(JsonNullable<String> roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
         this.roomConfig = roomConfig;
         return this;
@@ -274,19 +270,19 @@ public class LobbyV3 {
         }
         LobbyV3 other = (LobbyV3) o;
         return 
-            java.util.Objects.deepEquals(this.appId, other.appId) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.createdBy, other.createdBy) &&
-            java.util.Objects.deepEquals(this.region, other.region) &&
-            java.util.Objects.deepEquals(this.roomConfig, other.roomConfig) &&
-            java.util.Objects.deepEquals(this.roomId, other.roomId) &&
-            java.util.Objects.deepEquals(this.shortCode, other.shortCode) &&
-            java.util.Objects.deepEquals(this.visibility, other.visibility);
+            Objects.deepEquals(this.appId, other.appId) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.createdBy, other.createdBy) &&
+            Objects.deepEquals(this.region, other.region) &&
+            Objects.deepEquals(this.roomConfig, other.roomConfig) &&
+            Objects.deepEquals(this.roomId, other.roomId) &&
+            Objects.deepEquals(this.shortCode, other.shortCode) &&
+            Objects.deepEquals(this.visibility, other.visibility);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             appId,
             createdAt,
             createdBy,
@@ -320,7 +316,7 @@ public class LobbyV3 {
  
         private Region region;
  
-        private JsonNullable<? extends String> roomConfig = JsonNullable.undefined();
+        private JsonNullable<String> roomConfig = JsonNullable.undefined();
  
         private String roomId;
  
@@ -371,7 +367,7 @@ public class LobbyV3 {
             return this;
         }
 
-        public Builder roomConfig(JsonNullable<? extends String> roomConfig) {
+        public Builder roomConfig(JsonNullable<String> roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
             this.roomConfig = roomConfig;
             return this;

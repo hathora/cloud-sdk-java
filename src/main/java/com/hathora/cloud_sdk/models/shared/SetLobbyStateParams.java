@@ -4,16 +4,16 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class SetLobbyStateParams {
 
@@ -21,11 +21,11 @@ public class SetLobbyStateParams {
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
     @JsonProperty("state")
-    private java.lang.Object state;
+    private Object state;
 
     @JsonCreator
     public SetLobbyStateParams(
-            @JsonProperty("state") java.lang.Object state) {
+            @JsonProperty("state") Object state) {
         Utils.checkNotNull(state, "state");
         this.state = state;
     }
@@ -34,7 +34,7 @@ public class SetLobbyStateParams {
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
     @JsonIgnore
-    public java.lang.Object state() {
+    public Object state() {
         return state;
     }
 
@@ -45,7 +45,7 @@ public class SetLobbyStateParams {
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
-    public SetLobbyStateParams withState(java.lang.Object state) {
+    public SetLobbyStateParams withState(Object state) {
         Utils.checkNotNull(state, "state");
         this.state = state;
         return this;
@@ -61,12 +61,12 @@ public class SetLobbyStateParams {
         }
         SetLobbyStateParams other = (SetLobbyStateParams) o;
         return 
-            java.util.Objects.deepEquals(this.state, other.state);
+            Objects.deepEquals(this.state, other.state);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             state);
     }
     
@@ -78,7 +78,7 @@ public class SetLobbyStateParams {
     
     public final static class Builder {
  
-        private java.lang.Object state;  
+        private Object state;  
         
         private Builder() {
           // force use of static builder() method
@@ -87,7 +87,7 @@ public class SetLobbyStateParams {
         /**
          * JSON blob to store metadata for a room. Must be smaller than 1MB.
          */
-        public Builder state(java.lang.Object state) {
+        public Builder state(Object state) {
             Utils.checkNotNull(state, "state");
             this.state = state;
             return this;

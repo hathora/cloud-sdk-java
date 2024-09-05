@@ -4,16 +4,17 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.Region;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class CreatePublicLobbyRequestBody {
 
@@ -21,15 +22,15 @@ public class CreatePublicLobbyRequestBody {
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
     @JsonProperty("initialConfig")
-    private java.lang.Object initialConfig;
+    private Object initialConfig;
 
     @JsonProperty("region")
-    private com.hathora.cloud_sdk.models.shared.Region region;
+    private Region region;
 
     @JsonCreator
     public CreatePublicLobbyRequestBody(
-            @JsonProperty("initialConfig") java.lang.Object initialConfig,
-            @JsonProperty("region") com.hathora.cloud_sdk.models.shared.Region region) {
+            @JsonProperty("initialConfig") Object initialConfig,
+            @JsonProperty("region") Region region) {
         Utils.checkNotNull(initialConfig, "initialConfig");
         Utils.checkNotNull(region, "region");
         this.initialConfig = initialConfig;
@@ -40,12 +41,12 @@ public class CreatePublicLobbyRequestBody {
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
     @JsonIgnore
-    public java.lang.Object initialConfig() {
+    public Object initialConfig() {
         return initialConfig;
     }
 
     @JsonIgnore
-    public com.hathora.cloud_sdk.models.shared.Region region() {
+    public Region region() {
         return region;
     }
 
@@ -56,13 +57,13 @@ public class CreatePublicLobbyRequestBody {
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
-    public CreatePublicLobbyRequestBody withInitialConfig(java.lang.Object initialConfig) {
+    public CreatePublicLobbyRequestBody withInitialConfig(Object initialConfig) {
         Utils.checkNotNull(initialConfig, "initialConfig");
         this.initialConfig = initialConfig;
         return this;
     }
 
-    public CreatePublicLobbyRequestBody withRegion(com.hathora.cloud_sdk.models.shared.Region region) {
+    public CreatePublicLobbyRequestBody withRegion(Region region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
@@ -78,13 +79,13 @@ public class CreatePublicLobbyRequestBody {
         }
         CreatePublicLobbyRequestBody other = (CreatePublicLobbyRequestBody) o;
         return 
-            java.util.Objects.deepEquals(this.initialConfig, other.initialConfig) &&
-            java.util.Objects.deepEquals(this.region, other.region);
+            Objects.deepEquals(this.initialConfig, other.initialConfig) &&
+            Objects.deepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             initialConfig,
             region);
     }
@@ -98,9 +99,9 @@ public class CreatePublicLobbyRequestBody {
     
     public final static class Builder {
  
-        private java.lang.Object initialConfig;
+        private Object initialConfig;
  
-        private com.hathora.cloud_sdk.models.shared.Region region;  
+        private Region region;  
         
         private Builder() {
           // force use of static builder() method
@@ -109,13 +110,13 @@ public class CreatePublicLobbyRequestBody {
         /**
          * User input to initialize the game state. Object must be smaller than 64KB.
          */
-        public Builder initialConfig(java.lang.Object initialConfig) {
+        public Builder initialConfig(Object initialConfig) {
             Utils.checkNotNull(initialConfig, "initialConfig");
             this.initialConfig = initialConfig;
             return this;
         }
 
-        public Builder region(com.hathora.cloud_sdk.models.shared.Region region) {
+        public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;

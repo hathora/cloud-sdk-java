@@ -1,9 +1,9 @@
-speakeasyVersion: 1.352.1
+speakeasyVersion: 1.390.5
 sources:
     java-source:
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:0915b322d6ced9eec2cbd51fa20a9950a6668d0e15952bdbe7ef5ce1cd72dc60
-        sourceBlobDigest: sha256:fb37077237d44411ed27229bb94ab2305e9892d857b1a5be257090d7050c0b31
+        sourceRevisionDigest: sha256:7efb31aac494e2f1de94fd59bc2cf1c27623ee7fd63d8781993370dfe782e1d3
+        sourceBlobDigest: sha256:2443386b55189d2041dcbd4d7f5b138ac33c9e29d201158a06d4026adc77f95a
         tags:
             - latest
             - main
@@ -11,8 +11,8 @@ targets:
     hathora-java:
         source: java-source
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:0915b322d6ced9eec2cbd51fa20a9950a6668d0e15952bdbe7ef5ce1cd72dc60
-        sourceBlobDigest: sha256:fb37077237d44411ed27229bb94ab2305e9892d857b1a5be257090d7050c0b31
+        sourceRevisionDigest: sha256:7efb31aac494e2f1de94fd59bc2cf1c27623ee7fd63d8781993370dfe782e1d3
+        sourceBlobDigest: sha256:2443386b55189d2041dcbd4d7f5b138ac33c9e29d201158a06d4026adc77f95a
         outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
@@ -33,5 +33,6 @@ workflow:
                     ossrhPassword: $ossrh_password
                     gpgSecretKey: $java_gpg_secret_key
                     gpgPassPhrase: $java_gpg_passphrase
+                    useSonatypeLegacy: true
             codeSamples:
                 output: codeSamples.yaml

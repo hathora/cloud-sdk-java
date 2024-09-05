@@ -4,19 +4,23 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.MetricsData;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetMetricsResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetMetricsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetMetricsResponse implements com.hathora.cloud_sdk.utils.Response 
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.MetricsData> metricsData;
+    private Optional<? extends MetricsData> metricsData;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetMetricsResponse implements com.hathora.cloud_sdk.utils.Response 
     @JsonCreator
     public GetMetricsResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.MetricsData> metricsData,
+            Optional<? extends MetricsData> metricsData,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetMetricsResponse implements com.hathora.cloud_sdk.utils.Response 
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.MetricsData> metricsData() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.MetricsData>) metricsData;
+    public Optional<MetricsData> metricsData() {
+        return (Optional<MetricsData>) metricsData;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetMetricsResponse implements com.hathora.cloud_sdk.utils.Response 
     /**
      * Ok
      */
-    public GetMetricsResponse withMetricsData(com.hathora.cloud_sdk.models.shared.MetricsData metricsData) {
+    public GetMetricsResponse withMetricsData(MetricsData metricsData) {
         Utils.checkNotNull(metricsData, "metricsData");
         this.metricsData = Optional.ofNullable(metricsData);
         return this;
@@ -119,7 +123,7 @@ public class GetMetricsResponse implements com.hathora.cloud_sdk.utils.Response 
     /**
      * Ok
      */
-    public GetMetricsResponse withMetricsData(Optional<? extends com.hathora.cloud_sdk.models.shared.MetricsData> metricsData) {
+    public GetMetricsResponse withMetricsData(Optional<? extends MetricsData> metricsData) {
         Utils.checkNotNull(metricsData, "metricsData");
         this.metricsData = metricsData;
         return this;
@@ -153,15 +157,15 @@ public class GetMetricsResponse implements com.hathora.cloud_sdk.utils.Response 
         }
         GetMetricsResponse other = (GetMetricsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.metricsData, other.metricsData) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.metricsData, other.metricsData) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             metricsData,
             statusCode,
@@ -181,7 +185,7 @@ public class GetMetricsResponse implements com.hathora.cloud_sdk.utils.Response 
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.MetricsData> metricsData = Optional.empty();
+        private Optional<? extends MetricsData> metricsData = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetMetricsResponse implements com.hathora.cloud_sdk.utils.Response 
         /**
          * Ok
          */
-        public Builder metricsData(com.hathora.cloud_sdk.models.shared.MetricsData metricsData) {
+        public Builder metricsData(MetricsData metricsData) {
             Utils.checkNotNull(metricsData, "metricsData");
             this.metricsData = Optional.ofNullable(metricsData);
             return this;
@@ -212,7 +216,7 @@ public class GetMetricsResponse implements com.hathora.cloud_sdk.utils.Response 
         /**
          * Ok
          */
-        public Builder metricsData(Optional<? extends com.hathora.cloud_sdk.models.shared.MetricsData> metricsData) {
+        public Builder metricsData(Optional<? extends MetricsData> metricsData) {
             Utils.checkNotNull(metricsData, "metricsData");
             this.metricsData = metricsData;
             return this;

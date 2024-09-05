@@ -4,26 +4,30 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.CreatedBuildV3WithMultipartUrls;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class CreateBuildResponse implements com.hathora.cloud_sdk.utils.Response {
 
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build;
+public class CreateBuildResponse implements Response {
 
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
+
+    private Optional<? extends CreatedBuildV3WithMultipartUrls> createdBuildV3WithMultipartUrls;
 
     /**
      * HTTP response status code for this operation
@@ -37,16 +41,16 @@ public class CreateBuildResponse implements com.hathora.cloud_sdk.utils.Response
 
     @JsonCreator
     public CreateBuildResponse(
-            Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build,
             String contentType,
+            Optional<? extends CreatedBuildV3WithMultipartUrls> createdBuildV3WithMultipartUrls,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(build, "build");
         Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(createdBuildV3WithMultipartUrls, "createdBuildV3WithMultipartUrls");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.build = build;
         this.contentType = contentType;
+        this.createdBuildV3WithMultipartUrls = createdBuildV3WithMultipartUrls;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -55,13 +59,7 @@ public class CreateBuildResponse implements com.hathora.cloud_sdk.utils.Response
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, statusCode, rawResponse);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.Build> build() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.Build>) build;
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
@@ -70,6 +68,12 @@ public class CreateBuildResponse implements com.hathora.cloud_sdk.utils.Response
     @JsonIgnore
     public String contentType() {
         return contentType;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CreatedBuildV3WithMultipartUrls> createdBuildV3WithMultipartUrls() {
+        return (Optional<CreatedBuildV3WithMultipartUrls>) createdBuildV3WithMultipartUrls;
     }
 
     /**
@@ -92,24 +96,24 @@ public class CreateBuildResponse implements com.hathora.cloud_sdk.utils.Response
         return new Builder();
     }
 
-    public CreateBuildResponse withBuild(com.hathora.cloud_sdk.models.shared.Build build) {
-        Utils.checkNotNull(build, "build");
-        this.build = Optional.ofNullable(build);
-        return this;
-    }
-
-    public CreateBuildResponse withBuild(Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build) {
-        Utils.checkNotNull(build, "build");
-        this.build = build;
-        return this;
-    }
-
     /**
      * HTTP response content type for this operation
      */
     public CreateBuildResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
+        return this;
+    }
+
+    public CreateBuildResponse withCreatedBuildV3WithMultipartUrls(CreatedBuildV3WithMultipartUrls createdBuildV3WithMultipartUrls) {
+        Utils.checkNotNull(createdBuildV3WithMultipartUrls, "createdBuildV3WithMultipartUrls");
+        this.createdBuildV3WithMultipartUrls = Optional.ofNullable(createdBuildV3WithMultipartUrls);
+        return this;
+    }
+
+    public CreateBuildResponse withCreatedBuildV3WithMultipartUrls(Optional<? extends CreatedBuildV3WithMultipartUrls> createdBuildV3WithMultipartUrls) {
+        Utils.checkNotNull(createdBuildV3WithMultipartUrls, "createdBuildV3WithMultipartUrls");
+        this.createdBuildV3WithMultipartUrls = createdBuildV3WithMultipartUrls;
         return this;
     }
 
@@ -141,17 +145,17 @@ public class CreateBuildResponse implements com.hathora.cloud_sdk.utils.Response
         }
         CreateBuildResponse other = (CreateBuildResponse) o;
         return 
-            java.util.Objects.deepEquals(this.build, other.build) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.createdBuildV3WithMultipartUrls, other.createdBuildV3WithMultipartUrls) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
-            build,
+        return Objects.hash(
             contentType,
+            createdBuildV3WithMultipartUrls,
             statusCode,
             rawResponse);
     }
@@ -159,17 +163,17 @@ public class CreateBuildResponse implements com.hathora.cloud_sdk.utils.Response
     @Override
     public String toString() {
         return Utils.toString(CreateBuildResponse.class,
-                "build", build,
                 "contentType", contentType,
+                "createdBuildV3WithMultipartUrls", createdBuildV3WithMultipartUrls,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
     
     public final static class Builder {
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build = Optional.empty();
- 
         private String contentType;
+ 
+        private Optional<? extends CreatedBuildV3WithMultipartUrls> createdBuildV3WithMultipartUrls = Optional.empty();
  
         private Integer statusCode;
  
@@ -179,24 +183,24 @@ public class CreateBuildResponse implements com.hathora.cloud_sdk.utils.Response
           // force use of static builder() method
         }
 
-        public Builder build(com.hathora.cloud_sdk.models.shared.Build build) {
-            Utils.checkNotNull(build, "build");
-            this.build = Optional.ofNullable(build);
-            return this;
-        }
-
-        public Builder build(Optional<? extends com.hathora.cloud_sdk.models.shared.Build> build) {
-            Utils.checkNotNull(build, "build");
-            this.build = build;
-            return this;
-        }
-
         /**
          * HTTP response content type for this operation
          */
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
+            return this;
+        }
+
+        public Builder createdBuildV3WithMultipartUrls(CreatedBuildV3WithMultipartUrls createdBuildV3WithMultipartUrls) {
+            Utils.checkNotNull(createdBuildV3WithMultipartUrls, "createdBuildV3WithMultipartUrls");
+            this.createdBuildV3WithMultipartUrls = Optional.ofNullable(createdBuildV3WithMultipartUrls);
+            return this;
+        }
+
+        public Builder createdBuildV3WithMultipartUrls(Optional<? extends CreatedBuildV3WithMultipartUrls> createdBuildV3WithMultipartUrls) {
+            Utils.checkNotNull(createdBuildV3WithMultipartUrls, "createdBuildV3WithMultipartUrls");
+            this.createdBuildV3WithMultipartUrls = createdBuildV3WithMultipartUrls;
             return this;
         }
 
@@ -220,8 +224,8 @@ public class CreateBuildResponse implements com.hathora.cloud_sdk.utils.Response
         
         public CreateBuildResponse build() {
             return new CreateBuildResponse(
-                build,
                 contentType,
+                createdBuildV3WithMultipartUrls,
                 statusCode,
                 rawResponse);
         }

@@ -4,19 +4,23 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.hathora.cloud_sdk.models.shared.Process;
+import com.hathora.cloud_sdk.utils.Response;
 import com.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetProcessInfoDeprecatedResponse implements com.hathora.cloud_sdk.utils.Response {
+
+public class GetProcessInfoDeprecatedResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetProcessInfoDeprecatedResponse implements com.hathora.cloud_sdk.u
     /**
      * Ok
      */
-    private Optional<? extends com.hathora.cloud_sdk.models.shared.Process> process;
+    private Optional<? extends Process> process;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetProcessInfoDeprecatedResponse implements com.hathora.cloud_sdk.u
     @JsonCreator
     public GetProcessInfoDeprecatedResponse(
             String contentType,
-            Optional<? extends com.hathora.cloud_sdk.models.shared.Process> process,
+            Optional<? extends Process> process,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetProcessInfoDeprecatedResponse implements com.hathora.cloud_sdk.u
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.hathora.cloud_sdk.models.shared.Process> process() {
-        return (Optional<com.hathora.cloud_sdk.models.shared.Process>) process;
+    public Optional<Process> process() {
+        return (Optional<Process>) process;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetProcessInfoDeprecatedResponse implements com.hathora.cloud_sdk.u
     /**
      * Ok
      */
-    public GetProcessInfoDeprecatedResponse withProcess(com.hathora.cloud_sdk.models.shared.Process process) {
+    public GetProcessInfoDeprecatedResponse withProcess(Process process) {
         Utils.checkNotNull(process, "process");
         this.process = Optional.ofNullable(process);
         return this;
@@ -119,7 +123,7 @@ public class GetProcessInfoDeprecatedResponse implements com.hathora.cloud_sdk.u
     /**
      * Ok
      */
-    public GetProcessInfoDeprecatedResponse withProcess(Optional<? extends com.hathora.cloud_sdk.models.shared.Process> process) {
+    public GetProcessInfoDeprecatedResponse withProcess(Optional<? extends Process> process) {
         Utils.checkNotNull(process, "process");
         this.process = process;
         return this;
@@ -153,15 +157,15 @@ public class GetProcessInfoDeprecatedResponse implements com.hathora.cloud_sdk.u
         }
         GetProcessInfoDeprecatedResponse other = (GetProcessInfoDeprecatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.process, other.process) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.process, other.process) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             process,
             statusCode,
@@ -181,7 +185,7 @@ public class GetProcessInfoDeprecatedResponse implements com.hathora.cloud_sdk.u
  
         private String contentType;
  
-        private Optional<? extends com.hathora.cloud_sdk.models.shared.Process> process = Optional.empty();
+        private Optional<? extends Process> process = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetProcessInfoDeprecatedResponse implements com.hathora.cloud_sdk.u
         /**
          * Ok
          */
-        public Builder process(com.hathora.cloud_sdk.models.shared.Process process) {
+        public Builder process(Process process) {
             Utils.checkNotNull(process, "process");
             this.process = Optional.ofNullable(process);
             return this;
@@ -212,7 +216,7 @@ public class GetProcessInfoDeprecatedResponse implements com.hathora.cloud_sdk.u
         /**
          * Ok
          */
-        public Builder process(Optional<? extends com.hathora.cloud_sdk.models.shared.Process> process) {
+        public Builder process(Optional<? extends Process> process) {
             Utils.checkNotNull(process, "process");
             this.process = process;
             return this;

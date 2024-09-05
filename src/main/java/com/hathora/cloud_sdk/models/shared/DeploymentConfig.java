@@ -4,8 +4,8 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,11 +13,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.LazySingletonValue;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 /**
  * DeploymentConfig - User specified deployment configuration for your application at runtime.
  */
@@ -29,7 +33,7 @@ public class DeploymentConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("additionalContainerPorts")
-    private Optional<? extends java.util.List<ContainerPort>> additionalContainerPorts;
+    private Optional<? extends List<ContainerPort>> additionalContainerPorts;
 
     /**
      * Default port the server listens on.
@@ -41,7 +45,7 @@ public class DeploymentConfig {
      * The environment variable that our process will have access to at runtime.
      */
     @JsonProperty("env")
-    private java.util.List<DeploymentConfigEnv> env;
+    private List<Env> env;
 
     /**
      * Option to shut down processes that have had no new connections or rooms
@@ -49,7 +53,7 @@ public class DeploymentConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("idleTimeoutEnabled")
-    private Optional<? extends Boolean> idleTimeoutEnabled;
+    private Optional<Boolean> idleTimeoutEnabled;
 
     /**
      * A plan defines how much CPU and memory is required to run an instance of your game server.
@@ -79,10 +83,10 @@ public class DeploymentConfig {
 
     @JsonCreator
     public DeploymentConfig(
-            @JsonProperty("additionalContainerPorts") Optional<? extends java.util.List<ContainerPort>> additionalContainerPorts,
+            @JsonProperty("additionalContainerPorts") Optional<? extends List<ContainerPort>> additionalContainerPorts,
             @JsonProperty("containerPort") int containerPort,
-            @JsonProperty("env") java.util.List<DeploymentConfigEnv> env,
-            @JsonProperty("idleTimeoutEnabled") Optional<? extends Boolean> idleTimeoutEnabled,
+            @JsonProperty("env") List<Env> env,
+            @JsonProperty("idleTimeoutEnabled") Optional<Boolean> idleTimeoutEnabled,
             @JsonProperty("planName") PlanName planName,
             @JsonProperty("roomsPerProcess") int roomsPerProcess,
             @JsonProperty("transportType") TransportType transportType) {
@@ -104,7 +108,7 @@ public class DeploymentConfig {
     
     public DeploymentConfig(
             int containerPort,
-            java.util.List<DeploymentConfigEnv> env,
+            List<Env> env,
             PlanName planName,
             int roomsPerProcess,
             TransportType transportType) {
@@ -116,8 +120,8 @@ public class DeploymentConfig {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<ContainerPort>> additionalContainerPorts() {
-        return (Optional<java.util.List<ContainerPort>>) additionalContainerPorts;
+    public Optional<List<ContainerPort>> additionalContainerPorts() {
+        return (Optional<List<ContainerPort>>) additionalContainerPorts;
     }
 
     /**
@@ -132,7 +136,7 @@ public class DeploymentConfig {
      * The environment variable that our process will have access to at runtime.
      */
     @JsonIgnore
-    public java.util.List<DeploymentConfigEnv> env() {
+    public List<Env> env() {
         return env;
     }
 
@@ -140,10 +144,9 @@ public class DeploymentConfig {
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> idleTimeoutEnabled() {
-        return (Optional<Boolean>) idleTimeoutEnabled;
+        return idleTimeoutEnabled;
     }
 
     /**
@@ -185,7 +188,7 @@ public class DeploymentConfig {
     /**
      * Additional ports your server listens on.
      */
-    public DeploymentConfig withAdditionalContainerPorts(java.util.List<ContainerPort> additionalContainerPorts) {
+    public DeploymentConfig withAdditionalContainerPorts(List<ContainerPort> additionalContainerPorts) {
         Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
         this.additionalContainerPorts = Optional.ofNullable(additionalContainerPorts);
         return this;
@@ -194,7 +197,7 @@ public class DeploymentConfig {
     /**
      * Additional ports your server listens on.
      */
-    public DeploymentConfig withAdditionalContainerPorts(Optional<? extends java.util.List<ContainerPort>> additionalContainerPorts) {
+    public DeploymentConfig withAdditionalContainerPorts(Optional<? extends List<ContainerPort>> additionalContainerPorts) {
         Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
         this.additionalContainerPorts = additionalContainerPorts;
         return this;
@@ -212,7 +215,7 @@ public class DeploymentConfig {
     /**
      * The environment variable that our process will have access to at runtime.
      */
-    public DeploymentConfig withEnv(java.util.List<DeploymentConfigEnv> env) {
+    public DeploymentConfig withEnv(List<Env> env) {
         Utils.checkNotNull(env, "env");
         this.env = env;
         return this;
@@ -232,7 +235,7 @@ public class DeploymentConfig {
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
-    public DeploymentConfig withIdleTimeoutEnabled(Optional<? extends Boolean> idleTimeoutEnabled) {
+    public DeploymentConfig withIdleTimeoutEnabled(Optional<Boolean> idleTimeoutEnabled) {
         Utils.checkNotNull(idleTimeoutEnabled, "idleTimeoutEnabled");
         this.idleTimeoutEnabled = idleTimeoutEnabled;
         return this;
@@ -283,18 +286,18 @@ public class DeploymentConfig {
         }
         DeploymentConfig other = (DeploymentConfig) o;
         return 
-            java.util.Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
-            java.util.Objects.deepEquals(this.containerPort, other.containerPort) &&
-            java.util.Objects.deepEquals(this.env, other.env) &&
-            java.util.Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
-            java.util.Objects.deepEquals(this.planName, other.planName) &&
-            java.util.Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            java.util.Objects.deepEquals(this.transportType, other.transportType);
+            Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            Objects.deepEquals(this.containerPort, other.containerPort) &&
+            Objects.deepEquals(this.env, other.env) &&
+            Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
+            Objects.deepEquals(this.planName, other.planName) &&
+            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Objects.deepEquals(this.transportType, other.transportType);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             additionalContainerPorts,
             containerPort,
             env,
@@ -318,13 +321,13 @@ public class DeploymentConfig {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.List<ContainerPort>> additionalContainerPorts = Optional.empty();
+        private Optional<? extends List<ContainerPort>> additionalContainerPorts = Optional.empty();
  
         private Integer containerPort;
  
-        private java.util.List<DeploymentConfigEnv> env;
+        private List<Env> env;
  
-        private Optional<? extends Boolean> idleTimeoutEnabled;
+        private Optional<Boolean> idleTimeoutEnabled;
  
         private PlanName planName;
  
@@ -339,7 +342,7 @@ public class DeploymentConfig {
         /**
          * Additional ports your server listens on.
          */
-        public Builder additionalContainerPorts(java.util.List<ContainerPort> additionalContainerPorts) {
+        public Builder additionalContainerPorts(List<ContainerPort> additionalContainerPorts) {
             Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
             this.additionalContainerPorts = Optional.ofNullable(additionalContainerPorts);
             return this;
@@ -348,7 +351,7 @@ public class DeploymentConfig {
         /**
          * Additional ports your server listens on.
          */
-        public Builder additionalContainerPorts(Optional<? extends java.util.List<ContainerPort>> additionalContainerPorts) {
+        public Builder additionalContainerPorts(Optional<? extends List<ContainerPort>> additionalContainerPorts) {
             Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
             this.additionalContainerPorts = additionalContainerPorts;
             return this;
@@ -366,7 +369,7 @@ public class DeploymentConfig {
         /**
          * The environment variable that our process will have access to at runtime.
          */
-        public Builder env(java.util.List<DeploymentConfigEnv> env) {
+        public Builder env(List<Env> env) {
             Utils.checkNotNull(env, "env");
             this.env = env;
             return this;
@@ -386,7 +389,7 @@ public class DeploymentConfig {
          * Option to shut down processes that have had no new connections or rooms
          * for five minutes.
          */
-        public Builder idleTimeoutEnabled(Optional<? extends Boolean> idleTimeoutEnabled) {
+        public Builder idleTimeoutEnabled(Optional<Boolean> idleTimeoutEnabled) {
             Utils.checkNotNull(idleTimeoutEnabled, "idleTimeoutEnabled");
             this.idleTimeoutEnabled = idleTimeoutEnabled;
             return this;
@@ -430,8 +433,7 @@ public class DeploymentConfig {
         public DeploymentConfig build() {
             if (idleTimeoutEnabled == null) {
                 idleTimeoutEnabled = _SINGLETON_VALUE_IdleTimeoutEnabled.value();
-            }
-            return new DeploymentConfig(
+            }            return new DeploymentConfig(
                 additionalContainerPorts,
                 containerPort,
                 env,
@@ -441,11 +443,11 @@ public class DeploymentConfig {
                 transportType);
         }
 
-        private static final LazySingletonValue<Optional<? extends Boolean>> _SINGLETON_VALUE_IdleTimeoutEnabled =
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_IdleTimeoutEnabled =
                 new LazySingletonValue<>(
                         "idleTimeoutEnabled",
                         "true",
-                        new TypeReference<Optional<? extends Boolean>>() {});
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }
 

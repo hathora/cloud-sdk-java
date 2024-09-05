@@ -4,26 +4,25 @@
 
 package com.hathora.cloud_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class Security {
 
     @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
-    private Optional<? extends String> hathoraDevToken;
+    private Optional<String> hathoraDevToken;
 
     @JsonCreator
     public Security(
-            Optional<? extends String> hathoraDevToken) {
+            Optional<String> hathoraDevToken) {
         Utils.checkNotNull(hathoraDevToken, "hathoraDevToken");
         this.hathoraDevToken = hathoraDevToken;
     }
@@ -32,10 +31,9 @@ public class Security {
         this(Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> hathoraDevToken() {
-        return (Optional<String>) hathoraDevToken;
+        return hathoraDevToken;
     }
 
     public final static Builder builder() {
@@ -48,7 +46,7 @@ public class Security {
         return this;
     }
 
-    public Security withHathoraDevToken(Optional<? extends String> hathoraDevToken) {
+    public Security withHathoraDevToken(Optional<String> hathoraDevToken) {
         Utils.checkNotNull(hathoraDevToken, "hathoraDevToken");
         this.hathoraDevToken = hathoraDevToken;
         return this;
@@ -64,12 +62,12 @@ public class Security {
         }
         Security other = (Security) o;
         return 
-            java.util.Objects.deepEquals(this.hathoraDevToken, other.hathoraDevToken);
+            Objects.deepEquals(this.hathoraDevToken, other.hathoraDevToken);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             hathoraDevToken);
     }
     
@@ -81,7 +79,7 @@ public class Security {
     
     public final static class Builder {
  
-        private Optional<? extends String> hathoraDevToken = Optional.empty();  
+        private Optional<String> hathoraDevToken = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -93,7 +91,7 @@ public class Security {
             return this;
         }
 
-        public Builder hathoraDevToken(Optional<? extends String> hathoraDevToken) {
+        public Builder hathoraDevToken(Optional<String> hathoraDevToken) {
             Utils.checkNotNull(hathoraDevToken, "hathoraDevToken");
             this.hathoraDevToken = hathoraDevToken;
             return this;

@@ -4,23 +4,15 @@
 
 package com.hathora.cloud_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.utils.LazySingletonValue;
+import com.hathora.cloud_sdk.models.shared.SetLobbyStateParams;
 import com.hathora.cloud_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class SetLobbyStateRequestBuilder {
 
-    private com.hathora.cloud_sdk.models.shared.SetLobbyStateParams setLobbyStateParams;
-    private Optional<? extends String> appId = Optional.empty();
+    private SetLobbyStateParams setLobbyStateParams;
+    private Optional<String> appId = Optional.empty();
     private String roomId;
     private final SDKMethodInterfaces.MethodCallSetLobbyState sdk;
 
@@ -34,19 +26,19 @@ public class SetLobbyStateRequestBuilder {
         return this;
     }
                 
-    public SetLobbyStateRequestBuilder appId(String appId) {
+    public SetLobbyStateRequestBuilder appId(java.lang.String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public SetLobbyStateRequestBuilder appId(Optional<? extends String> appId) {
+    public SetLobbyStateRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public SetLobbyStateRequestBuilder roomId(String roomId) {
+    public SetLobbyStateRequestBuilder roomId(java.lang.String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

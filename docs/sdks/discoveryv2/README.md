@@ -19,17 +19,9 @@ Returns an array of all regions with a host and port that a client can directly 
 package hello.world;
 
 import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.operations.*;
-import com.hathora.cloud_sdk.models.shared.*;
-import com.hathora.cloud_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsResponse;
+import java.lang.Exception;
 
 public class Application {
 
@@ -45,7 +37,7 @@ public class Application {
             if (res.pingEndpoints().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -57,10 +49,10 @@ public class Application {
 }
 ```
 
-
 ### Response
 
-**[com.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsResponse](../../models/operations/GetPingServiceEndpointsResponse.md)**
+**[GetPingServiceEndpointsResponse](../../models/operations/GetPingServiceEndpointsResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
