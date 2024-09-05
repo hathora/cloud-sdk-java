@@ -18,9 +18,9 @@ Returns an array of all regions with a host and port that a client can directly 
 ```java
 package hello.world;
 
-import com.hathora.hathora_cloud_sdk.HathoraCloud;
-import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
-import com.hathora.hathora_cloud_sdk.models.operations.GetPingServiceEndpointsResponse;
+import com.hathora.cloud_sdk.HathoraCloud;
+import com.hathora.cloud_sdk.models.errors.SDKError;
+import com.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsResponse;
 import java.lang.Exception;
 
 public class Application {
