@@ -21,10 +21,10 @@
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetBalanceResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.GetBalanceResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -44,7 +44,7 @@ public class Application {
             if (res.number().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -78,10 +78,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetInvoicesResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.GetInvoicesResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -101,7 +101,7 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -135,10 +135,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetPaymentMethodResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.GetPaymentMethodResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -158,7 +158,7 @@ public class Application {
             if (res.paymentMethod().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -192,10 +192,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceItemsResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.GetUpcomingInvoiceItemsResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -215,7 +215,7 @@ public class Application {
             if (res.invoiceItemPage().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -249,10 +249,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceTotalResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.GetUpcomingInvoiceTotalResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -272,7 +272,7 @@ public class Application {
             if (res.object().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -306,11 +306,11 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlResponse;
-import com.hathora.cloud_sdk.models.shared.CustomerPortalUrl;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.InitStripeCustomerPortalUrlResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.CustomerPortalUrl;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -335,7 +335,7 @@ public class Application {
             if (res.string().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {

@@ -22,11 +22,11 @@ Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) 
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateProcessV2DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.Region;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.CreateProcessV2DeprecatedResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.Region;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -48,7 +48,7 @@ public class Application {
             if (res.processV2().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -91,12 +91,12 @@ Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathor
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetLatestProcessesV2DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.ProcessStatus;
-import com.hathora.cloud_sdk.models.shared.Region;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.GetLatestProcessesV2DeprecatedResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.ProcessStatus;
+import com.hathora.hathora_cloud_sdk.models.shared.Region;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.List;
 
@@ -122,7 +122,7 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -166,10 +166,10 @@ Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetProcessInfoV2DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.GetProcessInfoV2DeprecatedResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -191,7 +191,7 @@ public class Application {
             if (res.processV2().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -234,12 +234,12 @@ Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entiti
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.ProcessStatus;
-import com.hathora.cloud_sdk.models.shared.Region;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.ProcessStatus;
+import com.hathora.hathora_cloud_sdk.models.shared.Region;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.List;
 
@@ -265,7 +265,7 @@ public class Application {
             if (res.object().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -309,10 +309,10 @@ Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) im
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.StopProcessV2DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import com.hathora.hathora_cloud_sdk.HathoraCloud;
+import com.hathora.hathora_cloud_sdk.models.errors.SDKError;
+import com.hathora.hathora_cloud_sdk.models.operations.StopProcessV2DeprecatedResponse;
+import com.hathora.hathora_cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -332,7 +332,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (com.hathora.hathora_cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
