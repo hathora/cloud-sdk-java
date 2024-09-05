@@ -122,15 +122,6 @@ publishing {
     }
 }
 
-if (!project.hasProperty('skip.signing')) {
-    signing {
-        def signingKey = findProperty("signingKey")
-        def signingPassphrase = findProperty("signingPassphrase")
-        useInMemoryPgpKeys(signingKey, signingPassphrase)
-        sign publishing.publications.maven
-    }
-}
-
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
