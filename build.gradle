@@ -61,7 +61,7 @@ tasks.withType(Javadoc) {
 }
 
 group = "com.hathora"
-version = "2.9.1"
+version = "2.9.2"
 
 sourcesJar {
     archiveBaseName = "cloud-sdk"
@@ -88,7 +88,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.hathora'
             artifactId = 'cloud-sdk'
-            version = '2.9.1'
+            version = '2.9.2'
 
             from components.java
 
