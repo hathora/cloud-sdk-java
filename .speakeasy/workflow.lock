@@ -1,19 +1,18 @@
-speakeasyVersion: 1.390.5
+speakeasyVersion: 1.390.7
 sources:
     java-source:
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:7efb31aac494e2f1de94fd59bc2cf1c27623ee7fd63d8781993370dfe782e1d3
-        sourceBlobDigest: sha256:2443386b55189d2041dcbd4d7f5b138ac33c9e29d201158a06d4026adc77f95a
+        sourceRevisionDigest: sha256:813f4fd0623fe37254de18e67e32f46ca8b37ad1542e1ccb089515cae30b805c
+        sourceBlobDigest: sha256:ca93acffa1c2c6fdbdc900d7fbf7409f9f0488fdb3a8ffc33a5c611d713bb4a5
         tags:
             - latest
-            - main
 targets:
     hathora-java:
         source: java-source
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:7efb31aac494e2f1de94fd59bc2cf1c27623ee7fd63d8781993370dfe782e1d3
-        sourceBlobDigest: sha256:2443386b55189d2041dcbd4d7f5b138ac33c9e29d201158a06d4026adc77f95a
-        outLocation: /github/workspace/repo
+        sourceRevisionDigest: sha256:813f4fd0623fe37254de18e67e32f46ca8b37ad1542e1ccb089515cae30b805c
+        sourceBlobDigest: sha256:ca93acffa1c2c6fdbdc900d7fbf7409f9f0488fdb3a8ffc33a5c611d713bb4a5
+        outLocation: /Users/george/repos/cloud-sdk-java
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -29,7 +28,7 @@ workflow:
             source: java-source
             publish:
                 java:
-                    ossrhUsername: 9BQq3qir
+                    ossrhUsername: HYn8/wmJ
                     ossrhPassword: $ossrh_password
                     gpgSecretKey: $java_gpg_secret_key
                     gpgPassPhrase: $java_gpg_passphrase
