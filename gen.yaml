@@ -25,7 +25,7 @@ java:
   companyURL: https://hathora.dev/
   flattenGlobalSecurity: false
   githubURL: github.com/hathora/cloud-sdk-java
-  groupID: com.hathora
+  groupID: dev.hathora
   imports:
     option: openapi
     paths:
@@ -40,7 +40,6 @@ java:
     shortName: MIT
     url: https://mit-license.org/
   maxMethodParams: 3
-  ossrhURL: https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
   outputModelSuffix: output
   projectName: Hathora-Cloud
   templateVersion: v2
