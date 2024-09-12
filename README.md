@@ -35,7 +35,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.hathora:cloud-sdk:2.9.7'
+implementation 'com.hathora:cloud-sdk:2.9.8'
 ```
 
 Maven:
@@ -43,7 +43,7 @@ Maven:
 <dependency>
     <groupId>com.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>2.9.7</version>
+    <version>2.9.8</version>
 </dependency>
 ```
 
@@ -92,7 +92,7 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .build())
+                    .build())
                 .build();
 
             CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()
@@ -120,6 +120,9 @@ public class Application {
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
+
+<details open>
+<summary>Available methods</summary>
 
 ### [appsV1()](docs/sdks/appsv1/README.md)
 
@@ -152,7 +155,7 @@ public class Application {
 * [getUpcomingInvoiceTotal](docs/sdks/billingv1/README.md#getupcominginvoicetotal)
 * [initStripeCustomerPortalUrl](docs/sdks/billingv1/README.md#initstripecustomerportalurl)
 
-### [buildsV1()](docs/sdks/buildsv1/README.md)
+### [~~buildsV1()~~](docs/sdks/buildsv1/README.md)
 
 * [~~createBuildDeprecated~~](docs/sdks/buildsv1/README.md#createbuilddeprecated) - Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build. :warning: **Deprecated**
 * [~~deleteBuildDeprecated~~](docs/sdks/buildsv1/README.md#deletebuilddeprecated) - Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted. :warning: **Deprecated**
@@ -180,7 +183,7 @@ Deleting a build that is actively build used by an app's deployment will cause f
 * [getBuilds](docs/sdks/buildsv3/README.md#getbuilds) - Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
 * [runBuild](docs/sdks/buildsv3/README.md#runbuild) - Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
 
-### [deploymentsV1()](docs/sdks/deploymentsv1/README.md)
+### [~~deploymentsV1()~~](docs/sdks/deploymentsv1/README.md)
 
 * [~~createDeploymentV1Deprecated~~](docs/sdks/deploymentsv1/README.md#createdeploymentv1deprecated) - Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected. :warning: **Deprecated**
 * [~~getDeploymentInfoV1Deprecated~~](docs/sdks/deploymentsv1/README.md#getdeploymentinfov1deprecated) - Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). :warning: **Deprecated**
@@ -201,7 +204,7 @@ Deleting a build that is actively build used by an app's deployment will cause f
 * [getDeployments](docs/sdks/deploymentsv3/README.md#getdeployments) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
 * [getLatestDeployment](docs/sdks/deploymentsv3/README.md#getlatestdeployment) - Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
 
-### [discoveryV1()](docs/sdks/discoveryv1/README.md)
+### [~~discoveryV1()~~](docs/sdks/discoveryv1/README.md)
 
 * [~~getPingServiceEndpointsDeprecated~~](docs/sdks/discoveryv1/README.md#getpingserviceendpointsdeprecated) - Returns an array of V1 regions with a host and port that a client can directly ping. Open a websocket connection to `wss://<host>:<port>/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back. :warning: **Deprecated**
 
@@ -209,13 +212,14 @@ Deleting a build that is actively build used by an app's deployment will cause f
 
 * [getPingServiceEndpoints](docs/sdks/discoveryv2/README.md#getpingserviceendpoints) - Returns an array of all regions with a host and port that a client can directly ping. Open a websocket connection to `wss://<host>:<port>/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back.
 
-### [lobbiesV1()](docs/sdks/lobbiesv1/README.md)
+
+### [~~lobbiesV1()~~](docs/sdks/lobbiesv1/README.md)
 
 * [~~createPrivateLobbyDeprecated~~](docs/sdks/lobbiesv1/README.md#createprivatelobbydeprecated) - :warning: **Deprecated**
 * [~~createPublicLobbyDeprecated~~](docs/sdks/lobbiesv1/README.md#createpubliclobbydeprecated) - :warning: **Deprecated**
 * [~~listActivePublicLobbiesDeprecatedV1~~](docs/sdks/lobbiesv1/README.md#listactivepubliclobbiesdeprecatedv1) - :warning: **Deprecated**
 
-### [lobbiesV2()](docs/sdks/lobbiesv2/README.md)
+### [~~lobbiesV2()~~](docs/sdks/lobbiesv2/README.md)
 
 * [~~createLobbyDeprecated~~](docs/sdks/lobbiesv2/README.md#createlobbydeprecated) - Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players. :warning: **Deprecated**
 * [~~createLocalLobby~~](docs/sdks/lobbiesv2/README.md#createlocallobby) - :warning: **Deprecated**
@@ -258,7 +262,7 @@ Deleting a build that is actively build used by an app's deployment will cause f
 * [rejectInvite](docs/sdks/organizationsv1/README.md#rejectinvite)
 * [rescindInvite](docs/sdks/organizationsv1/README.md#rescindinvite)
 
-### [processesV1()](docs/sdks/processesv1/README.md)
+### [~~processesV1()~~](docs/sdks/processesv1/README.md)
 
 * [~~getProcessInfoDeprecated~~](docs/sdks/processesv1/README.md#getprocessinfodeprecated) - Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process). :warning: **Deprecated**
 * [~~getRunningProcesses~~](docs/sdks/processesv1/README.md#getrunningprocesses) - Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. :warning: **Deprecated**
@@ -280,7 +284,7 @@ Deleting a build that is actively build used by an app's deployment will cause f
 * [getProcessesCountExperimental](docs/sdks/processesv3/README.md#getprocessescountexperimental) - Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
 * [stopProcess](docs/sdks/processesv3/README.md#stopprocess) - Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
 
-### [roomsV1()](docs/sdks/roomsv1/README.md)
+### [~~roomsV1()~~](docs/sdks/roomsv1/README.md)
 
 * [~~createRoomDeprecated~~](docs/sdks/roomsv1/README.md#createroomdeprecated) - :warning: **Deprecated**
 * [~~destroyRoomDeprecated~~](docs/sdks/roomsv1/README.md#destroyroomdeprecated) - :warning: **Deprecated**
@@ -306,6 +310,8 @@ Deleting a build that is actively build used by an app's deployment will cause f
 * [createOrgToken](docs/sdks/tokensv1/README.md#createorgtoken) - Create a new organization token.
 * [getOrgTokens](docs/sdks/tokensv1/README.md#getorgtokens) - List all organization tokens for a given org.
 * [revokeOrgToken](docs/sdks/tokensv1/README.md#revokeorgtoken) - Revoke an organization token.
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Global Parameters [global-parameters] -->
@@ -405,7 +411,7 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .build())
+                    .build())
                 .build();
 
             CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()
@@ -471,7 +477,7 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .build())
+                    .build())
                 .build();
 
             CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()
@@ -526,7 +532,7 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .build())
+                    .build())
                 .build();
 
             CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()
@@ -589,7 +595,7 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .build())
+                    .build())
                 .build();
 
             CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()

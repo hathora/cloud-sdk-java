@@ -42,7 +42,7 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .build())
+                    .build())
                 .build();
 
             CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()
@@ -306,7 +306,7 @@ public class Application {
                 .appConfig(AppConfig.builder()
                     .appName("minecraft")
                     .authConfiguration(AuthConfiguration.builder()
-                            .build())
+                        .build())
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
