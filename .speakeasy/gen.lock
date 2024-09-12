@@ -3,10 +3,10 @@ id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
   docChecksum: 0a87a5d71a740a1c41abdb9879544197
   docVersion: 0.0.1
-  speakeasyVersion: 1.390.7
-  generationVersion: 2.409.8
-  releaseVersion: 2.9.7
-  configChecksum: bc43c21b7d4d44355c5039b9496aa080
+  speakeasyVersion: 1.396.4
+  generationVersion: 2.415.6
+  releaseVersion: 2.9.8
+  configChecksum: 060754856fc898e585b26434ac6b1931
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.29.4
+    core: 3.29.7
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
@@ -28,8 +28,376 @@ features:
     sdkHooks: 0.1.0
     unions: 0.0.5
 generatedFiles:
-  - src/main/java/com/hathora/cloud_sdk/SecuritySource.java
-  - src/main/java/com/hathora/cloud_sdk/SDKConfiguration.java
+  - .gitattributes
+  - CONTRIBUTING.md
+  - USAGE.md
+  - build.gradle
+  - docs/models/errors/ApiError.md
+  - docs/models/operations/AcceptInviteRequest.md
+  - docs/models/operations/AcceptInviteResponse.md
+  - docs/models/operations/CreateAppRequest.md
+  - docs/models/operations/CreateAppResponse.md
+  - docs/models/operations/CreateAppV1DeprecatedResponse.md
+  - docs/models/operations/CreateBuildDeprecatedRequest.md
+  - docs/models/operations/CreateBuildDeprecatedResponse.md
+  - docs/models/operations/CreateBuildRequest.md
+  - docs/models/operations/CreateBuildResponse.md
+  - docs/models/operations/CreateBuildV2DeprecatedRequest.md
+  - docs/models/operations/CreateBuildV2DeprecatedResponse.md
+  - docs/models/operations/CreateBuildWithUploadUrlV2DeprecatedRequest.md
+  - docs/models/operations/CreateBuildWithUploadUrlV2DeprecatedResponse.md
+  - docs/models/operations/CreateDeploymentRequest.md
+  - docs/models/operations/CreateDeploymentResponse.md
+  - docs/models/operations/CreateDeploymentV1DeprecatedRequest.md
+  - docs/models/operations/CreateDeploymentV1DeprecatedResponse.md
+  - docs/models/operations/CreateDeploymentV2DeprecatedRequest.md
+  - docs/models/operations/CreateDeploymentV2DeprecatedResponse.md
+  - docs/models/operations/CreateLobbyDeprecatedRequest.md
+  - docs/models/operations/CreateLobbyDeprecatedResponse.md
+  - docs/models/operations/CreateLobbyDeprecatedSecurity.md
+  - docs/models/operations/CreateLobbyRequest.md
+  - docs/models/operations/CreateLobbyResponse.md
+  - docs/models/operations/CreateLobbySecurity.md
+  - docs/models/operations/CreateLocalLobbyRequest.md
+  - docs/models/operations/CreateLocalLobbyRequestBody.md
+  - docs/models/operations/CreateLocalLobbyResponse.md
+  - docs/models/operations/CreateLocalLobbySecurity.md
+  - docs/models/operations/CreateOrgTokenRequest.md
+  - docs/models/operations/CreateOrgTokenResponse.md
+  - docs/models/operations/CreatePrivateLobbyDeprecatedRequest.md
+  - docs/models/operations/CreatePrivateLobbyDeprecatedResponse.md
+  - docs/models/operations/CreatePrivateLobbyDeprecatedSecurity.md
+  - docs/models/operations/CreatePrivateLobbyRequest.md
+  - docs/models/operations/CreatePrivateLobbyRequestBody.md
+  - docs/models/operations/CreatePrivateLobbyResponse.md
+  - docs/models/operations/CreatePrivateLobbySecurity.md
+  - docs/models/operations/CreateProcessRequest.md
+  - docs/models/operations/CreateProcessResponse.md
+  - docs/models/operations/CreateProcessV2DeprecatedRequest.md
+  - docs/models/operations/CreateProcessV2DeprecatedResponse.md
+  - docs/models/operations/CreatePublicLobbyDeprecatedRequest.md
+  - docs/models/operations/CreatePublicLobbyDeprecatedResponse.md
+  - docs/models/operations/CreatePublicLobbyDeprecatedSecurity.md
+  - docs/models/operations/CreatePublicLobbyRequest.md
+  - docs/models/operations/CreatePublicLobbyRequestBody.md
+  - docs/models/operations/CreatePublicLobbyResponse.md
+  - docs/models/operations/CreatePublicLobbySecurity.md
+  - docs/models/operations/CreateRoomDeprecatedRequest.md
+  - docs/models/operations/CreateRoomDeprecatedResponse.md
+  - docs/models/operations/CreateRoomRequest.md
+  - docs/models/operations/CreateRoomResponse.md
+  - docs/models/operations/CreateWithMultipartUploadsV2DeprecatedRequest.md
+  - docs/models/operations/CreateWithMultipartUploadsV2DeprecatedResponse.md
+  - docs/models/operations/DeleteAppRequest.md
+  - docs/models/operations/DeleteAppResponse.md
+  - docs/models/operations/DeleteAppV1DeprecatedRequest.md
+  - docs/models/operations/DeleteAppV1DeprecatedResponse.md
+  - docs/models/operations/DeleteBuildDeprecatedRequest.md
+  - docs/models/operations/DeleteBuildDeprecatedResponse.md
+  - docs/models/operations/DeleteBuildRequest.md
+  - docs/models/operations/DeleteBuildResponse.md
+  - docs/models/operations/DeleteBuildV2DeprecatedRequest.md
+  - docs/models/operations/DeleteBuildV2DeprecatedResponse.md
+  - docs/models/operations/DestroyRoomDeprecatedRequest.md
+  - docs/models/operations/DestroyRoomDeprecatedResponse.md
+  - docs/models/operations/DestroyRoomRequest.md
+  - docs/models/operations/DestroyRoomResponse.md
+  - docs/models/operations/DownloadLogForProcessRequest.md
+  - docs/models/operations/DownloadLogForProcessResponse.md
+  - docs/models/operations/File.md
+  - docs/models/operations/GetActiveRoomsForProcessDeprecatedRequest.md
+  - docs/models/operations/GetActiveRoomsForProcessDeprecatedResponse.md
+  - docs/models/operations/GetActiveRoomsForProcessRequest.md
+  - docs/models/operations/GetActiveRoomsForProcessResponse.md
+  - docs/models/operations/GetAppInfoV1DeprecatedRequest.md
+  - docs/models/operations/GetAppInfoV1DeprecatedResponse.md
+  - docs/models/operations/GetAppRequest.md
+  - docs/models/operations/GetAppResponse.md
+  - docs/models/operations/GetAppsRequest.md
+  - docs/models/operations/GetAppsResponse.md
+  - docs/models/operations/GetAppsV1DeprecatedResponse.md
+  - docs/models/operations/GetBalanceResponse.md
+  - docs/models/operations/GetBuildInfoDeprecatedRequest.md
+  - docs/models/operations/GetBuildInfoDeprecatedResponse.md
+  - docs/models/operations/GetBuildInfoV2DeprecatedRequest.md
+  - docs/models/operations/GetBuildInfoV2DeprecatedResponse.md
+  - docs/models/operations/GetBuildRequest.md
+  - docs/models/operations/GetBuildResponse.md
+  - docs/models/operations/GetBuildsDeprecatedRequest.md
+  - docs/models/operations/GetBuildsDeprecatedResponse.md
+  - docs/models/operations/GetBuildsRequest.md
+  - docs/models/operations/GetBuildsResponse.md
+  - docs/models/operations/GetBuildsV2DeprecatedRequest.md
+  - docs/models/operations/GetBuildsV2DeprecatedResponse.md
+  - docs/models/operations/GetConnectionInfoDeprecatedRequest.md
+  - docs/models/operations/GetConnectionInfoDeprecatedResponse.md
+  - docs/models/operations/GetConnectionInfoRequest.md
+  - docs/models/operations/GetConnectionInfoResponse.md
+  - docs/models/operations/GetDeploymentInfoV1DeprecatedRequest.md
+  - docs/models/operations/GetDeploymentInfoV1DeprecatedResponse.md
+  - docs/models/operations/GetDeploymentInfoV2DeprecatedRequest.md
+  - docs/models/operations/GetDeploymentInfoV2DeprecatedResponse.md
+  - docs/models/operations/GetDeploymentRequest.md
+  - docs/models/operations/GetDeploymentResponse.md
+  - docs/models/operations/GetDeploymentsRequest.md
+  - docs/models/operations/GetDeploymentsResponse.md
+  - docs/models/operations/GetDeploymentsV1DeprecatedRequest.md
+  - docs/models/operations/GetDeploymentsV1DeprecatedResponse.md
+  - docs/models/operations/GetDeploymentsV2DeprecatedRequest.md
+  - docs/models/operations/GetDeploymentsV2DeprecatedResponse.md
+  - docs/models/operations/GetInactiveRoomsForProcessDeprecatedRequest.md
+  - docs/models/operations/GetInactiveRoomsForProcessDeprecatedResponse.md
+  - docs/models/operations/GetInactiveRoomsForProcessRequest.md
+  - docs/models/operations/GetInactiveRoomsForProcessResponse.md
+  - docs/models/operations/GetInvoicesResponse.md
+  - docs/models/operations/GetLatestDeploymentRequest.md
+  - docs/models/operations/GetLatestDeploymentResponse.md
+  - docs/models/operations/GetLatestDeploymentV1DeprecatedRequest.md
+  - docs/models/operations/GetLatestDeploymentV1DeprecatedResponse.md
+  - docs/models/operations/GetLatestDeploymentV2DeprecatedRequest.md
+  - docs/models/operations/GetLatestDeploymentV2DeprecatedResponse.md
+  - docs/models/operations/GetLatestProcessesRequest.md
+  - docs/models/operations/GetLatestProcessesResponse.md
+  - docs/models/operations/GetLatestProcessesV2DeprecatedRequest.md
+  - docs/models/operations/GetLatestProcessesV2DeprecatedResponse.md
+  - docs/models/operations/GetLobbyInfoByRoomIdRequest.md
+  - docs/models/operations/GetLobbyInfoByRoomIdResponse.md
+  - docs/models/operations/GetLobbyInfoByShortCodeRequest.md
+  - docs/models/operations/GetLobbyInfoByShortCodeResponse.md
+  - docs/models/operations/GetLobbyInfoRequest.md
+  - docs/models/operations/GetLobbyInfoResponse.md
+  - docs/models/operations/GetLogsForAppRequest.md
+  - docs/models/operations/GetLogsForAppResponse.md
+  - docs/models/operations/GetLogsForDeploymentRequest.md
+  - docs/models/operations/GetLogsForDeploymentResponse.md
+  - docs/models/operations/GetLogsForProcessRequest.md
+  - docs/models/operations/GetLogsForProcessResponse.md
+  - docs/models/operations/GetMetricsRequest.md
+  - docs/models/operations/GetMetricsResponse.md
+  - docs/models/operations/GetOrgMembersRequest.md
+  - docs/models/operations/GetOrgMembersResponse.md
+  - docs/models/operations/GetOrgPendingInvitesRequest.md
+  - docs/models/operations/GetOrgPendingInvitesResponse.md
+  - docs/models/operations/GetOrgTokensRequest.md
+  - docs/models/operations/GetOrgTokensResponse.md
+  - docs/models/operations/GetOrgsResponse.md
+  - docs/models/operations/GetPaymentMethodResponse.md
+  - docs/models/operations/GetPingServiceEndpointsDeprecatedResponse.md
+  - docs/models/operations/GetPingServiceEndpointsResponse.md
+  - docs/models/operations/GetProcessInfoDeprecatedRequest.md
+  - docs/models/operations/GetProcessInfoDeprecatedResponse.md
+  - docs/models/operations/GetProcessInfoV2DeprecatedRequest.md
+  - docs/models/operations/GetProcessInfoV2DeprecatedResponse.md
+  - docs/models/operations/GetProcessRequest.md
+  - docs/models/operations/GetProcessResponse.md
+  - docs/models/operations/GetProcessesCountExperimentalRequest.md
+  - docs/models/operations/GetProcessesCountExperimentalResponse.md
+  - docs/models/operations/GetProcessesCountExperimentalResponseBody.md
+  - docs/models/operations/GetProcessesCountExperimentalV2DeprecatedRequest.md
+  - docs/models/operations/GetProcessesCountExperimentalV2DeprecatedResponse.md
+  - docs/models/operations/GetProcessesCountExperimentalV2DeprecatedResponseBody.md
+  - docs/models/operations/GetRoomInfoDeprecatedRequest.md
+  - docs/models/operations/GetRoomInfoDeprecatedResponse.md
+  - docs/models/operations/GetRoomInfoRequest.md
+  - docs/models/operations/GetRoomInfoResponse.md
+  - docs/models/operations/GetRunningProcessesRequest.md
+  - docs/models/operations/GetRunningProcessesResponse.md
+  - docs/models/operations/GetStoppedProcessesRequest.md
+  - docs/models/operations/GetStoppedProcessesResponse.md
+  - docs/models/operations/GetUpcomingInvoiceItemsResponse.md
+  - docs/models/operations/GetUpcomingInvoiceTotalResponse.md
+  - docs/models/operations/GetUpcomingInvoiceTotalResponseBody.md
+  - docs/models/operations/GetUserPendingInvitesResponse.md
+  - docs/models/operations/InitStripeCustomerPortalUrlResponse.md
+  - docs/models/operations/InviteUserRequest.md
+  - docs/models/operations/InviteUserResponse.md
+  - docs/models/operations/ListActivePublicLobbiesDeprecatedV1Request.md
+  - docs/models/operations/ListActivePublicLobbiesDeprecatedV1Response.md
+  - docs/models/operations/ListActivePublicLobbiesDeprecatedV2Request.md
+  - docs/models/operations/ListActivePublicLobbiesDeprecatedV2Response.md
+  - docs/models/operations/ListActivePublicLobbiesRequest.md
+  - docs/models/operations/ListActivePublicLobbiesResponse.md
+  - docs/models/operations/LoginAnonymousRequest.md
+  - docs/models/operations/LoginAnonymousResponse.md
+  - docs/models/operations/LoginGoogleRequest.md
+  - docs/models/operations/LoginGoogleResponse.md
+  - docs/models/operations/LoginNicknameRequest.md
+  - docs/models/operations/LoginNicknameResponse.md
+  - docs/models/operations/RejectInviteRequest.md
+  - docs/models/operations/RejectInviteResponse.md
+  - docs/models/operations/RescindInviteRequest.md
+  - docs/models/operations/RescindInviteResponse.md
+  - docs/models/operations/RevokeOrgTokenRequest.md
+  - docs/models/operations/RevokeOrgTokenResponse.md
+  - docs/models/operations/RunBuildDeprecatedRequest.md
+  - docs/models/operations/RunBuildDeprecatedRequestBody.md
+  - docs/models/operations/RunBuildDeprecatedResponse.md
+  - docs/models/operations/RunBuildRequest.md
+  - docs/models/operations/RunBuildResponse.md
+  - docs/models/operations/RunBuildV2DeprecatedFile.md
+  - docs/models/operations/RunBuildV2DeprecatedRequest.md
+  - docs/models/operations/RunBuildV2DeprecatedRequestBody.md
+  - docs/models/operations/RunBuildV2DeprecatedResponse.md
+  - docs/models/operations/SendVerificationEmailResponse.md
+  - docs/models/operations/SetLobbyStateRequest.md
+  - docs/models/operations/SetLobbyStateResponse.md
+  - docs/models/operations/StopProcessRequest.md
+  - docs/models/operations/StopProcessResponse.md
+  - docs/models/operations/StopProcessV2DeprecatedRequest.md
+  - docs/models/operations/StopProcessV2DeprecatedResponse.md
+  - docs/models/operations/SuspendRoomDeprecatedRequest.md
+  - docs/models/operations/SuspendRoomDeprecatedResponse.md
+  - docs/models/operations/SuspendRoomV2DeprecatedRequest.md
+  - docs/models/operations/SuspendRoomV2DeprecatedResponse.md
+  - docs/models/operations/UpdateAppRequest.md
+  - docs/models/operations/UpdateAppResponse.md
+  - docs/models/operations/UpdateAppV1DeprecatedRequest.md
+  - docs/models/operations/UpdateAppV1DeprecatedResponse.md
+  - docs/models/operations/UpdateRoomConfigRequest.md
+  - docs/models/operations/UpdateRoomConfigResponse.md
+  - docs/models/shared/AchPaymentMethod.md
+  - docs/models/shared/ActiveConnectionInfo.md
+  - docs/models/shared/AppConfig.md
+  - docs/models/shared/Application.md
+  - docs/models/shared/ApplicationWithLatestDeploymentAndBuild.md
+  - docs/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecated.md
+  - docs/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment.md
+  - docs/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecatedEnv.md
+  - docs/models/shared/ApplicationWithLatestDeploymentAndBuildEnv.md
+  - docs/models/shared/ApplicationsPage.md
+  - docs/models/shared/AuthConfiguration.md
+  - docs/models/shared/Build.md
+  - docs/models/shared/BuildPart.md
+  - docs/models/shared/BuildStatus.md
+  - docs/models/shared/BuildV3.md
+  - docs/models/shared/BuildWithMultipartUrls.md
+  - docs/models/shared/BuildWithMultipartUrlsRegionalContainerTags.md
+  - docs/models/shared/BuildWithUploadUrl.md
+  - docs/models/shared/BuildWithUploadUrlRegionalContainerTags.md
+  - docs/models/shared/BuildsV3Page.md
+  - docs/models/shared/CardBrand.md
+  - docs/models/shared/CardPaymentMethod.md
+  - docs/models/shared/ConnectionInfo.md
+  - docs/models/shared/ConnectionInfoV2.md
+  - docs/models/shared/ContainerPort.md
+  - docs/models/shared/CreateBuildParams.md
+  - docs/models/shared/CreateLobbyParams.md
+  - docs/models/shared/CreateLobbyV3Params.md
+  - docs/models/shared/CreateMultipartBuildParams.md
+  - docs/models/shared/CreateOrgToken.md
+  - docs/models/shared/CreateRoomParams.md
+  - docs/models/shared/CreateUserInvite.md
+  - docs/models/shared/CreatedBuildV3WithMultipartUrls.md
+  - docs/models/shared/CreatedBy.md
+  - docs/models/shared/CreatedOrgToken.md
+  - docs/models/shared/CurrentAllocation.md
+  - docs/models/shared/CustomerPortalUrl.md
+  - docs/models/shared/DeletedBuild.md
+  - docs/models/shared/Deployment.md
+  - docs/models/shared/DeploymentConfig.md
+  - docs/models/shared/DeploymentConfigV2.md
+  - docs/models/shared/DeploymentConfigV2Env.md
+  - docs/models/shared/DeploymentConfigV3.md
+  - docs/models/shared/DeploymentConfigV3Env.md
+  - docs/models/shared/DeploymentV1.md
+  - docs/models/shared/DeploymentV1Env.md
+  - docs/models/shared/DeploymentV1TransportType.md
+  - docs/models/shared/DeploymentV2.md
+  - docs/models/shared/DeploymentV2Env.md
+  - docs/models/shared/DeploymentV3.md
+  - docs/models/shared/DeploymentV3Env.md
+  - docs/models/shared/DeploymentsV3Page.md
+  - docs/models/shared/Env.md
+  - docs/models/shared/ExposedPort.md
+  - docs/models/shared/Google.md
+  - docs/models/shared/GoogleIdTokenObject.md
+  - docs/models/shared/Invoice.md
+  - docs/models/shared/InvoiceItem.md
+  - docs/models/shared/InvoiceItemPage.md
+  - docs/models/shared/InvoiceStatus.md
+  - docs/models/shared/LinkPaymentMethod.md
+  - docs/models/shared/ListOrgTokens.md
+  - docs/models/shared/Lobby.md
+  - docs/models/shared/LobbyV3.md
+  - docs/models/shared/LobbyV3CreatedBy.md
+  - docs/models/shared/LobbyVisibility.md
+  - docs/models/shared/MetricName.md
+  - docs/models/shared/MetricValue.md
+  - docs/models/shared/MetricsData.md
+  - docs/models/shared/NicknameObject.md
+  - docs/models/shared/OrgMember.md
+  - docs/models/shared/OrgMembersPage.md
+  - docs/models/shared/OrgToken.md
+  - docs/models/shared/OrgTokenStatus.md
+  - docs/models/shared/Organization.md
+  - docs/models/shared/OrgsPage.md
+  - docs/models/shared/PaymentMethod.md
+  - docs/models/shared/PendingOrgInvite.md
+  - docs/models/shared/PendingOrgInvitesPage.md
+  - docs/models/shared/PingEndpoints.md
+  - docs/models/shared/PlanName.md
+  - docs/models/shared/PlayerTokenObject.md
+  - docs/models/shared/Process.md
+  - docs/models/shared/ProcessExposedPort.md
+  - docs/models/shared/ProcessStatus.md
+  - docs/models/shared/ProcessV2.md
+  - docs/models/shared/ProcessV2ExposedPort.md
+  - docs/models/shared/ProcessV3.md
+  - docs/models/shared/ProcessV3ExposedPort.md
+  - docs/models/shared/ProcessWithRooms.md
+  - docs/models/shared/ProcessWithRoomsExposedPort.md
+  - docs/models/shared/RecordStringNever.md
+  - docs/models/shared/Region.md
+  - docs/models/shared/RegionalContainerTags.md
+  - docs/models/shared/RescindUserInvite.md
+  - docs/models/shared/Room.md
+  - docs/models/shared/RoomAllocation.md
+  - docs/models/shared/RoomConnectionData.md
+  - docs/models/shared/RoomReadyStatus.md
+  - docs/models/shared/RoomStatus.md
+  - docs/models/shared/RoomWithoutAllocations.md
+  - docs/models/shared/RoomWithoutAllocationsCurrentAllocation.md
+  - docs/models/shared/Security.md
+  - docs/models/shared/SetLobbyStateParams.md
+  - docs/models/shared/StartingConnectionInfo.md
+  - docs/models/shared/StartingConnectionInfoStatus.md
+  - docs/models/shared/Status.md
+  - docs/models/shared/TransportType.md
+  - docs/models/shared/UpdateRoomConfigParams.md
+  - docs/models/shared/UploadBodyParams.md
+  - docs/models/shared/VerificationEmailRequest.md
+  - docs/models/shared/VerificationEmailSuccess.md
+  - docs/sdks/appsv1/README.md
+  - docs/sdks/appsv2/README.md
+  - docs/sdks/authv1/README.md
+  - docs/sdks/billingv1/README.md
+  - docs/sdks/buildsv1/README.md
+  - docs/sdks/buildsv2/README.md
+  - docs/sdks/buildsv3/README.md
+  - docs/sdks/deploymentsv1/README.md
+  - docs/sdks/deploymentsv2/README.md
+  - docs/sdks/deploymentsv3/README.md
+  - docs/sdks/discoveryv1/README.md
+  - docs/sdks/discoveryv2/README.md
+  - docs/sdks/hathoracloud/README.md
+  - docs/sdks/lobbiesv1/README.md
+  - docs/sdks/lobbiesv2/README.md
+  - docs/sdks/lobbiesv3/README.md
+  - docs/sdks/logsv1/README.md
+  - docs/sdks/managementv1/README.md
+  - docs/sdks/metricsv1/README.md
+  - docs/sdks/organizationsv1/README.md
+  - docs/sdks/processesv1/README.md
+  - docs/sdks/processesv2/README.md
+  - docs/sdks/processesv3/README.md
+  - docs/sdks/roomsv1/README.md
+  - docs/sdks/roomsv2/README.md
+  - docs/sdks/tokensv1/README.md
+  - gradle/wrapper/gradle-wrapper.jar
+  - gradle/wrapper/gradle-wrapper.properties
+  - gradlew
+  - gradlew.bat
+  - settings.gradle
   - src/main/java/com/hathora/cloud_sdk/AppsV1.java
   - src/main/java/com/hathora/cloud_sdk/AppsV2.java
   - src/main/java/com/hathora/cloud_sdk/AuthV1.java
@@ -42,6 +410,7 @@ generatedFiles:
   - src/main/java/com/hathora/cloud_sdk/DeploymentsV3.java
   - src/main/java/com/hathora/cloud_sdk/DiscoveryV1.java
   - src/main/java/com/hathora/cloud_sdk/DiscoveryV2.java
+  - src/main/java/com/hathora/cloud_sdk/HathoraCloud.java
   - src/main/java/com/hathora/cloud_sdk/LobbiesV1.java
   - src/main/java/com/hathora/cloud_sdk/LobbiesV2.java
   - src/main/java/com/hathora/cloud_sdk/LobbiesV3.java
@@ -54,125 +423,456 @@ generatedFiles:
   - src/main/java/com/hathora/cloud_sdk/ProcessesV3.java
   - src/main/java/com/hathora/cloud_sdk/RoomsV1.java
   - src/main/java/com/hathora/cloud_sdk/RoomsV2.java
+  - src/main/java/com/hathora/cloud_sdk/SDKConfiguration.java
+  - src/main/java/com/hathora/cloud_sdk/SecuritySource.java
   - src/main/java/com/hathora/cloud_sdk/TokensV1.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateAppV1DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteAppV1DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppInfoV1DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppsV1DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateAppV1DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateAppRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteAppRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppsRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateAppRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginAnonymousRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginGoogleRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginNicknameRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBalanceRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInvoicesRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetPaymentMethodRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceItemsRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/InitStripeCustomerPortalUrlRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildInfoDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildWithUploadUrlV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateWithMultipartUploadsV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildInfoV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentV1DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentInfoV1DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsV1DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentV1DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentInfoV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetPingServiceEndpointsDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetPingServiceEndpointsRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesDeprecatedV1RequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLocalLobbyRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesDeprecatedV2RequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/SetLobbyStateRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoByRoomIdRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoByShortCodeRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DownloadLogForProcessRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForAppRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForDeploymentRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForProcessRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/SendVerificationEmailRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetMetricsRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/errors/ApiError.java
+  - src/main/java/com/hathora/cloud_sdk/models/errors/AuthException.java
+  - src/main/java/com/hathora/cloud_sdk/models/errors/SDKError.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/AcceptInviteRequest.java
   - src/main/java/com/hathora/cloud_sdk/models/operations/AcceptInviteRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgMembersRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgPendingInvitesRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgsRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUserPendingInvitesRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/InviteUserRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RejectInviteRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RescindInviteRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessInfoDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRunningProcessesRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetStoppedProcessesRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateProcessV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestProcessesV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessInfoV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/StopProcessV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateProcessRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestProcessesRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/StopProcessRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateRoomDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DestroyRoomDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetActiveRoomsForProcessDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetConnectionInfoDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRoomInfoDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/SuspendRoomDeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateRoomRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DestroyRoomRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetActiveRoomsForProcessRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetConnectionInfoRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRoomInfoRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/SuspendRoomV2DeprecatedRequestBuilder.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateRoomConfigRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/AcceptInviteResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateAppRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateAppRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateAppResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateAppV1DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateAppV1DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildWithUploadUrlV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildWithUploadUrlV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildWithUploadUrlV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentV1DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentV1DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentV1DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyDeprecatedSecurity.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbySecurity.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLocalLobbyRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLocalLobbyRequestBody.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLocalLobbyRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLocalLobbyResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLocalLobbySecurity.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateOrgTokenRequest.java
   - src/main/java/com/hathora/cloud_sdk/models/operations/CreateOrgTokenRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateOrgTokenResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyDeprecatedSecurity.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyRequestBody.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbySecurity.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateProcessRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateProcessRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateProcessResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateProcessV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateProcessV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateProcessV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyDeprecatedSecurity.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyRequestBody.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbySecurity.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateRoomDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateRoomDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateRoomDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateRoomRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateRoomRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateRoomResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateWithMultipartUploadsV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateWithMultipartUploadsV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateWithMultipartUploadsV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteAppRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteAppRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteAppResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteAppV1DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteAppV1DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteAppV1DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DestroyRoomDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DestroyRoomDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DestroyRoomDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DestroyRoomRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DestroyRoomRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DestroyRoomResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DownloadLogForProcessRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DownloadLogForProcessRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/DownloadLogForProcessResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/File.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetActiveRoomsForProcessDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetActiveRoomsForProcessDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetActiveRoomsForProcessDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetActiveRoomsForProcessRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetActiveRoomsForProcessRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetActiveRoomsForProcessResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppInfoV1DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppInfoV1DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppInfoV1DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppsRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppsRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppsResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppsV1DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppsV1DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBalanceRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBalanceResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildInfoDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildInfoDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildInfoDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildInfoV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildInfoV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildInfoV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetConnectionInfoDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetConnectionInfoDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetConnectionInfoDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetConnectionInfoRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetConnectionInfoRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetConnectionInfoResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentInfoV1DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentInfoV1DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentInfoV1DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentInfoV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentInfoV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentInfoV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsV1DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsV1DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsV1DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInvoicesRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInvoicesResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentV1DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentV1DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentV1DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestProcessesRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestProcessesRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestProcessesResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestProcessesV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestProcessesV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestProcessesV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoByRoomIdRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoByRoomIdRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoByRoomIdResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoByShortCodeRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoByShortCodeRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoByShortCodeResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForAppRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForAppRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForAppResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForDeploymentRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForDeploymentRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForDeploymentResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForProcessRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForProcessRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForProcessResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetMetricsRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetMetricsRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetMetricsResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgMembersRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgMembersRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgMembersResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgPendingInvitesRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgPendingInvitesRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgPendingInvitesResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgTokensRequest.java
   - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgTokensRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgTokensResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgsRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgsResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetPaymentMethodRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetPaymentMethodResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetPingServiceEndpointsDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetPingServiceEndpointsDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetPingServiceEndpointsRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetPingServiceEndpointsResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessInfoDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessInfoDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessInfoDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessInfoV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessInfoV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessInfoV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalResponseBody.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalV2DeprecatedResponseBody.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRoomInfoDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRoomInfoDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRoomInfoDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRoomInfoRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRoomInfoRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRoomInfoResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRunningProcessesRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRunningProcessesRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRunningProcessesResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetStoppedProcessesRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetStoppedProcessesRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetStoppedProcessesResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceItemsRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceItemsResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalResponseBody.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUserPendingInvitesRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUserPendingInvitesResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/InitStripeCustomerPortalUrlRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/InitStripeCustomerPortalUrlResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/InviteUserRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/InviteUserRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/InviteUserResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesDeprecatedV1Request.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesDeprecatedV1RequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesDeprecatedV1Response.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesDeprecatedV2Request.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesDeprecatedV2RequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesDeprecatedV2Response.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginAnonymousRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginAnonymousRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginAnonymousResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginGoogleRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginGoogleRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginGoogleResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginNicknameRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginNicknameRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginNicknameResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RejectInviteRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RejectInviteRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RejectInviteResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RescindInviteRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RescindInviteRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RescindInviteResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RevokeOrgTokenRequest.java
   - src/main/java/com/hathora/cloud_sdk/models/operations/RevokeOrgTokenRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RevokeOrgTokenResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildDeprecatedRequestBody.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedFile.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedRequestBody.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedResponse.java
   - src/main/java/com/hathora/cloud_sdk/models/operations/SDKMethodInterfaces.java
-  - src/main/java/com/hathora/cloud_sdk/HathoraCloud.java
-  - .gitattributes
-  - build.gradle
-  - gradle/wrapper/gradle-wrapper.jar
-  - gradle/wrapper/gradle-wrapper.properties
-  - gradlew
-  - gradlew.bat
-  - settings.gradle
+  - src/main/java/com/hathora/cloud_sdk/models/operations/SendVerificationEmailRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/SendVerificationEmailResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/SetLobbyStateRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/SetLobbyStateRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/SetLobbyStateResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/StopProcessRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/StopProcessRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/StopProcessResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/StopProcessV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/StopProcessV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/StopProcessV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/SuspendRoomDeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/SuspendRoomDeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/SuspendRoomDeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/SuspendRoomV2DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/SuspendRoomV2DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/SuspendRoomV2DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateAppRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateAppRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateAppResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateAppV1DeprecatedRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateAppV1DeprecatedRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateAppV1DeprecatedResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateRoomConfigRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateRoomConfigRequestBuilder.java
+  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateRoomConfigResponse.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/AchPaymentMethod.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ActiveConnectionInfo.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/AppConfig.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Application.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuild.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecated.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecatedEnv.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuildEnv.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ApplicationsPage.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/AuthConfiguration.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Build.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildPart.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildStatus.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildV3.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildWithMultipartUrls.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildWithMultipartUrlsRegionalContainerTags.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildWithUploadUrl.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildWithUploadUrlRegionalContainerTags.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildsV3Page.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CardBrand.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CardPaymentMethod.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ConnectionInfo.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ConnectionInfoV2.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ContainerPort.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateBuildParams.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateLobbyParams.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateLobbyV3Params.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateMultipartBuildParams.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateOrgToken.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateRoomParams.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateUserInvite.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CreatedBuildV3WithMultipartUrls.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CreatedBy.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CreatedOrgToken.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CurrentAllocation.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/CustomerPortalUrl.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeletedBuild.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Deployment.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentConfig.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentConfigV2.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentConfigV2Env.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentConfigV3.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentConfigV3Env.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV1.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV1Env.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV1TransportType.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV2.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV2Env.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV3.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV3Env.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentsV3Page.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Env.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ExposedPort.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Google.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/GoogleIdTokenObject.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Invoice.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/InvoiceItem.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/InvoiceItemPage.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/InvoiceStatus.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/LinkPaymentMethod.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ListOrgTokens.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Lobby.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/LobbyV3.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/LobbyV3CreatedBy.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/LobbyVisibility.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/MetricName.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/MetricValue.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/MetricsData.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/NicknameObject.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/OrgMember.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/OrgMembersPage.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/OrgToken.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/OrgTokenStatus.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Organization.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/OrgsPage.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/PaymentMethod.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/PendingOrgInvite.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/PendingOrgInvitesPage.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/PingEndpoints.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/PlanName.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/PlayerTokenObject.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Process.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessExposedPort.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessStatus.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessV2.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessV2ExposedPort.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessV3.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessV3ExposedPort.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessWithRooms.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessWithRoomsExposedPort.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/RecordStringNever.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Region.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/RegionalContainerTags.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/RescindUserInvite.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Room.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/RoomAllocation.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/RoomConnectionData.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/RoomReadyStatus.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/RoomStatus.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/RoomWithoutAllocations.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/RoomWithoutAllocationsCurrentAllocation.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Security.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/SetLobbyStateParams.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/StartingConnectionInfo.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/StartingConnectionInfoStatus.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/Status.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/TransportType.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/UpdateRoomConfigParams.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/UploadBodyParams.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/VerificationEmailRequest.java
+  - src/main/java/com/hathora/cloud_sdk/models/shared/VerificationEmailSuccess.java
   - src/main/java/com/hathora/cloud_sdk/utils/BackoffStrategy.java
   - src/main/java/com/hathora/cloud_sdk/utils/BigDecimalString.java
   - src/main/java/com/hathora/cloud_sdk/utils/BigIntegerString.java
@@ -210,703 +910,977 @@ generatedFiles:
   - src/main/java/com/hathora/cloud_sdk/utils/TypedObject.java
   - src/main/java/com/hathora/cloud_sdk/utils/Types.java
   - src/main/java/com/hathora/cloud_sdk/utils/Utils.java
-  - src/main/java/com/hathora/cloud_sdk/models/errors/AuthException.java
-  - src/main/java/com/hathora/cloud_sdk/models/errors/SDKError.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateAppV1DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteAppV1DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteAppV1DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppInfoV1DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppInfoV1DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppsV1DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateAppV1DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateAppV1DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateAppRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateAppResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteAppRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteAppResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppsRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetAppsResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateAppRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateAppResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginAnonymousRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginAnonymousResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginGoogleRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginGoogleResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginNicknameRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/LoginNicknameResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBalanceResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInvoicesResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetPaymentMethodResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceItemsResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalResponseBody.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/InitStripeCustomerPortalUrlResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildInfoDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildInfoDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/File.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildDeprecatedRequestBody.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildWithUploadUrlV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildWithUploadUrlV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateWithMultipartUploadsV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateWithMultipartUploadsV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildInfoV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildInfoV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedFile.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedRequestBody.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateBuildResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DeleteBuildResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetBuildsResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RunBuildResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentV1DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentV1DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentInfoV1DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentInfoV1DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsV1DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsV1DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentV1DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentV1DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentInfoV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentInfoV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateDeploymentResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetDeploymentsResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestDeploymentResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetPingServiceEndpointsDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetPingServiceEndpointsResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyDeprecatedSecurity.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyDeprecatedSecurity.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesDeprecatedV1Request.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesDeprecatedV1Response.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyDeprecatedSecurity.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLocalLobbySecurity.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLocalLobbyRequestBody.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLocalLobbyRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLocalLobbyResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbySecurity.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyRequestBody.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePrivateLobbyResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbySecurity.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyRequestBody.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreatePublicLobbyResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesDeprecatedV2Request.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesDeprecatedV2Response.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/SetLobbyStateRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/SetLobbyStateResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbySecurity.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateLobbyResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoByRoomIdRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoByRoomIdResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoByShortCodeRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLobbyInfoByShortCodeResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/ListActivePublicLobbiesResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DownloadLogForProcessRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DownloadLogForProcessResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForAppRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForAppResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForDeploymentRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForDeploymentResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForProcessRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLogsForProcessResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/SendVerificationEmailResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetMetricsRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetMetricsResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/AcceptInviteRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/AcceptInviteResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgMembersRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgMembersResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgPendingInvitesRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgPendingInvitesResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgsResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetUserPendingInvitesResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/InviteUserRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/InviteUserResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RejectInviteRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RejectInviteResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RescindInviteRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RescindInviteResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessInfoDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessInfoDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRunningProcessesRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRunningProcessesResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetStoppedProcessesRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetStoppedProcessesResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateProcessV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateProcessV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestProcessesV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestProcessesV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessInfoV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessInfoV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalV2DeprecatedResponseBody.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/StopProcessV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/StopProcessV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateProcessRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateProcessResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestProcessesRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetLatestProcessesResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalResponseBody.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetProcessesCountExperimentalResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/StopProcessRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/StopProcessResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateRoomDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateRoomDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DestroyRoomDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DestroyRoomDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetActiveRoomsForProcessDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetActiveRoomsForProcessDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetConnectionInfoDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetConnectionInfoDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRoomInfoDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRoomInfoDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/SuspendRoomDeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/SuspendRoomDeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateRoomRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateRoomResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DestroyRoomRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/DestroyRoomResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetActiveRoomsForProcessRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetActiveRoomsForProcessResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetConnectionInfoRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetConnectionInfoResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRoomInfoRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetRoomInfoResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/SuspendRoomV2DeprecatedRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/SuspendRoomV2DeprecatedResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateRoomConfigRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/UpdateRoomConfigResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateOrgTokenRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/CreateOrgTokenResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgTokensRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/GetOrgTokensResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RevokeOrgTokenRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/operations/RevokeOrgTokenResponse.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Application.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Google.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/AuthConfiguration.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/RecordStringNever.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/AppConfig.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecatedEnv.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecated.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ContainerPort.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/TransportType.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/RegionalContainerTags.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Build.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildStatus.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Region.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ApplicationsPage.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuildEnv.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Deployment.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuild.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildV3.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/PlayerTokenObject.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/GoogleIdTokenObject.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/NicknameObject.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Invoice.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/InvoiceStatus.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/PaymentMethod.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/LinkPaymentMethod.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CardPaymentMethod.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CardBrand.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/AchPaymentMethod.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/InvoiceItemPage.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/InvoiceItem.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CustomerPortalUrl.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateBuildParams.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildWithUploadUrlRegionalContainerTags.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/UploadBodyParams.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildWithUploadUrl.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildWithMultipartUrlsRegionalContainerTags.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildWithMultipartUrls.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildPart.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateMultipartBuildParams.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CreatedBuildV3WithMultipartUrls.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeletedBuild.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/BuildsV3Page.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV1Env.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV1TransportType.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV1.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/PlanName.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Env.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentConfig.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV2Env.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV2.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentConfigV2Env.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentConfigV2.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV3Env.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentV3.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentConfigV3Env.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentConfigV3.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/DeploymentsV3Page.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/PingEndpoints.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CreatedBy.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Lobby.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/LobbyVisibility.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateLobbyParams.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/SetLobbyStateParams.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/LobbyV3CreatedBy.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/LobbyV3.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateLobbyV3Params.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/VerificationEmailSuccess.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/VerificationEmailRequest.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/MetricsData.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/MetricValue.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/MetricName.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/OrgMembersPage.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/OrgMember.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/PendingOrgInvitesPage.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/PendingOrgInvite.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/OrgsPage.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Organization.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateUserInvite.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/RescindUserInvite.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessExposedPort.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Process.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ExposedPort.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessWithRoomsExposedPort.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessWithRooms.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/RoomWithoutAllocationsCurrentAllocation.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/RoomWithoutAllocations.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/RoomStatus.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessV2ExposedPort.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessV2.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessStatus.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessV3ExposedPort.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ProcessV3.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateRoomParams.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ConnectionInfo.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/StartingConnectionInfoStatus.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/StartingConnectionInfo.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Status.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ActiveConnectionInfo.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CurrentAllocation.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Room.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/RoomAllocation.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/RoomConnectionData.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/RoomReadyStatus.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ConnectionInfoV2.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/UpdateRoomConfigParams.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CreatedOrgToken.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/OrgToken.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/OrgTokenStatus.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/CreateOrgToken.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/ListOrgTokens.java
-  - src/main/java/com/hathora/cloud_sdk/models/shared/Security.java
-  - src/main/java/com/hathora/cloud_sdk/models/errors/ApiError.java
-  - docs/models/operations/CreateAppV1DeprecatedResponse.md
-  - docs/models/operations/DeleteAppV1DeprecatedRequest.md
-  - docs/models/operations/DeleteAppV1DeprecatedResponse.md
-  - docs/models/operations/GetAppInfoV1DeprecatedRequest.md
-  - docs/models/operations/GetAppInfoV1DeprecatedResponse.md
-  - docs/models/operations/GetAppsV1DeprecatedResponse.md
-  - docs/models/operations/UpdateAppV1DeprecatedRequest.md
-  - docs/models/operations/UpdateAppV1DeprecatedResponse.md
-  - docs/models/operations/CreateAppRequest.md
-  - docs/models/operations/CreateAppResponse.md
-  - docs/models/operations/DeleteAppRequest.md
-  - docs/models/operations/DeleteAppResponse.md
-  - docs/models/operations/GetAppRequest.md
-  - docs/models/operations/GetAppResponse.md
-  - docs/models/operations/GetAppsRequest.md
-  - docs/models/operations/GetAppsResponse.md
-  - docs/models/operations/UpdateAppRequest.md
-  - docs/models/operations/UpdateAppResponse.md
-  - docs/models/operations/LoginAnonymousRequest.md
-  - docs/models/operations/LoginAnonymousResponse.md
-  - docs/models/operations/LoginGoogleRequest.md
-  - docs/models/operations/LoginGoogleResponse.md
-  - docs/models/operations/LoginNicknameRequest.md
-  - docs/models/operations/LoginNicknameResponse.md
-  - docs/models/operations/GetBalanceResponse.md
-  - docs/models/operations/GetInvoicesResponse.md
-  - docs/models/operations/GetPaymentMethodResponse.md
-  - docs/models/operations/GetUpcomingInvoiceItemsResponse.md
-  - docs/models/operations/GetUpcomingInvoiceTotalResponseBody.md
-  - docs/models/operations/GetUpcomingInvoiceTotalResponse.md
-  - docs/models/operations/InitStripeCustomerPortalUrlResponse.md
-  - docs/models/operations/CreateBuildDeprecatedRequest.md
-  - docs/models/operations/CreateBuildDeprecatedResponse.md
-  - docs/models/operations/DeleteBuildDeprecatedRequest.md
-  - docs/models/operations/DeleteBuildDeprecatedResponse.md
-  - docs/models/operations/GetBuildInfoDeprecatedRequest.md
-  - docs/models/operations/GetBuildInfoDeprecatedResponse.md
-  - docs/models/operations/GetBuildsDeprecatedRequest.md
-  - docs/models/operations/GetBuildsDeprecatedResponse.md
-  - docs/models/operations/File.md
-  - docs/models/operations/RunBuildDeprecatedRequestBody.md
-  - docs/models/operations/RunBuildDeprecatedRequest.md
-  - docs/models/operations/RunBuildDeprecatedResponse.md
-  - docs/models/operations/CreateBuildV2DeprecatedRequest.md
-  - docs/models/operations/CreateBuildV2DeprecatedResponse.md
-  - docs/models/operations/CreateBuildWithUploadUrlV2DeprecatedRequest.md
-  - docs/models/operations/CreateBuildWithUploadUrlV2DeprecatedResponse.md
-  - docs/models/operations/CreateWithMultipartUploadsV2DeprecatedRequest.md
-  - docs/models/operations/CreateWithMultipartUploadsV2DeprecatedResponse.md
-  - docs/models/operations/DeleteBuildV2DeprecatedRequest.md
-  - docs/models/operations/DeleteBuildV2DeprecatedResponse.md
-  - docs/models/operations/GetBuildInfoV2DeprecatedRequest.md
-  - docs/models/operations/GetBuildInfoV2DeprecatedResponse.md
-  - docs/models/operations/GetBuildsV2DeprecatedRequest.md
-  - docs/models/operations/GetBuildsV2DeprecatedResponse.md
-  - docs/models/operations/RunBuildV2DeprecatedFile.md
-  - docs/models/operations/RunBuildV2DeprecatedRequestBody.md
-  - docs/models/operations/RunBuildV2DeprecatedRequest.md
-  - docs/models/operations/RunBuildV2DeprecatedResponse.md
-  - docs/models/operations/CreateBuildRequest.md
-  - docs/models/operations/CreateBuildResponse.md
-  - docs/models/operations/DeleteBuildRequest.md
-  - docs/models/operations/DeleteBuildResponse.md
-  - docs/models/operations/GetBuildRequest.md
-  - docs/models/operations/GetBuildResponse.md
-  - docs/models/operations/GetBuildsRequest.md
-  - docs/models/operations/GetBuildsResponse.md
-  - docs/models/operations/RunBuildRequest.md
-  - docs/models/operations/RunBuildResponse.md
-  - docs/models/operations/CreateDeploymentV1DeprecatedRequest.md
-  - docs/models/operations/CreateDeploymentV1DeprecatedResponse.md
-  - docs/models/operations/GetDeploymentInfoV1DeprecatedRequest.md
-  - docs/models/operations/GetDeploymentInfoV1DeprecatedResponse.md
-  - docs/models/operations/GetDeploymentsV1DeprecatedRequest.md
-  - docs/models/operations/GetDeploymentsV1DeprecatedResponse.md
-  - docs/models/operations/GetLatestDeploymentV1DeprecatedRequest.md
-  - docs/models/operations/GetLatestDeploymentV1DeprecatedResponse.md
-  - docs/models/operations/CreateDeploymentV2DeprecatedRequest.md
-  - docs/models/operations/CreateDeploymentV2DeprecatedResponse.md
-  - docs/models/operations/GetDeploymentInfoV2DeprecatedRequest.md
-  - docs/models/operations/GetDeploymentInfoV2DeprecatedResponse.md
-  - docs/models/operations/GetDeploymentsV2DeprecatedRequest.md
-  - docs/models/operations/GetDeploymentsV2DeprecatedResponse.md
-  - docs/models/operations/GetLatestDeploymentV2DeprecatedRequest.md
-  - docs/models/operations/GetLatestDeploymentV2DeprecatedResponse.md
-  - docs/models/operations/CreateDeploymentRequest.md
-  - docs/models/operations/CreateDeploymentResponse.md
-  - docs/models/operations/GetDeploymentRequest.md
-  - docs/models/operations/GetDeploymentResponse.md
-  - docs/models/operations/GetDeploymentsRequest.md
-  - docs/models/operations/GetDeploymentsResponse.md
-  - docs/models/operations/GetLatestDeploymentRequest.md
-  - docs/models/operations/GetLatestDeploymentResponse.md
-  - docs/models/operations/GetPingServiceEndpointsDeprecatedResponse.md
-  - docs/models/operations/GetPingServiceEndpointsResponse.md
-  - docs/models/operations/CreatePrivateLobbyDeprecatedSecurity.md
-  - docs/models/operations/CreatePrivateLobbyDeprecatedRequest.md
-  - docs/models/operations/CreatePrivateLobbyDeprecatedResponse.md
-  - docs/models/operations/CreatePublicLobbyDeprecatedSecurity.md
-  - docs/models/operations/CreatePublicLobbyDeprecatedRequest.md
-  - docs/models/operations/CreatePublicLobbyDeprecatedResponse.md
-  - docs/models/operations/ListActivePublicLobbiesDeprecatedV1Request.md
-  - docs/models/operations/ListActivePublicLobbiesDeprecatedV1Response.md
-  - docs/models/operations/CreateLobbyDeprecatedSecurity.md
-  - docs/models/operations/CreateLobbyDeprecatedRequest.md
-  - docs/models/operations/CreateLobbyDeprecatedResponse.md
-  - docs/models/operations/CreateLocalLobbySecurity.md
-  - docs/models/operations/CreateLocalLobbyRequestBody.md
-  - docs/models/operations/CreateLocalLobbyRequest.md
-  - docs/models/operations/CreateLocalLobbyResponse.md
-  - docs/models/operations/CreatePrivateLobbySecurity.md
-  - docs/models/operations/CreatePrivateLobbyRequestBody.md
-  - docs/models/operations/CreatePrivateLobbyRequest.md
-  - docs/models/operations/CreatePrivateLobbyResponse.md
-  - docs/models/operations/CreatePublicLobbySecurity.md
-  - docs/models/operations/CreatePublicLobbyRequestBody.md
-  - docs/models/operations/CreatePublicLobbyRequest.md
-  - docs/models/operations/CreatePublicLobbyResponse.md
-  - docs/models/operations/GetLobbyInfoRequest.md
-  - docs/models/operations/GetLobbyInfoResponse.md
-  - docs/models/operations/ListActivePublicLobbiesDeprecatedV2Request.md
-  - docs/models/operations/ListActivePublicLobbiesDeprecatedV2Response.md
-  - docs/models/operations/SetLobbyStateRequest.md
-  - docs/models/operations/SetLobbyStateResponse.md
-  - docs/models/operations/CreateLobbySecurity.md
-  - docs/models/operations/CreateLobbyRequest.md
-  - docs/models/operations/CreateLobbyResponse.md
-  - docs/models/operations/GetLobbyInfoByRoomIdRequest.md
-  - docs/models/operations/GetLobbyInfoByRoomIdResponse.md
-  - docs/models/operations/GetLobbyInfoByShortCodeRequest.md
-  - docs/models/operations/GetLobbyInfoByShortCodeResponse.md
-  - docs/models/operations/ListActivePublicLobbiesRequest.md
-  - docs/models/operations/ListActivePublicLobbiesResponse.md
-  - docs/models/operations/DownloadLogForProcessRequest.md
-  - docs/models/operations/DownloadLogForProcessResponse.md
-  - docs/models/operations/GetLogsForAppRequest.md
-  - docs/models/operations/GetLogsForAppResponse.md
-  - docs/models/operations/GetLogsForDeploymentRequest.md
-  - docs/models/operations/GetLogsForDeploymentResponse.md
-  - docs/models/operations/GetLogsForProcessRequest.md
-  - docs/models/operations/GetLogsForProcessResponse.md
-  - docs/models/operations/SendVerificationEmailResponse.md
-  - docs/models/operations/GetMetricsRequest.md
-  - docs/models/operations/GetMetricsResponse.md
-  - docs/models/operations/AcceptInviteRequest.md
-  - docs/models/operations/AcceptInviteResponse.md
-  - docs/models/operations/GetOrgMembersRequest.md
-  - docs/models/operations/GetOrgMembersResponse.md
-  - docs/models/operations/GetOrgPendingInvitesRequest.md
-  - docs/models/operations/GetOrgPendingInvitesResponse.md
-  - docs/models/operations/GetOrgsResponse.md
-  - docs/models/operations/GetUserPendingInvitesResponse.md
-  - docs/models/operations/InviteUserRequest.md
-  - docs/models/operations/InviteUserResponse.md
-  - docs/models/operations/RejectInviteRequest.md
-  - docs/models/operations/RejectInviteResponse.md
-  - docs/models/operations/RescindInviteRequest.md
-  - docs/models/operations/RescindInviteResponse.md
-  - docs/models/operations/GetProcessInfoDeprecatedRequest.md
-  - docs/models/operations/GetProcessInfoDeprecatedResponse.md
-  - docs/models/operations/GetRunningProcessesRequest.md
-  - docs/models/operations/GetRunningProcessesResponse.md
-  - docs/models/operations/GetStoppedProcessesRequest.md
-  - docs/models/operations/GetStoppedProcessesResponse.md
-  - docs/models/operations/CreateProcessV2DeprecatedRequest.md
-  - docs/models/operations/CreateProcessV2DeprecatedResponse.md
-  - docs/models/operations/GetLatestProcessesV2DeprecatedRequest.md
-  - docs/models/operations/GetLatestProcessesV2DeprecatedResponse.md
-  - docs/models/operations/GetProcessInfoV2DeprecatedRequest.md
-  - docs/models/operations/GetProcessInfoV2DeprecatedResponse.md
-  - docs/models/operations/GetProcessesCountExperimentalV2DeprecatedRequest.md
-  - docs/models/operations/GetProcessesCountExperimentalV2DeprecatedResponseBody.md
-  - docs/models/operations/GetProcessesCountExperimentalV2DeprecatedResponse.md
-  - docs/models/operations/StopProcessV2DeprecatedRequest.md
-  - docs/models/operations/StopProcessV2DeprecatedResponse.md
-  - docs/models/operations/CreateProcessRequest.md
-  - docs/models/operations/CreateProcessResponse.md
-  - docs/models/operations/GetLatestProcessesRequest.md
-  - docs/models/operations/GetLatestProcessesResponse.md
-  - docs/models/operations/GetProcessRequest.md
-  - docs/models/operations/GetProcessResponse.md
-  - docs/models/operations/GetProcessesCountExperimentalRequest.md
-  - docs/models/operations/GetProcessesCountExperimentalResponseBody.md
-  - docs/models/operations/GetProcessesCountExperimentalResponse.md
-  - docs/models/operations/StopProcessRequest.md
-  - docs/models/operations/StopProcessResponse.md
-  - docs/models/operations/CreateRoomDeprecatedRequest.md
-  - docs/models/operations/CreateRoomDeprecatedResponse.md
-  - docs/models/operations/DestroyRoomDeprecatedRequest.md
-  - docs/models/operations/DestroyRoomDeprecatedResponse.md
-  - docs/models/operations/GetActiveRoomsForProcessDeprecatedRequest.md
-  - docs/models/operations/GetActiveRoomsForProcessDeprecatedResponse.md
-  - docs/models/operations/GetConnectionInfoDeprecatedRequest.md
-  - docs/models/operations/GetConnectionInfoDeprecatedResponse.md
-  - docs/models/operations/GetInactiveRoomsForProcessDeprecatedRequest.md
-  - docs/models/operations/GetInactiveRoomsForProcessDeprecatedResponse.md
-  - docs/models/operations/GetRoomInfoDeprecatedRequest.md
-  - docs/models/operations/GetRoomInfoDeprecatedResponse.md
-  - docs/models/operations/SuspendRoomDeprecatedRequest.md
-  - docs/models/operations/SuspendRoomDeprecatedResponse.md
-  - docs/models/operations/CreateRoomRequest.md
-  - docs/models/operations/CreateRoomResponse.md
-  - docs/models/operations/DestroyRoomRequest.md
-  - docs/models/operations/DestroyRoomResponse.md
-  - docs/models/operations/GetActiveRoomsForProcessRequest.md
-  - docs/models/operations/GetActiveRoomsForProcessResponse.md
-  - docs/models/operations/GetConnectionInfoRequest.md
-  - docs/models/operations/GetConnectionInfoResponse.md
-  - docs/models/operations/GetInactiveRoomsForProcessRequest.md
-  - docs/models/operations/GetInactiveRoomsForProcessResponse.md
-  - docs/models/operations/GetRoomInfoRequest.md
-  - docs/models/operations/GetRoomInfoResponse.md
-  - docs/models/operations/SuspendRoomV2DeprecatedRequest.md
-  - docs/models/operations/SuspendRoomV2DeprecatedResponse.md
-  - docs/models/operations/UpdateRoomConfigRequest.md
-  - docs/models/operations/UpdateRoomConfigResponse.md
-  - docs/models/operations/CreateOrgTokenRequest.md
-  - docs/models/operations/CreateOrgTokenResponse.md
-  - docs/models/operations/GetOrgTokensRequest.md
-  - docs/models/operations/GetOrgTokensResponse.md
-  - docs/models/operations/RevokeOrgTokenRequest.md
-  - docs/models/operations/RevokeOrgTokenResponse.md
-  - docs/models/shared/Application.md
-  - docs/models/shared/Google.md
-  - docs/models/shared/AuthConfiguration.md
-  - docs/models/shared/RecordStringNever.md
-  - docs/models/shared/AppConfig.md
-  - docs/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecatedEnv.md
-  - docs/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment.md
-  - docs/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecated.md
-  - docs/models/shared/ContainerPort.md
-  - docs/models/shared/TransportType.md
-  - docs/models/shared/RegionalContainerTags.md
-  - docs/models/shared/Build.md
-  - docs/models/shared/BuildStatus.md
-  - docs/models/shared/Region.md
-  - docs/models/shared/ApplicationsPage.md
-  - docs/models/shared/ApplicationWithLatestDeploymentAndBuildEnv.md
-  - docs/models/shared/Deployment.md
-  - docs/models/shared/ApplicationWithLatestDeploymentAndBuild.md
-  - docs/models/shared/BuildV3.md
-  - docs/models/shared/PlayerTokenObject.md
-  - docs/models/shared/GoogleIdTokenObject.md
-  - docs/models/shared/NicknameObject.md
-  - docs/models/shared/Invoice.md
-  - docs/models/shared/InvoiceStatus.md
-  - docs/models/shared/PaymentMethod.md
-  - docs/models/shared/LinkPaymentMethod.md
-  - docs/models/shared/CardPaymentMethod.md
-  - docs/models/shared/CardBrand.md
-  - docs/models/shared/AchPaymentMethod.md
-  - docs/models/shared/InvoiceItemPage.md
-  - docs/models/shared/InvoiceItem.md
-  - docs/models/shared/CustomerPortalUrl.md
-  - docs/models/shared/CreateBuildParams.md
-  - docs/models/shared/BuildWithUploadUrlRegionalContainerTags.md
-  - docs/models/shared/UploadBodyParams.md
-  - docs/models/shared/BuildWithUploadUrl.md
-  - docs/models/shared/BuildWithMultipartUrlsRegionalContainerTags.md
-  - docs/models/shared/BuildWithMultipartUrls.md
-  - docs/models/shared/BuildPart.md
-  - docs/models/shared/CreateMultipartBuildParams.md
-  - docs/models/shared/CreatedBuildV3WithMultipartUrls.md
-  - docs/models/shared/DeletedBuild.md
-  - docs/models/shared/BuildsV3Page.md
-  - docs/models/shared/DeploymentV1Env.md
-  - docs/models/shared/DeploymentV1TransportType.md
-  - docs/models/shared/DeploymentV1.md
-  - docs/models/shared/PlanName.md
-  - docs/models/shared/Env.md
-  - docs/models/shared/DeploymentConfig.md
-  - docs/models/shared/DeploymentV2Env.md
-  - docs/models/shared/DeploymentV2.md
-  - docs/models/shared/DeploymentConfigV2Env.md
-  - docs/models/shared/DeploymentConfigV2.md
-  - docs/models/shared/DeploymentV3Env.md
-  - docs/models/shared/DeploymentV3.md
-  - docs/models/shared/DeploymentConfigV3Env.md
-  - docs/models/shared/DeploymentConfigV3.md
-  - docs/models/shared/DeploymentsV3Page.md
-  - docs/models/shared/PingEndpoints.md
-  - docs/models/shared/CreatedBy.md
-  - docs/models/shared/Lobby.md
-  - docs/models/shared/LobbyVisibility.md
-  - docs/models/shared/CreateLobbyParams.md
-  - docs/models/shared/SetLobbyStateParams.md
-  - docs/models/shared/LobbyV3CreatedBy.md
-  - docs/models/shared/LobbyV3.md
-  - docs/models/shared/CreateLobbyV3Params.md
-  - docs/models/shared/VerificationEmailSuccess.md
-  - docs/models/shared/VerificationEmailRequest.md
-  - docs/models/shared/MetricsData.md
-  - docs/models/shared/MetricValue.md
-  - docs/models/shared/MetricName.md
-  - docs/models/shared/OrgMembersPage.md
-  - docs/models/shared/OrgMember.md
-  - docs/models/shared/PendingOrgInvitesPage.md
-  - docs/models/shared/PendingOrgInvite.md
-  - docs/models/shared/OrgsPage.md
-  - docs/models/shared/Organization.md
-  - docs/models/shared/CreateUserInvite.md
-  - docs/models/shared/RescindUserInvite.md
-  - docs/models/shared/ProcessExposedPort.md
-  - docs/models/shared/Process.md
-  - docs/models/shared/ExposedPort.md
-  - docs/models/shared/ProcessWithRoomsExposedPort.md
-  - docs/models/shared/ProcessWithRooms.md
-  - docs/models/shared/RoomWithoutAllocationsCurrentAllocation.md
-  - docs/models/shared/RoomWithoutAllocations.md
-  - docs/models/shared/RoomStatus.md
-  - docs/models/shared/ProcessV2ExposedPort.md
-  - docs/models/shared/ProcessV2.md
-  - docs/models/shared/ProcessStatus.md
-  - docs/models/shared/ProcessV3ExposedPort.md
-  - docs/models/shared/ProcessV3.md
-  - docs/models/shared/CreateRoomParams.md
-  - docs/models/shared/ConnectionInfo.md
-  - docs/models/shared/StartingConnectionInfoStatus.md
-  - docs/models/shared/StartingConnectionInfo.md
-  - docs/models/shared/Status.md
-  - docs/models/shared/ActiveConnectionInfo.md
-  - docs/models/shared/CurrentAllocation.md
-  - docs/models/shared/Room.md
-  - docs/models/shared/RoomAllocation.md
-  - docs/models/shared/RoomConnectionData.md
-  - docs/models/shared/RoomReadyStatus.md
-  - docs/models/shared/ConnectionInfoV2.md
-  - docs/models/shared/UpdateRoomConfigParams.md
-  - docs/models/shared/CreatedOrgToken.md
-  - docs/models/shared/OrgToken.md
-  - docs/models/shared/OrgTokenStatus.md
-  - docs/models/shared/CreateOrgToken.md
-  - docs/models/shared/ListOrgTokens.md
-  - docs/models/shared/Security.md
-  - docs/models/errors/ApiError.md
-  - docs/sdks/hathoracloud/README.md
-  - docs/sdks/appsv1/README.md
-  - docs/sdks/appsv2/README.md
-  - docs/sdks/authv1/README.md
-  - docs/sdks/billingv1/README.md
-  - docs/sdks/buildsv1/README.md
-  - docs/sdks/buildsv2/README.md
-  - docs/sdks/buildsv3/README.md
-  - docs/sdks/deploymentsv1/README.md
-  - docs/sdks/deploymentsv2/README.md
-  - docs/sdks/deploymentsv3/README.md
-  - docs/sdks/discoveryv1/README.md
-  - docs/sdks/discoveryv2/README.md
-  - docs/sdks/lobbiesv1/README.md
-  - docs/sdks/lobbiesv2/README.md
-  - docs/sdks/lobbiesv3/README.md
-  - docs/sdks/logsv1/README.md
-  - docs/sdks/managementv1/README.md
-  - docs/sdks/metricsv1/README.md
-  - docs/sdks/organizationsv1/README.md
-  - docs/sdks/processesv1/README.md
-  - docs/sdks/processesv2/README.md
-  - docs/sdks/processesv3/README.md
-  - docs/sdks/roomsv1/README.md
-  - docs/sdks/roomsv2/README.md
-  - docs/sdks/tokensv1/README.md
-  - USAGE.md
-  - CONTRIBUTING.md
+examples:
+  CreateAppV1Deprecated:
+    speakeasy-default-create-app-v1-deprecated:
+      requestBody:
+        application/json: {"appName": "minecraft"}
+      responses:
+        "201":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "appName": "minecraft", "appSecret": "secret-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "createdAt": "2023-02-17T14:23:22.535Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2022-04-02T22:47:49.404Z", "deletedBy": "noreply@hathora.dev", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}
+        "401":
+          application/json: {"message": "<value>"}
+  DeleteAppV1Deprecated:
+    speakeasy-default-delete-app-v1-deprecated:
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  GetAppInfoV1Deprecated:
+    speakeasy-default-get-app-info-v1-deprecated:
+      responses:
+        "200":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "appName": "minecraft", "appSecret": "secret-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "createdAt": "2022-07-24T20:16:34.762Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2024-04-08T13:25:03.801Z", "deletedBy": "noreply@hathora.dev", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}
+        "401":
+          application/json: {"message": "<value>"}
+  GetAppsV1Deprecated:
+    speakeasy-default-get-apps-v1-deprecated:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  UpdateAppV1Deprecated:
+    speakeasy-default-update-app-v1-deprecated:
+      requestBody:
+        application/json: {"appName": "minecraft"}
+      responses:
+        "200":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "appName": "minecraft", "appSecret": "secret-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "createdAt": "2022-12-19T03:26:23.125Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2023-06-24T16:26:05.711Z", "deletedBy": "noreply@hathora.dev", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}
+        "401":
+          application/json: {"message": "<value>"}
+  CreateApp:
+    speakeasy-default-create-app:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      requestBody:
+        application/json: {"appName": "minecraft"}
+      responses:
+        "201":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "appName": "minecraft", "appSecret": "secret-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "createdAt": "2024-03-25T14:27:17.124Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2022-12-21T05:01:10.685Z", "deletedBy": "noreply@hathora.dev", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}
+        "401":
+          application/json: {"message": "<value>"}
+  DeleteApp:
+    speakeasy-default-delete-app:
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  GetApp:
+    speakeasy-default-get-app:
+      responses:
+        "200":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "appName": "minecraft", "appSecret": "secret-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "createdAt": "2023-02-18T07:51:03.251Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2023-09-09T14:12:49.427Z", "deletedBy": "noreply@hathora.dev", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}
+        "401":
+          application/json: {"message": "<value>"}
+  GetApps:
+    speakeasy-default-get-apps:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      responses:
+        "200":
+          application/json: {"applications": []}
+        "401":
+          application/json: {"message": "<value>"}
+  UpdateApp:
+    speakeasy-default-update-app:
+      requestBody:
+        application/json: {"appName": "minecraft"}
+      responses:
+        "200":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "appName": "minecraft", "appSecret": "secret-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "createdAt": "2022-08-09T16:09:30.566Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2022-06-04T01:44:27.157Z", "deletedBy": "noreply@hathora.dev", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}
+        "401":
+          application/json: {"message": "<value>"}
+  LoginAnonymous:
+    speakeasy-default-login-anonymous:
+      responses:
+        "200":
+          application/json: {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiYW5vbnltb3VzIiwiaWQiOiJ3aDA4eWN3eTJwOSIsIm5hbWUiOiJqaXR0ZXJ5LXNhbG1vbi1ndWxsIiwiaWF0IjoxNjg5MzQ5MTk3fQ.-LzlPhZw2tw0ycZ229IRHwwmINGKWNPFMDrXOphLjEk"}
+        "404":
+          application/json: {"message": "<value>"}
+  LoginGoogle:
+    speakeasy-default-login-google:
+      requestBody:
+        application/json: {"idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImZkNDhhNzUxMzhkOWQ0OGYwYWE2MzVlZjU2OWM0ZTE5NmY3YWU4ZDYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiODQ4NDEyODI2Nzg4LW00bXNyYjZxNDRkbTJ1ZTNrZ3Z1aTBmcTdrZGE1NWxzLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiODQ4NDEyODI2Nzg4LW00bXNyYjZxNDRkbTJ1ZTNrZ3Z1aTBmcTdrZGE1NWxzLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0NTQyMzMwNzI3MTU2MTMzNzc2IiwiZW1haWwiOiJocGFdkeivmeuzQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoidno1NGhhdTNxbnVR"}
+      responses:
+        "200":
+          application/json: {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiYW5vbnltb3VzIiwiaWQiOiJ3aDA4eWN3eTJwOSIsIm5hbWUiOiJqaXR0ZXJ5LXNhbG1vbi1ndWxsIiwiaWF0IjoxNjg5MzQ5MTk3fQ.-LzlPhZw2tw0ycZ229IRHwwmINGKWNPFMDrXOphLjEk"}
+        "401":
+          application/json: {"message": "<value>"}
+  LoginNickname:
+    speakeasy-default-login-nickname:
+      requestBody:
+        application/json: {"nickname": "squiddytwoshoes"}
+      responses:
+        "200":
+          application/json: {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiYW5vbnltb3VzIiwiaWQiOiJ3aDA4eWN3eTJwOSIsIm5hbWUiOiJqaXR0ZXJ5LXNhbG1vbi1ndWxsIiwiaWF0IjoxNjg5MzQ5MTk3fQ.-LzlPhZw2tw0ycZ229IRHwwmINGKWNPFMDrXOphLjEk"}
+        "404":
+          application/json: {"message": "<value>"}
+  GetBalance:
+    speakeasy-default-get-balance:
+      responses:
+        "200":
+          application/json: "68.43"
+        "401":
+          application/json: {"message": "<value>"}
+  GetInvoices:
+    speakeasy-default-get-invoices:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  GetPaymentMethod:
+    speakeasy-default-get-payment-method:
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  GetUpcomingInvoiceItems:
+    speakeasy-default-get-upcoming-invoice-items:
+      responses:
+        "200":
+          application/json: {"invoiceItems": []}
+        "401":
+          application/json: {"message": "<value>"}
+  GetUpcomingInvoiceTotal:
+    speakeasy-default-get-upcoming-invoice-total:
+      responses:
+        "200":
+          application/json: {"value": "2752.14"}
+        "401":
+          application/json: {"message": "<value>"}
+  InitStripeCustomerPortalUrl:
+    speakeasy-default-init-stripe-customer-portal-url:
+      requestBody:
+        application/json: {"returnUrl": "<value>"}
+      responses:
+        "200":
+          application/json: "<value>"
+        "401":
+          application/json: {"message": "<value>"}
+  CreateBuildDeprecated:
+    speakeasy-default-create-build-deprecated:
+      requestBody:
+        application/json: {"buildTag": "0.1.14-14c793"}
+      responses:
+        "201":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": 1, "buildTag": "0.1.14-14c793", "createdAt": "2024-09-30T03:26:50.036Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2023-05-25T03:16:38.824Z", "finishedAt": "2022-01-12T20:36:59.112Z", "imageSize": 45730, "regionalContainerTags": [], "startedAt": "2024-11-04T16:03:08.239Z", "status": "succeeded"}
+        "401":
+          application/json: {"message": "<value>"}
+  DeleteBuildDeprecated:
+    speakeasy-default-delete-build-deprecated:
+      parameters:
+        path:
+          buildId: 1
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  GetBuildInfoDeprecated:
+    speakeasy-default-get-build-info-deprecated:
+      parameters:
+        path:
+          buildId: 1
+      responses:
+        "200":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": 1, "buildTag": "0.1.14-14c793", "createdAt": "2024-11-19T18:29:38.334Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2024-08-10T12:04:14.202Z", "finishedAt": "2023-03-05T05:20:13.755Z", "imageSize": 361321, "regionalContainerTags": [], "startedAt": "2023-01-26T08:21:08.873Z", "status": "running"}
+        "401":
+          application/json: {"message": "<value>"}
+  GetBuildsDeprecated:
+    speakeasy-default-get-builds-deprecated:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  RunBuildDeprecated:
+    speakeasy-default-run-build-deprecated:
+      parameters:
+        path:
+          buildId: 1
+      requestBody:
+        multipart/form-data: {"file": {"": "example.file"}}
+      responses:
+        "200":
+          text/plain: "<value>"
+        "400":
+          application/json: {"message": "<value>"}
+  CreateBuildV2Deprecated:
+    speakeasy-default-create-build-v2-deprecated:
+      requestBody:
+        application/json: {"buildTag": "0.1.14-14c793"}
+      responses:
+        "201":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": 1, "buildTag": "0.1.14-14c793", "createdAt": "2022-09-12T00:06:38.284Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2022-01-19T07:59:33.910Z", "finishedAt": "2024-10-20T23:26:11.369Z", "imageSize": 382091, "regionalContainerTags": [], "startedAt": "2023-01-08T05:42:56.345Z", "status": "failed"}
+        "401":
+          application/json: {"message": "<value>"}
+  CreateBuildWithUploadUrlV2Deprecated:
+    speakeasy-default-create-build-with-upload-url-v2-deprecated:
+      requestBody:
+        application/json: {"buildTag": "0.1.14-14c793"}
+      responses:
+        "201":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": 1, "buildTag": "0.1.14-14c793", "createdAt": "2022-10-18T23:29:31.529Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2023-08-09T05:56:59.554Z", "finishedAt": "2024-01-29T12:26:21.686Z", "imageSize": 118634, "regionalContainerTags": [], "startedAt": "2023-06-03T03:01:08.981Z", "status": "running", "uploadBodyParams": [], "uploadUrl": "<value>"}
+        "401":
+          application/json: {"message": "<value>"}
+  CreateWithMultipartUploadsV2Deprecated:
+    speakeasy-default-create-with-multipart-uploads-v2-deprecated:
+      requestBody:
+        application/json: {"buildSizeInBytes": "3146.66", "buildTag": "0.1.14-14c793"}
+      responses:
+        "201":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": 1, "buildTag": "0.1.14-14c793", "completeUploadPostRequestUrl": "<value>", "createdAt": "2024-05-06T02:31:03.248Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2023-02-21T08:25:21.203Z", "finishedAt": "2022-05-05T10:26:24.463Z", "imageSize": 111164, "maxChunkSize": "9994.53", "regionalContainerTags": [], "startedAt": "2022-04-20T05:50:04.786Z", "status": "succeeded", "uploadParts": []}
+        "400":
+          application/json: {"message": "<value>"}
+  DeleteBuildV2Deprecated:
+    speakeasy-default-delete-build-v2-deprecated:
+      parameters:
+        path:
+          buildId: 1
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  GetBuildInfoV2Deprecated:
+    speakeasy-default-get-build-info-v2-deprecated:
+      parameters:
+        path:
+          buildId: 1
+      responses:
+        "200":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": 1, "buildTag": "0.1.14-14c793", "createdAt": "2023-03-02T14:52:20.998Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2023-10-07T04:26:21.891Z", "finishedAt": "2023-09-19T22:34:44.398Z", "imageSize": 662414, "regionalContainerTags": [], "startedAt": "2023-06-19T07:40:37.459Z", "status": "failed"}
+        "401":
+          application/json: {"message": "<value>"}
+  GetBuildsV2Deprecated:
+    speakeasy-default-get-builds-v2-deprecated:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  RunBuildV2Deprecated:
+    speakeasy-default-run-build-v2-deprecated:
+      parameters:
+        path:
+          buildId: 1
+      responses:
+        "400":
+          application/json: {"message": "<value>"}
+  CreateBuild:
+    speakeasy-default-create-build:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      requestBody:
+        application/json: {"buildSizeInBytes": "5387.85", "buildTag": "0.1.14-14c793"}
+      responses:
+        "201":
+          application/json: {"buildId": "<value>", "buildTag": "0.1.14-14c793", "completeUploadPostRequestUrl": "<value>", "createdAt": "2023-01-06T11:09:29.913Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2022-05-03T02:32:52.236Z", "finishedAt": "2022-08-24T02:02:44.755Z", "imageSize": 893876, "maxChunkSize": "46.13", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "startedAt": "2022-10-03T13:44:52.128Z", "status": "failed", "uploadParts": []}
+        "400":
+          application/json: {"message": "<value>"}
+  DeleteBuild:
+    speakeasy-default-delete-build:
+      parameters:
+        path:
+          buildId: "<value>"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  GetBuild:
+    speakeasy-default-get-build:
+      parameters:
+        path:
+          buildId: "<value>"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      responses:
+        "200":
+          application/json: {"buildId": "<value>", "buildTag": "0.1.14-14c793", "createdAt": "2024-06-25T23:45:40.945Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2022-01-01T12:11:43.281Z", "finishedAt": "2023-07-01T05:11:17.947Z", "imageSize": 506610, "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "startedAt": "2022-08-28T06:31:38.331Z", "status": "succeeded"}
+        "401":
+          application/json: {"message": "<value>"}
+  GetBuilds:
+    speakeasy-default-get-builds:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      responses:
+        "200":
+          application/json: {"builds": []}
+        "401":
+          application/json: {"message": "<value>"}
+  RunBuild:
+    speakeasy-default-run-build:
+      parameters:
+        path:
+          buildId: "<value>"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      responses:
+        "400":
+          application/json: {"message": "<value>"}
+  CreateDeploymentV1Deprecated:
+    speakeasy-default-create-deployment-v1-deprecated:
+      parameters:
+        path:
+          buildId: 1
+      requestBody:
+        application/json: {"additionalContainerPorts": [], "containerPort": 4000, "env": [], "planName": "tiny", "roomsPerProcess": 3, "transportType": "tcp"}
+      responses:
+        "201":
+          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": 1, "containerPort": "2771.06", "createdAt": "2022-01-15T01:28:17.989Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "udp"}, "deploymentId": 1, "env": [], "planName": "tiny", "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3, "transportType": "tls"}
+        "400":
+          application/json: {"message": "<value>"}
+  GetDeploymentInfoV1Deprecated:
+    speakeasy-default-get-deployment-info-v1-deprecated:
+      parameters:
+        path:
+          deploymentId: 1
+      responses:
+        "200":
+          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": 1, "containerPort": "7738.86", "createdAt": "2024-09-18T15:37:39.199Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tls"}, "deploymentId": 1, "env": [], "planName": "tiny", "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3, "transportType": "tcp"}
+        "401":
+          application/json: {"message": "<value>"}
+  GetDeploymentsV1Deprecated:
+    speakeasy-default-get-deployments-v1-deprecated:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  GetLatestDeploymentV1Deprecated:
+    speakeasy-default-get-latest-deployment-v1-deprecated:
+      responses:
+        "200":
+          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": 1, "containerPort": "1419.21", "createdAt": "2023-02-10T08:57:00.829Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tls"}, "deploymentId": 1, "env": [], "planName": "tiny", "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3, "transportType": "udp"}
+        "401":
+          application/json: {"message": "<value>"}
+  CreateDeploymentV2Deprecated:
+    speakeasy-default-create-deployment-v2-deprecated:
+      parameters:
+        path:
+          buildId: 1
+      requestBody:
+        application/json: {"additionalContainerPorts": [], "containerPort": 4000, "env": [], "idleTimeoutEnabled": false, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3, "transportType": "tcp"}
+      responses:
+        "201":
+          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": 1, "createdAt": "2024-01-13T14:02:49.102Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tls"}, "deploymentId": 1, "env": [], "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
+        "400":
+          application/json: {"message": "<value>"}
+  GetDeploymentInfoV2Deprecated:
+    speakeasy-default-get-deployment-info-v2-deprecated:
+      parameters:
+        path:
+          deploymentId: 1
+      responses:
+        "200":
+          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": 1, "createdAt": "2023-04-13T07:15:44.965Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tls"}, "deploymentId": 1, "env": [], "idleTimeoutEnabled": false, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
+        "401":
+          application/json: {"message": "<value>"}
+  GetDeploymentsV2Deprecated:
+    speakeasy-default-get-deployments-v2-deprecated:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  GetLatestDeploymentV2Deprecated:
+    speakeasy-default-get-latest-deployment-v2-deprecated:
+      responses:
+        "200":
+          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": 1, "createdAt": "2023-11-14T23:28:17.203Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tcp"}, "deploymentId": 1, "env": [], "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
+        "401":
+          application/json: {"message": "<value>"}
+  CreateDeployment:
+    speakeasy-default-create-deployment:
+      requestBody:
+        application/json: {"additionalContainerPorts": [], "buildId": "<value>", "containerPort": 4000, "env": [], "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3, "transportType": "tcp"}
+      responses:
+        "201":
+          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "<value>", "buildTag": "0.1.14-14c793", "createdAt": "2022-07-14T04:14:25.503Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tcp"}, "deploymentId": "<value>", "env": [], "idleTimeoutEnabled": false, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
+        "400":
+          application/json: {"message": "<value>"}
+  GetDeployment:
+    speakeasy-default-get-deployment:
+      parameters:
+        path:
+          deploymentId: "<value>"
+      responses:
+        "200":
+          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "<value>", "buildTag": "0.1.14-14c793", "createdAt": "2023-01-17T20:50:05.380Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tcp"}, "deploymentId": "<value>", "env": [], "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
+        "401":
+          application/json: {"message": "<value>"}
+  GetDeployments:
+    speakeasy-default-get-deployments:
+      responses:
+        "200":
+          application/json: {"deployments": []}
+        "401":
+          application/json: {"message": "<value>"}
+  GetLatestDeployment:
+    speakeasy-default-get-latest-deployment:
+      responses:
+        "200":
+          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "<value>", "buildTag": "0.1.14-14c793", "createdAt": "2022-09-10T07:35:40.238Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "udp"}, "deploymentId": "<value>", "env": [], "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
+        "401":
+          application/json: {"message": "<value>"}
+  GetPingServiceEndpointsDeprecated:
+    speakeasy-default-get-ping-service-endpoints-deprecated:
+      responses:
+        "200":
+          application/json: [{"host": "ping.hathora.dev", "port": 2000, "region": "Seattle"}]
+  GetPingServiceEndpoints:
+    speakeasy-default-get-ping-service-endpoints:
+      responses:
+        "200":
+          application/json: [{"host": "ping.hathora.dev", "port": 2000, "region": "Seattle"}]
+  CreatePrivateLobbyDeprecated:
+    speakeasy-default-create-private-lobby-deprecated:
+      responses:
+        "200":
+          application/json: "2swovpy1fnunu"
+        "400":
+          application/json: {"message": "<value>"}
+  CreatePublicLobbyDeprecated:
+    speakeasy-default-create-public-lobby-deprecated:
+      responses:
+        "200":
+          application/json: "2swovpy1fnunu"
+        "400":
+          application/json: {"message": "<value>"}
+  ListActivePublicLobbiesDeprecatedV1:
+    speakeasy-default-list-active-public-lobbies-deprecated-v1:
+      responses:
+        "200":
+          application/json: []
+        "404":
+          application/json: {"message": "<value>"}
+  CreateLobbyDeprecated:
+    speakeasy-default-create-lobby-deprecated:
+      parameters:
+        query:
+          roomId: "2swovpy1fnunu"
+      requestBody:
+        application/json: {"initialConfig": "<value>", "region": "Tokyo", "visibility": "private"}
+      responses:
+        "201":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2023-01-14T16:55:08.955Z", "createdBy": "google-oauth2|107030234048588177467", "initialConfig": "<value>", "local": true, "region": "Frankfurt", "roomId": "2swovpy1fnunu", "shortCode": "LFG4", "visibility": "private"}
+        "400":
+          application/json: {"message": "<value>"}
+  CreateLocalLobby:
+    speakeasy-default-create-local-lobby:
+      parameters:
+        query:
+          roomId: "2swovpy1fnunu"
+      requestBody:
+        application/json: {"initialConfig": "<value>", "region": "Sao_Paulo"}
+      responses:
+        "201":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2022-10-08T07:12:54.757Z", "createdBy": "google-oauth2|107030234048588177467", "initialConfig": "<value>", "local": false, "region": "Washington_DC", "roomId": "2swovpy1fnunu", "shortCode": "LFG4", "visibility": "private"}
+        "400":
+          application/json: {"message": "<value>"}
+  CreatePrivateLobby:
+    speakeasy-default-create-private-lobby:
+      parameters:
+        query:
+          roomId: "2swovpy1fnunu"
+      requestBody:
+        application/json: {"initialConfig": "<value>", "region": "Chicago"}
+      responses:
+        "201":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2022-05-17T22:27:20.635Z", "createdBy": "google-oauth2|107030234048588177467", "initialConfig": "<value>", "local": false, "region": "Tokyo", "roomId": "2swovpy1fnunu", "shortCode": "LFG4", "visibility": "private"}
+        "400":
+          application/json: {"message": "<value>"}
+  CreatePublicLobby:
+    speakeasy-default-create-public-lobby:
+      parameters:
+        query:
+          roomId: "2swovpy1fnunu"
+      requestBody:
+        application/json: {"initialConfig": "<value>", "region": "Sao_Paulo"}
+      responses:
+        "201":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2022-08-19T13:06:23.489Z", "createdBy": "google-oauth2|107030234048588177467", "initialConfig": "<value>", "local": false, "region": "Tokyo", "roomId": "2swovpy1fnunu", "shortCode": "LFG4", "visibility": "private"}
+        "400":
+          application/json: {"message": "<value>"}
+  GetLobbyInfo:
+    speakeasy-default-get-lobby-info:
+      parameters:
+        path:
+          roomId: "2swovpy1fnunu"
+      responses:
+        "200":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2022-07-06T04:13:36.166Z", "createdBy": "google-oauth2|107030234048588177467", "initialConfig": "<value>", "local": true, "region": "London", "roomId": "2swovpy1fnunu", "shortCode": "LFG4", "visibility": "private"}
+        "404":
+          application/json: {"message": "<value>"}
+  ListActivePublicLobbiesDeprecatedV2:
+    speakeasy-default-list-active-public-lobbies-deprecated-v2:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  SetLobbyState:
+    speakeasy-default-set-lobby-state:
+      parameters:
+        path:
+          roomId: "2swovpy1fnunu"
+      requestBody:
+        application/json: {"state": "South Dakota"}
+      responses:
+        "200":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2022-08-18T22:00:14.511Z", "createdBy": "google-oauth2|107030234048588177467", "initialConfig": "<value>", "local": true, "region": "London", "roomId": "2swovpy1fnunu", "shortCode": "LFG4", "visibility": "private"}
+        "401":
+          application/json: {"message": "<value>"}
+  CreateLobby:
+    speakeasy-default-create-lobby:
+      parameters:
+        query:
+          shortCode: "LFG4"
+          roomId: "2swovpy1fnunu"
+      requestBody:
+        application/json: {"region": "Seattle", "roomConfig": "{\"name\":\"my-room\"}", "visibility": "private"}
+      responses:
+        "201":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2024-08-23T01:19:38.815Z", "createdBy": "google-oauth2|107030234048588177467", "region": "Dallas", "roomConfig": "{\"name\":\"my-room\"}", "roomId": "2swovpy1fnunu", "shortCode": "LFG4", "visibility": "private"}
+        "400":
+          application/json: {"message": "<value>"}
+  GetLobbyInfoByRoomId:
+    speakeasy-default-get-lobby-info-by-room-id:
+      parameters:
+        path:
+          roomId: "2swovpy1fnunu"
+      responses:
+        "200":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2023-05-04T00:54:54.219Z", "createdBy": "google-oauth2|107030234048588177467", "region": "Dallas", "roomConfig": "{\"name\":\"my-room\"}", "roomId": "2swovpy1fnunu", "shortCode": "LFG4", "visibility": "private"}
+        "404":
+          application/json: {"message": "<value>"}
+  GetLobbyInfoByShortCode:
+    speakeasy-default-get-lobby-info-by-short-code:
+      parameters:
+        path:
+          shortCode: "LFG4"
+      responses:
+        "200":
+          application/json: {"appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2024-01-01T16:22:21.878Z", "createdBy": "google-oauth2|107030234048588177467", "region": "Seattle", "roomConfig": "{\"name\":\"my-room\"}", "roomId": "2swovpy1fnunu", "shortCode": "LFG4", "visibility": "private"}
+        "404":
+          application/json: {"message": "<value>"}
+  ListActivePublicLobbies:
+    speakeasy-default-list-active-public-lobbies:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  DownloadLogForProcess:
+    speakeasy-default-download-log-for-process:
+      parameters:
+        path:
+          processId: "cbfcddd2-0006-43ae-996c-995fff7bed2e"
+      responses:
+        "400":
+          application/json: {"message": "<value>"}
+  GetLogsForApp:
+    speakeasy-default-get-logs-for-app:
+      parameters:
+        query:
+          tailLines: 100
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  GetLogsForDeployment:
+    speakeasy-default-get-logs-for-deployment:
+      parameters:
+        path:
+          deploymentId: 1
+        query:
+          tailLines: 100
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  GetLogsForProcess:
+    speakeasy-default-get-logs-for-process:
+      parameters:
+        path:
+          processId: "cbfcddd2-0006-43ae-996c-995fff7bed2e"
+        query:
+          tailLines: 100
+      responses:
+        "400":
+          application/json: {"message": "<value>"}
+  SendVerificationEmail:
+    speakeasy-default-send-verification-email:
+      requestBody:
+        application/json: {"userId": "<value>"}
+      responses:
+        "200":
+          application/json: "success"
+        "401":
+          application/json: {"message": "<value>"}
+  GetMetrics:
+    speakeasy-default-get-metrics:
+      parameters:
+        path:
+          processId: "cbfcddd2-0006-43ae-996c-995fff7bed2e"
+        query: {}
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  AcceptInvite:
+    speakeasy-default-accept-invite:
+      parameters:
+        path:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  GetOrgMembers:
+    speakeasy-default-get-org-members:
+      parameters:
+        path:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      responses:
+        "200":
+          application/json: {"members": []}
+        "401":
+          application/json: {"message": "<value>"}
+  GetOrgPendingInvites:
+    speakeasy-default-get-org-pending-invites:
+      parameters:
+        path:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      responses:
+        "200":
+          application/json: {"invites": []}
+        "401":
+          application/json: {"message": "<value>"}
+  GetOrgs:
+    speakeasy-default-get-orgs:
+      responses:
+        "200":
+          application/json: {"orgs": []}
+        "401":
+          application/json: {"message": "<value>"}
+  GetUserPendingInvites:
+    speakeasy-default-get-user-pending-invites:
+      responses:
+        "200":
+          application/json: {"invites": []}
+        "401":
+          application/json: {"message": "<value>"}
+  InviteUser:
+    speakeasy-default-invite-user:
+      parameters:
+        path:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      requestBody:
+        application/json: {"userEmail": "noreply@hathora.dev"}
+      responses:
+        "200":
+          application/json: {"createdAt": "2024-05-26T01:23:01.974Z", "invitedBy": "noreply@hathora.dev", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "userEmail": "noreply@hathora.dev"}
+        "401":
+          application/json: {"message": "<value>"}
+  RejectInvite:
+    speakeasy-default-reject-invite:
+      parameters:
+        path:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  RescindInvite:
+    speakeasy-default-rescind-invite:
+      parameters:
+        path:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      requestBody:
+        application/json: {"userEmail": "noreply@hathora.dev"}
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  GetProcessInfoDeprecated:
+    speakeasy-default-get-process-info-deprecated:
+      parameters:
+        path:
+          processId: "cbfcddd2-0006-43ae-996c-995fff7bed2e"
+      responses:
+        "200":
+          application/json: {"activeConnections": 10, "activeConnectionsUpdatedAt": "2024-10-01T07:24:07.645Z", "additionalExposedPorts": [{"host": "1.proxy.hathora.dev", "name": "debug", "port": 72941, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "deploymentId": 1, "draining": false, "egressedBytes": 435, "exposedPort": {"host": "1.proxy.hathora.dev", "name": "default", "port": 34567, "transportType": "tcp"}, "host": "suburban-coinsurance.net", "idleSince": "2023-11-20T06:01:50.927Z", "port": "9902.59", "processId": "cbfcddd2-0006-43ae-996c-995fff7bed2e", "region": "Mumbai", "roomSlotsAvailable": "4422.87", "roomSlotsAvailableUpdatedAt": "2024-03-26T17:21:54.312Z", "roomsAllocated": 1, "roomsAllocatedUpdatedAt": "2022-02-25T03:28:19.955Z", "roomsPerProcess": 3, "startedAt": "2023-02-11T23:14:24.581Z", "startingAt": "2022-09-25T15:26:01.198Z", "stoppingAt": "2022-12-10T18:15:06.797Z", "terminatedAt": "2023-04-26T14:37:39.706Z"}
+        "401":
+          application/json: {"message": "<value>"}
+  GetRunningProcesses:
+    speakeasy-default-get-running-processes:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  GetStoppedProcesses:
+    speakeasy-default-get-stopped-processes:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  CreateProcessV2Deprecated:
+    speakeasy-default-create-process-v2-deprecated:
+      parameters:
+        path:
+          region: "Mumbai"
+      responses:
+        "201":
+          application/json: {"additionalExposedPorts": [{"host": "1.proxy.hathora.dev", "name": "debug", "port": 72941, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2023-03-05T04:00:55.739Z", "deploymentId": 1, "exposedPort": {"host": "1.proxy.hathora.dev", "name": "default", "port": 34567, "transportType": "tcp"}, "processId": "cbfcddd2-0006-43ae-996c-995fff7bed2e", "region": "Chicago", "roomsAllocated": 1, "roomsPerProcess": 3, "startedAt": "2023-08-05T06:28:46.709Z", "status": "failed", "stoppingAt": "2024-10-01T01:40:00.691Z", "terminatedAt": "2023-03-22T20:04:29.077Z"}
+        "401":
+          application/json: {"message": "<value>"}
+  GetLatestProcessesV2Deprecated:
+    speakeasy-default-get-latest-processes-v2-deprecated:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  GetProcessInfoV2Deprecated:
+    speakeasy-default-get-process-info-v2-deprecated:
+      parameters:
+        path:
+          processId: "cbfcddd2-0006-43ae-996c-995fff7bed2e"
+      responses:
+        "200":
+          application/json: {"additionalExposedPorts": [{"host": "1.proxy.hathora.dev", "name": "debug", "port": 72941, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2022-02-17T10:55:40.614Z", "deploymentId": 1, "exposedPort": {"host": "1.proxy.hathora.dev", "name": "default", "port": 34567, "transportType": "tcp"}, "processId": "cbfcddd2-0006-43ae-996c-995fff7bed2e", "region": "Sao_Paulo", "roomsAllocated": 1, "roomsPerProcess": 3, "startedAt": "2024-01-10T14:15:10.046Z", "status": "stopped", "stoppingAt": "2024-04-02T09:20:47.745Z", "terminatedAt": "2024-11-04T10:19:15.771Z"}
+        "401":
+          application/json: {"message": "<value>"}
+  GetProcessesCountExperimentalV2Deprecated:
+    speakeasy-default-get-processes-count-experimental-v2-deprecated:
+      responses:
+        "200":
+          application/json: {"count": "4304.38"}
+        "401":
+          application/json: {"message": "<value>"}
+  StopProcessV2Deprecated:
+    speakeasy-default-stop-process-v2-deprecated:
+      parameters:
+        path:
+          processId: "cbfcddd2-0006-43ae-996c-995fff7bed2e"
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  CreateProcess:
+    speakeasy-default-create-process:
+      parameters:
+        path:
+          region: "Tokyo"
+      responses:
+        "201":
+          application/json: {"additionalExposedPorts": [{"host": "1.proxy.hathora.dev", "name": "debug", "port": 72941, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2022-11-01T04:57:37.351Z", "deploymentId": "<value>", "exposedPort": {"host": "1.proxy.hathora.dev", "name": "default", "port": 34567, "transportType": "tcp"}, "processId": "cbfcddd2-0006-43ae-996c-995fff7bed2e", "region": "Tokyo", "roomsAllocated": 1, "roomsPerProcess": 3, "startedAt": "2022-03-12T08:24:20.863Z", "status": "draining", "stoppingAt": "2024-10-13T12:22:39.611Z", "terminatedAt": "2022-05-16T14:01:12.093Z"}
+        "401":
+          application/json: {"message": "<value>"}
+  GetLatestProcesses:
+    speakeasy-default-get-latest-processes:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  GetProcess:
+    speakeasy-default-get-process:
+      parameters:
+        path:
+          processId: "cbfcddd2-0006-43ae-996c-995fff7bed2e"
+      responses:
+        "200":
+          application/json: {"additionalExposedPorts": [{"host": "1.proxy.hathora.dev", "name": "debug", "port": 72941, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "createdAt": "2023-12-11T06:13:11.533Z", "deploymentId": "<value>", "exposedPort": {"host": "1.proxy.hathora.dev", "name": "default", "port": 34567, "transportType": "tcp"}, "processId": "cbfcddd2-0006-43ae-996c-995fff7bed2e", "region": "Chicago", "roomsAllocated": 1, "roomsPerProcess": 3, "startedAt": "2022-08-27T15:32:02.112Z", "status": "starting", "stoppingAt": "2024-12-07T20:41:15.355Z", "terminatedAt": "2023-07-10T21:26:48.593Z"}
+        "401":
+          application/json: {"message": "<value>"}
+  GetProcessesCountExperimental:
+    speakeasy-default-get-processes-count-experimental:
+      responses:
+        "200":
+          application/json: {"count": "4724.83"}
+        "401":
+          application/json: {"message": "<value>"}
+  StopProcess:
+    speakeasy-default-stop-process:
+      parameters:
+        path:
+          processId: "cbfcddd2-0006-43ae-996c-995fff7bed2e"
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  CreateRoomDeprecated:
+    speakeasy-default-create-room-deprecated:
+      parameters:
+        query:
+          roomId: "2swovpy1fnunu"
+      requestBody:
+        application/json: {"region": "Chicago", "roomConfig": "{\"name\":\"my-room\"}"}
+      responses:
+        "201":
+          application/json: "2swovpy1fnunu"
+        "400":
+          application/json: {"message": "<value>"}
+  DestroyRoomDeprecated:
+    speakeasy-default-destroy-room-deprecated:
+      parameters:
+        path:
+          roomId: "2swovpy1fnunu"
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  GetActiveRoomsForProcessDeprecated:
+    speakeasy-default-get-active-rooms-for-process-deprecated:
+      parameters:
+        path:
+          processId: "cbfcddd2-0006-43ae-996c-995fff7bed2e"
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  GetConnectionInfoDeprecated:
+    speakeasy-default-get-connection-info-deprecated:
+      parameters:
+        path:
+          roomId: "2swovpy1fnunu"
+      responses:
+        "200":
+          application/json: {"host": "essential-enclave.info", "port": "990.3", "roomId": "2swovpy1fnunu", "status": "active", "transportType": "udp"}
+        "400":
+          application/json: {"message": "<value>"}
+  GetInactiveRoomsForProcessDeprecated:
+    speakeasy-default-get-inactive-rooms-for-process-deprecated:
+      parameters:
+        path:
+          processId: "cbfcddd2-0006-43ae-996c-995fff7bed2e"
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  GetRoomInfoDeprecated:
+    speakeasy-default-get-room-info-deprecated:
+      parameters:
+        path:
+          roomId: "2swovpy1fnunu"
+      responses:
+        "200":
+          application/json: {"allocations": [], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "currentAllocation": {"processId": "cbfcddd2-0006-43ae-996c-995fff7bed2e", "roomAllocationId": "e3a0aa32-1711-4036-acfa-008b96061a78", "scheduledAt": "2024-11-07T20:34:27.172Z", "unscheduledAt": "2022-08-05T09:46:07.658Z"}, "roomConfig": "{\"name\":\"my-room\"}", "roomId": "2swovpy1fnunu", "status": "active"}
+        "401":
+          application/json: {"message": "<value>"}
+  SuspendRoomDeprecated:
+    speakeasy-default-suspend-room-deprecated:
+      parameters:
+        path:
+          roomId: "2swovpy1fnunu"
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  CreateRoom:
+    speakeasy-default-create-room:
+      parameters:
+        query:
+          roomId: "2swovpy1fnunu"
+      requestBody:
+        application/json: {"region": "Sao_Paulo", "roomConfig": "{\"name\":\"my-room\"}"}
+      responses:
+        "201":
+          application/json: {"additionalExposedPorts": [{"host": "1.proxy.hathora.dev", "name": "debug", "port": 72941, "transportType": "tcp"}], "exposedPort": {"host": "1.proxy.hathora.dev", "name": "default", "port": 34567, "transportType": "tcp"}, "processId": "cbfcddd2-0006-43ae-996c-995fff7bed2e", "roomId": "2swovpy1fnunu", "status": "starting"}
+        "400":
+          application/json: {"message": "<value>"}
+  DestroyRoom:
+    speakeasy-default-destroy-room:
+      parameters:
+        path:
+          roomId: "2swovpy1fnunu"
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  GetActiveRoomsForProcess:
+    speakeasy-default-get-active-rooms-for-process:
+      parameters:
+        path:
+          processId: "cbfcddd2-0006-43ae-996c-995fff7bed2e"
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  GetConnectionInfo:
+    speakeasy-default-get-connection-info:
+      parameters:
+        path:
+          roomId: "2swovpy1fnunu"
+      responses:
+        "200":
+          application/json: {"additionalExposedPorts": [{"host": "1.proxy.hathora.dev", "name": "debug", "port": 72941, "transportType": "tcp"}], "exposedPort": {"host": "1.proxy.hathora.dev", "name": "default", "port": 34567, "transportType": "tcp"}, "roomId": "2swovpy1fnunu", "status": "active"}
+        "400":
+          application/json: {"message": "<value>"}
+  GetInactiveRoomsForProcess:
+    speakeasy-default-get-inactive-rooms-for-process:
+      parameters:
+        path:
+          processId: "cbfcddd2-0006-43ae-996c-995fff7bed2e"
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"message": "<value>"}
+  GetRoomInfo:
+    speakeasy-default-get-room-info:
+      parameters:
+        path:
+          roomId: "2swovpy1fnunu"
+      responses:
+        "200":
+          application/json: {"allocations": [], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "currentAllocation": {"processId": "cbfcddd2-0006-43ae-996c-995fff7bed2e", "roomAllocationId": "e3a0aa32-1711-4036-acfa-008b96061a78", "scheduledAt": "2024-11-10T01:54:28.993Z", "unscheduledAt": "2023-06-23T12:39:23.033Z"}, "roomConfig": "{\"name\":\"my-room\"}", "roomId": "2swovpy1fnunu", "status": "active"}
+        "401":
+          application/json: {"message": "<value>"}
+  SuspendRoomV2Deprecated:
+    speakeasy-default-suspend-room-v2-deprecated:
+      parameters:
+        path:
+          roomId: "2swovpy1fnunu"
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  UpdateRoomConfig:
+    speakeasy-default-update-room-config:
+      parameters:
+        path:
+          roomId: "2swovpy1fnunu"
+      requestBody:
+        application/json: {"roomConfig": "{\"name\":\"my-room\"}"}
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+  CreateOrgToken:
+    speakeasy-default-create-org-token:
+      parameters:
+        path:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      requestBody:
+        application/json: {"name": "ci-token"}
+      responses:
+        "201":
+          application/json: {"orgToken": {"createdAt": "2023-07-08T21:31:16.243Z", "createdBy": "noreply@hathora.dev", "lastFourCharsOfKey": "<value>", "name": "ci-token", "orgId": "<value>", "orgTokenId": "org-token-af469a92-5b45-4565-b3c4-b79878de67d2", "status": "revoked"}, "plainTextToken": "<value>"}
+        "401":
+          application/json: {"message": "<value>"}
+  GetOrgTokens:
+    speakeasy-default-get-org-tokens:
+      parameters:
+        path:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      responses:
+        "200":
+          application/json: {"tokens": []}
+        "401":
+          application/json: {"message": "<value>"}
+  RevokeOrgToken:
+    speakeasy-default-revoke-org-token:
+      parameters:
+        path:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+          orgTokenId: "org-token-af469a92-5b45-4565-b3c4-b79878de67d2"
+      responses:
+        "200":
+          application/json: true
+        "401":
+          application/json: {"message": "<value>"}
