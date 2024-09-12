@@ -1,19 +1,21 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-  java-source:
-    inputs:
-      - location: https://hathora.dev/swagger.json
+    java-source:
+        inputs:
+            - location: https://hathora.dev/swagger.json
+        registry:
+            location: registry.speakeasyapi.dev/hathora/hathora/java-source
 targets:
-  hathora-java:
-    target: java
-    source: java-source
-    publish:
-      java:
-        useSonatypeLegacy: true
-        ossrhUsername: USC8HvBS
-        ossrhPassword: $ossrh_password
-        gpgSecretKey: $java_gpg_secret_key
-        gpgPassPhrase: $java_gpg_passphrase
-    codeSamples:
-      output: codeSamples.yaml
+    hathora-java:
+        target: java
+        source: java-source
+        publish:
+            java:
+                ossrhUsername: USC8HvBS
+                ossrhPassword: $ossrh_password
+                gpgSecretKey: $java_gpg_secret_key
+                gpgPassPhrase: $java_gpg_passphrase
+                useSonatypeLegacy: true
+        codeSamples:
+            output: codeSamples.yaml

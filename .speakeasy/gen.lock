@@ -5,8 +5,8 @@ management:
   docVersion: 0.0.1
   speakeasyVersion: 1.396.4
   generationVersion: 2.415.6
-  releaseVersion: 2.9.8
-  configChecksum: 060754856fc898e585b26434ac6b1931
+  releaseVersion: 2.9.9
+  configChecksum: ca926237a58efd21f082d6ce18dac5c8
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -1035,6 +1035,7 @@ examples:
       responses:
         "401":
           application/json: {"message": "<value>"}
+        "200": {}
   GetUpcomingInvoiceItems:
     speakeasy-default-get-upcoming-invoice-items:
       responses:
@@ -1164,6 +1165,7 @@ examples:
       responses:
         "400":
           application/json: {"message": "<value>"}
+        "200": {}
   CreateBuild:
     speakeasy-default-create-build:
       parameters:
@@ -1186,6 +1188,7 @@ examples:
       responses:
         "401":
           application/json: {"message": "<value>"}
+        "200": {}
   GetBuild:
     speakeasy-default-get-build:
       parameters:
@@ -1218,6 +1221,7 @@ examples:
       responses:
         "400":
           application/json: {"message": "<value>"}
+        "200": {}
   CreateDeploymentV1Deprecated:
     speakeasy-default-create-deployment-v1-deprecated:
       parameters:
@@ -1357,6 +1361,7 @@ examples:
   CreateLobbyDeprecated:
     speakeasy-default-create-lobby-deprecated:
       parameters:
+        path: {}
         query:
           roomId: "2swovpy1fnunu"
       requestBody:
@@ -1369,6 +1374,7 @@ examples:
   CreateLocalLobby:
     speakeasy-default-create-local-lobby:
       parameters:
+        path: {}
         query:
           roomId: "2swovpy1fnunu"
       requestBody:
@@ -1381,6 +1387,7 @@ examples:
   CreatePrivateLobby:
     speakeasy-default-create-private-lobby:
       parameters:
+        path: {}
         query:
           roomId: "2swovpy1fnunu"
       requestBody:
@@ -1393,6 +1400,7 @@ examples:
   CreatePublicLobby:
     speakeasy-default-create-public-lobby:
       parameters:
+        path: {}
         query:
           roomId: "2swovpy1fnunu"
       requestBody:
@@ -1434,6 +1442,7 @@ examples:
   CreateLobby:
     speakeasy-default-create-lobby:
       parameters:
+        path: {}
         query:
           shortCode: "LFG4"
           roomId: "2swovpy1fnunu"
@@ -1479,14 +1488,17 @@ examples:
       responses:
         "400":
           application/json: {"message": "<value>"}
+        "200": {}
   GetLogsForApp:
     speakeasy-default-get-logs-for-app:
       parameters:
+        path: {}
         query:
           tailLines: 100
       responses:
         "401":
           application/json: {"message": "<value>"}
+        "200": {}
   GetLogsForDeployment:
     speakeasy-default-get-logs-for-deployment:
       parameters:
@@ -1497,6 +1509,7 @@ examples:
       responses:
         "401":
           application/json: {"message": "<value>"}
+        "200": {}
   GetLogsForProcess:
     speakeasy-default-get-logs-for-process:
       parameters:
@@ -1507,6 +1520,7 @@ examples:
       responses:
         "400":
           application/json: {"message": "<value>"}
+        "200": {}
   SendVerificationEmail:
     speakeasy-default-send-verification-email:
       requestBody:
@@ -1525,6 +1539,7 @@ examples:
       responses:
         "401":
           application/json: {"message": "<value>"}
+        "200": {}
   AcceptInvite:
     speakeasy-default-accept-invite:
       parameters:
@@ -1708,6 +1723,7 @@ examples:
   CreateRoomDeprecated:
     speakeasy-default-create-room-deprecated:
       parameters:
+        path: {}
         query:
           roomId: "2swovpy1fnunu"
       requestBody:
@@ -1776,6 +1792,7 @@ examples:
   CreateRoom:
     speakeasy-default-create-room:
       parameters:
+        path: {}
         query:
           roomId: "2swovpy1fnunu"
       requestBody:
