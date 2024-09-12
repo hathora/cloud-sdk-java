@@ -2,7 +2,7 @@ speakeasyVersion: 1.396.4
 sources:
     java-source:
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:6a4bc5819729488437a30b12f9f201ca2a5cf8cc7595be21d8dd8014568091ab
+        sourceRevisionDigest: sha256:57db62f5dccd81ea3d330d5aa20d8ea18a5baddadc1daa2e476fa9a75ecbec88
         sourceBlobDigest: sha256:2443386b55189d2041dcbd4d7f5b138ac33c9e29d201158a06d4026adc77f95a
         tags:
             - latest
@@ -11,7 +11,7 @@ targets:
     hathora-java:
         source: java-source
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:6a4bc5819729488437a30b12f9f201ca2a5cf8cc7595be21d8dd8014568091ab
+        sourceRevisionDigest: sha256:57db62f5dccd81ea3d330d5aa20d8ea18a5baddadc1daa2e476fa9a75ecbec88
         sourceBlobDigest: sha256:2443386b55189d2041dcbd4d7f5b138ac33c9e29d201158a06d4026adc77f95a
         outLocation: /github/workspace/repo
 workflow:
