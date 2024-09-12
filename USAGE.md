@@ -24,7 +24,7 @@ public class Application {
             AppConfig req = AppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
-                        .build())
+                    .build())
                 .build();
 
             CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()

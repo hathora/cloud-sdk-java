@@ -1,8 +1,8 @@
-speakeasyVersion: 1.390.7
+speakeasyVersion: 1.396.4
 sources:
     java-source:
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:6f1f180b674fd0e9c1501e19b83c46d15523590a473e6044f2954db7951bc465
+        sourceRevisionDigest: sha256:01a7f72e359a3e60c3350f5e6f69907d8eb31166e5c82b90db069a65f7c09336
         sourceBlobDigest: sha256:2443386b55189d2041dcbd4d7f5b138ac33c9e29d201158a06d4026adc77f95a
         tags:
             - latest
@@ -11,7 +11,7 @@ targets:
     hathora-java:
         source: java-source
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:6f1f180b674fd0e9c1501e19b83c46d15523590a473e6044f2954db7951bc465
+        sourceRevisionDigest: sha256:01a7f72e359a3e60c3350f5e6f69907d8eb31166e5c82b90db069a65f7c09336
         sourceBlobDigest: sha256:2443386b55189d2041dcbd4d7f5b138ac33c9e29d201158a06d4026adc77f95a
         outLocation: /github/workspace/repo
 workflow:
@@ -29,7 +29,7 @@ workflow:
             source: java-source
             publish:
                 java:
-                    ossrhUsername: HYn8/wmJ
+                    ossrhUsername: USC8HvBS
                     ossrhPassword: $ossrh_password
                     gpgSecretKey: $java_gpg_secret_key
                     gpgPassPhrase: $java_gpg_passphrase
