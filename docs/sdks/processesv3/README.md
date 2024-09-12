@@ -20,11 +20,11 @@ Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) 
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateProcessResponse;
-import com.hathora.cloud_sdk.models.shared.Region;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.CreateProcessResponse;
+import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -46,7 +46,7 @@ public class Application {
             if (res.processV3().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -89,12 +89,12 @@ Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathor
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetLatestProcessesResponse;
-import com.hathora.cloud_sdk.models.shared.ProcessStatus;
-import com.hathora.cloud_sdk.models.shared.Region;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetLatestProcessesResponse;
+import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
+import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.List;
 
@@ -120,7 +120,7 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -164,10 +164,10 @@ Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetProcessResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetProcessResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -189,7 +189,7 @@ public class Application {
             if (res.processV3().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -232,12 +232,12 @@ Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entiti
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalResponse;
-import com.hathora.cloud_sdk.models.shared.ProcessStatus;
-import com.hathora.cloud_sdk.models.shared.Region;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalResponse;
+import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
+import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.List;
 
@@ -263,7 +263,7 @@ public class Application {
             if (res.object().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -307,10 +307,10 @@ Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) im
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.StopProcessResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.StopProcessResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -330,7 +330,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {

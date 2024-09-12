@@ -21,10 +21,10 @@
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.AcceptInviteResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.AcceptInviteResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -43,7 +43,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -83,10 +83,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetOrgMembersResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetOrgMembersResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -107,7 +107,7 @@ public class Application {
             if (res.orgMembersPage().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -147,10 +147,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -171,7 +171,7 @@ public class Application {
             if (res.pendingOrgInvitesPage().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -213,10 +213,10 @@ Returns an unsorted list of all organizations that you are a member of (an accep
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetOrgsResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetOrgsResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -236,7 +236,7 @@ public class Application {
             if (res.orgsPage().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -270,10 +270,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -293,7 +293,7 @@ public class Application {
             if (res.pendingOrgInvitesPage().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -327,11 +327,11 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.InviteUserResponse;
-import com.hathora.cloud_sdk.models.shared.CreateUserInvite;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.InviteUserResponse;
+import dev.hathora.cloud_sdk.models.shared.CreateUserInvite;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -355,7 +355,7 @@ public class Application {
             if (res.pendingOrgInvite().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -396,10 +396,10 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.RejectInviteResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.RejectInviteResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -418,7 +418,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -458,11 +458,11 @@ public class Application {
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.RescindInviteResponse;
-import com.hathora.cloud_sdk.models.shared.RescindUserInvite;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.RescindInviteResponse;
+import dev.hathora.cloud_sdk.models.shared.RescindUserInvite;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -484,7 +484,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {

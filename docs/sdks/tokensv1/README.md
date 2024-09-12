@@ -20,11 +20,11 @@ Create a new organization token.
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateOrgTokenResponse;
-import com.hathora.cloud_sdk.models.shared.CreateOrgToken;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.CreateOrgTokenResponse;
+import dev.hathora.cloud_sdk.models.shared.CreateOrgToken;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -48,7 +48,7 @@ public class Application {
             if (res.createdOrgToken().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -91,10 +91,10 @@ List all organization tokens for a given org.
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetOrgTokensResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetOrgTokensResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -115,7 +115,7 @@ public class Application {
             if (res.listOrgTokens().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -157,10 +157,10 @@ Revoke an organization token.
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.RevokeOrgTokenResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.RevokeOrgTokenResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -182,7 +182,7 @@ public class Application {
             if (res.boolean_().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {

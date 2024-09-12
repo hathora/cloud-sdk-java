@@ -19,14 +19,14 @@ Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathor
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateLobbyRequest;
-import com.hathora.cloud_sdk.models.operations.CreateLobbyResponse;
-import com.hathora.cloud_sdk.models.operations.CreateLobbySecurity;
-import com.hathora.cloud_sdk.models.shared.CreateLobbyV3Params;
-import com.hathora.cloud_sdk.models.shared.LobbyVisibility;
-import com.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.CreateLobbyRequest;
+import dev.hathora.cloud_sdk.models.operations.CreateLobbyResponse;
+import dev.hathora.cloud_sdk.models.operations.CreateLobbySecurity;
+import dev.hathora.cloud_sdk.models.shared.CreateLobbyV3Params;
+import dev.hathora.cloud_sdk.models.shared.LobbyVisibility;
+import dev.hathora.cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
@@ -57,7 +57,7 @@ public class Application {
             if (res.lobbyV3().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -77,7 +77,7 @@ public class Application {
 | Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                     | [CreateLobbyRequest](../../models/operations/CreateLobbyRequest.md)                                           | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
-| `security`                                                                                                    | [com.hathora.cloud_sdk.models.operations.CreateLobbySecurity](../../models/operations/CreateLobbySecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |
+| `security`                                                                                                    | [dev.hathora.cloud_sdk.models.operations.CreateLobbySecurity](../../models/operations/CreateLobbySecurity.md) | :heavy_check_mark:                                                                                            | The security requirements to use for the request.                                                             |
 
 ### Response
 
@@ -100,9 +100,9 @@ Get details for a lobby.
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetLobbyInfoByRoomIdResponse;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetLobbyInfoByRoomIdResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -121,7 +121,7 @@ public class Application {
             if (res.lobbyV3().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -164,9 +164,9 @@ Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then th
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetLobbyInfoByShortCodeResponse;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetLobbyInfoByShortCodeResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -185,7 +185,7 @@ public class Application {
             if (res.lobbyV3().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -228,10 +228,10 @@ Get all active lobbies for a given [application](https://hathora.dev/docs/concep
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesResponse;
-import com.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesResponse;
+import dev.hathora.cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
@@ -250,7 +250,7 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {

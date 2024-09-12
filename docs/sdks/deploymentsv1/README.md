@@ -21,15 +21,15 @@ Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#dep
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateDeploymentV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.ContainerPort;
-import com.hathora.cloud_sdk.models.shared.DeploymentConfig;
-import com.hathora.cloud_sdk.models.shared.Env;
-import com.hathora.cloud_sdk.models.shared.PlanName;
-import com.hathora.cloud_sdk.models.shared.Security;
-import com.hathora.cloud_sdk.models.shared.TransportType;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.CreateDeploymentV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.ContainerPort;
+import dev.hathora.cloud_sdk.models.shared.DeploymentConfig;
+import dev.hathora.cloud_sdk.models.shared.Env;
+import dev.hathora.cloud_sdk.models.shared.PlanName;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.TransportType;
 import java.lang.Exception;
 import java.util.List;
 
@@ -69,7 +69,7 @@ public class Application {
             if (res.deploymentV1().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -115,10 +115,10 @@ Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entitie
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetDeploymentInfoV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetDeploymentInfoV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -140,7 +140,7 @@ public class Application {
             if (res.deploymentV1().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -185,10 +185,10 @@ Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-enti
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetDeploymentsV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetDeploymentsV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -209,7 +209,7 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -253,10 +253,10 @@ Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#d
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.GetLatestDeploymentV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetLatestDeploymentV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -277,7 +277,7 @@ public class Application {
             if (res.deploymentV1().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {

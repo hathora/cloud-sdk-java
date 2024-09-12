@@ -35,15 +35,15 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.hathora:cloud-sdk:2.9.10'
+implementation 'dev.hathora:cloud-sdk:2.9.11'
 ```
 
 Maven:
 ```xml
 <dependency>
-    <groupId>com.hathora</groupId>
+    <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>2.9.10</version>
+    <version>2.9.11</version>
 </dependency>
 ```
 
@@ -70,12 +70,12 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.AppConfig;
-import com.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -102,7 +102,7 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -336,10 +336,10 @@ The following global parameter is available.
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.DeleteAppV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.DeleteAppV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -358,7 +358,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -389,12 +389,12 @@ Handling errors in this SDK should largely match your expectations.  All operati
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.AppConfig;
-import com.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -421,7 +421,7 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -454,12 +454,12 @@ You can override the default server globally by passing a server index to the `s
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.AppConfig;
-import com.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -487,7 +487,7 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -509,12 +509,12 @@ The default server can also be overridden globally by passing a URL to the `serv
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.AppConfig;
-import com.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -542,7 +542,7 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -573,12 +573,12 @@ You can set the security parameters through the `security` builder method when i
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
-import com.hathora.cloud_sdk.models.shared.AppConfig;
-import com.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import com.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -605,7 +605,7 @@ public class Application {
             if (res.application().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {
@@ -626,11 +626,11 @@ Some operations in this SDK require the security scheme to be specified at the r
 ```java
 package hello.world;
 
-import com.hathora.cloud_sdk.HathoraCloud;
-import com.hathora.cloud_sdk.models.errors.SDKError;
-import com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedResponse;
-import com.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedSecurity;
-import com.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedSecurity;
+import dev.hathora.cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
@@ -653,7 +653,7 @@ public class Application {
             if (res.roomId().isPresent()) {
                 // handle response
             }
-        } catch (com.hathora.cloud_sdk.models.errors.ApiError e) {
+        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
             // handle exception
             throw e;
         } catch (SDKError e) {

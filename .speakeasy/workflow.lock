@@ -2,7 +2,7 @@ speakeasyVersion: 1.396.4
 sources:
     java-source:
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:57db62f5dccd81ea3d330d5aa20d8ea18a5baddadc1daa2e476fa9a75ecbec88
+        sourceRevisionDigest: sha256:f2868f48f2ad224ea882af05a700bdcd6886938f58904774ff03e38bccc08505
         sourceBlobDigest: sha256:2443386b55189d2041dcbd4d7f5b138ac33c9e29d201158a06d4026adc77f95a
         tags:
             - latest
@@ -11,7 +11,7 @@ targets:
     hathora-java:
         source: java-source
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:57db62f5dccd81ea3d330d5aa20d8ea18a5baddadc1daa2e476fa9a75ecbec88
+        sourceRevisionDigest: sha256:f2868f48f2ad224ea882af05a700bdcd6886938f58904774ff03e38bccc08505
         sourceBlobDigest: sha256:2443386b55189d2041dcbd4d7f5b138ac33c9e29d201158a06d4026adc77f95a
         outLocation: /github/workspace/repo
 workflow:
@@ -29,10 +29,9 @@ workflow:
             source: java-source
             publish:
                 java:
-                    ossrhUsername: USC8HvBS
+                    ossrhUsername: hEuK3iaG
                     ossrhPassword: $ossrh_password
                     gpgSecretKey: $java_gpg_secret_key
                     gpgPassPhrase: $java_gpg_passphrase
-                    useSonatypeLegacy: true
             codeSamples:
                 output: codeSamples.yaml
