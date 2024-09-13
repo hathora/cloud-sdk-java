@@ -63,7 +63,7 @@ tasks.withType(Javadoc) {
 }
 
 group = "dev.hathora"
-version = "2.9.12"
+version = "2.9.13"
 
 sourcesJar {
     archiveBaseName = "cloud-sdk"
@@ -73,11 +73,6 @@ javadocJar {
     archiveBaseName = "cloud-sdk"
 }
 sonatypeCentralUpload {
-
-    println "George test"
-    println System.getenv("SONATYPE_USERNAME")
-    println "Concluding George test"
-
     // This is your Sonatype generated username
     username = System.getenv("SONATYPE_USERNAME")
     // This is your sonatype generated password
@@ -106,7 +101,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.hathora'
             artifactId = 'cloud-sdk'
-            version = '2.9.12'
+            version = '2.9.13'
 
             from components.java
 
