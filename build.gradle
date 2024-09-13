@@ -73,6 +73,11 @@ javadocJar {
     archiveBaseName = "cloud-sdk"
 }
 sonatypeCentralUpload {
+
+    println "George test"
+    println System.getenv("SONATYPE_USERNAME")
+    println "Concluding George test"
+
     // This is your Sonatype generated username
     username = System.getenv("SONATYPE_USERNAME")
     // This is your sonatype generated password
