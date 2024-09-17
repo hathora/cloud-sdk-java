@@ -33,6 +33,7 @@ import dev.hathora.cloud_sdk.utils.SerializedBody;
 import dev.hathora.cloud_sdk.utils.Utils.JsonShape;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -58,7 +59,9 @@ public class AppsV1 implements
     /**
      * Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public CreateAppV1DeprecatedRequestBuilder createAppV1Deprecated() {
         return new CreateAppV1DeprecatedRequestBuilder(this);
     }
@@ -68,7 +71,9 @@ public class AppsV1 implements
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public CreateAppV1DeprecatedResponse createAppV1Deprecated(
             AppConfig request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
@@ -199,7 +204,9 @@ public class AppsV1 implements
     /**
      * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public DeleteAppV1DeprecatedRequestBuilder deleteAppV1Deprecated() {
         return new DeleteAppV1DeprecatedRequestBuilder(this);
     }
@@ -208,7 +215,9 @@ public class AppsV1 implements
      * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public DeleteAppV1DeprecatedResponse deleteAppV1DeprecatedDirect() throws Exception {
         return deleteAppV1Deprecated(Optional.empty());
     }
@@ -218,7 +227,9 @@ public class AppsV1 implements
      * @param appId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public DeleteAppV1DeprecatedResponse deleteAppV1Deprecated(
             Optional<String> appId) throws Exception {
         DeleteAppV1DeprecatedRequest request =
@@ -333,7 +344,9 @@ public class AppsV1 implements
     /**
      * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetAppInfoV1DeprecatedRequestBuilder getAppInfoV1Deprecated() {
         return new GetAppInfoV1DeprecatedRequestBuilder(this);
     }
@@ -342,7 +355,9 @@ public class AppsV1 implements
      * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetAppInfoV1DeprecatedResponse getAppInfoV1DeprecatedDirect() throws Exception {
         return getAppInfoV1Deprecated(Optional.empty());
     }
@@ -352,7 +367,9 @@ public class AppsV1 implements
      * @param appId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetAppInfoV1DeprecatedResponse getAppInfoV1Deprecated(
             Optional<String> appId) throws Exception {
         GetAppInfoV1DeprecatedRequest request =
@@ -478,7 +495,9 @@ public class AppsV1 implements
     /**
      * Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetAppsV1DeprecatedRequestBuilder getAppsV1Deprecated() {
         return new GetAppsV1DeprecatedRequestBuilder(this);
     }
@@ -487,7 +506,9 @@ public class AppsV1 implements
      * Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetAppsV1DeprecatedResponse getAppsV1DeprecatedDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
@@ -604,7 +625,9 @@ public class AppsV1 implements
     /**
      * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public UpdateAppV1DeprecatedRequestBuilder updateAppV1Deprecated() {
         return new UpdateAppV1DeprecatedRequestBuilder(this);
     }
@@ -614,7 +637,9 @@ public class AppsV1 implements
      * @param appConfig
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public UpdateAppV1DeprecatedResponse updateAppV1Deprecated(
             AppConfig appConfig) throws Exception {
         return updateAppV1Deprecated(appConfig, Optional.empty());
@@ -626,7 +651,9 @@ public class AppsV1 implements
      * @param appId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public UpdateAppV1DeprecatedResponse updateAppV1Deprecated(
             AppConfig appConfig,
             Optional<String> appId) throws Exception {
