@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations that allow you create and manage your [builds](https://hathora.dev/docs/concepts/hathora-entities#build).
+
 ### Available Operations
 
 * [createBuild](#createbuild) - Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.

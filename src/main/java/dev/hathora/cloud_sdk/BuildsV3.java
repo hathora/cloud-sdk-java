@@ -45,6 +45,9 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional; 
 
+/**
+ * Operations that allow you create and manage your [builds](https://hathora.dev/docs/concepts/hathora-entities#build).
+ */
 public class BuildsV3 implements
             MethodCallCreateBuild,
             MethodCallDeleteBuild,
