@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations to get data on active and stopped [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
+
 ### Available Operations
 
 * [createProcess](#createprocess) - Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.

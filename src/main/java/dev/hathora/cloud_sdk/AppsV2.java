@@ -43,6 +43,9 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional; 
 
+/**
+ * Operations that allow you manage your [applications](https://hathora.dev/docs/concepts/hathora-entities#application).
+ */
 public class AppsV2 implements
             MethodCallCreateApp,
             MethodCallDeleteApp,

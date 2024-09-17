@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.Optional; 
 
 /**
- * Operations to get data on active and stopped [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
+ * Deprecated. Use [ProcessesV3](https://hathora.dev/api#tag/ProcessesV3).
  */
 public class ProcessesV2 implements
             MethodCallCreateProcessV2Deprecated,

@@ -28,6 +28,9 @@ public class HathoraCloud {
 
     private final AppsV1 appsV1;
 
+    /**
+     * Operations that allow you manage your [applications](https://hathora.dev/docs/concepts/hathora-entities#application).
+     */
     private final AppsV2 appsV2;
 
     /**
@@ -44,12 +47,18 @@ public class HathoraCloud {
 
     private final BuildsV2 buildsV2;
 
+    /**
+     * Operations that allow you create and manage your [builds](https://hathora.dev/docs/concepts/hathora-entities#build).
+     */
     private final BuildsV3 buildsV3;
 
     private final DeploymentsV1 deploymentsV1;
 
     private final DeploymentsV2 deploymentsV2;
 
+    /**
+     * Operations that allow you configure and manage an application's [build](https://hathora.dev/docs/concepts/hathora-entities#build) at runtime.
+     */
     private final DeploymentsV3 deploymentsV3;
 
     /**
@@ -83,15 +92,18 @@ public class HathoraCloud {
     private final OrganizationsV1 organizationsV1;
 
     /**
-     * Deprecated. Use [ProcessesV2](https://hathora.dev/api#tag/ProcessesV2).
+     * Deprecated. Use [ProcessesV3](https://hathora.dev/api#tag/ProcessesV3).
      */
     private final ProcessesV1 processesV1;
 
     /**
-     * Operations to get data on active and stopped [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * Deprecated. Use [ProcessesV3](https://hathora.dev/api#tag/ProcessesV3).
      */
     private final ProcessesV2 processesV2;
 
+    /**
+     * Operations to get data on active and stopped [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
+     */
     private final ProcessesV3 processesV3;
 
     private final RoomsV1 roomsV1;
@@ -107,6 +119,9 @@ public class HathoraCloud {
         return appsV1;
     }
 
+    /**
+     * Operations that allow you manage your [applications](https://hathora.dev/docs/concepts/hathora-entities#application).
+     */
     public AppsV2 appsV2() {
         return appsV2;
     }
@@ -133,6 +148,9 @@ public class HathoraCloud {
         return buildsV2;
     }
 
+    /**
+     * Operations that allow you create and manage your [builds](https://hathora.dev/docs/concepts/hathora-entities#build).
+     */
     public BuildsV3 buildsV3() {
         return buildsV3;
     }
@@ -145,6 +163,9 @@ public class HathoraCloud {
         return deploymentsV2;
     }
 
+    /**
+     * Operations that allow you configure and manage an application's [build](https://hathora.dev/docs/concepts/hathora-entities#build) at runtime.
+     */
     public DeploymentsV3 deploymentsV3() {
         return deploymentsV3;
     }
@@ -198,19 +219,22 @@ public class HathoraCloud {
     }
 
     /**
-     * Deprecated. Use [ProcessesV2](https://hathora.dev/api#tag/ProcessesV2).
+     * Deprecated. Use [ProcessesV3](https://hathora.dev/api#tag/ProcessesV3).
      */
     public ProcessesV1 processesV1() {
         return processesV1;
     }
 
     /**
-     * Operations to get data on active and stopped [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * Deprecated. Use [ProcessesV3](https://hathora.dev/api#tag/ProcessesV3).
      */
     public ProcessesV2 processesV2() {
         return processesV2;
     }
 
+    /**
+     * Operations to get data on active and stopped [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
+     */
     public ProcessesV3 processesV3() {
         return processesV3;
     }

@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations that allow you manage your [applications](https://hathora.dev/docs/concepts/hathora-entities#application).
+
 ### Available Operations
 
 * [createApp](#createapp) - Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
