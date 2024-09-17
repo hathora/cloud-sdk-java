@@ -31,6 +31,7 @@ import dev.hathora.cloud_sdk.utils.SerializedBody;
 import dev.hathora.cloud_sdk.utils.Utils.JsonShape;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -55,7 +56,9 @@ public class DeploymentsV2 implements
     /**
      * Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public CreateDeploymentV2DeprecatedRequestBuilder createDeploymentV2Deprecated() {
         return new CreateDeploymentV2DeprecatedRequestBuilder(this);
     }
@@ -66,7 +69,9 @@ public class DeploymentsV2 implements
      * @param buildId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public CreateDeploymentV2DeprecatedResponse createDeploymentV2Deprecated(
             DeploymentConfigV2 deploymentConfigV2,
             int buildId) throws Exception {
@@ -80,7 +85,9 @@ public class DeploymentsV2 implements
      * @param buildId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public CreateDeploymentV2DeprecatedResponse createDeploymentV2Deprecated(
             DeploymentConfigV2 deploymentConfigV2,
             Optional<String> appId,
@@ -223,7 +230,9 @@ public class DeploymentsV2 implements
     /**
      * Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetDeploymentInfoV2DeprecatedRequestBuilder getDeploymentInfoV2Deprecated() {
         return new GetDeploymentInfoV2DeprecatedRequestBuilder(this);
     }
@@ -233,7 +242,9 @@ public class DeploymentsV2 implements
      * @param deploymentId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetDeploymentInfoV2DeprecatedResponse getDeploymentInfoV2Deprecated(
             int deploymentId) throws Exception {
         return getDeploymentInfoV2Deprecated(Optional.empty(), deploymentId);
@@ -245,7 +256,9 @@ public class DeploymentsV2 implements
      * @param deploymentId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetDeploymentInfoV2DeprecatedResponse getDeploymentInfoV2Deprecated(
             Optional<String> appId,
             int deploymentId) throws Exception {
@@ -373,7 +386,9 @@ public class DeploymentsV2 implements
     /**
      * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetDeploymentsV2DeprecatedRequestBuilder getDeploymentsV2Deprecated() {
         return new GetDeploymentsV2DeprecatedRequestBuilder(this);
     }
@@ -382,7 +397,9 @@ public class DeploymentsV2 implements
      * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetDeploymentsV2DeprecatedResponse getDeploymentsV2DeprecatedDirect() throws Exception {
         return getDeploymentsV2Deprecated(Optional.empty());
     }
@@ -392,7 +409,9 @@ public class DeploymentsV2 implements
      * @param appId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetDeploymentsV2DeprecatedResponse getDeploymentsV2Deprecated(
             Optional<String> appId) throws Exception {
         GetDeploymentsV2DeprecatedRequest request =
@@ -518,7 +537,9 @@ public class DeploymentsV2 implements
     /**
      * Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetLatestDeploymentV2DeprecatedRequestBuilder getLatestDeploymentV2Deprecated() {
         return new GetLatestDeploymentV2DeprecatedRequestBuilder(this);
     }
@@ -527,7 +548,9 @@ public class DeploymentsV2 implements
      * Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetLatestDeploymentV2DeprecatedResponse getLatestDeploymentV2DeprecatedDirect() throws Exception {
         return getLatestDeploymentV2Deprecated(Optional.empty());
     }
@@ -537,7 +560,9 @@ public class DeploymentsV2 implements
      * @param appId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetLatestDeploymentV2DeprecatedResponse getLatestDeploymentV2Deprecated(
             Optional<String> appId) throws Exception {
         GetLatestDeploymentV2DeprecatedRequest request =

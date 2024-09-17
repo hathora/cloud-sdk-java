@@ -5,15 +5,17 @@
 
 ### Available Operations
 
-* [createAppV1Deprecated](#createappv1deprecated) - Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
-* [deleteAppV1Deprecated](#deleteappv1deprecated) - Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
-* [getAppInfoV1Deprecated](#getappinfov1deprecated) - Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-* [getAppsV1Deprecated](#getappsv1deprecated) - Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
-* [updateAppV1Deprecated](#updateappv1deprecated) - Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+* [~~createAppV1Deprecated~~](#createappv1deprecated) - Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application). :warning: **Deprecated**
+* [~~deleteAppV1Deprecated~~](#deleteappv1deprecated) - Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application. :warning: **Deprecated**
+* [~~getAppInfoV1Deprecated~~](#getappinfov1deprecated) - Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. :warning: **Deprecated**
+* [~~getAppsV1Deprecated~~](#getappsv1deprecated) - Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`. :warning: **Deprecated**
+* [~~updateAppV1Deprecated~~](#updateappv1deprecated) - Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. :warning: **Deprecated**
 
-## createAppV1Deprecated
+## ~~createAppV1Deprecated~~
 
 Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -85,9 +87,11 @@ public class Application {
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 
-## deleteAppV1Deprecated
+## ~~deleteAppV1Deprecated~~
 
 Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -149,9 +153,11 @@ public class Application {
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 
-## getAppInfoV1Deprecated
+## ~~getAppInfoV1Deprecated~~
 
 Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -215,9 +221,11 @@ public class Application {
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 
-## getAppsV1Deprecated
+## ~~getAppsV1Deprecated~~
 
 Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -274,9 +282,11 @@ public class Application {
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 
-## updateAppV1Deprecated
+## ~~updateAppV1Deprecated~~
 
 Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 

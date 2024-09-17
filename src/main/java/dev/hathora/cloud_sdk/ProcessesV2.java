@@ -34,6 +34,7 @@ import dev.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import dev.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
 import java.net.http.HttpRequest;
@@ -61,7 +62,9 @@ public class ProcessesV2 implements
     /**
      * Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public CreateProcessV2DeprecatedRequestBuilder createProcessV2Deprecated() {
         return new CreateProcessV2DeprecatedRequestBuilder(this);
     }
@@ -71,7 +74,9 @@ public class ProcessesV2 implements
      * @param region
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public CreateProcessV2DeprecatedResponse createProcessV2Deprecated(
             Region region) throws Exception {
         return createProcessV2Deprecated(Optional.empty(), region);
@@ -83,7 +88,9 @@ public class ProcessesV2 implements
      * @param region
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public CreateProcessV2DeprecatedResponse createProcessV2Deprecated(
             Optional<String> appId,
             Region region) throws Exception {
@@ -211,7 +218,9 @@ public class ProcessesV2 implements
     /**
      * Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetLatestProcessesV2DeprecatedRequestBuilder getLatestProcessesV2Deprecated() {
         return new GetLatestProcessesV2DeprecatedRequestBuilder(this);
     }
@@ -220,7 +229,9 @@ public class ProcessesV2 implements
      * Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetLatestProcessesV2DeprecatedResponse getLatestProcessesV2DeprecatedDirect() throws Exception {
         return getLatestProcessesV2Deprecated(Optional.empty(), Optional.empty(), Optional.empty());
     }
@@ -232,7 +243,9 @@ public class ProcessesV2 implements
      * @param status
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetLatestProcessesV2DeprecatedResponse getLatestProcessesV2Deprecated(
             Optional<String> appId,
             Optional<? extends List<Region>> region,
@@ -367,7 +380,9 @@ public class ProcessesV2 implements
     /**
      * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetProcessInfoV2DeprecatedRequestBuilder getProcessInfoV2Deprecated() {
         return new GetProcessInfoV2DeprecatedRequestBuilder(this);
     }
@@ -377,7 +392,9 @@ public class ProcessesV2 implements
      * @param processId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(
             String processId) throws Exception {
         return getProcessInfoV2Deprecated(Optional.empty(), processId);
@@ -389,7 +406,9 @@ public class ProcessesV2 implements
      * @param processId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(
             Optional<String> appId,
             String processId) throws Exception {
@@ -517,7 +536,9 @@ public class ProcessesV2 implements
     /**
      * Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetProcessesCountExperimentalV2DeprecatedRequestBuilder getProcessesCountExperimentalV2Deprecated() {
         return new GetProcessesCountExperimentalV2DeprecatedRequestBuilder(this);
     }
@@ -526,7 +547,9 @@ public class ProcessesV2 implements
      * Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetProcessesCountExperimentalV2DeprecatedResponse getProcessesCountExperimentalV2DeprecatedDirect() throws Exception {
         return getProcessesCountExperimentalV2Deprecated(Optional.empty(), Optional.empty(), Optional.empty());
     }
@@ -538,7 +561,9 @@ public class ProcessesV2 implements
      * @param status
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetProcessesCountExperimentalV2DeprecatedResponse getProcessesCountExperimentalV2Deprecated(
             Optional<String> appId,
             Optional<? extends List<Region>> region,
@@ -673,7 +698,9 @@ public class ProcessesV2 implements
     /**
      * Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public StopProcessV2DeprecatedRequestBuilder stopProcessV2Deprecated() {
         return new StopProcessV2DeprecatedRequestBuilder(this);
     }
@@ -683,7 +710,9 @@ public class ProcessesV2 implements
      * @param processId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public StopProcessV2DeprecatedResponse stopProcessV2Deprecated(
             String processId) throws Exception {
         return stopProcessV2Deprecated(Optional.empty(), processId);
@@ -695,7 +724,9 @@ public class ProcessesV2 implements
      * @param processId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public StopProcessV2DeprecatedResponse stopProcessV2Deprecated(
             Optional<String> appId,
             String processId) throws Exception {
