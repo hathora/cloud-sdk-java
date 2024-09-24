@@ -19,7 +19,7 @@ Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetMetricsRequest;
 import dev.hathora.cloud_sdk.models.operations.GetMetricsResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -27,37 +27,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetMetricsRequest req = GetMetricsRequest.builder()
+        GetMetricsRequest req = GetMetricsRequest.builder()
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .build();
 
-            GetMetricsResponse res = sdk.metricsV1().getMetrics()
+        GetMetricsResponse res = sdk.metricsV1().getMetrics()
                 .request(req)
                 .call();
 
-            if (res.metricsData().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.metricsData().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

@@ -17,13 +17,13 @@ public class GetAppRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetAppRequestBuilder appId(java.lang.String appId) {
+    public GetAppRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetAppRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetAppRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

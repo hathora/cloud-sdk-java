@@ -24,47 +24,39 @@ Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateRoomResponse;
 import dev.hathora.cloud_sdk.models.shared.CreateRoomParams;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            CreateRoomResponse res = sdk.roomsV2().createRoom()
+        CreateRoomResponse res = sdk.roomsV2().createRoom()
                 .createRoomParams(CreateRoomParams.builder()
                     .region(Region.SAO_PAULO)
+                    .clientIPs(List.of(
+                        "123.123.123.123"))
                     .roomConfig("{\"name\":\"my-room\"}")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.roomConnectionData().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.roomConnectionData().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -99,39 +91,28 @@ Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All a
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.DestroyRoomResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            DestroyRoomResponse res = sdk.roomsV2().destroyRoom()
+        DestroyRoomResponse res = sdk.roomsV2().destroyRoom()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            // handle response
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -165,41 +146,30 @@ Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) 
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetActiveRoomsForProcessResponse res = sdk.roomsV2().getActiveRoomsForProcess()
+        GetActiveRoomsForProcessResponse res = sdk.roomsV2().getActiveRoomsForProcess()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
 
-            if (res.classes().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.classes().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -233,37 +203,26 @@ Poll this endpoint to get connection details to a [room](https://hathora.dev/doc
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetConnectionInfoResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+    public static void main(String[] args) throws ApiError, Exception {
 
-            GetConnectionInfoResponse res = sdk.roomsV2().getConnectionInfo()
+        HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        GetConnectionInfoResponse res = sdk.roomsV2().getConnectionInfo()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.connectionInfoV2().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.connectionInfoV2().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -297,41 +256,30 @@ Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetInactiveRoomsForProcessResponse res = sdk.roomsV2().getInactiveRoomsForProcess()
+        GetInactiveRoomsForProcessResponse res = sdk.roomsV2().getInactiveRoomsForProcess()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
 
-            if (res.classes().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.classes().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -365,41 +313,30 @@ Retreive current and historical allocation data for a [room](https://hathora.dev
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetRoomInfoResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetRoomInfoResponse res = sdk.roomsV2().getRoomInfo()
+        GetRoomInfoResponse res = sdk.roomsV2().getRoomInfo()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.room().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.room().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -435,39 +372,28 @@ Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The r
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            SuspendRoomV2DeprecatedResponse res = sdk.roomsV2().suspendRoomV2Deprecated()
+        SuspendRoomV2DeprecatedResponse res = sdk.roomsV2().suspendRoomV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            // handle response
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -499,7 +425,7 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.UpdateRoomConfigResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import dev.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams;
@@ -507,16 +433,16 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            UpdateRoomConfigResponse res = sdk.roomsV2().updateRoomConfig()
+        UpdateRoomConfigResponse res = sdk.roomsV2().updateRoomConfig()
                 .updateRoomConfigParams(UpdateRoomConfigParams.builder()
                     .roomConfig("{\"name\":\"my-room\"}")
                     .build())
@@ -524,18 +450,7 @@ public class Application {
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            // handle response
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```

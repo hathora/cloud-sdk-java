@@ -18,19 +18,19 @@ public class StopProcessRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public StopProcessRequestBuilder appId(java.lang.String appId) {
+    public StopProcessRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public StopProcessRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public StopProcessRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public StopProcessRequestBuilder processId(java.lang.String processId) {
+    public StopProcessRequestBuilder processId(String processId) {
         Utils.checkNotNull(processId, "processId");
         this.processId = processId;
         return this;

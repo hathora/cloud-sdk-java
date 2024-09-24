@@ -86,8 +86,8 @@ public class ConnectionInfo {
 
         public _Deserializer() {
             super(ConnectionInfo.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<dev.hathora.cloud_sdk.models.shared.ActiveConnectionInfo>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<dev.hathora.cloud_sdk.models.shared.StartingConnectionInfo>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<ActiveConnectionInfo>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<StartingConnectionInfo>() {}, JsonShape.DEFAULT));
         }
     }
     

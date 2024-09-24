@@ -18,19 +18,19 @@ public class GetProcessRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetProcessRequestBuilder appId(java.lang.String appId) {
+    public GetProcessRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetProcessRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetProcessRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public GetProcessRequestBuilder processId(java.lang.String processId) {
+    public GetProcessRequestBuilder processId(String processId) {
         Utils.checkNotNull(processId, "processId");
         this.processId = processId;
         return this;

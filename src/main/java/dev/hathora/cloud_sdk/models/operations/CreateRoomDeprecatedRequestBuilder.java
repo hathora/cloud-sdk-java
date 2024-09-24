@@ -20,31 +20,31 @@ public class CreateRoomDeprecatedRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateRoomDeprecatedRequestBuilder createRoomParams(dev.hathora.cloud_sdk.models.shared.CreateRoomParams createRoomParams) {
+    public CreateRoomDeprecatedRequestBuilder createRoomParams(CreateRoomParams createRoomParams) {
         Utils.checkNotNull(createRoomParams, "createRoomParams");
         this.createRoomParams = createRoomParams;
         return this;
     }
                 
-    public CreateRoomDeprecatedRequestBuilder appId(java.lang.String appId) {
+    public CreateRoomDeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateRoomDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public CreateRoomDeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public CreateRoomDeprecatedRequestBuilder roomId(java.lang.String roomId) {
+    public CreateRoomDeprecatedRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = Optional.of(roomId);
         return this;
     }
 
-    public CreateRoomDeprecatedRequestBuilder roomId(java.util.Optional<java.lang.String> roomId) {
+    public CreateRoomDeprecatedRequestBuilder roomId(Optional<String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

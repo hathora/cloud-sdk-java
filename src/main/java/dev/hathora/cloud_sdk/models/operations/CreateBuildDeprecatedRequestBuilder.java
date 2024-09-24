@@ -19,19 +19,19 @@ public class CreateBuildDeprecatedRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateBuildDeprecatedRequestBuilder createBuildParams(dev.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams) {
+    public CreateBuildDeprecatedRequestBuilder createBuildParams(CreateBuildParams createBuildParams) {
         Utils.checkNotNull(createBuildParams, "createBuildParams");
         this.createBuildParams = createBuildParams;
         return this;
     }
                 
-    public CreateBuildDeprecatedRequestBuilder appId(java.lang.String appId) {
+    public CreateBuildDeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateBuildDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public CreateBuildDeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

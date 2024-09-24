@@ -22,38 +22,27 @@
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.AcceptInviteResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            AcceptInviteResponse res = sdk.organizationsV1().acceptInvite()
+        AcceptInviteResponse res = sdk.organizationsV1().acceptInvite()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            // handle response
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -84,40 +73,29 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetOrgMembersResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetOrgMembersResponse res = sdk.organizationsV1().getOrgMembers()
+        GetOrgMembersResponse res = sdk.organizationsV1().getOrgMembers()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.orgMembersPage().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.orgMembersPage().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -148,40 +126,29 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetOrgPendingInvitesResponse res = sdk.organizationsV1().getOrgPendingInvites()
+        GetOrgPendingInvitesResponse res = sdk.organizationsV1().getOrgPendingInvites()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.pendingOrgInvitesPage().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.pendingOrgInvitesPage().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -214,39 +181,28 @@ Returns an unsorted list of all organizations that you are a member of (an accep
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetOrgsResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetOrgsResponse res = sdk.organizationsV1().getOrgs()
+        GetOrgsResponse res = sdk.organizationsV1().getOrgs()
                 .call();
 
-            if (res.orgsPage().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.orgsPage().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -271,39 +227,28 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetUserPendingInvitesResponse res = sdk.organizationsV1().getUserPendingInvites()
+        GetUserPendingInvitesResponse res = sdk.organizationsV1().getUserPendingInvites()
                 .call();
 
-            if (res.pendingOrgInvitesPage().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.pendingOrgInvitesPage().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -328,7 +273,7 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.InviteUserResponse;
 import dev.hathora.cloud_sdk.models.shared.CreateUserInvite;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -336,36 +281,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            InviteUserResponse res = sdk.organizationsV1().inviteUser()
+        InviteUserResponse res = sdk.organizationsV1().inviteUser()
                 .createUserInvite(CreateUserInvite.builder()
                     .userEmail("noreply@hathora.dev")
                     .build())
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.pendingOrgInvite().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.pendingOrgInvite().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -397,38 +331,27 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.RejectInviteResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            RejectInviteResponse res = sdk.organizationsV1().rejectInvite()
+        RejectInviteResponse res = sdk.organizationsV1().rejectInvite()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            // handle response
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -459,7 +382,7 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.RescindInviteResponse;
 import dev.hathora.cloud_sdk.models.shared.RescindUserInvite;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -467,34 +390,23 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            RescindInviteResponse res = sdk.organizationsV1().rescindInvite()
+        RescindInviteResponse res = sdk.organizationsV1().rescindInvite()
                 .rescindUserInvite(RescindUserInvite.builder()
                     .userEmail("noreply@hathora.dev")
                     .build())
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            // handle response
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```

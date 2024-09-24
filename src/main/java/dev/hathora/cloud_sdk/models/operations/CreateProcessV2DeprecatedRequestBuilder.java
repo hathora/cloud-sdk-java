@@ -19,19 +19,19 @@ public class CreateProcessV2DeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public CreateProcessV2DeprecatedRequestBuilder appId(java.lang.String appId) {
+    public CreateProcessV2DeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateProcessV2DeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public CreateProcessV2DeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public CreateProcessV2DeprecatedRequestBuilder region(dev.hathora.cloud_sdk.models.shared.Region region) {
+    public CreateProcessV2DeprecatedRequestBuilder region(Region region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;

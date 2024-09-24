@@ -19,19 +19,19 @@ public class LoginNicknameRequestBuilder {
         this.sdk = sdk;
     }
 
-    public LoginNicknameRequestBuilder nicknameObject(dev.hathora.cloud_sdk.models.shared.NicknameObject nicknameObject) {
+    public LoginNicknameRequestBuilder nicknameObject(NicknameObject nicknameObject) {
         Utils.checkNotNull(nicknameObject, "nicknameObject");
         this.nicknameObject = nicknameObject;
         return this;
     }
                 
-    public LoginNicknameRequestBuilder appId(java.lang.String appId) {
+    public LoginNicknameRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public LoginNicknameRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public LoginNicknameRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

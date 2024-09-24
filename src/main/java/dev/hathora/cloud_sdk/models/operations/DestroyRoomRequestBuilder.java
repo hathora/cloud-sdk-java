@@ -18,19 +18,19 @@ public class DestroyRoomRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public DestroyRoomRequestBuilder appId(java.lang.String appId) {
+    public DestroyRoomRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public DestroyRoomRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public DestroyRoomRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public DestroyRoomRequestBuilder roomId(java.lang.String roomId) {
+    public DestroyRoomRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

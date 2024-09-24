@@ -23,7 +23,7 @@ Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#ap
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
 import dev.hathora.cloud_sdk.models.shared.AppConfig;
 import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
@@ -32,16 +32,16 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            CreateAppResponse res = sdk.appsV2().createApp()
+        CreateAppResponse res = sdk.appsV2().createApp()
                 .appConfig(AppConfig.builder()
                     .appName("minecraft")
                     .authConfiguration(AuthConfiguration.builder()
@@ -50,20 +50,9 @@ public class Application {
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.application().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.application().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -97,38 +86,27 @@ Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#appli
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.DeleteAppResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            DeleteAppResponse res = sdk.appsV2().deleteApp()
+        DeleteAppResponse res = sdk.appsV2().deleteApp()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
-            // handle response
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -161,40 +139,29 @@ Get details for an [application](https://hathora.dev/docs/concepts/hathora-entit
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetAppResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetAppResponse res = sdk.appsV2().getApp()
+        GetAppResponse res = sdk.appsV2().getApp()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
-            if (res.application().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.application().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -227,40 +194,29 @@ Returns an unsorted list of your organization’s [applications](https://hathora
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetAppsResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetAppsResponse res = sdk.appsV2().getApps()
+        GetAppsResponse res = sdk.appsV2().getApps()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.applicationsPage().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.applicationsPage().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -293,7 +249,7 @@ Update data for an existing [application](https://hathora.dev/docs/concepts/hath
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.UpdateAppResponse;
 import dev.hathora.cloud_sdk.models.shared.AppConfig;
 import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
@@ -302,16 +258,16 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            UpdateAppResponse res = sdk.appsV2().updateApp()
+        UpdateAppResponse res = sdk.appsV2().updateApp()
                 .appConfig(AppConfig.builder()
                     .appName("minecraft")
                     .authConfiguration(AuthConfiguration.builder()
@@ -320,20 +276,9 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
-            if (res.application().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.application().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

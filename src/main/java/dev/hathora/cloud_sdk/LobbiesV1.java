@@ -103,7 +103,7 @@ public class LobbiesV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 CreatePrivateLobbyDeprecatedRequest.class,
@@ -265,7 +265,7 @@ public class LobbiesV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 CreatePublicLobbyDeprecatedRequest.class,
@@ -423,7 +423,7 @@ public class LobbiesV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 ListActivePublicLobbiesDeprecatedV1Request.class,

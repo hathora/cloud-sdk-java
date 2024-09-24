@@ -23,47 +23,39 @@
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateRoomDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.CreateRoomParams;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            CreateRoomDeprecatedResponse res = sdk.roomsV1().createRoomDeprecated()
+        CreateRoomDeprecatedResponse res = sdk.roomsV1().createRoomDeprecated()
                 .createRoomParams(CreateRoomParams.builder()
                     .region(Region.CHICAGO)
+                    .clientIPs(List.of(
+                        "123.123.123.123"))
                     .roomConfig("{\"name\":\"my-room\"}")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.roomId().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.roomId().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -98,39 +90,28 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.DestroyRoomDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            DestroyRoomDeprecatedResponse res = sdk.roomsV1().destroyRoomDeprecated()
+        DestroyRoomDeprecatedResponse res = sdk.roomsV1().destroyRoomDeprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            // handle response
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -164,41 +145,30 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetActiveRoomsForProcessDeprecatedResponse res = sdk.roomsV1().getActiveRoomsForProcessDeprecated()
+        GetActiveRoomsForProcessDeprecatedResponse res = sdk.roomsV1().getActiveRoomsForProcessDeprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
 
-            if (res.classes().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.classes().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -232,37 +202,26 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetConnectionInfoDeprecatedResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+    public static void main(String[] args) throws ApiError, Exception {
 
-            GetConnectionInfoDeprecatedResponse res = sdk.roomsV1().getConnectionInfoDeprecated()
+        HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        GetConnectionInfoDeprecatedResponse res = sdk.roomsV1().getConnectionInfoDeprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.connectionInfo().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.connectionInfo().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -296,41 +255,30 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetInactiveRoomsForProcessDeprecatedResponse res = sdk.roomsV1().getInactiveRoomsForProcessDeprecated()
+        GetInactiveRoomsForProcessDeprecatedResponse res = sdk.roomsV1().getInactiveRoomsForProcessDeprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
 
-            if (res.classes().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.classes().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -364,41 +312,30 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetRoomInfoDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetRoomInfoDeprecatedResponse res = sdk.roomsV1().getRoomInfoDeprecated()
+        GetRoomInfoDeprecatedResponse res = sdk.roomsV1().getRoomInfoDeprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.room().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.room().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -432,39 +369,28 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.SuspendRoomDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            SuspendRoomDeprecatedResponse res = sdk.roomsV1().suspendRoomDeprecated()
+        SuspendRoomDeprecatedResponse res = sdk.roomsV1().suspendRoomDeprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            // handle response
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```

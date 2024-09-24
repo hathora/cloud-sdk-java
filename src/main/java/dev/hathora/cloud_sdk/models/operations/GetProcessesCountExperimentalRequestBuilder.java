@@ -22,37 +22,37 @@ public class GetProcessesCountExperimentalRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetProcessesCountExperimentalRequestBuilder appId(java.lang.String appId) {
+    public GetProcessesCountExperimentalRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetProcessesCountExperimentalRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetProcessesCountExperimentalRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public GetProcessesCountExperimentalRequestBuilder region(java.util.List<dev.hathora.cloud_sdk.models.shared.Region> region) {
+    public GetProcessesCountExperimentalRequestBuilder region(List<Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.of(region);
         return this;
     }
 
-    public GetProcessesCountExperimentalRequestBuilder region(java.util.Optional<? extends java.util.List<dev.hathora.cloud_sdk.models.shared.Region>> region) {
+    public GetProcessesCountExperimentalRequestBuilder region(Optional<? extends List<Region>> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
     }
                 
-    public GetProcessesCountExperimentalRequestBuilder status(java.util.List<dev.hathora.cloud_sdk.models.shared.ProcessStatus> status) {
+    public GetProcessesCountExperimentalRequestBuilder status(List<ProcessStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.of(status);
         return this;
     }
 
-    public GetProcessesCountExperimentalRequestBuilder status(java.util.Optional<? extends java.util.List<dev.hathora.cloud_sdk.models.shared.ProcessStatus>> status) {
+    public GetProcessesCountExperimentalRequestBuilder status(Optional<? extends List<ProcessStatus>> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;

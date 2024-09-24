@@ -22,37 +22,37 @@ public class GetProcessesCountExperimentalV2DeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder appId(java.lang.String appId) {
+    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder region(java.util.List<dev.hathora.cloud_sdk.models.shared.Region> region) {
+    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder region(List<Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.of(region);
         return this;
     }
 
-    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder region(java.util.Optional<? extends java.util.List<dev.hathora.cloud_sdk.models.shared.Region>> region) {
+    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder region(Optional<? extends List<Region>> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
     }
                 
-    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder status(java.util.List<dev.hathora.cloud_sdk.models.shared.ProcessStatus> status) {
+    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder status(List<ProcessStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.of(status);
         return this;
     }
 
-    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder status(java.util.Optional<? extends java.util.List<dev.hathora.cloud_sdk.models.shared.ProcessStatus>> status) {
+    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder status(Optional<? extends List<ProcessStatus>> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;

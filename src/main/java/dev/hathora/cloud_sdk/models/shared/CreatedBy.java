@@ -13,6 +13,7 @@ import dev.hathora.cloud_sdk.utils.TypedObject;
 import dev.hathora.cloud_sdk.utils.Utils.JsonShape;
 import dev.hathora.cloud_sdk.utils.Utils.TypeReferenceWithShape;
 import dev.hathora.cloud_sdk.utils.Utils;
+import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -86,8 +87,8 @@ public class CreatedBy {
 
         public _Deserializer() {
             super(CreatedBy.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<java.lang.Double>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<java.lang.String>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Double>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
         }
     }
     

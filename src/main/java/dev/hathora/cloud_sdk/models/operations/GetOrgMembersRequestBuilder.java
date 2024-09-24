@@ -16,7 +16,7 @@ public class GetOrgMembersRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetOrgMembersRequestBuilder orgId(java.lang.String orgId) {
+    public GetOrgMembersRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

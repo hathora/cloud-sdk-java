@@ -19,19 +19,19 @@ public class LoginGoogleRequestBuilder {
         this.sdk = sdk;
     }
 
-    public LoginGoogleRequestBuilder googleIdTokenObject(dev.hathora.cloud_sdk.models.shared.GoogleIdTokenObject googleIdTokenObject) {
+    public LoginGoogleRequestBuilder googleIdTokenObject(GoogleIdTokenObject googleIdTokenObject) {
         Utils.checkNotNull(googleIdTokenObject, "googleIdTokenObject");
         this.googleIdTokenObject = googleIdTokenObject;
         return this;
     }
                 
-    public LoginGoogleRequestBuilder appId(java.lang.String appId) {
+    public LoginGoogleRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public LoginGoogleRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public LoginGoogleRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

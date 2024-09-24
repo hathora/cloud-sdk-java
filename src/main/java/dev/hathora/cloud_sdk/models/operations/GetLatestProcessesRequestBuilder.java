@@ -22,37 +22,37 @@ public class GetLatestProcessesRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetLatestProcessesRequestBuilder appId(java.lang.String appId) {
+    public GetLatestProcessesRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetLatestProcessesRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetLatestProcessesRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public GetLatestProcessesRequestBuilder region(java.util.List<dev.hathora.cloud_sdk.models.shared.Region> region) {
+    public GetLatestProcessesRequestBuilder region(List<Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.of(region);
         return this;
     }
 
-    public GetLatestProcessesRequestBuilder region(java.util.Optional<? extends java.util.List<dev.hathora.cloud_sdk.models.shared.Region>> region) {
+    public GetLatestProcessesRequestBuilder region(Optional<? extends List<Region>> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
     }
                 
-    public GetLatestProcessesRequestBuilder status(java.util.List<dev.hathora.cloud_sdk.models.shared.ProcessStatus> status) {
+    public GetLatestProcessesRequestBuilder status(List<ProcessStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.of(status);
         return this;
     }
 
-    public GetLatestProcessesRequestBuilder status(java.util.Optional<? extends java.util.List<dev.hathora.cloud_sdk.models.shared.ProcessStatus>> status) {
+    public GetLatestProcessesRequestBuilder status(Optional<? extends List<ProcessStatus>> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;

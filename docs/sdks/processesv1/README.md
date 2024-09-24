@@ -23,41 +23,30 @@ Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetProcessInfoDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetProcessInfoDeprecatedResponse res = sdk.processesV1().getProcessInfoDeprecated()
+        GetProcessInfoDeprecatedResponse res = sdk.processesV1().getProcessInfoDeprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
 
-            if (res.process().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.process().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -93,7 +82,7 @@ Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/ha
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetRunningProcessesResponse;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -101,34 +90,23 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetRunningProcessesResponse res = sdk.processesV1().getRunningProcesses()
+        GetRunningProcessesResponse res = sdk.processesV1().getRunningProcesses()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .region(Region.TOKYO)
                 .call();
 
-            if (res.classes().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.classes().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -164,7 +142,7 @@ Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/ha
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetStoppedProcessesResponse;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -172,34 +150,23 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetStoppedProcessesResponse res = sdk.processesV1().getStoppedProcesses()
+        GetStoppedProcessesResponse res = sdk.processesV1().getStoppedProcesses()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .region(Region.SYDNEY)
                 .call();
 
-            if (res.classes().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.classes().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

@@ -18,13 +18,13 @@ public class CreateOrgTokenRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateOrgTokenRequestBuilder createOrgToken(dev.hathora.cloud_sdk.models.shared.CreateOrgToken createOrgToken) {
+    public CreateOrgTokenRequestBuilder createOrgToken(CreateOrgToken createOrgToken) {
         Utils.checkNotNull(createOrgToken, "createOrgToken");
         this.createOrgToken = createOrgToken;
         return this;
     }
 
-    public CreateOrgTokenRequestBuilder orgId(java.lang.String orgId) {
+    public CreateOrgTokenRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

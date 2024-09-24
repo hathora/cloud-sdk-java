@@ -19,25 +19,25 @@ public class ListActivePublicLobbiesDeprecatedV2RequestBuilder {
         this.sdk = sdk;
     }
                 
-    public ListActivePublicLobbiesDeprecatedV2RequestBuilder appId(java.lang.String appId) {
+    public ListActivePublicLobbiesDeprecatedV2RequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public ListActivePublicLobbiesDeprecatedV2RequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public ListActivePublicLobbiesDeprecatedV2RequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public ListActivePublicLobbiesDeprecatedV2RequestBuilder region(dev.hathora.cloud_sdk.models.shared.Region region) {
+    public ListActivePublicLobbiesDeprecatedV2RequestBuilder region(Region region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.of(region);
         return this;
     }
 
-    public ListActivePublicLobbiesDeprecatedV2RequestBuilder region(java.util.Optional<? extends dev.hathora.cloud_sdk.models.shared.Region> region) {
+    public ListActivePublicLobbiesDeprecatedV2RequestBuilder region(Optional<? extends Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;

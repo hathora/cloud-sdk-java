@@ -24,6 +24,7 @@ import dev.hathora.cloud_sdk.models.shared.SetLobbyStateParams;
 import dev.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams;
 import dev.hathora.cloud_sdk.models.shared.VerificationEmailRequest;
 import java.lang.Boolean;
+import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -32,147 +33,147 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateAppV1Deprecated {
-        dev.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse createAppV1Deprecated(
+        CreateAppV1DeprecatedResponse createAppV1Deprecated(
             AppConfig request) throws Exception;
     }
 
 
     public interface MethodCallDeleteAppV1Deprecated {
-        dev.hathora.cloud_sdk.models.operations.DeleteAppV1DeprecatedResponse deleteAppV1Deprecated(
+        DeleteAppV1DeprecatedResponse deleteAppV1Deprecated(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallGetAppInfoV1Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetAppInfoV1DeprecatedResponse getAppInfoV1Deprecated(
+        GetAppInfoV1DeprecatedResponse getAppInfoV1Deprecated(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallGetAppsV1Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetAppsV1DeprecatedResponse getAppsV1DeprecatedDirect() throws Exception;
+        GetAppsV1DeprecatedResponse getAppsV1DeprecatedDirect() throws Exception;
     }
 
 
     public interface MethodCallUpdateAppV1Deprecated {
-        dev.hathora.cloud_sdk.models.operations.UpdateAppV1DeprecatedResponse updateAppV1Deprecated(
+        UpdateAppV1DeprecatedResponse updateAppV1Deprecated(
             AppConfig appConfig,
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallCreateApp {
-        dev.hathora.cloud_sdk.models.operations.CreateAppResponse createApp(
+        CreateAppResponse createApp(
             AppConfig appConfig,
             Optional<String> orgId) throws Exception;
     }
 
 
     public interface MethodCallDeleteApp {
-        dev.hathora.cloud_sdk.models.operations.DeleteAppResponse deleteApp(
+        DeleteAppResponse deleteApp(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallGetApp {
-        dev.hathora.cloud_sdk.models.operations.GetAppResponse getApp(
+        GetAppResponse getApp(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallGetApps {
-        dev.hathora.cloud_sdk.models.operations.GetAppsResponse getApps(
+        GetAppsResponse getApps(
             Optional<String> orgId) throws Exception;
     }
 
 
     public interface MethodCallUpdateApp {
-        dev.hathora.cloud_sdk.models.operations.UpdateAppResponse updateApp(
+        UpdateAppResponse updateApp(
             AppConfig appConfig,
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallLoginAnonymous {
-        dev.hathora.cloud_sdk.models.operations.LoginAnonymousResponse loginAnonymous(
+        LoginAnonymousResponse loginAnonymous(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallLoginGoogle {
-        dev.hathora.cloud_sdk.models.operations.LoginGoogleResponse loginGoogle(
+        LoginGoogleResponse loginGoogle(
             GoogleIdTokenObject googleIdTokenObject,
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallLoginNickname {
-        dev.hathora.cloud_sdk.models.operations.LoginNicknameResponse loginNickname(
+        LoginNicknameResponse loginNickname(
             NicknameObject nicknameObject,
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallGetBalance {
-        dev.hathora.cloud_sdk.models.operations.GetBalanceResponse getBalanceDirect() throws Exception;
+        GetBalanceResponse getBalanceDirect() throws Exception;
     }
 
 
     public interface MethodCallGetInvoices {
-        dev.hathora.cloud_sdk.models.operations.GetInvoicesResponse getInvoicesDirect() throws Exception;
+        GetInvoicesResponse getInvoicesDirect() throws Exception;
     }
 
 
     public interface MethodCallGetPaymentMethod {
-        dev.hathora.cloud_sdk.models.operations.GetPaymentMethodResponse getPaymentMethodDirect() throws Exception;
+        GetPaymentMethodResponse getPaymentMethodDirect() throws Exception;
     }
 
 
     public interface MethodCallGetUpcomingInvoiceItems {
-        dev.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceItemsResponse getUpcomingInvoiceItemsDirect() throws Exception;
+        GetUpcomingInvoiceItemsResponse getUpcomingInvoiceItemsDirect() throws Exception;
     }
 
 
     public interface MethodCallGetUpcomingInvoiceTotal {
-        dev.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceTotalResponse getUpcomingInvoiceTotalDirect() throws Exception;
+        GetUpcomingInvoiceTotalResponse getUpcomingInvoiceTotalDirect() throws Exception;
     }
 
 
     public interface MethodCallInitStripeCustomerPortalUrl {
-        dev.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(
+        InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(
             CustomerPortalUrl request) throws Exception;
     }
 
 
     public interface MethodCallCreateBuildDeprecated {
-        dev.hathora.cloud_sdk.models.operations.CreateBuildDeprecatedResponse createBuildDeprecated(
+        CreateBuildDeprecatedResponse createBuildDeprecated(
             CreateBuildParams createBuildParams,
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallDeleteBuildDeprecated {
-        dev.hathora.cloud_sdk.models.operations.DeleteBuildDeprecatedResponse deleteBuildDeprecated(
+        DeleteBuildDeprecatedResponse deleteBuildDeprecated(
             Optional<String> appId,
             int buildId) throws Exception;
     }
 
 
     public interface MethodCallGetBuildInfoDeprecated {
-        dev.hathora.cloud_sdk.models.operations.GetBuildInfoDeprecatedResponse getBuildInfoDeprecated(
+        GetBuildInfoDeprecatedResponse getBuildInfoDeprecated(
             Optional<String> appId,
             int buildId) throws Exception;
     }
 
 
     public interface MethodCallGetBuildsDeprecated {
-        dev.hathora.cloud_sdk.models.operations.GetBuildsDeprecatedResponse getBuildsDeprecated(
+        GetBuildsDeprecatedResponse getBuildsDeprecated(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallRunBuildDeprecated {
-        dev.hathora.cloud_sdk.models.operations.RunBuildDeprecatedResponse runBuildDeprecated(
+        RunBuildDeprecatedResponse runBuildDeprecated(
             RunBuildDeprecatedRequestBody requestBody,
             Optional<String> appId,
             int buildId) throws Exception;
@@ -180,48 +181,48 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateBuildV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.CreateBuildV2DeprecatedResponse createBuildV2Deprecated(
+        CreateBuildV2DeprecatedResponse createBuildV2Deprecated(
             CreateBuildParams createBuildParams,
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallCreateBuildWithUploadUrlV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlV2DeprecatedResponse createBuildWithUploadUrlV2Deprecated(
+        CreateBuildWithUploadUrlV2DeprecatedResponse createBuildWithUploadUrlV2Deprecated(
             CreateBuildParams createBuildParams,
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallCreateWithMultipartUploadsV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.CreateWithMultipartUploadsV2DeprecatedResponse createWithMultipartUploadsV2Deprecated(
+        CreateWithMultipartUploadsV2DeprecatedResponse createWithMultipartUploadsV2Deprecated(
             CreateMultipartBuildParams createMultipartBuildParams,
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallDeleteBuildV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.DeleteBuildV2DeprecatedResponse deleteBuildV2Deprecated(
+        DeleteBuildV2DeprecatedResponse deleteBuildV2Deprecated(
             Optional<String> appId,
             int buildId) throws Exception;
     }
 
 
     public interface MethodCallGetBuildInfoV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetBuildInfoV2DeprecatedResponse getBuildInfoV2Deprecated(
+        GetBuildInfoV2DeprecatedResponse getBuildInfoV2Deprecated(
             Optional<String> appId,
             int buildId) throws Exception;
     }
 
 
     public interface MethodCallGetBuildsV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetBuildsV2DeprecatedResponse getBuildsV2Deprecated(
+        GetBuildsV2DeprecatedResponse getBuildsV2Deprecated(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallRunBuildV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.RunBuildV2DeprecatedResponse runBuildV2Deprecated(
+        RunBuildV2DeprecatedResponse runBuildV2Deprecated(
             RunBuildV2DeprecatedRequestBody requestBody,
             Optional<String> appId,
             int buildId) throws Exception;
@@ -229,41 +230,41 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateBuild {
-        dev.hathora.cloud_sdk.models.operations.CreateBuildResponse createBuild(
+        CreateBuildResponse createBuild(
             CreateMultipartBuildParams createMultipartBuildParams,
             Optional<String> orgId) throws Exception;
     }
 
 
     public interface MethodCallDeleteBuild {
-        dev.hathora.cloud_sdk.models.operations.DeleteBuildResponse deleteBuild(
+        DeleteBuildResponse deleteBuild(
             String buildId,
             Optional<String> orgId) throws Exception;
     }
 
 
     public interface MethodCallGetBuild {
-        dev.hathora.cloud_sdk.models.operations.GetBuildResponse getBuild(
+        GetBuildResponse getBuild(
             String buildId,
             Optional<String> orgId) throws Exception;
     }
 
 
     public interface MethodCallGetBuilds {
-        dev.hathora.cloud_sdk.models.operations.GetBuildsResponse getBuilds(
+        GetBuildsResponse getBuilds(
             Optional<String> orgId) throws Exception;
     }
 
 
     public interface MethodCallRunBuild {
-        dev.hathora.cloud_sdk.models.operations.RunBuildResponse runBuild(
+        RunBuildResponse runBuild(
             String buildId,
             Optional<String> orgId) throws Exception;
     }
 
 
     public interface MethodCallCreateDeploymentV1Deprecated {
-        dev.hathora.cloud_sdk.models.operations.CreateDeploymentV1DeprecatedResponse createDeploymentV1Deprecated(
+        CreateDeploymentV1DeprecatedResponse createDeploymentV1Deprecated(
             DeploymentConfig deploymentConfig,
             Optional<String> appId,
             int buildId) throws Exception;
@@ -271,26 +272,26 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetDeploymentInfoV1Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetDeploymentInfoV1DeprecatedResponse getDeploymentInfoV1Deprecated(
+        GetDeploymentInfoV1DeprecatedResponse getDeploymentInfoV1Deprecated(
             Optional<String> appId,
             int deploymentId) throws Exception;
     }
 
 
     public interface MethodCallGetDeploymentsV1Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetDeploymentsV1DeprecatedResponse getDeploymentsV1Deprecated(
+        GetDeploymentsV1DeprecatedResponse getDeploymentsV1Deprecated(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallGetLatestDeploymentV1Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetLatestDeploymentV1DeprecatedResponse getLatestDeploymentV1Deprecated(
+        GetLatestDeploymentV1DeprecatedResponse getLatestDeploymentV1Deprecated(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallCreateDeploymentV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.CreateDeploymentV2DeprecatedResponse createDeploymentV2Deprecated(
+        CreateDeploymentV2DeprecatedResponse createDeploymentV2Deprecated(
             DeploymentConfigV2 deploymentConfigV2,
             Optional<String> appId,
             int buildId) throws Exception;
@@ -298,62 +299,62 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetDeploymentInfoV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetDeploymentInfoV2DeprecatedResponse getDeploymentInfoV2Deprecated(
+        GetDeploymentInfoV2DeprecatedResponse getDeploymentInfoV2Deprecated(
             Optional<String> appId,
             int deploymentId) throws Exception;
     }
 
 
     public interface MethodCallGetDeploymentsV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetDeploymentsV2DeprecatedResponse getDeploymentsV2Deprecated(
+        GetDeploymentsV2DeprecatedResponse getDeploymentsV2Deprecated(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallGetLatestDeploymentV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetLatestDeploymentV2DeprecatedResponse getLatestDeploymentV2Deprecated(
+        GetLatestDeploymentV2DeprecatedResponse getLatestDeploymentV2Deprecated(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallCreateDeployment {
-        dev.hathora.cloud_sdk.models.operations.CreateDeploymentResponse createDeployment(
+        CreateDeploymentResponse createDeployment(
             DeploymentConfigV3 deploymentConfigV3,
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallGetDeployment {
-        dev.hathora.cloud_sdk.models.operations.GetDeploymentResponse getDeployment(
+        GetDeploymentResponse getDeployment(
             Optional<String> appId,
             String deploymentId) throws Exception;
     }
 
 
     public interface MethodCallGetDeployments {
-        dev.hathora.cloud_sdk.models.operations.GetDeploymentsResponse getDeployments(
+        GetDeploymentsResponse getDeployments(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallGetLatestDeployment {
-        dev.hathora.cloud_sdk.models.operations.GetLatestDeploymentResponse getLatestDeployment(
+        GetLatestDeploymentResponse getLatestDeployment(
             Optional<String> appId) throws Exception;
     }
 
 
     public interface MethodCallGetPingServiceEndpointsDeprecated {
-        dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsDeprecatedResponse getPingServiceEndpointsDeprecatedDirect() throws Exception;
+        GetPingServiceEndpointsDeprecatedResponse getPingServiceEndpointsDeprecatedDirect() throws Exception;
     }
 
 
     public interface MethodCallGetPingServiceEndpoints {
-        dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsResponse getPingServiceEndpointsDirect() throws Exception;
+        GetPingServiceEndpointsResponse getPingServiceEndpointsDirect() throws Exception;
     }
 
 
     public interface MethodCallCreatePrivateLobbyDeprecated {
-        dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedResponse createPrivateLobbyDeprecated(
+        CreatePrivateLobbyDeprecatedResponse createPrivateLobbyDeprecated(
             CreatePrivateLobbyDeprecatedSecurity security,
             Optional<String> appId,
             Optional<Boolean> local,
@@ -362,7 +363,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreatePublicLobbyDeprecated {
-        dev.hathora.cloud_sdk.models.operations.CreatePublicLobbyDeprecatedResponse createPublicLobbyDeprecated(
+        CreatePublicLobbyDeprecatedResponse createPublicLobbyDeprecated(
             CreatePublicLobbyDeprecatedSecurity security,
             Optional<String> appId,
             Optional<Boolean> local,
@@ -371,7 +372,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallListActivePublicLobbiesDeprecatedV1 {
-        dev.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV1Response listActivePublicLobbiesDeprecatedV1(
+        ListActivePublicLobbiesDeprecatedV1Response listActivePublicLobbiesDeprecatedV1(
             Optional<String> appId,
             Optional<Boolean> local,
             Optional<? extends Region> region) throws Exception;
@@ -379,7 +380,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateLobbyDeprecated {
-        dev.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedResponse createLobbyDeprecated(
+        CreateLobbyDeprecatedResponse createLobbyDeprecated(
             CreateLobbyDeprecatedSecurity security,
             CreateLobbyParams createLobbyParams,
             Optional<String> appId,
@@ -388,7 +389,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateLocalLobby {
-        dev.hathora.cloud_sdk.models.operations.CreateLocalLobbyResponse createLocalLobby(
+        CreateLocalLobbyResponse createLocalLobby(
             CreateLocalLobbySecurity security,
             CreateLocalLobbyRequestBody requestBody,
             Optional<String> appId,
@@ -397,7 +398,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreatePrivateLobby {
-        dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyResponse createPrivateLobby(
+        CreatePrivateLobbyResponse createPrivateLobby(
             CreatePrivateLobbySecurity security,
             CreatePrivateLobbyRequestBody requestBody,
             Optional<String> appId,
@@ -406,7 +407,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreatePublicLobby {
-        dev.hathora.cloud_sdk.models.operations.CreatePublicLobbyResponse createPublicLobby(
+        CreatePublicLobbyResponse createPublicLobby(
             CreatePublicLobbySecurity security,
             CreatePublicLobbyRequestBody requestBody,
             Optional<String> appId,
@@ -415,21 +416,21 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetLobbyInfo {
-        dev.hathora.cloud_sdk.models.operations.GetLobbyInfoResponse getLobbyInfo(
+        GetLobbyInfoResponse getLobbyInfo(
             Optional<String> appId,
             String roomId) throws Exception;
     }
 
 
     public interface MethodCallListActivePublicLobbiesDeprecatedV2 {
-        dev.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Response listActivePublicLobbiesDeprecatedV2(
+        ListActivePublicLobbiesDeprecatedV2Response listActivePublicLobbiesDeprecatedV2(
             Optional<String> appId,
             Optional<? extends Region> region) throws Exception;
     }
 
 
     public interface MethodCallSetLobbyState {
-        dev.hathora.cloud_sdk.models.operations.SetLobbyStateResponse setLobbyState(
+        SetLobbyStateResponse setLobbyState(
             SetLobbyStateParams setLobbyStateParams,
             Optional<String> appId,
             String roomId) throws Exception;
@@ -437,148 +438,148 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateLobby {
-        dev.hathora.cloud_sdk.models.operations.CreateLobbyResponse createLobby(
+        CreateLobbyResponse createLobby(
             CreateLobbyRequest request,
             CreateLobbySecurity security) throws Exception;
     }
 
 
     public interface MethodCallGetLobbyInfoByRoomId {
-        dev.hathora.cloud_sdk.models.operations.GetLobbyInfoByRoomIdResponse getLobbyInfoByRoomId(
+        GetLobbyInfoByRoomIdResponse getLobbyInfoByRoomId(
             Optional<String> appId,
             String roomId) throws Exception;
     }
 
 
     public interface MethodCallGetLobbyInfoByShortCode {
-        dev.hathora.cloud_sdk.models.operations.GetLobbyInfoByShortCodeResponse getLobbyInfoByShortCode(
+        GetLobbyInfoByShortCodeResponse getLobbyInfoByShortCode(
             Optional<String> appId,
             String shortCode) throws Exception;
     }
 
 
     public interface MethodCallListActivePublicLobbies {
-        dev.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesResponse listActivePublicLobbies(
+        ListActivePublicLobbiesResponse listActivePublicLobbies(
             Optional<String> appId,
             Optional<? extends Region> region) throws Exception;
     }
 
 
     public interface MethodCallDownloadLogForProcess {
-        dev.hathora.cloud_sdk.models.operations.DownloadLogForProcessResponse downloadLogForProcess(
+        DownloadLogForProcessResponse downloadLogForProcess(
             Optional<String> appId,
             String processId) throws Exception;
     }
 
 
     public interface MethodCallGetLogsForApp {
-        dev.hathora.cloud_sdk.models.operations.GetLogsForAppResponse getLogsForApp(
+        GetLogsForAppResponse getLogsForApp(
             GetLogsForAppRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetLogsForDeployment {
-        dev.hathora.cloud_sdk.models.operations.GetLogsForDeploymentResponse getLogsForDeployment(
+        GetLogsForDeploymentResponse getLogsForDeployment(
             GetLogsForDeploymentRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetLogsForProcess {
-        dev.hathora.cloud_sdk.models.operations.GetLogsForProcessResponse getLogsForProcess(
+        GetLogsForProcessResponse getLogsForProcess(
             GetLogsForProcessRequest request) throws Exception;
     }
 
 
     public interface MethodCallSendVerificationEmail {
-        dev.hathora.cloud_sdk.models.operations.SendVerificationEmailResponse sendVerificationEmail(
+        SendVerificationEmailResponse sendVerificationEmail(
             VerificationEmailRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetMetrics {
-        dev.hathora.cloud_sdk.models.operations.GetMetricsResponse getMetrics(
+        GetMetricsResponse getMetrics(
             GetMetricsRequest request) throws Exception;
     }
 
 
     public interface MethodCallAcceptInvite {
-        dev.hathora.cloud_sdk.models.operations.AcceptInviteResponse acceptInvite(
+        AcceptInviteResponse acceptInvite(
             String orgId) throws Exception;
     }
 
 
     public interface MethodCallGetOrgMembers {
-        dev.hathora.cloud_sdk.models.operations.GetOrgMembersResponse getOrgMembers(
+        GetOrgMembersResponse getOrgMembers(
             String orgId) throws Exception;
     }
 
 
     public interface MethodCallGetOrgPendingInvites {
-        dev.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse getOrgPendingInvites(
+        GetOrgPendingInvitesResponse getOrgPendingInvites(
             String orgId) throws Exception;
     }
 
 
     public interface MethodCallGetOrgs {
-        dev.hathora.cloud_sdk.models.operations.GetOrgsResponse getOrgsDirect() throws Exception;
+        GetOrgsResponse getOrgsDirect() throws Exception;
     }
 
 
     public interface MethodCallGetUserPendingInvites {
-        dev.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse getUserPendingInvitesDirect() throws Exception;
+        GetUserPendingInvitesResponse getUserPendingInvitesDirect() throws Exception;
     }
 
 
     public interface MethodCallInviteUser {
-        dev.hathora.cloud_sdk.models.operations.InviteUserResponse inviteUser(
+        InviteUserResponse inviteUser(
             CreateUserInvite createUserInvite,
             String orgId) throws Exception;
     }
 
 
     public interface MethodCallRejectInvite {
-        dev.hathora.cloud_sdk.models.operations.RejectInviteResponse rejectInvite(
+        RejectInviteResponse rejectInvite(
             String orgId) throws Exception;
     }
 
 
     public interface MethodCallRescindInvite {
-        dev.hathora.cloud_sdk.models.operations.RescindInviteResponse rescindInvite(
+        RescindInviteResponse rescindInvite(
             RescindUserInvite rescindUserInvite,
             String orgId) throws Exception;
     }
 
 
     public interface MethodCallGetProcessInfoDeprecated {
-        dev.hathora.cloud_sdk.models.operations.GetProcessInfoDeprecatedResponse getProcessInfoDeprecated(
+        GetProcessInfoDeprecatedResponse getProcessInfoDeprecated(
             Optional<String> appId,
             String processId) throws Exception;
     }
 
 
     public interface MethodCallGetRunningProcesses {
-        dev.hathora.cloud_sdk.models.operations.GetRunningProcessesResponse getRunningProcesses(
+        GetRunningProcessesResponse getRunningProcesses(
             Optional<String> appId,
             Optional<? extends Region> region) throws Exception;
     }
 
 
     public interface MethodCallGetStoppedProcesses {
-        dev.hathora.cloud_sdk.models.operations.GetStoppedProcessesResponse getStoppedProcesses(
+        GetStoppedProcessesResponse getStoppedProcesses(
             Optional<String> appId,
             Optional<? extends Region> region) throws Exception;
     }
 
 
     public interface MethodCallCreateProcessV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.CreateProcessV2DeprecatedResponse createProcessV2Deprecated(
+        CreateProcessV2DeprecatedResponse createProcessV2Deprecated(
             Optional<String> appId,
             Region region) throws Exception;
     }
 
 
     public interface MethodCallGetLatestProcessesV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetLatestProcessesV2DeprecatedResponse getLatestProcessesV2Deprecated(
+        GetLatestProcessesV2DeprecatedResponse getLatestProcessesV2Deprecated(
             Optional<String> appId,
             Optional<? extends List<Region>> region,
             Optional<? extends List<ProcessStatus>> status) throws Exception;
@@ -586,14 +587,14 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetProcessInfoV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(
+        GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(
             Optional<String> appId,
             String processId) throws Exception;
     }
 
 
     public interface MethodCallGetProcessesCountExperimentalV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedResponse getProcessesCountExperimentalV2Deprecated(
+        GetProcessesCountExperimentalV2DeprecatedResponse getProcessesCountExperimentalV2Deprecated(
             Optional<String> appId,
             Optional<? extends List<Region>> region,
             Optional<? extends List<ProcessStatus>> status) throws Exception;
@@ -601,21 +602,21 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallStopProcessV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.StopProcessV2DeprecatedResponse stopProcessV2Deprecated(
+        StopProcessV2DeprecatedResponse stopProcessV2Deprecated(
             Optional<String> appId,
             String processId) throws Exception;
     }
 
 
     public interface MethodCallCreateProcess {
-        dev.hathora.cloud_sdk.models.operations.CreateProcessResponse createProcess(
+        CreateProcessResponse createProcess(
             Optional<String> appId,
             Region region) throws Exception;
     }
 
 
     public interface MethodCallGetLatestProcesses {
-        dev.hathora.cloud_sdk.models.operations.GetLatestProcessesResponse getLatestProcesses(
+        GetLatestProcessesResponse getLatestProcesses(
             Optional<String> appId,
             Optional<? extends List<Region>> region,
             Optional<? extends List<ProcessStatus>> status) throws Exception;
@@ -623,14 +624,14 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetProcess {
-        dev.hathora.cloud_sdk.models.operations.GetProcessResponse getProcess(
+        GetProcessResponse getProcess(
             Optional<String> appId,
             String processId) throws Exception;
     }
 
 
     public interface MethodCallGetProcessesCountExperimental {
-        dev.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalResponse getProcessesCountExperimental(
+        GetProcessesCountExperimentalResponse getProcessesCountExperimental(
             Optional<String> appId,
             Optional<? extends List<Region>> region,
             Optional<? extends List<ProcessStatus>> status) throws Exception;
@@ -638,14 +639,14 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallStopProcess {
-        dev.hathora.cloud_sdk.models.operations.StopProcessResponse stopProcess(
+        StopProcessResponse stopProcess(
             Optional<String> appId,
             String processId) throws Exception;
     }
 
 
     public interface MethodCallCreateRoomDeprecated {
-        dev.hathora.cloud_sdk.models.operations.CreateRoomDeprecatedResponse createRoomDeprecated(
+        CreateRoomDeprecatedResponse createRoomDeprecated(
             CreateRoomParams createRoomParams,
             Optional<String> appId,
             Optional<String> roomId) throws Exception;
@@ -653,49 +654,49 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallDestroyRoomDeprecated {
-        dev.hathora.cloud_sdk.models.operations.DestroyRoomDeprecatedResponse destroyRoomDeprecated(
+        DestroyRoomDeprecatedResponse destroyRoomDeprecated(
             Optional<String> appId,
             String roomId) throws Exception;
     }
 
 
     public interface MethodCallGetActiveRoomsForProcessDeprecated {
-        dev.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessDeprecatedResponse getActiveRoomsForProcessDeprecated(
+        GetActiveRoomsForProcessDeprecatedResponse getActiveRoomsForProcessDeprecated(
             Optional<String> appId,
             String processId) throws Exception;
     }
 
 
     public interface MethodCallGetConnectionInfoDeprecated {
-        dev.hathora.cloud_sdk.models.operations.GetConnectionInfoDeprecatedResponse getConnectionInfoDeprecated(
+        GetConnectionInfoDeprecatedResponse getConnectionInfoDeprecated(
             Optional<String> appId,
             String roomId) throws Exception;
     }
 
 
     public interface MethodCallGetInactiveRoomsForProcessDeprecated {
-        dev.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessDeprecatedResponse getInactiveRoomsForProcessDeprecated(
+        GetInactiveRoomsForProcessDeprecatedResponse getInactiveRoomsForProcessDeprecated(
             Optional<String> appId,
             String processId) throws Exception;
     }
 
 
     public interface MethodCallGetRoomInfoDeprecated {
-        dev.hathora.cloud_sdk.models.operations.GetRoomInfoDeprecatedResponse getRoomInfoDeprecated(
+        GetRoomInfoDeprecatedResponse getRoomInfoDeprecated(
             Optional<String> appId,
             String roomId) throws Exception;
     }
 
 
     public interface MethodCallSuspendRoomDeprecated {
-        dev.hathora.cloud_sdk.models.operations.SuspendRoomDeprecatedResponse suspendRoomDeprecated(
+        SuspendRoomDeprecatedResponse suspendRoomDeprecated(
             Optional<String> appId,
             String roomId) throws Exception;
     }
 
 
     public interface MethodCallCreateRoom {
-        dev.hathora.cloud_sdk.models.operations.CreateRoomResponse createRoom(
+        CreateRoomResponse createRoom(
             CreateRoomParams createRoomParams,
             Optional<String> appId,
             Optional<String> roomId) throws Exception;
@@ -703,49 +704,49 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallDestroyRoom {
-        dev.hathora.cloud_sdk.models.operations.DestroyRoomResponse destroyRoom(
+        DestroyRoomResponse destroyRoom(
             Optional<String> appId,
             String roomId) throws Exception;
     }
 
 
     public interface MethodCallGetActiveRoomsForProcess {
-        dev.hathora.cloud_sdk.models.operations.GetActiveRoomsForProcessResponse getActiveRoomsForProcess(
+        GetActiveRoomsForProcessResponse getActiveRoomsForProcess(
             Optional<String> appId,
             String processId) throws Exception;
     }
 
 
     public interface MethodCallGetConnectionInfo {
-        dev.hathora.cloud_sdk.models.operations.GetConnectionInfoResponse getConnectionInfo(
+        GetConnectionInfoResponse getConnectionInfo(
             Optional<String> appId,
             String roomId) throws Exception;
     }
 
 
     public interface MethodCallGetInactiveRoomsForProcess {
-        dev.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(
+        GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(
             Optional<String> appId,
             String processId) throws Exception;
     }
 
 
     public interface MethodCallGetRoomInfo {
-        dev.hathora.cloud_sdk.models.operations.GetRoomInfoResponse getRoomInfo(
+        GetRoomInfoResponse getRoomInfo(
             Optional<String> appId,
             String roomId) throws Exception;
     }
 
 
     public interface MethodCallSuspendRoomV2Deprecated {
-        dev.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedResponse suspendRoomV2Deprecated(
+        SuspendRoomV2DeprecatedResponse suspendRoomV2Deprecated(
             Optional<String> appId,
             String roomId) throws Exception;
     }
 
 
     public interface MethodCallUpdateRoomConfig {
-        dev.hathora.cloud_sdk.models.operations.UpdateRoomConfigResponse updateRoomConfig(
+        UpdateRoomConfigResponse updateRoomConfig(
             UpdateRoomConfigParams updateRoomConfigParams,
             Optional<String> appId,
             String roomId) throws Exception;
@@ -753,20 +754,20 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateOrgToken {
-        dev.hathora.cloud_sdk.models.operations.CreateOrgTokenResponse createOrgToken(
+        CreateOrgTokenResponse createOrgToken(
             CreateOrgToken createOrgToken,
             String orgId) throws Exception;
     }
 
 
     public interface MethodCallGetOrgTokens {
-        dev.hathora.cloud_sdk.models.operations.GetOrgTokensResponse getOrgTokens(
+        GetOrgTokensResponse getOrgTokens(
             String orgId) throws Exception;
     }
 
 
     public interface MethodCallRevokeOrgToken {
-        dev.hathora.cloud_sdk.models.operations.RevokeOrgTokenResponse revokeOrgToken(
+        RevokeOrgTokenResponse revokeOrgToken(
             String orgId,
             String orgTokenId) throws Exception;
     }

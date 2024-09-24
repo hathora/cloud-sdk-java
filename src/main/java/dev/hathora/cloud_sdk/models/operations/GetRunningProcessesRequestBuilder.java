@@ -19,25 +19,25 @@ public class GetRunningProcessesRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetRunningProcessesRequestBuilder appId(java.lang.String appId) {
+    public GetRunningProcessesRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetRunningProcessesRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetRunningProcessesRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public GetRunningProcessesRequestBuilder region(dev.hathora.cloud_sdk.models.shared.Region region) {
+    public GetRunningProcessesRequestBuilder region(Region region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.of(region);
         return this;
     }
 
-    public GetRunningProcessesRequestBuilder region(java.util.Optional<? extends dev.hathora.cloud_sdk.models.shared.Region> region) {
+    public GetRunningProcessesRequestBuilder region(Optional<? extends Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;

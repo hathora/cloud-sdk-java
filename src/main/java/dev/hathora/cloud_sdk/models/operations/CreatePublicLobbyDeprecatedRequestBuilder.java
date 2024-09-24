@@ -33,13 +33,13 @@ public class CreatePublicLobbyDeprecatedRequestBuilder {
         return this;
     }
                 
-    public CreatePublicLobbyDeprecatedRequestBuilder appId(java.lang.String appId) {
+    public CreatePublicLobbyDeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreatePublicLobbyDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public CreatePublicLobbyDeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -51,19 +51,19 @@ public class CreatePublicLobbyDeprecatedRequestBuilder {
         return this;
     }
 
-    public CreatePublicLobbyDeprecatedRequestBuilder local(java.util.Optional<java.lang.Boolean> local) {
+    public CreatePublicLobbyDeprecatedRequestBuilder local(Optional<Boolean> local) {
         Utils.checkNotNull(local, "local");
         this.local = local;
         return this;
     }
                 
-    public CreatePublicLobbyDeprecatedRequestBuilder region(dev.hathora.cloud_sdk.models.shared.Region region) {
+    public CreatePublicLobbyDeprecatedRequestBuilder region(Region region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.of(region);
         return this;
     }
 
-    public CreatePublicLobbyDeprecatedRequestBuilder region(java.util.Optional<? extends dev.hathora.cloud_sdk.models.shared.Region> region) {
+    public CreatePublicLobbyDeprecatedRequestBuilder region(Optional<? extends Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;

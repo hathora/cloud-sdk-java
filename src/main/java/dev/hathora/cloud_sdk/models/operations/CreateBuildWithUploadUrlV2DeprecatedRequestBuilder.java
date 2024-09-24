@@ -19,19 +19,19 @@ public class CreateBuildWithUploadUrlV2DeprecatedRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateBuildWithUploadUrlV2DeprecatedRequestBuilder createBuildParams(dev.hathora.cloud_sdk.models.shared.CreateBuildParams createBuildParams) {
+    public CreateBuildWithUploadUrlV2DeprecatedRequestBuilder createBuildParams(CreateBuildParams createBuildParams) {
         Utils.checkNotNull(createBuildParams, "createBuildParams");
         this.createBuildParams = createBuildParams;
         return this;
     }
                 
-    public CreateBuildWithUploadUrlV2DeprecatedRequestBuilder appId(java.lang.String appId) {
+    public CreateBuildWithUploadUrlV2DeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateBuildWithUploadUrlV2DeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public CreateBuildWithUploadUrlV2DeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

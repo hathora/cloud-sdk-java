@@ -19,19 +19,19 @@ public class CreateWithMultipartUploadsV2DeprecatedRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateWithMultipartUploadsV2DeprecatedRequestBuilder createMultipartBuildParams(dev.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams createMultipartBuildParams) {
+    public CreateWithMultipartUploadsV2DeprecatedRequestBuilder createMultipartBuildParams(CreateMultipartBuildParams createMultipartBuildParams) {
         Utils.checkNotNull(createMultipartBuildParams, "createMultipartBuildParams");
         this.createMultipartBuildParams = createMultipartBuildParams;
         return this;
     }
                 
-    public CreateWithMultipartUploadsV2DeprecatedRequestBuilder appId(java.lang.String appId) {
+    public CreateWithMultipartUploadsV2DeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateWithMultipartUploadsV2DeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public CreateWithMultipartUploadsV2DeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

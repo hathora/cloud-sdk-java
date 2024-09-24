@@ -18,13 +18,13 @@ public class RescindInviteRequestBuilder {
         this.sdk = sdk;
     }
 
-    public RescindInviteRequestBuilder rescindUserInvite(dev.hathora.cloud_sdk.models.shared.RescindUserInvite rescindUserInvite) {
+    public RescindInviteRequestBuilder rescindUserInvite(RescindUserInvite rescindUserInvite) {
         Utils.checkNotNull(rescindUserInvite, "rescindUserInvite");
         this.rescindUserInvite = rescindUserInvite;
         return this;
     }
 
-    public RescindInviteRequestBuilder orgId(java.lang.String orgId) {
+    public RescindInviteRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

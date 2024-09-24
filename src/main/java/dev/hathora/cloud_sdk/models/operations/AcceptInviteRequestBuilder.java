@@ -16,7 +16,7 @@ public class AcceptInviteRequestBuilder {
         this.sdk = sdk;
     }
 
-    public AcceptInviteRequestBuilder orgId(java.lang.String orgId) {
+    public AcceptInviteRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

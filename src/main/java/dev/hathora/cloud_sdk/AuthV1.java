@@ -93,7 +93,7 @@ public class AuthV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
@@ -253,7 +253,7 @@ public class AuthV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
@@ -413,7 +413,7 @@ public class AuthV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 

@@ -18,19 +18,19 @@ public class GetConnectionInfoRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetConnectionInfoRequestBuilder appId(java.lang.String appId) {
+    public GetConnectionInfoRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetConnectionInfoRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetConnectionInfoRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public GetConnectionInfoRequestBuilder roomId(java.lang.String roomId) {
+    public GetConnectionInfoRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

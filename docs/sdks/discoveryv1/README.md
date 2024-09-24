@@ -21,32 +21,23 @@ Returns an array of V1 regions with a host and port that a client can directly p
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
 import dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsDeprecatedResponse;
 import java.lang.Exception;
 
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
 
-            GetPingServiceEndpointsDeprecatedResponse res = sdk.discoveryV1().getPingServiceEndpointsDeprecated()
+        HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        GetPingServiceEndpointsDeprecatedResponse res = sdk.discoveryV1().getPingServiceEndpointsDeprecated()
                 .call();
 
-            if (res.pingEndpoints().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.pingEndpoints().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

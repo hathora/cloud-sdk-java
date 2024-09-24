@@ -17,13 +17,13 @@ public class GetBuildsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetBuildsRequestBuilder orgId(java.lang.String orgId) {
+    public GetBuildsRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = Optional.of(orgId);
         return this;
     }
 
-    public GetBuildsRequestBuilder orgId(java.util.Optional<java.lang.String> orgId) {
+    public GetBuildsRequestBuilder orgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

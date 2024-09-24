@@ -16,7 +16,7 @@ public class RejectInviteRequestBuilder {
         this.sdk = sdk;
     }
 
-    public RejectInviteRequestBuilder orgId(java.lang.String orgId) {
+    public RejectInviteRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

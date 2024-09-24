@@ -20,31 +20,31 @@ public class CreateRoomRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateRoomRequestBuilder createRoomParams(dev.hathora.cloud_sdk.models.shared.CreateRoomParams createRoomParams) {
+    public CreateRoomRequestBuilder createRoomParams(CreateRoomParams createRoomParams) {
         Utils.checkNotNull(createRoomParams, "createRoomParams");
         this.createRoomParams = createRoomParams;
         return this;
     }
                 
-    public CreateRoomRequestBuilder appId(java.lang.String appId) {
+    public CreateRoomRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateRoomRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public CreateRoomRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public CreateRoomRequestBuilder roomId(java.lang.String roomId) {
+    public CreateRoomRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = Optional.of(roomId);
         return this;
     }
 
-    public CreateRoomRequestBuilder roomId(java.util.Optional<java.lang.String> roomId) {
+    public CreateRoomRequestBuilder roomId(Optional<String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

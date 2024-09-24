@@ -17,13 +17,13 @@ public class RevokeOrgTokenRequestBuilder {
         this.sdk = sdk;
     }
 
-    public RevokeOrgTokenRequestBuilder orgId(java.lang.String orgId) {
+    public RevokeOrgTokenRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
 
-    public RevokeOrgTokenRequestBuilder orgTokenId(java.lang.String orgTokenId) {
+    public RevokeOrgTokenRequestBuilder orgTokenId(String orgTokenId) {
         Utils.checkNotNull(orgTokenId, "orgTokenId");
         this.orgTokenId = orgTokenId;
         return this;

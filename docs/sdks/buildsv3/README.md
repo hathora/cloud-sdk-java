@@ -25,7 +25,7 @@ Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) 
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateBuildResponse;
 import dev.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -33,37 +33,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            CreateBuildResponse res = sdk.buildsV3().createBuild()
+        CreateBuildResponse res = sdk.buildsV3().createBuild()
                 .createMultipartBuildParams(CreateMultipartBuildParams.builder()
-                    .buildSizeInBytes(5387.85d)
+                    .buildSizeInBytes(5387.84d)
+                    .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                     .buildTag("0.1.14-14c793")
                     .build())
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.createdBuildV3WithMultipartUrls().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.createdBuildV3WithMultipartUrls().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -99,41 +89,30 @@ Deleting a build that is actively build used by an app's deployment will cause f
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.DeleteBuildResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            DeleteBuildResponse res = sdk.buildsV3().deleteBuild()
-                .buildId("<value>")
+        DeleteBuildResponse res = sdk.buildsV3().deleteBuild()
+                .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.deletedBuild().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.deletedBuild().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -142,7 +121,7 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `buildId`                                | *String*                                 | :heavy_check_mark:                       | N/A                                      |                                          |
+| `buildId`                                | *String*                                 | :heavy_check_mark:                       | N/A                                      | bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5 |
 | `orgId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
 ### Response
@@ -167,41 +146,30 @@ Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#bui
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetBuildResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetBuildResponse res = sdk.buildsV3().getBuild()
-                .buildId("<value>")
+        GetBuildResponse res = sdk.buildsV3().getBuild()
+                .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.buildV3().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.buildV3().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -210,7 +178,7 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `buildId`                                | *String*                                 | :heavy_check_mark:                       | N/A                                      |                                          |
+| `buildId`                                | *String*                                 | :heavy_check_mark:                       | N/A                                      | bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5 |
 | `orgId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
 ### Response
@@ -235,40 +203,29 @@ Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetBuildsResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetBuildsResponse res = sdk.buildsV3().getBuilds()
+        GetBuildsResponse res = sdk.buildsV3().getBuilds()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.buildsV3Page().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.buildsV3Page().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -301,41 +258,30 @@ Builds a game server artifact from a tarball you provide. Pass in the `buildId` 
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.RunBuildResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            RunBuildResponse res = sdk.buildsV3().runBuild()
-                .buildId("<value>")
+        RunBuildResponse res = sdk.buildsV3().runBuild()
+                .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.responseStream().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.responseStream().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -344,7 +290,7 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `buildId`                                | *String*                                 | :heavy_check_mark:                       | N/A                                      |                                          |
+| `buildId`                                | *String*                                 | :heavy_check_mark:                       | N/A                                      | bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5 |
 | `orgId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
 ### Response
