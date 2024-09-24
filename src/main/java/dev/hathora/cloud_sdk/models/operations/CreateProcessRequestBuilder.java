@@ -19,19 +19,19 @@ public class CreateProcessRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public CreateProcessRequestBuilder appId(java.lang.String appId) {
+    public CreateProcessRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateProcessRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public CreateProcessRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public CreateProcessRequestBuilder region(dev.hathora.cloud_sdk.models.shared.Region region) {
+    public CreateProcessRequestBuilder region(Region region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;

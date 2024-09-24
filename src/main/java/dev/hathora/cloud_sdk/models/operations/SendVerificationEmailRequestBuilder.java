@@ -16,7 +16,7 @@ public class SendVerificationEmailRequestBuilder {
         this.sdk = sdk;
     }
 
-    public SendVerificationEmailRequestBuilder request(dev.hathora.cloud_sdk.models.shared.VerificationEmailRequest request) {
+    public SendVerificationEmailRequestBuilder request(VerificationEmailRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

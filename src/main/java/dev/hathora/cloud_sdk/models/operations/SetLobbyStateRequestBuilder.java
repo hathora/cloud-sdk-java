@@ -20,25 +20,25 @@ public class SetLobbyStateRequestBuilder {
         this.sdk = sdk;
     }
 
-    public SetLobbyStateRequestBuilder setLobbyStateParams(dev.hathora.cloud_sdk.models.shared.SetLobbyStateParams setLobbyStateParams) {
+    public SetLobbyStateRequestBuilder setLobbyStateParams(SetLobbyStateParams setLobbyStateParams) {
         Utils.checkNotNull(setLobbyStateParams, "setLobbyStateParams");
         this.setLobbyStateParams = setLobbyStateParams;
         return this;
     }
                 
-    public SetLobbyStateRequestBuilder appId(java.lang.String appId) {
+    public SetLobbyStateRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public SetLobbyStateRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public SetLobbyStateRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public SetLobbyStateRequestBuilder roomId(java.lang.String roomId) {
+    public SetLobbyStateRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

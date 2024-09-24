@@ -17,13 +17,13 @@ public class GetBuildsDeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetBuildsDeprecatedRequestBuilder appId(java.lang.String appId) {
+    public GetBuildsDeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetBuildsDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetBuildsDeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

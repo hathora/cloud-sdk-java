@@ -18,19 +18,19 @@ public class GetLobbyInfoByShortCodeRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetLobbyInfoByShortCodeRequestBuilder appId(java.lang.String appId) {
+    public GetLobbyInfoByShortCodeRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetLobbyInfoByShortCodeRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetLobbyInfoByShortCodeRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public GetLobbyInfoByShortCodeRequestBuilder shortCode(java.lang.String shortCode) {
+    public GetLobbyInfoByShortCodeRequestBuilder shortCode(String shortCode) {
         Utils.checkNotNull(shortCode, "shortCode");
         this.shortCode = shortCode;
         return this;

@@ -25,7 +25,7 @@ Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build).
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateBuildV2DeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.CreateBuildParams;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -33,36 +33,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            CreateBuildV2DeprecatedResponse res = sdk.buildsV2().createBuildV2Deprecated()
+        CreateBuildV2DeprecatedResponse res = sdk.buildsV2().createBuildV2Deprecated()
                 .createBuildParams(CreateBuildParams.builder()
                     .buildTag("0.1.14-14c793")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
-            if (res.build().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.build().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -98,7 +87,7 @@ Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) 
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateBuildWithUploadUrlV2DeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.CreateBuildParams;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -106,36 +95,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            CreateBuildWithUploadUrlV2DeprecatedResponse res = sdk.buildsV2().createBuildWithUploadUrlV2Deprecated()
+        CreateBuildWithUploadUrlV2DeprecatedResponse res = sdk.buildsV2().createBuildWithUploadUrlV2Deprecated()
                 .createBuildParams(CreateBuildParams.builder()
                     .buildTag("0.1.14-14c793")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
-            if (res.buildWithUploadUrl().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.buildWithUploadUrl().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -171,7 +149,7 @@ Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) 
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateWithMultipartUploadsV2DeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -179,37 +157,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            CreateWithMultipartUploadsV2DeprecatedResponse res = sdk.buildsV2().createWithMultipartUploadsV2Deprecated()
+        CreateWithMultipartUploadsV2DeprecatedResponse res = sdk.buildsV2().createWithMultipartUploadsV2Deprecated()
                 .createMultipartBuildParams(CreateMultipartBuildParams.builder()
                     .buildSizeInBytes(3146.66d)
+                    .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                     .buildTag("0.1.14-14c793")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
-            if (res.buildWithMultipartUrls().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.buildWithMultipartUrls().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -245,39 +213,28 @@ Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All 
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.DeleteBuildV2DeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            DeleteBuildV2DeprecatedResponse res = sdk.buildsV2().deleteBuildV2Deprecated()
+        DeleteBuildV2DeprecatedResponse res = sdk.buildsV2().deleteBuildV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
                 .call();
 
-            // handle response
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -313,41 +270,30 @@ Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#bui
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetBuildInfoV2DeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetBuildInfoV2DeprecatedResponse res = sdk.buildsV2().getBuildInfoV2Deprecated()
+        GetBuildInfoV2DeprecatedResponse res = sdk.buildsV2().getBuildInfoV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
                 .call();
 
-            if (res.build().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.build().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -383,40 +329,29 @@ Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetBuildsV2DeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetBuildsV2DeprecatedResponse res = sdk.buildsV2().getBuildsV2Deprecated()
+        GetBuildsV2DeprecatedResponse res = sdk.buildsV2().getBuildsV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
-            if (res.classes().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.classes().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -451,7 +386,7 @@ Builds a game server artifact from a tarball you provide. Pass in the `buildId` 
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.RunBuildV2DeprecatedRequestBody;
 import dev.hathora.cloud_sdk.models.operations.RunBuildV2DeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -459,36 +394,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            RunBuildV2DeprecatedResponse res = sdk.buildsV2().runBuildV2Deprecated()
+        RunBuildV2DeprecatedResponse res = sdk.buildsV2().runBuildV2Deprecated()
                 .requestBody(RunBuildV2DeprecatedRequestBody.builder()
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
                 .call();
 
-            if (res.responseStream().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.responseStream().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

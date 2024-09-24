@@ -19,19 +19,19 @@ public class CreateBuildRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateBuildRequestBuilder createMultipartBuildParams(dev.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams createMultipartBuildParams) {
+    public CreateBuildRequestBuilder createMultipartBuildParams(CreateMultipartBuildParams createMultipartBuildParams) {
         Utils.checkNotNull(createMultipartBuildParams, "createMultipartBuildParams");
         this.createMultipartBuildParams = createMultipartBuildParams;
         return this;
     }
                 
-    public CreateBuildRequestBuilder orgId(java.lang.String orgId) {
+    public CreateBuildRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = Optional.of(orgId);
         return this;
     }
 
-    public CreateBuildRequestBuilder orgId(java.util.Optional<java.lang.String> orgId) {
+    public CreateBuildRequestBuilder orgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

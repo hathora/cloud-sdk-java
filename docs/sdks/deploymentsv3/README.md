@@ -22,7 +22,7 @@ Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#dep
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateDeploymentResponse;
 import dev.hathora.cloud_sdk.models.shared.ContainerPort;
 import dev.hathora.cloud_sdk.models.shared.DeploymentConfigV3;
@@ -34,18 +34,18 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            CreateDeploymentResponse res = sdk.deploymentsV3().createDeployment()
+        CreateDeploymentResponse res = sdk.deploymentsV3().createDeployment()
                 .deploymentConfigV3(DeploymentConfigV3.builder()
-                    .buildId("<value>")
+                    .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                     .containerPort(4000)
                     .env(List.of(
                         DeploymentConfigV3Env.builder()
@@ -67,20 +67,9 @@ public class Application {
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
-            if (res.deploymentV3().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.deploymentV3().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -114,41 +103,30 @@ Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entitie
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetDeploymentResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetDeploymentResponse res = sdk.deploymentsV3().getDeployment()
+        GetDeploymentResponse res = sdk.deploymentsV3().getDeployment()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .deploymentId("<value>")
+                .deploymentId("dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                 .call();
 
-            if (res.deploymentV3().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.deploymentV3().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -158,7 +136,7 @@ public class Application {
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | `appId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
-| `deploymentId`                           | *String*                                 | :heavy_check_mark:                       | N/A                                      |                                          |
+| `deploymentId`                           | *String*                                 | :heavy_check_mark:                       | N/A                                      | dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5 |
 
 ### Response
 
@@ -182,40 +160,29 @@ Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-enti
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetDeploymentsResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetDeploymentsResponse res = sdk.deploymentsV3().getDeployments()
+        GetDeploymentsResponse res = sdk.deploymentsV3().getDeployments()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
-            if (res.deploymentsV3Page().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.deploymentsV3Page().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -248,40 +215,29 @@ Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#d
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetLatestDeploymentResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetLatestDeploymentResponse res = sdk.deploymentsV3().getLatestDeployment()
+        GetLatestDeploymentResponse res = sdk.deploymentsV3().getLatestDeployment()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
-            if (res.deploymentV3().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.deploymentV3().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

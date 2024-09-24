@@ -18,13 +18,13 @@ public class InviteUserRequestBuilder {
         this.sdk = sdk;
     }
 
-    public InviteUserRequestBuilder createUserInvite(dev.hathora.cloud_sdk.models.shared.CreateUserInvite createUserInvite) {
+    public InviteUserRequestBuilder createUserInvite(CreateUserInvite createUserInvite) {
         Utils.checkNotNull(createUserInvite, "createUserInvite");
         this.createUserInvite = createUserInvite;
         return this;
     }
 
-    public InviteUserRequestBuilder orgId(java.lang.String orgId) {
+    public InviteUserRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

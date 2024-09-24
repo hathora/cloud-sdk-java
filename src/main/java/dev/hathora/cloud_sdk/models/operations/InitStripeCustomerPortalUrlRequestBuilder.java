@@ -16,7 +16,7 @@ public class InitStripeCustomerPortalUrlRequestBuilder {
         this.sdk = sdk;
     }
 
-    public InitStripeCustomerPortalUrlRequestBuilder request(dev.hathora.cloud_sdk.models.shared.CustomerPortalUrl request) {
+    public InitStripeCustomerPortalUrlRequestBuilder request(CustomerPortalUrl request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

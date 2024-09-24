@@ -19,19 +19,19 @@ public class UpdateAppV1DeprecatedRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UpdateAppV1DeprecatedRequestBuilder appConfig(dev.hathora.cloud_sdk.models.shared.AppConfig appConfig) {
+    public UpdateAppV1DeprecatedRequestBuilder appConfig(AppConfig appConfig) {
         Utils.checkNotNull(appConfig, "appConfig");
         this.appConfig = appConfig;
         return this;
     }
                 
-    public UpdateAppV1DeprecatedRequestBuilder appId(java.lang.String appId) {
+    public UpdateAppV1DeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public UpdateAppV1DeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public UpdateAppV1DeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

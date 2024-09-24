@@ -26,31 +26,31 @@ public class CreateLocalLobbyRequestBuilder {
         return this;
     }
 
-    public CreateLocalLobbyRequestBuilder requestBody(dev.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequestBody requestBody) {
+    public CreateLocalLobbyRequestBuilder requestBody(CreateLocalLobbyRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
                 
-    public CreateLocalLobbyRequestBuilder appId(java.lang.String appId) {
+    public CreateLocalLobbyRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateLocalLobbyRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public CreateLocalLobbyRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public CreateLocalLobbyRequestBuilder roomId(java.lang.String roomId) {
+    public CreateLocalLobbyRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = Optional.of(roomId);
         return this;
     }
 
-    public CreateLocalLobbyRequestBuilder roomId(java.util.Optional<java.lang.String> roomId) {
+    public CreateLocalLobbyRequestBuilder roomId(Optional<String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

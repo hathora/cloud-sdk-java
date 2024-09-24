@@ -18,19 +18,19 @@ public class GetDeploymentRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetDeploymentRequestBuilder appId(java.lang.String appId) {
+    public GetDeploymentRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetDeploymentRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetDeploymentRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public GetDeploymentRequestBuilder deploymentId(java.lang.String deploymentId) {
+    public GetDeploymentRequestBuilder deploymentId(String deploymentId) {
         Utils.checkNotNull(deploymentId, "deploymentId");
         this.deploymentId = deploymentId;
         return this;

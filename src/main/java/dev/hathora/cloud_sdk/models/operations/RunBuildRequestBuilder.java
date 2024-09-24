@@ -18,19 +18,19 @@ public class RunBuildRequestBuilder {
         this.sdk = sdk;
     }
 
-    public RunBuildRequestBuilder buildId(java.lang.String buildId) {
+    public RunBuildRequestBuilder buildId(String buildId) {
         Utils.checkNotNull(buildId, "buildId");
         this.buildId = buildId;
         return this;
     }
                 
-    public RunBuildRequestBuilder orgId(java.lang.String orgId) {
+    public RunBuildRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = Optional.of(orgId);
         return this;
     }
 
-    public RunBuildRequestBuilder orgId(java.util.Optional<java.lang.String> orgId) {
+    public RunBuildRequestBuilder orgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

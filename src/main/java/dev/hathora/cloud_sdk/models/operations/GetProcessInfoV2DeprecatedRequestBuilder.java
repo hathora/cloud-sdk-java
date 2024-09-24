@@ -18,19 +18,19 @@ public class GetProcessInfoV2DeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetProcessInfoV2DeprecatedRequestBuilder appId(java.lang.String appId) {
+    public GetProcessInfoV2DeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetProcessInfoV2DeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetProcessInfoV2DeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public GetProcessInfoV2DeprecatedRequestBuilder processId(java.lang.String processId) {
+    public GetProcessInfoV2DeprecatedRequestBuilder processId(String processId) {
         Utils.checkNotNull(processId, "processId");
         this.processId = processId;
         return this;

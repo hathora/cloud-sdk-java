@@ -18,19 +18,19 @@ public class StopProcessV2DeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public StopProcessV2DeprecatedRequestBuilder appId(java.lang.String appId) {
+    public StopProcessV2DeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public StopProcessV2DeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public StopProcessV2DeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public StopProcessV2DeprecatedRequestBuilder processId(java.lang.String processId) {
+    public StopProcessV2DeprecatedRequestBuilder processId(String processId) {
         Utils.checkNotNull(processId, "processId");
         this.processId = processId;
         return this;

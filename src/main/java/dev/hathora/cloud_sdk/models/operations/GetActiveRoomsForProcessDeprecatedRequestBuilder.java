@@ -18,19 +18,19 @@ public class GetActiveRoomsForProcessDeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetActiveRoomsForProcessDeprecatedRequestBuilder appId(java.lang.String appId) {
+    public GetActiveRoomsForProcessDeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetActiveRoomsForProcessDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetActiveRoomsForProcessDeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public GetActiveRoomsForProcessDeprecatedRequestBuilder processId(java.lang.String processId) {
+    public GetActiveRoomsForProcessDeprecatedRequestBuilder processId(String processId) {
         Utils.checkNotNull(processId, "processId");
         this.processId = processId;
         return this;

@@ -17,13 +17,13 @@ public class GetDeploymentsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetDeploymentsRequestBuilder appId(java.lang.String appId) {
+    public GetDeploymentsRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetDeploymentsRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetDeploymentsRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

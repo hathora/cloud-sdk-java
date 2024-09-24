@@ -15,7 +15,7 @@ public class GetMetricsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetMetricsRequestBuilder request(dev.hathora.cloud_sdk.models.operations.GetMetricsRequest request) {
+    public GetMetricsRequestBuilder request(GetMetricsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

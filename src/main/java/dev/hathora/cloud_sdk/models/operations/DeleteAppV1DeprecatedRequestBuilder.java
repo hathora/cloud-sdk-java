@@ -17,13 +17,13 @@ public class DeleteAppV1DeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public DeleteAppV1DeprecatedRequestBuilder appId(java.lang.String appId) {
+    public DeleteAppV1DeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public DeleteAppV1DeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public DeleteAppV1DeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

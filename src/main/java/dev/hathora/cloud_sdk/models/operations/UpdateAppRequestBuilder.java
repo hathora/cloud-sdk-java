@@ -19,19 +19,19 @@ public class UpdateAppRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UpdateAppRequestBuilder appConfig(dev.hathora.cloud_sdk.models.shared.AppConfig appConfig) {
+    public UpdateAppRequestBuilder appConfig(AppConfig appConfig) {
         Utils.checkNotNull(appConfig, "appConfig");
         this.appConfig = appConfig;
         return this;
     }
                 
-    public UpdateAppRequestBuilder appId(java.lang.String appId) {
+    public UpdateAppRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public UpdateAppRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public UpdateAppRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

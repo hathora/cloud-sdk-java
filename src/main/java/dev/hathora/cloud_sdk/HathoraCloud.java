@@ -8,6 +8,7 @@ import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.RetryConfig;
 import dev.hathora.cloud_sdk.utils.SpeakeasyHTTPClient;
+import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -317,7 +318,7 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl, Map<String, String> params) {
-            this.sdkConfiguration.serverUrl = dev.hathora.cloud_sdk.utils.Utils.templateUrl(serverUrl, params);
+            this.sdkConfiguration.serverUrl = Utils.templateUrl(serverUrl, params);
             return this;
         }
         

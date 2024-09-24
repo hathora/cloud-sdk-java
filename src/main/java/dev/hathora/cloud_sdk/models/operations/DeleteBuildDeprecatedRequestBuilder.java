@@ -19,13 +19,13 @@ public class DeleteBuildDeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public DeleteBuildDeprecatedRequestBuilder appId(java.lang.String appId) {
+    public DeleteBuildDeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public DeleteBuildDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public DeleteBuildDeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

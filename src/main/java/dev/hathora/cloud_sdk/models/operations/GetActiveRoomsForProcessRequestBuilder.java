@@ -18,19 +18,19 @@ public class GetActiveRoomsForProcessRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetActiveRoomsForProcessRequestBuilder appId(java.lang.String appId) {
+    public GetActiveRoomsForProcessRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetActiveRoomsForProcessRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetActiveRoomsForProcessRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public GetActiveRoomsForProcessRequestBuilder processId(java.lang.String processId) {
+    public GetActiveRoomsForProcessRequestBuilder processId(String processId) {
         Utils.checkNotNull(processId, "processId");
         this.processId = processId;
         return this;

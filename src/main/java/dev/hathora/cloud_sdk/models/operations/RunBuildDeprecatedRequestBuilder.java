@@ -20,19 +20,19 @@ public class RunBuildDeprecatedRequestBuilder {
         this.sdk = sdk;
     }
 
-    public RunBuildDeprecatedRequestBuilder requestBody(dev.hathora.cloud_sdk.models.operations.RunBuildDeprecatedRequestBody requestBody) {
+    public RunBuildDeprecatedRequestBuilder requestBody(RunBuildDeprecatedRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
                 
-    public RunBuildDeprecatedRequestBuilder appId(java.lang.String appId) {
+    public RunBuildDeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public RunBuildDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public RunBuildDeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

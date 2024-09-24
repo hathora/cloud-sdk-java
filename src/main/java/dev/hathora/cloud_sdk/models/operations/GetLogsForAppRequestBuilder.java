@@ -15,7 +15,7 @@ public class GetLogsForAppRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetLogsForAppRequestBuilder request(dev.hathora.cloud_sdk.models.operations.GetLogsForAppRequest request) {
+    public GetLogsForAppRequestBuilder request(GetLogsForAppRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

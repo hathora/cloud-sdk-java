@@ -21,19 +21,19 @@ public class CreateDeploymentV2DeprecatedRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateDeploymentV2DeprecatedRequestBuilder deploymentConfigV2(dev.hathora.cloud_sdk.models.shared.DeploymentConfigV2 deploymentConfigV2) {
+    public CreateDeploymentV2DeprecatedRequestBuilder deploymentConfigV2(DeploymentConfigV2 deploymentConfigV2) {
         Utils.checkNotNull(deploymentConfigV2, "deploymentConfigV2");
         this.deploymentConfigV2 = deploymentConfigV2;
         return this;
     }
                 
-    public CreateDeploymentV2DeprecatedRequestBuilder appId(java.lang.String appId) {
+    public CreateDeploymentV2DeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateDeploymentV2DeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public CreateDeploymentV2DeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

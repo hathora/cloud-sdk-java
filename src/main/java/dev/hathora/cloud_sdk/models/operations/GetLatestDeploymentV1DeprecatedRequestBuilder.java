@@ -17,13 +17,13 @@ public class GetLatestDeploymentV1DeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetLatestDeploymentV1DeprecatedRequestBuilder appId(java.lang.String appId) {
+    public GetLatestDeploymentV1DeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetLatestDeploymentV1DeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetLatestDeploymentV1DeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

@@ -20,41 +20,30 @@ Download entire log file for a stopped process.
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.DownloadLogForProcessResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            DownloadLogForProcessResponse res = sdk.logsV1().downloadLogForProcess()
+        DownloadLogForProcessResponse res = sdk.logsV1().downloadLogForProcess()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
 
-            if (res.responseStream().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.responseStream().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -90,7 +79,7 @@ Returns a stream of logs for an [application](https://hathora.dev/docs/concepts/
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetLogsForAppRequest;
 import dev.hathora.cloud_sdk.models.operations.GetLogsForAppResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -98,37 +87,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetLogsForAppRequest req = GetLogsForAppRequest.builder()
+        GetLogsForAppRequest req = GetLogsForAppRequest.builder()
                 .tailLines(100)
                 .build();
 
-            GetLogsForAppResponse res = sdk.logsV1().getLogsForApp()
+        GetLogsForAppResponse res = sdk.logsV1().getLogsForApp()
                 .request(req)
                 .call();
 
-            if (res.responseStream().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.responseStream().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -163,7 +141,7 @@ Returns a stream of logs for a [deployment](https://hathora.dev/docs/concepts/ha
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetLogsForDeploymentRequest;
 import dev.hathora.cloud_sdk.models.operations.GetLogsForDeploymentResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -171,38 +149,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetLogsForDeploymentRequest req = GetLogsForDeploymentRequest.builder()
+        GetLogsForDeploymentRequest req = GetLogsForDeploymentRequest.builder()
                 .deploymentId(1)
                 .tailLines(100)
                 .build();
 
-            GetLogsForDeploymentResponse res = sdk.logsV1().getLogsForDeployment()
+        GetLogsForDeploymentResponse res = sdk.logsV1().getLogsForDeployment()
                 .request(req)
                 .call();
 
-            if (res.responseStream().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.responseStream().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -235,7 +202,7 @@ Returns a stream of logs for a [process](https://hathora.dev/docs/concepts/hatho
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetLogsForProcessRequest;
 import dev.hathora.cloud_sdk.models.operations.GetLogsForProcessResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -243,38 +210,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            GetLogsForProcessRequest req = GetLogsForProcessRequest.builder()
+        GetLogsForProcessRequest req = GetLogsForProcessRequest.builder()
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .tailLines(100)
                 .build();
 
-            GetLogsForProcessResponse res = sdk.logsV1().getLogsForProcess()
+        GetLogsForProcessResponse res = sdk.logsV1().getLogsForProcess()
                 .request(req)
                 .call();
 
-            if (res.responseStream().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.responseStream().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

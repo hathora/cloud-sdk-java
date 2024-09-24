@@ -16,7 +16,7 @@ public class GetOrgPendingInvitesRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetOrgPendingInvitesRequestBuilder orgId(java.lang.String orgId) {
+    public GetOrgPendingInvitesRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

@@ -19,19 +19,19 @@ public class CreateDeploymentRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateDeploymentRequestBuilder deploymentConfigV3(dev.hathora.cloud_sdk.models.shared.DeploymentConfigV3 deploymentConfigV3) {
+    public CreateDeploymentRequestBuilder deploymentConfigV3(DeploymentConfigV3 deploymentConfigV3) {
         Utils.checkNotNull(deploymentConfigV3, "deploymentConfigV3");
         this.deploymentConfigV3 = deploymentConfigV3;
         return this;
     }
                 
-    public CreateDeploymentRequestBuilder appId(java.lang.String appId) {
+    public CreateDeploymentRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateDeploymentRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public CreateDeploymentRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

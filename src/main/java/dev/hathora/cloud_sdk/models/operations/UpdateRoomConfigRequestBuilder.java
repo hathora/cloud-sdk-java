@@ -20,25 +20,25 @@ public class UpdateRoomConfigRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UpdateRoomConfigRequestBuilder updateRoomConfigParams(dev.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams updateRoomConfigParams) {
+    public UpdateRoomConfigRequestBuilder updateRoomConfigParams(UpdateRoomConfigParams updateRoomConfigParams) {
         Utils.checkNotNull(updateRoomConfigParams, "updateRoomConfigParams");
         this.updateRoomConfigParams = updateRoomConfigParams;
         return this;
     }
                 
-    public UpdateRoomConfigRequestBuilder appId(java.lang.String appId) {
+    public UpdateRoomConfigRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public UpdateRoomConfigRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public UpdateRoomConfigRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public UpdateRoomConfigRequestBuilder roomId(java.lang.String roomId) {
+    public UpdateRoomConfigRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

@@ -35,7 +35,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:2.9.15'
+implementation 'dev.hathora:cloud-sdk:2.10.0'
 ```
 
 Maven:
@@ -43,7 +43,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>2.9.15</version>
+    <version>2.10.0</version>
 </dependency>
 ```
 
@@ -71,8 +71,8 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
-import dev.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
 import dev.hathora.cloud_sdk.models.shared.AppConfig;
 import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -80,39 +80,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            AppConfig req = AppConfig.builder()
-                .appName("minecraft")
-                .authConfiguration(AuthConfiguration.builder()
+        CreateAppResponse res = sdk.appsV2().createApp()
+                .appConfig(AppConfig.builder()
+                    .appName("minecraft")
+                    .authConfiguration(AuthConfiguration.builder()
+                        .build())
                     .build())
-                .build();
-
-            CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()
-                .request(req)
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.application().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.application().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -319,7 +307,7 @@ Deleting a build that is actively build used by an app's deployment will cause f
 
 A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `appId` to `"app-af469a92-5b45-4565-b3c4-b79878de67d2"` at SDK initialization and then you do not have to pass the same value on calls to operations like `deleteAppV1Deprecated`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `appId` to `"app-af469a92-5b45-4565-b3c4-b79878de67d2"` at SDK initialization and then you do not have to pass the same value on calls to operations like `deleteApp`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -337,38 +325,27 @@ The following global parameter is available.
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
-import dev.hathora.cloud_sdk.models.operations.DeleteAppV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.DeleteAppResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            DeleteAppV1DeprecatedResponse res = sdk.appsV1().deleteAppV1Deprecated()
+        DeleteAppResponse res = sdk.appsV2().deleteApp()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
-            // handle response
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -381,7 +358,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,422,429,500        | application/json       |
+| models/errors/ApiError | 401,404,422,429,500    | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ### Example
@@ -390,8 +367,8 @@ Handling errors in this SDK should largely match your expectations.  All operati
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
-import dev.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
 import dev.hathora.cloud_sdk.models.shared.AppConfig;
 import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -399,39 +376,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            AppConfig req = AppConfig.builder()
-                .appName("minecraft")
-                .authConfiguration(AuthConfiguration.builder()
+        CreateAppResponse res = sdk.appsV2().createApp()
+                .appConfig(AppConfig.builder()
+                    .appName("minecraft")
+                    .authConfiguration(AuthConfiguration.builder()
+                        .build())
                     .build())
-                .build();
-
-            CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()
-                .request(req)
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.application().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.application().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -455,8 +420,8 @@ You can override the default server globally by passing a server index to the `s
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
-import dev.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
 import dev.hathora.cloud_sdk.models.shared.AppConfig;
 import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -464,40 +429,28 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .serverIndex(1)
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            AppConfig req = AppConfig.builder()
-                .appName("minecraft")
-                .authConfiguration(AuthConfiguration.builder()
+        CreateAppResponse res = sdk.appsV2().createApp()
+                .appConfig(AppConfig.builder()
+                    .appName("minecraft")
+                    .authConfiguration(AuthConfiguration.builder()
+                        .build())
                     .build())
-                .build();
-
-            CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()
-                .request(req)
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.application().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.application().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -510,8 +463,8 @@ The default server can also be overridden globally by passing a URL to the `serv
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
-import dev.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
 import dev.hathora.cloud_sdk.models.shared.AppConfig;
 import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -519,40 +472,28 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .serverURL("https://api.hathora.dev")
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            AppConfig req = AppConfig.builder()
-                .appName("minecraft")
-                .authConfiguration(AuthConfiguration.builder()
+        CreateAppResponse res = sdk.appsV2().createApp()
+                .appConfig(AppConfig.builder()
+                    .appName("minecraft")
+                    .authConfiguration(AuthConfiguration.builder()
+                        .build())
                     .build())
-                .build();
-
-            CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()
-                .request(req)
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.application().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.application().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -574,8 +515,8 @@ You can set the security parameters through the `security` builder method when i
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
-import dev.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
 import dev.hathora.cloud_sdk.models.shared.AppConfig;
 import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Security;
@@ -583,39 +524,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            AppConfig req = AppConfig.builder()
-                .appName("minecraft")
-                .authConfiguration(AuthConfiguration.builder()
+        CreateAppResponse res = sdk.appsV2().createApp()
+                .appConfig(AppConfig.builder()
+                    .appName("minecraft")
+                    .authConfiguration(AuthConfiguration.builder()
+                        .build())
                     .build())
-                .build();
-
-            CreateAppV1DeprecatedResponse res = sdk.appsV1().createAppV1Deprecated()
-                .request(req)
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.application().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.application().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -627,43 +556,43 @@ Some operations in this SDK require the security scheme to be specified at the r
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
-import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedResponse;
-import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedSecurity;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.CreateLobbyRequest;
+import dev.hathora.cloud_sdk.models.operations.CreateLobbyResponse;
+import dev.hathora.cloud_sdk.models.operations.CreateLobbySecurity;
+import dev.hathora.cloud_sdk.models.shared.CreateLobbyV3Params;
+import dev.hathora.cloud_sdk.models.shared.LobbyVisibility;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        CreateLobbyRequest req = CreateLobbyRequest.builder()
+                .createLobbyV3Params(CreateLobbyV3Params.builder()
+                    .region(Region.SEATTLE)
+                    .visibility(LobbyVisibility.PRIVATE)
+                    .roomConfig("{\"name\":\"my-room\"}")
+                    .build())
+                .roomId("2swovpy1fnunu")
+                .shortCode("LFG4")
                 .build();
 
-            CreatePrivateLobbyDeprecatedResponse res = sdk.lobbiesV1().createPrivateLobbyDeprecated()
-                .security(CreatePrivateLobbyDeprecatedSecurity.builder()
+        CreateLobbyResponse res = sdk.lobbiesV3().createLobby()
+                .request(req)
+                .security(CreateLobbySecurity.builder()
                     .playerAuth("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .local(false)
-                .region(Region.LONDON)
                 .call();
 
-            if (res.roomId().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.lobbyV3().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

@@ -16,7 +16,7 @@ public class CreateLobbyRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateLobbyRequestBuilder request(dev.hathora.cloud_sdk.models.operations.CreateLobbyRequest request) {
+    public CreateLobbyRequestBuilder request(CreateLobbyRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

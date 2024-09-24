@@ -16,7 +16,7 @@ public class CreateAppV1DeprecatedRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateAppV1DeprecatedRequestBuilder request(dev.hathora.cloud_sdk.models.shared.AppConfig request) {
+    public CreateAppV1DeprecatedRequestBuilder request(AppConfig request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

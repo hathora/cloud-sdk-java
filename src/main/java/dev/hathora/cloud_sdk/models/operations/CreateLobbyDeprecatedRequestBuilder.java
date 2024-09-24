@@ -27,31 +27,31 @@ public class CreateLobbyDeprecatedRequestBuilder {
         return this;
     }
 
-    public CreateLobbyDeprecatedRequestBuilder createLobbyParams(dev.hathora.cloud_sdk.models.shared.CreateLobbyParams createLobbyParams) {
+    public CreateLobbyDeprecatedRequestBuilder createLobbyParams(CreateLobbyParams createLobbyParams) {
         Utils.checkNotNull(createLobbyParams, "createLobbyParams");
         this.createLobbyParams = createLobbyParams;
         return this;
     }
                 
-    public CreateLobbyDeprecatedRequestBuilder appId(java.lang.String appId) {
+    public CreateLobbyDeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public CreateLobbyDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public CreateLobbyDeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public CreateLobbyDeprecatedRequestBuilder roomId(java.lang.String roomId) {
+    public CreateLobbyDeprecatedRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = Optional.of(roomId);
         return this;
     }
 
-    public CreateLobbyDeprecatedRequestBuilder roomId(java.util.Optional<java.lang.String> roomId) {
+    public CreateLobbyDeprecatedRequestBuilder roomId(Optional<String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

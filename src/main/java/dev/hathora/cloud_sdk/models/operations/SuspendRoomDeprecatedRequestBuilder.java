@@ -18,19 +18,19 @@ public class SuspendRoomDeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public SuspendRoomDeprecatedRequestBuilder appId(java.lang.String appId) {
+    public SuspendRoomDeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public SuspendRoomDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public SuspendRoomDeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public SuspendRoomDeprecatedRequestBuilder roomId(java.lang.String roomId) {
+    public SuspendRoomDeprecatedRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

@@ -18,19 +18,19 @@ public class DeleteBuildRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeleteBuildRequestBuilder buildId(java.lang.String buildId) {
+    public DeleteBuildRequestBuilder buildId(String buildId) {
         Utils.checkNotNull(buildId, "buildId");
         this.buildId = buildId;
         return this;
     }
                 
-    public DeleteBuildRequestBuilder orgId(java.lang.String orgId) {
+    public DeleteBuildRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = Optional.of(orgId);
         return this;
     }
 
-    public DeleteBuildRequestBuilder orgId(java.util.Optional<java.lang.String> orgId) {
+    public DeleteBuildRequestBuilder orgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

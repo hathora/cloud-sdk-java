@@ -19,25 +19,25 @@ public class GetStoppedProcessesRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetStoppedProcessesRequestBuilder appId(java.lang.String appId) {
+    public GetStoppedProcessesRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetStoppedProcessesRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetStoppedProcessesRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public GetStoppedProcessesRequestBuilder region(dev.hathora.cloud_sdk.models.shared.Region region) {
+    public GetStoppedProcessesRequestBuilder region(Region region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.of(region);
         return this;
     }
 
-    public GetStoppedProcessesRequestBuilder region(java.util.Optional<? extends dev.hathora.cloud_sdk.models.shared.Region> region) {
+    public GetStoppedProcessesRequestBuilder region(Optional<? extends Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;

@@ -17,13 +17,13 @@ public class LoginAnonymousRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public LoginAnonymousRequestBuilder appId(java.lang.String appId) {
+    public LoginAnonymousRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public LoginAnonymousRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public LoginAnonymousRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;

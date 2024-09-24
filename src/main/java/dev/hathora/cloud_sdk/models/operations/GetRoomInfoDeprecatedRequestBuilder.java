@@ -18,19 +18,19 @@ public class GetRoomInfoDeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetRoomInfoDeprecatedRequestBuilder appId(java.lang.String appId) {
+    public GetRoomInfoDeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetRoomInfoDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetRoomInfoDeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public GetRoomInfoDeprecatedRequestBuilder roomId(java.lang.String roomId) {
+    public GetRoomInfoDeprecatedRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

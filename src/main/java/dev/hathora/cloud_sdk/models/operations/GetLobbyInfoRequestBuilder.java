@@ -18,19 +18,19 @@ public class GetLobbyInfoRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetLobbyInfoRequestBuilder appId(java.lang.String appId) {
+    public GetLobbyInfoRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetLobbyInfoRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetLobbyInfoRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public GetLobbyInfoRequestBuilder roomId(java.lang.String roomId) {
+    public GetLobbyInfoRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

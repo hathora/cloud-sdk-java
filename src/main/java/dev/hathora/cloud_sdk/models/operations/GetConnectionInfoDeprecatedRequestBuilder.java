@@ -18,19 +18,19 @@ public class GetConnectionInfoDeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetConnectionInfoDeprecatedRequestBuilder appId(java.lang.String appId) {
+    public GetConnectionInfoDeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public GetConnectionInfoDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public GetConnectionInfoDeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public GetConnectionInfoDeprecatedRequestBuilder roomId(java.lang.String roomId) {
+    public GetConnectionInfoDeprecatedRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

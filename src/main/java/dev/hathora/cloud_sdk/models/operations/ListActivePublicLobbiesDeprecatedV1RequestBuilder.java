@@ -26,13 +26,13 @@ public class ListActivePublicLobbiesDeprecatedV1RequestBuilder {
         this.sdk = sdk;
     }
                 
-    public ListActivePublicLobbiesDeprecatedV1RequestBuilder appId(java.lang.String appId) {
+    public ListActivePublicLobbiesDeprecatedV1RequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public ListActivePublicLobbiesDeprecatedV1RequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public ListActivePublicLobbiesDeprecatedV1RequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -44,19 +44,19 @@ public class ListActivePublicLobbiesDeprecatedV1RequestBuilder {
         return this;
     }
 
-    public ListActivePublicLobbiesDeprecatedV1RequestBuilder local(java.util.Optional<java.lang.Boolean> local) {
+    public ListActivePublicLobbiesDeprecatedV1RequestBuilder local(Optional<Boolean> local) {
         Utils.checkNotNull(local, "local");
         this.local = local;
         return this;
     }
                 
-    public ListActivePublicLobbiesDeprecatedV1RequestBuilder region(dev.hathora.cloud_sdk.models.shared.Region region) {
+    public ListActivePublicLobbiesDeprecatedV1RequestBuilder region(Region region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.of(region);
         return this;
     }
 
-    public ListActivePublicLobbiesDeprecatedV1RequestBuilder region(java.util.Optional<? extends dev.hathora.cloud_sdk.models.shared.Region> region) {
+    public ListActivePublicLobbiesDeprecatedV1RequestBuilder region(Optional<? extends Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;

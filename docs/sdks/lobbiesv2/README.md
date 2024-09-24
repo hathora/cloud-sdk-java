@@ -25,7 +25,7 @@ Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathor
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedSecurity;
 import dev.hathora.cloud_sdk.models.shared.CreateLobbyParams;
@@ -35,13 +35,13 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+    public static void main(String[] args) throws ApiError, Exception {
 
-            CreateLobbyDeprecatedResponse res = sdk.lobbiesV2().createLobbyDeprecated()
+        HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        CreateLobbyDeprecatedResponse res = sdk.lobbiesV2().createLobbyDeprecated()
                 .security(CreateLobbyDeprecatedSecurity.builder()
                     .playerAuth("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
@@ -54,20 +54,9 @@ public class Application {
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.lobby().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.lobby().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -103,7 +92,7 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequestBody;
 import dev.hathora.cloud_sdk.models.operations.CreateLocalLobbyResponse;
 import dev.hathora.cloud_sdk.models.operations.CreateLocalLobbySecurity;
@@ -112,13 +101,13 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+    public static void main(String[] args) throws ApiError, Exception {
 
-            CreateLocalLobbyResponse res = sdk.lobbiesV2().createLocalLobby()
+        HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        CreateLocalLobbyResponse res = sdk.lobbiesV2().createLocalLobby()
                 .security(CreateLocalLobbySecurity.builder()
                     .playerAuth("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
@@ -130,20 +119,9 @@ public class Application {
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.lobby().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.lobby().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -179,7 +157,7 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequestBody;
 import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyResponse;
 import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbySecurity;
@@ -188,13 +166,13 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+    public static void main(String[] args) throws ApiError, Exception {
 
-            CreatePrivateLobbyResponse res = sdk.lobbiesV2().createPrivateLobby()
+        HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        CreatePrivateLobbyResponse res = sdk.lobbiesV2().createPrivateLobby()
                 .security(CreatePrivateLobbySecurity.builder()
                     .playerAuth("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
@@ -206,20 +184,9 @@ public class Application {
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.lobby().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.lobby().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -255,7 +222,7 @@ public class Application {
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequestBody;
 import dev.hathora.cloud_sdk.models.operations.CreatePublicLobbyResponse;
 import dev.hathora.cloud_sdk.models.operations.CreatePublicLobbySecurity;
@@ -264,13 +231,13 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+    public static void main(String[] args) throws ApiError, Exception {
 
-            CreatePublicLobbyResponse res = sdk.lobbiesV2().createPublicLobby()
+        HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        CreatePublicLobbyResponse res = sdk.lobbiesV2().createPublicLobby()
                 .security(CreatePublicLobbySecurity.builder()
                     .playerAuth("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
@@ -282,20 +249,9 @@ public class Application {
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.lobby().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.lobby().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -333,37 +289,26 @@ Get details for a lobby.
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetLobbyInfoResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+    public static void main(String[] args) throws ApiError, Exception {
 
-            GetLobbyInfoResponse res = sdk.lobbiesV2().getLobbyInfo()
+        HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        GetLobbyInfoResponse res = sdk.lobbiesV2().getLobbyInfo()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.lobby().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.lobby().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -399,38 +344,27 @@ Get all active lobbies for a an [application](https://hathora.dev/docs/concepts/
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV2Response;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+    public static void main(String[] args) throws ApiError, Exception {
 
-            ListActivePublicLobbiesDeprecatedV2Response res = sdk.lobbiesV2().listActivePublicLobbiesDeprecatedV2()
+        HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        ListActivePublicLobbiesDeprecatedV2Response res = sdk.lobbiesV2().listActivePublicLobbiesDeprecatedV2()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .region(Region.FRANKFURT)
                 .call();
 
-            if (res.classes().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.classes().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -466,7 +400,7 @@ Set the state of a lobby. State is intended to be set by the server and must be 
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.SetLobbyStateResponse;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import dev.hathora.cloud_sdk.models.shared.SetLobbyStateParams;
@@ -474,16 +408,16 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+            .build();
 
-            SetLobbyStateResponse res = sdk.lobbiesV2().setLobbyState()
+        SetLobbyStateResponse res = sdk.lobbiesV2().setLobbyState()
                 .setLobbyStateParams(SetLobbyStateParams.builder()
                     .state("<value>")
                     .build())
@@ -491,20 +425,9 @@ public class Application {
                 .roomId("2swovpy1fnunu")
                 .call();
 
-            if (res.lobby().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_sdk.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.lobby().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

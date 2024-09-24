@@ -19,25 +19,25 @@ public class ListActivePublicLobbiesRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public ListActivePublicLobbiesRequestBuilder appId(java.lang.String appId) {
+    public ListActivePublicLobbiesRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public ListActivePublicLobbiesRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public ListActivePublicLobbiesRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
                 
-    public ListActivePublicLobbiesRequestBuilder region(dev.hathora.cloud_sdk.models.shared.Region region) {
+    public ListActivePublicLobbiesRequestBuilder region(Region region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.of(region);
         return this;
     }
 
-    public ListActivePublicLobbiesRequestBuilder region(java.util.Optional<? extends dev.hathora.cloud_sdk.models.shared.Region> region) {
+    public ListActivePublicLobbiesRequestBuilder region(Optional<? extends Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;

@@ -15,7 +15,7 @@ public class GetLogsForDeploymentRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetLogsForDeploymentRequestBuilder request(dev.hathora.cloud_sdk.models.operations.GetLogsForDeploymentRequest request) {
+    public GetLogsForDeploymentRequestBuilder request(GetLogsForDeploymentRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

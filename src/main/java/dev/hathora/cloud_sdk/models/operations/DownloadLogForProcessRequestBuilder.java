@@ -18,19 +18,19 @@ public class DownloadLogForProcessRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public DownloadLogForProcessRequestBuilder appId(java.lang.String appId) {
+    public DownloadLogForProcessRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public DownloadLogForProcessRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public DownloadLogForProcessRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public DownloadLogForProcessRequestBuilder processId(java.lang.String processId) {
+    public DownloadLogForProcessRequestBuilder processId(String processId) {
         Utils.checkNotNull(processId, "processId");
         this.processId = processId;
         return this;

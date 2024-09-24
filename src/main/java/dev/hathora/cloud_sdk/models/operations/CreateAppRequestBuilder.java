@@ -19,19 +19,19 @@ public class CreateAppRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateAppRequestBuilder appConfig(dev.hathora.cloud_sdk.models.shared.AppConfig appConfig) {
+    public CreateAppRequestBuilder appConfig(AppConfig appConfig) {
         Utils.checkNotNull(appConfig, "appConfig");
         this.appConfig = appConfig;
         return this;
     }
                 
-    public CreateAppRequestBuilder orgId(java.lang.String orgId) {
+    public CreateAppRequestBuilder orgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = Optional.of(orgId);
         return this;
     }
 
-    public CreateAppRequestBuilder orgId(java.util.Optional<java.lang.String> orgId) {
+    public CreateAppRequestBuilder orgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;

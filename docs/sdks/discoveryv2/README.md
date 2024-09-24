@@ -19,32 +19,23 @@ Returns an array of all regions with a host and port that a client can directly 
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
 import dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsResponse;
 import java.lang.Exception;
 
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
 
-            GetPingServiceEndpointsResponse res = sdk.discoveryV2().getPingServiceEndpoints()
+        HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        GetPingServiceEndpointsResponse res = sdk.discoveryV2().getPingServiceEndpoints()
                 .call();
 
-            if (res.pingEndpoints().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.pingEndpoints().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

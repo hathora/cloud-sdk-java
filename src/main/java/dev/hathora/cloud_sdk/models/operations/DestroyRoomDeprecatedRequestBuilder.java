@@ -18,19 +18,19 @@ public class DestroyRoomDeprecatedRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public DestroyRoomDeprecatedRequestBuilder appId(java.lang.String appId) {
+    public DestroyRoomDeprecatedRequestBuilder appId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.of(appId);
         return this;
     }
 
-    public DestroyRoomDeprecatedRequestBuilder appId(java.util.Optional<java.lang.String> appId) {
+    public DestroyRoomDeprecatedRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    public DestroyRoomDeprecatedRequestBuilder roomId(java.lang.String roomId) {
+    public DestroyRoomDeprecatedRequestBuilder roomId(String roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;

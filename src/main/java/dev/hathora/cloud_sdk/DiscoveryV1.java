@@ -64,7 +64,7 @@ public class DiscoveryV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
