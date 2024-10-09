@@ -70,11 +70,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,422,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 422, 429, 500     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~deleteAppV1Deprecated~~
 
@@ -125,11 +124,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429, 500     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~getAppInfoV1Deprecated~~
 
@@ -182,11 +180,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~getAppsV1Deprecated~~
 
@@ -232,11 +229,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 429               | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~updateAppV1Deprecated~~
 
@@ -297,7 +293,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,422,429,500    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 422, 429, 500 | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |

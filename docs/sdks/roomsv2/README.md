@@ -45,7 +45,7 @@ public class Application {
 
         CreateRoomResponse res = sdk.roomsV2().createRoom()
                 .createRoomParams(CreateRoomParams.builder()
-                    .region(Region.SAO_PAULO)
+                    .region(Region.DALLAS)
                     .clientIPs(List.of(
                         "123.123.123.123"))
                     .roomConfig("{\"name\":\"my-room\"}")
@@ -75,11 +75,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## destroyRoom
 
@@ -130,11 +129,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429, 500     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getActiveRoomsForProcess
 
@@ -187,11 +185,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getConnectionInfo
 
@@ -240,11 +237,10 @@ public class Application {
 
 ### Errors
 
-| Error Object            | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| models/errors/ApiError  | 400,402,404,422,429,500 | application/json        |
-| models/errors/SDKError  | 4xx-5xx                 | \*\/*                   |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 400, 402, 404, 422, 429, 500 | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
 
 ## getInactiveRoomsForProcess
 
@@ -297,11 +293,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getRoomInfo
 
@@ -354,11 +349,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,422,429        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~suspendRoomV2Deprecated~~
 
@@ -411,11 +405,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429, 500     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## updateRoomConfig
 
@@ -469,7 +462,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/ApiError | 401, 404, 429, 500     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

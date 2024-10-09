@@ -47,7 +47,7 @@ public class Application {
                     .build())
                 .createLobbyParams(CreateLobbyParams.builder()
                     .initialConfig("<value>")
-                    .region(Region.TOKYO)
+                    .region(Region.SAO_PAULO)
                     .visibility(LobbyVisibility.PRIVATE)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -76,11 +76,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## ~~createLocalLobby~~
 
@@ -113,7 +112,7 @@ public class Application {
                     .build())
                 .requestBody(CreateLocalLobbyRequestBody.builder()
                     .initialConfig("<value>")
-                    .region(Region.SAO_PAULO)
+                    .region(Region.JOHANNESBURG)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
@@ -141,11 +140,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## ~~createPrivateLobby~~
 
@@ -178,7 +176,7 @@ public class Application {
                     .build())
                 .requestBody(CreatePrivateLobbyRequestBody.builder()
                     .initialConfig("<value>")
-                    .region(Region.CHICAGO)
+                    .region(Region.LONDON)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
@@ -206,11 +204,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## ~~createPublicLobby~~
 
@@ -243,7 +240,7 @@ public class Application {
                     .build())
                 .requestBody(CreatePublicLobbyRequestBody.builder()
                     .initialConfig("<value>")
-                    .region(Region.SAO_PAULO)
+                    .region(Region.JOHANNESBURG)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
@@ -271,11 +268,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## ~~getLobbyInfo~~
 
@@ -326,11 +322,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 404,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 404, 429               | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~listActivePublicLobbiesDeprecatedV2~~
 
@@ -359,7 +354,7 @@ public class Application {
 
         ListActivePublicLobbiesDeprecatedV2Response res = sdk.lobbiesV2().listActivePublicLobbiesDeprecatedV2()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.FRANKFURT)
+                .region(Region.MUMBAI)
                 .call();
 
         if (res.classes().isPresent()) {
@@ -382,11 +377,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 429               | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~setLobbyState~~
 
@@ -446,7 +440,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,422,429        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

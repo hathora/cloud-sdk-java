@@ -64,11 +64,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429, 500     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~getRunningProcesses~~
 
@@ -101,7 +100,7 @@ public class Application {
 
         GetRunningProcessesResponse res = sdk.processesV1().getRunningProcesses()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.TOKYO)
+                .region(Region.SAO_PAULO)
                 .call();
 
         if (res.classes().isPresent()) {
@@ -124,11 +123,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~getStoppedProcesses~~
 
@@ -161,7 +159,7 @@ public class Application {
 
         GetStoppedProcessesResponse res = sdk.processesV1().getStoppedProcesses()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.SYDNEY)
+                .region(Region.DALLAS)
                 .call();
 
         if (res.classes().isPresent()) {
@@ -184,7 +182,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

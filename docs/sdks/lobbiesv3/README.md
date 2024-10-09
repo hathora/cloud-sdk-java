@@ -74,11 +74,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## getLobbyInfoByRoomId
 
@@ -127,11 +126,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 404,422,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 404, 422, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getLobbyInfoByShortCode
 
@@ -180,11 +178,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 404,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 404, 429               | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## listActivePublicLobbies
 
@@ -211,7 +208,7 @@ public class Application {
 
         ListActivePublicLobbiesResponse res = sdk.lobbiesV3().listActivePublicLobbies()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.SEATTLE)
+                .region(Region.LOS_ANGELES)
                 .call();
 
         if (res.classes().isPresent()) {
@@ -234,7 +231,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/ApiError | 401, 429               | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

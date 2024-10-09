@@ -42,7 +42,7 @@ public class Application {
 
         CreateProcessResponse res = sdk.processesV3().createProcess()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.TOKYO)
+                .region(Region.SAO_PAULO)
                 .call();
 
         if (res.processV3().isPresent()) {
@@ -65,11 +65,10 @@ public class Application {
 
 ### Errors
 
-| Error Object            | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| models/errors/ApiError  | 401,402,404,422,429,500 | application/json        |
-| models/errors/SDKError  | 4xx-5xx                 | \*\/*                   |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 401, 402, 404, 422, 429, 500 | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
 
 ## getLatestProcesses
 
@@ -103,7 +102,7 @@ public class Application {
         GetLatestProcessesResponse res = sdk.processesV3().getLatestProcesses()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .region(List.of(
-                    Region.TOKYO))
+                    Region.SYDNEY))
                 .status(List.of(
                     ProcessStatus.DRAINING))
                 .call();
@@ -129,11 +128,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getProcess
 
@@ -186,11 +184,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getProcessesCountExperimental
 
@@ -224,7 +221,7 @@ public class Application {
         GetProcessesCountExperimentalResponse res = sdk.processesV3().getProcessesCountExperimental()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .region(List.of(
-                    Region.FRANKFURT))
+                    Region.MUMBAI))
                 .status(List.of(
                     ProcessStatus.STOPPING))
                 .call();
@@ -250,11 +247,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## stopProcess
 
@@ -305,7 +301,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/ApiError | 401, 404, 429, 500     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

@@ -39,7 +39,7 @@ public class Application {
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .local(false)
-                .region(Region.LONDON)
+                .region(Region.FRANKFURT)
                 .call();
 
         if (res.roomId().isPresent()) {
@@ -64,11 +64,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## ~~createPublicLobbyDeprecated~~
 
@@ -100,7 +99,7 @@ public class Application {
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .local(false)
-                .region(Region.FRANKFURT)
+                .region(Region.MUMBAI)
                 .call();
 
         if (res.roomId().isPresent()) {
@@ -125,11 +124,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ApiError      | 400,401,402,404,422,429,500 | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## ~~listActivePublicLobbiesDeprecatedV1~~
 
@@ -157,7 +155,7 @@ public class Application {
         ListActivePublicLobbiesDeprecatedV1Response res = sdk.lobbiesV1().listActivePublicLobbiesDeprecatedV1()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .local(false)
-                .region(Region.SYDNEY)
+                .region(Region.DALLAS)
                 .call();
 
         if (res.classes().isPresent()) {
@@ -181,7 +179,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 404,429                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/ApiError | 404, 429               | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

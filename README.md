@@ -35,7 +35,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:2.10.0'
+implementation 'dev.hathora:cloud-sdk:2.10.1'
 ```
 
 Maven:
@@ -43,7 +43,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>2.10.0</version>
+    <version>2.10.1</version>
 </dependency>
 ```
 
@@ -200,6 +200,12 @@ Deleting a build that is actively build used by an app's deployment will cause f
 
 * [getPingServiceEndpoints](docs/sdks/discoveryv2/README.md#getpingserviceendpoints) - Returns an array of all regions with a host and port that a client can directly ping. Open a websocket connection to `wss://<host>:<port>/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back.
 
+### [fleetsV1()](docs/sdks/fleetsv1/README.md)
+
+* [getFleetRegion](docs/sdks/fleetsv1/README.md#getfleetregion)
+* [getFleets](docs/sdks/fleetsv1/README.md#getfleets)
+* [updateFleetRegion](docs/sdks/fleetsv1/README.md#updatefleetregion)
+
 
 ### [~~lobbiesV1()~~](docs/sdks/lobbiesv1/README.md)
 
@@ -354,12 +360,14 @@ public class Application {
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Exception type.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,422,429,500    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `createApp` method throws the following exceptions:
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 422, 429, 500 | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
 ### Example
 

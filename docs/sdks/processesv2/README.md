@@ -44,7 +44,7 @@ public class Application {
 
         CreateProcessV2DeprecatedResponse res = sdk.processesV2().createProcessV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.MUMBAI)
+                .region(Region.TOKYO)
                 .call();
 
         if (res.processV2().isPresent()) {
@@ -67,11 +67,10 @@ public class Application {
 
 ### Errors
 
-| Error Object            | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| models/errors/ApiError  | 401,402,404,422,429,500 | application/json        |
-| models/errors/SDKError  | 4xx-5xx                 | \*\/*                   |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 401, 402, 404, 422, 429, 500 | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~getLatestProcessesV2Deprecated~~
 
@@ -107,7 +106,7 @@ public class Application {
         GetLatestProcessesV2DeprecatedResponse res = sdk.processesV2().getLatestProcessesV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .region(List.of(
-                    Region.MUMBAI))
+                    Region.SINGAPORE))
                 .status(List.of(
                     ProcessStatus.RUNNING))
                 .call();
@@ -133,11 +132,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~getProcessInfoV2Deprecated~~
 
@@ -192,11 +190,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~getProcessesCountExperimentalV2Deprecated~~
 
@@ -232,7 +229,7 @@ public class Application {
         GetProcessesCountExperimentalV2DeprecatedResponse res = sdk.processesV2().getProcessesCountExperimentalV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .region(List.of(
-                    Region.FRANKFURT))
+                    Region.MUMBAI))
                 .status(List.of(
                     ProcessStatus.FAILED))
                 .call();
@@ -258,11 +255,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~stopProcessV2Deprecated~~
 
@@ -315,7 +311,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/ApiError | 401, 404, 429, 500     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
