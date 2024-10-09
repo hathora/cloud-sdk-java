@@ -72,6 +72,8 @@ public class HathoraCloud {
      */
     private final DiscoveryV2 discoveryV2;
 
+    private final FleetsV1 fleetsV1;
+
     private final LobbiesV1 lobbiesV1;
 
     private final LobbiesV2 lobbiesV2;
@@ -183,6 +185,10 @@ public class HathoraCloud {
      */
     public DiscoveryV2 discoveryV2() {
         return discoveryV2;
+    }
+
+    public FleetsV1 fleetsV1() {
+        return fleetsV1;
     }
 
     public LobbiesV1 lobbiesV1() {
@@ -404,6 +410,7 @@ public class HathoraCloud {
         this.deploymentsV3 = new DeploymentsV3(sdkConfiguration);
         this.discoveryV1 = new DiscoveryV1(sdkConfiguration);
         this.discoveryV2 = new DiscoveryV2(sdkConfiguration);
+        this.fleetsV1 = new FleetsV1(sdkConfiguration);
         this.lobbiesV1 = new LobbiesV1(sdkConfiguration);
         this.lobbiesV2 = new LobbiesV2(sdkConfiguration);
         this.lobbiesV3 = new LobbiesV3(sdkConfiguration);

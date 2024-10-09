@@ -353,6 +353,26 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallGetFleetRegion {
+        GetFleetRegionResponse getFleetRegion(
+            String fleetId,
+            Optional<String> orgId,
+            Region region) throws Exception;
+    }
+
+
+    public interface MethodCallGetFleets {
+        GetFleetsResponse getFleets(
+            Optional<String> orgId) throws Exception;
+    }
+
+
+    public interface MethodCallUpdateFleetRegion {
+        UpdateFleetRegionResponse updateFleetRegion(
+            UpdateFleetRegionRequest request) throws Exception;
+    }
+
+
     public interface MethodCallCreatePrivateLobbyDeprecated {
         CreatePrivateLobbyDeprecatedResponse createPrivateLobbyDeprecated(
             CreatePrivateLobbyDeprecatedSecurity security,

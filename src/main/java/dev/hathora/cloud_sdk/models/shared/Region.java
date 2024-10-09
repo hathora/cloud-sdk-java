@@ -19,7 +19,9 @@ public enum Region {
     TOKYO("Tokyo"),
     SYDNEY("Sydney"),
     SAO_PAULO("Sao_Paulo"),
-    DALLAS("Dallas");
+    DALLAS("Dallas"),
+    JOHANNESBURG("Johannesburg"),
+    DUBAI("Dubai");
 
     @JsonValue
     private final String value;

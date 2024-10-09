@@ -31,7 +31,7 @@ public class Application {
             .build();
 
         VerificationEmailRequest req = VerificationEmailRequest.builder()
-                .userId("<value>")
+                .userId("<id>")
                 .build();
 
         SendVerificationEmailResponse res = sdk.managementV1().sendVerificationEmail()
@@ -57,7 +57,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,429,500            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/ApiError | 401, 429, 500          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
