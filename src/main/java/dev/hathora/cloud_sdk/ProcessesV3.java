@@ -13,6 +13,9 @@ import dev.hathora.cloud_sdk.models.operations.CreateProcessResponse;
 import dev.hathora.cloud_sdk.models.operations.GetLatestProcessesRequest;
 import dev.hathora.cloud_sdk.models.operations.GetLatestProcessesRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetLatestProcessesResponse;
+import dev.hathora.cloud_sdk.models.operations.GetProcessMetricsRequest;
+import dev.hathora.cloud_sdk.models.operations.GetProcessMetricsRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.GetProcessMetricsResponse;
 import dev.hathora.cloud_sdk.models.operations.GetProcessRequest;
 import dev.hathora.cloud_sdk.models.operations.GetProcessRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetProcessResponse;
@@ -24,6 +27,7 @@ import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_sdk.models.operations.StopProcessRequest;
 import dev.hathora.cloud_sdk.models.operations.StopProcessRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.StopProcessResponse;
+import dev.hathora.cloud_sdk.models.shared.ProcessMetricsData;
 import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
 import dev.hathora.cloud_sdk.models.shared.ProcessV3;
 import dev.hathora.cloud_sdk.models.shared.Region;
@@ -48,6 +52,7 @@ public class ProcessesV3 implements
             MethodCallCreateProcess,
             MethodCallGetLatestProcesses,
             MethodCallGetProcess,
+            MethodCallGetProcessMetrics,
             MethodCallGetProcessesCountExperimental,
             MethodCallStopProcess {
 
@@ -484,6 +489,131 @@ public class ProcessesV3 implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    public GetProcessMetricsRequestBuilder getProcessMetrics() {
+        return new GetProcessMetricsRequestBuilder(this);
+    }
+
+    public GetProcessMetricsResponse getProcessMetrics(
+            GetProcessMetricsRequest request) throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                GetProcessMetricsRequest.class,
+                _baseUrl,
+                "/processes/v3/apps/{appId}/processes/process/{processId}/metrics",
+                request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetProcessMetricsRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "GetProcessMetrics", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "500", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetProcessMetrics",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "GetProcessMetrics",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetProcessMetrics",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        GetProcessMetricsResponse.Builder _resBuilder = 
+            GetProcessMetricsResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        GetProcessMetricsResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ProcessMetricsData _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ProcessMetricsData>() {});
+                _res.withProcessMetricsData(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),

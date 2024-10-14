@@ -1,6 +1,4 @@
-# MetricName
-
-Available metrics to query over time.
+# DeprecatedProcessMetricName
 
 
 ## Values
