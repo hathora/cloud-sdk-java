@@ -3,7 +3,6 @@ package dev.hathora.cloud_sdk;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import dev.hathora.cloud_sdk.models.operations.*;
-import dev.hathora.cloud_sdk.models.operations.CreateRoomResponse;
 import dev.hathora.cloud_sdk.models.shared.*;
 import org.junit.jupiter.api.Test;
 
@@ -327,11 +326,11 @@ public class SDKTest {
     }
 
     public void testGetMetrics(HathoraCloud hathoraCloudSdk, String processId) throws Exception {
-        GetMetricsResponse res = hathoraCloudSdk.metricsV1().getMetrics(
-                GetMetricsRequest.builder().metrics(List.of(MetricName.CPU)).processId(processId).step(60).build());
+        GetProcessMetricsResponse res = hathoraCloudSdk.processesV3().getProcessMetrics(
+            GetProcessMetricsRequest.builder().metrics(List.of(ProcessMetricName.CPU)).processId(processId).step(60).build());
         System.out.println("RES: " + res.statusCode());
-        if (res.metricsData().isPresent()) {
-            System.out.println("Metrics: " + res.metricsData().get());
+        if (res.processMetricsData().isPresent()) {
+            System.out.println("Metrics: " + res.processMetricsData().get());
         } else {
             fail("Inner response not present!");
         }

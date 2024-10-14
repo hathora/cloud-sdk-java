@@ -353,6 +353,12 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallGetFleetMetrics {
+        GetFleetMetricsResponse getFleetMetrics(
+            GetFleetMetricsRequest request) throws Exception;
+    }
+
+
     public interface MethodCallGetFleetRegion {
         GetFleetRegionResponse getFleetRegion(
             String fleetId,
@@ -516,9 +522,9 @@ public class SDKMethodInterfaces {
     }
 
 
-    public interface MethodCallGetMetrics {
-        GetMetricsResponse getMetrics(
-            GetMetricsRequest request) throws Exception;
+    public interface MethodCallGetMetricsDeprecated {
+        GetMetricsDeprecatedResponse getMetricsDeprecated(
+            GetMetricsDeprecatedRequest request) throws Exception;
     }
 
 
@@ -647,6 +653,12 @@ public class SDKMethodInterfaces {
         GetProcessResponse getProcess(
             Optional<String> appId,
             String processId) throws Exception;
+    }
+
+
+    public interface MethodCallGetProcessMetrics {
+        GetProcessMetricsResponse getProcessMetrics(
+            GetProcessMetricsRequest request) throws Exception;
     }
 
 
