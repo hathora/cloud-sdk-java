@@ -327,7 +327,7 @@ public class SDKTest {
 
     public void testGetMetrics(HathoraCloud hathoraCloudSdk, String processId) throws Exception {
         GetProcessMetricsResponse res = hathoraCloudSdk.processesV3().getProcessMetrics(
-            GetProcessMetricsRequest.builder().metrics(List.of(MetricName.CPU)).processId(processId).step(60).build());
+            GetProcessMetricsRequest.builder().metrics(List.of(ProcessMetricName.CPU)).processId(processId).step(60).build());
         System.out.println("RES: " + res.statusCode());
         if (res.processMetricsData().isPresent()) {
             System.out.println("Metrics: " + res.processMetricsData().get());
