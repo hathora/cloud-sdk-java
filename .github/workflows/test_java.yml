@@ -5,6 +5,8 @@ on:
       - "main"
   repository_dispatch:
     types: [create-pull-request]
+  schedule:
+    - cron: 0 0 * * *
 jobs:
   test:
     name: Test Java SDK
