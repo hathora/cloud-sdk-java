@@ -1,8 +1,8 @@
-speakeasyVersion: 1.418.4
+speakeasyVersion: 1.419.0
 sources:
     java-source:
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:445b88b07e7ca595a48ec141f535192eb263e3a323721d024a335a11d61eb8c3
+        sourceRevisionDigest: sha256:bde2c0fec6883eb4944541bc72f53ea0c1f4792fcb9ce0ca139d9e0dbcef0e7a
         sourceBlobDigest: sha256:6cfbc7a083687d34b73b414094de5fdfbbc82c68369795dc78804246b7eeff08
         tags:
             - latest
@@ -11,8 +11,10 @@ targets:
     hathora-java:
         source: java-source
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:445b88b07e7ca595a48ec141f535192eb263e3a323721d024a335a11d61eb8c3
+        sourceRevisionDigest: sha256:bde2c0fec6883eb4944541bc72f53ea0c1f4792fcb9ce0ca139d9e0dbcef0e7a
         sourceBlobDigest: sha256:6cfbc7a083687d34b73b414094de5fdfbbc82c68369795dc78804246b7eeff08
+        codeSamplesNamespace: code-samples-java-hathora-java
+        codeSamplesRevisionDigest: sha256:74e5cbe9e23c12b887758efd1ff99f758f20f10af2513be1e683e077a479d54f
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -34,3 +36,5 @@ workflow:
                     gpgPassPhrase: $java_gpg_passphrase
             codeSamples:
                 output: codeSamples.yaml
+                registry:
+                    location: registry.speakeasyapi.dev/hathora/hathora/code-samples-java-hathora-java
