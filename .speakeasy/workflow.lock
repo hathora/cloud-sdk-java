@@ -1,8 +1,8 @@
-speakeasyVersion: 1.419.0
+speakeasyVersion: 1.420.0
 sources:
     java-source:
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:bde2c0fec6883eb4944541bc72f53ea0c1f4792fcb9ce0ca139d9e0dbcef0e7a
+        sourceRevisionDigest: sha256:3d48dd2edf3399276ba469f3cb25145bd660db3e31cad3f8f2ba52bff3e0db3c
         sourceBlobDigest: sha256:6cfbc7a083687d34b73b414094de5fdfbbc82c68369795dc78804246b7eeff08
         tags:
             - latest
@@ -11,10 +11,10 @@ targets:
     hathora-java:
         source: java-source
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:bde2c0fec6883eb4944541bc72f53ea0c1f4792fcb9ce0ca139d9e0dbcef0e7a
+        sourceRevisionDigest: sha256:3d48dd2edf3399276ba469f3cb25145bd660db3e31cad3f8f2ba52bff3e0db3c
         sourceBlobDigest: sha256:6cfbc7a083687d34b73b414094de5fdfbbc82c68369795dc78804246b7eeff08
         codeSamplesNamespace: code-samples-java-hathora-java
-        codeSamplesRevisionDigest: sha256:74e5cbe9e23c12b887758efd1ff99f758f20f10af2513be1e683e077a479d54f
+        codeSamplesRevisionDigest: sha256:0692364c957685a645cfe5cfe32eeb604c66df67b89d711a2001ffd7ef070ef5
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
