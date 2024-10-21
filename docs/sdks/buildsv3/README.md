@@ -63,7 +63,7 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     | Example                                                                         |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `createMultipartBuildParams`                                                    | [CreateMultipartBuildParams](../../models/shared/CreateMultipartBuildParams.md) | :heavy_check_mark:                                                              | N/A                                                                             |                                                                                 |
-| `orgId`                                                                         | *Optional<String>*                                                              | :heavy_minus_sign:                                                              | N/A                                                                             | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                                        |
+| `orgId`                                                                         | *Optional\<String>*                                                             | :heavy_minus_sign:                                                              | N/A                                                                             | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                                        |
 
 ### Response
 
@@ -121,7 +121,7 @@ public class Application {
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | `buildId`                                | *String*                                 | :heavy_check_mark:                       | N/A                                      | bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5 |
-| `orgId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
+| `orgId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
 ### Response
 
@@ -177,7 +177,7 @@ public class Application {
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | `buildId`                                | *String*                                 | :heavy_check_mark:                       | N/A                                      | bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5 |
-| `orgId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
+| `orgId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
 ### Response
 
@@ -231,7 +231,7 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `orgId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
+| `orgId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
 ### Response
 
@@ -287,7 +287,7 @@ public class Application {
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | `buildId`                                | *String*                                 | :heavy_check_mark:                       | N/A                                      | bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5 |
-| `orgId`                                  | *Optional<String>*                       | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
+| `orgId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
 ### Response
 
