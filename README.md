@@ -35,7 +35,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:2.10.7'
+implementation 'dev.hathora:cloud-sdk:2.10.8'
 ```
 
 Maven:
@@ -43,7 +43,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>2.10.7</version>
+    <version>2.10.8</version>
 </dependency>
 ```
 
@@ -202,10 +202,9 @@ Deleting a build that is actively build used by an app's deployment will cause f
 
 ### [fleetsV1()](docs/sdks/fleetsv1/README.md)
 
-* [getFleetMetrics](docs/sdks/fleetsv1/README.md#getfleetmetrics) - Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
-* [getFleetRegion](docs/sdks/fleetsv1/README.md#getfleetregion) - Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
-* [getFleets](docs/sdks/fleetsv1/README.md#getfleets) - Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
-* [updateFleetRegion](docs/sdks/fleetsv1/README.md#updatefleetregion) - Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+* [getFleetRegion](docs/sdks/fleetsv1/README.md#getfleetregion)
+* [getFleets](docs/sdks/fleetsv1/README.md#getfleets)
+* [updateFleetRegion](docs/sdks/fleetsv1/README.md#updatefleetregion)
 
 
 ### [~~lobbiesV1()~~](docs/sdks/lobbiesv1/README.md)
@@ -242,9 +241,9 @@ Deleting a build that is actively build used by an app's deployment will cause f
 
 * [sendVerificationEmail](docs/sdks/managementv1/README.md#sendverificationemail)
 
-### [~~metricsV1()~~](docs/sdks/metricsv1/README.md)
+### [metricsV1()](docs/sdks/metricsv1/README.md)
 
-* [~~getMetricsDeprecated~~](docs/sdks/metricsv1/README.md#getmetricsdeprecated) - Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`. :warning: **Deprecated**
+* [getMetrics](docs/sdks/metricsv1/README.md#getmetrics) - Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
 
 ### [organizationsV1()](docs/sdks/organizationsv1/README.md)
 
@@ -276,7 +275,6 @@ Deleting a build that is actively build used by an app's deployment will cause f
 * [createProcess](docs/sdks/processesv3/README.md#createprocess) - Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
 * [getLatestProcesses](docs/sdks/processesv3/README.md#getlatestprocesses) - Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
 * [getProcess](docs/sdks/processesv3/README.md#getprocess) - Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
-* [getProcessMetrics](docs/sdks/processesv3/README.md#getprocessmetrics)
 * [getProcessesCountExperimental](docs/sdks/processesv3/README.md#getprocessescountexperimental) - Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
 * [stopProcess](docs/sdks/processesv3/README.md#stopprocess) - Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
 

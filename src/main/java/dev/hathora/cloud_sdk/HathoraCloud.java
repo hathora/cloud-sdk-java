@@ -72,9 +72,6 @@ public class HathoraCloud {
      */
     private final DiscoveryV2 discoveryV2;
 
-    /**
-     * Operations to manage and view a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
-     */
     private final FleetsV1 fleetsV1;
 
     private final LobbiesV1 lobbiesV1;
@@ -190,9 +187,6 @@ public class HathoraCloud {
         return discoveryV2;
     }
 
-    /**
-     * Operations to manage and view a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
-     */
     public FleetsV1 fleetsV1() {
         return fleetsV1;
     }

@@ -19,10 +19,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 
-public class ProcessMetricsData {
+public class MetricsData {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("activeConnections")
+    @JsonProperty("active_connections")
     private Optional<? extends List<MetricValue>> activeConnections;
 
     @JsonInclude(Include.NON_ABSENT)
@@ -34,20 +34,20 @@ public class ProcessMetricsData {
     private Optional<? extends List<MetricValue>> memory;
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("rateEgress")
+    @JsonProperty("rate_egress")
     private Optional<? extends List<MetricValue>> rateEgress;
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("totalEgress")
+    @JsonProperty("total_egress")
     private Optional<? extends List<MetricValue>> totalEgress;
 
     @JsonCreator
-    public ProcessMetricsData(
-            @JsonProperty("activeConnections") Optional<? extends List<MetricValue>> activeConnections,
+    public MetricsData(
+            @JsonProperty("active_connections") Optional<? extends List<MetricValue>> activeConnections,
             @JsonProperty("cpu") Optional<? extends List<MetricValue>> cpu,
             @JsonProperty("memory") Optional<? extends List<MetricValue>> memory,
-            @JsonProperty("rateEgress") Optional<? extends List<MetricValue>> rateEgress,
-            @JsonProperty("totalEgress") Optional<? extends List<MetricValue>> totalEgress) {
+            @JsonProperty("rate_egress") Optional<? extends List<MetricValue>> rateEgress,
+            @JsonProperty("total_egress") Optional<? extends List<MetricValue>> totalEgress) {
         Utils.checkNotNull(activeConnections, "activeConnections");
         Utils.checkNotNull(cpu, "cpu");
         Utils.checkNotNull(memory, "memory");
@@ -60,7 +60,7 @@ public class ProcessMetricsData {
         this.totalEgress = totalEgress;
     }
     
-    public ProcessMetricsData() {
+    public MetricsData() {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -98,61 +98,61 @@ public class ProcessMetricsData {
         return new Builder();
     }
 
-    public ProcessMetricsData withActiveConnections(List<MetricValue> activeConnections) {
+    public MetricsData withActiveConnections(List<MetricValue> activeConnections) {
         Utils.checkNotNull(activeConnections, "activeConnections");
         this.activeConnections = Optional.ofNullable(activeConnections);
         return this;
     }
 
-    public ProcessMetricsData withActiveConnections(Optional<? extends List<MetricValue>> activeConnections) {
+    public MetricsData withActiveConnections(Optional<? extends List<MetricValue>> activeConnections) {
         Utils.checkNotNull(activeConnections, "activeConnections");
         this.activeConnections = activeConnections;
         return this;
     }
 
-    public ProcessMetricsData withCpu(List<MetricValue> cpu) {
+    public MetricsData withCpu(List<MetricValue> cpu) {
         Utils.checkNotNull(cpu, "cpu");
         this.cpu = Optional.ofNullable(cpu);
         return this;
     }
 
-    public ProcessMetricsData withCpu(Optional<? extends List<MetricValue>> cpu) {
+    public MetricsData withCpu(Optional<? extends List<MetricValue>> cpu) {
         Utils.checkNotNull(cpu, "cpu");
         this.cpu = cpu;
         return this;
     }
 
-    public ProcessMetricsData withMemory(List<MetricValue> memory) {
+    public MetricsData withMemory(List<MetricValue> memory) {
         Utils.checkNotNull(memory, "memory");
         this.memory = Optional.ofNullable(memory);
         return this;
     }
 
-    public ProcessMetricsData withMemory(Optional<? extends List<MetricValue>> memory) {
+    public MetricsData withMemory(Optional<? extends List<MetricValue>> memory) {
         Utils.checkNotNull(memory, "memory");
         this.memory = memory;
         return this;
     }
 
-    public ProcessMetricsData withRateEgress(List<MetricValue> rateEgress) {
+    public MetricsData withRateEgress(List<MetricValue> rateEgress) {
         Utils.checkNotNull(rateEgress, "rateEgress");
         this.rateEgress = Optional.ofNullable(rateEgress);
         return this;
     }
 
-    public ProcessMetricsData withRateEgress(Optional<? extends List<MetricValue>> rateEgress) {
+    public MetricsData withRateEgress(Optional<? extends List<MetricValue>> rateEgress) {
         Utils.checkNotNull(rateEgress, "rateEgress");
         this.rateEgress = rateEgress;
         return this;
     }
 
-    public ProcessMetricsData withTotalEgress(List<MetricValue> totalEgress) {
+    public MetricsData withTotalEgress(List<MetricValue> totalEgress) {
         Utils.checkNotNull(totalEgress, "totalEgress");
         this.totalEgress = Optional.ofNullable(totalEgress);
         return this;
     }
 
-    public ProcessMetricsData withTotalEgress(Optional<? extends List<MetricValue>> totalEgress) {
+    public MetricsData withTotalEgress(Optional<? extends List<MetricValue>> totalEgress) {
         Utils.checkNotNull(totalEgress, "totalEgress");
         this.totalEgress = totalEgress;
         return this;
@@ -166,7 +166,7 @@ public class ProcessMetricsData {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ProcessMetricsData other = (ProcessMetricsData) o;
+        MetricsData other = (MetricsData) o;
         return 
             Objects.deepEquals(this.activeConnections, other.activeConnections) &&
             Objects.deepEquals(this.cpu, other.cpu) &&
@@ -187,7 +187,7 @@ public class ProcessMetricsData {
     
     @Override
     public String toString() {
-        return Utils.toString(ProcessMetricsData.class,
+        return Utils.toString(MetricsData.class,
                 "activeConnections", activeConnections,
                 "cpu", cpu,
                 "memory", memory,
@@ -271,8 +271,8 @@ public class ProcessMetricsData {
             return this;
         }
         
-        public ProcessMetricsData build() {
-            return new ProcessMetricsData(
+        public MetricsData build() {
+            return new MetricsData(
                 activeConnections,
                 cpu,
                 memory,

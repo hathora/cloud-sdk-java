@@ -10,7 +10,6 @@ Operations to get data on active and stopped [processes](https://hathora.dev/doc
 * [createProcess](#createprocess) - Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
 * [getLatestProcesses](#getlatestprocesses) - Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
 * [getProcess](#getprocess) - Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
-* [getProcessMetrics](#getprocessmetrics)
 * [getProcessesCountExperimental](#getprocessescountexperimental) - Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
 * [stopProcess](#stopprocess) - Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
 
@@ -189,63 +188,6 @@ public class Application {
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401, 404, 429          | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
-
-## getProcessMetrics
-
-### Example Usage
-
-```java
-package hello.world;
-
-import dev.hathora.cloud_sdk.HathoraCloud;
-import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.operations.GetProcessMetricsRequest;
-import dev.hathora.cloud_sdk.models.operations.GetProcessMetricsResponse;
-import dev.hathora.cloud_sdk.models.shared.Security;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws ApiError, Exception {
-
-        HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-            .build();
-
-        GetProcessMetricsRequest req = GetProcessMetricsRequest.builder()
-                .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
-                .build();
-
-        GetProcessMetricsResponse res = sdk.processesV3().getProcessMetrics()
-                .request(req)
-                .call();
-
-        if (res.processMetricsData().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `request`                                                                       | [GetProcessMetricsRequest](../../models/operations/GetProcessMetricsRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-
-### Response
-
-**[GetProcessMetricsResponse](../../models/operations/GetProcessMetricsResponse.md)**
-
-### Errors
-
-| Error Type              | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| models/errors/ApiError  | 401, 404, 422, 429, 500 | application/json        |
-| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
 ## getProcessesCountExperimental
 

@@ -25,6 +25,13 @@ public class CreateRoomParams {
     @JsonProperty("clientIPs")
     private Optional<? extends List<String>> clientIPs;
 
+    /**
+     * System generated id for a deployment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("deploymentId")
+    private Optional<String> deploymentId;
+
     @JsonProperty("region")
     private Region region;
 
@@ -38,25 +45,36 @@ public class CreateRoomParams {
     @JsonCreator
     public CreateRoomParams(
             @JsonProperty("clientIPs") Optional<? extends List<String>> clientIPs,
+            @JsonProperty("deploymentId") Optional<String> deploymentId,
             @JsonProperty("region") Region region,
             @JsonProperty("roomConfig") Optional<String> roomConfig) {
         Utils.checkNotNull(clientIPs, "clientIPs");
+        Utils.checkNotNull(deploymentId, "deploymentId");
         Utils.checkNotNull(region, "region");
         Utils.checkNotNull(roomConfig, "roomConfig");
         this.clientIPs = clientIPs;
+        this.deploymentId = deploymentId;
         this.region = region;
         this.roomConfig = roomConfig;
     }
     
     public CreateRoomParams(
             Region region) {
-        this(Optional.empty(), region, Optional.empty());
+        this(Optional.empty(), Optional.empty(), region, Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> clientIPs() {
         return (Optional<List<String>>) clientIPs;
+    }
+
+    /**
+     * System generated id for a deployment.
+     */
+    @JsonIgnore
+    public Optional<String> deploymentId() {
+        return deploymentId;
     }
 
     @JsonIgnore
@@ -85,6 +103,24 @@ public class CreateRoomParams {
     public CreateRoomParams withClientIPs(Optional<? extends List<String>> clientIPs) {
         Utils.checkNotNull(clientIPs, "clientIPs");
         this.clientIPs = clientIPs;
+        return this;
+    }
+
+    /**
+     * System generated id for a deployment.
+     */
+    public CreateRoomParams withDeploymentId(String deploymentId) {
+        Utils.checkNotNull(deploymentId, "deploymentId");
+        this.deploymentId = Optional.ofNullable(deploymentId);
+        return this;
+    }
+
+    /**
+     * System generated id for a deployment.
+     */
+    public CreateRoomParams withDeploymentId(Optional<String> deploymentId) {
+        Utils.checkNotNull(deploymentId, "deploymentId");
+        this.deploymentId = deploymentId;
         return this;
     }
 
@@ -123,6 +159,7 @@ public class CreateRoomParams {
         CreateRoomParams other = (CreateRoomParams) o;
         return 
             Objects.deepEquals(this.clientIPs, other.clientIPs) &&
+            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
             Objects.deepEquals(this.region, other.region) &&
             Objects.deepEquals(this.roomConfig, other.roomConfig);
     }
@@ -131,6 +168,7 @@ public class CreateRoomParams {
     public int hashCode() {
         return Objects.hash(
             clientIPs,
+            deploymentId,
             region,
             roomConfig);
     }
@@ -139,6 +177,7 @@ public class CreateRoomParams {
     public String toString() {
         return Utils.toString(CreateRoomParams.class,
                 "clientIPs", clientIPs,
+                "deploymentId", deploymentId,
                 "region", region,
                 "roomConfig", roomConfig);
     }
@@ -146,6 +185,8 @@ public class CreateRoomParams {
     public final static class Builder {
  
         private Optional<? extends List<String>> clientIPs = Optional.empty();
+ 
+        private Optional<String> deploymentId = Optional.empty();
  
         private Region region;
  
@@ -164,6 +205,24 @@ public class CreateRoomParams {
         public Builder clientIPs(Optional<? extends List<String>> clientIPs) {
             Utils.checkNotNull(clientIPs, "clientIPs");
             this.clientIPs = clientIPs;
+            return this;
+        }
+
+        /**
+         * System generated id for a deployment.
+         */
+        public Builder deploymentId(String deploymentId) {
+            Utils.checkNotNull(deploymentId, "deploymentId");
+            this.deploymentId = Optional.ofNullable(deploymentId);
+            return this;
+        }
+
+        /**
+         * System generated id for a deployment.
+         */
+        public Builder deploymentId(Optional<String> deploymentId) {
+            Utils.checkNotNull(deploymentId, "deploymentId");
+            this.deploymentId = deploymentId;
             return this;
         }
 
@@ -194,6 +253,7 @@ public class CreateRoomParams {
         public CreateRoomParams build() {
             return new CreateRoomParams(
                 clientIPs,
+                deploymentId,
                 region,
                 roomConfig);
         }

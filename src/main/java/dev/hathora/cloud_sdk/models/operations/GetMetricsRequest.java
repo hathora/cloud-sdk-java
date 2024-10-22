@@ -8,7 +8,7 @@ package dev.hathora.cloud_sdk.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
-import dev.hathora.cloud_sdk.models.shared.DeprecatedProcessMetricName;
+import dev.hathora.cloud_sdk.models.shared.MetricName;
 import dev.hathora.cloud_sdk.utils.LazySingletonValue;
 import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
@@ -22,7 +22,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 
-public class GetMetricsDeprecatedRequest {
+public class GetMetricsRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
@@ -37,7 +37,7 @@ public class GetMetricsDeprecatedRequest {
      * Available metrics to query over time.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=metrics")
-    private Optional<? extends List<DeprecatedProcessMetricName>> metrics;
+    private Optional<? extends List<MetricName>> metrics;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=processId")
     private String processId;
@@ -52,10 +52,10 @@ public class GetMetricsDeprecatedRequest {
     private Optional<Integer> step;
 
     @JsonCreator
-    public GetMetricsDeprecatedRequest(
+    public GetMetricsRequest(
             Optional<String> appId,
             Optional<Double> end,
-            Optional<? extends List<DeprecatedProcessMetricName>> metrics,
+            Optional<? extends List<MetricName>> metrics,
             String processId,
             Optional<Double> start,
             Optional<Integer> step) {
@@ -73,7 +73,7 @@ public class GetMetricsDeprecatedRequest {
         this.step = step;
     }
     
-    public GetMetricsDeprecatedRequest(
+    public GetMetricsRequest(
             String processId) {
         this(Optional.empty(), Optional.empty(), Optional.empty(), processId, Optional.empty(), Optional.empty());
     }
@@ -96,8 +96,8 @@ public class GetMetricsDeprecatedRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<DeprecatedProcessMetricName>> metrics() {
-        return (Optional<List<DeprecatedProcessMetricName>>) metrics;
+    public Optional<List<MetricName>> metrics() {
+        return (Optional<List<MetricName>>) metrics;
     }
 
     @JsonIgnore
@@ -122,13 +122,13 @@ public class GetMetricsDeprecatedRequest {
         return new Builder();
     }
 
-    public GetMetricsDeprecatedRequest withAppId(String appId) {
+    public GetMetricsRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
 
-    public GetMetricsDeprecatedRequest withAppId(Optional<String> appId) {
+    public GetMetricsRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -137,7 +137,7 @@ public class GetMetricsDeprecatedRequest {
     /**
      * Unix timestamp. Default is current time.
      */
-    public GetMetricsDeprecatedRequest withEnd(double end) {
+    public GetMetricsRequest withEnd(double end) {
         Utils.checkNotNull(end, "end");
         this.end = Optional.ofNullable(end);
         return this;
@@ -146,7 +146,7 @@ public class GetMetricsDeprecatedRequest {
     /**
      * Unix timestamp. Default is current time.
      */
-    public GetMetricsDeprecatedRequest withEnd(Optional<Double> end) {
+    public GetMetricsRequest withEnd(Optional<Double> end) {
         Utils.checkNotNull(end, "end");
         this.end = end;
         return this;
@@ -155,7 +155,7 @@ public class GetMetricsDeprecatedRequest {
     /**
      * Available metrics to query over time.
      */
-    public GetMetricsDeprecatedRequest withMetrics(List<DeprecatedProcessMetricName> metrics) {
+    public GetMetricsRequest withMetrics(List<MetricName> metrics) {
         Utils.checkNotNull(metrics, "metrics");
         this.metrics = Optional.ofNullable(metrics);
         return this;
@@ -164,13 +164,13 @@ public class GetMetricsDeprecatedRequest {
     /**
      * Available metrics to query over time.
      */
-    public GetMetricsDeprecatedRequest withMetrics(Optional<? extends List<DeprecatedProcessMetricName>> metrics) {
+    public GetMetricsRequest withMetrics(Optional<? extends List<MetricName>> metrics) {
         Utils.checkNotNull(metrics, "metrics");
         this.metrics = metrics;
         return this;
     }
 
-    public GetMetricsDeprecatedRequest withProcessId(String processId) {
+    public GetMetricsRequest withProcessId(String processId) {
         Utils.checkNotNull(processId, "processId");
         this.processId = processId;
         return this;
@@ -179,7 +179,7 @@ public class GetMetricsDeprecatedRequest {
     /**
      * Unix timestamp. Default is -1 hour from `end`.
      */
-    public GetMetricsDeprecatedRequest withStart(double start) {
+    public GetMetricsRequest withStart(double start) {
         Utils.checkNotNull(start, "start");
         this.start = Optional.ofNullable(start);
         return this;
@@ -188,19 +188,19 @@ public class GetMetricsDeprecatedRequest {
     /**
      * Unix timestamp. Default is -1 hour from `end`.
      */
-    public GetMetricsDeprecatedRequest withStart(Optional<Double> start) {
+    public GetMetricsRequest withStart(Optional<Double> start) {
         Utils.checkNotNull(start, "start");
         this.start = start;
         return this;
     }
 
-    public GetMetricsDeprecatedRequest withStep(int step) {
+    public GetMetricsRequest withStep(int step) {
         Utils.checkNotNull(step, "step");
         this.step = Optional.ofNullable(step);
         return this;
     }
 
-    public GetMetricsDeprecatedRequest withStep(Optional<Integer> step) {
+    public GetMetricsRequest withStep(Optional<Integer> step) {
         Utils.checkNotNull(step, "step");
         this.step = step;
         return this;
@@ -214,7 +214,7 @@ public class GetMetricsDeprecatedRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GetMetricsDeprecatedRequest other = (GetMetricsDeprecatedRequest) o;
+        GetMetricsRequest other = (GetMetricsRequest) o;
         return 
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.end, other.end) &&
@@ -237,7 +237,7 @@ public class GetMetricsDeprecatedRequest {
     
     @Override
     public String toString() {
-        return Utils.toString(GetMetricsDeprecatedRequest.class,
+        return Utils.toString(GetMetricsRequest.class,
                 "appId", appId,
                 "end", end,
                 "metrics", metrics,
@@ -252,7 +252,7 @@ public class GetMetricsDeprecatedRequest {
  
         private Optional<Double> end = Optional.empty();
  
-        private Optional<? extends List<DeprecatedProcessMetricName>> metrics = Optional.empty();
+        private Optional<? extends List<MetricName>> metrics = Optional.empty();
  
         private String processId;
  
@@ -297,7 +297,7 @@ public class GetMetricsDeprecatedRequest {
         /**
          * Available metrics to query over time.
          */
-        public Builder metrics(List<DeprecatedProcessMetricName> metrics) {
+        public Builder metrics(List<MetricName> metrics) {
             Utils.checkNotNull(metrics, "metrics");
             this.metrics = Optional.ofNullable(metrics);
             return this;
@@ -306,7 +306,7 @@ public class GetMetricsDeprecatedRequest {
         /**
          * Available metrics to query over time.
          */
-        public Builder metrics(Optional<? extends List<DeprecatedProcessMetricName>> metrics) {
+        public Builder metrics(Optional<? extends List<MetricName>> metrics) {
             Utils.checkNotNull(metrics, "metrics");
             this.metrics = metrics;
             return this;
@@ -348,10 +348,10 @@ public class GetMetricsDeprecatedRequest {
             return this;
         }
         
-        public GetMetricsDeprecatedRequest build() {
+        public GetMetricsRequest build() {
             if (step == null) {
                 step = _SINGLETON_VALUE_Step.value();
-            }            return new GetMetricsDeprecatedRequest(
+            }            return new GetMetricsRequest(
                 appId,
                 end,
                 metrics,

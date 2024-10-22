@@ -8,19 +8,19 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
 
 /**
- * ProcessMetricName - Available metrics to query over time.
+ * MetricName - Available metrics to query over time.
  */
-public enum ProcessMetricName {
+public enum MetricName {
     CPU("cpu"),
     MEMORY("memory"),
-    RATE_EGRESS("rateEgress"),
-    TOTAL_EGRESS("totalEgress"),
-    ACTIVE_CONNECTIONS("activeConnections");
+    RATE_EGRESS("rate_egress"),
+    TOTAL_EGRESS("total_egress"),
+    ACTIVE_CONNECTIONS("active_connections");
 
     @JsonValue
     private final String value;
 
-    private ProcessMetricName(String value) {
+    private MetricName(String value) {
         this.value = value;
     }
     
