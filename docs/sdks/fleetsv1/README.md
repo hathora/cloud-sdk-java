@@ -3,13 +3,80 @@
 
 ## Overview
 
+Operations to manage and view a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+
 ### Available Operations
 
-* [getFleetRegion](#getfleetregion)
-* [getFleets](#getfleets)
-* [updateFleetRegion](#updatefleetregion)
+* [getFleetMetrics](#getfleetmetrics) - Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+* [getFleetRegion](#getfleetregion) - Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+* [getFleets](#getfleets) - Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+* [updateFleetRegion](#updatefleetregion) - Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+
+## getFleetMetrics
+
+Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsRequest;
+import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsResponse;
+import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        GetFleetMetricsRequest req = GetFleetMetricsRequest.builder()
+                .fleetId("<id>")
+                .region(Region.LONDON)
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .build();
+
+        GetFleetMetricsResponse res = sdk.fleetsV1().getFleetMetrics()
+                .request(req)
+                .call();
+
+        if (res.fleetMetricsData().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [GetFleetMetricsRequest](../../models/operations/GetFleetMetricsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[GetFleetMetricsResponse](../../models/operations/GetFleetMetricsResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 404, 422, 429, 500     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getFleetRegion
+
+Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
 
 ### Example Usage
 
@@ -68,6 +135,8 @@ public class Application {
 
 ## getFleets
 
+Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+
 ### Example Usage
 
 ```java
@@ -119,6 +188,8 @@ public class Application {
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## updateFleetRegion
+
+Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
 
 ### Example Usage
 

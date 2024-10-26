@@ -7,7 +7,7 @@ package dev.hathora.cloud_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.hathora.cloud_sdk.models.shared.MetricsData;
+import dev.hathora.cloud_sdk.models.shared.ProcessMetricsData;
 import dev.hathora.cloud_sdk.utils.Response;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
@@ -20,7 +20,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 
-public class GetMetricsResponse implements Response {
+public class GetProcessMetricsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -30,7 +30,7 @@ public class GetMetricsResponse implements Response {
     /**
      * Ok
      */
-    private Optional<? extends MetricsData> metricsData;
+    private Optional<? extends ProcessMetricsData> processMetricsData;
 
     /**
      * HTTP response status code for this operation
@@ -43,22 +43,22 @@ public class GetMetricsResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     @JsonCreator
-    public GetMetricsResponse(
+    public GetProcessMetricsResponse(
             String contentType,
-            Optional<? extends MetricsData> metricsData,
+            Optional<? extends ProcessMetricsData> processMetricsData,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(metricsData, "metricsData");
+        Utils.checkNotNull(processMetricsData, "processMetricsData");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.metricsData = metricsData;
+        this.processMetricsData = processMetricsData;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
     
-    public GetMetricsResponse(
+    public GetProcessMetricsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -78,8 +78,8 @@ public class GetMetricsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<MetricsData> metricsData() {
-        return (Optional<MetricsData>) metricsData;
+    public Optional<ProcessMetricsData> processMetricsData() {
+        return (Optional<ProcessMetricsData>) processMetricsData;
     }
 
     /**
@@ -105,7 +105,7 @@ public class GetMetricsResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public GetMetricsResponse withContentType(String contentType) {
+    public GetProcessMetricsResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
@@ -114,25 +114,25 @@ public class GetMetricsResponse implements Response {
     /**
      * Ok
      */
-    public GetMetricsResponse withMetricsData(MetricsData metricsData) {
-        Utils.checkNotNull(metricsData, "metricsData");
-        this.metricsData = Optional.ofNullable(metricsData);
+    public GetProcessMetricsResponse withProcessMetricsData(ProcessMetricsData processMetricsData) {
+        Utils.checkNotNull(processMetricsData, "processMetricsData");
+        this.processMetricsData = Optional.ofNullable(processMetricsData);
         return this;
     }
 
     /**
      * Ok
      */
-    public GetMetricsResponse withMetricsData(Optional<? extends MetricsData> metricsData) {
-        Utils.checkNotNull(metricsData, "metricsData");
-        this.metricsData = metricsData;
+    public GetProcessMetricsResponse withProcessMetricsData(Optional<? extends ProcessMetricsData> processMetricsData) {
+        Utils.checkNotNull(processMetricsData, "processMetricsData");
+        this.processMetricsData = processMetricsData;
         return this;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    public GetMetricsResponse withStatusCode(int statusCode) {
+    public GetProcessMetricsResponse withStatusCode(int statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
@@ -141,7 +141,7 @@ public class GetMetricsResponse implements Response {
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public GetMetricsResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+    public GetProcessMetricsResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
@@ -155,10 +155,10 @@ public class GetMetricsResponse implements Response {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GetMetricsResponse other = (GetMetricsResponse) o;
+        GetProcessMetricsResponse other = (GetProcessMetricsResponse) o;
         return 
             Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.metricsData, other.metricsData) &&
+            Objects.deepEquals(this.processMetricsData, other.processMetricsData) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -167,16 +167,16 @@ public class GetMetricsResponse implements Response {
     public int hashCode() {
         return Objects.hash(
             contentType,
-            metricsData,
+            processMetricsData,
             statusCode,
             rawResponse);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(GetMetricsResponse.class,
+        return Utils.toString(GetProcessMetricsResponse.class,
                 "contentType", contentType,
-                "metricsData", metricsData,
+                "processMetricsData", processMetricsData,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -185,7 +185,7 @@ public class GetMetricsResponse implements Response {
  
         private String contentType;
  
-        private Optional<? extends MetricsData> metricsData = Optional.empty();
+        private Optional<? extends ProcessMetricsData> processMetricsData = Optional.empty();
  
         private Integer statusCode;
  
@@ -207,18 +207,18 @@ public class GetMetricsResponse implements Response {
         /**
          * Ok
          */
-        public Builder metricsData(MetricsData metricsData) {
-            Utils.checkNotNull(metricsData, "metricsData");
-            this.metricsData = Optional.ofNullable(metricsData);
+        public Builder processMetricsData(ProcessMetricsData processMetricsData) {
+            Utils.checkNotNull(processMetricsData, "processMetricsData");
+            this.processMetricsData = Optional.ofNullable(processMetricsData);
             return this;
         }
 
         /**
          * Ok
          */
-        public Builder metricsData(Optional<? extends MetricsData> metricsData) {
-            Utils.checkNotNull(metricsData, "metricsData");
-            this.metricsData = metricsData;
+        public Builder processMetricsData(Optional<? extends ProcessMetricsData> processMetricsData) {
+            Utils.checkNotNull(processMetricsData, "processMetricsData");
+            this.processMetricsData = processMetricsData;
             return this;
         }
 
@@ -240,10 +240,10 @@ public class GetMetricsResponse implements Response {
             return this;
         }
         
-        public GetMetricsResponse build() {
-            return new GetMetricsResponse(
+        public GetProcessMetricsResponse build() {
+            return new GetProcessMetricsResponse(
                 contentType,
-                metricsData,
+                processMetricsData,
                 statusCode,
                 rawResponse);
         }

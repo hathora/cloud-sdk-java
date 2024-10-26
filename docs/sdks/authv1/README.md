@@ -113,7 +113,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## loginNickname
@@ -168,5 +168,5 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 404, 429               | application/json       |
+| models/errors/ApiError | 404, 422, 429          | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

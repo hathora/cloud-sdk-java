@@ -7,11 +7,11 @@ package dev.hathora.cloud_sdk;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.errors.SDKError;
-import dev.hathora.cloud_sdk.models.operations.GetMetricsRequest;
-import dev.hathora.cloud_sdk.models.operations.GetMetricsRequestBuilder;
-import dev.hathora.cloud_sdk.models.operations.GetMetricsResponse;
+import dev.hathora.cloud_sdk.models.operations.GetMetricsDeprecatedRequest;
+import dev.hathora.cloud_sdk.models.operations.GetMetricsDeprecatedRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.GetMetricsDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
-import dev.hathora.cloud_sdk.models.shared.MetricsData;
+import dev.hathora.cloud_sdk.models.shared.DeprecatedProcessMetricsData;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
@@ -19,6 +19,7 @@ import dev.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import dev.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
 import java.net.http.HttpRequest;
@@ -30,7 +31,7 @@ import java.util.Optional;
  * Operations to get metrics by [process](https://hathora.dev/docs/concepts/hathora-entities#process). We store 72 hours of metrics data.
  */
 public class MetricsV1 implements
-            MethodCallGetMetrics {
+            MethodCallGetMetricsDeprecated {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -42,9 +43,11 @@ public class MetricsV1 implements
     /**
      * Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public GetMetricsRequestBuilder getMetrics() {
-        return new GetMetricsRequestBuilder(this);
+    @Deprecated
+    public GetMetricsDeprecatedRequestBuilder getMetricsDeprecated() {
+        return new GetMetricsDeprecatedRequestBuilder(this);
     }
 
     /**
@@ -52,12 +55,14 @@ public class MetricsV1 implements
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public GetMetricsResponse getMetrics(
-            GetMetricsRequest request) throws Exception {
+    @Deprecated
+    public GetMetricsDeprecatedResponse getMetricsDeprecated(
+            GetMetricsDeprecatedRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                GetMetricsRequest.class,
+                GetMetricsDeprecatedRequest.class,
                 _baseUrl,
                 "/metrics/v1/{appId}/process/{processId}",
                 request, this.sdkConfiguration.globals);
@@ -68,7 +73,7 @@ public class MetricsV1 implements
                 SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
-                GetMetricsRequest.class,
+                GetMetricsDeprecatedRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -80,7 +85,7 @@ public class MetricsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
-                      "GetMetrics", 
+                      "GetMetricsDeprecated", 
                       Optional.of(List.of()), 
                       sdkConfiguration.securitySource()),
                   _req.build());
@@ -91,7 +96,7 @@ public class MetricsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
-                            "GetMetrics",
+                            "GetMetricsDeprecated",
                             Optional.of(List.of()),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
@@ -100,7 +105,7 @@ public class MetricsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
-                            "GetMetrics",
+                            "GetMetricsDeprecated",
                             Optional.of(List.of()), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
@@ -109,7 +114,7 @@ public class MetricsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
-                            "GetMetrics",
+                            "GetMetricsDeprecated",
                             Optional.of(List.of()),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
@@ -119,21 +124,21 @@ public class MetricsV1 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        GetMetricsResponse.Builder _resBuilder = 
-            GetMetricsResponse
+        GetMetricsDeprecatedResponse.Builder _resBuilder = 
+            GetMetricsDeprecatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        GetMetricsResponse _res = _resBuilder.build();
+        GetMetricsDeprecatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                MetricsData _out = Utils.mapper().readValue(
+                DeprecatedProcessMetricsData _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<MetricsData>() {});
-                _res.withMetricsData(Optional.ofNullable(_out));
+                    new TypeReference<DeprecatedProcessMetricsData>() {});
+                _res.withDeprecatedProcessMetricsData(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
