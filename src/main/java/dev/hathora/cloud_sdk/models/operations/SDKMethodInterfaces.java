@@ -333,7 +333,8 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallGetDeployments {
         GetDeploymentsResponse getDeployments(
-            Optional<String> appId) throws Exception;
+            Optional<String> appId,
+            Optional<String> deploymentTag) throws Exception;
     }
 
 

@@ -9,8 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 
+@SuppressWarnings("serial")
 public class ApiError extends RuntimeException {
 
     @JsonProperty("message")
@@ -19,6 +21,7 @@ public class ApiError extends RuntimeException {
     @JsonCreator
     public ApiError(
             @JsonProperty("message") String message) {
+        super(message);
         Utils.checkNotNull(message, "message");
         this.message = message;
     }

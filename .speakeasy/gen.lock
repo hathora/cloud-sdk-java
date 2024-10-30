@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: 21a416a1b30cc2a28c7e1d4dfa79202b
+  docChecksum: f979120c4d53a579602f5709907e5abe
   docVersion: 0.0.1
-  speakeasyVersion: 1.422.1
-  generationVersion: 2.438.15
-  releaseVersion: 2.10.10
-  configChecksum: 6b7104325f5ea5f2d1544008b829b03e
+  speakeasyVersion: 1.423.2
+  generationVersion: 2.442.11
+  releaseVersion: 2.10.11
+  configChecksum: b265ddf33916bd22a8395a0c68599893
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.30.5
+    core: 3.30.6
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
@@ -1410,7 +1410,7 @@ examples:
         path:
           appId: "app-af469a92-5b45-4565-b3c4-b79878de67d2"
       requestBody:
-        application/json: {"additionalContainerPorts": [], "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "containerPort": 4000, "env": [], "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3, "transportType": "tcp"}
+        application/json: {"additionalContainerPorts": [], "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "containerPort": 4000, "deploymentTag": "alpha", "env": [], "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3, "transportType": "tcp"}
       responses:
         "201":
           application/json: {"additionalContainerPorts": [{"name": "default", "port": 8000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2022-07-14T04:14:25.503Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tcp"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "env": [], "idleTimeoutEnabled": false, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
@@ -1432,6 +1432,8 @@ examples:
       parameters:
         path:
           appId: "app-af469a92-5b45-4565-b3c4-b79878de67d2"
+        query:
+          deploymentTag: "alpha"
       responses:
         "200":
           application/json: {"deployments": []}

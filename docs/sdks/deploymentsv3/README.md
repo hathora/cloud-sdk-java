@@ -9,7 +9,7 @@ Operations that allow you configure and manage an application's [build](https://
 
 * [createDeployment](#createdeployment) - Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
 * [getDeployment](#getdeployment) - Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
-* [getDeployments](#getdeployments) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+* [getDeployments](#getdeployments) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
 * [getLatestDeployment](#getlatestdeployment) - Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
 
 ## createDeployment
@@ -63,6 +63,7 @@ public class Application {
                             .port(8000)
                             .transportType(TransportType.TCP)
                             .build()))
+                    .deploymentTag("alpha")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
@@ -150,7 +151,7 @@ public class Application {
 
 ## getDeployments
 
-Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
 
 ### Example Usage
 
@@ -176,6 +177,7 @@ public class Application {
 
         GetDeploymentsResponse res = sdk.deploymentsV3().getDeployments()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .deploymentTag("alpha")
                 .call();
 
         if (res.deploymentsV3Page().isPresent()) {
@@ -190,6 +192,7 @@ public class Application {
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | `appId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `deploymentTag`                          | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | alpha                                    |
 
 ### Response
 

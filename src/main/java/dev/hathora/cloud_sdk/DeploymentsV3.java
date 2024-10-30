@@ -370,7 +370,7 @@ public class DeploymentsV3 implements
 
 
     /**
-     * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
      * @return The call builder
      */
     public GetDeploymentsRequestBuilder getDeployments() {
@@ -378,26 +378,29 @@ public class DeploymentsV3 implements
     }
 
     /**
-     * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetDeploymentsResponse getDeploymentsDirect() throws Exception {
-        return getDeployments(Optional.empty());
+        return getDeployments(Optional.empty(), Optional.empty());
     }
     
     /**
-     * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
      * @param appId
+     * @param deploymentTag
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetDeploymentsResponse getDeployments(
-            Optional<String> appId) throws Exception {
+            Optional<String> appId,
+            Optional<String> deploymentTag) throws Exception {
         GetDeploymentsRequest request =
             GetDeploymentsRequest
                 .builder()
                 .appId(appId)
+                .deploymentTag(deploymentTag)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
@@ -411,6 +414,11 @@ public class DeploymentsV3 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetDeploymentsRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());

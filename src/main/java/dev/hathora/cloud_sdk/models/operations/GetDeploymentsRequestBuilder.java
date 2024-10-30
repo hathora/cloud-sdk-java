@@ -11,6 +11,7 @@ import java.util.Optional;
 public class GetDeploymentsRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
+    private Optional<String> deploymentTag = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetDeployments sdk;
 
     public GetDeploymentsRequestBuilder(SDKMethodInterfaces.MethodCallGetDeployments sdk) {
@@ -28,10 +29,23 @@ public class GetDeploymentsRequestBuilder {
         this.appId = appId;
         return this;
     }
+                
+    public GetDeploymentsRequestBuilder deploymentTag(String deploymentTag) {
+        Utils.checkNotNull(deploymentTag, "deploymentTag");
+        this.deploymentTag = Optional.of(deploymentTag);
+        return this;
+    }
+
+    public GetDeploymentsRequestBuilder deploymentTag(Optional<String> deploymentTag) {
+        Utils.checkNotNull(deploymentTag, "deploymentTag");
+        this.deploymentTag = deploymentTag;
+        return this;
+    }
 
     public GetDeploymentsResponse call() throws Exception {
 
         return sdk.getDeployments(
-            appId);
+            appId,
+            deploymentTag);
     }
 }
