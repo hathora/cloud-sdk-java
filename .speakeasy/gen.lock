@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: f979120c4d53a579602f5709907e5abe
+  docChecksum: 83ae53941fd703d9ce4034ec1d57c1e8
   docVersion: 0.0.1
-  speakeasyVersion: 1.423.2
-  generationVersion: 2.442.11
-  releaseVersion: 2.10.11
-  configChecksum: b265ddf33916bd22a8395a0c68599893
+  speakeasyVersion: 1.423.5
+  generationVersion: 2.445.1
+  releaseVersion: 2.10.12
+  configChecksum: 789973c2da1ed2cc5b3bed4b80e2ddca
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -172,10 +172,6 @@ generatedFiles:
   - docs/models/operations/GetLobbyInfoByShortCodeResponse.md
   - docs/models/operations/GetLobbyInfoRequest.md
   - docs/models/operations/GetLobbyInfoResponse.md
-  - docs/models/operations/GetLogsForAppRequest.md
-  - docs/models/operations/GetLogsForAppResponse.md
-  - docs/models/operations/GetLogsForDeploymentRequest.md
-  - docs/models/operations/GetLogsForDeploymentResponse.md
   - docs/models/operations/GetLogsForProcessRequest.md
   - docs/models/operations/GetLogsForProcessResponse.md
   - docs/models/operations/GetMetricsDeprecatedRequest.md
@@ -654,12 +650,6 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLobbyInfoRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLobbyInfoRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLobbyInfoResponse.java
-  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLogsForAppRequest.java
-  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLogsForAppRequestBuilder.java
-  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLogsForAppResponse.java
-  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLogsForDeploymentRequest.java
-  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLogsForDeploymentRequestBuilder.java
-  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLogsForDeploymentResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLogsForProcessRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLogsForProcessRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLogsForProcessResponse.java

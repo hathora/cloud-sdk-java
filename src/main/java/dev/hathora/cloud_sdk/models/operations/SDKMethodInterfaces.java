@@ -499,18 +499,6 @@ public class SDKMethodInterfaces {
     }
 
 
-    public interface MethodCallGetLogsForApp {
-        GetLogsForAppResponse getLogsForApp(
-            GetLogsForAppRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallGetLogsForDeployment {
-        GetLogsForDeploymentResponse getLogsForDeployment(
-            GetLogsForDeploymentRequest request) throws Exception;
-    }
-
-
     public interface MethodCallGetLogsForProcess {
         GetLogsForProcessResponse getLogsForProcess(
             GetLogsForProcessRequest request) throws Exception;
