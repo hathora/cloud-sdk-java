@@ -50,6 +50,7 @@ public class LobbiesV1 implements
 
 
     /**
+     * CreatePrivateLobbyDeprecated
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -59,6 +60,7 @@ public class LobbiesV1 implements
     }
 
     /**
+     * CreatePrivateLobbyDeprecated
      * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -71,6 +73,7 @@ public class LobbiesV1 implements
     }
     
     /**
+     * CreatePrivateLobbyDeprecated
      * @param security The security details to use for authentication.
      * @param appId
      * @param local
@@ -212,6 +215,7 @@ public class LobbiesV1 implements
 
 
     /**
+     * CreatePublicLobbyDeprecated
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -221,6 +225,7 @@ public class LobbiesV1 implements
     }
 
     /**
+     * CreatePublicLobbyDeprecated
      * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -233,6 +238,7 @@ public class LobbiesV1 implements
     }
     
     /**
+     * CreatePublicLobbyDeprecated
      * @param security The security details to use for authentication.
      * @param appId
      * @param local
@@ -374,6 +380,7 @@ public class LobbiesV1 implements
 
 
     /**
+     * ListActivePublicLobbiesDeprecatedV1
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -383,6 +390,7 @@ public class LobbiesV1 implements
     }
 
     /**
+     * ListActivePublicLobbiesDeprecatedV1
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -393,6 +401,7 @@ public class LobbiesV1 implements
     }
     
     /**
+     * ListActivePublicLobbiesDeprecatedV1
      * @param appId
      * @param local
      * @param region

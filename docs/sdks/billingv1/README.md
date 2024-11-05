@@ -7,14 +7,16 @@
 
 ### Available Operations
 
-* [getBalance](#getbalance)
-* [getInvoices](#getinvoices)
-* [getPaymentMethod](#getpaymentmethod)
-* [getUpcomingInvoiceItems](#getupcominginvoiceitems)
-* [getUpcomingInvoiceTotal](#getupcominginvoicetotal)
-* [initStripeCustomerPortalUrl](#initstripecustomerportalurl)
+* [getBalance](#getbalance) - GetBalance
+* [getInvoices](#getinvoices) - GetInvoices
+* [getPaymentMethod](#getpaymentmethod) - GetPaymentMethod
+* [getUpcomingInvoiceItems](#getupcominginvoiceitems) - GetUpcomingInvoiceItems
+* [getUpcomingInvoiceTotal](#getupcominginvoicetotal) - GetUpcomingInvoiceTotal
+* [initStripeCustomerPortalUrl](#initstripecustomerportalurl) - InitStripeCustomerPortalUrl
 
 ## getBalance
+
+GetBalance
 
 ### Example Usage
 
@@ -61,6 +63,8 @@ public class Application {
 
 ## getInvoices
 
+GetInvoices
+
 ### Example Usage
 
 ```java
@@ -105,6 +109,8 @@ public class Application {
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getPaymentMethod
+
+GetPaymentMethod
 
 ### Example Usage
 
@@ -151,6 +157,8 @@ public class Application {
 
 ## getUpcomingInvoiceItems
 
+GetUpcomingInvoiceItems
+
 ### Example Usage
 
 ```java
@@ -196,6 +204,8 @@ public class Application {
 
 ## getUpcomingInvoiceTotal
 
+GetUpcomingInvoiceTotal
+
 ### Example Usage
 
 ```java
@@ -240,6 +250,8 @@ public class Application {
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## initStripeCustomerPortalUrl
+
+InitStripeCustomerPortalUrl
 
 ### Example Usage
 

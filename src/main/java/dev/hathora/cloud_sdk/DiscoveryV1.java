@@ -39,6 +39,7 @@ public class DiscoveryV1 implements
 
 
     /**
+     * GetPingServiceEndpointsDeprecated
      * Returns an array of V1 regions with a host and port that a client can directly ping. Open a websocket connection to `wss://&lt;host&gt;:&lt;port&gt;/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -49,6 +50,7 @@ public class DiscoveryV1 implements
     }
 
     /**
+     * GetPingServiceEndpointsDeprecated
      * Returns an array of V1 regions with a host and port that a client can directly ping. Open a websocket connection to `wss://&lt;host&gt;:&lt;port&gt;/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back.
      * @return The response from the API call
      * @throws Exception if the API call fails

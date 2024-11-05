@@ -75,6 +75,7 @@ public class LobbiesV2 implements
 
 
     /**
+     * CreateLobbyDeprecated
      * Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -85,6 +86,7 @@ public class LobbiesV2 implements
     }
 
     /**
+     * CreateLobbyDeprecated
      * Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
      * @param security The security details to use for authentication.
      * @param createLobbyParams
@@ -100,6 +102,7 @@ public class LobbiesV2 implements
     }
     
     /**
+     * CreateLobbyDeprecated
      * Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
      * @param security The security details to use for authentication.
      * @param createLobbyParams
@@ -255,6 +258,7 @@ public class LobbiesV2 implements
 
 
     /**
+     * CreateLocalLobby
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -264,6 +268,7 @@ public class LobbiesV2 implements
     }
 
     /**
+     * CreateLocalLobby
      * @param security The security details to use for authentication.
      * @param requestBody
      * @return The response from the API call
@@ -278,6 +283,7 @@ public class LobbiesV2 implements
     }
     
     /**
+     * CreateLocalLobby
      * @param security The security details to use for authentication.
      * @param requestBody
      * @param appId
@@ -432,6 +438,7 @@ public class LobbiesV2 implements
 
 
     /**
+     * CreatePrivateLobby
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -441,6 +448,7 @@ public class LobbiesV2 implements
     }
 
     /**
+     * CreatePrivateLobby
      * @param security The security details to use for authentication.
      * @param requestBody
      * @return The response from the API call
@@ -455,6 +463,7 @@ public class LobbiesV2 implements
     }
     
     /**
+     * CreatePrivateLobby
      * @param security The security details to use for authentication.
      * @param requestBody
      * @param appId
@@ -609,6 +618,7 @@ public class LobbiesV2 implements
 
 
     /**
+     * CreatePublicLobby
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -618,6 +628,7 @@ public class LobbiesV2 implements
     }
 
     /**
+     * CreatePublicLobby
      * @param security The security details to use for authentication.
      * @param requestBody
      * @return The response from the API call
@@ -632,6 +643,7 @@ public class LobbiesV2 implements
     }
     
     /**
+     * CreatePublicLobby
      * @param security The security details to use for authentication.
      * @param requestBody
      * @param appId
@@ -786,6 +798,7 @@ public class LobbiesV2 implements
 
 
     /**
+     * GetLobbyInfo
      * Get details for a lobby.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -796,6 +809,7 @@ public class LobbiesV2 implements
     }
 
     /**
+     * GetLobbyInfo
      * Get details for a lobby.
      * @param roomId
      * @return The response from the API call
@@ -809,6 +823,7 @@ public class LobbiesV2 implements
     }
     
     /**
+     * GetLobbyInfo
      * Get details for a lobby.
      * @param appId
      * @param roomId
@@ -939,6 +954,7 @@ public class LobbiesV2 implements
 
 
     /**
+     * ListActivePublicLobbiesDeprecatedV2
      * Get all active lobbies for a an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -949,6 +965,7 @@ public class LobbiesV2 implements
     }
 
     /**
+     * ListActivePublicLobbiesDeprecatedV2
      * Get all active lobbies for a an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -960,6 +977,7 @@ public class LobbiesV2 implements
     }
     
     /**
+     * ListActivePublicLobbiesDeprecatedV2
      * Get all active lobbies for a an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
      * @param appId
      * @param region
@@ -1095,6 +1113,7 @@ public class LobbiesV2 implements
 
 
     /**
+     * SetLobbyState
      * Set the state of a lobby. State is intended to be set by the server and must be smaller than 1MB. Use this endpoint to store match data like live player count to enforce max number of clients or persist end-game data (i.e. winner or final scores).
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -1105,6 +1124,7 @@ public class LobbiesV2 implements
     }
 
     /**
+     * SetLobbyState
      * Set the state of a lobby. State is intended to be set by the server and must be smaller than 1MB. Use this endpoint to store match data like live player count to enforce max number of clients or persist end-game data (i.e. winner or final scores).
      * @param setLobbyStateParams
      * @param roomId
@@ -1120,6 +1140,7 @@ public class LobbiesV2 implements
     }
     
     /**
+     * SetLobbyState
      * Set the state of a lobby. State is intended to be set by the server and must be smaller than 1MB. Use this endpoint to store match data like live player count to enforce max number of clients or persist end-game data (i.e. winner or final scores).
      * @param setLobbyStateParams
      * @param appId

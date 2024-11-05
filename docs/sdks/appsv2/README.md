@@ -7,11 +7,11 @@ Operations that allow you manage your [applications](https://hathora.dev/docs/co
 
 ### Available Operations
 
-* [createApp](#createapp) - Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
-* [deleteApp](#deleteapp) - Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
-* [getApp](#getapp) - Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-* [getApps](#getapps) - Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
-* [updateApp](#updateapp) - Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+* [createApp](#createapp) - CreateApp
+* [deleteApp](#deleteapp) - DeleteApp
+* [getApp](#getapp) - GetApp
+* [getApps](#getapps) - GetApps
+* [updateApp](#updateapp) - UpdateApp
 
 ## createApp
 

@@ -5,14 +5,14 @@
 
 ### Available Operations
 
-* [createRoom](#createroom) - Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
-* [destroyRoom](#destroyroom) - Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
-* [getActiveRoomsForProcess](#getactiveroomsforprocess) - Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
-* [getConnectionInfo](#getconnectioninfo) - Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
-* [getInactiveRoomsForProcess](#getinactiveroomsforprocess) - Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
-* [getRoomInfo](#getroominfo) - Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
-* [~~suspendRoomV2Deprecated~~](#suspendroomv2deprecated) - Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`. :warning: **Deprecated**
-* [updateRoomConfig](#updateroomconfig)
+* [createRoom](#createroom) - CreateRoom
+* [destroyRoom](#destroyroom) - DestroyRoom
+* [getActiveRoomsForProcess](#getactiveroomsforprocess) - GetActiveRoomsForProcess
+* [getConnectionInfo](#getconnectioninfo) - GetConnectionInfo
+* [getInactiveRoomsForProcess](#getinactiveroomsforprocess) - GetInactiveRoomsForProcess
+* [getRoomInfo](#getroominfo) - GetRoomInfo
+* [~~suspendRoomV2Deprecated~~](#suspendroomv2deprecated) - SuspendRoomV2Deprecated :warning: **Deprecated**
+* [updateRoomConfig](#updateroomconfig) - UpdateRoomConfig
 
 ## createRoom
 
@@ -412,6 +412,8 @@ public class Application {
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## updateRoomConfig
+
+UpdateRoomConfig
 
 ### Example Usage
 

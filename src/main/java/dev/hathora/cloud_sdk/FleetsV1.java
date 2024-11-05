@@ -58,6 +58,7 @@ public class FleetsV1 implements
 
 
     /**
+     * GetFleetMetrics
      * Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
      * @return The call builder
      */
@@ -66,6 +67,7 @@ public class FleetsV1 implements
     }
 
     /**
+     * GetFleetMetrics
      * Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -193,6 +195,7 @@ public class FleetsV1 implements
 
 
     /**
+     * GetFleetRegion
      * Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
      * @return The call builder
      */
@@ -201,6 +204,7 @@ public class FleetsV1 implements
     }
 
     /**
+     * GetFleetRegion
      * Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
      * @param fleetId
      * @param region
@@ -214,6 +218,7 @@ public class FleetsV1 implements
     }
     
     /**
+     * GetFleetRegion
      * Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
      * @param fleetId
      * @param orgId
@@ -353,6 +358,7 @@ public class FleetsV1 implements
 
 
     /**
+     * GetFleets
      * Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
      * @return The call builder
      */
@@ -361,6 +367,7 @@ public class FleetsV1 implements
     }
 
     /**
+     * GetFleets
      * Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -370,6 +377,7 @@ public class FleetsV1 implements
     }
     
     /**
+     * GetFleets
      * Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
      * @param orgId
      * @return The response from the API call
@@ -501,6 +509,7 @@ public class FleetsV1 implements
 
 
     /**
+     * UpdateFleetRegion
      * Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
      * @return The call builder
      */
@@ -509,6 +518,7 @@ public class FleetsV1 implements
     }
 
     /**
+     * UpdateFleetRegion
      * Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call

@@ -7,10 +7,10 @@ Operations to manage and view a [fleet](https://hathora.dev/docs/concepts/hathor
 
 ### Available Operations
 
-* [getFleetMetrics](#getfleetmetrics) - Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
-* [getFleetRegion](#getfleetregion) - Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
-* [getFleets](#getfleets) - Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
-* [updateFleetRegion](#updatefleetregion) - Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+* [getFleetMetrics](#getfleetmetrics) - GetFleetMetrics
+* [getFleetRegion](#getfleetregion) - GetFleetRegion
+* [getFleets](#getfleets) - GetFleets
+* [updateFleetRegion](#updatefleetregion) - UpdateFleetRegion
 
 ## getFleetMetrics
 

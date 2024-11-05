@@ -40,6 +40,7 @@ public class LogsV1 implements
 
 
     /**
+     * DownloadLogForProcess
      * Download entire log file for a stopped process.
      * @return The call builder
      */
@@ -48,6 +49,7 @@ public class LogsV1 implements
     }
 
     /**
+     * DownloadLogForProcess
      * Download entire log file for a stopped process.
      * @param processId
      * @return The response from the API call
@@ -59,6 +61,7 @@ public class LogsV1 implements
     }
     
     /**
+     * DownloadLogForProcess
      * Download entire log file for a stopped process.
      * @param appId
      * @param processId
@@ -189,6 +192,7 @@ public class LogsV1 implements
 
 
     /**
+     * GetLogsForProcess
      * Returns a stream of logs for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
      * @return The call builder
      */
@@ -197,6 +201,7 @@ public class LogsV1 implements
     }
 
     /**
+     * GetLogsForProcess
      * Returns a stream of logs for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call

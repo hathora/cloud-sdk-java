@@ -5,16 +5,18 @@
 
 ### Available Operations
 
-* [acceptInvite](#acceptinvite)
-* [getOrgMembers](#getorgmembers)
-* [getOrgPendingInvites](#getorgpendinginvites)
-* [getOrgs](#getorgs) - Returns an unsorted list of all organizations that you are a member of (an accepted membership invite). An organization is uniquely identified by an `orgId`.
-* [getUserPendingInvites](#getuserpendinginvites)
-* [inviteUser](#inviteuser)
-* [rejectInvite](#rejectinvite)
-* [rescindInvite](#rescindinvite)
+* [acceptInvite](#acceptinvite) - AcceptInvite
+* [getOrgMembers](#getorgmembers) - GetOrgMembers
+* [getOrgPendingInvites](#getorgpendinginvites) - GetOrgPendingInvites
+* [getOrgs](#getorgs) - GetOrgs
+* [getUserPendingInvites](#getuserpendinginvites) - GetUserPendingInvites
+* [inviteUser](#inviteuser) - InviteUser
+* [rejectInvite](#rejectinvite) - RejectInvite
+* [rescindInvite](#rescindinvite) - RescindInvite
 
 ## acceptInvite
+
+AcceptInvite
 
 ### Example Usage
 
@@ -65,6 +67,8 @@ public class Application {
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getOrgMembers
+
+GetOrgMembers
 
 ### Example Usage
 
@@ -117,6 +121,8 @@ public class Application {
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getOrgPendingInvites
+
+GetOrgPendingInvites
 
 ### Example Usage
 
@@ -217,6 +223,8 @@ public class Application {
 
 ## getUserPendingInvites
 
+GetUserPendingInvites
+
 ### Example Usage
 
 ```java
@@ -261,6 +269,8 @@ public class Application {
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## inviteUser
+
+InviteUser
 
 ### Example Usage
 
@@ -319,6 +329,8 @@ public class Application {
 
 ## rejectInvite
 
+RejectInvite
+
 ### Example Usage
 
 ```java
@@ -368,6 +380,8 @@ public class Application {
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## rescindInvite
+
+RescindInvite
 
 ### Example Usage
 

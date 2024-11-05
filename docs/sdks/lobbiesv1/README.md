@@ -5,11 +5,13 @@
 
 ### Available Operations
 
-* [~~createPrivateLobbyDeprecated~~](#createprivatelobbydeprecated) - :warning: **Deprecated**
-* [~~createPublicLobbyDeprecated~~](#createpubliclobbydeprecated) - :warning: **Deprecated**
-* [~~listActivePublicLobbiesDeprecatedV1~~](#listactivepubliclobbiesdeprecatedv1) - :warning: **Deprecated**
+* [~~createPrivateLobbyDeprecated~~](#createprivatelobbydeprecated) - CreatePrivateLobbyDeprecated :warning: **Deprecated**
+* [~~createPublicLobbyDeprecated~~](#createpubliclobbydeprecated) - CreatePublicLobbyDeprecated :warning: **Deprecated**
+* [~~listActivePublicLobbiesDeprecatedV1~~](#listactivepubliclobbiesdeprecatedv1) - ListActivePublicLobbiesDeprecatedV1 :warning: **Deprecated**
 
 ## ~~createPrivateLobbyDeprecated~~
+
+CreatePrivateLobbyDeprecated
 
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
@@ -71,6 +73,8 @@ public class Application {
 
 ## ~~createPublicLobbyDeprecated~~
 
+CreatePublicLobbyDeprecated
+
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
@@ -130,6 +134,8 @@ public class Application {
 | models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## ~~listActivePublicLobbiesDeprecatedV1~~
+
+ListActivePublicLobbiesDeprecatedV1
 
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 

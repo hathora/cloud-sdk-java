@@ -51,6 +51,7 @@ public class ProcessesV1 implements
 
 
     /**
+     * GetProcessInfoDeprecated
      * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -61,6 +62,7 @@ public class ProcessesV1 implements
     }
 
     /**
+     * GetProcessInfoDeprecated
      * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param processId
      * @return The response from the API call
@@ -74,6 +76,7 @@ public class ProcessesV1 implements
     }
     
     /**
+     * GetProcessInfoDeprecated
      * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param appId
      * @param processId
@@ -207,6 +210,7 @@ public class ProcessesV1 implements
 
 
     /**
+     * GetRunningProcesses
      * Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -217,6 +221,7 @@ public class ProcessesV1 implements
     }
 
     /**
+     * GetRunningProcesses
      * Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -228,6 +233,7 @@ public class ProcessesV1 implements
     }
     
     /**
+     * GetRunningProcesses
      * Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
      * @param appId
      * @param region
@@ -366,6 +372,7 @@ public class ProcessesV1 implements
 
 
     /**
+     * GetStoppedProcesses
      * Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -376,6 +383,7 @@ public class ProcessesV1 implements
     }
 
     /**
+     * GetStoppedProcesses
      * Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -387,6 +395,7 @@ public class ProcessesV1 implements
     }
     
     /**
+     * GetStoppedProcesses
      * Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
      * @param appId
      * @param region

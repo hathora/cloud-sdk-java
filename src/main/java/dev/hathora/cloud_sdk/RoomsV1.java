@@ -68,6 +68,7 @@ public class RoomsV1 implements
 
 
     /**
+     * CreateRoomDeprecated
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -77,6 +78,7 @@ public class RoomsV1 implements
     }
 
     /**
+     * CreateRoomDeprecated
      * @param createRoomParams
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -89,6 +91,7 @@ public class RoomsV1 implements
     }
     
     /**
+     * CreateRoomDeprecated
      * @param createRoomParams
      * @param appId
      * @param roomId
@@ -242,6 +245,7 @@ public class RoomsV1 implements
 
 
     /**
+     * DestroyRoomDeprecated
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -251,6 +255,7 @@ public class RoomsV1 implements
     }
 
     /**
+     * DestroyRoomDeprecated
      * @param roomId
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -263,6 +268,7 @@ public class RoomsV1 implements
     }
     
     /**
+     * DestroyRoomDeprecated
      * @param appId
      * @param roomId
      * @return The response from the API call
@@ -384,6 +390,7 @@ public class RoomsV1 implements
 
 
     /**
+     * GetActiveRoomsForProcessDeprecated
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -393,6 +400,7 @@ public class RoomsV1 implements
     }
 
     /**
+     * GetActiveRoomsForProcessDeprecated
      * @param processId
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -405,6 +413,7 @@ public class RoomsV1 implements
     }
     
     /**
+     * GetActiveRoomsForProcessDeprecated
      * @param appId
      * @param processId
      * @return The response from the API call
@@ -537,6 +546,7 @@ public class RoomsV1 implements
 
 
     /**
+     * GetConnectionInfoDeprecated
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -546,6 +556,7 @@ public class RoomsV1 implements
     }
 
     /**
+     * GetConnectionInfoDeprecated
      * @param roomId
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -558,6 +569,7 @@ public class RoomsV1 implements
     }
     
     /**
+     * GetConnectionInfoDeprecated
      * @param appId
      * @param roomId
      * @return The response from the API call
@@ -687,6 +699,7 @@ public class RoomsV1 implements
 
 
     /**
+     * GetInactiveRoomsForProcessDeprecated
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -696,6 +709,7 @@ public class RoomsV1 implements
     }
 
     /**
+     * GetInactiveRoomsForProcessDeprecated
      * @param processId
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -708,6 +722,7 @@ public class RoomsV1 implements
     }
     
     /**
+     * GetInactiveRoomsForProcessDeprecated
      * @param appId
      * @param processId
      * @return The response from the API call
@@ -840,6 +855,7 @@ public class RoomsV1 implements
 
 
     /**
+     * GetRoomInfoDeprecated
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -849,6 +865,7 @@ public class RoomsV1 implements
     }
 
     /**
+     * GetRoomInfoDeprecated
      * @param roomId
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -861,6 +878,7 @@ public class RoomsV1 implements
     }
     
     /**
+     * GetRoomInfoDeprecated
      * @param appId
      * @param roomId
      * @return The response from the API call
@@ -993,6 +1011,7 @@ public class RoomsV1 implements
 
 
     /**
+     * SuspendRoomDeprecated
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -1002,6 +1021,7 @@ public class RoomsV1 implements
     }
 
     /**
+     * SuspendRoomDeprecated
      * @param roomId
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1014,6 +1034,7 @@ public class RoomsV1 implements
     }
     
     /**
+     * SuspendRoomDeprecated
      * @param appId
      * @param roomId
      * @return The response from the API call

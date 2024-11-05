@@ -7,10 +7,10 @@ Operations that allow you configure and manage an application's [build](https://
 
 ### Available Operations
 
-* [createDeployment](#createdeployment) - Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
-* [getDeployment](#getdeployment) - Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
-* [getDeployments](#getdeployments) - Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
-* [getLatestDeployment](#getlatestdeployment) - Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+* [createDeployment](#createdeployment) - CreateDeployment
+* [getDeployment](#getdeployment) - GetDeployment
+* [getDeployments](#getdeployments) - GetDeployments
+* [getLatestDeployment](#getlatestdeployment) - GetLatestDeployment
 
 ## createDeployment
 

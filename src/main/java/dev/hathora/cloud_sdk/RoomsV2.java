@@ -74,6 +74,7 @@ public class RoomsV2 implements
 
 
     /**
+     * CreateRoom
      * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
      * @return The call builder
      */
@@ -82,6 +83,7 @@ public class RoomsV2 implements
     }
 
     /**
+     * CreateRoom
      * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
      * @param createRoomParams
      * @return The response from the API call
@@ -93,6 +95,7 @@ public class RoomsV2 implements
     }
     
     /**
+     * CreateRoom
      * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
      * @param createRoomParams
      * @param appId
@@ -245,6 +248,7 @@ public class RoomsV2 implements
 
 
     /**
+     * DestroyRoom
      * Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
      * @return The call builder
      */
@@ -253,6 +257,7 @@ public class RoomsV2 implements
     }
 
     /**
+     * DestroyRoom
      * Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
      * @param roomId
      * @return The response from the API call
@@ -264,6 +269,7 @@ public class RoomsV2 implements
     }
     
     /**
+     * DestroyRoom
      * Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
      * @param appId
      * @param roomId
@@ -384,6 +390,7 @@ public class RoomsV2 implements
 
 
     /**
+     * GetActiveRoomsForProcess
      * Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @return The call builder
      */
@@ -392,6 +399,7 @@ public class RoomsV2 implements
     }
 
     /**
+     * GetActiveRoomsForProcess
      * Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param processId
      * @return The response from the API call
@@ -403,6 +411,7 @@ public class RoomsV2 implements
     }
     
     /**
+     * GetActiveRoomsForProcess
      * Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param appId
      * @param processId
@@ -534,6 +543,7 @@ public class RoomsV2 implements
 
 
     /**
+     * GetConnectionInfo
      * Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
      * @return The call builder
      */
@@ -542,6 +552,7 @@ public class RoomsV2 implements
     }
 
     /**
+     * GetConnectionInfo
      * Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
      * @param roomId
      * @return The response from the API call
@@ -553,6 +564,7 @@ public class RoomsV2 implements
     }
     
     /**
+     * GetConnectionInfo
      * Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
      * @param appId
      * @param roomId
@@ -681,6 +693,7 @@ public class RoomsV2 implements
 
 
     /**
+     * GetInactiveRoomsForProcess
      * Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @return The call builder
      */
@@ -689,6 +702,7 @@ public class RoomsV2 implements
     }
 
     /**
+     * GetInactiveRoomsForProcess
      * Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param processId
      * @return The response from the API call
@@ -700,6 +714,7 @@ public class RoomsV2 implements
     }
     
     /**
+     * GetInactiveRoomsForProcess
      * Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param appId
      * @param processId
@@ -831,6 +846,7 @@ public class RoomsV2 implements
 
 
     /**
+     * GetRoomInfo
      * Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
      * @return The call builder
      */
@@ -839,6 +855,7 @@ public class RoomsV2 implements
     }
 
     /**
+     * GetRoomInfo
      * Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
      * @param roomId
      * @return The response from the API call
@@ -850,6 +867,7 @@ public class RoomsV2 implements
     }
     
     /**
+     * GetRoomInfo
      * Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
      * @param appId
      * @param roomId
@@ -981,6 +999,7 @@ public class RoomsV2 implements
 
 
     /**
+     * SuspendRoomV2Deprecated
      * Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -991,6 +1010,7 @@ public class RoomsV2 implements
     }
 
     /**
+     * SuspendRoomV2Deprecated
      * Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
      * @param roomId
      * @return The response from the API call
@@ -1004,6 +1024,7 @@ public class RoomsV2 implements
     }
     
     /**
+     * SuspendRoomV2Deprecated
      * Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
      * @param appId
      * @param roomId
@@ -1125,16 +1146,35 @@ public class RoomsV2 implements
 
 
 
+    /**
+     * UpdateRoomConfig
+     * @return The call builder
+     */
     public UpdateRoomConfigRequestBuilder updateRoomConfig() {
         return new UpdateRoomConfigRequestBuilder(this);
     }
 
+    /**
+     * UpdateRoomConfig
+     * @param updateRoomConfigParams
+     * @param roomId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public UpdateRoomConfigResponse updateRoomConfig(
             UpdateRoomConfigParams updateRoomConfigParams,
             String roomId) throws Exception {
         return updateRoomConfig(updateRoomConfigParams, Optional.empty(), roomId);
     }
     
+    /**
+     * UpdateRoomConfig
+     * @param updateRoomConfigParams
+     * @param appId
+     * @param roomId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public UpdateRoomConfigResponse updateRoomConfig(
             UpdateRoomConfigParams updateRoomConfigParams,
             Optional<String> appId,

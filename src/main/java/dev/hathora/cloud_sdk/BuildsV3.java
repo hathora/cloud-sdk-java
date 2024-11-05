@@ -63,6 +63,7 @@ public class BuildsV3 implements
 
 
     /**
+     * CreateBuild
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @return The call builder
      */
@@ -71,6 +72,7 @@ public class BuildsV3 implements
     }
 
     /**
+     * CreateBuild
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @param createMultipartBuildParams
      * @return The response from the API call
@@ -82,6 +84,7 @@ public class BuildsV3 implements
     }
     
     /**
+     * CreateBuild
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @param createMultipartBuildParams
      * @param orgId
@@ -229,7 +232,10 @@ public class BuildsV3 implements
 
 
     /**
-     * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted. - Be careful which builds you delete. This endpoint does not prevent you from deleting actively used builds. - Deleting a build that is actively build used by an app's deployment will cause failures when creating rooms.
+     * DeleteBuild
+     * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
+     * Be careful which builds you delete. This endpoint does not prevent you from deleting actively used builds.
+     * Deleting a build that is actively build used by an app's deployment will cause failures when creating rooms.
      * @return The call builder
      */
     public DeleteBuildRequestBuilder deleteBuild() {
@@ -237,7 +243,10 @@ public class BuildsV3 implements
     }
 
     /**
-     * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted. - Be careful which builds you delete. This endpoint does not prevent you from deleting actively used builds. - Deleting a build that is actively build used by an app's deployment will cause failures when creating rooms.
+     * DeleteBuild
+     * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
+     * Be careful which builds you delete. This endpoint does not prevent you from deleting actively used builds.
+     * Deleting a build that is actively build used by an app's deployment will cause failures when creating rooms.
      * @param buildId
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -248,7 +257,10 @@ public class BuildsV3 implements
     }
     
     /**
-     * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted. - Be careful which builds you delete. This endpoint does not prevent you from deleting actively used builds. - Deleting a build that is actively build used by an app's deployment will cause failures when creating rooms.
+     * DeleteBuild
+     * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
+     * Be careful which builds you delete. This endpoint does not prevent you from deleting actively used builds.
+     * Deleting a build that is actively build used by an app's deployment will cause failures when creating rooms.
      * @param buildId
      * @param orgId
      * @return The response from the API call
@@ -384,6 +396,7 @@ public class BuildsV3 implements
 
 
     /**
+     * GetBuild
      * Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
      * @return The call builder
      */
@@ -392,6 +405,7 @@ public class BuildsV3 implements
     }
 
     /**
+     * GetBuild
      * Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
      * @param buildId
      * @return The response from the API call
@@ -403,6 +417,7 @@ public class BuildsV3 implements
     }
     
     /**
+     * GetBuild
      * Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
      * @param buildId
      * @param orgId
@@ -539,6 +554,7 @@ public class BuildsV3 implements
 
 
     /**
+     * GetBuilds
      * Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The call builder
      */
@@ -547,6 +563,7 @@ public class BuildsV3 implements
     }
 
     /**
+     * GetBuilds
      * Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -556,6 +573,7 @@ public class BuildsV3 implements
     }
     
     /**
+     * GetBuilds
      * Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @param orgId
      * @return The response from the API call
@@ -687,6 +705,7 @@ public class BuildsV3 implements
 
 
     /**
+     * RunBuild
      * Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * @return The call builder
      */
@@ -695,6 +714,7 @@ public class BuildsV3 implements
     }
 
     /**
+     * RunBuild
      * Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * @param buildId
      * @return The response from the API call
@@ -706,6 +726,7 @@ public class BuildsV3 implements
     }
     
     /**
+     * RunBuild
      * Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * @param buildId
      * @param orgId

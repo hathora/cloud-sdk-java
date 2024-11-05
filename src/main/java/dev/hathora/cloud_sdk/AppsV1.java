@@ -57,6 +57,7 @@ public class AppsV1 implements
 
 
     /**
+     * CreateAppV1Deprecated
      * Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -67,6 +68,7 @@ public class AppsV1 implements
     }
 
     /**
+     * CreateAppV1Deprecated
      * Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -202,6 +204,7 @@ public class AppsV1 implements
 
 
     /**
+     * DeleteAppV1Deprecated
      * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -212,6 +215,7 @@ public class AppsV1 implements
     }
 
     /**
+     * DeleteAppV1Deprecated
      * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -223,6 +227,7 @@ public class AppsV1 implements
     }
     
     /**
+     * DeleteAppV1Deprecated
      * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
      * @param appId
      * @return The response from the API call
@@ -342,6 +347,7 @@ public class AppsV1 implements
 
 
     /**
+     * GetAppInfoV1Deprecated
      * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -352,6 +358,7 @@ public class AppsV1 implements
     }
 
     /**
+     * GetAppInfoV1Deprecated
      * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -363,6 +370,7 @@ public class AppsV1 implements
     }
     
     /**
+     * GetAppInfoV1Deprecated
      * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @param appId
      * @return The response from the API call
@@ -493,6 +501,7 @@ public class AppsV1 implements
 
 
     /**
+     * GetAppsV1Deprecated
      * Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -503,6 +512,7 @@ public class AppsV1 implements
     }
 
     /**
+     * GetAppsV1Deprecated
      * Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -623,6 +633,7 @@ public class AppsV1 implements
 
 
     /**
+     * UpdateAppV1Deprecated
      * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -633,6 +644,7 @@ public class AppsV1 implements
     }
 
     /**
+     * UpdateAppV1Deprecated
      * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @param appConfig
      * @return The response from the API call
@@ -646,6 +658,7 @@ public class AppsV1 implements
     }
     
     /**
+     * UpdateAppV1Deprecated
      * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * @param appConfig
      * @param appId

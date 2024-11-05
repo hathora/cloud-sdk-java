@@ -5,15 +5,17 @@
 
 ### Available Operations
 
-* [~~createRoomDeprecated~~](#createroomdeprecated) - :warning: **Deprecated**
-* [~~destroyRoomDeprecated~~](#destroyroomdeprecated) - :warning: **Deprecated**
-* [~~getActiveRoomsForProcessDeprecated~~](#getactiveroomsforprocessdeprecated) - :warning: **Deprecated**
-* [~~getConnectionInfoDeprecated~~](#getconnectioninfodeprecated) - :warning: **Deprecated**
-* [~~getInactiveRoomsForProcessDeprecated~~](#getinactiveroomsforprocessdeprecated) - :warning: **Deprecated**
-* [~~getRoomInfoDeprecated~~](#getroominfodeprecated) - :warning: **Deprecated**
-* [~~suspendRoomDeprecated~~](#suspendroomdeprecated) - :warning: **Deprecated**
+* [~~createRoomDeprecated~~](#createroomdeprecated) - CreateRoomDeprecated :warning: **Deprecated**
+* [~~destroyRoomDeprecated~~](#destroyroomdeprecated) - DestroyRoomDeprecated :warning: **Deprecated**
+* [~~getActiveRoomsForProcessDeprecated~~](#getactiveroomsforprocessdeprecated) - GetActiveRoomsForProcessDeprecated :warning: **Deprecated**
+* [~~getConnectionInfoDeprecated~~](#getconnectioninfodeprecated) - GetConnectionInfoDeprecated :warning: **Deprecated**
+* [~~getInactiveRoomsForProcessDeprecated~~](#getinactiveroomsforprocessdeprecated) - GetInactiveRoomsForProcessDeprecated :warning: **Deprecated**
+* [~~getRoomInfoDeprecated~~](#getroominfodeprecated) - GetRoomInfoDeprecated :warning: **Deprecated**
+* [~~suspendRoomDeprecated~~](#suspendroomdeprecated) - SuspendRoomDeprecated :warning: **Deprecated**
 
 ## ~~createRoomDeprecated~~
+
+CreateRoomDeprecated
 
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
@@ -82,6 +84,8 @@ public class Application {
 
 ## ~~destroyRoomDeprecated~~
 
+DestroyRoomDeprecated
+
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
@@ -135,6 +139,8 @@ public class Application {
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~getActiveRoomsForProcessDeprecated~~
+
+GetActiveRoomsForProcessDeprecated
 
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
@@ -192,6 +198,8 @@ public class Application {
 
 ## ~~getConnectionInfoDeprecated~~
 
+GetConnectionInfoDeprecated
+
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
@@ -243,6 +251,8 @@ public class Application {
 | models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
 ## ~~getInactiveRoomsForProcessDeprecated~~
+
+GetInactiveRoomsForProcessDeprecated
 
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
@@ -300,6 +310,8 @@ public class Application {
 
 ## ~~getRoomInfoDeprecated~~
 
+GetRoomInfoDeprecated
+
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
@@ -355,6 +367,8 @@ public class Application {
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~suspendRoomDeprecated~~
+
+SuspendRoomDeprecated
 
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 

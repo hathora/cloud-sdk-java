@@ -54,6 +54,7 @@ public class DeploymentsV2 implements
 
 
     /**
+     * CreateDeploymentV2Deprecated
      * Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -64,6 +65,7 @@ public class DeploymentsV2 implements
     }
 
     /**
+     * CreateDeploymentV2Deprecated
      * Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
      * @param deploymentConfigV2
      * @param buildId
@@ -79,6 +81,7 @@ public class DeploymentsV2 implements
     }
     
     /**
+     * CreateDeploymentV2Deprecated
      * Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
      * @param deploymentConfigV2
      * @param appId
@@ -228,6 +231,7 @@ public class DeploymentsV2 implements
 
 
     /**
+     * GetDeploymentInfoV2Deprecated
      * Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -238,6 +242,7 @@ public class DeploymentsV2 implements
     }
 
     /**
+     * GetDeploymentInfoV2Deprecated
      * Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
      * @param deploymentId
      * @return The response from the API call
@@ -251,6 +256,7 @@ public class DeploymentsV2 implements
     }
     
     /**
+     * GetDeploymentInfoV2Deprecated
      * Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
      * @param appId
      * @param deploymentId
@@ -384,6 +390,7 @@ public class DeploymentsV2 implements
 
 
     /**
+     * GetDeploymentsV2Deprecated
      * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -394,6 +401,7 @@ public class DeploymentsV2 implements
     }
 
     /**
+     * GetDeploymentsV2Deprecated
      * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -405,6 +413,7 @@ public class DeploymentsV2 implements
     }
     
     /**
+     * GetDeploymentsV2Deprecated
      * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @param appId
      * @return The response from the API call
@@ -535,6 +544,7 @@ public class DeploymentsV2 implements
 
 
     /**
+     * GetLatestDeploymentV2Deprecated
      * Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -545,6 +555,7 @@ public class DeploymentsV2 implements
     }
 
     /**
+     * GetLatestDeploymentV2Deprecated
      * Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -556,6 +567,7 @@ public class DeploymentsV2 implements
     }
     
     /**
+     * GetLatestDeploymentV2Deprecated
      * Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @param appId
      * @return The response from the API call

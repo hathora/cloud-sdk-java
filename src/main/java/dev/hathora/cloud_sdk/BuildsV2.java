@@ -70,6 +70,7 @@ public class BuildsV2 implements
 
 
     /**
+     * CreateBuildV2Deprecated
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -80,6 +81,7 @@ public class BuildsV2 implements
     }
 
     /**
+     * CreateBuildV2Deprecated
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @param createBuildParams
      * @return The response from the API call
@@ -93,6 +95,7 @@ public class BuildsV2 implements
     }
     
     /**
+     * CreateBuildV2Deprecated
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @param createBuildParams
      * @param appId
@@ -239,6 +242,7 @@ public class BuildsV2 implements
 
 
     /**
+     * CreateBuildWithUploadUrlV2Deprecated
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with `uploadUrl` that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -249,6 +253,7 @@ public class BuildsV2 implements
     }
 
     /**
+     * CreateBuildWithUploadUrlV2Deprecated
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with `uploadUrl` that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @param createBuildParams
      * @return The response from the API call
@@ -262,6 +267,7 @@ public class BuildsV2 implements
     }
     
     /**
+     * CreateBuildWithUploadUrlV2Deprecated
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with `uploadUrl` that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @param createBuildParams
      * @param appId
@@ -408,6 +414,7 @@ public class BuildsV2 implements
 
 
     /**
+     * CreateWithMultipartUploadsV2Deprecated
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -418,6 +425,7 @@ public class BuildsV2 implements
     }
 
     /**
+     * CreateWithMultipartUploadsV2Deprecated
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @param createMultipartBuildParams
      * @return The response from the API call
@@ -431,6 +439,7 @@ public class BuildsV2 implements
     }
     
     /**
+     * CreateWithMultipartUploadsV2Deprecated
      * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * @param createMultipartBuildParams
      * @param appId
@@ -577,6 +586,7 @@ public class BuildsV2 implements
 
 
     /**
+     * DeleteBuildV2Deprecated
      * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -587,6 +597,7 @@ public class BuildsV2 implements
     }
 
     /**
+     * DeleteBuildV2Deprecated
      * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
      * @param buildId
      * @return The response from the API call
@@ -600,6 +611,7 @@ public class BuildsV2 implements
     }
     
     /**
+     * DeleteBuildV2Deprecated
      * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
      * @param appId
      * @param buildId
@@ -722,6 +734,7 @@ public class BuildsV2 implements
 
 
     /**
+     * GetBuildInfoV2Deprecated
      * Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -732,6 +745,7 @@ public class BuildsV2 implements
     }
 
     /**
+     * GetBuildInfoV2Deprecated
      * Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
      * @param buildId
      * @return The response from the API call
@@ -745,6 +759,7 @@ public class BuildsV2 implements
     }
     
     /**
+     * GetBuildInfoV2Deprecated
      * Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
      * @param appId
      * @param buildId
@@ -878,6 +893,7 @@ public class BuildsV2 implements
 
 
     /**
+     * GetBuildsV2Deprecated
      * Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -888,6 +904,7 @@ public class BuildsV2 implements
     }
 
     /**
+     * GetBuildsV2Deprecated
      * Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -899,6 +916,7 @@ public class BuildsV2 implements
     }
     
     /**
+     * GetBuildsV2Deprecated
      * Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * @param appId
      * @return The response from the API call
@@ -1029,6 +1047,7 @@ public class BuildsV2 implements
 
 
     /**
+     * RunBuildV2Deprecated
      * Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -1039,6 +1058,7 @@ public class BuildsV2 implements
     }
 
     /**
+     * RunBuildV2Deprecated
      * Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * @param requestBody
      * @param buildId
@@ -1054,6 +1074,7 @@ public class BuildsV2 implements
     }
     
     /**
+     * RunBuildV2Deprecated
      * Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * @param requestBody
      * @param appId

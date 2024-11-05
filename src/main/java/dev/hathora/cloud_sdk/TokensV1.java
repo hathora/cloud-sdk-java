@@ -54,6 +54,7 @@ public class TokensV1 implements
 
 
     /**
+     * CreateOrgToken
      * Create a new organization token.
      * @return The call builder
      */
@@ -62,6 +63,7 @@ public class TokensV1 implements
     }
 
     /**
+     * CreateOrgToken
      * Create a new organization token.
      * @param createOrgToken
      * @param orgId
@@ -206,6 +208,7 @@ public class TokensV1 implements
 
 
     /**
+     * GetOrgTokens
      * List all organization tokens for a given org.
      * @return The call builder
      */
@@ -214,6 +217,7 @@ public class TokensV1 implements
     }
 
     /**
+     * GetOrgTokens
      * List all organization tokens for a given org.
      * @param orgId
      * @return The response from the API call
@@ -342,6 +346,7 @@ public class TokensV1 implements
 
 
     /**
+     * RevokeOrgToken
      * Revoke an organization token.
      * @return The call builder
      */
@@ -350,6 +355,7 @@ public class TokensV1 implements
     }
 
     /**
+     * RevokeOrgToken
      * Revoke an organization token.
      * @param orgId
      * @param orgTokenId

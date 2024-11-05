@@ -38,6 +38,7 @@ public class DiscoveryV2 implements
 
 
     /**
+     * GetPingServiceEndpoints
      * Returns an array of all regions with a host and port that a client can directly ping. Open a websocket connection to `wss://&lt;host&gt;:&lt;port&gt;/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back.
      * @return The call builder
      */
@@ -46,6 +47,7 @@ public class DiscoveryV2 implements
     }
 
     /**
+     * GetPingServiceEndpoints
      * Returns an array of all regions with a host and port that a client can directly ping. Open a websocket connection to `wss://&lt;host&gt;:&lt;port&gt;/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back.
      * @return The response from the API call
      * @throws Exception if the API call fails

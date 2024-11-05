@@ -7,12 +7,12 @@ Operations to get data on active and stopped [processes](https://hathora.dev/doc
 
 ### Available Operations
 
-* [createProcess](#createprocess) - Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
-* [getLatestProcesses](#getlatestprocesses) - Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
-* [getProcess](#getprocess) - Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
-* [getProcessMetrics](#getprocessmetrics)
-* [getProcessesCountExperimental](#getprocessescountexperimental) - Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
-* [stopProcess](#stopprocess) - Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
+* [createProcess](#createprocess) - CreateProcess
+* [getLatestProcesses](#getlatestprocesses) - GetLatestProcesses
+* [getProcess](#getprocess) - GetProcess
+* [getProcessMetrics](#getprocessmetrics) - GetProcessMetrics
+* [getProcessesCountExperimental](#getprocessescountexperimental) - GetProcessesCountExperimental
+* [stopProcess](#stopprocess) - StopProcess
 
 ## createProcess
 
@@ -191,6 +191,8 @@ public class Application {
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getProcessMetrics
+
+GetProcessMetrics
 
 ### Example Usage
 

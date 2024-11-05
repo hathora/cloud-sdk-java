@@ -5,13 +5,13 @@
 
 ### Available Operations
 
-* [~~createLobbyDeprecated~~](#createlobbydeprecated) - Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players. :warning: **Deprecated**
-* [~~createLocalLobby~~](#createlocallobby) - :warning: **Deprecated**
-* [~~createPrivateLobby~~](#createprivatelobby) - :warning: **Deprecated**
-* [~~createPublicLobby~~](#createpubliclobby) - :warning: **Deprecated**
-* [~~getLobbyInfo~~](#getlobbyinfo) - Get details for a lobby. :warning: **Deprecated**
-* [~~listActivePublicLobbiesDeprecatedV2~~](#listactivepubliclobbiesdeprecatedv2) - Get all active lobbies for a an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client. :warning: **Deprecated**
-* [~~setLobbyState~~](#setlobbystate) - Set the state of a lobby. State is intended to be set by the server and must be smaller than 1MB. Use this endpoint to store match data like live player count to enforce max number of clients or persist end-game data (i.e. winner or final scores). :warning: **Deprecated**
+* [~~createLobbyDeprecated~~](#createlobbydeprecated) - CreateLobbyDeprecated :warning: **Deprecated**
+* [~~createLocalLobby~~](#createlocallobby) - CreateLocalLobby :warning: **Deprecated**
+* [~~createPrivateLobby~~](#createprivatelobby) - CreatePrivateLobby :warning: **Deprecated**
+* [~~createPublicLobby~~](#createpubliclobby) - CreatePublicLobby :warning: **Deprecated**
+* [~~getLobbyInfo~~](#getlobbyinfo) - GetLobbyInfo :warning: **Deprecated**
+* [~~listActivePublicLobbiesDeprecatedV2~~](#listactivepubliclobbiesdeprecatedv2) - ListActivePublicLobbiesDeprecatedV2 :warning: **Deprecated**
+* [~~setLobbyState~~](#setlobbystate) - SetLobbyState :warning: **Deprecated**
 
 ## ~~createLobbyDeprecated~~
 
@@ -83,6 +83,8 @@ public class Application {
 
 ## ~~createLocalLobby~~
 
+CreateLocalLobby
+
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
@@ -147,6 +149,8 @@ public class Application {
 
 ## ~~createPrivateLobby~~
 
+CreatePrivateLobby
+
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
@@ -210,6 +214,8 @@ public class Application {
 | models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## ~~createPublicLobby~~
+
+CreatePublicLobby
 
 > :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 

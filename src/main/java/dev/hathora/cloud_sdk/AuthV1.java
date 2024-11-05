@@ -53,6 +53,7 @@ public class AuthV1 implements
 
 
     /**
+     * LoginAnonymous
      * Returns a unique player token for an anonymous user.
      * @return The call builder
      */
@@ -61,6 +62,7 @@ public class AuthV1 implements
     }
 
     /**
+     * LoginAnonymous
      * Returns a unique player token for an anonymous user.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -70,6 +72,7 @@ public class AuthV1 implements
     }
     
     /**
+     * LoginAnonymous
      * Returns a unique player token for an anonymous user.
      * @param appId
      * @return The response from the API call
@@ -195,6 +198,7 @@ public class AuthV1 implements
 
 
     /**
+     * LoginGoogle
      * Returns a unique player token using a Google-signed OIDC `idToken`.
      * @return The call builder
      */
@@ -203,6 +207,7 @@ public class AuthV1 implements
     }
 
     /**
+     * LoginGoogle
      * Returns a unique player token using a Google-signed OIDC `idToken`.
      * @param googleIdTokenObject
      * @return The response from the API call
@@ -214,6 +219,7 @@ public class AuthV1 implements
     }
     
     /**
+     * LoginGoogle
      * Returns a unique player token using a Google-signed OIDC `idToken`.
      * @param googleIdTokenObject
      * @param appId
@@ -355,6 +361,7 @@ public class AuthV1 implements
 
 
     /**
+     * LoginNickname
      * Returns a unique player token with a specified nickname for a user.
      * @return The call builder
      */
@@ -363,6 +370,7 @@ public class AuthV1 implements
     }
 
     /**
+     * LoginNickname
      * Returns a unique player token with a specified nickname for a user.
      * @param nicknameObject
      * @return The response from the API call
@@ -374,6 +382,7 @@ public class AuthV1 implements
     }
     
     /**
+     * LoginNickname
      * Returns a unique player token with a specified nickname for a user.
      * @param nicknameObject
      * @param appId

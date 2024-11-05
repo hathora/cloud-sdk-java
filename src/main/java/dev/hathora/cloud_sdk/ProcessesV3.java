@@ -64,6 +64,7 @@ public class ProcessesV3 implements
 
 
     /**
+     * CreateProcess
      * Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
      * @return The call builder
      */
@@ -72,6 +73,7 @@ public class ProcessesV3 implements
     }
 
     /**
+     * CreateProcess
      * Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
      * @param region
      * @return The response from the API call
@@ -83,6 +85,7 @@ public class ProcessesV3 implements
     }
     
     /**
+     * CreateProcess
      * Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
      * @param appId
      * @param region
@@ -214,6 +217,7 @@ public class ProcessesV3 implements
 
 
     /**
+     * GetLatestProcesses
      * Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
      * @return The call builder
      */
@@ -222,6 +226,7 @@ public class ProcessesV3 implements
     }
 
     /**
+     * GetLatestProcesses
      * Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -231,6 +236,7 @@ public class ProcessesV3 implements
     }
     
     /**
+     * GetLatestProcesses
      * Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
      * @param appId
      * @param region
@@ -370,6 +376,7 @@ public class ProcessesV3 implements
 
 
     /**
+     * GetProcess
      * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @return The call builder
      */
@@ -378,6 +385,7 @@ public class ProcessesV3 implements
     }
 
     /**
+     * GetProcess
      * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param processId
      * @return The response from the API call
@@ -389,6 +397,7 @@ public class ProcessesV3 implements
     }
     
     /**
+     * GetProcess
      * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * @param appId
      * @param processId
@@ -519,10 +528,20 @@ public class ProcessesV3 implements
 
 
 
+    /**
+     * GetProcessMetrics
+     * @return The call builder
+     */
     public GetProcessMetricsRequestBuilder getProcessMetrics() {
         return new GetProcessMetricsRequestBuilder(this);
     }
 
+    /**
+     * GetProcessMetrics
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public GetProcessMetricsResponse getProcessMetrics(
             GetProcessMetricsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
@@ -645,6 +664,7 @@ public class ProcessesV3 implements
 
 
     /**
+     * GetProcessesCountExperimental
      * Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
      * @return The call builder
      */
@@ -653,6 +673,7 @@ public class ProcessesV3 implements
     }
 
     /**
+     * GetProcessesCountExperimental
      * Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -662,6 +683,7 @@ public class ProcessesV3 implements
     }
     
     /**
+     * GetProcessesCountExperimental
      * Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
      * @param appId
      * @param region
@@ -801,6 +823,7 @@ public class ProcessesV3 implements
 
 
     /**
+     * StopProcess
      * Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
      * @return The call builder
      */
@@ -809,6 +832,7 @@ public class ProcessesV3 implements
     }
 
     /**
+     * StopProcess
      * Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
      * @param processId
      * @return The response from the API call
@@ -820,6 +844,7 @@ public class ProcessesV3 implements
     }
     
     /**
+     * StopProcess
      * Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
      * @param appId
      * @param processId

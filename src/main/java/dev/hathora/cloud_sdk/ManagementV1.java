@@ -42,10 +42,20 @@ public class ManagementV1 implements
     }
 
 
+    /**
+     * SendVerificationEmail
+     * @return The call builder
+     */
     public SendVerificationEmailRequestBuilder sendVerificationEmail() {
         return new SendVerificationEmailRequestBuilder(this);
     }
 
+    /**
+     * SendVerificationEmail
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public SendVerificationEmailResponse sendVerificationEmail(
             VerificationEmailRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;

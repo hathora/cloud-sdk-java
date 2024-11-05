@@ -70,10 +70,20 @@ public class OrganizationsV1 implements
     }
 
 
+    /**
+     * AcceptInvite
+     * @return The call builder
+     */
     public AcceptInviteRequestBuilder acceptInvite() {
         return new AcceptInviteRequestBuilder(this);
     }
 
+    /**
+     * AcceptInvite
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public AcceptInviteResponse acceptInvite(
             String orgId) throws Exception {
         AcceptInviteRequest request =
@@ -185,10 +195,20 @@ public class OrganizationsV1 implements
 
 
 
+    /**
+     * GetOrgMembers
+     * @return The call builder
+     */
     public GetOrgMembersRequestBuilder getOrgMembers() {
         return new GetOrgMembersRequestBuilder(this);
     }
 
+    /**
+     * GetOrgMembers
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public GetOrgMembersResponse getOrgMembers(
             String orgId) throws Exception {
         GetOrgMembersRequest request =
@@ -311,10 +331,20 @@ public class OrganizationsV1 implements
 
 
 
+    /**
+     * GetOrgPendingInvites
+     * @return The call builder
+     */
     public GetOrgPendingInvitesRequestBuilder getOrgPendingInvites() {
         return new GetOrgPendingInvitesRequestBuilder(this);
     }
 
+    /**
+     * GetOrgPendingInvites
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public GetOrgPendingInvitesResponse getOrgPendingInvites(
             String orgId) throws Exception {
         GetOrgPendingInvitesRequest request =
@@ -438,6 +468,7 @@ public class OrganizationsV1 implements
 
 
     /**
+     * GetOrgs
      * Returns an unsorted list of all organizations that you are a member of (an accepted membership invite). An organization is uniquely identified by an `orgId`.
      * @return The call builder
      */
@@ -446,6 +477,7 @@ public class OrganizationsV1 implements
     }
 
     /**
+     * GetOrgs
      * Returns an unsorted list of all organizations that you are a member of (an accepted membership invite). An organization is uniquely identified by an `orgId`.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -563,10 +595,19 @@ public class OrganizationsV1 implements
 
 
 
+    /**
+     * GetUserPendingInvites
+     * @return The call builder
+     */
     public GetUserPendingInvitesRequestBuilder getUserPendingInvites() {
         return new GetUserPendingInvitesRequestBuilder(this);
     }
 
+    /**
+     * GetUserPendingInvites
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public GetUserPendingInvitesResponse getUserPendingInvitesDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
@@ -680,10 +721,21 @@ public class OrganizationsV1 implements
 
 
 
+    /**
+     * InviteUser
+     * @return The call builder
+     */
     public InviteUserRequestBuilder inviteUser() {
         return new InviteUserRequestBuilder(this);
     }
 
+    /**
+     * InviteUser
+     * @param createUserInvite
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public InviteUserResponse inviteUser(
             CreateUserInvite createUserInvite,
             String orgId) throws Exception {
@@ -821,10 +873,20 @@ public class OrganizationsV1 implements
 
 
 
+    /**
+     * RejectInvite
+     * @return The call builder
+     */
     public RejectInviteRequestBuilder rejectInvite() {
         return new RejectInviteRequestBuilder(this);
     }
 
+    /**
+     * RejectInvite
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public RejectInviteResponse rejectInvite(
             String orgId) throws Exception {
         RejectInviteRequest request =
@@ -936,10 +998,21 @@ public class OrganizationsV1 implements
 
 
 
+    /**
+     * RescindInvite
+     * @return The call builder
+     */
     public RescindInviteRequestBuilder rescindInvite() {
         return new RescindInviteRequestBuilder(this);
     }
 
+    /**
+     * RescindInvite
+     * @param rescindUserInvite
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public RescindInviteResponse rescindInvite(
             RescindUserInvite rescindUserInvite,
             String orgId) throws Exception {

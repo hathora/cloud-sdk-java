@@ -61,10 +61,19 @@ public class BillingV1 implements
     }
 
 
+    /**
+     * GetBalance
+     * @return The call builder
+     */
     public GetBalanceRequestBuilder getBalance() {
         return new GetBalanceRequestBuilder(this);
     }
 
+    /**
+     * GetBalance
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public GetBalanceResponse getBalanceDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
@@ -178,10 +187,19 @@ public class BillingV1 implements
 
 
 
+    /**
+     * GetInvoices
+     * @return The call builder
+     */
     public GetInvoicesRequestBuilder getInvoices() {
         return new GetInvoicesRequestBuilder(this);
     }
 
+    /**
+     * GetInvoices
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public GetInvoicesResponse getInvoicesDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
@@ -295,10 +313,19 @@ public class BillingV1 implements
 
 
 
+    /**
+     * GetPaymentMethod
+     * @return The call builder
+     */
     public GetPaymentMethodRequestBuilder getPaymentMethod() {
         return new GetPaymentMethodRequestBuilder(this);
     }
 
+    /**
+     * GetPaymentMethod
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public GetPaymentMethodResponse getPaymentMethodDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
@@ -412,10 +439,19 @@ public class BillingV1 implements
 
 
 
+    /**
+     * GetUpcomingInvoiceItems
+     * @return The call builder
+     */
     public GetUpcomingInvoiceItemsRequestBuilder getUpcomingInvoiceItems() {
         return new GetUpcomingInvoiceItemsRequestBuilder(this);
     }
 
+    /**
+     * GetUpcomingInvoiceItems
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public GetUpcomingInvoiceItemsResponse getUpcomingInvoiceItemsDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
@@ -529,10 +565,19 @@ public class BillingV1 implements
 
 
 
+    /**
+     * GetUpcomingInvoiceTotal
+     * @return The call builder
+     */
     public GetUpcomingInvoiceTotalRequestBuilder getUpcomingInvoiceTotal() {
         return new GetUpcomingInvoiceTotalRequestBuilder(this);
     }
 
+    /**
+     * GetUpcomingInvoiceTotal
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public GetUpcomingInvoiceTotalResponse getUpcomingInvoiceTotalDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
@@ -646,10 +691,20 @@ public class BillingV1 implements
 
 
 
+    /**
+     * InitStripeCustomerPortalUrl
+     * @return The call builder
+     */
     public InitStripeCustomerPortalUrlRequestBuilder initStripeCustomerPortalUrl() {
         return new InitStripeCustomerPortalUrlRequestBuilder(this);
     }
 
+    /**
+     * InitStripeCustomerPortalUrl
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
     public InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(
             CustomerPortalUrl request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
