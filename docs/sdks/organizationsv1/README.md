@@ -9,6 +9,7 @@
 * [getOrgMembers](#getorgmembers) - GetOrgMembers
 * [getOrgPendingInvites](#getorgpendinginvites) - GetOrgPendingInvites
 * [getOrgs](#getorgs) - GetOrgs
+* [getUsageLimits](#getusagelimits) - GetUsageLimits
 * [getUserPendingInvites](#getuserpendinginvites) - GetUserPendingInvites
 * [inviteUser](#inviteuser) - InviteUser
 * [rejectInvite](#rejectinvite) - RejectInvite
@@ -219,6 +220,60 @@ public class Application {
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## getUsageLimits
+
+GetUsageLimits
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.GetUsageLimitsResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        GetUsageLimitsResponse res = sdk.organizationsV1().getUsageLimits()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .call();
+
+        if (res.usageLimits().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `orgId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
+
+### Response
+
+**[GetUsageLimitsResponse](../../models/operations/GetUsageLimitsResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401, 404, 429, 500     | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getUserPendingInvites

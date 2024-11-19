@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: bfa4946b490fdca2f1007eca2c488a3f
+  docChecksum: f8d9519632cef4bd7e7a797fde2f0772
   docVersion: 0.0.1
-  speakeasyVersion: 1.434.6
-  generationVersion: 2.452.0
-  releaseVersion: 2.10.14
-  configChecksum: f334376e7fa44bf241d4294fba7b13d4
+  speakeasyVersion: 1.441.0
+  generationVersion: 2.460.1
+  releaseVersion: 2.11.0
+  configChecksum: ba87b88717514bec26d36a884030275c
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.30.7
+    core: 3.32.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
@@ -211,6 +211,8 @@ generatedFiles:
   - docs/models/operations/GetUpcomingInvoiceItemsResponse.md
   - docs/models/operations/GetUpcomingInvoiceTotalResponse.md
   - docs/models/operations/GetUpcomingInvoiceTotalResponseBody.md
+  - docs/models/operations/GetUsageLimitsRequest.md
+  - docs/models/operations/GetUsageLimitsResponse.md
   - docs/models/operations/GetUserPendingInvitesResponse.md
   - docs/models/operations/InitStripeCustomerPortalUrlResponse.md
   - docs/models/operations/InviteUserRequest.md
@@ -379,6 +381,7 @@ generatedFiles:
   - docs/models/shared/TransportType.md
   - docs/models/shared/UpdateRoomConfigParams.md
   - docs/models/shared/UploadBodyParams.md
+  - docs/models/shared/UsageLimits.md
   - docs/models/shared/VerificationEmailRequest.md
   - docs/models/shared/VerificationEmailSuccess.md
   - docs/sdks/appsv1/README.md
@@ -710,6 +713,9 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalResponseBody.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUsageLimitsRequest.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUsageLimitsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUsageLimitsResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUserPendingInvitesRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUserPendingInvitesResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/InitStripeCustomerPortalUrlRequestBuilder.java
@@ -904,6 +910,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/TransportType.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/UpdateRoomConfigParams.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/UploadBodyParams.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/UsageLimits.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/VerificationEmailRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/VerificationEmailSuccess.java
   - src/main/java/dev/hathora/cloud_sdk/utils/BackoffStrategy.java
@@ -928,6 +935,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/utils/OneOfDeserializer.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Options.java
   - src/main/java/dev/hathora/cloud_sdk/utils/PathParamsMetadata.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/QueryParameter.java
   - src/main/java/dev/hathora/cloud_sdk/utils/QueryParameters.java
   - src/main/java/dev/hathora/cloud_sdk/utils/QueryParamsMetadata.java
   - src/main/java/dev/hathora/cloud_sdk/utils/RequestBody.java
@@ -942,6 +950,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/utils/SpeakeasyMetadata.java
   - src/main/java/dev/hathora/cloud_sdk/utils/TypedObject.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Types.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/Utf8UrlEncoder.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Utils.java
 examples:
   CreateAppV1Deprecated:
@@ -2163,3 +2172,13 @@ examples:
         "401":
           application/json: {"message": "<value>"}
         "200": {}
+  GetUsageLimits:
+    speakeasy-default-get-usage-limits:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      responses:
+        "200":
+          application/json: {"concurrentProcessVcpus7DayMax": "5579.88", "monthlyProcessVcpuHoursConsumed": "7121.65"}
+        "401":
+          application/json: {"message": "<value>"}

@@ -18,6 +18,9 @@ import dev.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesRequestBuilde
 import dev.hathora.cloud_sdk.models.operations.GetOrgPendingInvitesResponse;
 import dev.hathora.cloud_sdk.models.operations.GetOrgsRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetOrgsResponse;
+import dev.hathora.cloud_sdk.models.operations.GetUsageLimitsRequest;
+import dev.hathora.cloud_sdk.models.operations.GetUsageLimitsRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.GetUsageLimitsResponse;
 import dev.hathora.cloud_sdk.models.operations.GetUserPendingInvitesRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetUserPendingInvitesResponse;
 import dev.hathora.cloud_sdk.models.operations.InviteUserRequest;
@@ -36,6 +39,7 @@ import dev.hathora.cloud_sdk.models.shared.OrgsPage;
 import dev.hathora.cloud_sdk.models.shared.PendingOrgInvite;
 import dev.hathora.cloud_sdk.models.shared.PendingOrgInvitesPage;
 import dev.hathora.cloud_sdk.models.shared.RescindUserInvite;
+import dev.hathora.cloud_sdk.models.shared.UsageLimits;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
@@ -58,6 +62,7 @@ public class OrganizationsV1 implements
             MethodCallGetOrgMembers,
             MethodCallGetOrgPendingInvites,
             MethodCallGetOrgs,
+            MethodCallGetUsageLimits,
             MethodCallGetUserPendingInvites,
             MethodCallInviteUser,
             MethodCallRejectInvite,
@@ -565,6 +570,154 @@ public class OrganizationsV1 implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * GetUsageLimits
+     * @return The call builder
+     */
+    public GetUsageLimitsRequestBuilder getUsageLimits() {
+        return new GetUsageLimitsRequestBuilder(this);
+    }
+
+    /**
+     * GetUsageLimits
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetUsageLimitsResponse getUsageLimitsDirect() throws Exception {
+        return getUsageLimits(Optional.empty());
+    }
+    
+    /**
+     * GetUsageLimits
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetUsageLimitsResponse getUsageLimits(
+            Optional<String> orgId) throws Exception {
+        GetUsageLimitsRequest request =
+            GetUsageLimitsRequest
+                .builder()
+                .orgId(orgId)
+                .build();
+        
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/orgs/v1/metadata/usageLimits");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetUsageLimitsRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "GetUsageLimits", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetUsageLimits",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "GetUsageLimits",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "GetUsageLimits",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        GetUsageLimitsResponse.Builder _resBuilder = 
+            GetUsageLimitsResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        GetUsageLimitsResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                UsageLimits _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<UsageLimits>() {});
+                _res.withUsageLimits(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),

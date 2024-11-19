@@ -35,7 +35,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:2.10.14'
+implementation 'dev.hathora:cloud-sdk:2.11.0'
 ```
 
 Maven:
@@ -43,7 +43,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>2.10.14</version>
+    <version>2.11.0</version>
 </dependency>
 ```
 
@@ -248,6 +248,7 @@ public class Application {
 * [getOrgMembers](docs/sdks/organizationsv1/README.md#getorgmembers) - GetOrgMembers
 * [getOrgPendingInvites](docs/sdks/organizationsv1/README.md#getorgpendinginvites) - GetOrgPendingInvites
 * [getOrgs](docs/sdks/organizationsv1/README.md#getorgs) - GetOrgs
+* [getUsageLimits](docs/sdks/organizationsv1/README.md#getusagelimits) - GetUsageLimits
 * [getUserPendingInvites](docs/sdks/organizationsv1/README.md#getuserpendinginvites) - GetUserPendingInvites
 * [inviteUser](docs/sdks/organizationsv1/README.md#inviteuser) - InviteUser
 * [rejectInvite](docs/sdks/organizationsv1/README.md#rejectinvite) - RejectInvite
@@ -318,10 +319,9 @@ For example, you can set `appId` to `"app-af469a92-5b45-4565-b3c4-b79878de67d2"`
 
 The following global parameter is available.
 
-| Name | Type | Required | Description |
-| ---- | ---- |:--------:| ----------- |
-| appId | java.lang.String |  | The appId parameter. |
-
+| Name  | Type             | Description          |
+| ----- | ---------------- | -------------------- |
+| appId | java.lang.String | The appId parameter. |
 
 ### Example
 
@@ -362,10 +362,10 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `createApp` method throws the following exceptions:
 
-| Error Type              | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| models/errors/ApiError  | 401, 404, 422, 429, 500 | application/json        |
-| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
+| Error Type             | Status Code             | Content Type     |
+| ---------------------- | ----------------------- | ---------------- |
+| models/errors/ApiError | 401, 404, 422, 429, 500 | application/json |
+| models/errors/SDKError | 4XX, 5XX                | \*/\*            |
 
 ### Example
 
@@ -413,12 +413,12 @@ public class Application {
 
 ### Select Server by Index
 
-You can override the default server globally by passing a server index to the `serverIndex` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally using the `.serverIndex(int serverIdx)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.hathora.dev` | None |
-| 1 | `https:///` | None |
+| #   | Server                    |
+| --- | ------------------------- |
+| 0   | `https://api.hathora.dev` |
+| 1   | `https:///`               |
 
 #### Example
 
@@ -461,10 +461,9 @@ public class Application {
 }
 ```
 
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` builder method when initializing the SDK client instance. For example:
+The default server can also be overridden globally using the `.serverURL(String serverUrl)` builder method when initializing the SDK client instance. For example:
 ```java
 package hello.world;
 
@@ -512,9 +511,9 @@ public class Application {
 
 This SDK supports the following security scheme globally:
 
-| Name              | Type              | Scheme            |
-| ----------------- | ----------------- | ----------------- |
-| `hathoraDevToken` | http              | HTTP Bearer       |
+| Name              | Type | Scheme      |
+| ----------------- | ---- | ----------- |
+| `hathoraDevToken` | http | HTTP Bearer |
 
 You can set the security parameters through the `security` builder method when initializing the SDK client instance. For example:
 ```java

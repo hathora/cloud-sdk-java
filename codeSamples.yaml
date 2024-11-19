@@ -219,6 +219,12 @@ actions:
         - "lang": "java"
           "label": "GetOrgs"
           "source": "package hello.world;\n\nimport dev.hathora.cloud_sdk.HathoraCloud;\nimport dev.hathora.cloud_sdk.models.errors.ApiError;\nimport dev.hathora.cloud_sdk.models.operations.GetOrgsResponse;\nimport dev.hathora.cloud_sdk.models.shared.Security;\nimport java.lang.Exception;\n\npublic class Application {\n\n    public static void main(String[] args) throws ApiError, Exception {\n\n        HathoraCloud sdk = HathoraCloud.builder()\n                .security(Security.builder()\n                    .hathoraDevToken(\"<YOUR_BEARER_TOKEN_HERE>\")\n                    .build())\n                .appId(\"app-af469a92-5b45-4565-b3c4-b79878de67d2\")\n            .build();\n\n        GetOrgsResponse res = sdk.organizationsV1().getOrgs()\n                .call();\n\n        if (res.orgsPage().isPresent()) {\n            // handle response\n        }\n    }\n}"
+  - target: $["paths"]["/orgs/v1/metadata/usageLimits"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "java"
+          "label": "GetUsageLimits"
+          "source": "package hello.world;\n\nimport dev.hathora.cloud_sdk.HathoraCloud;\nimport dev.hathora.cloud_sdk.models.errors.ApiError;\nimport dev.hathora.cloud_sdk.models.operations.GetUsageLimitsResponse;\nimport dev.hathora.cloud_sdk.models.shared.Security;\nimport java.lang.Exception;\n\npublic class Application {\n\n    public static void main(String[] args) throws ApiError, Exception {\n\n        HathoraCloud sdk = HathoraCloud.builder()\n                .security(Security.builder()\n                    .hathoraDevToken(\"<YOUR_BEARER_TOKEN_HERE>\")\n                    .build())\n                .appId(\"app-af469a92-5b45-4565-b3c4-b79878de67d2\")\n            .build();\n\n        GetUsageLimitsResponse res = sdk.organizationsV1().getUsageLimits()\n                .orgId(\"org-6f706e83-0ec1-437a-9a46-7d4281eb2f39\")\n                .call();\n\n        if (res.usageLimits().isPresent()) {\n            // handle response\n        }\n    }\n}"
   - target: $["paths"]["/orgs/v1/user/invites/pending"]["get"]
     update:
       "x-codeSamples":

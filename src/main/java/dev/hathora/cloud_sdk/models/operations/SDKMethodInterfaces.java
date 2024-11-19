@@ -540,6 +540,12 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallGetUsageLimits {
+        GetUsageLimitsResponse getUsageLimits(
+            Optional<String> orgId) throws Exception;
+    }
+
+
     public interface MethodCallGetUserPendingInvites {
         GetUserPendingInvitesResponse getUserPendingInvitesDirect() throws Exception;
     }
