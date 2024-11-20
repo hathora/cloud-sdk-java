@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: f8d9519632cef4bd7e7a797fde2f0772
+  docChecksum: 2e6d96fd26cc8e0abdaab86068eece08
   docVersion: 0.0.1
   speakeasyVersion: 1.441.0
   generationVersion: 2.460.1
-  releaseVersion: 2.11.0
-  configChecksum: ba87b88717514bec26d36a884030275c
+  releaseVersion: 2.11.1
+  configChecksum: 4dbc8b0c03d8d87de67a18174ef10571
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -1412,7 +1412,7 @@ examples:
         application/json: {"additionalContainerPorts": [], "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "containerPort": 4000, "deploymentTag": "alpha", "env": [], "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3, "transportType": "tcp"}
       responses:
         "201":
-          application/json: {"additionalContainerPorts": [{"name": "default", "port": 8000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2022-07-14T04:14:25.503Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tcp"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "env": [], "idleTimeoutEnabled": false, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
+          application/json: {"additionalContainerPorts": [{"name": "default", "port": 8000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2022-07-14T04:14:25.503Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tcp"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "deploymentTag": "alpha", "env": [], "idleTimeoutEnabled": false, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
         "400":
           application/json: {"message": "<value>"}
   GetDeployment:
@@ -1423,7 +1423,7 @@ examples:
           appId: "app-af469a92-5b45-4565-b3c4-b79878de67d2"
       responses:
         "200":
-          application/json: {"additionalContainerPorts": [{"name": "default", "port": 8000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2023-01-17T20:50:05.380Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tcp"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "env": [], "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
+          application/json: {"additionalContainerPorts": [{"name": "default", "port": 8000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2023-01-17T20:50:05.380Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tcp"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "deploymentTag": "alpha", "env": [], "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
         "401":
           application/json: {"message": "<value>"}
   GetDeployments:
@@ -1445,7 +1445,7 @@ examples:
           appId: "app-af469a92-5b45-4565-b3c4-b79878de67d2"
       responses:
         "200":
-          application/json: {"additionalContainerPorts": [{"name": "default", "port": 8000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2022-09-10T07:35:40.238Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "udp"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "env": [], "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
+          application/json: {"additionalContainerPorts": [{"name": "default", "port": 8000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2022-09-10T07:35:40.238Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "udp"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "deploymentTag": "alpha", "env": [], "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
         "401":
           application/json: {"message": "<value>"}
   GetPingServiceEndpointsDeprecated:

@@ -71,6 +71,13 @@ public class DeploymentV3 {
     private String deploymentId;
 
     /**
+     * Arbitrary metadata associated with a deployment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("deploymentTag")
+    private Optional<String> deploymentTag;
+
+    /**
      * The environment variable that our process will have access to at runtime.
      */
     @JsonProperty("env")
@@ -111,6 +118,7 @@ public class DeploymentV3 {
             @JsonProperty("createdBy") String createdBy,
             @JsonProperty("defaultContainerPort") ContainerPort defaultContainerPort,
             @JsonProperty("deploymentId") String deploymentId,
+            @JsonProperty("deploymentTag") Optional<String> deploymentTag,
             @JsonProperty("env") List<DeploymentV3Env> env,
             @JsonProperty("idleTimeoutEnabled") boolean idleTimeoutEnabled,
             @JsonProperty("requestedCPU") double requestedCPU,
@@ -124,6 +132,7 @@ public class DeploymentV3 {
         Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(defaultContainerPort, "defaultContainerPort");
         Utils.checkNotNull(deploymentId, "deploymentId");
+        Utils.checkNotNull(deploymentTag, "deploymentTag");
         Utils.checkNotNull(env, "env");
         Utils.checkNotNull(idleTimeoutEnabled, "idleTimeoutEnabled");
         Utils.checkNotNull(requestedCPU, "requestedCPU");
@@ -137,6 +146,7 @@ public class DeploymentV3 {
         this.createdBy = createdBy;
         this.defaultContainerPort = defaultContainerPort;
         this.deploymentId = deploymentId;
+        this.deploymentTag = deploymentTag;
         this.env = env;
         this.idleTimeoutEnabled = idleTimeoutEnabled;
         this.requestedCPU = requestedCPU;
@@ -157,7 +167,7 @@ public class DeploymentV3 {
             double requestedCPU,
             double requestedMemoryMB,
             int roomsPerProcess) {
-        this(additionalContainerPorts, appId, buildId, Optional.empty(), createdAt, createdBy, defaultContainerPort, deploymentId, env, idleTimeoutEnabled, requestedCPU, requestedMemoryMB, roomsPerProcess);
+        this(additionalContainerPorts, appId, buildId, Optional.empty(), createdAt, createdBy, defaultContainerPort, deploymentId, Optional.empty(), env, idleTimeoutEnabled, requestedCPU, requestedMemoryMB, roomsPerProcess);
     }
 
     /**
@@ -219,6 +229,14 @@ public class DeploymentV3 {
     @JsonIgnore
     public String deploymentId() {
         return deploymentId;
+    }
+
+    /**
+     * Arbitrary metadata associated with a deployment.
+     */
+    @JsonIgnore
+    public Optional<String> deploymentTag() {
+        return deploymentTag;
     }
 
     /**
@@ -345,6 +363,24 @@ public class DeploymentV3 {
     }
 
     /**
+     * Arbitrary metadata associated with a deployment.
+     */
+    public DeploymentV3 withDeploymentTag(String deploymentTag) {
+        Utils.checkNotNull(deploymentTag, "deploymentTag");
+        this.deploymentTag = Optional.ofNullable(deploymentTag);
+        return this;
+    }
+
+    /**
+     * Arbitrary metadata associated with a deployment.
+     */
+    public DeploymentV3 withDeploymentTag(Optional<String> deploymentTag) {
+        Utils.checkNotNull(deploymentTag, "deploymentTag");
+        this.deploymentTag = deploymentTag;
+        return this;
+    }
+
+    /**
      * The environment variable that our process will have access to at runtime.
      */
     public DeploymentV3 withEnv(List<DeploymentV3Env> env) {
@@ -408,6 +444,7 @@ public class DeploymentV3 {
             Objects.deepEquals(this.createdBy, other.createdBy) &&
             Objects.deepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
             Objects.deepEquals(this.deploymentId, other.deploymentId) &&
+            Objects.deepEquals(this.deploymentTag, other.deploymentTag) &&
             Objects.deepEquals(this.env, other.env) &&
             Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
             Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
@@ -426,6 +463,7 @@ public class DeploymentV3 {
             createdBy,
             defaultContainerPort,
             deploymentId,
+            deploymentTag,
             env,
             idleTimeoutEnabled,
             requestedCPU,
@@ -444,6 +482,7 @@ public class DeploymentV3 {
                 "createdBy", createdBy,
                 "defaultContainerPort", defaultContainerPort,
                 "deploymentId", deploymentId,
+                "deploymentTag", deploymentTag,
                 "env", env,
                 "idleTimeoutEnabled", idleTimeoutEnabled,
                 "requestedCPU", requestedCPU,
@@ -468,6 +507,8 @@ public class DeploymentV3 {
         private ContainerPort defaultContainerPort;
  
         private String deploymentId;
+ 
+        private Optional<String> deploymentTag = Optional.empty();
  
         private List<DeploymentV3Env> env;
  
@@ -562,6 +603,24 @@ public class DeploymentV3 {
         }
 
         /**
+         * Arbitrary metadata associated with a deployment.
+         */
+        public Builder deploymentTag(String deploymentTag) {
+            Utils.checkNotNull(deploymentTag, "deploymentTag");
+            this.deploymentTag = Optional.ofNullable(deploymentTag);
+            return this;
+        }
+
+        /**
+         * Arbitrary metadata associated with a deployment.
+         */
+        public Builder deploymentTag(Optional<String> deploymentTag) {
+            Utils.checkNotNull(deploymentTag, "deploymentTag");
+            this.deploymentTag = deploymentTag;
+            return this;
+        }
+
+        /**
          * The environment variable that our process will have access to at runtime.
          */
         public Builder env(List<DeploymentV3Env> env) {
@@ -617,6 +676,7 @@ public class DeploymentV3 {
                 createdBy,
                 defaultContainerPort,
                 deploymentId,
+                deploymentTag,
                 env,
                 idleTimeoutEnabled,
                 requestedCPU,
