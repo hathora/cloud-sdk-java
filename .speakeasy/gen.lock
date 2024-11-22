@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: 2e6d96fd26cc8e0abdaab86068eece08
+  docChecksum: 25f4c1321324459bae1ae0e40bd9591e
   docVersion: 0.0.1
-  speakeasyVersion: 1.441.0
-  generationVersion: 2.460.1
-  releaseVersion: 2.11.1
-  configChecksum: 4dbc8b0c03d8d87de67a18174ef10571
+  speakeasyVersion: 1.443.0
+  generationVersion: 2.461.4
+  releaseVersion: 2.11.2
+  configChecksum: 76253325669ed6aa565b4a989880f552
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.32.0
+    core: 3.32.1
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
@@ -342,6 +342,8 @@ generatedFiles:
   - docs/models/shared/OrgMember.md
   - docs/models/shared/OrgMembersPage.md
   - docs/models/shared/OrgToken.md
+  - docs/models/shared/OrgToken2.md
+  - docs/models/shared/OrgTokenScopes.md
   - docs/models/shared/OrgTokenStatus.md
   - docs/models/shared/Organization.md
   - docs/models/shared/OrgsPage.md
@@ -373,12 +375,15 @@ generatedFiles:
   - docs/models/shared/RoomStatus.md
   - docs/models/shared/RoomWithoutAllocations.md
   - docs/models/shared/RoomWithoutAllocationsCurrentAllocation.md
+  - docs/models/shared/Scope.md
+  - docs/models/shared/Scopes.md
   - docs/models/shared/Security.md
   - docs/models/shared/SetLobbyStateParams.md
   - docs/models/shared/StartingConnectionInfo.md
   - docs/models/shared/StartingConnectionInfoStatus.md
   - docs/models/shared/Status.md
   - docs/models/shared/TransportType.md
+  - docs/models/shared/Two.md
   - docs/models/shared/UpdateRoomConfigParams.md
   - docs/models/shared/UploadBodyParams.md
   - docs/models/shared/UsageLimits.md
@@ -871,6 +876,8 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgMember.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgMembersPage.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgToken.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgToken2.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgTokenScopes.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgTokenStatus.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Organization.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgsPage.java
@@ -902,12 +909,15 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/RoomStatus.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/RoomWithoutAllocations.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/RoomWithoutAllocationsCurrentAllocation.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/Scope.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/Scopes.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Security.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/SetLobbyStateParams.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/StartingConnectionInfo.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/StartingConnectionInfoStatus.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Status.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/TransportType.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/Two.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/UpdateRoomConfigParams.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/UploadBodyParams.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/UsageLimits.java
@@ -2150,6 +2160,8 @@ examples:
         "404":
           application/json: {"message": "<value>"}
         "200": {}
+        "401":
+          application/json: {"message": "<value>"}
   GetMetricsDeprecated:
     speakeasy-default-get-metrics-deprecated:
       parameters:

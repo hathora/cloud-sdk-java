@@ -7,11 +7,15 @@ package dev.hathora.cloud_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
+import java.util.Optional;
 
 
 public class CreateOrgToken {
@@ -22,11 +26,26 @@ public class CreateOrgToken {
     @JsonProperty("name")
     private String name;
 
+    /**
+     * If not defined, the token has Admin access.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("scopes")
+    private Optional<? extends Scopes> scopes;
+
     @JsonCreator
     public CreateOrgToken(
-            @JsonProperty("name") String name) {
+            @JsonProperty("name") String name,
+            @JsonProperty("scopes") Optional<? extends Scopes> scopes) {
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(scopes, "scopes");
         this.name = name;
+        this.scopes = scopes;
+    }
+    
+    public CreateOrgToken(
+            String name) {
+        this(name, Optional.empty());
     }
 
     /**
@@ -35,6 +54,15 @@ public class CreateOrgToken {
     @JsonIgnore
     public String name() {
         return name;
+    }
+
+    /**
+     * If not defined, the token has Admin access.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Scopes> scopes() {
+        return (Optional<Scopes>) scopes;
     }
 
     public final static Builder builder() {
@@ -49,6 +77,24 @@ public class CreateOrgToken {
         this.name = name;
         return this;
     }
+
+    /**
+     * If not defined, the token has Admin access.
+     */
+    public CreateOrgToken withScopes(Scopes scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = Optional.ofNullable(scopes);
+        return this;
+    }
+
+    /**
+     * If not defined, the token has Admin access.
+     */
+    public CreateOrgToken withScopes(Optional<? extends Scopes> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = scopes;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -60,24 +106,29 @@ public class CreateOrgToken {
         }
         CreateOrgToken other = (CreateOrgToken) o;
         return 
-            Objects.deepEquals(this.name, other.name);
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.scopes, other.scopes);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            name);
+            name,
+            scopes);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateOrgToken.class,
-                "name", name);
+                "name", name,
+                "scopes", scopes);
     }
     
     public final static class Builder {
  
-        private String name;  
+        private String name;
+ 
+        private Optional<? extends Scopes> scopes = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -91,10 +142,29 @@ public class CreateOrgToken {
             this.name = name;
             return this;
         }
+
+        /**
+         * If not defined, the token has Admin access.
+         */
+        public Builder scopes(Scopes scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = Optional.ofNullable(scopes);
+            return this;
+        }
+
+        /**
+         * If not defined, the token has Admin access.
+         */
+        public Builder scopes(Optional<? extends Scopes> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = scopes;
+            return this;
+        }
         
         public CreateOrgToken build() {
             return new CreateOrgToken(
-                name);
+                name,
+                scopes);
         }
     }
 }
