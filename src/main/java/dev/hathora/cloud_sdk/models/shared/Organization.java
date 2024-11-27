@@ -7,12 +7,17 @@ package dev.hathora.cloud_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 
 public class Organization {
@@ -26,6 +31,13 @@ public class Organization {
     @JsonProperty("orgId")
     private String orgId;
 
+    /**
+     * The scopes the user who loaded this has on this org.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("scopes")
+    private Optional<? extends List<Scope>> scopes;
+
     @JsonProperty("stripeCustomerId")
     private String stripeCustomerId;
 
@@ -33,13 +45,23 @@ public class Organization {
     public Organization(
             @JsonProperty("isSingleTenant") boolean isSingleTenant,
             @JsonProperty("orgId") String orgId,
+            @JsonProperty("scopes") Optional<? extends List<Scope>> scopes,
             @JsonProperty("stripeCustomerId") String stripeCustomerId) {
         Utils.checkNotNull(isSingleTenant, "isSingleTenant");
         Utils.checkNotNull(orgId, "orgId");
+        Utils.checkNotNull(scopes, "scopes");
         Utils.checkNotNull(stripeCustomerId, "stripeCustomerId");
         this.isSingleTenant = isSingleTenant;
         this.orgId = orgId;
+        this.scopes = scopes;
         this.stripeCustomerId = stripeCustomerId;
+    }
+    
+    public Organization(
+            boolean isSingleTenant,
+            String orgId,
+            String stripeCustomerId) {
+        this(isSingleTenant, orgId, Optional.empty(), stripeCustomerId);
     }
 
     @JsonIgnore
@@ -53,6 +75,15 @@ public class Organization {
     @JsonIgnore
     public String orgId() {
         return orgId;
+    }
+
+    /**
+     * The scopes the user who loaded this has on this org.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Scope>> scopes() {
+        return (Optional<List<Scope>>) scopes;
     }
 
     @JsonIgnore
@@ -79,6 +110,24 @@ public class Organization {
         return this;
     }
 
+    /**
+     * The scopes the user who loaded this has on this org.
+     */
+    public Organization withScopes(List<Scope> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = Optional.ofNullable(scopes);
+        return this;
+    }
+
+    /**
+     * The scopes the user who loaded this has on this org.
+     */
+    public Organization withScopes(Optional<? extends List<Scope>> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = scopes;
+        return this;
+    }
+
     public Organization withStripeCustomerId(String stripeCustomerId) {
         Utils.checkNotNull(stripeCustomerId, "stripeCustomerId");
         this.stripeCustomerId = stripeCustomerId;
@@ -97,6 +146,7 @@ public class Organization {
         return 
             Objects.deepEquals(this.isSingleTenant, other.isSingleTenant) &&
             Objects.deepEquals(this.orgId, other.orgId) &&
+            Objects.deepEquals(this.scopes, other.scopes) &&
             Objects.deepEquals(this.stripeCustomerId, other.stripeCustomerId);
     }
     
@@ -105,6 +155,7 @@ public class Organization {
         return Objects.hash(
             isSingleTenant,
             orgId,
+            scopes,
             stripeCustomerId);
     }
     
@@ -113,6 +164,7 @@ public class Organization {
         return Utils.toString(Organization.class,
                 "isSingleTenant", isSingleTenant,
                 "orgId", orgId,
+                "scopes", scopes,
                 "stripeCustomerId", stripeCustomerId);
     }
     
@@ -121,6 +173,8 @@ public class Organization {
         private Boolean isSingleTenant;
  
         private String orgId;
+ 
+        private Optional<? extends List<Scope>> scopes = Optional.empty();
  
         private String stripeCustomerId;  
         
@@ -143,6 +197,24 @@ public class Organization {
             return this;
         }
 
+        /**
+         * The scopes the user who loaded this has on this org.
+         */
+        public Builder scopes(List<Scope> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = Optional.ofNullable(scopes);
+            return this;
+        }
+
+        /**
+         * The scopes the user who loaded this has on this org.
+         */
+        public Builder scopes(Optional<? extends List<Scope>> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = scopes;
+            return this;
+        }
+
         public Builder stripeCustomerId(String stripeCustomerId) {
             Utils.checkNotNull(stripeCustomerId, "stripeCustomerId");
             this.stripeCustomerId = stripeCustomerId;
@@ -153,6 +225,7 @@ public class Organization {
             return new Organization(
                 isSingleTenant,
                 orgId,
+                scopes,
                 stripeCustomerId);
         }
     }

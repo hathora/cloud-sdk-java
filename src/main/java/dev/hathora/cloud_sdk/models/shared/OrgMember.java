@@ -39,6 +39,9 @@ public class OrgMember {
     @JsonProperty("orgId")
     private String orgId;
 
+    @JsonProperty("scopes")
+    private OrgMemberScopes scopes;
+
     /**
      * A user's email.
      */
@@ -52,18 +55,21 @@ public class OrgMember {
             @JsonProperty("joinedAt") OffsetDateTime joinedAt,
             @JsonProperty("lastLogin") Optional<OffsetDateTime> lastLogin,
             @JsonProperty("orgId") String orgId,
+            @JsonProperty("scopes") OrgMemberScopes scopes,
             @JsonProperty("userEmail") String userEmail) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(invitedBy, "invitedBy");
         Utils.checkNotNull(joinedAt, "joinedAt");
         Utils.checkNotNull(lastLogin, "lastLogin");
         Utils.checkNotNull(orgId, "orgId");
+        Utils.checkNotNull(scopes, "scopes");
         Utils.checkNotNull(userEmail, "userEmail");
         this.createdAt = createdAt;
         this.invitedBy = invitedBy;
         this.joinedAt = joinedAt;
         this.lastLogin = lastLogin;
         this.orgId = orgId;
+        this.scopes = scopes;
         this.userEmail = userEmail;
     }
     
@@ -72,8 +78,9 @@ public class OrgMember {
             String invitedBy,
             OffsetDateTime joinedAt,
             String orgId,
+            OrgMemberScopes scopes,
             String userEmail) {
-        this(createdAt, invitedBy, joinedAt, Optional.empty(), orgId, userEmail);
+        this(createdAt, invitedBy, joinedAt, Optional.empty(), orgId, scopes, userEmail);
     }
 
     @JsonIgnore
@@ -102,6 +109,11 @@ public class OrgMember {
     @JsonIgnore
     public String orgId() {
         return orgId;
+    }
+
+    @JsonIgnore
+    public OrgMemberScopes scopes() {
+        return scopes;
     }
 
     /**
@@ -155,6 +167,12 @@ public class OrgMember {
         return this;
     }
 
+    public OrgMember withScopes(OrgMemberScopes scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = scopes;
+        return this;
+    }
+
     /**
      * A user's email.
      */
@@ -179,6 +197,7 @@ public class OrgMember {
             Objects.deepEquals(this.joinedAt, other.joinedAt) &&
             Objects.deepEquals(this.lastLogin, other.lastLogin) &&
             Objects.deepEquals(this.orgId, other.orgId) &&
+            Objects.deepEquals(this.scopes, other.scopes) &&
             Objects.deepEquals(this.userEmail, other.userEmail);
     }
     
@@ -190,6 +209,7 @@ public class OrgMember {
             joinedAt,
             lastLogin,
             orgId,
+            scopes,
             userEmail);
     }
     
@@ -201,6 +221,7 @@ public class OrgMember {
                 "joinedAt", joinedAt,
                 "lastLogin", lastLogin,
                 "orgId", orgId,
+                "scopes", scopes,
                 "userEmail", userEmail);
     }
     
@@ -215,6 +236,8 @@ public class OrgMember {
         private Optional<OffsetDateTime> lastLogin = Optional.empty();
  
         private String orgId;
+ 
+        private OrgMemberScopes scopes;
  
         private String userEmail;  
         
@@ -261,6 +284,12 @@ public class OrgMember {
             return this;
         }
 
+        public Builder scopes(OrgMemberScopes scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = scopes;
+            return this;
+        }
+
         /**
          * A user's email.
          */
@@ -277,6 +306,7 @@ public class OrgMember {
                 joinedAt,
                 lastLogin,
                 orgId,
+                scopes,
                 userEmail);
         }
     }

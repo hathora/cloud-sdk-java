@@ -14,6 +14,7 @@
 * [inviteUser](#inviteuser) - InviteUser
 * [rejectInvite](#rejectinvite) - RejectInvite
 * [rescindInvite](#rescindinvite) - RescindInvite
+* [updateUserInvite](#updateuserinvite) - UpdateUserInvite
 
 ## acceptInvite
 
@@ -490,3 +491,65 @@ public class Application {
 | ----------------------- | ----------------------- | ----------------------- |
 | models/errors/ApiError  | 401, 404, 422, 429, 500 | application/json        |
 | models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
+
+## updateUserInvite
+
+UpdateUserInvite
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.UpdateUserInviteResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.UpdateUserInvite;
+import dev.hathora.cloud_sdk.models.shared.UpdateUserInviteScopes;
+import dev.hathora.cloud_sdk.models.shared.UserRole;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+            .build();
+
+        UpdateUserInviteResponse res = sdk.organizationsV1().updateUserInvite()
+                .updateUserInvite(UpdateUserInvite.builder()
+                    .scopes(UpdateUserInviteScopes.of(UserRole.VIEWER))
+                    .userEmail("noreply@hathora.dev")
+                    .build())
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .call();
+
+        if (res.boolean_().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 | Example                                                     |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `updateUserInvite`                                          | [UpdateUserInvite](../../models/shared/UpdateUserInvite.md) | :heavy_check_mark:                                          | N/A                                                         |                                                             |
+| `orgId`                                                     | *String*                                                    | :heavy_check_mark:                                          | N/A                                                         | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                    |
+
+### Response
+
+**[UpdateUserInviteResponse](../../models/operations/UpdateUserInviteResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401, 422, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

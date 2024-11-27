@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: 25f4c1321324459bae1ae0e40bd9591e
+  docChecksum: 305de65bc19b35410e32b57b55a6f38d
   docVersion: 0.0.1
-  speakeasyVersion: 1.443.0
-  generationVersion: 2.461.4
-  releaseVersion: 2.11.2
-  configChecksum: 76253325669ed6aa565b4a989880f552
+  speakeasyVersion: 1.448.0
+  generationVersion: 2.466.0
+  releaseVersion: 2.11.3
+  configChecksum: 4b067e4f697f2f89c4d075559448d6fe
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.32.1
+    core: 3.32.2
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
@@ -263,6 +263,8 @@ generatedFiles:
   - docs/models/operations/UpdateFleetRegionResponse.md
   - docs/models/operations/UpdateRoomConfigRequest.md
   - docs/models/operations/UpdateRoomConfigResponse.md
+  - docs/models/operations/UpdateUserInviteRequest.md
+  - docs/models/operations/UpdateUserInviteResponse.md
   - docs/models/shared/AchPaymentMethod.md
   - docs/models/shared/ActiveConnectionInfo.md
   - docs/models/shared/AppConfig.md
@@ -295,6 +297,7 @@ generatedFiles:
   - docs/models/shared/CreateOrgToken.md
   - docs/models/shared/CreateRoomParams.md
   - docs/models/shared/CreateUserInvite.md
+  - docs/models/shared/CreateUserInviteScopes.md
   - docs/models/shared/CreatedBuildV3WithMultipartUrls.md
   - docs/models/shared/CreatedBy.md
   - docs/models/shared/CreatedOrgToken.md
@@ -340,6 +343,7 @@ generatedFiles:
   - docs/models/shared/MetricValue.md
   - docs/models/shared/NicknameObject.md
   - docs/models/shared/OrgMember.md
+  - docs/models/shared/OrgMemberScopes.md
   - docs/models/shared/OrgMembersPage.md
   - docs/models/shared/OrgToken.md
   - docs/models/shared/OrgToken2.md
@@ -349,6 +353,7 @@ generatedFiles:
   - docs/models/shared/OrgsPage.md
   - docs/models/shared/PaymentMethod.md
   - docs/models/shared/PendingOrgInvite.md
+  - docs/models/shared/PendingOrgInviteScopes.md
   - docs/models/shared/PendingOrgInvitesPage.md
   - docs/models/shared/PingEndpoints.md
   - docs/models/shared/PlanName.md
@@ -385,8 +390,11 @@ generatedFiles:
   - docs/models/shared/TransportType.md
   - docs/models/shared/Two.md
   - docs/models/shared/UpdateRoomConfigParams.md
+  - docs/models/shared/UpdateUserInvite.md
+  - docs/models/shared/UpdateUserInviteScopes.md
   - docs/models/shared/UploadBodyParams.md
   - docs/models/shared/UsageLimits.md
+  - docs/models/shared/UserRole.md
   - docs/models/shared/VerificationEmailRequest.md
   - docs/models/shared/VerificationEmailSuccess.md
   - docs/sdks/appsv1/README.md
@@ -797,6 +805,9 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateRoomConfigRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateRoomConfigRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateRoomConfigResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateUserInviteRequest.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateUserInviteRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateUserInviteResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/AchPaymentMethod.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ActiveConnectionInfo.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/AppConfig.java
@@ -829,6 +840,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateOrgToken.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateRoomParams.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateUserInvite.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateUserInviteScopes.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreatedBuildV3WithMultipartUrls.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreatedBy.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreatedOrgToken.java
@@ -874,6 +886,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/MetricValue.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/NicknameObject.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgMember.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgMemberScopes.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgMembersPage.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgToken.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgToken2.java
@@ -883,6 +896,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgsPage.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/PaymentMethod.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/PendingOrgInvite.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/PendingOrgInviteScopes.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/PendingOrgInvitesPage.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/PingEndpoints.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/PlanName.java
@@ -919,8 +933,11 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/TransportType.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Two.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/UpdateRoomConfigParams.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/UpdateUserInvite.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/UpdateUserInviteScopes.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/UploadBodyParams.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/UsageLimits.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/UserRole.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/VerificationEmailRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/VerificationEmailSuccess.java
   - src/main/java/dev/hathora/cloud_sdk/utils/BackoffStrategy.java
@@ -1756,7 +1773,7 @@ examples:
         application/json: {"userEmail": "noreply@hathora.dev"}
       responses:
         "200":
-          application/json: {"createdAt": "2024-05-26T01:23:01.974Z", "invitedBy": "noreply@hathora.dev", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "userEmail": "noreply@hathora.dev"}
+          application/json: {"createdAt": "2024-05-26T01:23:01.974Z", "invitedBy": "noreply@hathora.dev", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "scopes": [], "userEmail": "noreply@hathora.dev"}
         "401":
           application/json: {"message": "<value>"}
   RejectInvite:
@@ -2194,3 +2211,16 @@ examples:
           application/json: {"concurrentProcessVcpus7DayMax": "5579.88", "monthlyProcessVcpuHoursConsumed": "7121.65"}
         "401":
           application/json: {"message": "<value>"}
+  UpdateUserInvite:
+    speakeasy-default-update-user-invite:
+      parameters:
+        path:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      requestBody:
+        application/json: {"scopes": "viewer", "userEmail": "noreply@hathora.dev"}
+      responses:
+        "200":
+          application/json: true
+        "401":
+          application/json: {"message": "<value>"}
+generatedTests: {}

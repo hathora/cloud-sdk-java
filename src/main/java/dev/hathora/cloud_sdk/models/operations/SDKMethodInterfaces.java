@@ -22,6 +22,7 @@ import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.RescindUserInvite;
 import dev.hathora.cloud_sdk.models.shared.SetLobbyStateParams;
 import dev.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams;
+import dev.hathora.cloud_sdk.models.shared.UpdateUserInvite;
 import dev.hathora.cloud_sdk.models.shared.VerificationEmailRequest;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -567,6 +568,13 @@ public class SDKMethodInterfaces {
     public interface MethodCallRescindInvite {
         RescindInviteResponse rescindInvite(
             RescindUserInvite rescindUserInvite,
+            String orgId) throws Exception;
+    }
+
+
+    public interface MethodCallUpdateUserInvite {
+        UpdateUserInviteResponse updateUserInvite(
+            UpdateUserInvite updateUserInvite,
             String orgId) throws Exception;
     }
 

@@ -35,7 +35,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:2.11.2'
+implementation 'dev.hathora:cloud-sdk:2.11.3'
 ```
 
 Maven:
@@ -43,7 +43,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>2.11.2</version>
+    <version>2.11.3</version>
 </dependency>
 ```
 
@@ -253,6 +253,7 @@ public class Application {
 * [inviteUser](docs/sdks/organizationsv1/README.md#inviteuser) - InviteUser
 * [rejectInvite](docs/sdks/organizationsv1/README.md#rejectinvite) - RejectInvite
 * [rescindInvite](docs/sdks/organizationsv1/README.md#rescindinvite) - RescindInvite
+* [updateUserInvite](docs/sdks/organizationsv1/README.md#updateuserinvite) - UpdateUserInvite
 
 ### [~~processesV1()~~](docs/sdks/processesv1/README.md)
 

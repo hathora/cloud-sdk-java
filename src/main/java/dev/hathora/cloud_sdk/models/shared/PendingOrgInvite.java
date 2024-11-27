@@ -29,6 +29,9 @@ public class PendingOrgInvite {
     @JsonProperty("orgId")
     private String orgId;
 
+    @JsonProperty("scopes")
+    private PendingOrgInviteScopes scopes;
+
     /**
      * A user's email.
      */
@@ -40,14 +43,17 @@ public class PendingOrgInvite {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("invitedBy") String invitedBy,
             @JsonProperty("orgId") String orgId,
+            @JsonProperty("scopes") PendingOrgInviteScopes scopes,
             @JsonProperty("userEmail") String userEmail) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(invitedBy, "invitedBy");
         Utils.checkNotNull(orgId, "orgId");
+        Utils.checkNotNull(scopes, "scopes");
         Utils.checkNotNull(userEmail, "userEmail");
         this.createdAt = createdAt;
         this.invitedBy = invitedBy;
         this.orgId = orgId;
+        this.scopes = scopes;
         this.userEmail = userEmail;
     }
 
@@ -67,6 +73,11 @@ public class PendingOrgInvite {
     @JsonIgnore
     public String orgId() {
         return orgId;
+    }
+
+    @JsonIgnore
+    public PendingOrgInviteScopes scopes() {
+        return scopes;
     }
 
     /**
@@ -102,6 +113,12 @@ public class PendingOrgInvite {
         return this;
     }
 
+    public PendingOrgInvite withScopes(PendingOrgInviteScopes scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = scopes;
+        return this;
+    }
+
     /**
      * A user's email.
      */
@@ -124,6 +141,7 @@ public class PendingOrgInvite {
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.invitedBy, other.invitedBy) &&
             Objects.deepEquals(this.orgId, other.orgId) &&
+            Objects.deepEquals(this.scopes, other.scopes) &&
             Objects.deepEquals(this.userEmail, other.userEmail);
     }
     
@@ -133,6 +151,7 @@ public class PendingOrgInvite {
             createdAt,
             invitedBy,
             orgId,
+            scopes,
             userEmail);
     }
     
@@ -142,6 +161,7 @@ public class PendingOrgInvite {
                 "createdAt", createdAt,
                 "invitedBy", invitedBy,
                 "orgId", orgId,
+                "scopes", scopes,
                 "userEmail", userEmail);
     }
     
@@ -152,6 +172,8 @@ public class PendingOrgInvite {
         private String invitedBy;
  
         private String orgId;
+ 
+        private PendingOrgInviteScopes scopes;
  
         private String userEmail;  
         
@@ -180,6 +202,12 @@ public class PendingOrgInvite {
             return this;
         }
 
+        public Builder scopes(PendingOrgInviteScopes scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = scopes;
+            return this;
+        }
+
         /**
          * A user's email.
          */
@@ -194,6 +222,7 @@ public class PendingOrgInvite {
                 createdAt,
                 invitedBy,
                 orgId,
+                scopes,
                 userEmail);
         }
     }

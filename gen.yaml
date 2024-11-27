@@ -13,7 +13,7 @@ generation:
   baseServerURL: ""
   flattenGlobalSecurity: true
 java:
-  version: 2.11.2
+  version: 2.11.3
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter-api:5.8.1
     - testRuntimeOnly:org.junit.jupiter:junit-jupiter-engine:5.8.1

@@ -7,25 +7,20 @@ package dev.hathora.cloud_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 
 
-public class CreateUserInvite {
+public class UpdateUserInvite {
 
     /**
-     * If not defined, the user has Admin access.
+     * Scopes can only be removed or added if a user has those scopes.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("scopes")
-    private Optional<? extends CreateUserInviteScopes> scopes;
+    private UpdateUserInviteScopes scopes;
 
     /**
      * A user's email.
@@ -34,27 +29,21 @@ public class CreateUserInvite {
     private String userEmail;
 
     @JsonCreator
-    public CreateUserInvite(
-            @JsonProperty("scopes") Optional<? extends CreateUserInviteScopes> scopes,
+    public UpdateUserInvite(
+            @JsonProperty("scopes") UpdateUserInviteScopes scopes,
             @JsonProperty("userEmail") String userEmail) {
         Utils.checkNotNull(scopes, "scopes");
         Utils.checkNotNull(userEmail, "userEmail");
         this.scopes = scopes;
         this.userEmail = userEmail;
     }
-    
-    public CreateUserInvite(
-            String userEmail) {
-        this(Optional.empty(), userEmail);
-    }
 
     /**
-     * If not defined, the user has Admin access.
+     * Scopes can only be removed or added if a user has those scopes.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateUserInviteScopes> scopes() {
-        return (Optional<CreateUserInviteScopes>) scopes;
+    public UpdateUserInviteScopes scopes() {
+        return scopes;
     }
 
     /**
@@ -70,18 +59,9 @@ public class CreateUserInvite {
     }
 
     /**
-     * If not defined, the user has Admin access.
+     * Scopes can only be removed or added if a user has those scopes.
      */
-    public CreateUserInvite withScopes(CreateUserInviteScopes scopes) {
-        Utils.checkNotNull(scopes, "scopes");
-        this.scopes = Optional.ofNullable(scopes);
-        return this;
-    }
-
-    /**
-     * If not defined, the user has Admin access.
-     */
-    public CreateUserInvite withScopes(Optional<? extends CreateUserInviteScopes> scopes) {
+    public UpdateUserInvite withScopes(UpdateUserInviteScopes scopes) {
         Utils.checkNotNull(scopes, "scopes");
         this.scopes = scopes;
         return this;
@@ -90,7 +70,7 @@ public class CreateUserInvite {
     /**
      * A user's email.
      */
-    public CreateUserInvite withUserEmail(String userEmail) {
+    public UpdateUserInvite withUserEmail(String userEmail) {
         Utils.checkNotNull(userEmail, "userEmail");
         this.userEmail = userEmail;
         return this;
@@ -104,7 +84,7 @@ public class CreateUserInvite {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CreateUserInvite other = (CreateUserInvite) o;
+        UpdateUserInvite other = (UpdateUserInvite) o;
         return 
             Objects.deepEquals(this.scopes, other.scopes) &&
             Objects.deepEquals(this.userEmail, other.userEmail);
@@ -119,14 +99,14 @@ public class CreateUserInvite {
     
     @Override
     public String toString() {
-        return Utils.toString(CreateUserInvite.class,
+        return Utils.toString(UpdateUserInvite.class,
                 "scopes", scopes,
                 "userEmail", userEmail);
     }
     
     public final static class Builder {
  
-        private Optional<? extends CreateUserInviteScopes> scopes = Optional.empty();
+        private UpdateUserInviteScopes scopes;
  
         private String userEmail;  
         
@@ -135,18 +115,9 @@ public class CreateUserInvite {
         }
 
         /**
-         * If not defined, the user has Admin access.
+         * Scopes can only be removed or added if a user has those scopes.
          */
-        public Builder scopes(CreateUserInviteScopes scopes) {
-            Utils.checkNotNull(scopes, "scopes");
-            this.scopes = Optional.ofNullable(scopes);
-            return this;
-        }
-
-        /**
-         * If not defined, the user has Admin access.
-         */
-        public Builder scopes(Optional<? extends CreateUserInviteScopes> scopes) {
+        public Builder scopes(UpdateUserInviteScopes scopes) {
             Utils.checkNotNull(scopes, "scopes");
             this.scopes = scopes;
             return this;
@@ -161,8 +132,8 @@ public class CreateUserInvite {
             return this;
         }
         
-        public CreateUserInvite build() {
-            return new CreateUserInvite(
+        public UpdateUserInvite build() {
+            return new UpdateUserInvite(
                 scopes,
                 userEmail);
         }

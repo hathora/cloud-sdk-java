@@ -33,12 +33,16 @@ import dev.hathora.cloud_sdk.models.operations.RescindInviteRequest;
 import dev.hathora.cloud_sdk.models.operations.RescindInviteRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.RescindInviteResponse;
 import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
+import dev.hathora.cloud_sdk.models.operations.UpdateUserInviteRequest;
+import dev.hathora.cloud_sdk.models.operations.UpdateUserInviteRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.UpdateUserInviteResponse;
 import dev.hathora.cloud_sdk.models.shared.CreateUserInvite;
 import dev.hathora.cloud_sdk.models.shared.OrgMembersPage;
 import dev.hathora.cloud_sdk.models.shared.OrgsPage;
 import dev.hathora.cloud_sdk.models.shared.PendingOrgInvite;
 import dev.hathora.cloud_sdk.models.shared.PendingOrgInvitesPage;
 import dev.hathora.cloud_sdk.models.shared.RescindUserInvite;
+import dev.hathora.cloud_sdk.models.shared.UpdateUserInvite;
 import dev.hathora.cloud_sdk.models.shared.UsageLimits;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
@@ -49,6 +53,7 @@ import dev.hathora.cloud_sdk.utils.SerializedBody;
 import dev.hathora.cloud_sdk.utils.Utils.JsonShape;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
+import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -66,7 +71,8 @@ public class OrganizationsV1 implements
             MethodCallGetUserPendingInvites,
             MethodCallInviteUser,
             MethodCallRejectInvite,
-            MethodCallRescindInvite {
+            MethodCallRescindInvite,
+            MethodCallUpdateUserInvite {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -1262,6 +1268,158 @@ public class OrganizationsV1 implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "500")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * UpdateUserInvite
+     * @return The call builder
+     */
+    public UpdateUserInviteRequestBuilder updateUserInvite() {
+        return new UpdateUserInviteRequestBuilder(this);
+    }
+
+    /**
+     * UpdateUserInvite
+     * @param updateUserInvite
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public UpdateUserInviteResponse updateUserInvite(
+            UpdateUserInvite updateUserInvite,
+            String orgId) throws Exception {
+        UpdateUserInviteRequest request =
+            UpdateUserInviteRequest
+                .builder()
+                .updateUserInvite(updateUserInvite)
+                .orgId(orgId)
+                .build();
+        
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                UpdateUserInviteRequest.class,
+                _baseUrl,
+                "/orgs/v1/{orgId}/invites",
+                request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "updateUserInvite",
+                "json",
+                false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "UpdateUserInvite", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "422", "429", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "UpdateUserInvite",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "UpdateUserInvite",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "UpdateUserInvite",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        UpdateUserInviteResponse.Builder _resBuilder = 
+            UpdateUserInviteResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        UpdateUserInviteResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                boolean _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Boolean>() {});
+                _res.withBoolean(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "422", "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
