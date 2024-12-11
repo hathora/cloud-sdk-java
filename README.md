@@ -14,14 +14,15 @@ Hathora Cloud API: Welcome to the Hathora Cloud API documentation! Learn how to 
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Global Parameters](#global-parameters)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Authentication](#authentication)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Global Parameters](#global-parameters)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Authentication](#authentication)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -35,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:2.11.3'
+implementation 'dev.hathora:cloud-sdk:2.12.0'
 ```
 
 Maven:
@@ -43,7 +44,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>2.11.3</version>
+    <version>2.12.0</version>
 </dependency>
 ```
 
@@ -87,6 +88,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateAppResponse res = sdk.appsV2().createApp()
@@ -311,18 +313,19 @@ public class Application {
 <!-- Start Global Parameters [global-parameters] -->
 ## Global Parameters
 
-A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
+Certain parameters are configured globally. These parameters may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, These global values will be used as defaults on the operations that use them. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `appId` to `"app-af469a92-5b45-4565-b3c4-b79878de67d2"` at SDK initialization and then you do not have to pass the same value on calls to operations like `deleteApp`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `appId` to `"app-af469a92-5b45-4565-b3c4-b79878de67d2"` at SDK initialization and then you do not have to pass the same value on calls to operations like `createApp`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
 
-The following global parameter is available.
+The following global parameters are available.
 
 | Name  | Type             | Description          |
 | ----- | ---------------- | -------------------- |
 | appId | java.lang.String | The appId parameter. |
+| orgId | java.lang.String | The orgId parameter. |
 
 ### Example
 
@@ -331,7 +334,9 @@ package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.operations.DeleteAppResponse;
+import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
+import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -344,13 +349,21 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
-        DeleteAppResponse res = sdk.appsV2().deleteApp()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+        CreateAppResponse res = sdk.appsV2().createApp()
+                .appConfig(AppConfig.builder()
+                    .appName("minecraft")
+                    .authConfiguration(AuthConfiguration.builder()
+                        .build())
+                    .build())
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-        // handle response
+        if (res.application().isPresent()) {
+            // handle response
+        }
     }
 }
 ```
@@ -390,6 +403,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateAppResponse res = sdk.appsV2().createApp()
@@ -444,6 +458,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateAppResponse res = sdk.appsV2().createApp()
@@ -486,6 +501,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateAppResponse res = sdk.appsV2().createApp()
@@ -537,6 +553,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateAppResponse res = sdk.appsV2().createApp()
@@ -577,6 +594,7 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateLobbyRequest req = CreateLobbyRequest.builder()

@@ -40,11 +40,12 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateProcessV2DeprecatedResponse res = sdk.processesV2().createProcessV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.TOKYO)
+                .region(Region.MUMBAI)
                 .call();
 
         if (res.processV2().isPresent()) {
@@ -101,6 +102,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetLatestProcessesV2DeprecatedResponse res = sdk.processesV2().getLatestProcessesV2Deprecated()
@@ -163,6 +165,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetProcessInfoV2DeprecatedResponse res = sdk.processesV2().getProcessInfoV2Deprecated()
@@ -224,6 +227,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetProcessesCountExperimentalV2DeprecatedResponse res = sdk.processesV2().getProcessesCountExperimentalV2Deprecated()
@@ -286,6 +290,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         StopProcessV2DeprecatedResponse res = sdk.processesV2().stopProcessV2Deprecated()

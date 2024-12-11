@@ -113,10 +113,10 @@ public class ProcessesV3 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -124,7 +124,7 @@ public class ProcessesV3 implements
                   new BeforeRequestContextImpl(
                       "CreateProcess", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -135,7 +135,7 @@ public class ProcessesV3 implements
                         new AfterErrorContextImpl(
                             "CreateProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -144,7 +144,7 @@ public class ProcessesV3 implements
                         new AfterSuccessContextImpl(
                             "CreateProcess",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -153,7 +153,7 @@ public class ProcessesV3 implements
                         new AfterErrorContextImpl(
                             "CreateProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -272,10 +272,10 @@ public class ProcessesV3 implements
                 GetLatestProcessesRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -283,7 +283,7 @@ public class ProcessesV3 implements
                   new BeforeRequestContextImpl(
                       "GetLatestProcesses", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -294,7 +294,7 @@ public class ProcessesV3 implements
                         new AfterErrorContextImpl(
                             "GetLatestProcesses",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -303,7 +303,7 @@ public class ProcessesV3 implements
                         new AfterSuccessContextImpl(
                             "GetLatestProcesses",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -312,7 +312,7 @@ public class ProcessesV3 implements
                         new AfterErrorContextImpl(
                             "GetLatestProcesses",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -425,10 +425,10 @@ public class ProcessesV3 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -436,7 +436,7 @@ public class ProcessesV3 implements
                   new BeforeRequestContextImpl(
                       "GetProcess", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -447,7 +447,7 @@ public class ProcessesV3 implements
                         new AfterErrorContextImpl(
                             "GetProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -456,7 +456,7 @@ public class ProcessesV3 implements
                         new AfterSuccessContextImpl(
                             "GetProcess",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -465,7 +465,7 @@ public class ProcessesV3 implements
                         new AfterErrorContextImpl(
                             "GetProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -560,10 +560,10 @@ public class ProcessesV3 implements
                 GetProcessMetricsRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -571,7 +571,7 @@ public class ProcessesV3 implements
                   new BeforeRequestContextImpl(
                       "GetProcessMetrics", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -582,7 +582,7 @@ public class ProcessesV3 implements
                         new AfterErrorContextImpl(
                             "GetProcessMetrics",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -591,7 +591,7 @@ public class ProcessesV3 implements
                         new AfterSuccessContextImpl(
                             "GetProcessMetrics",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -600,7 +600,7 @@ public class ProcessesV3 implements
                         new AfterErrorContextImpl(
                             "GetProcessMetrics",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -719,10 +719,10 @@ public class ProcessesV3 implements
                 GetProcessesCountExperimentalRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -730,7 +730,7 @@ public class ProcessesV3 implements
                   new BeforeRequestContextImpl(
                       "GetProcessesCountExperimental", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -741,7 +741,7 @@ public class ProcessesV3 implements
                         new AfterErrorContextImpl(
                             "GetProcessesCountExperimental",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -750,7 +750,7 @@ public class ProcessesV3 implements
                         new AfterSuccessContextImpl(
                             "GetProcessesCountExperimental",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -759,7 +759,7 @@ public class ProcessesV3 implements
                         new AfterErrorContextImpl(
                             "GetProcessesCountExperimental",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -872,10 +872,10 @@ public class ProcessesV3 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -883,7 +883,7 @@ public class ProcessesV3 implements
                   new BeforeRequestContextImpl(
                       "StopProcess", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -894,7 +894,7 @@ public class ProcessesV3 implements
                         new AfterErrorContextImpl(
                             "StopProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -903,7 +903,7 @@ public class ProcessesV3 implements
                         new AfterSuccessContextImpl(
                             "StopProcess",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -912,7 +912,7 @@ public class ProcessesV3 implements
                         new AfterErrorContextImpl(
                             "StopProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

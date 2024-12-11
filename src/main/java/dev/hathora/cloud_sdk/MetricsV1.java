@@ -78,10 +78,10 @@ public class MetricsV1 implements
                 GetMetricsDeprecatedRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -89,7 +89,7 @@ public class MetricsV1 implements
                   new BeforeRequestContextImpl(
                       "GetMetricsDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -100,7 +100,7 @@ public class MetricsV1 implements
                         new AfterErrorContextImpl(
                             "GetMetricsDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -109,7 +109,7 @@ public class MetricsV1 implements
                         new AfterSuccessContextImpl(
                             "GetMetricsDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -118,7 +118,7 @@ public class MetricsV1 implements
                         new AfterErrorContextImpl(
                             "GetMetricsDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

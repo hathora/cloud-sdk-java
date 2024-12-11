@@ -41,6 +41,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateDeploymentResponse res = sdk.deploymentsV3().createDeployment()
@@ -52,16 +53,16 @@ public class Application {
                             .name("EULA")
                             .value("TRUE")
                             .build()))
-                    .idleTimeoutEnabled(false)
+                    .idleTimeoutEnabled(true)
                     .requestedCPU(0.5d)
                     .requestedMemoryMB(1024d)
                     .roomsPerProcess(3)
-                    .transportType(TransportType.UDP)
+                    .transportType(TransportType.TCP)
                     .additionalContainerPorts(List.of(
                         ContainerPort.builder()
                             .name("default")
                             .port(8000)
-                            .transportType(TransportType.TCP)
+                            .transportType(TransportType.UDP)
                             .build()))
                     .deploymentTag("alpha")
                     .build())
@@ -117,6 +118,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetDeploymentResponse res = sdk.deploymentsV3().getDeployment()
@@ -173,6 +175,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetDeploymentsResponse res = sdk.deploymentsV3().getDeployments()
@@ -229,6 +232,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetLatestDeploymentResponse res = sdk.deploymentsV3().getLatestDeployment()

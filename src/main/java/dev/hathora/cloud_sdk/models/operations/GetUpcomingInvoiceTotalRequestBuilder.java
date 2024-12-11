@@ -4,17 +4,34 @@
 
 package dev.hathora.cloud_sdk.models.operations;
 
+import dev.hathora.cloud_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class GetUpcomingInvoiceTotalRequestBuilder {
 
+    private Optional<String> orgId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetUpcomingInvoiceTotal sdk;
 
     public GetUpcomingInvoiceTotalRequestBuilder(SDKMethodInterfaces.MethodCallGetUpcomingInvoiceTotal sdk) {
         this.sdk = sdk;
     }
+                
+    public GetUpcomingInvoiceTotalRequestBuilder orgId(String orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = Optional.of(orgId);
+        return this;
+    }
+
+    public GetUpcomingInvoiceTotalRequestBuilder orgId(Optional<String> orgId) {
+        Utils.checkNotNull(orgId, "orgId");
+        this.orgId = orgId;
+        return this;
+    }
 
     public GetUpcomingInvoiceTotalResponse call() throws Exception {
 
-        return sdk.getUpcomingInvoiceTotalDirect();
+        return sdk.getUpcomingInvoiceTotal(
+            orgId);
     }
 }

@@ -91,10 +91,10 @@ public class FleetsV1 implements
                 GetFleetMetricsRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -102,7 +102,7 @@ public class FleetsV1 implements
                   new BeforeRequestContextImpl(
                       "GetFleetMetrics", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -113,7 +113,7 @@ public class FleetsV1 implements
                         new AfterErrorContextImpl(
                             "GetFleetMetrics",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -122,7 +122,7 @@ public class FleetsV1 implements
                         new AfterSuccessContextImpl(
                             "GetFleetMetrics",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -131,7 +131,7 @@ public class FleetsV1 implements
                         new AfterErrorContextImpl(
                             "GetFleetMetrics",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -254,10 +254,10 @@ public class FleetsV1 implements
                 GetFleetRegionRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -265,7 +265,7 @@ public class FleetsV1 implements
                   new BeforeRequestContextImpl(
                       "GetFleetRegion", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -276,7 +276,7 @@ public class FleetsV1 implements
                         new AfterErrorContextImpl(
                             "GetFleetRegion",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -285,7 +285,7 @@ public class FleetsV1 implements
                         new AfterSuccessContextImpl(
                             "GetFleetRegion",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -294,7 +294,7 @@ public class FleetsV1 implements
                         new AfterErrorContextImpl(
                             "GetFleetRegion",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -405,10 +405,10 @@ public class FleetsV1 implements
                 GetFleetsRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -416,7 +416,7 @@ public class FleetsV1 implements
                   new BeforeRequestContextImpl(
                       "GetFleets", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -427,7 +427,7 @@ public class FleetsV1 implements
                         new AfterErrorContextImpl(
                             "GetFleets",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -436,7 +436,7 @@ public class FleetsV1 implements
                         new AfterSuccessContextImpl(
                             "GetFleets",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -445,7 +445,7 @@ public class FleetsV1 implements
                         new AfterErrorContextImpl(
                             "GetFleets",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -555,10 +555,10 @@ public class FleetsV1 implements
                 UpdateFleetRegionRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -566,7 +566,7 @@ public class FleetsV1 implements
                   new BeforeRequestContextImpl(
                       "UpdateFleetRegion", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -577,7 +577,7 @@ public class FleetsV1 implements
                         new AfterErrorContextImpl(
                             "UpdateFleetRegion",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -586,7 +586,7 @@ public class FleetsV1 implements
                         new AfterSuccessContextImpl(
                             "UpdateFleetRegion",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -595,7 +595,7 @@ public class FleetsV1 implements
                         new AfterErrorContextImpl(
                             "UpdateFleetRegion",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

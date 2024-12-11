@@ -127,10 +127,10 @@ public class BuildsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -138,7 +138,7 @@ public class BuildsV1 implements
                   new BeforeRequestContextImpl(
                       "CreateBuildDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -149,7 +149,7 @@ public class BuildsV1 implements
                         new AfterErrorContextImpl(
                             "CreateBuildDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -158,7 +158,7 @@ public class BuildsV1 implements
                         new AfterSuccessContextImpl(
                             "CreateBuildDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -167,7 +167,7 @@ public class BuildsV1 implements
                         new AfterErrorContextImpl(
                             "CreateBuildDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -286,10 +286,10 @@ public class BuildsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -297,7 +297,7 @@ public class BuildsV1 implements
                   new BeforeRequestContextImpl(
                       "DeleteBuildDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -308,7 +308,7 @@ public class BuildsV1 implements
                         new AfterErrorContextImpl(
                             "DeleteBuildDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -317,7 +317,7 @@ public class BuildsV1 implements
                         new AfterSuccessContextImpl(
                             "DeleteBuildDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -326,7 +326,7 @@ public class BuildsV1 implements
                         new AfterErrorContextImpl(
                             "DeleteBuildDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -434,10 +434,10 @@ public class BuildsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -445,7 +445,7 @@ public class BuildsV1 implements
                   new BeforeRequestContextImpl(
                       "GetBuildInfoDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -456,7 +456,7 @@ public class BuildsV1 implements
                         new AfterErrorContextImpl(
                             "GetBuildInfoDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -465,7 +465,7 @@ public class BuildsV1 implements
                         new AfterSuccessContextImpl(
                             "GetBuildInfoDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -474,7 +474,7 @@ public class BuildsV1 implements
                         new AfterErrorContextImpl(
                             "GetBuildInfoDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -588,10 +588,10 @@ public class BuildsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -599,7 +599,7 @@ public class BuildsV1 implements
                   new BeforeRequestContextImpl(
                       "GetBuildsDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -610,7 +610,7 @@ public class BuildsV1 implements
                         new AfterErrorContextImpl(
                             "GetBuildsDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -619,7 +619,7 @@ public class BuildsV1 implements
                         new AfterSuccessContextImpl(
                             "GetBuildsDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -628,7 +628,7 @@ public class BuildsV1 implements
                         new AfterErrorContextImpl(
                             "GetBuildsDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -765,10 +765,10 @@ public class BuildsV1 implements
         _req.addHeader("Accept", "text/plain")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -776,7 +776,7 @@ public class BuildsV1 implements
                   new BeforeRequestContextImpl(
                       "RunBuildDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -787,7 +787,7 @@ public class BuildsV1 implements
                         new AfterErrorContextImpl(
                             "RunBuildDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -796,7 +796,7 @@ public class BuildsV1 implements
                         new AfterSuccessContextImpl(
                             "RunBuildDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -805,7 +805,7 @@ public class BuildsV1 implements
                         new AfterErrorContextImpl(
                             "RunBuildDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

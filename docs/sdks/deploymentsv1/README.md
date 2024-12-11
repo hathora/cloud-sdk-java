@@ -42,6 +42,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateDeploymentV1DeprecatedResponse res = sdk.deploymentsV1().createDeploymentV1Deprecated()
@@ -118,6 +119,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetDeploymentInfoV1DeprecatedResponse res = sdk.deploymentsV1().getDeploymentInfoV1Deprecated()
@@ -176,6 +178,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetDeploymentsV1DeprecatedResponse res = sdk.deploymentsV1().getDeploymentsV1Deprecated()
@@ -232,6 +235,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetLatestDeploymentV1DeprecatedResponse res = sdk.deploymentsV1().getLatestDeploymentV1Deprecated()

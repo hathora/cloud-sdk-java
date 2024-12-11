@@ -127,10 +127,10 @@ public class DeploymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -138,7 +138,7 @@ public class DeploymentsV1 implements
                   new BeforeRequestContextImpl(
                       "CreateDeploymentV1Deprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -149,7 +149,7 @@ public class DeploymentsV1 implements
                         new AfterErrorContextImpl(
                             "CreateDeploymentV1Deprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -158,7 +158,7 @@ public class DeploymentsV1 implements
                         new AfterSuccessContextImpl(
                             "CreateDeploymentV1Deprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -167,7 +167,7 @@ public class DeploymentsV1 implements
                         new AfterErrorContextImpl(
                             "CreateDeploymentV1Deprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -286,10 +286,10 @@ public class DeploymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -297,7 +297,7 @@ public class DeploymentsV1 implements
                   new BeforeRequestContextImpl(
                       "GetDeploymentInfoV1Deprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -308,7 +308,7 @@ public class DeploymentsV1 implements
                         new AfterErrorContextImpl(
                             "GetDeploymentInfoV1Deprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -317,7 +317,7 @@ public class DeploymentsV1 implements
                         new AfterSuccessContextImpl(
                             "GetDeploymentInfoV1Deprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -326,7 +326,7 @@ public class DeploymentsV1 implements
                         new AfterErrorContextImpl(
                             "GetDeploymentInfoV1Deprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -440,10 +440,10 @@ public class DeploymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -451,7 +451,7 @@ public class DeploymentsV1 implements
                   new BeforeRequestContextImpl(
                       "GetDeploymentsV1Deprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -462,7 +462,7 @@ public class DeploymentsV1 implements
                         new AfterErrorContextImpl(
                             "GetDeploymentsV1Deprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -471,7 +471,7 @@ public class DeploymentsV1 implements
                         new AfterSuccessContextImpl(
                             "GetDeploymentsV1Deprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -480,7 +480,7 @@ public class DeploymentsV1 implements
                         new AfterErrorContextImpl(
                             "GetDeploymentsV1Deprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -594,10 +594,10 @@ public class DeploymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -605,7 +605,7 @@ public class DeploymentsV1 implements
                   new BeforeRequestContextImpl(
                       "GetLatestDeploymentV1Deprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -616,7 +616,7 @@ public class DeploymentsV1 implements
                         new AfterErrorContextImpl(
                             "GetLatestDeploymentV1Deprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -625,7 +625,7 @@ public class DeploymentsV1 implements
                         new AfterSuccessContextImpl(
                             "GetLatestDeploymentV1Deprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -634,7 +634,7 @@ public class DeploymentsV1 implements
                         new AfterErrorContextImpl(
                             "GetLatestDeploymentV1Deprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

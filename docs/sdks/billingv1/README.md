@@ -38,9 +38,11 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetBalanceResponse res = sdk.billingV1().getBalance()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.number().isPresent()) {
@@ -49,6 +51,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `orgId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
 ### Response
 
@@ -85,9 +93,11 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetInvoicesResponse res = sdk.billingV1().getInvoices()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.classes().isPresent()) {
@@ -96,6 +106,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `orgId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
 ### Response
 
@@ -132,9 +148,11 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetPaymentMethodResponse res = sdk.billingV1().getPaymentMethod()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.paymentMethod().isPresent()) {
@@ -143,6 +161,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `orgId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
 ### Response
 
@@ -179,9 +203,11 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetUpcomingInvoiceItemsResponse res = sdk.billingV1().getUpcomingInvoiceItems()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.invoiceItemPage().isPresent()) {
@@ -190,6 +216,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `orgId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
 ### Response
 
@@ -226,9 +258,11 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetUpcomingInvoiceTotalResponse res = sdk.billingV1().getUpcomingInvoiceTotal()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.object().isPresent()) {
@@ -237,6 +271,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `orgId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
 ### Response
 
@@ -274,14 +314,14 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
-        CustomerPortalUrl req = CustomerPortalUrl.builder()
-                .returnUrl("https://smart-puppet.biz/")
-                .build();
-
         InitStripeCustomerPortalUrlResponse res = sdk.billingV1().initStripeCustomerPortalUrl()
-                .request(req)
+                .customerPortalUrl(CustomerPortalUrl.builder()
+                    .returnUrl("<value>")
+                    .build())
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.string().isPresent()) {
@@ -293,9 +333,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `request`                                                     | [CustomerPortalUrl](../../models/shared/CustomerPortalUrl.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `customerPortalUrl`                                           | [CustomerPortalUrl](../../models/shared/CustomerPortalUrl.md) | :heavy_check_mark:                                            | N/A                                                           |                                                               |
+| `orgId`                                                       | *Optional\<String>*                                           | :heavy_minus_sign:                                            | N/A                                                           | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                      |
 
 ### Response
 

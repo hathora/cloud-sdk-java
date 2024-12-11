@@ -116,33 +116,39 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetBalance {
-        GetBalanceResponse getBalanceDirect() throws Exception;
+        GetBalanceResponse getBalance(
+            Optional<String> orgId) throws Exception;
     }
 
 
     public interface MethodCallGetInvoices {
-        GetInvoicesResponse getInvoicesDirect() throws Exception;
+        GetInvoicesResponse getInvoices(
+            Optional<String> orgId) throws Exception;
     }
 
 
     public interface MethodCallGetPaymentMethod {
-        GetPaymentMethodResponse getPaymentMethodDirect() throws Exception;
+        GetPaymentMethodResponse getPaymentMethod(
+            Optional<String> orgId) throws Exception;
     }
 
 
     public interface MethodCallGetUpcomingInvoiceItems {
-        GetUpcomingInvoiceItemsResponse getUpcomingInvoiceItemsDirect() throws Exception;
+        GetUpcomingInvoiceItemsResponse getUpcomingInvoiceItems(
+            Optional<String> orgId) throws Exception;
     }
 
 
     public interface MethodCallGetUpcomingInvoiceTotal {
-        GetUpcomingInvoiceTotalResponse getUpcomingInvoiceTotalDirect() throws Exception;
+        GetUpcomingInvoiceTotalResponse getUpcomingInvoiceTotal(
+            Optional<String> orgId) throws Exception;
     }
 
 
     public interface MethodCallInitStripeCustomerPortalUrl {
         InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(
-            CustomerPortalUrl request) throws Exception;
+            CustomerPortalUrl customerPortalUrl,
+            Optional<String> orgId) throws Exception;
     }
 
 

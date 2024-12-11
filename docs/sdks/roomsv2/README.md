@@ -41,11 +41,12 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateRoomResponse res = sdk.roomsV2().createRoom()
                 .createRoomParams(CreateRoomParams.builder()
-                    .region(Region.DALLAS)
+                    .region(Region.SAO_PAULO)
                     .clientIPs(List.of(
                         "123.123.123.123"))
                     .deploymentId("dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
@@ -105,6 +106,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         DestroyRoomResponse res = sdk.roomsV2().destroyRoom()
@@ -159,6 +161,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetActiveRoomsForProcessResponse res = sdk.roomsV2().getActiveRoomsForProcess()
@@ -211,6 +214,7 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetConnectionInfoResponse res = sdk.roomsV2().getConnectionInfo()
@@ -267,6 +271,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetInactiveRoomsForProcessResponse res = sdk.roomsV2().getInactiveRoomsForProcess()
@@ -323,6 +328,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetRoomInfoResponse res = sdk.roomsV2().getRoomInfo()
@@ -381,6 +387,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         SuspendRoomV2DeprecatedResponse res = sdk.roomsV2().suspendRoomV2Deprecated()
@@ -436,6 +443,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         UpdateRoomConfigResponse res = sdk.roomsV2().updateRoomConfig()

@@ -119,10 +119,10 @@ public class DeploymentsV3 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -130,7 +130,7 @@ public class DeploymentsV3 implements
                   new BeforeRequestContextImpl(
                       "CreateDeployment", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -141,7 +141,7 @@ public class DeploymentsV3 implements
                         new AfterErrorContextImpl(
                             "CreateDeployment",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -150,7 +150,7 @@ public class DeploymentsV3 implements
                         new AfterSuccessContextImpl(
                             "CreateDeployment",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -159,7 +159,7 @@ public class DeploymentsV3 implements
                         new AfterErrorContextImpl(
                             "CreateDeployment",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -272,10 +272,10 @@ public class DeploymentsV3 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -283,7 +283,7 @@ public class DeploymentsV3 implements
                   new BeforeRequestContextImpl(
                       "GetDeployment", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -294,7 +294,7 @@ public class DeploymentsV3 implements
                         new AfterErrorContextImpl(
                             "GetDeployment",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -303,7 +303,7 @@ public class DeploymentsV3 implements
                         new AfterSuccessContextImpl(
                             "GetDeployment",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -312,7 +312,7 @@ public class DeploymentsV3 implements
                         new AfterErrorContextImpl(
                             "GetDeployment",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -428,10 +428,10 @@ public class DeploymentsV3 implements
                 GetDeploymentsRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -439,7 +439,7 @@ public class DeploymentsV3 implements
                   new BeforeRequestContextImpl(
                       "GetDeployments", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -450,7 +450,7 @@ public class DeploymentsV3 implements
                         new AfterErrorContextImpl(
                             "GetDeployments",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -459,7 +459,7 @@ public class DeploymentsV3 implements
                         new AfterSuccessContextImpl(
                             "GetDeployments",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -468,7 +468,7 @@ public class DeploymentsV3 implements
                         new AfterErrorContextImpl(
                             "GetDeployments",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -576,10 +576,10 @@ public class DeploymentsV3 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -587,7 +587,7 @@ public class DeploymentsV3 implements
                   new BeforeRequestContextImpl(
                       "GetLatestDeployment", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -598,7 +598,7 @@ public class DeploymentsV3 implements
                         new AfterErrorContextImpl(
                             "GetLatestDeployment",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -607,7 +607,7 @@ public class DeploymentsV3 implements
                         new AfterSuccessContextImpl(
                             "GetLatestDeployment",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -616,7 +616,7 @@ public class DeploymentsV3 implements
                         new AfterErrorContextImpl(
                             "GetLatestDeployment",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

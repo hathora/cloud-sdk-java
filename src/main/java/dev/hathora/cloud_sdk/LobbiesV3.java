@@ -102,9 +102,12 @@ public class LobbiesV3 implements
                 CreateLobbyRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        // hooks will have access to global security options
+        // TODO pass the method level security object to hooks (type system doesn't allow 
+        // it, would require some reflection work)
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req, security);
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -112,7 +115,7 @@ public class LobbiesV3 implements
                   new BeforeRequestContextImpl(
                       "CreateLobby", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -123,7 +126,7 @@ public class LobbiesV3 implements
                         new AfterErrorContextImpl(
                             "CreateLobby",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -132,7 +135,7 @@ public class LobbiesV3 implements
                         new AfterSuccessContextImpl(
                             "CreateLobby",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -141,7 +144,7 @@ public class LobbiesV3 implements
                         new AfterErrorContextImpl(
                             "CreateLobby",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -254,7 +257,7 @@ public class LobbiesV3 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -262,7 +265,7 @@ public class LobbiesV3 implements
                   new BeforeRequestContextImpl(
                       "GetLobbyInfoByRoomId", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -273,7 +276,7 @@ public class LobbiesV3 implements
                         new AfterErrorContextImpl(
                             "GetLobbyInfoByRoomId",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -282,7 +285,7 @@ public class LobbiesV3 implements
                         new AfterSuccessContextImpl(
                             "GetLobbyInfoByRoomId",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -291,7 +294,7 @@ public class LobbiesV3 implements
                         new AfterErrorContextImpl(
                             "GetLobbyInfoByRoomId",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -404,7 +407,7 @@ public class LobbiesV3 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -412,7 +415,7 @@ public class LobbiesV3 implements
                   new BeforeRequestContextImpl(
                       "GetLobbyInfoByShortCode", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -423,7 +426,7 @@ public class LobbiesV3 implements
                         new AfterErrorContextImpl(
                             "GetLobbyInfoByShortCode",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -432,7 +435,7 @@ public class LobbiesV3 implements
                         new AfterSuccessContextImpl(
                             "GetLobbyInfoByShortCode",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -441,7 +444,7 @@ public class LobbiesV3 implements
                         new AfterErrorContextImpl(
                             "GetLobbyInfoByShortCode",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -557,7 +560,7 @@ public class LobbiesV3 implements
                 ListActivePublicLobbiesRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -565,7 +568,7 @@ public class LobbiesV3 implements
                   new BeforeRequestContextImpl(
                       "ListActivePublicLobbies", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -576,7 +579,7 @@ public class LobbiesV3 implements
                         new AfterErrorContextImpl(
                             "ListActivePublicLobbies",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -585,7 +588,7 @@ public class LobbiesV3 implements
                         new AfterSuccessContextImpl(
                             "ListActivePublicLobbies",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -594,7 +597,7 @@ public class LobbiesV3 implements
                         new AfterErrorContextImpl(
                             "ListActivePublicLobbies",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

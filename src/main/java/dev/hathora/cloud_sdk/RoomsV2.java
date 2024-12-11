@@ -144,10 +144,10 @@ public class RoomsV2 implements
                 CreateRoomRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -155,7 +155,7 @@ public class RoomsV2 implements
                   new BeforeRequestContextImpl(
                       "CreateRoom", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -166,7 +166,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "CreateRoom",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -175,7 +175,7 @@ public class RoomsV2 implements
                         new AfterSuccessContextImpl(
                             "CreateRoom",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -184,7 +184,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "CreateRoom",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -297,10 +297,10 @@ public class RoomsV2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -308,7 +308,7 @@ public class RoomsV2 implements
                   new BeforeRequestContextImpl(
                       "DestroyRoom", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -319,7 +319,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "DestroyRoom",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -328,7 +328,7 @@ public class RoomsV2 implements
                         new AfterSuccessContextImpl(
                             "DestroyRoom",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -337,7 +337,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "DestroyRoom",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -439,10 +439,10 @@ public class RoomsV2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -450,7 +450,7 @@ public class RoomsV2 implements
                   new BeforeRequestContextImpl(
                       "GetActiveRoomsForProcess", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -461,7 +461,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "GetActiveRoomsForProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -470,7 +470,7 @@ public class RoomsV2 implements
                         new AfterSuccessContextImpl(
                             "GetActiveRoomsForProcess",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -479,7 +479,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "GetActiveRoomsForProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -592,7 +592,7 @@ public class RoomsV2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -600,7 +600,7 @@ public class RoomsV2 implements
                   new BeforeRequestContextImpl(
                       "GetConnectionInfo", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -611,7 +611,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "GetConnectionInfo",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -620,7 +620,7 @@ public class RoomsV2 implements
                         new AfterSuccessContextImpl(
                             "GetConnectionInfo",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -629,7 +629,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "GetConnectionInfo",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -742,10 +742,10 @@ public class RoomsV2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -753,7 +753,7 @@ public class RoomsV2 implements
                   new BeforeRequestContextImpl(
                       "GetInactiveRoomsForProcess", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -764,7 +764,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "GetInactiveRoomsForProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -773,7 +773,7 @@ public class RoomsV2 implements
                         new AfterSuccessContextImpl(
                             "GetInactiveRoomsForProcess",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -782,7 +782,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "GetInactiveRoomsForProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -895,10 +895,10 @@ public class RoomsV2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -906,7 +906,7 @@ public class RoomsV2 implements
                   new BeforeRequestContextImpl(
                       "GetRoomInfo", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -917,7 +917,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "GetRoomInfo",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -926,7 +926,7 @@ public class RoomsV2 implements
                         new AfterSuccessContextImpl(
                             "GetRoomInfo",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -935,7 +935,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "GetRoomInfo",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1054,10 +1054,10 @@ public class RoomsV2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1065,7 +1065,7 @@ public class RoomsV2 implements
                   new BeforeRequestContextImpl(
                       "SuspendRoomV2Deprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1076,7 +1076,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "SuspendRoomV2Deprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1085,7 +1085,7 @@ public class RoomsV2 implements
                         new AfterSuccessContextImpl(
                             "SuspendRoomV2Deprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1094,7 +1094,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "SuspendRoomV2Deprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1211,10 +1211,10 @@ public class RoomsV2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1222,7 +1222,7 @@ public class RoomsV2 implements
                   new BeforeRequestContextImpl(
                       "UpdateRoomConfig", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1233,7 +1233,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "UpdateRoomConfig",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1242,7 +1242,7 @@ public class RoomsV2 implements
                         new AfterSuccessContextImpl(
                             "UpdateRoomConfig",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1251,7 +1251,7 @@ public class RoomsV2 implements
                         new AfterErrorContextImpl(
                             "UpdateRoomConfig",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

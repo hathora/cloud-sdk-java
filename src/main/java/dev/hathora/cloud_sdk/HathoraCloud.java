@@ -373,6 +373,22 @@ public class HathoraCloud {
         }
         
         /**
+         * Allows setting the orgId parameter for all supported operations.
+         *
+         * @param orgId The value to set.
+         * @return The builder instance.
+         */
+        public Builder orgId(String orgId) {
+            if (!this.sdkConfiguration.globals.get("parameters").containsKey("queryParam")) {
+                this.sdkConfiguration.globals.get("parameters").put("queryParam", new java.util.HashMap<>());
+            }
+
+            this.sdkConfiguration.globals.get("parameters").get("queryParam").put("orgId", orgId);
+
+            return this;
+        }
+        
+        /**
          * Builds a new instance of the SDK.
          * @return The SDK instance.
          */

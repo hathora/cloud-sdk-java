@@ -42,11 +42,12 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateRoomDeprecatedResponse res = sdk.roomsV1().createRoomDeprecated()
                 .createRoomParams(CreateRoomParams.builder()
-                    .region(Region.LONDON)
+                    .region(Region.CHICAGO)
                     .clientIPs(List.of(
                         "123.123.123.123"))
                     .deploymentId("dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
@@ -108,6 +109,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         DestroyRoomDeprecatedResponse res = sdk.roomsV1().destroyRoomDeprecated()
@@ -164,6 +166,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetActiveRoomsForProcessDeprecatedResponse res = sdk.roomsV1().getActiveRoomsForProcessDeprecated()
@@ -218,6 +221,7 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetConnectionInfoDeprecatedResponse res = sdk.roomsV1().getConnectionInfoDeprecated()
@@ -276,6 +280,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetInactiveRoomsForProcessDeprecatedResponse res = sdk.roomsV1().getInactiveRoomsForProcessDeprecated()
@@ -334,6 +339,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetRoomInfoDeprecatedResponse res = sdk.roomsV1().getRoomInfoDeprecated()
@@ -392,6 +398,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         SuspendRoomDeprecatedResponse res = sdk.roomsV1().suspendRoomDeprecated()

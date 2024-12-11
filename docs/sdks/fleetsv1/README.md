@@ -38,12 +38,12 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetFleetMetricsRequest req = GetFleetMetricsRequest.builder()
                 .fleetId("<id>")
                 .region(Region.LONDON)
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .build();
 
         GetFleetMetricsResponse res = sdk.fleetsV1().getFleetMetrics()
@@ -99,6 +99,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetFleetRegionResponse res = sdk.fleetsV1().getFleetRegion()
@@ -157,6 +158,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetFleetsResponse res = sdk.fleetsV1().getFleets()
@@ -214,6 +216,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         UpdateFleetRegionRequest req = UpdateFleetRegionRequest.builder()
@@ -222,7 +225,6 @@ public class Application {
                     .build())
                 .fleetId("<id>")
                 .region(Region.SINGAPORE)
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .build();
 
         UpdateFleetRegionResponse res = sdk.fleetsV1().updateFleetRegion()

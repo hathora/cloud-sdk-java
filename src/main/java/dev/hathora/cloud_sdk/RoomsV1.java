@@ -141,10 +141,10 @@ public class RoomsV1 implements
                 CreateRoomDeprecatedRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -152,7 +152,7 @@ public class RoomsV1 implements
                   new BeforeRequestContextImpl(
                       "CreateRoomDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -163,7 +163,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "CreateRoomDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -172,7 +172,7 @@ public class RoomsV1 implements
                         new AfterSuccessContextImpl(
                             "CreateRoomDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -181,7 +181,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "CreateRoomDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -297,10 +297,10 @@ public class RoomsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -308,7 +308,7 @@ public class RoomsV1 implements
                   new BeforeRequestContextImpl(
                       "DestroyRoomDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -319,7 +319,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "DestroyRoomDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -328,7 +328,7 @@ public class RoomsV1 implements
                         new AfterSuccessContextImpl(
                             "DestroyRoomDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -337,7 +337,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "DestroyRoomDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -442,10 +442,10 @@ public class RoomsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -453,7 +453,7 @@ public class RoomsV1 implements
                   new BeforeRequestContextImpl(
                       "GetActiveRoomsForProcessDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -464,7 +464,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "GetActiveRoomsForProcessDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -473,7 +473,7 @@ public class RoomsV1 implements
                         new AfterSuccessContextImpl(
                             "GetActiveRoomsForProcessDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -482,7 +482,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "GetActiveRoomsForProcessDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -598,7 +598,7 @@ public class RoomsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -606,7 +606,7 @@ public class RoomsV1 implements
                   new BeforeRequestContextImpl(
                       "GetConnectionInfoDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -617,7 +617,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "GetConnectionInfoDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -626,7 +626,7 @@ public class RoomsV1 implements
                         new AfterSuccessContextImpl(
                             "GetConnectionInfoDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -635,7 +635,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "GetConnectionInfoDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -751,10 +751,10 @@ public class RoomsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -762,7 +762,7 @@ public class RoomsV1 implements
                   new BeforeRequestContextImpl(
                       "GetInactiveRoomsForProcessDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -773,7 +773,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "GetInactiveRoomsForProcessDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -782,7 +782,7 @@ public class RoomsV1 implements
                         new AfterSuccessContextImpl(
                             "GetInactiveRoomsForProcessDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -791,7 +791,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "GetInactiveRoomsForProcessDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -907,10 +907,10 @@ public class RoomsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -918,7 +918,7 @@ public class RoomsV1 implements
                   new BeforeRequestContextImpl(
                       "GetRoomInfoDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -929,7 +929,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "GetRoomInfoDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -938,7 +938,7 @@ public class RoomsV1 implements
                         new AfterSuccessContextImpl(
                             "GetRoomInfoDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -947,7 +947,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "GetRoomInfoDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1063,10 +1063,10 @@ public class RoomsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1074,7 +1074,7 @@ public class RoomsV1 implements
                   new BeforeRequestContextImpl(
                       "SuspendRoomDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1085,7 +1085,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "SuspendRoomDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1094,7 +1094,7 @@ public class RoomsV1 implements
                         new AfterSuccessContextImpl(
                             "SuspendRoomDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1103,7 +1103,7 @@ public class RoomsV1 implements
                         new AfterErrorContextImpl(
                             "SuspendRoomDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

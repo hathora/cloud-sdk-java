@@ -80,7 +80,7 @@ public class ManagementV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -88,7 +88,7 @@ public class ManagementV1 implements
                   new BeforeRequestContextImpl(
                       "SendVerificationEmail", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -99,7 +99,7 @@ public class ManagementV1 implements
                         new AfterErrorContextImpl(
                             "SendVerificationEmail",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -108,7 +108,7 @@ public class ManagementV1 implements
                         new AfterSuccessContextImpl(
                             "SendVerificationEmail",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -117,7 +117,7 @@ public class ManagementV1 implements
                         new AfterErrorContextImpl(
                             "SendVerificationEmail",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

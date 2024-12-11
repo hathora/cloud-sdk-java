@@ -26,6 +26,13 @@ public class Organization {
     private boolean isSingleTenant;
 
     /**
+     * The name of an organization.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("name")
+    private Optional<String> name;
+
+    /**
      * System generated unique identifier for an organization. Not guaranteed to have a specific format.
      */
     @JsonProperty("orgId")
@@ -44,14 +51,17 @@ public class Organization {
     @JsonCreator
     public Organization(
             @JsonProperty("isSingleTenant") boolean isSingleTenant,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("orgId") String orgId,
             @JsonProperty("scopes") Optional<? extends List<Scope>> scopes,
             @JsonProperty("stripeCustomerId") String stripeCustomerId) {
         Utils.checkNotNull(isSingleTenant, "isSingleTenant");
+        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(orgId, "orgId");
         Utils.checkNotNull(scopes, "scopes");
         Utils.checkNotNull(stripeCustomerId, "stripeCustomerId");
         this.isSingleTenant = isSingleTenant;
+        this.name = name;
         this.orgId = orgId;
         this.scopes = scopes;
         this.stripeCustomerId = stripeCustomerId;
@@ -61,12 +71,20 @@ public class Organization {
             boolean isSingleTenant,
             String orgId,
             String stripeCustomerId) {
-        this(isSingleTenant, orgId, Optional.empty(), stripeCustomerId);
+        this(isSingleTenant, Optional.empty(), orgId, Optional.empty(), stripeCustomerId);
     }
 
     @JsonIgnore
     public boolean isSingleTenant() {
         return isSingleTenant;
+    }
+
+    /**
+     * The name of an organization.
+     */
+    @JsonIgnore
+    public Optional<String> name() {
+        return name;
     }
 
     /**
@@ -98,6 +116,24 @@ public class Organization {
     public Organization withIsSingleTenant(boolean isSingleTenant) {
         Utils.checkNotNull(isSingleTenant, "isSingleTenant");
         this.isSingleTenant = isSingleTenant;
+        return this;
+    }
+
+    /**
+     * The name of an organization.
+     */
+    public Organization withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+    /**
+     * The name of an organization.
+     */
+    public Organization withName(Optional<String> name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
         return this;
     }
 
@@ -145,6 +181,7 @@ public class Organization {
         Organization other = (Organization) o;
         return 
             Objects.deepEquals(this.isSingleTenant, other.isSingleTenant) &&
+            Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.orgId, other.orgId) &&
             Objects.deepEquals(this.scopes, other.scopes) &&
             Objects.deepEquals(this.stripeCustomerId, other.stripeCustomerId);
@@ -154,6 +191,7 @@ public class Organization {
     public int hashCode() {
         return Objects.hash(
             isSingleTenant,
+            name,
             orgId,
             scopes,
             stripeCustomerId);
@@ -163,6 +201,7 @@ public class Organization {
     public String toString() {
         return Utils.toString(Organization.class,
                 "isSingleTenant", isSingleTenant,
+                "name", name,
                 "orgId", orgId,
                 "scopes", scopes,
                 "stripeCustomerId", stripeCustomerId);
@@ -171,6 +210,8 @@ public class Organization {
     public final static class Builder {
  
         private Boolean isSingleTenant;
+ 
+        private Optional<String> name = Optional.empty();
  
         private String orgId;
  
@@ -185,6 +226,24 @@ public class Organization {
         public Builder isSingleTenant(boolean isSingleTenant) {
             Utils.checkNotNull(isSingleTenant, "isSingleTenant");
             this.isSingleTenant = isSingleTenant;
+            return this;
+        }
+
+        /**
+         * The name of an organization.
+         */
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * The name of an organization.
+         */
+        public Builder name(Optional<String> name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
             return this;
         }
 
@@ -224,6 +283,7 @@ public class Organization {
         public Organization build() {
             return new Organization(
                 isSingleTenant,
+                name,
                 orgId,
                 scopes,
                 stripeCustomerId);

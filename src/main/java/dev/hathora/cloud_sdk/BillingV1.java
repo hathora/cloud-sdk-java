@@ -7,17 +7,23 @@ package dev.hathora.cloud_sdk;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.errors.SDKError;
+import dev.hathora.cloud_sdk.models.operations.GetBalanceRequest;
 import dev.hathora.cloud_sdk.models.operations.GetBalanceRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetBalanceResponse;
+import dev.hathora.cloud_sdk.models.operations.GetInvoicesRequest;
 import dev.hathora.cloud_sdk.models.operations.GetInvoicesRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetInvoicesResponse;
+import dev.hathora.cloud_sdk.models.operations.GetPaymentMethodRequest;
 import dev.hathora.cloud_sdk.models.operations.GetPaymentMethodRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetPaymentMethodResponse;
+import dev.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceItemsRequest;
 import dev.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceItemsRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceItemsResponse;
+import dev.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceTotalRequest;
 import dev.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceTotalRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceTotalResponse;
 import dev.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceTotalResponseBody;
+import dev.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlRequest;
 import dev.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.InitStripeCustomerPortalUrlResponse;
 import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
@@ -75,6 +81,23 @@ public class BillingV1 implements
      * @throws Exception if the API call fails
      */
     public GetBalanceResponse getBalanceDirect() throws Exception {
+        return getBalance(Optional.empty());
+    }
+    
+    /**
+     * GetBalance
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetBalanceResponse getBalance(
+            Optional<String> orgId) throws Exception {
+        GetBalanceRequest request =
+            GetBalanceRequest
+                .builder()
+                .orgId(orgId)
+                .build();
+        
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -85,9 +108,14 @@ public class BillingV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
 
+        _req.addQueryParams(Utils.getQueryParams(
+                GetBalanceRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -95,7 +123,7 @@ public class BillingV1 implements
                   new BeforeRequestContextImpl(
                       "GetBalance", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -106,7 +134,7 @@ public class BillingV1 implements
                         new AfterErrorContextImpl(
                             "GetBalance",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -115,7 +143,7 @@ public class BillingV1 implements
                         new AfterSuccessContextImpl(
                             "GetBalance",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -124,7 +152,7 @@ public class BillingV1 implements
                         new AfterErrorContextImpl(
                             "GetBalance",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -201,6 +229,23 @@ public class BillingV1 implements
      * @throws Exception if the API call fails
      */
     public GetInvoicesResponse getInvoicesDirect() throws Exception {
+        return getInvoices(Optional.empty());
+    }
+    
+    /**
+     * GetInvoices
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetInvoicesResponse getInvoices(
+            Optional<String> orgId) throws Exception {
+        GetInvoicesRequest request =
+            GetInvoicesRequest
+                .builder()
+                .orgId(orgId)
+                .build();
+        
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -211,9 +256,14 @@ public class BillingV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
 
+        _req.addQueryParams(Utils.getQueryParams(
+                GetInvoicesRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -221,7 +271,7 @@ public class BillingV1 implements
                   new BeforeRequestContextImpl(
                       "GetInvoices", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -232,7 +282,7 @@ public class BillingV1 implements
                         new AfterErrorContextImpl(
                             "GetInvoices",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -241,7 +291,7 @@ public class BillingV1 implements
                         new AfterSuccessContextImpl(
                             "GetInvoices",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -250,7 +300,7 @@ public class BillingV1 implements
                         new AfterErrorContextImpl(
                             "GetInvoices",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -327,6 +377,23 @@ public class BillingV1 implements
      * @throws Exception if the API call fails
      */
     public GetPaymentMethodResponse getPaymentMethodDirect() throws Exception {
+        return getPaymentMethod(Optional.empty());
+    }
+    
+    /**
+     * GetPaymentMethod
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetPaymentMethodResponse getPaymentMethod(
+            Optional<String> orgId) throws Exception {
+        GetPaymentMethodRequest request =
+            GetPaymentMethodRequest
+                .builder()
+                .orgId(orgId)
+                .build();
+        
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -337,9 +404,14 @@ public class BillingV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
 
+        _req.addQueryParams(Utils.getQueryParams(
+                GetPaymentMethodRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -347,7 +419,7 @@ public class BillingV1 implements
                   new BeforeRequestContextImpl(
                       "GetPaymentMethod", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -358,7 +430,7 @@ public class BillingV1 implements
                         new AfterErrorContextImpl(
                             "GetPaymentMethod",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -367,7 +439,7 @@ public class BillingV1 implements
                         new AfterSuccessContextImpl(
                             "GetPaymentMethod",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -376,7 +448,7 @@ public class BillingV1 implements
                         new AfterErrorContextImpl(
                             "GetPaymentMethod",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -453,6 +525,23 @@ public class BillingV1 implements
      * @throws Exception if the API call fails
      */
     public GetUpcomingInvoiceItemsResponse getUpcomingInvoiceItemsDirect() throws Exception {
+        return getUpcomingInvoiceItems(Optional.empty());
+    }
+    
+    /**
+     * GetUpcomingInvoiceItems
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetUpcomingInvoiceItemsResponse getUpcomingInvoiceItems(
+            Optional<String> orgId) throws Exception {
+        GetUpcomingInvoiceItemsRequest request =
+            GetUpcomingInvoiceItemsRequest
+                .builder()
+                .orgId(orgId)
+                .build();
+        
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -463,9 +552,14 @@ public class BillingV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
 
+        _req.addQueryParams(Utils.getQueryParams(
+                GetUpcomingInvoiceItemsRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -473,7 +567,7 @@ public class BillingV1 implements
                   new BeforeRequestContextImpl(
                       "GetUpcomingInvoiceItems", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -484,7 +578,7 @@ public class BillingV1 implements
                         new AfterErrorContextImpl(
                             "GetUpcomingInvoiceItems",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -493,7 +587,7 @@ public class BillingV1 implements
                         new AfterSuccessContextImpl(
                             "GetUpcomingInvoiceItems",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -502,7 +596,7 @@ public class BillingV1 implements
                         new AfterErrorContextImpl(
                             "GetUpcomingInvoiceItems",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -579,6 +673,23 @@ public class BillingV1 implements
      * @throws Exception if the API call fails
      */
     public GetUpcomingInvoiceTotalResponse getUpcomingInvoiceTotalDirect() throws Exception {
+        return getUpcomingInvoiceTotal(Optional.empty());
+    }
+    
+    /**
+     * GetUpcomingInvoiceTotal
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetUpcomingInvoiceTotalResponse getUpcomingInvoiceTotal(
+            Optional<String> orgId) throws Exception {
+        GetUpcomingInvoiceTotalRequest request =
+            GetUpcomingInvoiceTotalRequest
+                .builder()
+                .orgId(orgId)
+                .build();
+        
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -589,9 +700,14 @@ public class BillingV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
 
+        _req.addQueryParams(Utils.getQueryParams(
+                GetUpcomingInvoiceTotalRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -599,7 +715,7 @@ public class BillingV1 implements
                   new BeforeRequestContextImpl(
                       "GetUpcomingInvoiceTotal", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -610,7 +726,7 @@ public class BillingV1 implements
                         new AfterErrorContextImpl(
                             "GetUpcomingInvoiceTotal",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -619,7 +735,7 @@ public class BillingV1 implements
                         new AfterSuccessContextImpl(
                             "GetUpcomingInvoiceTotal",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -628,7 +744,7 @@ public class BillingV1 implements
                         new AfterErrorContextImpl(
                             "GetUpcomingInvoiceTotal",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -701,12 +817,32 @@ public class BillingV1 implements
 
     /**
      * InitStripeCustomerPortalUrl
-     * @param request The request object containing all of the parameters for the API call.
+     * @param customerPortalUrl
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(
-            CustomerPortalUrl request) throws Exception {
+            CustomerPortalUrl customerPortalUrl) throws Exception {
+        return initStripeCustomerPortalUrl(customerPortalUrl, Optional.empty());
+    }
+    
+    /**
+     * InitStripeCustomerPortalUrl
+     * @param customerPortalUrl
+     * @param orgId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(
+            CustomerPortalUrl customerPortalUrl,
+            Optional<String> orgId) throws Exception {
+        InitStripeCustomerPortalUrlRequest request =
+            InitStripeCustomerPortalUrlRequest
+                .builder()
+                .customerPortalUrl(customerPortalUrl)
+                .orgId(orgId)
+                .build();
+        
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -716,10 +852,10 @@ public class BillingV1 implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<CustomerPortalUrl>() {});
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "request",
+                "customerPortalUrl",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -730,9 +866,14 @@ public class BillingV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
 
+        _req.addQueryParams(Utils.getQueryParams(
+                InitStripeCustomerPortalUrlRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -740,7 +881,7 @@ public class BillingV1 implements
                   new BeforeRequestContextImpl(
                       "InitStripeCustomerPortalUrl", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -751,7 +892,7 @@ public class BillingV1 implements
                         new AfterErrorContextImpl(
                             "InitStripeCustomerPortalUrl",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -760,7 +901,7 @@ public class BillingV1 implements
                         new AfterSuccessContextImpl(
                             "InitStripeCustomerPortalUrl",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -769,7 +910,7 @@ public class BillingV1 implements
                         new AfterErrorContextImpl(
                             "InitStripeCustomerPortalUrl",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

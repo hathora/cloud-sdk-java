@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: 305de65bc19b35410e32b57b55a6f38d
+  docChecksum: d71c95af60ddb2e3da566c90fc29674d
   docVersion: 0.0.1
-  speakeasyVersion: 1.448.0
-  generationVersion: 2.466.0
-  releaseVersion: 2.11.3
-  configChecksum: 4b067e4f697f2f89c4d075559448d6fe
+  speakeasyVersion: 1.453.10
+  generationVersion: 2.474.15
+  releaseVersion: 2.12.0
+  configChecksum: 08990f6abf996bb8ea820f9a69053b81
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.32.2
+    core: 3.33.1
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
@@ -116,6 +116,7 @@ generatedFiles:
   - docs/models/operations/GetAppsRequest.md
   - docs/models/operations/GetAppsResponse.md
   - docs/models/operations/GetAppsV1DeprecatedResponse.md
+  - docs/models/operations/GetBalanceRequest.md
   - docs/models/operations/GetBalanceResponse.md
   - docs/models/operations/GetBuildInfoDeprecatedRequest.md
   - docs/models/operations/GetBuildInfoDeprecatedResponse.md
@@ -155,6 +156,7 @@ generatedFiles:
   - docs/models/operations/GetInactiveRoomsForProcessDeprecatedResponse.md
   - docs/models/operations/GetInactiveRoomsForProcessRequest.md
   - docs/models/operations/GetInactiveRoomsForProcessResponse.md
+  - docs/models/operations/GetInvoicesRequest.md
   - docs/models/operations/GetInvoicesResponse.md
   - docs/models/operations/GetLatestDeploymentRequest.md
   - docs/models/operations/GetLatestDeploymentResponse.md
@@ -183,6 +185,7 @@ generatedFiles:
   - docs/models/operations/GetOrgTokensRequest.md
   - docs/models/operations/GetOrgTokensResponse.md
   - docs/models/operations/GetOrgsResponse.md
+  - docs/models/operations/GetPaymentMethodRequest.md
   - docs/models/operations/GetPaymentMethodResponse.md
   - docs/models/operations/GetPingServiceEndpointsDeprecatedResponse.md
   - docs/models/operations/GetPingServiceEndpointsResponse.md
@@ -208,12 +211,15 @@ generatedFiles:
   - docs/models/operations/GetRunningProcessesResponse.md
   - docs/models/operations/GetStoppedProcessesRequest.md
   - docs/models/operations/GetStoppedProcessesResponse.md
+  - docs/models/operations/GetUpcomingInvoiceItemsRequest.md
   - docs/models/operations/GetUpcomingInvoiceItemsResponse.md
+  - docs/models/operations/GetUpcomingInvoiceTotalRequest.md
   - docs/models/operations/GetUpcomingInvoiceTotalResponse.md
   - docs/models/operations/GetUpcomingInvoiceTotalResponseBody.md
   - docs/models/operations/GetUsageLimitsRequest.md
   - docs/models/operations/GetUsageLimitsResponse.md
   - docs/models/operations/GetUserPendingInvitesResponse.md
+  - docs/models/operations/InitStripeCustomerPortalUrlRequest.md
   - docs/models/operations/InitStripeCustomerPortalUrlResponse.md
   - docs/models/operations/InviteUserRequest.md
   - docs/models/operations/InviteUserResponse.md
@@ -581,6 +587,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetAppsResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetAppsV1DeprecatedRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetAppsV1DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetBalanceRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetBalanceRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetBalanceResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetBuildInfoDeprecatedRequest.java
@@ -640,6 +647,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetInactiveRoomsForProcessResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetInvoicesRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetInvoicesRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetInvoicesResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetLatestDeploymentRequest.java
@@ -683,6 +691,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetOrgTokensResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetOrgsRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetOrgsResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetPaymentMethodRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetPaymentMethodRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetPaymentMethodResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetPingServiceEndpointsDeprecatedRequestBuilder.java
@@ -721,8 +730,10 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetStoppedProcessesRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetStoppedProcessesRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetStoppedProcessesResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceItemsRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceItemsRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceItemsResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUpcomingInvoiceTotalResponseBody.java
@@ -731,6 +742,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUsageLimitsResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUserPendingInvitesRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetUserPendingInvitesResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/InitStripeCustomerPortalUrlRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/InitStripeCustomerPortalUrlRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/InitStripeCustomerPortalUrlResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/InviteUserRequest.java
@@ -973,6 +985,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/utils/Security.java
   - src/main/java/dev/hathora/cloud_sdk/utils/SecurityMetadata.java
   - src/main/java/dev/hathora/cloud_sdk/utils/SerializedBody.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/SessionManager.java
   - src/main/java/dev/hathora/cloud_sdk/utils/SpeakeasyHTTPClient.java
   - src/main/java/dev/hathora/cloud_sdk/utils/SpeakeasyMetadata.java
   - src/main/java/dev/hathora/cloud_sdk/utils/TypedObject.java
@@ -1114,6 +1127,9 @@ examples:
           application/json: {"message": "<value>"}
   GetBalance:
     speakeasy-default-get-balance:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: "68.43"
@@ -1121,6 +1137,9 @@ examples:
           application/json: {"message": "<value>"}
   GetInvoices:
     speakeasy-default-get-invoices:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: []
@@ -1128,12 +1147,18 @@ examples:
           application/json: {"message": "<value>"}
   GetPaymentMethod:
     speakeasy-default-get-payment-method:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "401":
           application/json: {"message": "<value>"}
         "200": {}
   GetUpcomingInvoiceItems:
     speakeasy-default-get-upcoming-invoice-items:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"invoiceItems": []}
@@ -1141,6 +1166,9 @@ examples:
           application/json: {"message": "<value>"}
   GetUpcomingInvoiceTotal:
     speakeasy-default-get-upcoming-invoice-total:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"value": "2752.14"}
@@ -1148,6 +1176,9 @@ examples:
           application/json: {"message": "<value>"}
   InitStripeCustomerPortalUrl:
     speakeasy-default-init-stripe-customer-portal-url:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"returnUrl": "<value>"}
       responses:

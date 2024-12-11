@@ -39,6 +39,7 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateLobbyDeprecatedResponse res = sdk.lobbiesV2().createLobbyDeprecated()
@@ -47,7 +48,7 @@ public class Application {
                     .build())
                 .createLobbyParams(CreateLobbyParams.builder()
                     .initialConfig("<value>")
-                    .region(Region.SAO_PAULO)
+                    .region(Region.TOKYO)
                     .visibility(LobbyVisibility.PRIVATE)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -106,6 +107,7 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateLocalLobbyResponse res = sdk.lobbiesV2().createLocalLobby()
@@ -114,7 +116,7 @@ public class Application {
                     .build())
                 .requestBody(CreateLocalLobbyRequestBody.builder()
                     .initialConfig("<value>")
-                    .region(Region.JOHANNESBURG)
+                    .region(Region.SAO_PAULO)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
@@ -172,6 +174,7 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreatePrivateLobbyResponse res = sdk.lobbiesV2().createPrivateLobby()
@@ -180,7 +183,7 @@ public class Application {
                     .build())
                 .requestBody(CreatePrivateLobbyRequestBody.builder()
                     .initialConfig("<value>")
-                    .region(Region.LONDON)
+                    .region(Region.CHICAGO)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
@@ -238,6 +241,7 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreatePublicLobbyResponse res = sdk.lobbiesV2().createPublicLobby()
@@ -246,7 +250,7 @@ public class Application {
                     .build())
                 .requestBody(CreatePublicLobbyRequestBody.builder()
                     .initialConfig("<value>")
-                    .region(Region.JOHANNESBURG)
+                    .region(Region.SAO_PAULO)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
@@ -301,6 +305,7 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetLobbyInfoResponse res = sdk.lobbiesV2().getLobbyInfo()
@@ -356,6 +361,7 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         ListActivePublicLobbiesDeprecatedV2Response res = sdk.lobbiesV2().listActivePublicLobbiesDeprecatedV2()
@@ -415,11 +421,12 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         SetLobbyStateResponse res = sdk.lobbiesV2().setLobbyState()
                 .setLobbyStateParams(SetLobbyStateParams.builder()
-                    .state("<value>")
+                    .state("South Dakota")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")

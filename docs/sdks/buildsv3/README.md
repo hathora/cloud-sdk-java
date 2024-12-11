@@ -38,11 +38,12 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateBuildResponse res = sdk.buildsV3().createBuild()
                 .createMultipartBuildParams(CreateMultipartBuildParams.builder()
-                    .buildSizeInBytes(5387.84d)
+                    .buildSizeInBytes(5387.85d)
                     .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                     .buildTag("0.1.14-14c793")
                     .build())
@@ -100,6 +101,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         DeleteBuildResponse res = sdk.buildsV3().deleteBuild()
@@ -156,6 +158,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetBuildResponse res = sdk.buildsV3().getBuild()
@@ -212,6 +215,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetBuildsResponse res = sdk.buildsV3().getBuilds()
@@ -266,6 +270,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         RunBuildResponse res = sdk.buildsV3().runBuild()

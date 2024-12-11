@@ -89,10 +89,10 @@ public class LogsV1 implements
         _req.addHeader("Accept", "application/octet-stream")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -100,7 +100,7 @@ public class LogsV1 implements
                   new BeforeRequestContextImpl(
                       "DownloadLogForProcess", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -111,7 +111,7 @@ public class LogsV1 implements
                         new AfterErrorContextImpl(
                             "DownloadLogForProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -120,7 +120,7 @@ public class LogsV1 implements
                         new AfterSuccessContextImpl(
                             "DownloadLogForProcess",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -129,7 +129,7 @@ public class LogsV1 implements
                         new AfterErrorContextImpl(
                             "DownloadLogForProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -225,10 +225,10 @@ public class LogsV1 implements
                 GetLogsForProcessRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -236,7 +236,7 @@ public class LogsV1 implements
                   new BeforeRequestContextImpl(
                       "GetLogsForProcess", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -247,7 +247,7 @@ public class LogsV1 implements
                         new AfterErrorContextImpl(
                             "GetLogsForProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -256,7 +256,7 @@ public class LogsV1 implements
                         new AfterSuccessContextImpl(
                             "GetLogsForProcess",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -265,7 +265,7 @@ public class LogsV1 implements
                         new AfterErrorContextImpl(
                             "GetLogsForProcess",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

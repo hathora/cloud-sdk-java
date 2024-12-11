@@ -33,6 +33,7 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreatePrivateLobbyDeprecatedResponse res = sdk.lobbiesV1().createPrivateLobbyDeprecated()
@@ -95,6 +96,7 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreatePublicLobbyDeprecatedResponse res = sdk.lobbiesV1().createPublicLobbyDeprecated()
@@ -156,6 +158,7 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         ListActivePublicLobbiesDeprecatedV1Response res = sdk.lobbiesV1().listActivePublicLobbiesDeprecatedV1()

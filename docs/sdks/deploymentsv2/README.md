@@ -41,6 +41,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateDeploymentV2DeprecatedResponse res = sdk.deploymentsV2().createDeploymentV2Deprecated()
@@ -55,7 +56,7 @@ public class Application {
                     .requestedCPU(0.5d)
                     .requestedMemoryMB(1024d)
                     .roomsPerProcess(3)
-                    .transportType(TransportType.TLS)
+                    .transportType(TransportType.TCP)
                     .additionalContainerPorts(List.of(
                         ContainerPort.builder()
                             .name("default")
@@ -119,6 +120,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetDeploymentInfoV2DeprecatedResponse res = sdk.deploymentsV2().getDeploymentInfoV2Deprecated()
@@ -177,6 +179,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetDeploymentsV2DeprecatedResponse res = sdk.deploymentsV2().getDeploymentsV2Deprecated()
@@ -233,6 +236,7 @@ public class Application {
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetLatestDeploymentV2DeprecatedResponse res = sdk.deploymentsV2().getLatestDeploymentV2Deprecated()

@@ -97,7 +97,7 @@ public class AuthV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -105,7 +105,7 @@ public class AuthV1 implements
                   new BeforeRequestContextImpl(
                       "LoginAnonymous", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -116,7 +116,7 @@ public class AuthV1 implements
                         new AfterErrorContextImpl(
                             "LoginAnonymous",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -125,7 +125,7 @@ public class AuthV1 implements
                         new AfterSuccessContextImpl(
                             "LoginAnonymous",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -134,7 +134,7 @@ public class AuthV1 implements
                         new AfterErrorContextImpl(
                             "LoginAnonymous",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -260,7 +260,7 @@ public class AuthV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -268,7 +268,7 @@ public class AuthV1 implements
                   new BeforeRequestContextImpl(
                       "LoginGoogle", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -279,7 +279,7 @@ public class AuthV1 implements
                         new AfterErrorContextImpl(
                             "LoginGoogle",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -288,7 +288,7 @@ public class AuthV1 implements
                         new AfterSuccessContextImpl(
                             "LoginGoogle",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -297,7 +297,7 @@ public class AuthV1 implements
                         new AfterErrorContextImpl(
                             "LoginGoogle",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -423,7 +423,7 @@ public class AuthV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -431,7 +431,7 @@ public class AuthV1 implements
                   new BeforeRequestContextImpl(
                       "LoginNickname", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -442,7 +442,7 @@ public class AuthV1 implements
                         new AfterErrorContextImpl(
                             "LoginNickname",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -451,7 +451,7 @@ public class AuthV1 implements
                         new AfterSuccessContextImpl(
                             "LoginNickname",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -460,7 +460,7 @@ public class AuthV1 implements
                         new AfterErrorContextImpl(
                             "LoginNickname",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

@@ -112,9 +112,12 @@ public class LobbiesV1 implements
                 CreatePrivateLobbyDeprecatedRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        // hooks will have access to global security options
+        // TODO pass the method level security object to hooks (type system doesn't allow 
+        // it, would require some reflection work)
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req, security);
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -122,7 +125,7 @@ public class LobbiesV1 implements
                   new BeforeRequestContextImpl(
                       "CreatePrivateLobbyDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -133,7 +136,7 @@ public class LobbiesV1 implements
                         new AfterErrorContextImpl(
                             "CreatePrivateLobbyDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -142,7 +145,7 @@ public class LobbiesV1 implements
                         new AfterSuccessContextImpl(
                             "CreatePrivateLobbyDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -151,7 +154,7 @@ public class LobbiesV1 implements
                         new AfterErrorContextImpl(
                             "CreatePrivateLobbyDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -277,9 +280,12 @@ public class LobbiesV1 implements
                 CreatePublicLobbyDeprecatedRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        // hooks will have access to global security options
+        // TODO pass the method level security object to hooks (type system doesn't allow 
+        // it, would require some reflection work)
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req, security);
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -287,7 +293,7 @@ public class LobbiesV1 implements
                   new BeforeRequestContextImpl(
                       "CreatePublicLobbyDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -298,7 +304,7 @@ public class LobbiesV1 implements
                         new AfterErrorContextImpl(
                             "CreatePublicLobbyDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -307,7 +313,7 @@ public class LobbiesV1 implements
                         new AfterSuccessContextImpl(
                             "CreatePublicLobbyDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -316,7 +322,7 @@ public class LobbiesV1 implements
                         new AfterErrorContextImpl(
                             "CreatePublicLobbyDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -438,7 +444,7 @@ public class LobbiesV1 implements
                 ListActivePublicLobbiesDeprecatedV1Request.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -446,7 +452,7 @@ public class LobbiesV1 implements
                   new BeforeRequestContextImpl(
                       "ListActivePublicLobbiesDeprecatedV1", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -457,7 +463,7 @@ public class LobbiesV1 implements
                         new AfterErrorContextImpl(
                             "ListActivePublicLobbiesDeprecatedV1",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -466,7 +472,7 @@ public class LobbiesV1 implements
                         new AfterSuccessContextImpl(
                             "ListActivePublicLobbiesDeprecatedV1",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -475,7 +481,7 @@ public class LobbiesV1 implements
                         new AfterErrorContextImpl(
                             "ListActivePublicLobbiesDeprecatedV1",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

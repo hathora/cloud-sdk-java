@@ -128,10 +128,10 @@ public class BuildsV3 implements
                 CreateBuildRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -139,7 +139,7 @@ public class BuildsV3 implements
                   new BeforeRequestContextImpl(
                       "CreateBuild", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -150,7 +150,7 @@ public class BuildsV3 implements
                         new AfterErrorContextImpl(
                             "CreateBuild",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -159,7 +159,7 @@ public class BuildsV3 implements
                         new AfterSuccessContextImpl(
                             "CreateBuild",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -168,7 +168,7 @@ public class BuildsV3 implements
                         new AfterErrorContextImpl(
                             "CreateBuild",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -292,10 +292,10 @@ public class BuildsV3 implements
                 DeleteBuildRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -303,7 +303,7 @@ public class BuildsV3 implements
                   new BeforeRequestContextImpl(
                       "DeleteBuild", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -314,7 +314,7 @@ public class BuildsV3 implements
                         new AfterErrorContextImpl(
                             "DeleteBuild",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -323,7 +323,7 @@ public class BuildsV3 implements
                         new AfterSuccessContextImpl(
                             "DeleteBuild",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -332,7 +332,7 @@ public class BuildsV3 implements
                         new AfterErrorContextImpl(
                             "DeleteBuild",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -450,10 +450,10 @@ public class BuildsV3 implements
                 GetBuildRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -461,7 +461,7 @@ public class BuildsV3 implements
                   new BeforeRequestContextImpl(
                       "GetBuild", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -472,7 +472,7 @@ public class BuildsV3 implements
                         new AfterErrorContextImpl(
                             "GetBuild",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -481,7 +481,7 @@ public class BuildsV3 implements
                         new AfterSuccessContextImpl(
                             "GetBuild",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -490,7 +490,7 @@ public class BuildsV3 implements
                         new AfterErrorContextImpl(
                             "GetBuild",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -601,10 +601,10 @@ public class BuildsV3 implements
                 GetBuildsRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -612,7 +612,7 @@ public class BuildsV3 implements
                   new BeforeRequestContextImpl(
                       "GetBuilds", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -623,7 +623,7 @@ public class BuildsV3 implements
                         new AfterErrorContextImpl(
                             "GetBuilds",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -632,7 +632,7 @@ public class BuildsV3 implements
                         new AfterSuccessContextImpl(
                             "GetBuilds",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -641,7 +641,7 @@ public class BuildsV3 implements
                         new AfterErrorContextImpl(
                             "GetBuilds",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -759,10 +759,10 @@ public class BuildsV3 implements
                 RunBuildRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -770,7 +770,7 @@ public class BuildsV3 implements
                   new BeforeRequestContextImpl(
                       "RunBuild", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -781,7 +781,7 @@ public class BuildsV3 implements
                         new AfterErrorContextImpl(
                             "RunBuild",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -790,7 +790,7 @@ public class BuildsV3 implements
                         new AfterSuccessContextImpl(
                             "RunBuild",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -799,7 +799,7 @@ public class BuildsV3 implements
                         new AfterErrorContextImpl(
                             "RunBuild",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
