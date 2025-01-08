@@ -97,7 +97,8 @@ public class DeploymentV3 {
     private double requestedCPU;
 
     /**
-     * The amount of memory allocated to your process.
+     * The amount of memory allocated to your process. By default, this is capped
+     * at 8192 MB, but can be increased further on the Enterprise tier.
      */
     @JsonProperty("requestedMemoryMB")
     private double requestedMemoryMB;
@@ -265,7 +266,8 @@ public class DeploymentV3 {
     }
 
     /**
-     * The amount of memory allocated to your process.
+     * The amount of memory allocated to your process. By default, this is capped
+     * at 8192 MB, but can be increased further on the Enterprise tier.
      */
     @JsonIgnore
     public double requestedMemoryMB() {
@@ -409,7 +411,8 @@ public class DeploymentV3 {
     }
 
     /**
-     * The amount of memory allocated to your process.
+     * The amount of memory allocated to your process. By default, this is capped
+     * at 8192 MB, but can be increased further on the Enterprise tier.
      */
     public DeploymentV3 withRequestedMemoryMB(double requestedMemoryMB) {
         Utils.checkNotNull(requestedMemoryMB, "requestedMemoryMB");
@@ -649,7 +652,8 @@ public class DeploymentV3 {
         }
 
         /**
-         * The amount of memory allocated to your process.
+         * The amount of memory allocated to your process. By default, this is capped
+         * at 8192 MB, but can be increased further on the Enterprise tier.
          */
         public Builder requestedMemoryMB(double requestedMemoryMB) {
             Utils.checkNotNull(requestedMemoryMB, "requestedMemoryMB");

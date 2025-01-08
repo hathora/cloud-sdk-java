@@ -77,6 +77,13 @@ public class BuildV3 {
     private String orgId;
 
     /**
+     * Url to view details, like build logs, of the build.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shareUrl")
+    private Optional<String> shareUrl;
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
     @JsonInclude(Include.ALWAYS)
@@ -97,6 +104,7 @@ public class BuildV3 {
             @JsonProperty("finishedAt") Optional<OffsetDateTime> finishedAt,
             @JsonProperty("imageSize") long imageSize,
             @JsonProperty("orgId") String orgId,
+            @JsonProperty("shareUrl") Optional<String> shareUrl,
             @JsonProperty("startedAt") Optional<OffsetDateTime> startedAt,
             @JsonProperty("status") BuildStatus status) {
         Utils.checkNotNull(buildId, "buildId");
@@ -108,6 +116,7 @@ public class BuildV3 {
         Utils.checkNotNull(finishedAt, "finishedAt");
         Utils.checkNotNull(imageSize, "imageSize");
         Utils.checkNotNull(orgId, "orgId");
+        Utils.checkNotNull(shareUrl, "shareUrl");
         Utils.checkNotNull(startedAt, "startedAt");
         Utils.checkNotNull(status, "status");
         this.buildId = buildId;
@@ -119,6 +128,7 @@ public class BuildV3 {
         this.finishedAt = finishedAt;
         this.imageSize = imageSize;
         this.orgId = orgId;
+        this.shareUrl = shareUrl;
         this.startedAt = startedAt;
         this.status = status;
     }
@@ -130,7 +140,7 @@ public class BuildV3 {
             long imageSize,
             String orgId,
             BuildStatus status) {
-        this(buildId, Optional.empty(), Optional.empty(), createdAt, createdBy, Optional.empty(), Optional.empty(), imageSize, orgId, Optional.empty(), status);
+        this(buildId, Optional.empty(), Optional.empty(), createdAt, createdBy, Optional.empty(), Optional.empty(), imageSize, orgId, Optional.empty(), Optional.empty(), status);
     }
 
     /**
@@ -197,6 +207,14 @@ public class BuildV3 {
     @JsonIgnore
     public String orgId() {
         return orgId;
+    }
+
+    /**
+     * Url to view details, like build logs, of the build.
+     */
+    @JsonIgnore
+    public Optional<String> shareUrl() {
+        return shareUrl;
     }
 
     /**
@@ -325,6 +343,24 @@ public class BuildV3 {
     }
 
     /**
+     * Url to view details, like build logs, of the build.
+     */
+    public BuildV3 withShareUrl(String shareUrl) {
+        Utils.checkNotNull(shareUrl, "shareUrl");
+        this.shareUrl = Optional.ofNullable(shareUrl);
+        return this;
+    }
+
+    /**
+     * Url to view details, like build logs, of the build.
+     */
+    public BuildV3 withShareUrl(Optional<String> shareUrl) {
+        Utils.checkNotNull(shareUrl, "shareUrl");
+        this.shareUrl = shareUrl;
+        return this;
+    }
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
     public BuildV3 withStartedAt(OffsetDateTime startedAt) {
@@ -367,6 +403,7 @@ public class BuildV3 {
             Objects.deepEquals(this.finishedAt, other.finishedAt) &&
             Objects.deepEquals(this.imageSize, other.imageSize) &&
             Objects.deepEquals(this.orgId, other.orgId) &&
+            Objects.deepEquals(this.shareUrl, other.shareUrl) &&
             Objects.deepEquals(this.startedAt, other.startedAt) &&
             Objects.deepEquals(this.status, other.status);
     }
@@ -383,6 +420,7 @@ public class BuildV3 {
             finishedAt,
             imageSize,
             orgId,
+            shareUrl,
             startedAt,
             status);
     }
@@ -399,6 +437,7 @@ public class BuildV3 {
                 "finishedAt", finishedAt,
                 "imageSize", imageSize,
                 "orgId", orgId,
+                "shareUrl", shareUrl,
                 "startedAt", startedAt,
                 "status", status);
     }
@@ -422,6 +461,8 @@ public class BuildV3 {
         private Long imageSize;
  
         private String orgId;
+ 
+        private Optional<String> shareUrl = Optional.empty();
  
         private Optional<OffsetDateTime> startedAt = Optional.empty();
  
@@ -540,6 +581,24 @@ public class BuildV3 {
         }
 
         /**
+         * Url to view details, like build logs, of the build.
+         */
+        public Builder shareUrl(String shareUrl) {
+            Utils.checkNotNull(shareUrl, "shareUrl");
+            this.shareUrl = Optional.ofNullable(shareUrl);
+            return this;
+        }
+
+        /**
+         * Url to view details, like build logs, of the build.
+         */
+        public Builder shareUrl(Optional<String> shareUrl) {
+            Utils.checkNotNull(shareUrl, "shareUrl");
+            this.shareUrl = shareUrl;
+            return this;
+        }
+
+        /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
          */
         public Builder startedAt(OffsetDateTime startedAt) {
@@ -574,6 +633,7 @@ public class BuildV3 {
                 finishedAt,
                 imageSize,
                 orgId,
+                shareUrl,
                 startedAt,
                 status);
         }

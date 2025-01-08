@@ -18,7 +18,7 @@ import java.util.Optional;
 
 public class RunBuildV2DeprecatedRequestBody {
 
-    @SpeakeasyMetadata("multipartForm:file")
+    @SpeakeasyMetadata("multipartForm:file,name=file")
     private Optional<? extends RunBuildV2DeprecatedFile> file;
 
     @JsonCreator

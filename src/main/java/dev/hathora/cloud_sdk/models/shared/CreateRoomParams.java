@@ -21,6 +21,9 @@ import java.util.Optional;
 
 public class CreateRoomParams {
 
+    /**
+     * An optional list of client IP addresses to whitelist for DDoS protection.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientIPs")
     private Optional<? extends List<String>> clientIPs;
@@ -63,6 +66,9 @@ public class CreateRoomParams {
         this(Optional.empty(), Optional.empty(), region, Optional.empty());
     }
 
+    /**
+     * An optional list of client IP addresses to whitelist for DDoS protection.
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> clientIPs() {
@@ -94,12 +100,18 @@ public class CreateRoomParams {
         return new Builder();
     }
 
+    /**
+     * An optional list of client IP addresses to whitelist for DDoS protection.
+     */
     public CreateRoomParams withClientIPs(List<String> clientIPs) {
         Utils.checkNotNull(clientIPs, "clientIPs");
         this.clientIPs = Optional.ofNullable(clientIPs);
         return this;
     }
 
+    /**
+     * An optional list of client IP addresses to whitelist for DDoS protection.
+     */
     public CreateRoomParams withClientIPs(Optional<? extends List<String>> clientIPs) {
         Utils.checkNotNull(clientIPs, "clientIPs");
         this.clientIPs = clientIPs;
@@ -196,12 +208,18 @@ public class CreateRoomParams {
           // force use of static builder() method
         }
 
+        /**
+         * An optional list of client IP addresses to whitelist for DDoS protection.
+         */
         public Builder clientIPs(List<String> clientIPs) {
             Utils.checkNotNull(clientIPs, "clientIPs");
             this.clientIPs = Optional.ofNullable(clientIPs);
             return this;
         }
 
+        /**
+         * An optional list of client IP addresses to whitelist for DDoS protection.
+         */
         public Builder clientIPs(Optional<? extends List<String>> clientIPs) {
             Utils.checkNotNull(clientIPs, "clientIPs");
             this.clientIPs = clientIPs;

@@ -95,6 +95,7 @@ public class Application {
 
         GetLogsForProcessRequest req = GetLogsForProcessRequest.builder()
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .tailLines(100)
                 .build();
 

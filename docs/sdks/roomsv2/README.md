@@ -11,6 +11,7 @@
 * [getConnectionInfo](#getconnectioninfo) - GetConnectionInfo
 * [getInactiveRoomsForProcess](#getinactiveroomsforprocess) - GetInactiveRoomsForProcess
 * [getRoomInfo](#getroominfo) - GetRoomInfo
+* [resumeRoom](#resumeroom) - ResumeRoom
 * [~~suspendRoomV2Deprecated~~](#suspendroomv2deprecated) - SuspendRoomV2Deprecated :warning: **Deprecated**
 * [updateRoomConfig](#updateroomconfig) - UpdateRoomConfig
 
@@ -360,6 +361,63 @@ public class Application {
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401, 404, 422, 429     | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## resumeRoom
+
+ResumeRoom
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.ResumeRoomResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+            .build();
+
+        ResumeRoomResponse res = sdk.roomsV2().resumeRoom()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .roomId("2swovpy1fnunu")
+                .call();
+
+        if (res.connectionInfoV2().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `appId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `roomId`                                 | *String*                                 | :heavy_check_mark:                       | N/A                                      | 2swovpy1fnunu                            |
+
+### Response
+
+**[ResumeRoomResponse](../../models/operations/ResumeRoomResponse.md)**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## ~~suspendRoomV2Deprecated~~
 

@@ -4,12 +4,12 @@
 
 package dev.hathora.cloud_sdk;
 
-import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.RetryConfig;
 import dev.hathora.cloud_sdk.utils.SpeakeasyHTTPClient;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.String;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -91,7 +91,7 @@ public class HathoraCloud {
     private final ManagementV1 managementV1;
 
     /**
-     * Operations to get metrics by [process](https://hathora.dev/docs/concepts/hathora-entities#process). We store 72 hours of metrics data.
+     * Deprecated. Use [ProcessesV3#GetProcessMetrics](https://hathora.dev/api#tag/ProcessesV3/operation/GetProcessMetrics) to fetch metrics about a specific process.
      */
     private final MetricsV1 metricsV1;
 
@@ -221,7 +221,7 @@ public class HathoraCloud {
     }
 
     /**
-     * Operations to get metrics by [process](https://hathora.dev/docs/concepts/hathora-entities#process). We store 72 hours of metrics data.
+     * Deprecated. Use [ProcessesV3#GetProcessMetrics](https://hathora.dev/api#tag/ProcessesV3/operation/GetProcessMetrics) to fetch metrics about a specific process.
      */
     public MetricsV1 metricsV1() {
         return metricsV1;
@@ -364,7 +364,7 @@ public class HathoraCloud {
          */
         public Builder appId(String appId) {
             if (!this.sdkConfiguration.globals.get("parameters").containsKey("pathParam")) {
-                this.sdkConfiguration.globals.get("parameters").put("pathParam", new java.util.HashMap<>());
+                this.sdkConfiguration.globals.get("parameters").put("pathParam", new HashMap<>());
             }
 
             this.sdkConfiguration.globals.get("parameters").get("pathParam").put("appId", appId);
@@ -380,7 +380,7 @@ public class HathoraCloud {
          */
         public Builder orgId(String orgId) {
             if (!this.sdkConfiguration.globals.get("parameters").containsKey("queryParam")) {
-                this.sdkConfiguration.globals.get("parameters").put("queryParam", new java.util.HashMap<>());
+                this.sdkConfiguration.globals.get("parameters").put("queryParam", new HashMap<>());
             }
 
             this.sdkConfiguration.globals.get("parameters").get("queryParam").put("orgId", orgId);

@@ -85,6 +85,13 @@ public class CreatedBuildV3WithMultipartUrls {
     private String orgId;
 
     /**
+     * Url to view details, like build logs, of the build.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shareUrl")
+    private Optional<String> shareUrl;
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
     @JsonInclude(Include.ALWAYS)
@@ -110,6 +117,7 @@ public class CreatedBuildV3WithMultipartUrls {
             @JsonProperty("imageSize") long imageSize,
             @JsonProperty("maxChunkSize") double maxChunkSize,
             @JsonProperty("orgId") String orgId,
+            @JsonProperty("shareUrl") Optional<String> shareUrl,
             @JsonProperty("startedAt") Optional<OffsetDateTime> startedAt,
             @JsonProperty("status") BuildStatus status,
             @JsonProperty("uploadParts") List<BuildPart> uploadParts) {
@@ -124,6 +132,7 @@ public class CreatedBuildV3WithMultipartUrls {
         Utils.checkNotNull(imageSize, "imageSize");
         Utils.checkNotNull(maxChunkSize, "maxChunkSize");
         Utils.checkNotNull(orgId, "orgId");
+        Utils.checkNotNull(shareUrl, "shareUrl");
         Utils.checkNotNull(startedAt, "startedAt");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(uploadParts, "uploadParts");
@@ -138,6 +147,7 @@ public class CreatedBuildV3WithMultipartUrls {
         this.imageSize = imageSize;
         this.maxChunkSize = maxChunkSize;
         this.orgId = orgId;
+        this.shareUrl = shareUrl;
         this.startedAt = startedAt;
         this.status = status;
         this.uploadParts = uploadParts;
@@ -153,7 +163,7 @@ public class CreatedBuildV3WithMultipartUrls {
             String orgId,
             BuildStatus status,
             List<BuildPart> uploadParts) {
-        this(buildId, Optional.empty(), completeUploadPostRequestUrl, Optional.empty(), createdAt, createdBy, Optional.empty(), Optional.empty(), imageSize, maxChunkSize, orgId, Optional.empty(), status, uploadParts);
+        this(buildId, Optional.empty(), completeUploadPostRequestUrl, Optional.empty(), createdAt, createdBy, Optional.empty(), Optional.empty(), imageSize, maxChunkSize, orgId, Optional.empty(), Optional.empty(), status, uploadParts);
     }
 
     /**
@@ -230,6 +240,14 @@ public class CreatedBuildV3WithMultipartUrls {
     @JsonIgnore
     public String orgId() {
         return orgId;
+    }
+
+    /**
+     * Url to view details, like build logs, of the build.
+     */
+    @JsonIgnore
+    public Optional<String> shareUrl() {
+        return shareUrl;
     }
 
     /**
@@ -375,6 +393,24 @@ public class CreatedBuildV3WithMultipartUrls {
     }
 
     /**
+     * Url to view details, like build logs, of the build.
+     */
+    public CreatedBuildV3WithMultipartUrls withShareUrl(String shareUrl) {
+        Utils.checkNotNull(shareUrl, "shareUrl");
+        this.shareUrl = Optional.ofNullable(shareUrl);
+        return this;
+    }
+
+    /**
+     * Url to view details, like build logs, of the build.
+     */
+    public CreatedBuildV3WithMultipartUrls withShareUrl(Optional<String> shareUrl) {
+        Utils.checkNotNull(shareUrl, "shareUrl");
+        this.shareUrl = shareUrl;
+        return this;
+    }
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
     public CreatedBuildV3WithMultipartUrls withStartedAt(OffsetDateTime startedAt) {
@@ -425,6 +461,7 @@ public class CreatedBuildV3WithMultipartUrls {
             Objects.deepEquals(this.imageSize, other.imageSize) &&
             Objects.deepEquals(this.maxChunkSize, other.maxChunkSize) &&
             Objects.deepEquals(this.orgId, other.orgId) &&
+            Objects.deepEquals(this.shareUrl, other.shareUrl) &&
             Objects.deepEquals(this.startedAt, other.startedAt) &&
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.uploadParts, other.uploadParts);
@@ -444,6 +481,7 @@ public class CreatedBuildV3WithMultipartUrls {
             imageSize,
             maxChunkSize,
             orgId,
+            shareUrl,
             startedAt,
             status,
             uploadParts);
@@ -463,6 +501,7 @@ public class CreatedBuildV3WithMultipartUrls {
                 "imageSize", imageSize,
                 "maxChunkSize", maxChunkSize,
                 "orgId", orgId,
+                "shareUrl", shareUrl,
                 "startedAt", startedAt,
                 "status", status,
                 "uploadParts", uploadParts);
@@ -491,6 +530,8 @@ public class CreatedBuildV3WithMultipartUrls {
         private Double maxChunkSize;
  
         private String orgId;
+ 
+        private Optional<String> shareUrl = Optional.empty();
  
         private Optional<OffsetDateTime> startedAt = Optional.empty();
  
@@ -623,6 +664,24 @@ public class CreatedBuildV3WithMultipartUrls {
         }
 
         /**
+         * Url to view details, like build logs, of the build.
+         */
+        public Builder shareUrl(String shareUrl) {
+            Utils.checkNotNull(shareUrl, "shareUrl");
+            this.shareUrl = Optional.ofNullable(shareUrl);
+            return this;
+        }
+
+        /**
+         * Url to view details, like build logs, of the build.
+         */
+        public Builder shareUrl(Optional<String> shareUrl) {
+            Utils.checkNotNull(shareUrl, "shareUrl");
+            this.shareUrl = shareUrl;
+            return this;
+        }
+
+        /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
          */
         public Builder startedAt(OffsetDateTime startedAt) {
@@ -665,6 +724,7 @@ public class CreatedBuildV3WithMultipartUrls {
                 imageSize,
                 maxChunkSize,
                 orgId,
+                shareUrl,
                 startedAt,
                 status,
                 uploadParts);

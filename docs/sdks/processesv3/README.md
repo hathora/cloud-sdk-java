@@ -223,6 +223,7 @@ public class Application {
 
         GetProcessMetricsRequest req = GetProcessMetricsRequest.builder()
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
         GetProcessMetricsResponse res = sdk.processesV3().getProcessMetrics()

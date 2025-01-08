@@ -4,34 +4,229 @@
 
 package dev.hathora.cloud_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+
+import com.fasterxml.jackson.core.JacksonException;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import java.io.IOException;
+import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
-public enum Scope {
-    BILLING_READ_WRITE("billing:read-write"),
-    BUILDS_READ("builds:read"),
-    BUILDS_READ_WRITE("builds:read-write"),
-    DEPLOYMENTS_READ("deployments:read"),
-    DEPLOYMENTS_READ_WRITE("deployments:read-write"),
-    APPLICATIONS_READ("applications:read"),
-    APPLICATIONS_READ_WRITE("applications:read-write"),
-    PROCESSES_READ("processes:read"),
-    PROCESSES_READ_WRITE("processes:read-write"),
-    FLEETS_READ("fleets:read"),
-    FLEETS_READ_WRITE("fleets:read-write"),
-    ORGS_READ("orgs:read"),
-    ORGS_READ_WRITE("orgs:read-write"),
-    TOKENS_READ("tokens:read"),
-    TOKENS_READ_WRITE("tokens:read-write");
+/**
+ * <p>Wrapper class for an "open" enum. "Open" enums are those that are expected
+ * to evolve (particularly with the addition of enum members over time). If an
+ * open enum is used then the appearance of unexpected enum values (say in a 
+ * response from an updated an API) will not bring about a runtime error thus 
+ * ensuring that non-updated client versions can continue to work without error.
+ *
+ * <p>Note that instances are immutable and are singletons (an internal thread-safe
+ * cache is maintained to ensure that). As a consequence instances created with the 
+ * same value will satisfy reference equality (via {@code ==}).
+ * 
+ * <p>This class is intended to emulate an enum (in terms of common usage and with 
+ * reference equality) but with the ability to carry unknown values. Unfortunately
+ * Java does not permit the use of an instance in a switch expression but you can 
+ * use the {@code asEnum()} method (after dealing with the `Optional` appropriately).
+ *
+ */
+@JsonDeserialize(using = Scope._Deserializer.class)
+@JsonSerialize(using = Scope._Serializer.class)
+public class Scope {
 
-    @JsonValue
+    public static final Scope BILLING_READ_WRITE = new Scope("billing:read-write");
+    public static final Scope BUILDS_READ = new Scope("builds:read");
+    public static final Scope BUILDS_READ_WRITE = new Scope("builds:read-write");
+    public static final Scope DEPLOYMENTS_READ = new Scope("deployments:read");
+    public static final Scope DEPLOYMENTS_READ_WRITE = new Scope("deployments:read-write");
+    public static final Scope APPLICATIONS_READ = new Scope("applications:read");
+    public static final Scope APPLICATIONS_READ_WRITE = new Scope("applications:read-write");
+    public static final Scope PROCESSES_READ = new Scope("processes:read");
+    public static final Scope PROCESSES_READ_WRITE = new Scope("processes:read-write");
+    public static final Scope FLEETS_READ = new Scope("fleets:read");
+    public static final Scope FLEETS_READ_WRITE = new Scope("fleets:read-write");
+    public static final Scope ORGS_READ = new Scope("orgs:read");
+    public static final Scope ORGS_READ_WRITE = new Scope("orgs:read-write");
+    public static final Scope TOKENS_READ = new Scope("tokens:read");
+    public static final Scope TOKENS_READ_WRITE = new Scope("tokens:read-write");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Scope> values = createValuesMap();
+    private static final Map<String, ScopeEnum> enums = createEnumsMap();
+
     private final String value;
 
     private Scope(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Scope with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Scope
+     */ 
+    public static Scope of(String value) {
+        synchronized (Scope.class) {
+            return values.computeIfAbsent(value, v -> new Scope(v));
+        }
+    }
+
     public String value() {
         return value;
+    }
+
+    public Optional<ScopeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Scope other = (Scope) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Scope [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Scope[] values() {
+        synchronized (Scope.class) {
+            return values.values().toArray(new Scope[] {});
+        }
+    }
+
+    private static final Map<String, Scope> createValuesMap() {
+        Map<String, Scope> map = new LinkedHashMap<>();
+        map.put("billing:read-write", BILLING_READ_WRITE);
+        map.put("builds:read", BUILDS_READ);
+        map.put("builds:read-write", BUILDS_READ_WRITE);
+        map.put("deployments:read", DEPLOYMENTS_READ);
+        map.put("deployments:read-write", DEPLOYMENTS_READ_WRITE);
+        map.put("applications:read", APPLICATIONS_READ);
+        map.put("applications:read-write", APPLICATIONS_READ_WRITE);
+        map.put("processes:read", PROCESSES_READ);
+        map.put("processes:read-write", PROCESSES_READ_WRITE);
+        map.put("fleets:read", FLEETS_READ);
+        map.put("fleets:read-write", FLEETS_READ_WRITE);
+        map.put("orgs:read", ORGS_READ);
+        map.put("orgs:read-write", ORGS_READ_WRITE);
+        map.put("tokens:read", TOKENS_READ);
+        map.put("tokens:read-write", TOKENS_READ_WRITE);
+        return map;
+    }
+
+    private static final Map<String, ScopeEnum> createEnumsMap() {
+        Map<String, ScopeEnum> map = new HashMap<>();
+        map.put("billing:read-write", ScopeEnum.BILLING_READ_WRITE);
+        map.put("builds:read", ScopeEnum.BUILDS_READ);
+        map.put("builds:read-write", ScopeEnum.BUILDS_READ_WRITE);
+        map.put("deployments:read", ScopeEnum.DEPLOYMENTS_READ);
+        map.put("deployments:read-write", ScopeEnum.DEPLOYMENTS_READ_WRITE);
+        map.put("applications:read", ScopeEnum.APPLICATIONS_READ);
+        map.put("applications:read-write", ScopeEnum.APPLICATIONS_READ_WRITE);
+        map.put("processes:read", ScopeEnum.PROCESSES_READ);
+        map.put("processes:read-write", ScopeEnum.PROCESSES_READ_WRITE);
+        map.put("fleets:read", ScopeEnum.FLEETS_READ);
+        map.put("fleets:read-write", ScopeEnum.FLEETS_READ_WRITE);
+        map.put("orgs:read", ScopeEnum.ORGS_READ);
+        map.put("orgs:read-write", ScopeEnum.ORGS_READ_WRITE);
+        map.put("tokens:read", ScopeEnum.TOKENS_READ);
+        map.put("tokens:read-write", ScopeEnum.TOKENS_READ_WRITE);
+        return map;
+    }
+    
+    @SuppressWarnings("serial")
+    public static final class _Serializer extends StdSerializer<Scope> {
+
+        protected _Serializer() {
+            super(Scope.class);
+        }
+
+        @Override
+        public void serialize(Scope value, JsonGenerator g, SerializerProvider provider)
+                throws IOException, JsonProcessingException {
+            g.writeObject(value.value);
+        }
+    }
+
+    @SuppressWarnings("serial")
+    public static final class _Deserializer extends StdDeserializer<Scope> {
+
+        protected _Deserializer() {
+            super(Scope.class);
+        }
+
+        @Override
+        public Scope deserialize(JsonParser p, DeserializationContext ctxt)
+                throws IOException, JacksonException {
+            String v = p.readValueAs(new TypeReference<String>() {});
+            // use the factory method to ensure we get singletons
+            return Scope.of(v);
+        }
+    }
+    
+    public enum ScopeEnum {
+
+        BILLING_READ_WRITE("billing:read-write"),
+        BUILDS_READ("builds:read"),
+        BUILDS_READ_WRITE("builds:read-write"),
+        DEPLOYMENTS_READ("deployments:read"),
+        DEPLOYMENTS_READ_WRITE("deployments:read-write"),
+        APPLICATIONS_READ("applications:read"),
+        APPLICATIONS_READ_WRITE("applications:read-write"),
+        PROCESSES_READ("processes:read"),
+        PROCESSES_READ_WRITE("processes:read-write"),
+        FLEETS_READ("fleets:read"),
+        FLEETS_READ_WRITE("fleets:read-write"),
+        ORGS_READ("orgs:read"),
+        ORGS_READ_WRITE("orgs:read-write"),
+        TOKENS_READ("tokens:read"),
+        TOKENS_READ_WRITE("tokens:read-write"),;
+
+        private final String value;
+
+        private ScopeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }

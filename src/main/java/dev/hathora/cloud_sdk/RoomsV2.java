@@ -25,6 +25,9 @@ import dev.hathora.cloud_sdk.models.operations.GetInactiveRoomsForProcessRespons
 import dev.hathora.cloud_sdk.models.operations.GetRoomInfoRequest;
 import dev.hathora.cloud_sdk.models.operations.GetRoomInfoRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetRoomInfoResponse;
+import dev.hathora.cloud_sdk.models.operations.ResumeRoomRequest;
+import dev.hathora.cloud_sdk.models.operations.ResumeRoomRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.ResumeRoomResponse;
 import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedRequest;
 import dev.hathora.cloud_sdk.models.operations.SuspendRoomV2DeprecatedRequestBuilder;
@@ -63,6 +66,7 @@ public class RoomsV2 implements
             MethodCallGetConnectionInfo,
             MethodCallGetInactiveRoomsForProcess,
             MethodCallGetRoomInfo,
+            MethodCallResumeRoom,
             MethodCallSuspendRoomV2Deprecated,
             MethodCallUpdateRoomConfig {
 
@@ -968,6 +972,156 @@ public class RoomsV2 implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * ResumeRoom
+     * @return The call builder
+     */
+    public ResumeRoomRequestBuilder resumeRoom() {
+        return new ResumeRoomRequestBuilder(this);
+    }
+
+    /**
+     * ResumeRoom
+     * @param roomId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public ResumeRoomResponse resumeRoom(
+            String roomId) throws Exception {
+        return resumeRoom(Optional.empty(), roomId);
+    }
+    
+    /**
+     * ResumeRoom
+     * @param appId
+     * @param roomId
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public ResumeRoomResponse resumeRoom(
+            Optional<String> appId,
+            String roomId) throws Exception {
+        ResumeRoomRequest request =
+            ResumeRoomRequest
+                .builder()
+                .appId(appId)
+                .roomId(roomId)
+                .build();
+        
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                ResumeRoomRequest.class,
+                _baseUrl,
+                "/rooms/v2/{appId}/resume/{roomId}",
+                request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "ResumeRoom", 
+                      Optional.of(List.of()), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "ResumeRoom",
+                            Optional.of(List.of()),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "ResumeRoom",
+                            Optional.of(List.of()), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "ResumeRoom",
+                            Optional.of(List.of()),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        ResumeRoomResponse.Builder _resBuilder = 
+            ResumeRoomResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        ResumeRoomResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ConnectionInfoV2 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ConnectionInfoV2>() {});
+                _res.withConnectionInfoV2(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),

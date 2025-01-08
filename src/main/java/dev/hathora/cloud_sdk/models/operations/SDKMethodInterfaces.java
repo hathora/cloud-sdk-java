@@ -779,6 +779,13 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallResumeRoom {
+        ResumeRoomResponse resumeRoom(
+            Optional<String> appId,
+            String roomId) throws Exception;
+    }
+
+
     public interface MethodCallSuspendRoomV2Deprecated {
         SuspendRoomV2DeprecatedResponse suspendRoomV2Deprecated(
             Optional<String> appId,

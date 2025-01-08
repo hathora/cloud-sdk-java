@@ -19,7 +19,7 @@ public class File {
     @SpeakeasyMetadata("multipartForm:content")
     private byte[] content;
 
-    @SpeakeasyMetadata("multipartForm:name=file")
+    @SpeakeasyMetadata("multipartForm:name=fileName")
     private String fileName;
 
     @JsonCreator

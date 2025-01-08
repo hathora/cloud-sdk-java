@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class RunBuildDeprecatedRequestBody {
 
-    @SpeakeasyMetadata("multipartForm:file")
+    @SpeakeasyMetadata("multipartForm:file,name=file")
     private File file;
 
     @JsonCreator

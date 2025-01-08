@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:2.12.0'
+implementation 'dev.hathora:cloud-sdk:2.13.0'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>2.12.0</version>
+    <version>2.13.0</version>
 </dependency>
 ```
 
@@ -298,6 +298,7 @@ public class Application {
 * [getConnectionInfo](docs/sdks/roomsv2/README.md#getconnectioninfo) - GetConnectionInfo
 * [getInactiveRoomsForProcess](docs/sdks/roomsv2/README.md#getinactiveroomsforprocess) - GetInactiveRoomsForProcess
 * [getRoomInfo](docs/sdks/roomsv2/README.md#getroominfo) - GetRoomInfo
+* [resumeRoom](docs/sdks/roomsv2/README.md#resumeroom) - ResumeRoom
 * [~~suspendRoomV2Deprecated~~](docs/sdks/roomsv2/README.md#suspendroomv2deprecated) - SuspendRoomV2Deprecated :warning: **Deprecated**
 * [updateRoomConfig](docs/sdks/roomsv2/README.md#updateroomconfig) - UpdateRoomConfig
 
@@ -603,6 +604,7 @@ public class Application {
                     .visibility(LobbyVisibility.PRIVATE)
                     .roomConfig("{\"name\":\"my-room\"}")
                     .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .shortCode("LFG4")
                 .build();

@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Optional; 
 
 /**
- * Operations to get metrics by [process](https://hathora.dev/docs/concepts/hathora-entities#process). We store 72 hours of metrics data.
+ * Deprecated. Use [ProcessesV3#GetProcessMetrics](https://hathora.dev/api#tag/ProcessesV3/operation/GetProcessMetrics) to fetch metrics about a specific process.
  */
 public class MetricsV1 implements
             MethodCallGetMetricsDeprecated {

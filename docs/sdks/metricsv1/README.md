@@ -3,7 +3,7 @@
 
 ## Overview
 
-Operations to get metrics by [process](https://hathora.dev/docs/concepts/hathora-entities#process). We store 72 hours of metrics data.
+Deprecated. Use [ProcessesV3#GetProcessMetrics](https://hathora.dev/api#tag/ProcessesV3/operation/GetProcessMetrics) to fetch metrics about a specific process.
 
 ### Available Operations
 
@@ -41,6 +41,7 @@ public class Application {
 
         GetMetricsDeprecatedRequest req = GetMetricsDeprecatedRequest.builder()
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .build();
 
         GetMetricsDeprecatedResponse res = sdk.metricsV1().getMetricsDeprecated()
