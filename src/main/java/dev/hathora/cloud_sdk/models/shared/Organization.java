@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -22,8 +23,22 @@ import java.util.Optional;
 
 public class Organization {
 
+    /**
+     * The features enabled for this org and user.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("enabledFeatureFlags")
+    private Optional<? extends List<String>> enabledFeatureFlags;
+
     @JsonProperty("isSingleTenant")
     private boolean isSingleTenant;
+
+    /**
+     * The maximum memory in MB that can be used by any process in this org.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("maxRequestedMemoryMB")
+    private Optional<Double> maxRequestedMemoryMB;
 
     /**
      * The name of an organization.
@@ -50,17 +65,23 @@ public class Organization {
 
     @JsonCreator
     public Organization(
+            @JsonProperty("enabledFeatureFlags") Optional<? extends List<String>> enabledFeatureFlags,
             @JsonProperty("isSingleTenant") boolean isSingleTenant,
+            @JsonProperty("maxRequestedMemoryMB") Optional<Double> maxRequestedMemoryMB,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("orgId") String orgId,
             @JsonProperty("scopes") Optional<? extends List<Scope>> scopes,
             @JsonProperty("stripeCustomerId") String stripeCustomerId) {
+        Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
         Utils.checkNotNull(isSingleTenant, "isSingleTenant");
+        Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(orgId, "orgId");
         Utils.checkNotNull(scopes, "scopes");
         Utils.checkNotNull(stripeCustomerId, "stripeCustomerId");
+        this.enabledFeatureFlags = enabledFeatureFlags;
         this.isSingleTenant = isSingleTenant;
+        this.maxRequestedMemoryMB = maxRequestedMemoryMB;
         this.name = name;
         this.orgId = orgId;
         this.scopes = scopes;
@@ -71,12 +92,29 @@ public class Organization {
             boolean isSingleTenant,
             String orgId,
             String stripeCustomerId) {
-        this(isSingleTenant, Optional.empty(), orgId, Optional.empty(), stripeCustomerId);
+        this(Optional.empty(), isSingleTenant, Optional.empty(), Optional.empty(), orgId, Optional.empty(), stripeCustomerId);
+    }
+
+    /**
+     * The features enabled for this org and user.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> enabledFeatureFlags() {
+        return (Optional<List<String>>) enabledFeatureFlags;
     }
 
     @JsonIgnore
     public boolean isSingleTenant() {
         return isSingleTenant;
+    }
+
+    /**
+     * The maximum memory in MB that can be used by any process in this org.
+     */
+    @JsonIgnore
+    public Optional<Double> maxRequestedMemoryMB() {
+        return maxRequestedMemoryMB;
     }
 
     /**
@@ -113,9 +151,45 @@ public class Organization {
         return new Builder();
     }
 
+    /**
+     * The features enabled for this org and user.
+     */
+    public Organization withEnabledFeatureFlags(List<String> enabledFeatureFlags) {
+        Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
+        this.enabledFeatureFlags = Optional.ofNullable(enabledFeatureFlags);
+        return this;
+    }
+
+    /**
+     * The features enabled for this org and user.
+     */
+    public Organization withEnabledFeatureFlags(Optional<? extends List<String>> enabledFeatureFlags) {
+        Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
+        this.enabledFeatureFlags = enabledFeatureFlags;
+        return this;
+    }
+
     public Organization withIsSingleTenant(boolean isSingleTenant) {
         Utils.checkNotNull(isSingleTenant, "isSingleTenant");
         this.isSingleTenant = isSingleTenant;
+        return this;
+    }
+
+    /**
+     * The maximum memory in MB that can be used by any process in this org.
+     */
+    public Organization withMaxRequestedMemoryMB(double maxRequestedMemoryMB) {
+        Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
+        this.maxRequestedMemoryMB = Optional.ofNullable(maxRequestedMemoryMB);
+        return this;
+    }
+
+    /**
+     * The maximum memory in MB that can be used by any process in this org.
+     */
+    public Organization withMaxRequestedMemoryMB(Optional<Double> maxRequestedMemoryMB) {
+        Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
+        this.maxRequestedMemoryMB = maxRequestedMemoryMB;
         return this;
     }
 
@@ -180,7 +254,9 @@ public class Organization {
         }
         Organization other = (Organization) o;
         return 
+            Objects.deepEquals(this.enabledFeatureFlags, other.enabledFeatureFlags) &&
             Objects.deepEquals(this.isSingleTenant, other.isSingleTenant) &&
+            Objects.deepEquals(this.maxRequestedMemoryMB, other.maxRequestedMemoryMB) &&
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.orgId, other.orgId) &&
             Objects.deepEquals(this.scopes, other.scopes) &&
@@ -190,7 +266,9 @@ public class Organization {
     @Override
     public int hashCode() {
         return Objects.hash(
+            enabledFeatureFlags,
             isSingleTenant,
+            maxRequestedMemoryMB,
             name,
             orgId,
             scopes,
@@ -200,7 +278,9 @@ public class Organization {
     @Override
     public String toString() {
         return Utils.toString(Organization.class,
+                "enabledFeatureFlags", enabledFeatureFlags,
                 "isSingleTenant", isSingleTenant,
+                "maxRequestedMemoryMB", maxRequestedMemoryMB,
                 "name", name,
                 "orgId", orgId,
                 "scopes", scopes,
@@ -209,7 +289,11 @@ public class Organization {
     
     public final static class Builder {
  
+        private Optional<? extends List<String>> enabledFeatureFlags = Optional.empty();
+ 
         private Boolean isSingleTenant;
+ 
+        private Optional<Double> maxRequestedMemoryMB = Optional.empty();
  
         private Optional<String> name = Optional.empty();
  
@@ -223,9 +307,45 @@ public class Organization {
           // force use of static builder() method
         }
 
+        /**
+         * The features enabled for this org and user.
+         */
+        public Builder enabledFeatureFlags(List<String> enabledFeatureFlags) {
+            Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
+            this.enabledFeatureFlags = Optional.ofNullable(enabledFeatureFlags);
+            return this;
+        }
+
+        /**
+         * The features enabled for this org and user.
+         */
+        public Builder enabledFeatureFlags(Optional<? extends List<String>> enabledFeatureFlags) {
+            Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
+            this.enabledFeatureFlags = enabledFeatureFlags;
+            return this;
+        }
+
         public Builder isSingleTenant(boolean isSingleTenant) {
             Utils.checkNotNull(isSingleTenant, "isSingleTenant");
             this.isSingleTenant = isSingleTenant;
+            return this;
+        }
+
+        /**
+         * The maximum memory in MB that can be used by any process in this org.
+         */
+        public Builder maxRequestedMemoryMB(double maxRequestedMemoryMB) {
+            Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
+            this.maxRequestedMemoryMB = Optional.ofNullable(maxRequestedMemoryMB);
+            return this;
+        }
+
+        /**
+         * The maximum memory in MB that can be used by any process in this org.
+         */
+        public Builder maxRequestedMemoryMB(Optional<Double> maxRequestedMemoryMB) {
+            Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
+            this.maxRequestedMemoryMB = maxRequestedMemoryMB;
             return this;
         }
 
@@ -282,7 +402,9 @@ public class Organization {
         
         public Organization build() {
             return new Organization(
+                enabledFeatureFlags,
                 isSingleTenant,
+                maxRequestedMemoryMB,
                 name,
                 orgId,
                 scopes,

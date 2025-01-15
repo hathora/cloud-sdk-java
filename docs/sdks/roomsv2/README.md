@@ -394,7 +394,7 @@ public class Application {
                 .roomId("2swovpy1fnunu")
                 .call();
 
-        if (res.connectionInfoV2().isPresent()) {
+        if (res.roomAllocationData().isPresent()) {
             // handle response
         }
     }

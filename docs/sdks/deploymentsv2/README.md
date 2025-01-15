@@ -24,9 +24,7 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateDeploymentV2DeprecatedResponse;
-import dev.hathora.cloud_sdk.models.shared.ContainerPort;
 import dev.hathora.cloud_sdk.models.shared.DeploymentConfigV2;
-import dev.hathora.cloud_sdk.models.shared.DeploymentConfigV2Env;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import dev.hathora.cloud_sdk.models.shared.TransportType;
 import java.lang.Exception;
@@ -48,21 +46,14 @@ public class Application {
                 .deploymentConfigV2(DeploymentConfigV2.builder()
                     .containerPort(4000)
                     .env(List.of(
-                        DeploymentConfigV2Env.builder()
-                            .name("EULA")
-                            .value("TRUE")
-                            .build()))
+                    ))
                     .idleTimeoutEnabled(false)
                     .requestedCPU(0.5d)
                     .requestedMemoryMB(1024d)
                     .roomsPerProcess(3)
                     .transportType(TransportType.TCP)
                     .additionalContainerPorts(List.of(
-                        ContainerPort.builder()
-                            .name("default")
-                            .port(8000)
-                            .transportType(TransportType.TLS)
-                            .build()))
+                    ))
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)

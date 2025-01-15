@@ -38,6 +38,7 @@ import dev.hathora.cloud_sdk.models.operations.UpdateRoomConfigResponse;
 import dev.hathora.cloud_sdk.models.shared.ConnectionInfoV2;
 import dev.hathora.cloud_sdk.models.shared.CreateRoomParams;
 import dev.hathora.cloud_sdk.models.shared.Room;
+import dev.hathora.cloud_sdk.models.shared.RoomAllocationData;
 import dev.hathora.cloud_sdk.models.shared.RoomConnectionData;
 import dev.hathora.cloud_sdk.models.shared.RoomWithoutAllocations;
 import dev.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams;
@@ -1108,10 +1109,10 @@ public class RoomsV2 implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ConnectionInfoV2 _out = Utils.mapper().readValue(
+                RoomAllocationData _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ConnectionInfoV2>() {});
-                _res.withConnectionInfoV2(Optional.ofNullable(_out));
+                    new TypeReference<RoomAllocationData>() {});
+                _res.withRoomAllocationData(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(

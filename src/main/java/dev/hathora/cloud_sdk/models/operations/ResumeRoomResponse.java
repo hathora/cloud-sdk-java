@@ -7,7 +7,7 @@ package dev.hathora.cloud_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.hathora.cloud_sdk.models.shared.ConnectionInfoV2;
+import dev.hathora.cloud_sdk.models.shared.RoomAllocationData;
 import dev.hathora.cloud_sdk.utils.Response;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
@@ -23,14 +23,14 @@ import java.util.Optional;
 public class ResumeRoomResponse implements Response {
 
     /**
-     * Ok
-     */
-    private Optional<? extends ConnectionInfoV2> connectionInfoV2;
-
-    /**
      * HTTP response content type for this operation
      */
     private String contentType;
+
+    /**
+     * Ok
+     */
+    private Optional<? extends RoomAllocationData> roomAllocationData;
 
     /**
      * HTTP response status code for this operation
@@ -44,16 +44,16 @@ public class ResumeRoomResponse implements Response {
 
     @JsonCreator
     public ResumeRoomResponse(
-            Optional<? extends ConnectionInfoV2> connectionInfoV2,
             String contentType,
+            Optional<? extends RoomAllocationData> roomAllocationData,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(connectionInfoV2, "connectionInfoV2");
         Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(roomAllocationData, "roomAllocationData");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.connectionInfoV2 = connectionInfoV2;
         this.contentType = contentType;
+        this.roomAllocationData = roomAllocationData;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -62,16 +62,7 @@ public class ResumeRoomResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, statusCode, rawResponse);
-    }
-
-    /**
-     * Ok
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ConnectionInfoV2> connectionInfoV2() {
-        return (Optional<ConnectionInfoV2>) connectionInfoV2;
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
@@ -80,6 +71,15 @@ public class ResumeRoomResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
+    }
+
+    /**
+     * Ok
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<RoomAllocationData> roomAllocationData() {
+        return (Optional<RoomAllocationData>) roomAllocationData;
     }
 
     /**
@@ -103,29 +103,29 @@ public class ResumeRoomResponse implements Response {
     }
 
     /**
-     * Ok
-     */
-    public ResumeRoomResponse withConnectionInfoV2(ConnectionInfoV2 connectionInfoV2) {
-        Utils.checkNotNull(connectionInfoV2, "connectionInfoV2");
-        this.connectionInfoV2 = Optional.ofNullable(connectionInfoV2);
-        return this;
-    }
-
-    /**
-     * Ok
-     */
-    public ResumeRoomResponse withConnectionInfoV2(Optional<? extends ConnectionInfoV2> connectionInfoV2) {
-        Utils.checkNotNull(connectionInfoV2, "connectionInfoV2");
-        this.connectionInfoV2 = connectionInfoV2;
-        return this;
-    }
-
-    /**
      * HTTP response content type for this operation
      */
     public ResumeRoomResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
+        return this;
+    }
+
+    /**
+     * Ok
+     */
+    public ResumeRoomResponse withRoomAllocationData(RoomAllocationData roomAllocationData) {
+        Utils.checkNotNull(roomAllocationData, "roomAllocationData");
+        this.roomAllocationData = Optional.ofNullable(roomAllocationData);
+        return this;
+    }
+
+    /**
+     * Ok
+     */
+    public ResumeRoomResponse withRoomAllocationData(Optional<? extends RoomAllocationData> roomAllocationData) {
+        Utils.checkNotNull(roomAllocationData, "roomAllocationData");
+        this.roomAllocationData = roomAllocationData;
         return this;
     }
 
@@ -157,8 +157,8 @@ public class ResumeRoomResponse implements Response {
         }
         ResumeRoomResponse other = (ResumeRoomResponse) o;
         return 
-            Objects.deepEquals(this.connectionInfoV2, other.connectionInfoV2) &&
             Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.roomAllocationData, other.roomAllocationData) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -166,8 +166,8 @@ public class ResumeRoomResponse implements Response {
     @Override
     public int hashCode() {
         return Objects.hash(
-            connectionInfoV2,
             contentType,
+            roomAllocationData,
             statusCode,
             rawResponse);
     }
@@ -175,17 +175,17 @@ public class ResumeRoomResponse implements Response {
     @Override
     public String toString() {
         return Utils.toString(ResumeRoomResponse.class,
-                "connectionInfoV2", connectionInfoV2,
                 "contentType", contentType,
+                "roomAllocationData", roomAllocationData,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
     
     public final static class Builder {
  
-        private Optional<? extends ConnectionInfoV2> connectionInfoV2 = Optional.empty();
- 
         private String contentType;
+ 
+        private Optional<? extends RoomAllocationData> roomAllocationData = Optional.empty();
  
         private Integer statusCode;
  
@@ -196,29 +196,29 @@ public class ResumeRoomResponse implements Response {
         }
 
         /**
-         * Ok
-         */
-        public Builder connectionInfoV2(ConnectionInfoV2 connectionInfoV2) {
-            Utils.checkNotNull(connectionInfoV2, "connectionInfoV2");
-            this.connectionInfoV2 = Optional.ofNullable(connectionInfoV2);
-            return this;
-        }
-
-        /**
-         * Ok
-         */
-        public Builder connectionInfoV2(Optional<? extends ConnectionInfoV2> connectionInfoV2) {
-            Utils.checkNotNull(connectionInfoV2, "connectionInfoV2");
-            this.connectionInfoV2 = connectionInfoV2;
-            return this;
-        }
-
-        /**
          * HTTP response content type for this operation
          */
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder roomAllocationData(RoomAllocationData roomAllocationData) {
+            Utils.checkNotNull(roomAllocationData, "roomAllocationData");
+            this.roomAllocationData = Optional.ofNullable(roomAllocationData);
+            return this;
+        }
+
+        /**
+         * Ok
+         */
+        public Builder roomAllocationData(Optional<? extends RoomAllocationData> roomAllocationData) {
+            Utils.checkNotNull(roomAllocationData, "roomAllocationData");
+            this.roomAllocationData = roomAllocationData;
             return this;
         }
 
@@ -242,8 +242,8 @@ public class ResumeRoomResponse implements Response {
         
         public ResumeRoomResponse build() {
             return new ResumeRoomResponse(
-                connectionInfoV2,
                 contentType,
+                roomAllocationData,
                 statusCode,
                 rawResponse);
         }

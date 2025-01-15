@@ -84,6 +84,15 @@ public class DeploymentV3 {
     private List<DeploymentV3Env> env;
 
     /**
+     * EXPERIMENTAL - this feature is in closed beta.
+     * The number of GPUs allocated to your process. Must be an integer.
+     * If not provided, the requested GPU is 0.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("experimentalRequestedGPU")
+    private Optional<Double> experimentalRequestedGPU;
+
+    /**
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
@@ -121,6 +130,7 @@ public class DeploymentV3 {
             @JsonProperty("deploymentId") String deploymentId,
             @JsonProperty("deploymentTag") Optional<String> deploymentTag,
             @JsonProperty("env") List<DeploymentV3Env> env,
+            @JsonProperty("experimentalRequestedGPU") Optional<Double> experimentalRequestedGPU,
             @JsonProperty("idleTimeoutEnabled") boolean idleTimeoutEnabled,
             @JsonProperty("requestedCPU") double requestedCPU,
             @JsonProperty("requestedMemoryMB") double requestedMemoryMB,
@@ -135,6 +145,7 @@ public class DeploymentV3 {
         Utils.checkNotNull(deploymentId, "deploymentId");
         Utils.checkNotNull(deploymentTag, "deploymentTag");
         Utils.checkNotNull(env, "env");
+        Utils.checkNotNull(experimentalRequestedGPU, "experimentalRequestedGPU");
         Utils.checkNotNull(idleTimeoutEnabled, "idleTimeoutEnabled");
         Utils.checkNotNull(requestedCPU, "requestedCPU");
         Utils.checkNotNull(requestedMemoryMB, "requestedMemoryMB");
@@ -149,6 +160,7 @@ public class DeploymentV3 {
         this.deploymentId = deploymentId;
         this.deploymentTag = deploymentTag;
         this.env = env;
+        this.experimentalRequestedGPU = experimentalRequestedGPU;
         this.idleTimeoutEnabled = idleTimeoutEnabled;
         this.requestedCPU = requestedCPU;
         this.requestedMemoryMB = requestedMemoryMB;
@@ -168,7 +180,7 @@ public class DeploymentV3 {
             double requestedCPU,
             double requestedMemoryMB,
             int roomsPerProcess) {
-        this(additionalContainerPorts, appId, buildId, Optional.empty(), createdAt, createdBy, defaultContainerPort, deploymentId, Optional.empty(), env, idleTimeoutEnabled, requestedCPU, requestedMemoryMB, roomsPerProcess);
+        this(additionalContainerPorts, appId, buildId, Optional.empty(), createdAt, createdBy, defaultContainerPort, deploymentId, Optional.empty(), env, Optional.empty(), idleTimeoutEnabled, requestedCPU, requestedMemoryMB, roomsPerProcess);
     }
 
     /**
@@ -246,6 +258,16 @@ public class DeploymentV3 {
     @JsonIgnore
     public List<DeploymentV3Env> env() {
         return env;
+    }
+
+    /**
+     * EXPERIMENTAL - this feature is in closed beta.
+     * The number of GPUs allocated to your process. Must be an integer.
+     * If not provided, the requested GPU is 0.
+     */
+    @JsonIgnore
+    public Optional<Double> experimentalRequestedGPU() {
+        return experimentalRequestedGPU;
     }
 
     /**
@@ -392,6 +414,28 @@ public class DeploymentV3 {
     }
 
     /**
+     * EXPERIMENTAL - this feature is in closed beta.
+     * The number of GPUs allocated to your process. Must be an integer.
+     * If not provided, the requested GPU is 0.
+     */
+    public DeploymentV3 withExperimentalRequestedGPU(double experimentalRequestedGPU) {
+        Utils.checkNotNull(experimentalRequestedGPU, "experimentalRequestedGPU");
+        this.experimentalRequestedGPU = Optional.ofNullable(experimentalRequestedGPU);
+        return this;
+    }
+
+    /**
+     * EXPERIMENTAL - this feature is in closed beta.
+     * The number of GPUs allocated to your process. Must be an integer.
+     * If not provided, the requested GPU is 0.
+     */
+    public DeploymentV3 withExperimentalRequestedGPU(Optional<Double> experimentalRequestedGPU) {
+        Utils.checkNotNull(experimentalRequestedGPU, "experimentalRequestedGPU");
+        this.experimentalRequestedGPU = experimentalRequestedGPU;
+        return this;
+    }
+
+    /**
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
@@ -449,6 +493,7 @@ public class DeploymentV3 {
             Objects.deepEquals(this.deploymentId, other.deploymentId) &&
             Objects.deepEquals(this.deploymentTag, other.deploymentTag) &&
             Objects.deepEquals(this.env, other.env) &&
+            Objects.deepEquals(this.experimentalRequestedGPU, other.experimentalRequestedGPU) &&
             Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
             Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
             Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
@@ -468,6 +513,7 @@ public class DeploymentV3 {
             deploymentId,
             deploymentTag,
             env,
+            experimentalRequestedGPU,
             idleTimeoutEnabled,
             requestedCPU,
             requestedMemoryMB,
@@ -487,6 +533,7 @@ public class DeploymentV3 {
                 "deploymentId", deploymentId,
                 "deploymentTag", deploymentTag,
                 "env", env,
+                "experimentalRequestedGPU", experimentalRequestedGPU,
                 "idleTimeoutEnabled", idleTimeoutEnabled,
                 "requestedCPU", requestedCPU,
                 "requestedMemoryMB", requestedMemoryMB,
@@ -514,6 +561,8 @@ public class DeploymentV3 {
         private Optional<String> deploymentTag = Optional.empty();
  
         private List<DeploymentV3Env> env;
+ 
+        private Optional<Double> experimentalRequestedGPU = Optional.empty();
  
         private Boolean idleTimeoutEnabled;
  
@@ -633,6 +682,28 @@ public class DeploymentV3 {
         }
 
         /**
+         * EXPERIMENTAL - this feature is in closed beta.
+         * The number of GPUs allocated to your process. Must be an integer.
+         * If not provided, the requested GPU is 0.
+         */
+        public Builder experimentalRequestedGPU(double experimentalRequestedGPU) {
+            Utils.checkNotNull(experimentalRequestedGPU, "experimentalRequestedGPU");
+            this.experimentalRequestedGPU = Optional.ofNullable(experimentalRequestedGPU);
+            return this;
+        }
+
+        /**
+         * EXPERIMENTAL - this feature is in closed beta.
+         * The number of GPUs allocated to your process. Must be an integer.
+         * If not provided, the requested GPU is 0.
+         */
+        public Builder experimentalRequestedGPU(Optional<Double> experimentalRequestedGPU) {
+            Utils.checkNotNull(experimentalRequestedGPU, "experimentalRequestedGPU");
+            this.experimentalRequestedGPU = experimentalRequestedGPU;
+            return this;
+        }
+
+        /**
          * Option to shut down processes that have had no new connections or rooms
          * for five minutes.
          */
@@ -682,6 +753,7 @@ public class DeploymentV3 {
                 deploymentId,
                 deploymentTag,
                 env,
+                experimentalRequestedGPU,
                 idleTimeoutEnabled,
                 requestedCPU,
                 requestedMemoryMB,
