@@ -35,7 +35,7 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -47,7 +47,7 @@ public class Application {
 
         CreateRoomDeprecatedResponse res = sdk.roomsV1().createRoomDeprecated()
                 .createRoomParams(CreateRoomParams.builder()
-                    .region(Region.CHICAGO)
+                    .region(Region.LONDON)
                     .clientIPs(List.of(
                         "123.123.123.123"))
                     .deploymentId("dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
@@ -78,10 +78,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                        | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
-| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 400, 401, 402, 404, 422, 429 | application/json             |
+| models/errors/ApiError       | 500                          | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~destroyRoomDeprecated~~
 
@@ -102,7 +103,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -137,7 +138,8 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 429, 500     | application/json       |
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/ApiError | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~getActiveRoomsForProcessDeprecated~~
@@ -217,7 +219,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -249,10 +251,11 @@ public class Application {
 
 ### Errors
 
-| Error Type              | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| models/errors/ApiError  | 400, 402, 404, 429, 500 | application/json        |
-| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 400, 402, 404, 429     | application/json       |
+| models/errors/ApiError | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~getInactiveRoomsForProcessDeprecated~~
 
@@ -391,7 +394,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -426,5 +429,6 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 429, 500     | application/json       |
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/ApiError | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

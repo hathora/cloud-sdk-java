@@ -33,7 +33,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -45,7 +45,7 @@ public class Application {
 
         CreateProcessV2DeprecatedResponse res = sdk.processesV2().createProcessV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.MUMBAI)
+                .region(Region.TOKYO)
                 .call();
 
         if (res.processV2().isPresent()) {
@@ -68,10 +68,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| models/errors/ApiError       | 401, 402, 404, 422, 429, 500 | application/json             |
-| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 402, 404, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
 ## ~~getLatestProcessesV2Deprecated~~
 
@@ -283,7 +284,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -318,5 +319,6 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 429, 500     | application/json       |
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/ApiError | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

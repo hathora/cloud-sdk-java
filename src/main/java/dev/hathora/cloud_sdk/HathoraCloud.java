@@ -24,7 +24,7 @@ public class HathoraCloud {
      */
     public static final String[] SERVERS = {
         "https://api.hathora.dev",
-        "https:///",
+        "/",
     };
 
     private final AppsV1 appsV1;

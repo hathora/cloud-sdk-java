@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:2.13.1'
+implementation 'dev.hathora:cloud-sdk:2.13.2'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>2.13.1</version>
+    <version>2.13.2</version>
 </dependency>
 ```
 
@@ -81,7 +81,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -343,7 +343,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -377,10 +377,11 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `createApp` method throws the following exceptions:
 
-| Error Type             | Status Code             | Content Type     |
-| ---------------------- | ----------------------- | ---------------- |
-| models/errors/ApiError | 401, 404, 422, 429, 500 | application/json |
-| models/errors/SDKError | 4XX, 5XX                | \*/\*            |
+| Error Type             | Status Code        | Content Type     |
+| ---------------------- | ------------------ | ---------------- |
+| models/errors/ApiError | 401, 404, 422, 429 | application/json |
+| models/errors/ApiError | 500                | application/json |
+| models/errors/SDKError | 4XX, 5XX           | \*/\*            |
 
 ### Example
 
@@ -397,7 +398,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -434,7 +435,7 @@ You can override the default server globally using the `.serverIndex(int serverI
 | #   | Server                    |
 | --- | ------------------------- |
 | 0   | `https://api.hathora.dev` |
-| 1   | `https:///`               |
+| 1   | `/`                       |
 
 #### Example
 
@@ -451,7 +452,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .serverIndex(1)
@@ -494,7 +495,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .serverURL("https://api.hathora.dev")
@@ -547,7 +548,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -591,7 +592,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")

@@ -83,7 +83,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -96,7 +96,6 @@ public class Application {
         GetLogsForProcessRequest req = GetLogsForProcessRequest.builder()
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .tailLines(100)
                 .build();
 
         GetLogsForProcessResponse res = sdk.logsV1().getLogsForProcess()
@@ -122,7 +121,8 @@ public class Application {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| models/errors/ApiError       | 400, 401, 404, 410, 429, 500 | application/json             |
-| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 400, 401, 404, 410, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |

@@ -24,7 +24,9 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateDeploymentV2DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.ContainerPort;
 import dev.hathora.cloud_sdk.models.shared.DeploymentConfigV2;
+import dev.hathora.cloud_sdk.models.shared.DeploymentConfigV2Env;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import dev.hathora.cloud_sdk.models.shared.TransportType;
 import java.lang.Exception;
@@ -32,7 +34,7 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -46,14 +48,35 @@ public class Application {
                 .deploymentConfigV2(DeploymentConfigV2.builder()
                     .containerPort(4000)
                     .env(List.of(
-                    ))
-                    .idleTimeoutEnabled(false)
+                        DeploymentConfigV2Env.builder()
+                            .name("EULA")
+                            .value("TRUE")
+                            .build(),
+                        DeploymentConfigV2Env.builder()
+                            .name("EULA")
+                            .value("TRUE")
+                            .build()))
+                    .idleTimeoutEnabled(true)
                     .requestedCPU(0.5d)
                     .requestedMemoryMB(1024d)
                     .roomsPerProcess(3)
-                    .transportType(TransportType.TCP)
+                    .transportType(TransportType.TLS)
                     .additionalContainerPorts(List.of(
-                    ))
+                        ContainerPort.builder()
+                            .name("default")
+                            .port(8000)
+                            .transportType(TransportType.TLS)
+                            .build(),
+                        ContainerPort.builder()
+                            .name("default")
+                            .port(8000)
+                            .transportType(TransportType.TCP)
+                            .build(),
+                        ContainerPort.builder()
+                            .name("default")
+                            .port(8000)
+                            .transportType(TransportType.TLS)
+                            .build()))
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
@@ -80,10 +103,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| models/errors/ApiError       | 400, 401, 404, 422, 429, 500 | application/json             |
-| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 400, 401, 404, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
 ## ~~getDeploymentInfoV2Deprecated~~
 

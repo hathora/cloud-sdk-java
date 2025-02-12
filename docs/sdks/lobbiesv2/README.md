@@ -35,7 +35,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -48,7 +48,7 @@ public class Application {
                     .build())
                 .createLobbyParams(CreateLobbyParams.builder()
                     .initialConfig("<value>")
-                    .region(Region.TOKYO)
+                    .region(Region.SAO_PAULO)
                     .visibility(LobbyVisibility.PRIVATE)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -77,10 +77,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                        | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
-| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 400, 401, 402, 404, 422, 429 | application/json             |
+| models/errors/ApiError       | 500                          | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~createLocalLobby~~
 
@@ -103,7 +104,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -116,7 +117,7 @@ public class Application {
                     .build())
                 .requestBody(CreateLocalLobbyRequestBody.builder()
                     .initialConfig("<value>")
-                    .region(Region.SAO_PAULO)
+                    .region(Region.JOHANNESBURG)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
@@ -144,10 +145,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                        | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
-| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 400, 401, 402, 404, 422, 429 | application/json             |
+| models/errors/ApiError       | 500                          | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~createPrivateLobby~~
 
@@ -170,7 +172,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -183,7 +185,7 @@ public class Application {
                     .build())
                 .requestBody(CreatePrivateLobbyRequestBody.builder()
                     .initialConfig("<value>")
-                    .region(Region.CHICAGO)
+                    .region(Region.LONDON)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
@@ -211,10 +213,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                        | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
-| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 400, 401, 402, 404, 422, 429 | application/json             |
+| models/errors/ApiError       | 500                          | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~createPublicLobby~~
 
@@ -237,7 +240,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -250,7 +253,7 @@ public class Application {
                     .build())
                 .requestBody(CreatePublicLobbyRequestBody.builder()
                     .initialConfig("<value>")
-                    .region(Region.SAO_PAULO)
+                    .region(Region.JOHANNESBURG)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
@@ -278,10 +281,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                        | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| models/errors/ApiError            | 400, 401, 402, 404, 422, 429, 500 | application/json                  |
-| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 400, 401, 402, 404, 422, 429 | application/json             |
+| models/errors/ApiError       | 500                          | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~getLobbyInfo~~
 

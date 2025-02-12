@@ -910,3 +910,13 @@ Based on:
 - [java v2.13.1] .
 ### Releases
 - [Maven Central v2.13.1] https://central.sonatype.com/artifact/dev.hathora/cloud-sdk/2.13.1 - .
+
+## 2025-02-12 00:07:28
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.488.0 (2.506.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.13.2] .
+### Releases
+- [Maven Central v2.13.2] https://central.sonatype.com/artifact/dev.hathora/cloud-sdk/2.13.2 - .

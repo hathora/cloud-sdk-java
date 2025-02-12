@@ -24,7 +24,9 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateDeploymentV1DeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.ContainerPort;
 import dev.hathora.cloud_sdk.models.shared.DeploymentConfig;
+import dev.hathora.cloud_sdk.models.shared.Env;
 import dev.hathora.cloud_sdk.models.shared.PlanName;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import dev.hathora.cloud_sdk.models.shared.TransportType;
@@ -33,7 +35,7 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, Exception {
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
@@ -47,12 +49,27 @@ public class Application {
                 .deploymentConfig(DeploymentConfig.builder()
                     .containerPort(4000)
                     .env(List.of(
-                    ))
+                        Env.builder()
+                            .name("EULA")
+                            .value("TRUE")
+                            .build(),
+                        Env.builder()
+                            .name("EULA")
+                            .value("TRUE")
+                            .build(),
+                        Env.builder()
+                            .name("EULA")
+                            .value("TRUE")
+                            .build()))
                     .planName(PlanName.TINY)
                     .roomsPerProcess(3)
-                    .transportType(TransportType.TCP)
+                    .transportType(TransportType.UDP)
                     .additionalContainerPorts(List.of(
-                    ))
+                        ContainerPort.builder()
+                            .name("default")
+                            .port(8000)
+                            .transportType(TransportType.TCP)
+                            .build()))
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
@@ -79,10 +96,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| models/errors/ApiError       | 400, 401, 404, 422, 429, 500 | application/json             |
-| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 400, 401, 404, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
 ## ~~getDeploymentInfoV1Deprecated~~
 
