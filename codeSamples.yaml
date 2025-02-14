@@ -51,12 +51,6 @@ actions:
         - "lang": "java"
           "label": "LoginNickname"
           "source": "package hello.world;\n\nimport dev.hathora.cloud_sdk.HathoraCloud;\nimport dev.hathora.cloud_sdk.models.errors.ApiError;\nimport dev.hathora.cloud_sdk.models.operations.LoginNicknameResponse;\nimport dev.hathora.cloud_sdk.models.shared.NicknameObject;\nimport java.lang.Exception;\n\npublic class Application {\n\n    public static void main(String[] args) throws ApiError, Exception {\n\n        HathoraCloud sdk = HathoraCloud.builder()\n                .orgId(\"org-6f706e83-0ec1-437a-9a46-7d4281eb2f39\")\n                .appId(\"app-af469a92-5b45-4565-b3c4-b79878de67d2\")\n            .build();\n\n        LoginNicknameResponse res = sdk.authV1().loginNickname()\n                .appId(\"app-af469a92-5b45-4565-b3c4-b79878de67d2\")\n                .nicknameObject(NicknameObject.builder()\n                    .nickname(\"squiddytwoshoes\")\n                    .build())\n                .call();\n\n        if (res.playerTokenObject().isPresent()) {\n            // handle response\n        }\n    }\n}"
-  - target: $["paths"]["/billing/v1/balance"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "java"
-          "label": "GetBalance"
-          "source": "package hello.world;\n\nimport dev.hathora.cloud_sdk.HathoraCloud;\nimport dev.hathora.cloud_sdk.models.errors.ApiError;\nimport dev.hathora.cloud_sdk.models.operations.GetBalanceResponse;\nimport dev.hathora.cloud_sdk.models.shared.Security;\nimport java.lang.Exception;\n\npublic class Application {\n\n    public static void main(String[] args) throws ApiError, ApiError, Exception {\n\n        HathoraCloud sdk = HathoraCloud.builder()\n                .security(Security.builder()\n                    .hathoraDevToken(\"<YOUR_BEARER_TOKEN_HERE>\")\n                    .build())\n                .orgId(\"org-6f706e83-0ec1-437a-9a46-7d4281eb2f39\")\n                .appId(\"app-af469a92-5b45-4565-b3c4-b79878de67d2\")\n            .build();\n\n        GetBalanceResponse res = sdk.billingV1().getBalance()\n                .orgId(\"org-6f706e83-0ec1-437a-9a46-7d4281eb2f39\")\n                .call();\n\n        if (res.number().isPresent()) {\n            // handle response\n        }\n    }\n}"
   - target: $["paths"]["/billing/v1/customerportalurl"]["post"]
     update:
       "x-codeSamples":

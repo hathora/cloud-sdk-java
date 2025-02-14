@@ -40,6 +40,7 @@ import dev.hathora.cloud_sdk.utils.SerializedBody;
 import dev.hathora.cloud_sdk.utils.Utils.JsonShape;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Object;
@@ -70,7 +71,9 @@ public class BillingV1 implements
     /**
      * GetBalance
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetBalanceRequestBuilder getBalance() {
         return new GetBalanceRequestBuilder(this);
     }
@@ -79,7 +82,9 @@ public class BillingV1 implements
      * GetBalance
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetBalanceResponse getBalanceDirect() throws Exception {
         return getBalance(Optional.empty());
     }
@@ -89,7 +94,9 @@ public class BillingV1 implements
      * @param orgId
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public GetBalanceResponse getBalance(
             Optional<String> orgId) throws Exception {
         GetBalanceRequest request =
