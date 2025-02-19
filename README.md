@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:2.14.0'
+implementation 'dev.hathora:cloud-sdk:2.14.1'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>2.14.0</version>
+    <version>2.14.1</version>
 </dependency>
 ```
 
@@ -432,10 +432,10 @@ public class Application {
 
 You can override the default server globally using the `.serverIndex(int serverIdx)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                    |
-| --- | ------------------------- |
-| 0   | `https://api.hathora.dev` |
-| 1   | `/`                       |
+| #   | Server                    | Description |
+| --- | ------------------------- | ----------- |
+| 0   | `https://api.hathora.dev` |             |
+| 1   | `/`                       |             |
 
 #### Example
 
