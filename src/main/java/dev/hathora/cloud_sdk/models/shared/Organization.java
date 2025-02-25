@@ -36,9 +36,8 @@ public class Organization {
     /**
      * The maximum memory in MB that can be used by any process in this org.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("maxRequestedMemoryMB")
-    private Optional<Double> maxRequestedMemoryMB;
+    private double maxRequestedMemoryMB;
 
     /**
      * The name of an organization.
@@ -54,11 +53,17 @@ public class Organization {
     private String orgId;
 
     /**
-     * The scopes the user who loaded this has on this org.
+     * The maximum lifespan in hours of a pod.
      */
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("podMaxLifespanHrs")
+    private Optional<Double> podMaxLifespanHrs;
+
+    /**
+     * The scopes the user who loaded this has on this org.
+     */
     @JsonProperty("scopes")
-    private Optional<? extends List<Scope>> scopes;
+    private List<Scope> scopes;
 
     @JsonProperty("stripeCustomerId")
     private String stripeCustomerId;
@@ -67,16 +72,18 @@ public class Organization {
     public Organization(
             @JsonProperty("enabledFeatureFlags") Optional<? extends List<String>> enabledFeatureFlags,
             @JsonProperty("isSingleTenant") boolean isSingleTenant,
-            @JsonProperty("maxRequestedMemoryMB") Optional<Double> maxRequestedMemoryMB,
+            @JsonProperty("maxRequestedMemoryMB") double maxRequestedMemoryMB,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("orgId") String orgId,
-            @JsonProperty("scopes") Optional<? extends List<Scope>> scopes,
+            @JsonProperty("podMaxLifespanHrs") Optional<Double> podMaxLifespanHrs,
+            @JsonProperty("scopes") List<Scope> scopes,
             @JsonProperty("stripeCustomerId") String stripeCustomerId) {
         Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
         Utils.checkNotNull(isSingleTenant, "isSingleTenant");
         Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(orgId, "orgId");
+        Utils.checkNotNull(podMaxLifespanHrs, "podMaxLifespanHrs");
         Utils.checkNotNull(scopes, "scopes");
         Utils.checkNotNull(stripeCustomerId, "stripeCustomerId");
         this.enabledFeatureFlags = enabledFeatureFlags;
@@ -84,15 +91,18 @@ public class Organization {
         this.maxRequestedMemoryMB = maxRequestedMemoryMB;
         this.name = name;
         this.orgId = orgId;
+        this.podMaxLifespanHrs = podMaxLifespanHrs;
         this.scopes = scopes;
         this.stripeCustomerId = stripeCustomerId;
     }
     
     public Organization(
             boolean isSingleTenant,
+            double maxRequestedMemoryMB,
             String orgId,
+            List<Scope> scopes,
             String stripeCustomerId) {
-        this(Optional.empty(), isSingleTenant, Optional.empty(), Optional.empty(), orgId, Optional.empty(), stripeCustomerId);
+        this(Optional.empty(), isSingleTenant, maxRequestedMemoryMB, Optional.empty(), orgId, Optional.empty(), scopes, stripeCustomerId);
     }
 
     /**
@@ -113,7 +123,7 @@ public class Organization {
      * The maximum memory in MB that can be used by any process in this org.
      */
     @JsonIgnore
-    public Optional<Double> maxRequestedMemoryMB() {
+    public double maxRequestedMemoryMB() {
         return maxRequestedMemoryMB;
     }
 
@@ -134,12 +144,19 @@ public class Organization {
     }
 
     /**
+     * The maximum lifespan in hours of a pod.
+     */
+    @JsonIgnore
+    public Optional<Double> podMaxLifespanHrs() {
+        return podMaxLifespanHrs;
+    }
+
+    /**
      * The scopes the user who loaded this has on this org.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Scope>> scopes() {
-        return (Optional<List<Scope>>) scopes;
+    public List<Scope> scopes() {
+        return scopes;
     }
 
     @JsonIgnore
@@ -180,15 +197,6 @@ public class Organization {
      */
     public Organization withMaxRequestedMemoryMB(double maxRequestedMemoryMB) {
         Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
-        this.maxRequestedMemoryMB = Optional.ofNullable(maxRequestedMemoryMB);
-        return this;
-    }
-
-    /**
-     * The maximum memory in MB that can be used by any process in this org.
-     */
-    public Organization withMaxRequestedMemoryMB(Optional<Double> maxRequestedMemoryMB) {
-        Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
         this.maxRequestedMemoryMB = maxRequestedMemoryMB;
         return this;
     }
@@ -221,18 +229,27 @@ public class Organization {
     }
 
     /**
-     * The scopes the user who loaded this has on this org.
+     * The maximum lifespan in hours of a pod.
      */
-    public Organization withScopes(List<Scope> scopes) {
-        Utils.checkNotNull(scopes, "scopes");
-        this.scopes = Optional.ofNullable(scopes);
+    public Organization withPodMaxLifespanHrs(double podMaxLifespanHrs) {
+        Utils.checkNotNull(podMaxLifespanHrs, "podMaxLifespanHrs");
+        this.podMaxLifespanHrs = Optional.ofNullable(podMaxLifespanHrs);
+        return this;
+    }
+
+    /**
+     * The maximum lifespan in hours of a pod.
+     */
+    public Organization withPodMaxLifespanHrs(Optional<Double> podMaxLifespanHrs) {
+        Utils.checkNotNull(podMaxLifespanHrs, "podMaxLifespanHrs");
+        this.podMaxLifespanHrs = podMaxLifespanHrs;
         return this;
     }
 
     /**
      * The scopes the user who loaded this has on this org.
      */
-    public Organization withScopes(Optional<? extends List<Scope>> scopes) {
+    public Organization withScopes(List<Scope> scopes) {
         Utils.checkNotNull(scopes, "scopes");
         this.scopes = scopes;
         return this;
@@ -259,6 +276,7 @@ public class Organization {
             Objects.deepEquals(this.maxRequestedMemoryMB, other.maxRequestedMemoryMB) &&
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.orgId, other.orgId) &&
+            Objects.deepEquals(this.podMaxLifespanHrs, other.podMaxLifespanHrs) &&
             Objects.deepEquals(this.scopes, other.scopes) &&
             Objects.deepEquals(this.stripeCustomerId, other.stripeCustomerId);
     }
@@ -271,6 +289,7 @@ public class Organization {
             maxRequestedMemoryMB,
             name,
             orgId,
+            podMaxLifespanHrs,
             scopes,
             stripeCustomerId);
     }
@@ -283,6 +302,7 @@ public class Organization {
                 "maxRequestedMemoryMB", maxRequestedMemoryMB,
                 "name", name,
                 "orgId", orgId,
+                "podMaxLifespanHrs", podMaxLifespanHrs,
                 "scopes", scopes,
                 "stripeCustomerId", stripeCustomerId);
     }
@@ -293,13 +313,15 @@ public class Organization {
  
         private Boolean isSingleTenant;
  
-        private Optional<Double> maxRequestedMemoryMB = Optional.empty();
+        private Double maxRequestedMemoryMB;
  
         private Optional<String> name = Optional.empty();
  
         private String orgId;
  
-        private Optional<? extends List<Scope>> scopes = Optional.empty();
+        private Optional<Double> podMaxLifespanHrs = Optional.empty();
+ 
+        private List<Scope> scopes;
  
         private String stripeCustomerId;  
         
@@ -336,15 +358,6 @@ public class Organization {
          */
         public Builder maxRequestedMemoryMB(double maxRequestedMemoryMB) {
             Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
-            this.maxRequestedMemoryMB = Optional.ofNullable(maxRequestedMemoryMB);
-            return this;
-        }
-
-        /**
-         * The maximum memory in MB that can be used by any process in this org.
-         */
-        public Builder maxRequestedMemoryMB(Optional<Double> maxRequestedMemoryMB) {
-            Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
             this.maxRequestedMemoryMB = maxRequestedMemoryMB;
             return this;
         }
@@ -377,18 +390,27 @@ public class Organization {
         }
 
         /**
-         * The scopes the user who loaded this has on this org.
+         * The maximum lifespan in hours of a pod.
          */
-        public Builder scopes(List<Scope> scopes) {
-            Utils.checkNotNull(scopes, "scopes");
-            this.scopes = Optional.ofNullable(scopes);
+        public Builder podMaxLifespanHrs(double podMaxLifespanHrs) {
+            Utils.checkNotNull(podMaxLifespanHrs, "podMaxLifespanHrs");
+            this.podMaxLifespanHrs = Optional.ofNullable(podMaxLifespanHrs);
+            return this;
+        }
+
+        /**
+         * The maximum lifespan in hours of a pod.
+         */
+        public Builder podMaxLifespanHrs(Optional<Double> podMaxLifespanHrs) {
+            Utils.checkNotNull(podMaxLifespanHrs, "podMaxLifespanHrs");
+            this.podMaxLifespanHrs = podMaxLifespanHrs;
             return this;
         }
 
         /**
          * The scopes the user who loaded this has on this org.
          */
-        public Builder scopes(Optional<? extends List<Scope>> scopes) {
+        public Builder scopes(List<Scope> scopes) {
             Utils.checkNotNull(scopes, "scopes");
             this.scopes = scopes;
             return this;
@@ -407,6 +429,7 @@ public class Organization {
                 maxRequestedMemoryMB,
                 name,
                 orgId,
+                podMaxLifespanHrs,
                 scopes,
                 stripeCustomerId);
         }
