@@ -652,9 +652,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallGetLatestProcesses {
         GetLatestProcessesResponse getLatestProcesses(
-            Optional<String> appId,
-            Optional<? extends List<Region>> region,
-            Optional<? extends List<ProcessStatus>> status) throws Exception;
+            GetLatestProcessesRequest request) throws Exception;
     }
 
 
@@ -673,9 +671,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallGetProcessesCountExperimental {
         GetProcessesCountExperimentalResponse getProcessesCountExperimental(
-            Optional<String> appId,
-            Optional<? extends List<Region>> region,
-            Optional<? extends List<ProcessStatus>> status) throws Exception;
+            GetProcessesCountExperimentalRequest request) throws Exception;
     }
 
 

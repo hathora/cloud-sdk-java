@@ -4,65 +4,26 @@
 
 package dev.hathora.cloud_sdk.models.operations;
 
-import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
-import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.String;
-import java.util.List;
-import java.util.Optional;
 
 public class GetLatestProcessesRequestBuilder {
 
-    private Optional<String> appId = Optional.empty();
-    private Optional<? extends List<Region>> region = Optional.empty();
-    private Optional<? extends List<ProcessStatus>> status = Optional.empty();
+    private GetLatestProcessesRequest request;
     private final SDKMethodInterfaces.MethodCallGetLatestProcesses sdk;
 
     public GetLatestProcessesRequestBuilder(SDKMethodInterfaces.MethodCallGetLatestProcesses sdk) {
         this.sdk = sdk;
     }
-                
-    public GetLatestProcessesRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
-        return this;
-    }
 
-    public GetLatestProcessesRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
-        return this;
-    }
-                
-    public GetLatestProcessesRequestBuilder region(List<Region> region) {
-        Utils.checkNotNull(region, "region");
-        this.region = Optional.of(region);
-        return this;
-    }
-
-    public GetLatestProcessesRequestBuilder region(Optional<? extends List<Region>> region) {
-        Utils.checkNotNull(region, "region");
-        this.region = region;
-        return this;
-    }
-                
-    public GetLatestProcessesRequestBuilder status(List<ProcessStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.of(status);
-        return this;
-    }
-
-    public GetLatestProcessesRequestBuilder status(Optional<? extends List<ProcessStatus>> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
+    public GetLatestProcessesRequestBuilder request(GetLatestProcessesRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public GetLatestProcessesResponse call() throws Exception {
 
         return sdk.getLatestProcesses(
-            appId,
-            region,
-            status);
+            request);
     }
 }

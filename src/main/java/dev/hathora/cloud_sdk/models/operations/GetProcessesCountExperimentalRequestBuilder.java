@@ -4,65 +4,26 @@
 
 package dev.hathora.cloud_sdk.models.operations;
 
-import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
-import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.String;
-import java.util.List;
-import java.util.Optional;
 
 public class GetProcessesCountExperimentalRequestBuilder {
 
-    private Optional<String> appId = Optional.empty();
-    private Optional<? extends List<Region>> region = Optional.empty();
-    private Optional<? extends List<ProcessStatus>> status = Optional.empty();
+    private GetProcessesCountExperimentalRequest request;
     private final SDKMethodInterfaces.MethodCallGetProcessesCountExperimental sdk;
 
     public GetProcessesCountExperimentalRequestBuilder(SDKMethodInterfaces.MethodCallGetProcessesCountExperimental sdk) {
         this.sdk = sdk;
     }
-                
-    public GetProcessesCountExperimentalRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
-        return this;
-    }
 
-    public GetProcessesCountExperimentalRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
-        return this;
-    }
-                
-    public GetProcessesCountExperimentalRequestBuilder region(List<Region> region) {
-        Utils.checkNotNull(region, "region");
-        this.region = Optional.of(region);
-        return this;
-    }
-
-    public GetProcessesCountExperimentalRequestBuilder region(Optional<? extends List<Region>> region) {
-        Utils.checkNotNull(region, "region");
-        this.region = region;
-        return this;
-    }
-                
-    public GetProcessesCountExperimentalRequestBuilder status(List<ProcessStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.of(status);
-        return this;
-    }
-
-    public GetProcessesCountExperimentalRequestBuilder status(Optional<? extends List<ProcessStatus>> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
+    public GetProcessesCountExperimentalRequestBuilder request(GetProcessesCountExperimentalRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public GetProcessesCountExperimentalResponse call() throws Exception {
 
         return sdk.getProcessesCountExperimental(
-            appId,
-            region,
-            status);
+            request);
     }
 }

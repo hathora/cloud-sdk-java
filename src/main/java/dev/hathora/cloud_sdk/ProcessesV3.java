@@ -28,7 +28,6 @@ import dev.hathora.cloud_sdk.models.operations.StopProcessRequest;
 import dev.hathora.cloud_sdk.models.operations.StopProcessRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.StopProcessResponse;
 import dev.hathora.cloud_sdk.models.shared.ProcessMetricsData;
-import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
 import dev.hathora.cloud_sdk.models.shared.ProcessV3;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
@@ -250,34 +249,12 @@ public class ProcessesV3 implements
     /**
      * GetLatestProcesses
      * Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetLatestProcessesResponse getLatestProcessesDirect() throws Exception {
-        return getLatestProcesses(Optional.empty(), Optional.empty(), Optional.empty());
-    }
-    
-    /**
-     * GetLatestProcesses
-     * Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
-     * @param appId
-     * @param region
-     * @param status
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetLatestProcessesResponse getLatestProcesses(
-            Optional<String> appId,
-            Optional<? extends List<Region>> region,
-            Optional<? extends List<ProcessStatus>> status) throws Exception {
-        GetLatestProcessesRequest request =
-            GetLatestProcessesRequest
-                .builder()
-                .appId(appId)
-                .region(region)
-                .status(status)
-                .build();
-        
+            GetLatestProcessesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 GetLatestProcessesRequest.class,
@@ -735,34 +712,12 @@ public class ProcessesV3 implements
     /**
      * GetProcessesCountExperimental
      * Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetProcessesCountExperimentalResponse getProcessesCountExperimentalDirect() throws Exception {
-        return getProcessesCountExperimental(Optional.empty(), Optional.empty(), Optional.empty());
-    }
-    
-    /**
-     * GetProcessesCountExperimental
-     * Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
-     * @param appId
-     * @param region
-     * @param status
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetProcessesCountExperimentalResponse getProcessesCountExperimental(
-            Optional<String> appId,
-            Optional<? extends List<Region>> region,
-            Optional<? extends List<ProcessStatus>> status) throws Exception {
-        GetProcessesCountExperimentalRequest request =
-            GetProcessesCountExperimentalRequest
-                .builder()
-                .appId(appId)
-                .region(region)
-                .status(status)
-                .build();
-        
+            GetProcessesCountExperimentalRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 GetProcessesCountExperimentalRequest.class,

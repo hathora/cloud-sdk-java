@@ -84,12 +84,10 @@ package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.GetLatestProcessesRequest;
 import dev.hathora.cloud_sdk.models.operations.GetLatestProcessesResponse;
-import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
-import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
@@ -103,12 +101,12 @@ public class Application {
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
-        GetLatestProcessesResponse res = sdk.processesV3().getLatestProcesses()
+        GetLatestProcessesRequest req = GetLatestProcessesRequest.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(List.of(
-                    Region.SYDNEY))
-                .status(List.of(
-                    ProcessStatus.DRAINING))
+                .build();
+
+        GetLatestProcessesResponse res = sdk.processesV3().getLatestProcesses()
+                .request(req)
                 .call();
 
         if (res.classes().isPresent()) {
@@ -120,11 +118,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `appId`                                                      | *Optional\<String>*                                          | :heavy_minus_sign:                                           | N/A                                                          | app-af469a92-5b45-4565-b3c4-b79878de67d2                     |
-| `region`                                                     | List\<[Region](../../models/shared/Region.md)>               | :heavy_minus_sign:                                           | N/A                                                          |                                                              |
-| `status`                                                     | List\<[ProcessStatus](../../models/shared/ProcessStatus.md)> | :heavy_minus_sign:                                           | N/A                                                          |                                                              |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [GetLatestProcessesRequest](../../models/operations/GetLatestProcessesRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 ### Response
 
@@ -267,12 +263,10 @@ package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalRequest;
 import dev.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalResponse;
-import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
-import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
@@ -286,12 +280,12 @@ public class Application {
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
-        GetProcessesCountExperimentalResponse res = sdk.processesV3().getProcessesCountExperimental()
+        GetProcessesCountExperimentalRequest req = GetProcessesCountExperimentalRequest.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(List.of(
-                    Region.MUMBAI))
-                .status(List.of(
-                    ProcessStatus.STOPPING))
+                .build();
+
+        GetProcessesCountExperimentalResponse res = sdk.processesV3().getProcessesCountExperimental()
+                .request(req)
                 .call();
 
         if (res.object().isPresent()) {
@@ -303,11 +297,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `appId`                                                      | *Optional\<String>*                                          | :heavy_minus_sign:                                           | N/A                                                          | app-af469a92-5b45-4565-b3c4-b79878de67d2                     |
-| `region`                                                     | List\<[Region](../../models/shared/Region.md)>               | :heavy_minus_sign:                                           | N/A                                                          |                                                              |
-| `status`                                                     | List\<[ProcessStatus](../../models/shared/ProcessStatus.md)> | :heavy_minus_sign:                                           | N/A                                                          |                                                              |
+| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                               | [GetProcessesCountExperimentalRequest](../../models/operations/GetProcessesCountExperimentalRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 ### Response
 
