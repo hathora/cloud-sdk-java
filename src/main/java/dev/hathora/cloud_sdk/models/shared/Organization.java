@@ -22,6 +22,14 @@ import java.util.Optional;
 public class Organization {
 
     /**
+     * The maximum number of concurrent processes that can be run by the organization
+     * If undefined, the organization has no limit.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("concurrentProcessVcpusLimit")
+    private Optional<Double> concurrentProcessVcpusLimit;
+
+    /**
      * The features enabled for this org and user.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -36,6 +44,14 @@ public class Organization {
      */
     @JsonProperty("maxRequestedMemoryMB")
     private double maxRequestedMemoryMB;
+
+    /**
+     * The maximum number of monthly process vcpu hours that can be run by the organization
+     * If undefined, the organization has no limit.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("monthlyProcessVcpuHoursLimit")
+    private Optional<Double> monthlyProcessVcpuHoursLimit;
 
     /**
      * The name of an organization.
@@ -68,25 +84,31 @@ public class Organization {
 
     @JsonCreator
     public Organization(
+            @JsonProperty("concurrentProcessVcpusLimit") Optional<Double> concurrentProcessVcpusLimit,
             @JsonProperty("enabledFeatureFlags") Optional<? extends List<String>> enabledFeatureFlags,
             @JsonProperty("isSingleTenant") boolean isSingleTenant,
             @JsonProperty("maxRequestedMemoryMB") double maxRequestedMemoryMB,
+            @JsonProperty("monthlyProcessVcpuHoursLimit") Optional<Double> monthlyProcessVcpuHoursLimit,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("orgId") String orgId,
             @JsonProperty("podMaxLifespanHrs") Optional<Double> podMaxLifespanHrs,
             @JsonProperty("scopes") List<Scope> scopes,
             @JsonProperty("stripeCustomerId") String stripeCustomerId) {
+        Utils.checkNotNull(concurrentProcessVcpusLimit, "concurrentProcessVcpusLimit");
         Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
         Utils.checkNotNull(isSingleTenant, "isSingleTenant");
         Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
+        Utils.checkNotNull(monthlyProcessVcpuHoursLimit, "monthlyProcessVcpuHoursLimit");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(orgId, "orgId");
         Utils.checkNotNull(podMaxLifespanHrs, "podMaxLifespanHrs");
         Utils.checkNotNull(scopes, "scopes");
         Utils.checkNotNull(stripeCustomerId, "stripeCustomerId");
+        this.concurrentProcessVcpusLimit = concurrentProcessVcpusLimit;
         this.enabledFeatureFlags = enabledFeatureFlags;
         this.isSingleTenant = isSingleTenant;
         this.maxRequestedMemoryMB = maxRequestedMemoryMB;
+        this.monthlyProcessVcpuHoursLimit = monthlyProcessVcpuHoursLimit;
         this.name = name;
         this.orgId = orgId;
         this.podMaxLifespanHrs = podMaxLifespanHrs;
@@ -100,7 +122,16 @@ public class Organization {
             String orgId,
             List<Scope> scopes,
             String stripeCustomerId) {
-        this(Optional.empty(), isSingleTenant, maxRequestedMemoryMB, Optional.empty(), orgId, Optional.empty(), scopes, stripeCustomerId);
+        this(Optional.empty(), Optional.empty(), isSingleTenant, maxRequestedMemoryMB, Optional.empty(), Optional.empty(), orgId, Optional.empty(), scopes, stripeCustomerId);
+    }
+
+    /**
+     * The maximum number of concurrent processes that can be run by the organization
+     * If undefined, the organization has no limit.
+     */
+    @JsonIgnore
+    public Optional<Double> concurrentProcessVcpusLimit() {
+        return concurrentProcessVcpusLimit;
     }
 
     /**
@@ -123,6 +154,15 @@ public class Organization {
     @JsonIgnore
     public double maxRequestedMemoryMB() {
         return maxRequestedMemoryMB;
+    }
+
+    /**
+     * The maximum number of monthly process vcpu hours that can be run by the organization
+     * If undefined, the organization has no limit.
+     */
+    @JsonIgnore
+    public Optional<Double> monthlyProcessVcpuHoursLimit() {
+        return monthlyProcessVcpuHoursLimit;
     }
 
     /**
@@ -167,6 +207,26 @@ public class Organization {
     }
 
     /**
+     * The maximum number of concurrent processes that can be run by the organization
+     * If undefined, the organization has no limit.
+     */
+    public Organization withConcurrentProcessVcpusLimit(double concurrentProcessVcpusLimit) {
+        Utils.checkNotNull(concurrentProcessVcpusLimit, "concurrentProcessVcpusLimit");
+        this.concurrentProcessVcpusLimit = Optional.ofNullable(concurrentProcessVcpusLimit);
+        return this;
+    }
+
+    /**
+     * The maximum number of concurrent processes that can be run by the organization
+     * If undefined, the organization has no limit.
+     */
+    public Organization withConcurrentProcessVcpusLimit(Optional<Double> concurrentProcessVcpusLimit) {
+        Utils.checkNotNull(concurrentProcessVcpusLimit, "concurrentProcessVcpusLimit");
+        this.concurrentProcessVcpusLimit = concurrentProcessVcpusLimit;
+        return this;
+    }
+
+    /**
      * The features enabled for this org and user.
      */
     public Organization withEnabledFeatureFlags(List<String> enabledFeatureFlags) {
@@ -196,6 +256,26 @@ public class Organization {
     public Organization withMaxRequestedMemoryMB(double maxRequestedMemoryMB) {
         Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
         this.maxRequestedMemoryMB = maxRequestedMemoryMB;
+        return this;
+    }
+
+    /**
+     * The maximum number of monthly process vcpu hours that can be run by the organization
+     * If undefined, the organization has no limit.
+     */
+    public Organization withMonthlyProcessVcpuHoursLimit(double monthlyProcessVcpuHoursLimit) {
+        Utils.checkNotNull(monthlyProcessVcpuHoursLimit, "monthlyProcessVcpuHoursLimit");
+        this.monthlyProcessVcpuHoursLimit = Optional.ofNullable(monthlyProcessVcpuHoursLimit);
+        return this;
+    }
+
+    /**
+     * The maximum number of monthly process vcpu hours that can be run by the organization
+     * If undefined, the organization has no limit.
+     */
+    public Organization withMonthlyProcessVcpuHoursLimit(Optional<Double> monthlyProcessVcpuHoursLimit) {
+        Utils.checkNotNull(monthlyProcessVcpuHoursLimit, "monthlyProcessVcpuHoursLimit");
+        this.monthlyProcessVcpuHoursLimit = monthlyProcessVcpuHoursLimit;
         return this;
     }
 
@@ -269,9 +349,11 @@ public class Organization {
         }
         Organization other = (Organization) o;
         return 
+            Objects.deepEquals(this.concurrentProcessVcpusLimit, other.concurrentProcessVcpusLimit) &&
             Objects.deepEquals(this.enabledFeatureFlags, other.enabledFeatureFlags) &&
             Objects.deepEquals(this.isSingleTenant, other.isSingleTenant) &&
             Objects.deepEquals(this.maxRequestedMemoryMB, other.maxRequestedMemoryMB) &&
+            Objects.deepEquals(this.monthlyProcessVcpuHoursLimit, other.monthlyProcessVcpuHoursLimit) &&
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.orgId, other.orgId) &&
             Objects.deepEquals(this.podMaxLifespanHrs, other.podMaxLifespanHrs) &&
@@ -282,9 +364,11 @@ public class Organization {
     @Override
     public int hashCode() {
         return Objects.hash(
+            concurrentProcessVcpusLimit,
             enabledFeatureFlags,
             isSingleTenant,
             maxRequestedMemoryMB,
+            monthlyProcessVcpuHoursLimit,
             name,
             orgId,
             podMaxLifespanHrs,
@@ -295,9 +379,11 @@ public class Organization {
     @Override
     public String toString() {
         return Utils.toString(Organization.class,
+                "concurrentProcessVcpusLimit", concurrentProcessVcpusLimit,
                 "enabledFeatureFlags", enabledFeatureFlags,
                 "isSingleTenant", isSingleTenant,
                 "maxRequestedMemoryMB", maxRequestedMemoryMB,
+                "monthlyProcessVcpuHoursLimit", monthlyProcessVcpuHoursLimit,
                 "name", name,
                 "orgId", orgId,
                 "podMaxLifespanHrs", podMaxLifespanHrs,
@@ -307,11 +393,15 @@ public class Organization {
     
     public final static class Builder {
  
+        private Optional<Double> concurrentProcessVcpusLimit = Optional.empty();
+ 
         private Optional<? extends List<String>> enabledFeatureFlags = Optional.empty();
  
         private Boolean isSingleTenant;
  
         private Double maxRequestedMemoryMB;
+ 
+        private Optional<Double> monthlyProcessVcpuHoursLimit = Optional.empty();
  
         private Optional<String> name = Optional.empty();
  
@@ -325,6 +415,26 @@ public class Organization {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        /**
+         * The maximum number of concurrent processes that can be run by the organization
+         * If undefined, the organization has no limit.
+         */
+        public Builder concurrentProcessVcpusLimit(double concurrentProcessVcpusLimit) {
+            Utils.checkNotNull(concurrentProcessVcpusLimit, "concurrentProcessVcpusLimit");
+            this.concurrentProcessVcpusLimit = Optional.ofNullable(concurrentProcessVcpusLimit);
+            return this;
+        }
+
+        /**
+         * The maximum number of concurrent processes that can be run by the organization
+         * If undefined, the organization has no limit.
+         */
+        public Builder concurrentProcessVcpusLimit(Optional<Double> concurrentProcessVcpusLimit) {
+            Utils.checkNotNull(concurrentProcessVcpusLimit, "concurrentProcessVcpusLimit");
+            this.concurrentProcessVcpusLimit = concurrentProcessVcpusLimit;
+            return this;
         }
 
         /**
@@ -357,6 +467,26 @@ public class Organization {
         public Builder maxRequestedMemoryMB(double maxRequestedMemoryMB) {
             Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
             this.maxRequestedMemoryMB = maxRequestedMemoryMB;
+            return this;
+        }
+
+        /**
+         * The maximum number of monthly process vcpu hours that can be run by the organization
+         * If undefined, the organization has no limit.
+         */
+        public Builder monthlyProcessVcpuHoursLimit(double monthlyProcessVcpuHoursLimit) {
+            Utils.checkNotNull(monthlyProcessVcpuHoursLimit, "monthlyProcessVcpuHoursLimit");
+            this.monthlyProcessVcpuHoursLimit = Optional.ofNullable(monthlyProcessVcpuHoursLimit);
+            return this;
+        }
+
+        /**
+         * The maximum number of monthly process vcpu hours that can be run by the organization
+         * If undefined, the organization has no limit.
+         */
+        public Builder monthlyProcessVcpuHoursLimit(Optional<Double> monthlyProcessVcpuHoursLimit) {
+            Utils.checkNotNull(monthlyProcessVcpuHoursLimit, "monthlyProcessVcpuHoursLimit");
+            this.monthlyProcessVcpuHoursLimit = monthlyProcessVcpuHoursLimit;
             return this;
         }
 
@@ -422,9 +552,11 @@ public class Organization {
         
         public Organization build() {
             return new Organization(
+                concurrentProcessVcpusLimit,
                 enabledFeatureFlags,
                 isSingleTenant,
                 maxRequestedMemoryMB,
+                monthlyProcessVcpuHoursLimit,
                 name,
                 orgId,
                 podMaxLifespanHrs,
