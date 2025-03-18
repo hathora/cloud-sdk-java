@@ -6,6 +6,7 @@ package dev.hathora.cloud_sdk.models.operations;
 
 import dev.hathora.cloud_sdk.models.shared.CreateOrgToken;
 import dev.hathora.cloud_sdk.utils.Utils;
+import java.lang.Exception;
 import java.lang.String;
 
 public class CreateOrgTokenRequestBuilder {

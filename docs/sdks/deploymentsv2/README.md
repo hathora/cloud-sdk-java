@@ -57,8 +57,8 @@ public class Application {
                             .value("TRUE")
                             .build()))
                     .idleTimeoutEnabled(true)
-                    .requestedCPU(0.5d)
-                    .requestedMemoryMB(1024d)
+                    .requestedCPU(0.5)
+                    .requestedMemoryMB(1024)
                     .roomsPerProcess(3)
                     .transportType(TransportType.TLS)
                     .additionalContainerPorts(List.of(

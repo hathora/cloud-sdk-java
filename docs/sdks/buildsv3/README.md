@@ -43,7 +43,7 @@ public class Application {
 
         CreateBuildResponse res = sdk.buildsV3().createBuild()
                 .createMultipartBuildParams(CreateMultipartBuildParams.builder()
-                    .buildSizeInBytes(5387.85d)
+                    .buildSizeInBytes(5387.85)
                     .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                     .buildTag("0.1.14-14c793")
                     .build())

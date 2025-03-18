@@ -6,6 +6,7 @@ package dev.hathora.cloud_sdk.models.operations;
 
 import dev.hathora.cloud_sdk.models.shared.SetLobbyStateParams;
 import dev.hathora.cloud_sdk.utils.Utils;
+import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 

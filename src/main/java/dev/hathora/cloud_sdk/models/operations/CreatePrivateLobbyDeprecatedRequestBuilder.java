@@ -9,6 +9,7 @@ import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.utils.LazySingletonValue;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 

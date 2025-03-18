@@ -6,6 +6,7 @@ package dev.hathora.cloud_sdk.models.operations;
 
 import dev.hathora.cloud_sdk.models.shared.AppConfig;
 import dev.hathora.cloud_sdk.utils.Utils;
+import java.lang.Exception;
 
 public class CreateAppV1DeprecatedRequestBuilder {
 

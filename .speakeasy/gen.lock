@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: ceca2431bb3beddefbf3fde1318928db
+  docChecksum: d01f757cafac7dc884f592bad6268217
   docVersion: 0.0.1
-  speakeasyVersion: 1.517.3
-  generationVersion: 2.548.6
-  releaseVersion: 2.14.7
-  configChecksum: 87862e35a9922f88bedfa1adc1593802
+  speakeasyVersion: 1.519.0
+  generationVersion: 2.552.1
+  releaseVersion: 2.15.0
+  configChecksum: 12460643d0b3030a6121e4afd145daf4
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.34.0
+    core: 3.35.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
@@ -433,6 +433,7 @@ generatedFiles:
   - docs/sdks/roomsv1/README.md
   - docs/sdks/roomsv2/README.md
   - docs/sdks/tokensv1/README.md
+  - gradle.properties
   - gradle/wrapper/gradle-wrapper.jar
   - gradle/wrapper/gradle-wrapper.properties
   - gradlew

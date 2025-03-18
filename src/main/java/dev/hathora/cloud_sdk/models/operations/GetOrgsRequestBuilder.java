@@ -4,6 +4,7 @@
 
 package dev.hathora.cloud_sdk.models.operations;
 
+import java.lang.Exception;
 
 public class GetOrgsRequestBuilder {
 

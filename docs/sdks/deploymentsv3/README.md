@@ -54,8 +54,8 @@ public class Application {
                             .value("TRUE")
                             .build()))
                     .idleTimeoutEnabled(false)
-                    .requestedCPU(0.5d)
-                    .requestedMemoryMB(1024d)
+                    .requestedCPU(0.5)
+                    .requestedMemoryMB(1024)
                     .roomsPerProcess(3)
                     .transportType(TransportType.UDP)
                     .additionalContainerPorts(List.of(
@@ -70,7 +70,7 @@ public class Application {
                             .transportType(TransportType.TCP)
                             .build()))
                     .deploymentTag("alpha")
-                    .experimentalRequestedGPU(1d)
+                    .experimentalRequestedGPU(1)
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();

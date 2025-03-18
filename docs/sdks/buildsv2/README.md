@@ -171,7 +171,7 @@ public class Application {
 
         CreateWithMultipartUploadsV2DeprecatedResponse res = sdk.buildsV2().createWithMultipartUploadsV2Deprecated()
                 .createMultipartBuildParams(CreateMultipartBuildParams.builder()
-                    .buildSizeInBytes(3146.66d)
+                    .buildSizeInBytes(3146.66)
                     .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                     .buildTag("0.1.14-14c793")
                     .build())

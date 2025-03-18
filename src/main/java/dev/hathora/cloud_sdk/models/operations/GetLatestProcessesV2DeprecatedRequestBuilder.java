@@ -7,6 +7,7 @@ package dev.hathora.cloud_sdk.models.operations;
 import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.utils.Utils;
+import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
