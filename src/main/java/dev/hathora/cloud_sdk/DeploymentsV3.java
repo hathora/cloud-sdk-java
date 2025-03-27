@@ -37,7 +37,6 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Optional; 
 
 /**
@@ -58,7 +57,9 @@ public class DeploymentsV3 implements
 
     /**
      * CreateDeployment
-     * Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+     * 
+     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+     * 
      * @return The call builder
      */
     public CreateDeploymentRequestBuilder createDeployment() {
@@ -67,8 +68,10 @@ public class DeploymentsV3 implements
 
     /**
      * CreateDeployment
-     * Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
-     * @param deploymentConfigV3
+     * 
+     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+     * 
+     * @param deploymentConfigV3 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -79,9 +82,11 @@ public class DeploymentsV3 implements
     
     /**
      * CreateDeployment
-     * Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
-     * @param deploymentConfigV3
-     * @param appId
+     * 
+     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+     * 
+     * @param deploymentConfigV3 
+     * @param appId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -128,8 +133,9 @@ public class DeploymentsV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "CreateDeployment", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -139,8 +145,9 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateDeployment",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -148,8 +155,9 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "CreateDeployment",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -157,8 +165,9 @@ public class DeploymentsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateDeployment",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -246,7 +255,9 @@ public class DeploymentsV3 implements
 
     /**
      * GetDeployment
-     * Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
+     * 
+     * <p>Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
+     * 
      * @return The call builder
      */
     public GetDeploymentRequestBuilder getDeployment() {
@@ -255,8 +266,10 @@ public class DeploymentsV3 implements
 
     /**
      * GetDeployment
-     * Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
-     * @param deploymentId
+     * 
+     * <p>Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
+     * 
+     * @param deploymentId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -267,9 +280,11 @@ public class DeploymentsV3 implements
     
     /**
      * GetDeployment
-     * Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
-     * @param appId
-     * @param deploymentId
+     * 
+     * <p>Get details for a [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment).
+     * 
+     * @param appId 
+     * @param deploymentId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -303,8 +318,9 @@ public class DeploymentsV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetDeployment", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -314,8 +330,9 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetDeployment",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -323,8 +340,9 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetDeployment",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -332,8 +350,9 @@ public class DeploymentsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetDeployment",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -407,7 +426,9 @@ public class DeploymentsV3 implements
 
     /**
      * GetDeployments
-     * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
+     * 
+     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
+     * 
      * @return The call builder
      */
     public GetDeploymentsRequestBuilder getDeployments() {
@@ -416,7 +437,9 @@ public class DeploymentsV3 implements
 
     /**
      * GetDeployments
-     * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
+     * 
+     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -426,9 +449,11 @@ public class DeploymentsV3 implements
     
     /**
      * GetDeployments
-     * Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
-     * @param appId
-     * @param deploymentTag
+     * 
+     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
+     * 
+     * @param appId 
+     * @param deploymentTag 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -467,8 +492,9 @@ public class DeploymentsV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetDeployments", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -478,8 +504,9 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetDeployments",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -487,8 +514,9 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetDeployments",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -496,8 +524,9 @@ public class DeploymentsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetDeployments",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -571,7 +600,9 @@ public class DeploymentsV3 implements
 
     /**
      * GetLatestDeployment
-     * Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
+     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
      * @return The call builder
      */
     public GetLatestDeploymentRequestBuilder getLatestDeployment() {
@@ -580,7 +611,9 @@ public class DeploymentsV3 implements
 
     /**
      * GetLatestDeployment
-     * Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
+     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -590,8 +623,10 @@ public class DeploymentsV3 implements
     
     /**
      * GetLatestDeployment
-     * Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
-     * @param appId
+     * 
+     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
+     * @param appId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -623,8 +658,9 @@ public class DeploymentsV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetLatestDeployment", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -634,8 +670,9 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetLatestDeployment",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -643,8 +680,9 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetLatestDeployment",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -652,8 +690,9 @@ public class DeploymentsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetLatestDeployment",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

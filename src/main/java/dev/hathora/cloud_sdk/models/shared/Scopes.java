@@ -18,7 +18,9 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Objects;
 /**
- * Scopes - If not defined, the token has Admin access.
+ * Scopes
+ * 
+ * <p>If not defined, the token has Admin access.
  */
 
 @JsonDeserialize(using = Scopes._Deserializer.class)

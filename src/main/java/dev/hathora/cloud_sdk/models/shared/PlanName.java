@@ -44,15 +44,17 @@ import java.util.Optional;
  *
  */
 /**
- * PlanName - A plan defines how much CPU and memory is required to run an instance of your game server.
+ * PlanName
  * 
- * `tiny`: shared core, 1gb memory
+ * <p>A plan defines how much CPU and memory is required to run an instance of your game server.
  * 
- * `small`: 1 core, 2gb memory
+ * <p>`tiny`: shared core, 1gb memory
  * 
- * `medium`: 2 core, 4gb memory
+ * <p>`small`: 1 core, 2gb memory
  * 
- * `large`: 4 core, 8gb memory
+ * <p>`medium`: 2 core, 4gb memory
+ * 
+ * <p>`large`: 4 core, 8gb memory
  */
 @JsonDeserialize(using = PlanName._Deserializer.class)
 @JsonSerialize(using = PlanName._Serializer.class)

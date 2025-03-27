@@ -27,9 +27,7 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateRoomDeprecatedResponse;
-import dev.hathora.cloud_sdk.models.shared.CreateRoomParams;
-import dev.hathora.cloud_sdk.models.shared.Region;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 import java.util.List;
 

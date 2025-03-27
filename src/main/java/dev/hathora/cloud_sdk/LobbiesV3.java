@@ -55,7 +55,9 @@ public class LobbiesV3 implements
 
     /**
      * CreateLobby
-     * Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
+     * 
+     * <p>Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
+     * 
      * @return The call builder
      */
     public CreateLobbyRequestBuilder createLobby() {
@@ -64,7 +66,9 @@ public class LobbiesV3 implements
 
     /**
      * CreateLobby
-     * Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
+     * 
+     * <p>Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
+     * 
      * @param request The request object containing all of the parameters for the API call.
      * @param security The security details to use for authentication.
      * @return The response from the API call
@@ -102,19 +106,18 @@ public class LobbiesV3 implements
                 CreateLobbyRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-        
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+
+        // hooks will be passed method level security only
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(SecuritySource.of(security));
         Utils.configureSecurity(_req, security);
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "CreateLobby", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -124,8 +127,9 @@ public class LobbiesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateLobby",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -133,8 +137,9 @@ public class LobbiesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "CreateLobby",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -142,8 +147,9 @@ public class LobbiesV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateLobby",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -231,7 +237,9 @@ public class LobbiesV3 implements
 
     /**
      * GetLobbyInfoByRoomId
-     * Get details for a lobby.
+     * 
+     * <p>Get details for a lobby.
+     * 
      * @return The call builder
      */
     public GetLobbyInfoByRoomIdRequestBuilder getLobbyInfoByRoomId() {
@@ -240,8 +248,10 @@ public class LobbiesV3 implements
 
     /**
      * GetLobbyInfoByRoomId
-     * Get details for a lobby.
-     * @param roomId
+     * 
+     * <p>Get details for a lobby.
+     * 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -252,9 +262,11 @@ public class LobbiesV3 implements
     
     /**
      * GetLobbyInfoByRoomId
-     * Get details for a lobby.
-     * @param appId
-     * @param roomId
+     * 
+     * <p>Get details for a lobby.
+     * 
+     * @param appId 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -285,8 +297,9 @@ public class LobbiesV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetLobbyInfoByRoomId", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -296,8 +309,9 @@ public class LobbiesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetLobbyInfoByRoomId",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -305,8 +319,9 @@ public class LobbiesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetLobbyInfoByRoomId",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -314,8 +329,9 @@ public class LobbiesV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetLobbyInfoByRoomId",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -389,7 +405,9 @@ public class LobbiesV3 implements
 
     /**
      * GetLobbyInfoByShortCode
-     * Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then the most recently created lobby will be returned.
+     * 
+     * <p>Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then the most recently created lobby will be returned.
+     * 
      * @return The call builder
      */
     public GetLobbyInfoByShortCodeRequestBuilder getLobbyInfoByShortCode() {
@@ -398,8 +416,10 @@ public class LobbiesV3 implements
 
     /**
      * GetLobbyInfoByShortCode
-     * Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then the most recently created lobby will be returned.
-     * @param shortCode
+     * 
+     * <p>Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then the most recently created lobby will be returned.
+     * 
+     * @param shortCode 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -410,9 +430,11 @@ public class LobbiesV3 implements
     
     /**
      * GetLobbyInfoByShortCode
-     * Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then the most recently created lobby will be returned.
-     * @param appId
-     * @param shortCode
+     * 
+     * <p>Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then the most recently created lobby will be returned.
+     * 
+     * @param appId 
+     * @param shortCode 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -443,8 +465,9 @@ public class LobbiesV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetLobbyInfoByShortCode", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -454,8 +477,9 @@ public class LobbiesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetLobbyInfoByShortCode",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -463,8 +487,9 @@ public class LobbiesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetLobbyInfoByShortCode",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -472,8 +497,9 @@ public class LobbiesV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetLobbyInfoByShortCode",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -547,7 +573,9 @@ public class LobbiesV3 implements
 
     /**
      * ListActivePublicLobbies
-     * Get all active lobbies for a given [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
+     * 
+     * <p>Get all active lobbies for a given [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
+     * 
      * @return The call builder
      */
     public ListActivePublicLobbiesRequestBuilder listActivePublicLobbies() {
@@ -556,7 +584,9 @@ public class LobbiesV3 implements
 
     /**
      * ListActivePublicLobbies
-     * Get all active lobbies for a given [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
+     * 
+     * <p>Get all active lobbies for a given [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -566,9 +596,11 @@ public class LobbiesV3 implements
     
     /**
      * ListActivePublicLobbies
-     * Get all active lobbies for a given [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
-     * @param appId
-     * @param region
+     * 
+     * <p>Get all active lobbies for a given [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
+     * 
+     * @param appId 
+     * @param region 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -604,8 +636,9 @@ public class LobbiesV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "ListActivePublicLobbies", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -615,8 +648,9 @@ public class LobbiesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "ListActivePublicLobbies",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -624,8 +658,9 @@ public class LobbiesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "ListActivePublicLobbies",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -633,8 +668,9 @@ public class LobbiesV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "ListActivePublicLobbies",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

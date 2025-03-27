@@ -21,7 +21,9 @@ import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 /**
- * BuildWithUploadUrl - A build represents a game server artifact and its associated metadata.
+ * BuildWithUploadUrl
+ * 
+ * <p>A build represents a game server artifact and its associated metadata.
  */
 
 public class BuildWithUploadUrl {
@@ -59,6 +61,13 @@ public class BuildWithUploadUrl {
     private Optional<OffsetDateTime> deletedAt;
 
     /**
+     * When the build expired
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("expiredAt")
+    private Optional<OffsetDateTime> expiredAt;
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     @JsonInclude(Include.ALWAYS)
@@ -72,6 +81,7 @@ public class BuildWithUploadUrl {
     private long imageSize;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("regionalContainerTags")
@@ -102,6 +112,7 @@ public class BuildWithUploadUrl {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") String createdBy,
             @JsonProperty("deletedAt") Optional<OffsetDateTime> deletedAt,
+            @JsonProperty("expiredAt") Optional<OffsetDateTime> expiredAt,
             @JsonProperty("finishedAt") Optional<OffsetDateTime> finishedAt,
             @JsonProperty("imageSize") long imageSize,
             @JsonProperty("regionalContainerTags") List<BuildWithUploadUrlRegionalContainerTags> regionalContainerTags,
@@ -115,6 +126,7 @@ public class BuildWithUploadUrl {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(deletedAt, "deletedAt");
+        Utils.checkNotNull(expiredAt, "expiredAt");
         Utils.checkNotNull(finishedAt, "finishedAt");
         Utils.checkNotNull(imageSize, "imageSize");
         Utils.checkNotNull(regionalContainerTags, "regionalContainerTags");
@@ -128,6 +140,7 @@ public class BuildWithUploadUrl {
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.deletedAt = deletedAt;
+        this.expiredAt = expiredAt;
         this.finishedAt = finishedAt;
         this.imageSize = imageSize;
         this.regionalContainerTags = regionalContainerTags;
@@ -147,7 +160,7 @@ public class BuildWithUploadUrl {
             BuildStatus status,
             List<UploadBodyParams> uploadBodyParams,
             String uploadUrl) {
-        this(appId, buildId, JsonNullable.undefined(), createdAt, createdBy, Optional.empty(), Optional.empty(), imageSize, regionalContainerTags, Optional.empty(), status, uploadBodyParams, uploadUrl);
+        this(appId, buildId, JsonNullable.undefined(), createdAt, createdBy, Optional.empty(), Optional.empty(), Optional.empty(), imageSize, regionalContainerTags, Optional.empty(), status, uploadBodyParams, uploadUrl);
     }
 
     /**
@@ -193,6 +206,14 @@ public class BuildWithUploadUrl {
     }
 
     /**
+     * When the build expired
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> expiredAt() {
+        return expiredAt;
+    }
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     @JsonIgnore
@@ -209,6 +230,7 @@ public class BuildWithUploadUrl {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -308,6 +330,24 @@ public class BuildWithUploadUrl {
     }
 
     /**
+     * When the build expired
+     */
+    public BuildWithUploadUrl withExpiredAt(OffsetDateTime expiredAt) {
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        this.expiredAt = Optional.ofNullable(expiredAt);
+        return this;
+    }
+
+    /**
+     * When the build expired
+     */
+    public BuildWithUploadUrl withExpiredAt(Optional<OffsetDateTime> expiredAt) {
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        this.expiredAt = expiredAt;
+        return this;
+    }
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     public BuildWithUploadUrl withFinishedAt(OffsetDateTime finishedAt) {
@@ -335,6 +375,7 @@ public class BuildWithUploadUrl {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -396,6 +437,7 @@ public class BuildWithUploadUrl {
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.createdBy, other.createdBy) &&
             Objects.deepEquals(this.deletedAt, other.deletedAt) &&
+            Objects.deepEquals(this.expiredAt, other.expiredAt) &&
             Objects.deepEquals(this.finishedAt, other.finishedAt) &&
             Objects.deepEquals(this.imageSize, other.imageSize) &&
             Objects.deepEquals(this.regionalContainerTags, other.regionalContainerTags) &&
@@ -414,6 +456,7 @@ public class BuildWithUploadUrl {
             createdAt,
             createdBy,
             deletedAt,
+            expiredAt,
             finishedAt,
             imageSize,
             regionalContainerTags,
@@ -432,6 +475,7 @@ public class BuildWithUploadUrl {
                 "createdAt", createdAt,
                 "createdBy", createdBy,
                 "deletedAt", deletedAt,
+                "expiredAt", expiredAt,
                 "finishedAt", finishedAt,
                 "imageSize", imageSize,
                 "regionalContainerTags", regionalContainerTags,
@@ -454,6 +498,8 @@ public class BuildWithUploadUrl {
         private String createdBy;
  
         private Optional<OffsetDateTime> deletedAt = Optional.empty();
+ 
+        private Optional<OffsetDateTime> expiredAt = Optional.empty();
  
         private Optional<OffsetDateTime> finishedAt = Optional.empty();
  
@@ -538,6 +584,24 @@ public class BuildWithUploadUrl {
         }
 
         /**
+         * When the build expired
+         */
+        public Builder expiredAt(OffsetDateTime expiredAt) {
+            Utils.checkNotNull(expiredAt, "expiredAt");
+            this.expiredAt = Optional.ofNullable(expiredAt);
+            return this;
+        }
+
+        /**
+         * When the build expired
+         */
+        public Builder expiredAt(Optional<OffsetDateTime> expiredAt) {
+            Utils.checkNotNull(expiredAt, "expiredAt");
+            this.expiredAt = expiredAt;
+            return this;
+        }
+
+        /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
          */
         public Builder finishedAt(OffsetDateTime finishedAt) {
@@ -565,6 +629,7 @@ public class BuildWithUploadUrl {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -618,6 +683,7 @@ public class BuildWithUploadUrl {
                 createdAt,
                 createdBy,
                 deletedAt,
+                expiredAt,
                 finishedAt,
                 imageSize,
                 regionalContainerTags,

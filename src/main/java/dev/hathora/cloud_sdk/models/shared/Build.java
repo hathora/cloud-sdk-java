@@ -21,7 +21,9 @@ import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 /**
- * Build - A build represents a game server artifact and its associated metadata.
+ * Build
+ * 
+ * <p>A build represents a game server artifact and its associated metadata.
  */
 
 public class Build {
@@ -59,6 +61,13 @@ public class Build {
     private Optional<OffsetDateTime> deletedAt;
 
     /**
+     * When the build expired
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("expiredAt")
+    private Optional<OffsetDateTime> expiredAt;
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     @JsonInclude(Include.ALWAYS)
@@ -72,6 +81,7 @@ public class Build {
     private long imageSize;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("regionalContainerTags")
@@ -96,6 +106,7 @@ public class Build {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") String createdBy,
             @JsonProperty("deletedAt") Optional<OffsetDateTime> deletedAt,
+            @JsonProperty("expiredAt") Optional<OffsetDateTime> expiredAt,
             @JsonProperty("finishedAt") Optional<OffsetDateTime> finishedAt,
             @JsonProperty("imageSize") long imageSize,
             @JsonProperty("regionalContainerTags") List<RegionalContainerTags> regionalContainerTags,
@@ -107,6 +118,7 @@ public class Build {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(deletedAt, "deletedAt");
+        Utils.checkNotNull(expiredAt, "expiredAt");
         Utils.checkNotNull(finishedAt, "finishedAt");
         Utils.checkNotNull(imageSize, "imageSize");
         Utils.checkNotNull(regionalContainerTags, "regionalContainerTags");
@@ -118,6 +130,7 @@ public class Build {
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.deletedAt = deletedAt;
+        this.expiredAt = expiredAt;
         this.finishedAt = finishedAt;
         this.imageSize = imageSize;
         this.regionalContainerTags = regionalContainerTags;
@@ -133,7 +146,7 @@ public class Build {
             long imageSize,
             List<RegionalContainerTags> regionalContainerTags,
             BuildStatus status) {
-        this(appId, buildId, JsonNullable.undefined(), createdAt, createdBy, Optional.empty(), Optional.empty(), imageSize, regionalContainerTags, Optional.empty(), status);
+        this(appId, buildId, JsonNullable.undefined(), createdAt, createdBy, Optional.empty(), Optional.empty(), Optional.empty(), imageSize, regionalContainerTags, Optional.empty(), status);
     }
 
     /**
@@ -179,6 +192,14 @@ public class Build {
     }
 
     /**
+     * When the build expired
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> expiredAt() {
+        return expiredAt;
+    }
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     @JsonIgnore
@@ -195,6 +216,7 @@ public class Build {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -284,6 +306,24 @@ public class Build {
     }
 
     /**
+     * When the build expired
+     */
+    public Build withExpiredAt(OffsetDateTime expiredAt) {
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        this.expiredAt = Optional.ofNullable(expiredAt);
+        return this;
+    }
+
+    /**
+     * When the build expired
+     */
+    public Build withExpiredAt(Optional<OffsetDateTime> expiredAt) {
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        this.expiredAt = expiredAt;
+        return this;
+    }
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     public Build withFinishedAt(OffsetDateTime finishedAt) {
@@ -311,6 +351,7 @@ public class Build {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -360,6 +401,7 @@ public class Build {
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.createdBy, other.createdBy) &&
             Objects.deepEquals(this.deletedAt, other.deletedAt) &&
+            Objects.deepEquals(this.expiredAt, other.expiredAt) &&
             Objects.deepEquals(this.finishedAt, other.finishedAt) &&
             Objects.deepEquals(this.imageSize, other.imageSize) &&
             Objects.deepEquals(this.regionalContainerTags, other.regionalContainerTags) &&
@@ -376,6 +418,7 @@ public class Build {
             createdAt,
             createdBy,
             deletedAt,
+            expiredAt,
             finishedAt,
             imageSize,
             regionalContainerTags,
@@ -392,6 +435,7 @@ public class Build {
                 "createdAt", createdAt,
                 "createdBy", createdBy,
                 "deletedAt", deletedAt,
+                "expiredAt", expiredAt,
                 "finishedAt", finishedAt,
                 "imageSize", imageSize,
                 "regionalContainerTags", regionalContainerTags,
@@ -412,6 +456,8 @@ public class Build {
         private String createdBy;
  
         private Optional<OffsetDateTime> deletedAt = Optional.empty();
+ 
+        private Optional<OffsetDateTime> expiredAt = Optional.empty();
  
         private Optional<OffsetDateTime> finishedAt = Optional.empty();
  
@@ -492,6 +538,24 @@ public class Build {
         }
 
         /**
+         * When the build expired
+         */
+        public Builder expiredAt(OffsetDateTime expiredAt) {
+            Utils.checkNotNull(expiredAt, "expiredAt");
+            this.expiredAt = Optional.ofNullable(expiredAt);
+            return this;
+        }
+
+        /**
+         * When the build expired
+         */
+        public Builder expiredAt(Optional<OffsetDateTime> expiredAt) {
+            Utils.checkNotNull(expiredAt, "expiredAt");
+            this.expiredAt = expiredAt;
+            return this;
+        }
+
+        /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
          */
         public Builder finishedAt(OffsetDateTime finishedAt) {
@@ -519,6 +583,7 @@ public class Build {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -560,6 +625,7 @@ public class Build {
                 createdAt,
                 createdBy,
                 deletedAt,
+                expiredAt,
                 finishedAt,
                 imageSize,
                 regionalContainerTags,

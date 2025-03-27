@@ -203,9 +203,7 @@ import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionRequest;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionResponse;
-import dev.hathora.cloud_sdk.models.shared.FleetRegionConfig;
-import dev.hathora.cloud_sdk.models.shared.Region;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {

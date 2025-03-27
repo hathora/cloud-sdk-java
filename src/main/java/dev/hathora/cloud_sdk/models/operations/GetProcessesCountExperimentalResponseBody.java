@@ -13,7 +13,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 /**
- * GetProcessesCountExperimentalResponseBody - Ok
+ * GetProcessesCountExperimentalResponseBody
+ * 
+ * <p>Ok
  */
 
 public class GetProcessesCountExperimentalResponseBody {

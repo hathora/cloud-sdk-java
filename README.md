@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:2.15.0'
+implementation 'dev.hathora:cloud-sdk:3.0.0'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>2.15.0</version>
+    <version>3.0.0</version>
 </dependency>
 ```
 
@@ -74,9 +74,7 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
-import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
@@ -336,9 +334,7 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
-import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
@@ -391,9 +387,7 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
-import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
@@ -445,9 +439,7 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
-import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
@@ -488,9 +480,7 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
-import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
@@ -541,9 +531,7 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
-import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
@@ -582,12 +570,8 @@ package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.operations.CreateLobbyRequest;
-import dev.hathora.cloud_sdk.models.operations.CreateLobbyResponse;
-import dev.hathora.cloud_sdk.models.operations.CreateLobbySecurity;
-import dev.hathora.cloud_sdk.models.shared.CreateLobbyV3Params;
-import dev.hathora.cloud_sdk.models.shared.LobbyVisibility;
-import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.models.operations.*;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {

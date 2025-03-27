@@ -18,7 +18,9 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Objects;
 /**
- * CreateUserInviteScopes - If not defined, the user has Admin access.
+ * CreateUserInviteScopes
+ * 
+ * <p>If not defined, the user has Admin access.
  */
 
 @JsonDeserialize(using = CreateUserInviteScopes._Deserializer.class)

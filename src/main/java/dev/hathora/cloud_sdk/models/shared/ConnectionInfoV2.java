@@ -17,7 +17,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * ConnectionInfoV2 - Connection information for the default and additional ports.
+ * ConnectionInfoV2
+ * 
+ * <p>Connection information for the default and additional ports.
  */
 
 public class ConnectionInfoV2 {

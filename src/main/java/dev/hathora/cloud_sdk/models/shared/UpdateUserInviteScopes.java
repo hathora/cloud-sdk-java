@@ -18,7 +18,9 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Objects;
 /**
- * UpdateUserInviteScopes - Scopes can only be removed or added if a user has those scopes.
+ * UpdateUserInviteScopes
+ * 
+ * <p>Scopes can only be removed or added if a user has those scopes.
  */
 
 @JsonDeserialize(using = UpdateUserInviteScopes._Deserializer.class)

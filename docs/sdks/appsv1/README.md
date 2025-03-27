@@ -25,9 +25,7 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateAppV1DeprecatedResponse;
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
-import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
@@ -254,9 +252,7 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.UpdateAppV1DeprecatedResponse;
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
-import dev.hathora.cloud_sdk.models.shared.AuthConfiguration;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {

@@ -21,7 +21,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * DeploymentConfig - User specified deployment configuration for your application at runtime.
+ * DeploymentConfig
+ * 
+ * <p>User specified deployment configuration for your application at runtime.
  */
 
 public class DeploymentConfig {
@@ -56,13 +58,13 @@ public class DeploymentConfig {
     /**
      * A plan defines how much CPU and memory is required to run an instance of your game server.
      * 
-     * `tiny`: shared core, 1gb memory
+     * <p>`tiny`: shared core, 1gb memory
      * 
-     * `small`: 1 core, 2gb memory
+     * <p>`small`: 1 core, 2gb memory
      * 
-     * `medium`: 2 core, 4gb memory
+     * <p>`medium`: 2 core, 4gb memory
      * 
-     * `large`: 4 core, 8gb memory
+     * <p>`large`: 4 core, 8gb memory
      */
     @JsonProperty("planName")
     private PlanName planName;
@@ -150,13 +152,13 @@ public class DeploymentConfig {
     /**
      * A plan defines how much CPU and memory is required to run an instance of your game server.
      * 
-     * `tiny`: shared core, 1gb memory
+     * <p>`tiny`: shared core, 1gb memory
      * 
-     * `small`: 1 core, 2gb memory
+     * <p>`small`: 1 core, 2gb memory
      * 
-     * `medium`: 2 core, 4gb memory
+     * <p>`medium`: 2 core, 4gb memory
      * 
-     * `large`: 4 core, 8gb memory
+     * <p>`large`: 4 core, 8gb memory
      */
     @JsonIgnore
     public PlanName planName() {
@@ -242,13 +244,13 @@ public class DeploymentConfig {
     /**
      * A plan defines how much CPU and memory is required to run an instance of your game server.
      * 
-     * `tiny`: shared core, 1gb memory
+     * <p>`tiny`: shared core, 1gb memory
      * 
-     * `small`: 1 core, 2gb memory
+     * <p>`small`: 1 core, 2gb memory
      * 
-     * `medium`: 2 core, 4gb memory
+     * <p>`medium`: 2 core, 4gb memory
      * 
-     * `large`: 4 core, 8gb memory
+     * <p>`large`: 4 core, 8gb memory
      */
     public DeploymentConfig withPlanName(PlanName planName) {
         Utils.checkNotNull(planName, "planName");
@@ -396,13 +398,13 @@ public class DeploymentConfig {
         /**
          * A plan defines how much CPU and memory is required to run an instance of your game server.
          * 
-         * `tiny`: shared core, 1gb memory
+         * <p>`tiny`: shared core, 1gb memory
          * 
-         * `small`: 1 core, 2gb memory
+         * <p>`small`: 1 core, 2gb memory
          * 
-         * `medium`: 2 core, 4gb memory
+         * <p>`medium`: 2 core, 4gb memory
          * 
-         * `large`: 4 core, 8gb memory
+         * <p>`large`: 4 core, 8gb memory
          */
         public Builder planName(PlanName planName) {
             Utils.checkNotNull(planName, "planName");

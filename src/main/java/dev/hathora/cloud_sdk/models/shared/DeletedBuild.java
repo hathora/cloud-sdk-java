@@ -10,7 +10,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 /**
- * DeletedBuild - Construct a type with a set of properties K of type T
+ * DeletedBuild
+ * 
+ * <p>Construct a type with a set of properties K of type T
  */
 
 public class DeletedBuild {

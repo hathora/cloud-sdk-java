@@ -88,9 +88,7 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetLatestProcessesV2DeprecatedResponse;
-import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
-import dev.hathora.cloud_sdk.models.shared.Region;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 import java.util.List;
 
@@ -213,9 +211,7 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedResponse;
-import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
-import dev.hathora.cloud_sdk.models.shared.Region;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 import java.util.List;
 

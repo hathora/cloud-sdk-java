@@ -51,6 +51,7 @@ public class LobbiesV1 implements
 
     /**
      * CreatePrivateLobbyDeprecated
+     * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -61,6 +62,7 @@ public class LobbiesV1 implements
 
     /**
      * CreatePrivateLobbyDeprecated
+     * 
      * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -74,10 +76,11 @@ public class LobbiesV1 implements
     
     /**
      * CreatePrivateLobbyDeprecated
+     * 
      * @param security The security details to use for authentication.
-     * @param appId
-     * @param local
-     * @param region
+     * @param appId 
+     * @param local 
+     * @param region 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -112,19 +115,18 @@ public class LobbiesV1 implements
                 CreatePrivateLobbyDeprecatedRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-        
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+
+        // hooks will be passed method level security only
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(SecuritySource.of(security));
         Utils.configureSecurity(_req, security);
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "CreatePrivateLobbyDeprecated", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -134,8 +136,9 @@ public class LobbiesV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreatePrivateLobbyDeprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -143,8 +146,9 @@ public class LobbiesV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "CreatePrivateLobbyDeprecated",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -152,8 +156,9 @@ public class LobbiesV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreatePrivateLobbyDeprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -241,6 +246,7 @@ public class LobbiesV1 implements
 
     /**
      * CreatePublicLobbyDeprecated
+     * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -251,6 +257,7 @@ public class LobbiesV1 implements
 
     /**
      * CreatePublicLobbyDeprecated
+     * 
      * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -264,10 +271,11 @@ public class LobbiesV1 implements
     
     /**
      * CreatePublicLobbyDeprecated
+     * 
      * @param security The security details to use for authentication.
-     * @param appId
-     * @param local
-     * @param region
+     * @param appId 
+     * @param local 
+     * @param region 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -302,19 +310,18 @@ public class LobbiesV1 implements
                 CreatePublicLobbyDeprecatedRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-        
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+
+        // hooks will be passed method level security only
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(SecuritySource.of(security));
         Utils.configureSecurity(_req, security);
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "CreatePublicLobbyDeprecated", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -324,8 +331,9 @@ public class LobbiesV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreatePublicLobbyDeprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -333,8 +341,9 @@ public class LobbiesV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "CreatePublicLobbyDeprecated",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -342,8 +351,9 @@ public class LobbiesV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreatePublicLobbyDeprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -431,6 +441,7 @@ public class LobbiesV1 implements
 
     /**
      * ListActivePublicLobbiesDeprecatedV1
+     * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -441,6 +452,7 @@ public class LobbiesV1 implements
 
     /**
      * ListActivePublicLobbiesDeprecatedV1
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -452,9 +464,10 @@ public class LobbiesV1 implements
     
     /**
      * ListActivePublicLobbiesDeprecatedV1
-     * @param appId
-     * @param local
-     * @param region
+     * 
+     * @param appId 
+     * @param local 
+     * @param region 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -494,8 +507,9 @@ public class LobbiesV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "ListActivePublicLobbiesDeprecatedV1", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -505,8 +519,9 @@ public class LobbiesV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "ListActivePublicLobbiesDeprecatedV1",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -514,8 +529,9 @@ public class LobbiesV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "ListActivePublicLobbiesDeprecatedV1",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -523,8 +539,9 @@ public class LobbiesV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "ListActivePublicLobbiesDeprecatedV1",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

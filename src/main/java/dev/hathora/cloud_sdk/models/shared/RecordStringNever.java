@@ -10,7 +10,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 /**
- * RecordStringNever - Construct a type with a set of properties K of type T
+ * RecordStringNever
+ * 
+ * <p>Construct a type with a set of properties K of type T
  */
 
 public class RecordStringNever {

@@ -80,7 +80,9 @@ public class RoomsV2 implements
 
     /**
      * CreateRoom
-     * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
+     * 
+     * <p>Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
+     * 
      * @return The call builder
      */
     public CreateRoomRequestBuilder createRoom() {
@@ -89,8 +91,10 @@ public class RoomsV2 implements
 
     /**
      * CreateRoom
-     * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
-     * @param createRoomParams
+     * 
+     * <p>Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
+     * 
+     * @param createRoomParams 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -101,10 +105,12 @@ public class RoomsV2 implements
     
     /**
      * CreateRoom
-     * Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
-     * @param createRoomParams
-     * @param appId
-     * @param roomId
+     * 
+     * <p>Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
+     * 
+     * @param createRoomParams 
+     * @param appId 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -158,8 +164,9 @@ public class RoomsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "CreateRoom", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -169,8 +176,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateRoom",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -178,8 +186,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "CreateRoom",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -187,8 +196,9 @@ public class RoomsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateRoom",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -276,7 +286,9 @@ public class RoomsV2 implements
 
     /**
      * DestroyRoom
-     * Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
+     * 
+     * <p>Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
+     * 
      * @return The call builder
      */
     public DestroyRoomRequestBuilder destroyRoom() {
@@ -285,8 +297,10 @@ public class RoomsV2 implements
 
     /**
      * DestroyRoom
-     * Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
-     * @param roomId
+     * 
+     * <p>Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
+     * 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -297,9 +311,11 @@ public class RoomsV2 implements
     
     /**
      * DestroyRoom
-     * Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
-     * @param appId
-     * @param roomId
+     * 
+     * <p>Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
+     * 
+     * @param appId 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -333,8 +349,9 @@ public class RoomsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "DestroyRoom", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -344,8 +361,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "DestroyRoom",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -353,8 +371,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "DestroyRoom",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -362,8 +381,9 @@ public class RoomsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "DestroyRoom",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -440,7 +460,9 @@ public class RoomsV2 implements
 
     /**
      * GetActiveRoomsForProcess
-     * Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * 
+     * <p>Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * 
      * @return The call builder
      */
     public GetActiveRoomsForProcessRequestBuilder getActiveRoomsForProcess() {
@@ -449,8 +471,10 @@ public class RoomsV2 implements
 
     /**
      * GetActiveRoomsForProcess
-     * Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
-     * @param processId
+     * 
+     * <p>Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * 
+     * @param processId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -461,9 +485,11 @@ public class RoomsV2 implements
     
     /**
      * GetActiveRoomsForProcess
-     * Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
-     * @param appId
-     * @param processId
+     * 
+     * <p>Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * 
+     * @param appId 
+     * @param processId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -497,8 +523,9 @@ public class RoomsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetActiveRoomsForProcess", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -508,8 +535,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetActiveRoomsForProcess",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -517,8 +545,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetActiveRoomsForProcess",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -526,8 +555,9 @@ public class RoomsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetActiveRoomsForProcess",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -601,7 +631,9 @@ public class RoomsV2 implements
 
     /**
      * GetConnectionInfo
-     * Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
+     * 
+     * <p>Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
+     * 
      * @return The call builder
      */
     public GetConnectionInfoRequestBuilder getConnectionInfo() {
@@ -610,8 +642,10 @@ public class RoomsV2 implements
 
     /**
      * GetConnectionInfo
-     * Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
-     * @param roomId
+     * 
+     * <p>Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
+     * 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -622,9 +656,11 @@ public class RoomsV2 implements
     
     /**
      * GetConnectionInfo
-     * Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
-     * @param appId
-     * @param roomId
+     * 
+     * <p>Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
+     * 
+     * @param appId 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -655,8 +691,9 @@ public class RoomsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetConnectionInfo", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -666,8 +703,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetConnectionInfo",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -675,8 +713,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetConnectionInfo",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -684,8 +723,9 @@ public class RoomsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetConnectionInfo",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -773,7 +813,9 @@ public class RoomsV2 implements
 
     /**
      * GetInactiveRoomsForProcess
-     * Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * 
+     * <p>Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * 
      * @return The call builder
      */
     public GetInactiveRoomsForProcessRequestBuilder getInactiveRoomsForProcess() {
@@ -782,8 +824,10 @@ public class RoomsV2 implements
 
     /**
      * GetInactiveRoomsForProcess
-     * Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
-     * @param processId
+     * 
+     * <p>Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * 
+     * @param processId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -794,9 +838,11 @@ public class RoomsV2 implements
     
     /**
      * GetInactiveRoomsForProcess
-     * Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
-     * @param appId
-     * @param processId
+     * 
+     * <p>Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * 
+     * @param appId 
+     * @param processId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -830,8 +876,9 @@ public class RoomsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetInactiveRoomsForProcess", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -841,8 +888,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetInactiveRoomsForProcess",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -850,8 +898,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetInactiveRoomsForProcess",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -859,8 +908,9 @@ public class RoomsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetInactiveRoomsForProcess",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -934,7 +984,9 @@ public class RoomsV2 implements
 
     /**
      * GetRoomInfo
-     * Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
+     * 
+     * <p>Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
+     * 
      * @return The call builder
      */
     public GetRoomInfoRequestBuilder getRoomInfo() {
@@ -943,8 +995,10 @@ public class RoomsV2 implements
 
     /**
      * GetRoomInfo
-     * Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
-     * @param roomId
+     * 
+     * <p>Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
+     * 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -955,9 +1009,11 @@ public class RoomsV2 implements
     
     /**
      * GetRoomInfo
-     * Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
-     * @param appId
-     * @param roomId
+     * 
+     * <p>Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
+     * 
+     * @param appId 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -991,8 +1047,9 @@ public class RoomsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetRoomInfo", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1002,8 +1059,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetRoomInfo",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1011,8 +1069,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetRoomInfo",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -1020,8 +1079,9 @@ public class RoomsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetRoomInfo",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1095,6 +1155,7 @@ public class RoomsV2 implements
 
     /**
      * ResumeRoom
+     * 
      * @return The call builder
      */
     public ResumeRoomRequestBuilder resumeRoom() {
@@ -1103,7 +1164,8 @@ public class RoomsV2 implements
 
     /**
      * ResumeRoom
-     * @param roomId
+     * 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -1114,8 +1176,9 @@ public class RoomsV2 implements
     
     /**
      * ResumeRoom
-     * @param appId
-     * @param roomId
+     * 
+     * @param appId 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -1149,8 +1212,9 @@ public class RoomsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "ResumeRoom", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1160,8 +1224,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "ResumeRoom",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1169,8 +1234,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "ResumeRoom",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -1178,8 +1244,9 @@ public class RoomsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "ResumeRoom",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1267,7 +1334,9 @@ public class RoomsV2 implements
 
     /**
      * SuspendRoomV2Deprecated
-     * Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
+     * 
+     * <p>Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
+     * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -1278,8 +1347,10 @@ public class RoomsV2 implements
 
     /**
      * SuspendRoomV2Deprecated
-     * Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
-     * @param roomId
+     * 
+     * <p>Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
+     * 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -1292,9 +1363,11 @@ public class RoomsV2 implements
     
     /**
      * SuspendRoomV2Deprecated
-     * Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
-     * @param appId
-     * @param roomId
+     * 
+     * <p>Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
+     * 
+     * @param appId 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -1330,8 +1403,9 @@ public class RoomsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "SuspendRoomV2Deprecated", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1341,8 +1415,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "SuspendRoomV2Deprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1350,8 +1425,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "SuspendRoomV2Deprecated",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -1359,8 +1435,9 @@ public class RoomsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "SuspendRoomV2Deprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1437,6 +1514,7 @@ public class RoomsV2 implements
 
     /**
      * UpdateRoomConfig
+     * 
      * @return The call builder
      */
     public UpdateRoomConfigRequestBuilder updateRoomConfig() {
@@ -1445,8 +1523,9 @@ public class RoomsV2 implements
 
     /**
      * UpdateRoomConfig
-     * @param updateRoomConfigParams
-     * @param roomId
+     * 
+     * @param updateRoomConfigParams 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -1458,9 +1537,10 @@ public class RoomsV2 implements
     
     /**
      * UpdateRoomConfig
-     * @param updateRoomConfigParams
-     * @param appId
-     * @param roomId
+     * 
+     * @param updateRoomConfigParams 
+     * @param appId 
+     * @param roomId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -1509,8 +1589,9 @@ public class RoomsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "UpdateRoomConfig", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1520,8 +1601,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "UpdateRoomConfig",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1529,8 +1611,9 @@ public class RoomsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "UpdateRoomConfig",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -1538,8 +1621,9 @@ public class RoomsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "UpdateRoomConfig",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

@@ -17,7 +17,9 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Objects;
 /**
- * ConnectionInfo - Connection information to the default port.
+ * ConnectionInfo
+ * 
+ * <p>Connection information to the default port.
  */
 
 @JsonDeserialize(using = ConnectionInfo._Deserializer.class)

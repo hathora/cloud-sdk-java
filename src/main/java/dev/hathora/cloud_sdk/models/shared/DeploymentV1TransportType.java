@@ -46,6 +46,7 @@ import java.util.Optional;
  */
 /**
  * DeploymentV1TransportType
+ * 
  * @deprecated enum: This will be removed in a future release, please migrate away from it as soon as possible.
  */
 @Deprecated

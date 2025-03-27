@@ -59,7 +59,6 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Optional; 
 
 public class OrganizationsV1 implements
@@ -83,6 +82,7 @@ public class OrganizationsV1 implements
 
     /**
      * AcceptInvite
+     * 
      * @return The call builder
      */
     public AcceptInviteRequestBuilder acceptInvite() {
@@ -91,7 +91,8 @@ public class OrganizationsV1 implements
 
     /**
      * AcceptInvite
-     * @param orgId
+     * 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -123,8 +124,9 @@ public class OrganizationsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "AcceptInvite", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -134,8 +136,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "AcceptInvite",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -143,8 +146,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "AcceptInvite",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -152,8 +156,9 @@ public class OrganizationsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "AcceptInvite",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -216,6 +221,7 @@ public class OrganizationsV1 implements
 
     /**
      * GetOrgMembers
+     * 
      * @return The call builder
      */
     public GetOrgMembersRequestBuilder getOrgMembers() {
@@ -224,7 +230,8 @@ public class OrganizationsV1 implements
 
     /**
      * GetOrgMembers
-     * @param orgId
+     * 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -256,8 +263,9 @@ public class OrganizationsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetOrgMembers", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -267,8 +275,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetOrgMembers",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -276,8 +285,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetOrgMembers",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -285,8 +295,9 @@ public class OrganizationsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetOrgMembers",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -360,6 +371,7 @@ public class OrganizationsV1 implements
 
     /**
      * GetOrgPendingInvites
+     * 
      * @return The call builder
      */
     public GetOrgPendingInvitesRequestBuilder getOrgPendingInvites() {
@@ -368,7 +380,8 @@ public class OrganizationsV1 implements
 
     /**
      * GetOrgPendingInvites
-     * @param orgId
+     * 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -400,8 +413,9 @@ public class OrganizationsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetOrgPendingInvites", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -411,8 +425,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetOrgPendingInvites",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -420,8 +435,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetOrgPendingInvites",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -429,8 +445,9 @@ public class OrganizationsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetOrgPendingInvites",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -504,7 +521,9 @@ public class OrganizationsV1 implements
 
     /**
      * GetOrgs
-     * Returns an unsorted list of all organizations that you are a member of (an accepted membership invite). An organization is uniquely identified by an `orgId`.
+     * 
+     * <p>Returns an unsorted list of all organizations that you are a member of (an accepted membership invite). An organization is uniquely identified by an `orgId`.
+     * 
      * @return The call builder
      */
     public GetOrgsRequestBuilder getOrgs() {
@@ -513,7 +532,9 @@ public class OrganizationsV1 implements
 
     /**
      * GetOrgs
-     * Returns an unsorted list of all organizations that you are a member of (an accepted membership invite). An organization is uniquely identified by an `orgId`.
+     * 
+     * <p>Returns an unsorted list of all organizations that you are a member of (an accepted membership invite). An organization is uniquely identified by an `orgId`.
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -536,8 +557,9 @@ public class OrganizationsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetOrgs", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -547,8 +569,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetOrgs",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -556,8 +579,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetOrgs",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -565,8 +589,9 @@ public class OrganizationsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetOrgs",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -640,6 +665,7 @@ public class OrganizationsV1 implements
 
     /**
      * GetUsageLimits
+     * 
      * @return The call builder
      */
     public GetUsageLimitsRequestBuilder getUsageLimits() {
@@ -648,6 +674,7 @@ public class OrganizationsV1 implements
 
     /**
      * GetUsageLimits
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -657,7 +684,8 @@ public class OrganizationsV1 implements
     
     /**
      * GetUsageLimits
-     * @param orgId
+     * 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -692,8 +720,9 @@ public class OrganizationsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetUsageLimits", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -703,8 +732,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetUsageLimits",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -712,8 +742,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetUsageLimits",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -721,8 +752,9 @@ public class OrganizationsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetUsageLimits",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -810,6 +842,7 @@ public class OrganizationsV1 implements
 
     /**
      * GetUserPendingInvites
+     * 
      * @return The call builder
      */
     public GetUserPendingInvitesRequestBuilder getUserPendingInvites() {
@@ -818,6 +851,7 @@ public class OrganizationsV1 implements
 
     /**
      * GetUserPendingInvites
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -840,8 +874,9 @@ public class OrganizationsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetUserPendingInvites", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -851,8 +886,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetUserPendingInvites",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -860,8 +896,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetUserPendingInvites",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -869,8 +906,9 @@ public class OrganizationsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetUserPendingInvites",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -944,6 +982,7 @@ public class OrganizationsV1 implements
 
     /**
      * InviteUser
+     * 
      * @return The call builder
      */
     public InviteUserRequestBuilder inviteUser() {
@@ -952,8 +991,9 @@ public class OrganizationsV1 implements
 
     /**
      * InviteUser
-     * @param createUserInvite
-     * @param orgId
+     * 
+     * @param createUserInvite 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -1000,8 +1040,9 @@ public class OrganizationsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "InviteUser", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1011,8 +1052,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "InviteUser",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1020,8 +1062,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "InviteUser",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -1029,8 +1072,9 @@ public class OrganizationsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "InviteUser",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1104,6 +1148,7 @@ public class OrganizationsV1 implements
 
     /**
      * RejectInvite
+     * 
      * @return The call builder
      */
     public RejectInviteRequestBuilder rejectInvite() {
@@ -1112,7 +1157,8 @@ public class OrganizationsV1 implements
 
     /**
      * RejectInvite
-     * @param orgId
+     * 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -1144,8 +1190,9 @@ public class OrganizationsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "RejectInvite", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1155,8 +1202,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "RejectInvite",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1164,8 +1212,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "RejectInvite",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -1173,8 +1222,9 @@ public class OrganizationsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "RejectInvite",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1237,6 +1287,7 @@ public class OrganizationsV1 implements
 
     /**
      * RescindInvite
+     * 
      * @return The call builder
      */
     public RescindInviteRequestBuilder rescindInvite() {
@@ -1245,8 +1296,9 @@ public class OrganizationsV1 implements
 
     /**
      * RescindInvite
-     * @param rescindUserInvite
-     * @param orgId
+     * 
+     * @param rescindUserInvite 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -1293,8 +1345,9 @@ public class OrganizationsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "RescindInvite", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1304,8 +1357,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "RescindInvite",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1313,8 +1367,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "RescindInvite",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -1322,8 +1377,9 @@ public class OrganizationsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "RescindInvite",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1400,6 +1456,7 @@ public class OrganizationsV1 implements
 
     /**
      * UpdateUserInvite
+     * 
      * @return The call builder
      */
     public UpdateUserInviteRequestBuilder updateUserInvite() {
@@ -1408,8 +1465,9 @@ public class OrganizationsV1 implements
 
     /**
      * UpdateUserInvite
-     * @param updateUserInvite
-     * @param orgId
+     * 
+     * @param updateUserInvite 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -1456,8 +1514,9 @@ public class OrganizationsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "UpdateUserInvite", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1467,8 +1526,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "UpdateUserInvite",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1476,8 +1536,9 @@ public class OrganizationsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "UpdateUserInvite",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -1485,8 +1546,9 @@ public class OrganizationsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "UpdateUserInvite",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

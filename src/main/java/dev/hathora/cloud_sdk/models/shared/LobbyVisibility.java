@@ -44,13 +44,15 @@ import java.util.Optional;
  *
  */
 /**
- * LobbyVisibility - Types of lobbies a player can create.
+ * LobbyVisibility
  * 
- * `private`: the player who created the room must share the roomId with their friends
+ * <p>Types of lobbies a player can create.
  * 
- * `public`: visible in the public lobby list, anyone can join
+ * <p>`private`: the player who created the room must share the roomId with their friends
  * 
- * `local`: for testing with a server running locally
+ * <p>`public`: visible in the public lobby list, anyone can join
+ * 
+ * <p>`local`: for testing with a server running locally
  */
 @JsonDeserialize(using = LobbyVisibility._Deserializer.class)
 @JsonSerialize(using = LobbyVisibility._Serializer.class)

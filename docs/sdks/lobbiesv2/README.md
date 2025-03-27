@@ -28,9 +28,7 @@ import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedSecurity;
-import dev.hathora.cloud_sdk.models.shared.CreateLobbyParams;
-import dev.hathora.cloud_sdk.models.shared.LobbyVisibility;
-import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
@@ -96,9 +94,7 @@ package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.operations.CreateLocalLobbyRequestBody;
-import dev.hathora.cloud_sdk.models.operations.CreateLocalLobbyResponse;
-import dev.hathora.cloud_sdk.models.operations.CreateLocalLobbySecurity;
+import dev.hathora.cloud_sdk.models.operations.*;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
@@ -164,9 +160,7 @@ package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequestBody;
-import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyResponse;
-import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbySecurity;
+import dev.hathora.cloud_sdk.models.operations.*;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
@@ -232,9 +226,7 @@ package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.operations.CreatePublicLobbyRequestBody;
-import dev.hathora.cloud_sdk.models.operations.CreatePublicLobbyResponse;
-import dev.hathora.cloud_sdk.models.operations.CreatePublicLobbySecurity;
+import dev.hathora.cloud_sdk.models.operations.*;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 

@@ -13,7 +13,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 /**
- * ProcessV3ExposedPort - Connection details for an active process.
+ * ProcessV3ExposedPort
+ * 
+ * <p>Connection details for an active process.
  */
 
 public class ProcessV3ExposedPort {

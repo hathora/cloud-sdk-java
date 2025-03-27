@@ -44,7 +44,9 @@ import java.util.Optional;
  *
  */
 /**
- * TransportType - Transport type specifies the underlying communication protocol to the exposed port.
+ * TransportType
+ * 
+ * <p>Transport type specifies the underlying communication protocol to the exposed port.
  */
 @JsonDeserialize(using = TransportType._Deserializer.class)
 @JsonSerialize(using = TransportType._Serializer.class)

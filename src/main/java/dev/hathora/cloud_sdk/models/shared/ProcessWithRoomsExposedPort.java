@@ -13,7 +13,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 /**
- * ProcessWithRoomsExposedPort - Connection details for an active process.
+ * ProcessWithRoomsExposedPort
+ * 
+ * <p>Connection details for an active process.
  */
 
 public class ProcessWithRoomsExposedPort {

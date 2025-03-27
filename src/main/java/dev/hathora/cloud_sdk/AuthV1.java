@@ -34,7 +34,6 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Optional; 
 
 /**
@@ -54,7 +53,9 @@ public class AuthV1 implements
 
     /**
      * LoginAnonymous
-     * Returns a unique player token for an anonymous user.
+     * 
+     * <p>Returns a unique player token for an anonymous user.
+     * 
      * @return The call builder
      */
     public LoginAnonymousRequestBuilder loginAnonymous() {
@@ -63,7 +64,9 @@ public class AuthV1 implements
 
     /**
      * LoginAnonymous
-     * Returns a unique player token for an anonymous user.
+     * 
+     * <p>Returns a unique player token for an anonymous user.
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -73,8 +76,10 @@ public class AuthV1 implements
     
     /**
      * LoginAnonymous
-     * Returns a unique player token for an anonymous user.
-     * @param appId
+     * 
+     * <p>Returns a unique player token for an anonymous user.
+     * 
+     * @param appId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -103,8 +108,9 @@ public class AuthV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "LoginAnonymous", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -114,8 +120,9 @@ public class AuthV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "LoginAnonymous",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -123,8 +130,9 @@ public class AuthV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "LoginAnonymous",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -132,8 +140,9 @@ public class AuthV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "LoginAnonymous",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -207,7 +216,9 @@ public class AuthV1 implements
 
     /**
      * LoginGoogle
-     * Returns a unique player token using a Google-signed OIDC `idToken`.
+     * 
+     * <p>Returns a unique player token using a Google-signed OIDC `idToken`.
+     * 
      * @return The call builder
      */
     public LoginGoogleRequestBuilder loginGoogle() {
@@ -216,8 +227,10 @@ public class AuthV1 implements
 
     /**
      * LoginGoogle
-     * Returns a unique player token using a Google-signed OIDC `idToken`.
-     * @param googleIdTokenObject
+     * 
+     * <p>Returns a unique player token using a Google-signed OIDC `idToken`.
+     * 
+     * @param googleIdTokenObject 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -228,9 +241,11 @@ public class AuthV1 implements
     
     /**
      * LoginGoogle
-     * Returns a unique player token using a Google-signed OIDC `idToken`.
-     * @param googleIdTokenObject
-     * @param appId
+     * 
+     * <p>Returns a unique player token using a Google-signed OIDC `idToken`.
+     * 
+     * @param googleIdTokenObject 
+     * @param appId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -274,8 +289,9 @@ public class AuthV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "LoginGoogle", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -285,8 +301,9 @@ public class AuthV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "LoginGoogle",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -294,8 +311,9 @@ public class AuthV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "LoginGoogle",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -303,8 +321,9 @@ public class AuthV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "LoginGoogle",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -378,7 +397,9 @@ public class AuthV1 implements
 
     /**
      * LoginNickname
-     * Returns a unique player token with a specified nickname for a user.
+     * 
+     * <p>Returns a unique player token with a specified nickname for a user.
+     * 
      * @return The call builder
      */
     public LoginNicknameRequestBuilder loginNickname() {
@@ -387,8 +408,10 @@ public class AuthV1 implements
 
     /**
      * LoginNickname
-     * Returns a unique player token with a specified nickname for a user.
-     * @param nicknameObject
+     * 
+     * <p>Returns a unique player token with a specified nickname for a user.
+     * 
+     * @param nicknameObject 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -399,9 +422,11 @@ public class AuthV1 implements
     
     /**
      * LoginNickname
-     * Returns a unique player token with a specified nickname for a user.
-     * @param nicknameObject
-     * @param appId
+     * 
+     * <p>Returns a unique player token with a specified nickname for a user.
+     * 
+     * @param nicknameObject 
+     * @param appId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -445,8 +470,9 @@ public class AuthV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "LoginNickname", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -456,8 +482,9 @@ public class AuthV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "LoginNickname",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -465,8 +492,9 @@ public class AuthV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "LoginNickname",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -474,8 +502,9 @@ public class AuthV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "LoginNickname",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

@@ -13,7 +13,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 /**
- * ExposedPort - Connection details for an active process.
+ * ExposedPort
+ * 
+ * <p>Connection details for an active process.
  */
 
 public class ExposedPort {

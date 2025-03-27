@@ -17,7 +17,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * RoomAllocationData - Connection information for the default and additional ports.
+ * RoomAllocationData
+ * 
+ * <p>Connection information for the default and additional ports.
  */
 
 public class RoomAllocationData {

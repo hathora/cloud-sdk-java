@@ -18,7 +18,9 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Objects;
 /**
- * OrgTokenScopes - If not defined, the token has Admin access.
+ * OrgTokenScopes
+ * 
+ * <p>If not defined, the token has Admin access.
  */
 
 @JsonDeserialize(using = OrgTokenScopes._Deserializer.class)

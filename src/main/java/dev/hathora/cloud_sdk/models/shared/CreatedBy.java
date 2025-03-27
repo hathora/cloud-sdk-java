@@ -18,7 +18,9 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Objects;
 /**
- * CreatedBy - UserId or email address for the user that created the lobby.
+ * CreatedBy
+ * 
+ * <p>UserId or email address for the user that created the lobby.
  */
 
 @JsonDeserialize(using = CreatedBy._Deserializer.class)

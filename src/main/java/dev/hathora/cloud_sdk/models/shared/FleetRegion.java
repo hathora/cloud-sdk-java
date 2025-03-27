@@ -14,7 +14,9 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 /**
- * FleetRegion - A fleet region is a region in which a fleet can be deployed.
+ * FleetRegion
+ * 
+ * <p>A fleet region is a region in which a fleet can be deployed.
  * You can update cloudMinVcpus once every five minutes. It must be a multiple of
  * scaleIncrementVcpus
  */

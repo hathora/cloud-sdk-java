@@ -16,7 +16,9 @@ import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * RoomWithoutAllocationsCurrentAllocation - Metadata on an allocated instance of a room.
+ * RoomWithoutAllocationsCurrentAllocation
+ * 
+ * <p>Metadata on an allocated instance of a room.
  */
 
 public class RoomWithoutAllocationsCurrentAllocation {

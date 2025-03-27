@@ -17,7 +17,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * RoomConnectionData - Connection information for the default and additional ports.
+ * RoomConnectionData
+ * 
+ * <p>Connection information for the default and additional ports.
  */
 
 public class RoomConnectionData {

@@ -35,12 +35,8 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Optional; 
 
-/**
- *  
- */
 public class TokensV1 implements
             MethodCallCreateOrgToken,
             MethodCallGetOrgTokens,
@@ -55,7 +51,9 @@ public class TokensV1 implements
 
     /**
      * CreateOrgToken
-     * Create a new organization token.
+     * 
+     * <p>Create a new organization token.
+     * 
      * @return The call builder
      */
     public CreateOrgTokenRequestBuilder createOrgToken() {
@@ -64,9 +62,11 @@ public class TokensV1 implements
 
     /**
      * CreateOrgToken
-     * Create a new organization token.
-     * @param createOrgToken
-     * @param orgId
+     * 
+     * <p>Create a new organization token.
+     * 
+     * @param createOrgToken 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -113,8 +113,9 @@ public class TokensV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "CreateOrgToken", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -124,8 +125,9 @@ public class TokensV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateOrgToken",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -133,8 +135,9 @@ public class TokensV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "CreateOrgToken",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -142,8 +145,9 @@ public class TokensV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateOrgToken",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -217,7 +221,9 @@ public class TokensV1 implements
 
     /**
      * GetOrgTokens
-     * List all organization tokens for a given org.
+     * 
+     * <p>List all organization tokens for a given org.
+     * 
      * @return The call builder
      */
     public GetOrgTokensRequestBuilder getOrgTokens() {
@@ -226,8 +232,10 @@ public class TokensV1 implements
 
     /**
      * GetOrgTokens
-     * List all organization tokens for a given org.
-     * @param orgId
+     * 
+     * <p>List all organization tokens for a given org.
+     * 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -259,8 +267,9 @@ public class TokensV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetOrgTokens", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -270,8 +279,9 @@ public class TokensV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetOrgTokens",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -279,8 +289,9 @@ public class TokensV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetOrgTokens",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -288,8 +299,9 @@ public class TokensV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetOrgTokens",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -363,7 +375,9 @@ public class TokensV1 implements
 
     /**
      * RevokeOrgToken
-     * Revoke an organization token.
+     * 
+     * <p>Revoke an organization token.
+     * 
      * @return The call builder
      */
     public RevokeOrgTokenRequestBuilder revokeOrgToken() {
@@ -372,9 +386,11 @@ public class TokensV1 implements
 
     /**
      * RevokeOrgToken
-     * Revoke an organization token.
-     * @param orgId
-     * @param orgTokenId
+     * 
+     * <p>Revoke an organization token.
+     * 
+     * @param orgId 
+     * @param orgTokenId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -408,8 +424,9 @@ public class TokensV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "RevokeOrgToken", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -419,8 +436,9 @@ public class TokensV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "RevokeOrgToken",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -428,8 +446,9 @@ public class TokensV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "RevokeOrgToken",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -437,8 +456,9 @@ public class TokensV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "RevokeOrgToken",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

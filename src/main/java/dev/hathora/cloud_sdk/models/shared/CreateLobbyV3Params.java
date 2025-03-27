@@ -30,11 +30,11 @@ public class CreateLobbyV3Params {
     /**
      * Types of lobbies a player can create.
      * 
-     * `private`: the player who created the room must share the roomId with their friends
+     * <p>`private`: the player who created the room must share the roomId with their friends
      * 
-     * `public`: visible in the public lobby list, anyone can join
+     * <p>`public`: visible in the public lobby list, anyone can join
      * 
-     * `local`: for testing with a server running locally
+     * <p>`local`: for testing with a server running locally
      */
     @JsonProperty("visibility")
     private LobbyVisibility visibility;
@@ -74,11 +74,11 @@ public class CreateLobbyV3Params {
     /**
      * Types of lobbies a player can create.
      * 
-     * `private`: the player who created the room must share the roomId with their friends
+     * <p>`private`: the player who created the room must share the roomId with their friends
      * 
-     * `public`: visible in the public lobby list, anyone can join
+     * <p>`public`: visible in the public lobby list, anyone can join
      * 
-     * `local`: for testing with a server running locally
+     * <p>`local`: for testing with a server running locally
      */
     @JsonIgnore
     public LobbyVisibility visibility() {
@@ -116,11 +116,11 @@ public class CreateLobbyV3Params {
     /**
      * Types of lobbies a player can create.
      * 
-     * `private`: the player who created the room must share the roomId with their friends
+     * <p>`private`: the player who created the room must share the roomId with their friends
      * 
-     * `public`: visible in the public lobby list, anyone can join
+     * <p>`public`: visible in the public lobby list, anyone can join
      * 
-     * `local`: for testing with a server running locally
+     * <p>`local`: for testing with a server running locally
      */
     public CreateLobbyV3Params withVisibility(LobbyVisibility visibility) {
         Utils.checkNotNull(visibility, "visibility");
@@ -198,11 +198,11 @@ public class CreateLobbyV3Params {
         /**
          * Types of lobbies a player can create.
          * 
-         * `private`: the player who created the room must share the roomId with their friends
+         * <p>`private`: the player who created the room must share the roomId with their friends
          * 
-         * `public`: visible in the public lobby list, anyone can join
+         * <p>`public`: visible in the public lobby list, anyone can join
          * 
-         * `local`: for testing with a server running locally
+         * <p>`local`: for testing with a server running locally
          */
         public Builder visibility(LobbyVisibility visibility) {
             Utils.checkNotNull(visibility, "visibility");

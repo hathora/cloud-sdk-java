@@ -39,9 +39,6 @@ public class HathoraCloud {
      */
     private final AuthV1 authV1;
 
-    /**
-     *  
-     */
     private final BillingV1 billingV1;
 
     private final BuildsV1 buildsV1;
@@ -85,9 +82,6 @@ public class HathoraCloud {
 
     private final LogsV1 logsV1;
 
-    /**
-     *  
-     */
     private final ManagementV1 managementV1;
 
     /**
@@ -116,9 +110,6 @@ public class HathoraCloud {
 
     private final RoomsV2 roomsV2;
 
-    /**
-     *  
-     */
     private final TokensV1 tokensV1;
 
     public AppsV1 appsV1() {
@@ -139,9 +130,6 @@ public class HathoraCloud {
         return authV1;
     }
 
-    /**
-     *  
-     */
     public BillingV1 billingV1() {
         return billingV1;
     }
@@ -213,9 +201,6 @@ public class HathoraCloud {
         return logsV1;
     }
 
-    /**
-     *  
-     */
     public ManagementV1 managementV1() {
         return managementV1;
     }
@@ -260,9 +245,6 @@ public class HathoraCloud {
         return roomsV2;
     }
 
-    /**
-     *  
-     */
     public TokensV1 tokensV1() {
         return tokensV1;
     }
@@ -303,6 +285,7 @@ public class HathoraCloud {
 
         /**
          * Configures the SDK to use a custom security source.
+         *
          * @param securitySource The security source to use for all requests.
          * @return The builder instance.
          */
@@ -390,6 +373,7 @@ public class HathoraCloud {
         
         /**
          * Builds a new instance of the SDK.
+         *
          * @return The SDK instance.
          */
         public HathoraCloud build() {
@@ -412,6 +396,7 @@ public class HathoraCloud {
     
     /**
      * Get a new instance of the SDK builder to configure a new instance of the SDK.
+     *
      * @return The SDK builder instance.
      */
     public static Builder builder() {

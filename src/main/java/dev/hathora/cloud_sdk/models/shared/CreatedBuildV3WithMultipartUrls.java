@@ -19,7 +19,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * CreatedBuildV3WithMultipartUrls - A build represents a game server artifact and its associated metadata.
+ * CreatedBuildV3WithMultipartUrls
+ * 
+ * <p>A build represents a game server artifact and its associated metadata.
  */
 
 public class CreatedBuildV3WithMultipartUrls {
@@ -59,6 +61,13 @@ public class CreatedBuildV3WithMultipartUrls {
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("deletedAt")
     private Optional<OffsetDateTime> deletedAt;
+
+    /**
+     * When the build expired
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("expiredAt")
+    private Optional<OffsetDateTime> expiredAt;
 
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
@@ -111,6 +120,7 @@ public class CreatedBuildV3WithMultipartUrls {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") String createdBy,
             @JsonProperty("deletedAt") Optional<OffsetDateTime> deletedAt,
+            @JsonProperty("expiredAt") Optional<OffsetDateTime> expiredAt,
             @JsonProperty("finishedAt") Optional<OffsetDateTime> finishedAt,
             @JsonProperty("imageSize") long imageSize,
             @JsonProperty("maxChunkSize") double maxChunkSize,
@@ -126,6 +136,7 @@ public class CreatedBuildV3WithMultipartUrls {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(deletedAt, "deletedAt");
+        Utils.checkNotNull(expiredAt, "expiredAt");
         Utils.checkNotNull(finishedAt, "finishedAt");
         Utils.checkNotNull(imageSize, "imageSize");
         Utils.checkNotNull(maxChunkSize, "maxChunkSize");
@@ -141,6 +152,7 @@ public class CreatedBuildV3WithMultipartUrls {
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.deletedAt = deletedAt;
+        this.expiredAt = expiredAt;
         this.finishedAt = finishedAt;
         this.imageSize = imageSize;
         this.maxChunkSize = maxChunkSize;
@@ -161,7 +173,7 @@ public class CreatedBuildV3WithMultipartUrls {
             String orgId,
             BuildStatus status,
             List<BuildPart> uploadParts) {
-        this(buildId, Optional.empty(), completeUploadPostRequestUrl, Optional.empty(), createdAt, createdBy, Optional.empty(), Optional.empty(), imageSize, maxChunkSize, orgId, Optional.empty(), Optional.empty(), status, uploadParts);
+        this(buildId, Optional.empty(), completeUploadPostRequestUrl, Optional.empty(), createdAt, createdBy, Optional.empty(), Optional.empty(), Optional.empty(), imageSize, maxChunkSize, orgId, Optional.empty(), Optional.empty(), status, uploadParts);
     }
 
     /**
@@ -209,6 +221,14 @@ public class CreatedBuildV3WithMultipartUrls {
     @JsonIgnore
     public Optional<OffsetDateTime> deletedAt() {
         return deletedAt;
+    }
+
+    /**
+     * When the build expired
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> expiredAt() {
+        return expiredAt;
     }
 
     /**
@@ -349,6 +369,24 @@ public class CreatedBuildV3WithMultipartUrls {
     }
 
     /**
+     * When the build expired
+     */
+    public CreatedBuildV3WithMultipartUrls withExpiredAt(OffsetDateTime expiredAt) {
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        this.expiredAt = Optional.ofNullable(expiredAt);
+        return this;
+    }
+
+    /**
+     * When the build expired
+     */
+    public CreatedBuildV3WithMultipartUrls withExpiredAt(Optional<OffsetDateTime> expiredAt) {
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        this.expiredAt = expiredAt;
+        return this;
+    }
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     public CreatedBuildV3WithMultipartUrls withFinishedAt(OffsetDateTime finishedAt) {
@@ -455,6 +493,7 @@ public class CreatedBuildV3WithMultipartUrls {
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.createdBy, other.createdBy) &&
             Objects.deepEquals(this.deletedAt, other.deletedAt) &&
+            Objects.deepEquals(this.expiredAt, other.expiredAt) &&
             Objects.deepEquals(this.finishedAt, other.finishedAt) &&
             Objects.deepEquals(this.imageSize, other.imageSize) &&
             Objects.deepEquals(this.maxChunkSize, other.maxChunkSize) &&
@@ -475,6 +514,7 @@ public class CreatedBuildV3WithMultipartUrls {
             createdAt,
             createdBy,
             deletedAt,
+            expiredAt,
             finishedAt,
             imageSize,
             maxChunkSize,
@@ -495,6 +535,7 @@ public class CreatedBuildV3WithMultipartUrls {
                 "createdAt", createdAt,
                 "createdBy", createdBy,
                 "deletedAt", deletedAt,
+                "expiredAt", expiredAt,
                 "finishedAt", finishedAt,
                 "imageSize", imageSize,
                 "maxChunkSize", maxChunkSize,
@@ -520,6 +561,8 @@ public class CreatedBuildV3WithMultipartUrls {
         private String createdBy;
  
         private Optional<OffsetDateTime> deletedAt = Optional.empty();
+ 
+        private Optional<OffsetDateTime> expiredAt = Optional.empty();
  
         private Optional<OffsetDateTime> finishedAt = Optional.empty();
  
@@ -616,6 +659,24 @@ public class CreatedBuildV3WithMultipartUrls {
         public Builder deletedAt(Optional<OffsetDateTime> deletedAt) {
             Utils.checkNotNull(deletedAt, "deletedAt");
             this.deletedAt = deletedAt;
+            return this;
+        }
+
+        /**
+         * When the build expired
+         */
+        public Builder expiredAt(OffsetDateTime expiredAt) {
+            Utils.checkNotNull(expiredAt, "expiredAt");
+            this.expiredAt = Optional.ofNullable(expiredAt);
+            return this;
+        }
+
+        /**
+         * When the build expired
+         */
+        public Builder expiredAt(Optional<OffsetDateTime> expiredAt) {
+            Utils.checkNotNull(expiredAt, "expiredAt");
+            this.expiredAt = expiredAt;
             return this;
         }
 
@@ -718,6 +779,7 @@ public class CreatedBuildV3WithMultipartUrls {
                 createdAt,
                 createdBy,
                 deletedAt,
+                expiredAt,
                 finishedAt,
                 imageSize,
                 maxChunkSize,

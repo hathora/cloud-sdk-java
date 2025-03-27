@@ -40,7 +40,6 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Optional; 
 
 /**
@@ -62,7 +61,9 @@ public class AppsV2 implements
 
     /**
      * CreateApp
-     * Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
+     * <p>Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
      * @return The call builder
      */
     public CreateAppRequestBuilder createApp() {
@@ -71,8 +72,10 @@ public class AppsV2 implements
 
     /**
      * CreateApp
-     * Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
-     * @param appConfig
+     * 
+     * <p>Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
+     * @param appConfig 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -83,9 +86,11 @@ public class AppsV2 implements
     
     /**
      * CreateApp
-     * Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
-     * @param appConfig
-     * @param orgId
+     * 
+     * <p>Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
+     * @param appConfig 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -135,8 +140,9 @@ public class AppsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "CreateApp", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -146,8 +152,9 @@ public class AppsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateApp",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -155,8 +162,9 @@ public class AppsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "CreateApp",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -164,8 +172,9 @@ public class AppsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateApp",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -253,7 +262,9 @@ public class AppsV2 implements
 
     /**
      * DeleteApp
-     * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * 
+     * <p>Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * 
      * @return The call builder
      */
     public DeleteAppRequestBuilder deleteApp() {
@@ -262,7 +273,9 @@ public class AppsV2 implements
 
     /**
      * DeleteApp
-     * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * 
+     * <p>Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -272,8 +285,10 @@ public class AppsV2 implements
     
     /**
      * DeleteApp
-     * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
-     * @param appId
+     * 
+     * <p>Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * 
+     * @param appId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -305,8 +320,9 @@ public class AppsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "DeleteApp", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -316,8 +332,9 @@ public class AppsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "DeleteApp",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -325,8 +342,9 @@ public class AppsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "DeleteApp",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -334,8 +352,9 @@ public class AppsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "DeleteApp",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -412,7 +431,9 @@ public class AppsV2 implements
 
     /**
      * GetApp
-     * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
+     * <p>Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
      * @return The call builder
      */
     public GetAppRequestBuilder getApp() {
@@ -421,7 +442,9 @@ public class AppsV2 implements
 
     /**
      * GetApp
-     * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
+     * <p>Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -431,8 +454,10 @@ public class AppsV2 implements
     
     /**
      * GetApp
-     * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param appId
+     * 
+     * <p>Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
+     * @param appId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -464,8 +489,9 @@ public class AppsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetApp", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -475,8 +501,9 @@ public class AppsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetApp",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -484,8 +511,9 @@ public class AppsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetApp",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -493,8 +521,9 @@ public class AppsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetApp",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -568,7 +597,9 @@ public class AppsV2 implements
 
     /**
      * GetApps
-     * Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+     * 
+     * <p>Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+     * 
      * @return The call builder
      */
     public GetAppsRequestBuilder getApps() {
@@ -577,7 +608,9 @@ public class AppsV2 implements
 
     /**
      * GetApps
-     * Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+     * 
+     * <p>Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -587,8 +620,10 @@ public class AppsV2 implements
     
     /**
      * GetApps
-     * Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
-     * @param orgId
+     * 
+     * <p>Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+     * 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -623,8 +658,9 @@ public class AppsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetApps", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -634,8 +670,9 @@ public class AppsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetApps",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -643,8 +680,9 @@ public class AppsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetApps",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -652,8 +690,9 @@ public class AppsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetApps",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -727,7 +766,9 @@ public class AppsV2 implements
 
     /**
      * UpdateApp
-     * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
+     * <p>Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
      * @return The call builder
      */
     public UpdateAppRequestBuilder updateApp() {
@@ -736,8 +777,10 @@ public class AppsV2 implements
 
     /**
      * UpdateApp
-     * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param appConfig
+     * 
+     * <p>Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
+     * @param appConfig 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -748,9 +791,11 @@ public class AppsV2 implements
     
     /**
      * UpdateApp
-     * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param appConfig
-     * @param appId
+     * 
+     * <p>Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
+     * @param appConfig 
+     * @param appId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -797,8 +842,9 @@ public class AppsV2 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "UpdateApp", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -808,8 +854,9 @@ public class AppsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "UpdateApp",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -817,8 +864,9 @@ public class AppsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "UpdateApp",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -826,8 +874,9 @@ public class AppsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "UpdateApp",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

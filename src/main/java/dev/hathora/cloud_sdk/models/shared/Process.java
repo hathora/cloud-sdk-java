@@ -22,13 +22,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * Process - A process object represents a runtime instance of your game server and its metadata.
+ * Process
+ * 
+ * <p>A process object represents a runtime instance of your game server and its metadata.
  */
 
 public class Process {
 
     /**
      * Tracks the number of active connections to a process.
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("activeConnections")
@@ -36,6 +39,7 @@ public class Process {
     private int activeConnections;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("activeConnectionsUpdatedAt")
@@ -74,6 +78,7 @@ public class Process {
     private Optional<? extends ProcessExposedPort> exposedPort;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("host")
@@ -81,6 +86,7 @@ public class Process {
     private String host;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.ALWAYS)
@@ -89,6 +95,7 @@ public class Process {
     private Optional<OffsetDateTime> idleSince;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("port")
@@ -105,6 +112,7 @@ public class Process {
     private Region region;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("roomSlotsAvailable")
@@ -112,6 +120,7 @@ public class Process {
     private double roomSlotsAvailable;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("roomSlotsAvailableUpdatedAt")
@@ -253,6 +262,7 @@ public class Process {
 
     /**
      * Tracks the number of active connections to a process.
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -262,6 +272,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -314,6 +325,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -323,6 +335,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -332,6 +345,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -354,6 +368,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -363,6 +378,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -430,6 +446,7 @@ public class Process {
 
     /**
      * Tracks the number of active connections to a process.
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -440,6 +457,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -504,6 +522,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -514,6 +533,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -524,6 +544,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -534,6 +555,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -559,6 +581,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -569,6 +592,7 @@ public class Process {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -812,6 +836,7 @@ public class Process {
 
         /**
          * Tracks the number of active connections to a process.
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -822,6 +847,7 @@ public class Process {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -886,6 +912,7 @@ public class Process {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -896,6 +923,7 @@ public class Process {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -906,6 +934,7 @@ public class Process {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -916,6 +945,7 @@ public class Process {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -941,6 +971,7 @@ public class Process {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -951,6 +982,7 @@ public class Process {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated

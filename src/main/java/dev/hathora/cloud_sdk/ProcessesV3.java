@@ -64,7 +64,9 @@ public class ProcessesV3 implements
 
     /**
      * CreateProcess
-     * Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
+     * 
+     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
+     * 
      * @return The call builder
      */
     public CreateProcessRequestBuilder createProcess() {
@@ -73,8 +75,10 @@ public class ProcessesV3 implements
 
     /**
      * CreateProcess
-     * Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
-     * @param region
+     * 
+     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
+     * 
+     * @param region 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -85,9 +89,11 @@ public class ProcessesV3 implements
     
     /**
      * CreateProcess
-     * Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
-     * @param appId
-     * @param region
+     * 
+     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
+     * 
+     * @param appId 
+     * @param region 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -121,8 +127,9 @@ public class ProcessesV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "CreateProcess", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -132,8 +139,9 @@ public class ProcessesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateProcess",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -141,8 +149,9 @@ public class ProcessesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "CreateProcess",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -150,8 +159,9 @@ public class ProcessesV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateProcess",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -239,7 +249,9 @@ public class ProcessesV3 implements
 
     /**
      * GetLatestProcesses
-     * Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
+     * 
+     * <p>Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
+     * 
      * @return The call builder
      */
     public GetLatestProcessesRequestBuilder getLatestProcesses() {
@@ -248,7 +260,9 @@ public class ProcessesV3 implements
 
     /**
      * GetLatestProcesses
-     * Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
+     * 
+     * <p>Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
+     * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -280,8 +294,9 @@ public class ProcessesV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetLatestProcesses", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -291,8 +306,9 @@ public class ProcessesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetLatestProcesses",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -300,8 +316,9 @@ public class ProcessesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetLatestProcesses",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -309,8 +326,9 @@ public class ProcessesV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetLatestProcesses",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -384,7 +402,9 @@ public class ProcessesV3 implements
 
     /**
      * GetProcess
-     * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * 
+     * <p>Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * 
      * @return The call builder
      */
     public GetProcessRequestBuilder getProcess() {
@@ -393,8 +413,10 @@ public class ProcessesV3 implements
 
     /**
      * GetProcess
-     * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
-     * @param processId
+     * 
+     * <p>Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * 
+     * @param processId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -405,9 +427,11 @@ public class ProcessesV3 implements
     
     /**
      * GetProcess
-     * Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
-     * @param appId
-     * @param processId
+     * 
+     * <p>Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * 
+     * @param appId 
+     * @param processId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -441,8 +465,9 @@ public class ProcessesV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetProcess", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -452,8 +477,9 @@ public class ProcessesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetProcess",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -461,8 +487,9 @@ public class ProcessesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetProcess",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -470,8 +497,9 @@ public class ProcessesV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetProcess",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -545,6 +573,7 @@ public class ProcessesV3 implements
 
     /**
      * GetProcessMetrics
+     * 
      * @return The call builder
      */
     public GetProcessMetricsRequestBuilder getProcessMetrics() {
@@ -553,6 +582,7 @@ public class ProcessesV3 implements
 
     /**
      * GetProcessMetrics
+     * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -584,8 +614,9 @@ public class ProcessesV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetProcessMetrics", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -595,8 +626,9 @@ public class ProcessesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetProcessMetrics",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -604,8 +636,9 @@ public class ProcessesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetProcessMetrics",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -613,8 +646,9 @@ public class ProcessesV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetProcessMetrics",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -702,7 +736,9 @@ public class ProcessesV3 implements
 
     /**
      * GetProcessesCountExperimental
-     * Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+     * 
+     * <p>Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+     * 
      * @return The call builder
      */
     public GetProcessesCountExperimentalRequestBuilder getProcessesCountExperimental() {
@@ -711,7 +747,9 @@ public class ProcessesV3 implements
 
     /**
      * GetProcessesCountExperimental
-     * Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+     * 
+     * <p>Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+     * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -743,8 +781,9 @@ public class ProcessesV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetProcessesCountExperimental", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -754,8 +793,9 @@ public class ProcessesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetProcessesCountExperimental",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -763,8 +803,9 @@ public class ProcessesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetProcessesCountExperimental",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -772,8 +813,9 @@ public class ProcessesV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetProcessesCountExperimental",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -847,7 +889,9 @@ public class ProcessesV3 implements
 
     /**
      * StopProcess
-     * Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
+     * 
+     * <p>Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
+     * 
      * @return The call builder
      */
     public StopProcessRequestBuilder stopProcess() {
@@ -856,8 +900,10 @@ public class ProcessesV3 implements
 
     /**
      * StopProcess
-     * Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
-     * @param processId
+     * 
+     * <p>Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
+     * 
+     * @param processId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -868,9 +914,11 @@ public class ProcessesV3 implements
     
     /**
      * StopProcess
-     * Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
-     * @param appId
-     * @param processId
+     * 
+     * <p>Stops a [process](https://hathora.dev/docs/concepts/hathora-entities#process) immediately.
+     * 
+     * @param appId 
+     * @param processId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -904,8 +952,9 @@ public class ProcessesV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "StopProcess", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -915,8 +964,9 @@ public class ProcessesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "StopProcess",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -924,8 +974,9 @@ public class ProcessesV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "StopProcess",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -933,8 +984,9 @@ public class ProcessesV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "StopProcess",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

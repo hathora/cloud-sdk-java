@@ -18,7 +18,9 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Objects;
 /**
- * LobbyV3CreatedBy - UserId or email address for the user that created the lobby.
+ * LobbyV3CreatedBy
+ * 
+ * <p>UserId or email address for the user that created the lobby.
  */
 
 @JsonDeserialize(using = LobbyV3CreatedBy._Deserializer.class)

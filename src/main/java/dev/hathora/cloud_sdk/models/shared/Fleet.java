@@ -12,7 +12,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 /**
- * Fleet - A fleet is a collection of vCPUs accross your regions that can scale up and down based on demand.
+ * Fleet
+ * 
+ * <p>A fleet is a collection of vCPUs accross your regions that can scale up and down based on demand.
  */
 
 public class Fleet {

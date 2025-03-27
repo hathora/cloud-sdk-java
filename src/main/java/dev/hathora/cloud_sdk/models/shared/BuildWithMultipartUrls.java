@@ -22,7 +22,9 @@ import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 /**
- * BuildWithMultipartUrls - A build represents a game server artifact and its associated metadata.
+ * BuildWithMultipartUrls
+ * 
+ * <p>A build represents a game server artifact and its associated metadata.
  */
 
 public class BuildWithMultipartUrls {
@@ -63,6 +65,13 @@ public class BuildWithMultipartUrls {
     private Optional<OffsetDateTime> deletedAt;
 
     /**
+     * When the build expired
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("expiredAt")
+    private Optional<OffsetDateTime> expiredAt;
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     @JsonInclude(Include.ALWAYS)
@@ -79,6 +88,7 @@ public class BuildWithMultipartUrls {
     private double maxChunkSize;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("regionalContainerTags")
@@ -107,6 +117,7 @@ public class BuildWithMultipartUrls {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") String createdBy,
             @JsonProperty("deletedAt") Optional<OffsetDateTime> deletedAt,
+            @JsonProperty("expiredAt") Optional<OffsetDateTime> expiredAt,
             @JsonProperty("finishedAt") Optional<OffsetDateTime> finishedAt,
             @JsonProperty("imageSize") long imageSize,
             @JsonProperty("maxChunkSize") double maxChunkSize,
@@ -121,6 +132,7 @@ public class BuildWithMultipartUrls {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(deletedAt, "deletedAt");
+        Utils.checkNotNull(expiredAt, "expiredAt");
         Utils.checkNotNull(finishedAt, "finishedAt");
         Utils.checkNotNull(imageSize, "imageSize");
         Utils.checkNotNull(maxChunkSize, "maxChunkSize");
@@ -135,6 +147,7 @@ public class BuildWithMultipartUrls {
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.deletedAt = deletedAt;
+        this.expiredAt = expiredAt;
         this.finishedAt = finishedAt;
         this.imageSize = imageSize;
         this.maxChunkSize = maxChunkSize;
@@ -155,7 +168,7 @@ public class BuildWithMultipartUrls {
             List<BuildWithMultipartUrlsRegionalContainerTags> regionalContainerTags,
             BuildStatus status,
             List<BuildPart> uploadParts) {
-        this(appId, buildId, JsonNullable.undefined(), completeUploadPostRequestUrl, createdAt, createdBy, Optional.empty(), Optional.empty(), imageSize, maxChunkSize, regionalContainerTags, Optional.empty(), status, uploadParts);
+        this(appId, buildId, JsonNullable.undefined(), completeUploadPostRequestUrl, createdAt, createdBy, Optional.empty(), Optional.empty(), Optional.empty(), imageSize, maxChunkSize, regionalContainerTags, Optional.empty(), status, uploadParts);
     }
 
     /**
@@ -206,6 +219,14 @@ public class BuildWithMultipartUrls {
     }
 
     /**
+     * When the build expired
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> expiredAt() {
+        return expiredAt;
+    }
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     @JsonIgnore
@@ -227,6 +248,7 @@ public class BuildWithMultipartUrls {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -327,6 +349,24 @@ public class BuildWithMultipartUrls {
     }
 
     /**
+     * When the build expired
+     */
+    public BuildWithMultipartUrls withExpiredAt(OffsetDateTime expiredAt) {
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        this.expiredAt = Optional.ofNullable(expiredAt);
+        return this;
+    }
+
+    /**
+     * When the build expired
+     */
+    public BuildWithMultipartUrls withExpiredAt(Optional<OffsetDateTime> expiredAt) {
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        this.expiredAt = expiredAt;
+        return this;
+    }
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     public BuildWithMultipartUrls withFinishedAt(OffsetDateTime finishedAt) {
@@ -360,6 +400,7 @@ public class BuildWithMultipartUrls {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -416,6 +457,7 @@ public class BuildWithMultipartUrls {
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.createdBy, other.createdBy) &&
             Objects.deepEquals(this.deletedAt, other.deletedAt) &&
+            Objects.deepEquals(this.expiredAt, other.expiredAt) &&
             Objects.deepEquals(this.finishedAt, other.finishedAt) &&
             Objects.deepEquals(this.imageSize, other.imageSize) &&
             Objects.deepEquals(this.maxChunkSize, other.maxChunkSize) &&
@@ -435,6 +477,7 @@ public class BuildWithMultipartUrls {
             createdAt,
             createdBy,
             deletedAt,
+            expiredAt,
             finishedAt,
             imageSize,
             maxChunkSize,
@@ -454,6 +497,7 @@ public class BuildWithMultipartUrls {
                 "createdAt", createdAt,
                 "createdBy", createdBy,
                 "deletedAt", deletedAt,
+                "expiredAt", expiredAt,
                 "finishedAt", finishedAt,
                 "imageSize", imageSize,
                 "maxChunkSize", maxChunkSize,
@@ -478,6 +522,8 @@ public class BuildWithMultipartUrls {
         private String createdBy;
  
         private Optional<OffsetDateTime> deletedAt = Optional.empty();
+ 
+        private Optional<OffsetDateTime> expiredAt = Optional.empty();
  
         private Optional<OffsetDateTime> finishedAt = Optional.empty();
  
@@ -568,6 +614,24 @@ public class BuildWithMultipartUrls {
         }
 
         /**
+         * When the build expired
+         */
+        public Builder expiredAt(OffsetDateTime expiredAt) {
+            Utils.checkNotNull(expiredAt, "expiredAt");
+            this.expiredAt = Optional.ofNullable(expiredAt);
+            return this;
+        }
+
+        /**
+         * When the build expired
+         */
+        public Builder expiredAt(Optional<OffsetDateTime> expiredAt) {
+            Utils.checkNotNull(expiredAt, "expiredAt");
+            this.expiredAt = expiredAt;
+            return this;
+        }
+
+        /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
          */
         public Builder finishedAt(OffsetDateTime finishedAt) {
@@ -601,6 +665,7 @@ public class BuildWithMultipartUrls {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -649,6 +714,7 @@ public class BuildWithMultipartUrls {
                 createdAt,
                 createdBy,
                 deletedAt,
+                expiredAt,
                 finishedAt,
                 imageSize,
                 maxChunkSize,

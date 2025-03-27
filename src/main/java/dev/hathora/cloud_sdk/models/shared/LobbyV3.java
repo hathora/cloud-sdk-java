@@ -16,7 +16,9 @@ import java.time.OffsetDateTime;
 import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 /**
- * LobbyV3 - A lobby object allows you to store and manage metadata for your rooms.
+ * LobbyV3
+ * 
+ * <p>A lobby object allows you to store and manage metadata for your rooms.
  */
 
 public class LobbyV3 {
@@ -62,11 +64,11 @@ public class LobbyV3 {
     /**
      * Types of lobbies a player can create.
      * 
-     * `private`: the player who created the room must share the roomId with their friends
+     * <p>`private`: the player who created the room must share the roomId with their friends
      * 
-     * `public`: visible in the public lobby list, anyone can join
+     * <p>`public`: visible in the public lobby list, anyone can join
      * 
-     * `local`: for testing with a server running locally
+     * <p>`local`: for testing with a server running locally
      */
     @JsonProperty("visibility")
     private LobbyVisibility visibility;
@@ -164,11 +166,11 @@ public class LobbyV3 {
     /**
      * Types of lobbies a player can create.
      * 
-     * `private`: the player who created the room must share the roomId with their friends
+     * <p>`private`: the player who created the room must share the roomId with their friends
      * 
-     * `public`: visible in the public lobby list, anyone can join
+     * <p>`public`: visible in the public lobby list, anyone can join
      * 
-     * `local`: for testing with a server running locally
+     * <p>`local`: for testing with a server running locally
      */
     @JsonIgnore
     public LobbyVisibility visibility() {
@@ -246,11 +248,11 @@ public class LobbyV3 {
     /**
      * Types of lobbies a player can create.
      * 
-     * `private`: the player who created the room must share the roomId with their friends
+     * <p>`private`: the player who created the room must share the roomId with their friends
      * 
-     * `public`: visible in the public lobby list, anyone can join
+     * <p>`public`: visible in the public lobby list, anyone can join
      * 
-     * `local`: for testing with a server running locally
+     * <p>`local`: for testing with a server running locally
      */
     public LobbyV3 withVisibility(LobbyVisibility visibility) {
         Utils.checkNotNull(visibility, "visibility");
@@ -393,11 +395,11 @@ public class LobbyV3 {
         /**
          * Types of lobbies a player can create.
          * 
-         * `private`: the player who created the room must share the roomId with their friends
+         * <p>`private`: the player who created the room must share the roomId with their friends
          * 
-         * `public`: visible in the public lobby list, anyone can join
+         * <p>`public`: visible in the public lobby list, anyone can join
          * 
-         * `local`: for testing with a server running locally
+         * <p>`local`: for testing with a server running locally
          */
         public Builder visibility(LobbyVisibility visibility) {
             Utils.checkNotNull(visibility, "visibility");

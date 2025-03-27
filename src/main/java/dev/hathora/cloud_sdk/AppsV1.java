@@ -58,7 +58,9 @@ public class AppsV1 implements
 
     /**
      * CreateAppV1Deprecated
-     * Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
+     * <p>Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -69,7 +71,9 @@ public class AppsV1 implements
 
     /**
      * CreateAppV1Deprecated
-     * Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
+     * <p>Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -109,8 +113,9 @@ public class AppsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "CreateAppV1Deprecated", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -120,8 +125,9 @@ public class AppsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateAppV1Deprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -129,8 +135,9 @@ public class AppsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "CreateAppV1Deprecated",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -138,8 +145,9 @@ public class AppsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateAppV1Deprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -227,7 +235,9 @@ public class AppsV1 implements
 
     /**
      * DeleteAppV1Deprecated
-     * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * 
+     * <p>Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -238,7 +248,9 @@ public class AppsV1 implements
 
     /**
      * DeleteAppV1Deprecated
-     * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * 
+     * <p>Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -250,8 +262,10 @@ public class AppsV1 implements
     
     /**
      * DeleteAppV1Deprecated
-     * Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
-     * @param appId
+     * 
+     * <p>Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * 
+     * @param appId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -285,8 +299,9 @@ public class AppsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "DeleteAppV1Deprecated", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -296,8 +311,9 @@ public class AppsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "DeleteAppV1Deprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -305,8 +321,9 @@ public class AppsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "DeleteAppV1Deprecated",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -314,8 +331,9 @@ public class AppsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "DeleteAppV1Deprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -392,7 +410,9 @@ public class AppsV1 implements
 
     /**
      * GetAppInfoV1Deprecated
-     * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
+     * <p>Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -403,7 +423,9 @@ public class AppsV1 implements
 
     /**
      * GetAppInfoV1Deprecated
-     * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
+     * <p>Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -415,8 +437,10 @@ public class AppsV1 implements
     
     /**
      * GetAppInfoV1Deprecated
-     * Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param appId
+     * 
+     * <p>Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
+     * @param appId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -450,8 +474,9 @@ public class AppsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetAppInfoV1Deprecated", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -461,8 +486,9 @@ public class AppsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetAppInfoV1Deprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -470,8 +496,9 @@ public class AppsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetAppInfoV1Deprecated",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -479,8 +506,9 @@ public class AppsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetAppInfoV1Deprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -554,7 +582,9 @@ public class AppsV1 implements
 
     /**
      * GetAppsV1Deprecated
-     * Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+     * 
+     * <p>Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+     * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -565,7 +595,9 @@ public class AppsV1 implements
 
     /**
      * GetAppsV1Deprecated
-     * Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+     * 
+     * <p>Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -590,8 +622,9 @@ public class AppsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetAppsV1Deprecated", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -601,8 +634,9 @@ public class AppsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetAppsV1Deprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -610,8 +644,9 @@ public class AppsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetAppsV1Deprecated",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -619,8 +654,9 @@ public class AppsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetAppsV1Deprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -694,7 +730,9 @@ public class AppsV1 implements
 
     /**
      * UpdateAppV1Deprecated
-     * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
+     * <p>Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -705,8 +743,10 @@ public class AppsV1 implements
 
     /**
      * UpdateAppV1Deprecated
-     * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param appConfig
+     * 
+     * <p>Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
+     * @param appConfig 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -719,9 +759,11 @@ public class AppsV1 implements
     
     /**
      * UpdateAppV1Deprecated
-     * Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
-     * @param appConfig
-     * @param appId
+     * 
+     * <p>Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * 
+     * @param appConfig 
+     * @param appId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -770,8 +812,9 @@ public class AppsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "UpdateAppV1Deprecated", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -781,8 +824,9 @@ public class AppsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "UpdateAppV1Deprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -790,8 +834,9 @@ public class AppsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "UpdateAppV1Deprecated",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -799,8 +844,9 @@ public class AppsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "UpdateAppV1Deprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

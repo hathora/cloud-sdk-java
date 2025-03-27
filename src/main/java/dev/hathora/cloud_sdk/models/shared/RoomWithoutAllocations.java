@@ -43,11 +43,11 @@ public class RoomWithoutAllocations {
     /**
      * The allocation status of a room.
      * 
-     * `scheduling`: a process is not allocated yet and the room is waiting to be scheduled
+     * <p>`scheduling`: a process is not allocated yet and the room is waiting to be scheduled
      * 
-     * `active`: ready to accept connections
+     * <p>`active`: ready to accept connections
      * 
-     * `destroyed`: all associated metadata is deleted
+     * <p>`destroyed`: all associated metadata is deleted
      */
     @JsonProperty("status")
     private RoomStatus status;
@@ -109,11 +109,11 @@ public class RoomWithoutAllocations {
     /**
      * The allocation status of a room.
      * 
-     * `scheduling`: a process is not allocated yet and the room is waiting to be scheduled
+     * <p>`scheduling`: a process is not allocated yet and the room is waiting to be scheduled
      * 
-     * `active`: ready to accept connections
+     * <p>`active`: ready to accept connections
      * 
-     * `destroyed`: all associated metadata is deleted
+     * <p>`destroyed`: all associated metadata is deleted
      */
     @JsonIgnore
     public RoomStatus status() {
@@ -170,11 +170,11 @@ public class RoomWithoutAllocations {
     /**
      * The allocation status of a room.
      * 
-     * `scheduling`: a process is not allocated yet and the room is waiting to be scheduled
+     * <p>`scheduling`: a process is not allocated yet and the room is waiting to be scheduled
      * 
-     * `active`: ready to accept connections
+     * <p>`active`: ready to accept connections
      * 
-     * `destroyed`: all associated metadata is deleted
+     * <p>`destroyed`: all associated metadata is deleted
      */
     public RoomWithoutAllocations withStatus(RoomStatus status) {
         Utils.checkNotNull(status, "status");
@@ -281,11 +281,11 @@ public class RoomWithoutAllocations {
         /**
          * The allocation status of a room.
          * 
-         * `scheduling`: a process is not allocated yet and the room is waiting to be scheduled
+         * <p>`scheduling`: a process is not allocated yet and the room is waiting to be scheduled
          * 
-         * `active`: ready to accept connections
+         * <p>`active`: ready to accept connections
          * 
-         * `destroyed`: all associated metadata is deleted
+         * <p>`destroyed`: all associated metadata is deleted
          */
         public Builder status(RoomStatus status) {
             Utils.checkNotNull(status, "status");

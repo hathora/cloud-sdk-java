@@ -38,7 +38,6 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Optional; 
 
 /**
@@ -59,7 +58,9 @@ public class FleetsV1 implements
 
     /**
      * GetFleetMetrics
-     * Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
+     * <p>Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
      * @return The call builder
      */
     public GetFleetMetricsRequestBuilder getFleetMetrics() {
@@ -68,7 +69,9 @@ public class FleetsV1 implements
 
     /**
      * GetFleetMetrics
-     * Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
+     * <p>Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -100,8 +103,9 @@ public class FleetsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetFleetMetrics", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -111,8 +115,9 @@ public class FleetsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetFleetMetrics",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -120,8 +125,9 @@ public class FleetsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetFleetMetrics",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -129,8 +135,9 @@ public class FleetsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetFleetMetrics",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -218,7 +225,9 @@ public class FleetsV1 implements
 
     /**
      * GetFleetRegion
-     * Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
+     * <p>Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
      * @return The call builder
      */
     public GetFleetRegionRequestBuilder getFleetRegion() {
@@ -227,9 +236,11 @@ public class FleetsV1 implements
 
     /**
      * GetFleetRegion
-     * Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
-     * @param fleetId
-     * @param region
+     * 
+     * <p>Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
+     * @param fleetId 
+     * @param region 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -241,10 +252,12 @@ public class FleetsV1 implements
     
     /**
      * GetFleetRegion
-     * Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
-     * @param fleetId
-     * @param orgId
-     * @param region
+     * 
+     * <p>Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
+     * @param fleetId 
+     * @param orgId 
+     * @param region 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -285,8 +298,9 @@ public class FleetsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetFleetRegion", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -296,8 +310,9 @@ public class FleetsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetFleetRegion",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -305,8 +320,9 @@ public class FleetsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetFleetRegion",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -314,8 +330,9 @@ public class FleetsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetFleetRegion",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -389,7 +406,9 @@ public class FleetsV1 implements
 
     /**
      * GetFleets
-     * Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
+     * <p>Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
      * @return The call builder
      */
     public GetFleetsRequestBuilder getFleets() {
@@ -398,7 +417,9 @@ public class FleetsV1 implements
 
     /**
      * GetFleets
-     * Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
+     * <p>Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -408,8 +429,10 @@ public class FleetsV1 implements
     
     /**
      * GetFleets
-     * Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
-     * @param orgId
+     * 
+     * <p>Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -444,8 +467,9 @@ public class FleetsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetFleets", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -455,8 +479,9 @@ public class FleetsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetFleets",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -464,8 +489,9 @@ public class FleetsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetFleets",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -473,8 +499,9 @@ public class FleetsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetFleets",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -548,7 +575,9 @@ public class FleetsV1 implements
 
     /**
      * UpdateFleetRegion
-     * Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
+     * <p>Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
      * @return The call builder
      */
     public UpdateFleetRegionRequestBuilder updateFleetRegion() {
@@ -557,7 +586,9 @@ public class FleetsV1 implements
 
     /**
      * UpdateFleetRegion
-     * Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
+     * <p>Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -602,8 +633,9 @@ public class FleetsV1 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "UpdateFleetRegion", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -613,8 +645,9 @@ public class FleetsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "UpdateFleetRegion",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -622,8 +655,9 @@ public class FleetsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "UpdateFleetRegion",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -631,8 +665,9 @@ public class FleetsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "UpdateFleetRegion",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

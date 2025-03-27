@@ -137,13 +137,18 @@ public final class SessionManager<T extends SessionManager.HasSessionKey> {
     }
     
     public static <T extends HasSessionKey> Session<T> requestOAuth2Token(HTTPClient client, T credentials, List<String> scopes,
-            Map<String, String> payload, URI tokenUri) {
+            Map<String, String> body, Map<String, String> headers, URI tokenUri) {
         try {
-            HttpRequest request = HttpRequest //
+            HttpRequest.Builder requestBuilder = HttpRequest //
                     .newBuilder(tokenUri) //
                     .header("Content-Type", "application/x-www-form-urlencoded") //
-                    .POST(RequestBody.serializeFormData(payload).body()) //
-                    .build();
+                    .POST(RequestBody.serializeFormData(body).body()); //
+
+            for (Map.Entry<String, String> header : headers.entrySet()) {
+                requestBuilder.header(header.getKey(), header.getValue());
+            }
+
+            HttpRequest request = requestBuilder.build();
             HttpResponse<InputStream> response = client.send(request);
             if (response.statusCode() != HttpURLConnection.HTTP_OK) {
                 String responseBody = Utils.toUtf8AndClose(response.body());

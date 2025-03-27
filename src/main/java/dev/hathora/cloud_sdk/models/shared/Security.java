@@ -6,6 +6,7 @@
 package dev.hathora.cloud_sdk.models.shared;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.hathora.cloud_sdk.utils.HasSecurity;
 import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
@@ -13,7 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class Security {
+public class Security implements HasSecurity {
 
     @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
     private Optional<String> hathoraDevToken;

@@ -16,7 +16,9 @@ import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * PaymentMethod - Make all properties in T optional
+ * PaymentMethod
+ * 
+ * <p>Make all properties in T optional
  */
 
 public class PaymentMethod {

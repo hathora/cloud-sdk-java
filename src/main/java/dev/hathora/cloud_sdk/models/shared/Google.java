@@ -12,7 +12,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 /**
- * Google - Enable google auth for your application.
+ * Google
+ * 
+ * <p>Enable google auth for your application.
  */
 
 public class Google {

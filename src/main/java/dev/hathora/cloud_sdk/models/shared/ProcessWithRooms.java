@@ -22,13 +22,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * ProcessWithRooms - A process object represents a runtime instance of your game server and its metadata.
+ * ProcessWithRooms
+ * 
+ * <p>A process object represents a runtime instance of your game server and its metadata.
  */
 
 public class ProcessWithRooms {
 
     /**
      * Tracks the number of active connections to a process.
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("activeConnections")
@@ -36,6 +39,7 @@ public class ProcessWithRooms {
     private int activeConnections;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("activeConnectionsUpdatedAt")
@@ -74,6 +78,7 @@ public class ProcessWithRooms {
     private Optional<? extends ProcessWithRoomsExposedPort> exposedPort;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("host")
@@ -81,6 +86,7 @@ public class ProcessWithRooms {
     private String host;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.ALWAYS)
@@ -89,6 +95,7 @@ public class ProcessWithRooms {
     private Optional<OffsetDateTime> idleSince;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("port")
@@ -105,6 +112,7 @@ public class ProcessWithRooms {
     private Region region;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("roomSlotsAvailable")
@@ -112,6 +120,7 @@ public class ProcessWithRooms {
     private double roomSlotsAvailable;
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonProperty("roomSlotsAvailableUpdatedAt")
@@ -267,6 +276,7 @@ public class ProcessWithRooms {
 
     /**
      * Tracks the number of active connections to a process.
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -276,6 +286,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -328,6 +339,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -337,6 +349,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -346,6 +359,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -368,6 +382,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -377,6 +392,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -454,6 +470,7 @@ public class ProcessWithRooms {
 
     /**
      * Tracks the number of active connections to a process.
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -464,6 +481,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -528,6 +546,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -538,6 +557,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -548,6 +568,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -558,6 +579,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -583,6 +605,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -593,6 +616,7 @@ public class ProcessWithRooms {
     }
 
     /**
+     * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -858,6 +882,7 @@ public class ProcessWithRooms {
 
         /**
          * Tracks the number of active connections to a process.
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -868,6 +893,7 @@ public class ProcessWithRooms {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -932,6 +958,7 @@ public class ProcessWithRooms {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -942,6 +969,7 @@ public class ProcessWithRooms {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -952,6 +980,7 @@ public class ProcessWithRooms {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -962,6 +991,7 @@ public class ProcessWithRooms {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -987,6 +1017,7 @@ public class ProcessWithRooms {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
@@ -997,6 +1028,7 @@ public class ProcessWithRooms {
         }
 
         /**
+         * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated

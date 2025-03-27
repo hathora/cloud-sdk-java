@@ -44,13 +44,15 @@ import java.util.Optional;
  *
  */
 /**
- * RoomStatus - The allocation status of a room.
+ * RoomStatus
  * 
- * `scheduling`: a process is not allocated yet and the room is waiting to be scheduled
+ * <p>The allocation status of a room.
  * 
- * `active`: ready to accept connections
+ * <p>`scheduling`: a process is not allocated yet and the room is waiting to be scheduled
  * 
- * `destroyed`: all associated metadata is deleted
+ * <p>`active`: ready to accept connections
+ * 
+ * <p>`destroyed`: all associated metadata is deleted
  */
 @JsonDeserialize(using = RoomStatus._Deserializer.class)
 @JsonSerialize(using = RoomStatus._Serializer.class)

@@ -13,7 +13,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 /**
- * ContainerPort - A container port object represents the transport configruations for how your server will listen.
+ * ContainerPort
+ * 
+ * <p>A container port object represents the transport configruations for how your server will listen.
  */
 
 public class ContainerPort {

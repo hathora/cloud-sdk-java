@@ -42,7 +42,6 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Optional; 
 
 /**
@@ -64,7 +63,9 @@ public class BuildsV3 implements
 
     /**
      * CreateBuild
-     * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * 
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * 
      * @return The call builder
      */
     public CreateBuildRequestBuilder createBuild() {
@@ -73,8 +74,10 @@ public class BuildsV3 implements
 
     /**
      * CreateBuild
-     * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
-     * @param createMultipartBuildParams
+     * 
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * 
+     * @param createMultipartBuildParams 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -85,9 +88,11 @@ public class BuildsV3 implements
     
     /**
      * CreateBuild
-     * Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
-     * @param createMultipartBuildParams
-     * @param orgId
+     * 
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * 
+     * @param createMultipartBuildParams 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -137,8 +142,9 @@ public class BuildsV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "CreateBuild", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -148,8 +154,9 @@ public class BuildsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateBuild",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -157,8 +164,9 @@ public class BuildsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "CreateBuild",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -166,8 +174,9 @@ public class BuildsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "CreateBuild",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -255,9 +264,11 @@ public class BuildsV3 implements
 
     /**
      * DeleteBuild
-     * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
+     * 
+     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
      * Be careful which builds you delete. This endpoint does not prevent you from deleting actively used builds.
      * Deleting a build that is actively build used by an app's deployment will cause failures when creating rooms.
+     * 
      * @return The call builder
      */
     public DeleteBuildRequestBuilder deleteBuild() {
@@ -266,10 +277,12 @@ public class BuildsV3 implements
 
     /**
      * DeleteBuild
-     * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
+     * 
+     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
      * Be careful which builds you delete. This endpoint does not prevent you from deleting actively used builds.
      * Deleting a build that is actively build used by an app's deployment will cause failures when creating rooms.
-     * @param buildId
+     * 
+     * @param buildId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -280,11 +293,13 @@ public class BuildsV3 implements
     
     /**
      * DeleteBuild
-     * Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
+     * 
+     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
      * Be careful which builds you delete. This endpoint does not prevent you from deleting actively used builds.
      * Deleting a build that is actively build used by an app's deployment will cause failures when creating rooms.
-     * @param buildId
-     * @param orgId
+     * 
+     * @param buildId 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -323,8 +338,9 @@ public class BuildsV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "DeleteBuild", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -334,8 +350,9 @@ public class BuildsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "DeleteBuild",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -343,8 +360,9 @@ public class BuildsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "DeleteBuild",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -352,8 +370,9 @@ public class BuildsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "DeleteBuild",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -441,7 +460,9 @@ public class BuildsV3 implements
 
     /**
      * GetBuild
-     * Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
+     * 
+     * <p>Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
+     * 
      * @return The call builder
      */
     public GetBuildRequestBuilder getBuild() {
@@ -450,8 +471,10 @@ public class BuildsV3 implements
 
     /**
      * GetBuild
-     * Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
-     * @param buildId
+     * 
+     * <p>Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
+     * 
+     * @param buildId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -462,9 +485,11 @@ public class BuildsV3 implements
     
     /**
      * GetBuild
-     * Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
-     * @param buildId
-     * @param orgId
+     * 
+     * <p>Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#build).
+     * 
+     * @param buildId 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -503,8 +528,9 @@ public class BuildsV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetBuild", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -514,8 +540,9 @@ public class BuildsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetBuild",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -523,8 +550,9 @@ public class BuildsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetBuild",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -532,8 +560,9 @@ public class BuildsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetBuild",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -607,7 +636,9 @@ public class BuildsV3 implements
 
     /**
      * GetBuilds
-     * Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
+     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
      * @return The call builder
      */
     public GetBuildsRequestBuilder getBuilds() {
@@ -616,7 +647,9 @@ public class BuildsV3 implements
 
     /**
      * GetBuilds
-     * Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
+     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -626,8 +659,10 @@ public class BuildsV3 implements
     
     /**
      * GetBuilds
-     * Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
-     * @param orgId
+     * 
+     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -662,8 +697,9 @@ public class BuildsV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "GetBuilds", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -673,8 +709,9 @@ public class BuildsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetBuilds",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -682,8 +719,9 @@ public class BuildsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "GetBuilds",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -691,8 +729,9 @@ public class BuildsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "GetBuilds",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -766,7 +805,9 @@ public class BuildsV3 implements
 
     /**
      * RunBuild
-     * Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * 
+     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * 
      * @return The call builder
      */
     public RunBuildRequestBuilder runBuild() {
@@ -775,8 +816,10 @@ public class BuildsV3 implements
 
     /**
      * RunBuild
-     * Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
-     * @param buildId
+     * 
+     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * 
+     * @param buildId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -787,9 +830,11 @@ public class BuildsV3 implements
     
     /**
      * RunBuild
-     * Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
-     * @param buildId
-     * @param orgId
+     * 
+     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * 
+     * @param buildId 
+     * @param orgId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -828,8 +873,9 @@ public class BuildsV3 implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      _baseUrl,
                       "RunBuild", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -839,8 +885,9 @@ public class BuildsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "RunBuild",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -848,8 +895,9 @@ public class BuildsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            _baseUrl,
                             "RunBuild",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -857,8 +905,9 @@ public class BuildsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            _baseUrl,
                             "RunBuild",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

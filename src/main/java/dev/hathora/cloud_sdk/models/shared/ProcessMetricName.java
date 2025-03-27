@@ -44,7 +44,9 @@ import java.util.Optional;
  *
  */
 /**
- * ProcessMetricName - Available metrics to query over time.
+ * ProcessMetricName
+ * 
+ * <p>Available metrics to query over time.
  */
 @JsonDeserialize(using = ProcessMetricName._Deserializer.class)
 @JsonSerialize(using = ProcessMetricName._Serializer.class)

@@ -17,7 +17,9 @@ import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * BuildV3 - A build represents a game server artifact and its associated metadata.
+ * BuildV3
+ * 
+ * <p>A build represents a game server artifact and its associated metadata.
  */
 
 public class BuildV3 {
@@ -54,6 +56,13 @@ public class BuildV3 {
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("deletedAt")
     private Optional<OffsetDateTime> deletedAt;
+
+    /**
+     * When the build expired
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("expiredAt")
+    private Optional<OffsetDateTime> expiredAt;
 
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
@@ -99,6 +108,7 @@ public class BuildV3 {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdBy") String createdBy,
             @JsonProperty("deletedAt") Optional<OffsetDateTime> deletedAt,
+            @JsonProperty("expiredAt") Optional<OffsetDateTime> expiredAt,
             @JsonProperty("finishedAt") Optional<OffsetDateTime> finishedAt,
             @JsonProperty("imageSize") long imageSize,
             @JsonProperty("orgId") String orgId,
@@ -111,6 +121,7 @@ public class BuildV3 {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(deletedAt, "deletedAt");
+        Utils.checkNotNull(expiredAt, "expiredAt");
         Utils.checkNotNull(finishedAt, "finishedAt");
         Utils.checkNotNull(imageSize, "imageSize");
         Utils.checkNotNull(orgId, "orgId");
@@ -123,6 +134,7 @@ public class BuildV3 {
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.deletedAt = deletedAt;
+        this.expiredAt = expiredAt;
         this.finishedAt = finishedAt;
         this.imageSize = imageSize;
         this.orgId = orgId;
@@ -138,7 +150,7 @@ public class BuildV3 {
             long imageSize,
             String orgId,
             BuildStatus status) {
-        this(buildId, Optional.empty(), Optional.empty(), createdAt, createdBy, Optional.empty(), Optional.empty(), imageSize, orgId, Optional.empty(), Optional.empty(), status);
+        this(buildId, Optional.empty(), Optional.empty(), createdAt, createdBy, Optional.empty(), Optional.empty(), Optional.empty(), imageSize, orgId, Optional.empty(), Optional.empty(), status);
     }
 
     /**
@@ -181,6 +193,14 @@ public class BuildV3 {
     @JsonIgnore
     public Optional<OffsetDateTime> deletedAt() {
         return deletedAt;
+    }
+
+    /**
+     * When the build expired
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> expiredAt() {
+        return expiredAt;
     }
 
     /**
@@ -305,6 +325,24 @@ public class BuildV3 {
     }
 
     /**
+     * When the build expired
+     */
+    public BuildV3 withExpiredAt(OffsetDateTime expiredAt) {
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        this.expiredAt = Optional.ofNullable(expiredAt);
+        return this;
+    }
+
+    /**
+     * When the build expired
+     */
+    public BuildV3 withExpiredAt(Optional<OffsetDateTime> expiredAt) {
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        this.expiredAt = expiredAt;
+        return this;
+    }
+
+    /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
      */
     public BuildV3 withFinishedAt(OffsetDateTime finishedAt) {
@@ -398,6 +436,7 @@ public class BuildV3 {
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.createdBy, other.createdBy) &&
             Objects.deepEquals(this.deletedAt, other.deletedAt) &&
+            Objects.deepEquals(this.expiredAt, other.expiredAt) &&
             Objects.deepEquals(this.finishedAt, other.finishedAt) &&
             Objects.deepEquals(this.imageSize, other.imageSize) &&
             Objects.deepEquals(this.orgId, other.orgId) &&
@@ -415,6 +454,7 @@ public class BuildV3 {
             createdAt,
             createdBy,
             deletedAt,
+            expiredAt,
             finishedAt,
             imageSize,
             orgId,
@@ -432,6 +472,7 @@ public class BuildV3 {
                 "createdAt", createdAt,
                 "createdBy", createdBy,
                 "deletedAt", deletedAt,
+                "expiredAt", expiredAt,
                 "finishedAt", finishedAt,
                 "imageSize", imageSize,
                 "orgId", orgId,
@@ -453,6 +494,8 @@ public class BuildV3 {
         private String createdBy;
  
         private Optional<OffsetDateTime> deletedAt = Optional.empty();
+ 
+        private Optional<OffsetDateTime> expiredAt = Optional.empty();
  
         private Optional<OffsetDateTime> finishedAt = Optional.empty();
  
@@ -543,6 +586,24 @@ public class BuildV3 {
         }
 
         /**
+         * When the build expired
+         */
+        public Builder expiredAt(OffsetDateTime expiredAt) {
+            Utils.checkNotNull(expiredAt, "expiredAt");
+            this.expiredAt = Optional.ofNullable(expiredAt);
+            return this;
+        }
+
+        /**
+         * When the build expired
+         */
+        public Builder expiredAt(Optional<OffsetDateTime> expiredAt) {
+            Utils.checkNotNull(expiredAt, "expiredAt");
+            this.expiredAt = expiredAt;
+            return this;
+        }
+
+        /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
          */
         public Builder finishedAt(OffsetDateTime finishedAt) {
@@ -628,6 +689,7 @@ public class BuildV3 {
                 createdAt,
                 createdBy,
                 deletedAt,
+                expiredAt,
                 finishedAt,
                 imageSize,
                 orgId,

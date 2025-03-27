@@ -17,7 +17,9 @@ import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * ApplicationWithLatestDeploymentAndBuild - An application object is the top level namespace for the game server.
+ * ApplicationWithLatestDeploymentAndBuild
+ * 
+ * <p>An application object is the top level namespace for the game server.
  */
 
 public class ApplicationWithLatestDeploymentAndBuild {
