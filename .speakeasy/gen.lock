@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: bbeebbda94ea7786222f39d3859f81eb
+  docChecksum: 7262f9847edb8033a23086747d5580b0
   docVersion: 0.0.1
-  speakeasyVersion: 1.524.0
-  generationVersion: 2.562.2
-  releaseVersion: 3.0.0
-  configChecksum: 64b42d12f225fc5e381e808ec1329bef
+  speakeasyVersion: 1.527.1
+  generationVersion: 2.564.5
+  releaseVersion: 3.0.1
+  configChecksum: 1ca238226164617a85751273c224a162
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -338,6 +338,7 @@ generatedFiles:
   - docs/models/shared/FleetsPage.md
   - docs/models/shared/Google.md
   - docs/models/shared/GoogleIdTokenObject.md
+  - docs/models/shared/Hosting.md
   - docs/models/shared/Invoice.md
   - docs/models/shared/InvoiceItem.md
   - docs/models/shared/InvoiceItemPage.md
@@ -892,6 +893,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/FleetsPage.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Google.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/GoogleIdTokenObject.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/Hosting.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Invoice.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/InvoiceItem.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/InvoiceItemPage.java
