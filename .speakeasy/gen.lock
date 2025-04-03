@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: 7262f9847edb8033a23086747d5580b0
+  docChecksum: d3da5e5be9a629a2aefa58cb328f8ac5
   docVersion: 0.0.1
-  speakeasyVersion: 1.527.1
-  generationVersion: 2.564.5
-  releaseVersion: 3.0.1
-  configChecksum: 1ca238226164617a85751273c224a162
+  speakeasyVersion: 1.528.1
+  generationVersion: 2.565.1
+  releaseVersion: 3.0.2
+  configChecksum: e6c75af22d43aca377575174746f6a3e
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.36.0
+    core: 3.36.1
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
@@ -965,6 +965,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/utils/BackoffStrategy.java
   - src/main/java/dev/hathora/cloud_sdk/utils/BigDecimalString.java
   - src/main/java/dev/hathora/cloud_sdk/utils/BigIntegerString.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/Constants.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Deserializers.java
   - src/main/java/dev/hathora/cloud_sdk/utils/EventStream.java
   - src/main/java/dev/hathora/cloud_sdk/utils/EventStreamLineReader.java

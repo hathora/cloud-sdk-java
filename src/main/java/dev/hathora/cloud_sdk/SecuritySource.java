@@ -5,8 +5,6 @@ package dev.hathora.cloud_sdk;
 
 import dev.hathora.cloud_sdk.utils.HasSecurity;
 
-
-
 public interface SecuritySource {
 
     HasSecurity getSecurity();

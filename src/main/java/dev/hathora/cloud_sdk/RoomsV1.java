@@ -50,8 +50,6 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
- 
-
 public class RoomsV1 implements
             MethodCallCreateRoomDeprecated,
             MethodCallDestroyRoomDeprecated,

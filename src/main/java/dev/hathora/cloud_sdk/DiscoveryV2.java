@@ -23,8 +23,6 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
- 
-
 /**
  * Service that allows clients to directly ping all Hathora regions to get latency information
  */

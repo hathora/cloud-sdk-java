@@ -52,8 +52,6 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
- 
-
 public class BuildsV2 implements
             MethodCallCreateBuildV2Deprecated,
             MethodCallCreateBuildWithUploadUrlV2Deprecated,

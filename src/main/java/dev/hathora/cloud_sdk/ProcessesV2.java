@@ -41,8 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
- 
-
 /**
  * Deprecated. Use [ProcessesV3](https://hathora.dev/api#tag/ProcessesV3).
  */

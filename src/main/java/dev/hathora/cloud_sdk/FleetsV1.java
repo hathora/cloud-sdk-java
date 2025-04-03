@@ -40,8 +40,6 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
- 
-
 /**
  * Operations to manage and view a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
  */

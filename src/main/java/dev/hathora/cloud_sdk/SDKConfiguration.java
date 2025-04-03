@@ -13,8 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-
-
 class SDKConfiguration {
     public SecuritySource securitySource;
     
@@ -32,8 +30,8 @@ class SDKConfiguration {
     public int serverIdx = 0;
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "0.0.1";
-    public static final String SDK_VERSION = "3.0.1";
-    public static final String GEN_VERSION = "2.564.5";
+    public static final String SDK_VERSION = "3.0.2";
+    public static final String GEN_VERSION = "2.565.1";
     private static final String BASE_PACKAGE = "dev.hathora.cloud_sdk";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",

@@ -43,8 +43,6 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
- 
-
 /**
  * Operations to get data on active and stopped [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
  */

@@ -39,8 +39,6 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
- 
-
 public class DeploymentsV2 implements
             MethodCallCreateDeploymentV2Deprecated,
             MethodCallGetDeploymentInfoV2Deprecated,
