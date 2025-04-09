@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:3.0.2'
+implementation 'dev.hathora:cloud-sdk:3.0.3'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>3.0.2</version>
+    <version>3.0.3</version>
 </dependency>
 ```
 
@@ -95,7 +95,6 @@ public class Application {
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
                     .build())
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.application().isPresent()) {
@@ -355,7 +354,6 @@ public class Application {
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
                     .build())
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.application().isPresent()) {
@@ -408,7 +406,6 @@ public class Application {
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
                     .build())
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.application().isPresent()) {
@@ -461,7 +458,6 @@ public class Application {
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
                     .build())
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.application().isPresent()) {
@@ -502,7 +498,6 @@ public class Application {
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
                     .build())
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.application().isPresent()) {
@@ -552,7 +547,6 @@ public class Application {
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
                     .build())
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.application().isPresent()) {

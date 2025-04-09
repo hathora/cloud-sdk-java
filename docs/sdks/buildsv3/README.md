@@ -47,7 +47,6 @@ public class Application {
                     .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                     .buildTag("0.1.14-14c793")
                     .build())
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.createdBuildV3WithMultipartUrls().isPresent()) {
@@ -107,7 +106,6 @@ public class Application {
 
         DeleteBuildResponse res = sdk.buildsV3().deleteBuild()
                 .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.deletedBuild().isPresent()) {
@@ -165,7 +163,6 @@ public class Application {
 
         GetBuildResponse res = sdk.buildsV3().getBuild()
                 .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.buildV3().isPresent()) {
@@ -221,7 +218,6 @@ public class Application {
             .build();
 
         GetBuildsResponse res = sdk.buildsV3().getBuilds()
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.buildsV3Page().isPresent()) {
@@ -277,7 +273,6 @@ public class Application {
 
         RunBuildResponse res = sdk.buildsV3().runBuild()
                 .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.responseStream().isPresent()) {

@@ -255,7 +255,6 @@ public class Application {
             .build();
 
         GetUsageLimitsResponse res = sdk.organizationsV1().getUsageLimits()
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.usageLimits().isPresent()) {

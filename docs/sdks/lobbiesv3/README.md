@@ -196,7 +196,6 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesResponse;
-import dev.hathora.cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
@@ -210,7 +209,6 @@ public class Application {
 
         ListActivePublicLobbiesResponse res = sdk.lobbiesV3().listActivePublicLobbies()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.LOS_ANGELES)
                 .call();
 
         if (res.classes().isPresent()) {

@@ -24,7 +24,6 @@ import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyDeprecatedSecurity;
-import dev.hathora.cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
@@ -41,8 +40,6 @@ public class Application {
                     .playerAuth("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .local(false)
-                .region(Region.FRANKFURT)
                 .call();
 
         if (res.roomId().isPresent()) {
@@ -88,7 +85,6 @@ import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.CreatePublicLobbyDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.operations.CreatePublicLobbyDeprecatedSecurity;
-import dev.hathora.cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
@@ -105,8 +101,6 @@ public class Application {
                     .playerAuth("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .local(false)
-                .region(Region.MUMBAI)
                 .call();
 
         if (res.roomId().isPresent()) {
@@ -151,7 +145,6 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV1Response;
-import dev.hathora.cloud_sdk.models.shared.Region;
 import java.lang.Exception;
 
 public class Application {
@@ -165,8 +158,6 @@ public class Application {
 
         ListActivePublicLobbiesDeprecatedV1Response res = sdk.lobbiesV1().listActivePublicLobbiesDeprecatedV1()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .local(false)
-                .region(Region.DALLAS)
                 .call();
 
         if (res.classes().isPresent()) {

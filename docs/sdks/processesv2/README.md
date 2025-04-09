@@ -88,9 +88,8 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetLatestProcessesV2DeprecatedResponse;
-import dev.hathora.cloud_sdk.models.shared.*;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
@@ -106,10 +105,6 @@ public class Application {
 
         GetLatestProcessesV2DeprecatedResponse res = sdk.processesV2().getLatestProcessesV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(List.of(
-                    Region.SINGAPORE))
-                .status(List.of(
-                    ProcessStatus.RUNNING))
                 .call();
 
         if (res.classes().isPresent()) {
@@ -211,9 +206,8 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedResponse;
-import dev.hathora.cloud_sdk.models.shared.*;
+import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
@@ -229,10 +223,6 @@ public class Application {
 
         GetProcessesCountExperimentalV2DeprecatedResponse res = sdk.processesV2().getProcessesCountExperimentalV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(List.of(
-                    Region.MUMBAI))
-                .status(List.of(
-                    ProcessStatus.FAILED))
                 .call();
 
         if (res.object().isPresent()) {

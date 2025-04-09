@@ -171,7 +171,7 @@ public class LobbiesV2 implements
                   new BeforeRequestContextImpl(
                       _baseUrl,
                       "CreateLobbyDeprecated", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -183,7 +183,7 @@ public class LobbiesV2 implements
                         new AfterErrorContextImpl(
                             _baseUrl,
                             "CreateLobbyDeprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -193,7 +193,7 @@ public class LobbiesV2 implements
                         new AfterSuccessContextImpl(
                             _baseUrl,
                             "CreateLobbyDeprecated",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -203,7 +203,7 @@ public class LobbiesV2 implements
                         new AfterErrorContextImpl(
                             _baseUrl,
                             "CreateLobbyDeprecated",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -381,7 +381,7 @@ public class LobbiesV2 implements
                   new BeforeRequestContextImpl(
                       _baseUrl,
                       "CreateLocalLobby", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -393,7 +393,7 @@ public class LobbiesV2 implements
                         new AfterErrorContextImpl(
                             _baseUrl,
                             "CreateLocalLobby",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -403,7 +403,7 @@ public class LobbiesV2 implements
                         new AfterSuccessContextImpl(
                             _baseUrl,
                             "CreateLocalLobby",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -413,7 +413,7 @@ public class LobbiesV2 implements
                         new AfterErrorContextImpl(
                             _baseUrl,
                             "CreateLocalLobby",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -591,7 +591,7 @@ public class LobbiesV2 implements
                   new BeforeRequestContextImpl(
                       _baseUrl,
                       "CreatePrivateLobby", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -603,7 +603,7 @@ public class LobbiesV2 implements
                         new AfterErrorContextImpl(
                             _baseUrl,
                             "CreatePrivateLobby",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -613,7 +613,7 @@ public class LobbiesV2 implements
                         new AfterSuccessContextImpl(
                             _baseUrl,
                             "CreatePrivateLobby",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -623,7 +623,7 @@ public class LobbiesV2 implements
                         new AfterErrorContextImpl(
                             _baseUrl,
                             "CreatePrivateLobby",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -801,7 +801,7 @@ public class LobbiesV2 implements
                   new BeforeRequestContextImpl(
                       _baseUrl,
                       "CreatePublicLobby", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -813,7 +813,7 @@ public class LobbiesV2 implements
                         new AfterErrorContextImpl(
                             _baseUrl,
                             "CreatePublicLobby",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -823,7 +823,7 @@ public class LobbiesV2 implements
                         new AfterSuccessContextImpl(
                             _baseUrl,
                             "CreatePublicLobby",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -833,7 +833,7 @@ public class LobbiesV2 implements
                         new AfterErrorContextImpl(
                             _baseUrl,
                             "CreatePublicLobby",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

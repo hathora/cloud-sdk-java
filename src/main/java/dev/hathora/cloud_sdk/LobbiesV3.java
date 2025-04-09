@@ -116,7 +116,7 @@ public class LobbiesV3 implements
                   new BeforeRequestContextImpl(
                       _baseUrl,
                       "CreateLobby", 
-                      Optional.of(List.of()), 
+                      Optional.empty(), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -128,7 +128,7 @@ public class LobbiesV3 implements
                         new AfterErrorContextImpl(
                             _baseUrl,
                             "CreateLobby",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -138,7 +138,7 @@ public class LobbiesV3 implements
                         new AfterSuccessContextImpl(
                             _baseUrl,
                             "CreateLobby",
-                            Optional.of(List.of()), 
+                            Optional.empty(), 
                             _hookSecuritySource),
                          _httpRes);
             }
@@ -148,7 +148,7 @@ public class LobbiesV3 implements
                         new AfterErrorContextImpl(
                             _baseUrl,
                             "CreateLobby",
-                            Optional.of(List.of()),
+                            Optional.empty(),
                             _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));

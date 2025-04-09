@@ -26,7 +26,6 @@ public class Application {
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
                     .build())
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.application().isPresent()) {

@@ -431,4 +431,5 @@ public class HathoraCloud {
         this.roomsV2 = new RoomsV2(sdkConfiguration);
         this.tokensV1 = new TokensV1(sdkConfiguration);
         this.sdkConfiguration.initialize();
-    }}
+    }
+}

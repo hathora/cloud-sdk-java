@@ -85,7 +85,6 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetRunningProcessesResponse;
-import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -103,7 +102,6 @@ public class Application {
 
         GetRunningProcessesResponse res = sdk.processesV1().getRunningProcesses()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.SAO_PAULO)
                 .call();
 
         if (res.classes().isPresent()) {
@@ -145,7 +143,6 @@ package hello.world;
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.GetStoppedProcessesResponse;
-import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -163,7 +160,6 @@ public class Application {
 
         GetStoppedProcessesResponse res = sdk.processesV1().getStoppedProcesses()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.DALLAS)
                 .call();
 
         if (res.classes().isPresent()) {

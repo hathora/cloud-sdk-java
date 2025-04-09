@@ -44,7 +44,6 @@ public class Application {
             .build();
 
         GetBalanceResponse res = sdk.billingV1().getBalance()
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.number().isPresent()) {
@@ -100,7 +99,6 @@ public class Application {
             .build();
 
         GetInvoicesResponse res = sdk.billingV1().getInvoices()
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.classes().isPresent()) {
@@ -155,7 +153,6 @@ public class Application {
             .build();
 
         GetPaymentMethodResponse res = sdk.billingV1().getPaymentMethod()
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.paymentMethod().isPresent()) {
@@ -211,7 +208,6 @@ public class Application {
             .build();
 
         GetUpcomingInvoiceItemsResponse res = sdk.billingV1().getUpcomingInvoiceItems()
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.invoiceItemPage().isPresent()) {
@@ -267,7 +263,6 @@ public class Application {
             .build();
 
         GetUpcomingInvoiceTotalResponse res = sdk.billingV1().getUpcomingInvoiceTotal()
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.object().isPresent()) {
@@ -327,7 +322,6 @@ public class Application {
                 .customerPortalUrl(CustomerPortalUrl.builder()
                     .returnUrl("https://smart-puppet.biz/")
                     .build())
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.string().isPresent()) {

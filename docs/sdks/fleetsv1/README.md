@@ -105,7 +105,6 @@ public class Application {
 
         GetFleetRegionResponse res = sdk.fleetsV1().getFleetRegion()
                 .fleetId("<id>")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .region(Region.SAO_PAULO)
                 .call();
 
@@ -163,7 +162,6 @@ public class Application {
             .build();
 
         GetFleetsResponse res = sdk.fleetsV1().getFleets()
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
         if (res.fleetsPage().isPresent()) {
