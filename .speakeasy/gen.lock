@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: 2c90156aaf74783c9422552eb6ddbc45
+  docChecksum: 10e30077996f3af35f5722c7de9180a4
   docVersion: 0.0.1
-  speakeasyVersion: 1.531.0
-  generationVersion: 2.568.2
-  releaseVersion: 3.0.3
-  configChecksum: 5ef273af0ffb216558fef80b039b212b
+  speakeasyVersion: 1.540.1
+  generationVersion: 2.593.4
+  releaseVersion: 3.1.0
+  configChecksum: 32eba52499e46d8f7b3c88aec56b1fdd
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.36.3
+    core: 3.37.1
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
@@ -1174,6 +1174,8 @@ examples:
         "200":
           application/json: [{"amountDue": 6294.58, "dueDate": "2025-10-27T12:46:22.213Z", "id": "<id>", "month": 5289.86, "pdfUrl": "https://bare-ferret.info/", "status": "overdue", "year": 8858.56}, {"amountDue": 7192.45, "dueDate": "2023-07-11T02:30:47.153Z", "id": "<id>", "month": 9249.53, "pdfUrl": "https://burly-technologist.org", "status": "pending", "year": 4221.79}, {"amountDue": 2099.06, "dueDate": "2025-06-14T18:38:25.404Z", "id": "<id>", "month": 3209.15, "pdfUrl": "https://twin-swine.info/", "status": "overdue", "year": 67.53}]
         "401":
+          application/json: {"message": "<value>"}
+        "500":
           application/json: {"message": "<value>"}
   GetPaymentMethod:
     speakeasy-default-get-payment-method:

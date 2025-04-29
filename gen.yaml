@@ -8,13 +8,14 @@ generation:
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
     securityFeb2025: false
+    sharedErrorComponentsApr2025: false
   auth:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
   baseServerURL: ""
   flattenGlobalSecurity: true
 java:
-  version: 3.0.3
+  version: 3.1.0
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter-api:5.8.1
     - testRuntimeOnly:org.junit.jupiter:junit-jupiter-engine:5.8.1
