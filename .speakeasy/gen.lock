@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: 10e30077996f3af35f5722c7de9180a4
+  docChecksum: 7f29a7ce792f0adc120569a1a02c20ba
   docVersion: 0.0.1
   speakeasyVersion: 1.540.1
   generationVersion: 2.593.4
-  releaseVersion: 3.1.0
-  configChecksum: 32eba52499e46d8f7b3c88aec56b1fdd
+  releaseVersion: 3.1.1
+  configChecksum: 28eed9512e8b0fe9b23e7d8cf4f5bad2
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true

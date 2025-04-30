@@ -60,6 +60,8 @@ public class Scope {
     public static final Scope ORGS_READ_WRITE = new Scope("orgs:read-write");
     public static final Scope TOKENS_READ = new Scope("tokens:read");
     public static final Scope TOKENS_READ_WRITE = new Scope("tokens:read-write");
+    public static final Scope TICKETS_READ = new Scope("tickets:read");
+    public static final Scope TICKETS_READ_WRITE = new Scope("tickets:read-write");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -146,6 +148,8 @@ public class Scope {
         map.put("orgs:read-write", ORGS_READ_WRITE);
         map.put("tokens:read", TOKENS_READ);
         map.put("tokens:read-write", TOKENS_READ_WRITE);
+        map.put("tickets:read", TICKETS_READ);
+        map.put("tickets:read-write", TICKETS_READ_WRITE);
         return map;
     }
 
@@ -166,6 +170,8 @@ public class Scope {
         map.put("orgs:read-write", ScopeEnum.ORGS_READ_WRITE);
         map.put("tokens:read", ScopeEnum.TOKENS_READ);
         map.put("tokens:read-write", ScopeEnum.TOKENS_READ_WRITE);
+        map.put("tickets:read", ScopeEnum.TICKETS_READ);
+        map.put("tickets:read-write", ScopeEnum.TICKETS_READ_WRITE);
         return map;
     }
     
@@ -215,7 +221,9 @@ public class Scope {
         ORGS_READ("orgs:read"),
         ORGS_READ_WRITE("orgs:read-write"),
         TOKENS_READ("tokens:read"),
-        TOKENS_READ_WRITE("tokens:read-write"),;
+        TOKENS_READ_WRITE("tokens:read-write"),
+        TICKETS_READ("tickets:read"),
+        TICKETS_READ_WRITE("tickets:read-write"),;
 
         private final String value;
 
