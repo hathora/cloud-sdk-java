@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:3.1.1'
+implementation 'dev.hathora:cloud-sdk:3.1.2'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>3.1.1</version>
+    <version>3.1.2</version>
 </dependency>
 ```
 
@@ -148,6 +148,7 @@ public class Application {
 * [deleteApp](docs/sdks/appsv2/README.md#deleteapp) - DeleteApp
 * [getApp](docs/sdks/appsv2/README.md#getapp) - GetApp
 * [getApps](docs/sdks/appsv2/README.md#getapps) - GetApps
+* [patchApp](docs/sdks/appsv2/README.md#patchapp) - PatchApp
 * [updateApp](docs/sdks/appsv2/README.md#updateapp) - UpdateApp
 
 ### [authV1()](docs/sdks/authv1/README.md)
@@ -186,10 +187,12 @@ public class Application {
 ### [buildsV3()](docs/sdks/buildsv3/README.md)
 
 * [createBuild](docs/sdks/buildsv3/README.md#createbuild) - CreateBuild
+* [createBuildRegistry](docs/sdks/buildsv3/README.md#createbuildregistry) - CreateBuildRegistry
 * [deleteBuild](docs/sdks/buildsv3/README.md#deletebuild) - DeleteBuild
 * [getBuild](docs/sdks/buildsv3/README.md#getbuild) - GetBuild
 * [getBuilds](docs/sdks/buildsv3/README.md#getbuilds) - GetBuilds
 * [runBuild](docs/sdks/buildsv3/README.md#runbuild) - RunBuild
+* [runBuildRegistry](docs/sdks/buildsv3/README.md#runbuildregistry) - RunBuildRegistry
 
 ### [~~deploymentsV1()~~](docs/sdks/deploymentsv1/README.md)
 

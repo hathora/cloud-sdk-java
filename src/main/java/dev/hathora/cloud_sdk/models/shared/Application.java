@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -75,6 +76,10 @@ public class Application {
     @JsonProperty("orgId")
     private String orgId;
 
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("serviceConfig")
+    private Optional<? extends ApplicationServiceConfig> serviceConfig;
+
     @JsonCreator
     public Application(
             @JsonProperty("appId") String appId,
@@ -85,7 +90,8 @@ public class Application {
             @JsonProperty("createdBy") String createdBy,
             @JsonProperty("deletedAt") Optional<OffsetDateTime> deletedAt,
             @JsonProperty("deletedBy") Optional<String> deletedBy,
-            @JsonProperty("orgId") String orgId) {
+            @JsonProperty("orgId") String orgId,
+            @JsonProperty("serviceConfig") Optional<? extends ApplicationServiceConfig> serviceConfig) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(appName, "appName");
         Utils.checkNotNull(appSecret, "appSecret");
@@ -95,6 +101,7 @@ public class Application {
         Utils.checkNotNull(deletedAt, "deletedAt");
         Utils.checkNotNull(deletedBy, "deletedBy");
         Utils.checkNotNull(orgId, "orgId");
+        Utils.checkNotNull(serviceConfig, "serviceConfig");
         this.appId = appId;
         this.appName = appName;
         this.appSecret = appSecret;
@@ -104,6 +111,7 @@ public class Application {
         this.deletedAt = deletedAt;
         this.deletedBy = deletedBy;
         this.orgId = orgId;
+        this.serviceConfig = serviceConfig;
     }
     
     public Application(
@@ -114,7 +122,7 @@ public class Application {
             OffsetDateTime createdAt,
             String createdBy,
             String orgId) {
-        this(appId, appName, appSecret, authConfiguration, createdAt, createdBy, Optional.empty(), Optional.empty(), orgId);
+        this(appId, appName, appSecret, authConfiguration, createdAt, createdBy, Optional.empty(), Optional.empty(), orgId, Optional.empty());
     }
 
     /**
@@ -184,6 +192,12 @@ public class Application {
     @JsonIgnore
     public String orgId() {
         return orgId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ApplicationServiceConfig> serviceConfig() {
+        return (Optional<ApplicationServiceConfig>) serviceConfig;
     }
 
     public final static Builder builder() {
@@ -286,6 +300,18 @@ public class Application {
         return this;
     }
 
+    public Application withServiceConfig(ApplicationServiceConfig serviceConfig) {
+        Utils.checkNotNull(serviceConfig, "serviceConfig");
+        this.serviceConfig = Optional.ofNullable(serviceConfig);
+        return this;
+    }
+
+    public Application withServiceConfig(Optional<? extends ApplicationServiceConfig> serviceConfig) {
+        Utils.checkNotNull(serviceConfig, "serviceConfig");
+        this.serviceConfig = serviceConfig;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -305,7 +331,8 @@ public class Application {
             Objects.deepEquals(this.createdBy, other.createdBy) &&
             Objects.deepEquals(this.deletedAt, other.deletedAt) &&
             Objects.deepEquals(this.deletedBy, other.deletedBy) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Objects.deepEquals(this.orgId, other.orgId) &&
+            Objects.deepEquals(this.serviceConfig, other.serviceConfig);
     }
     
     @Override
@@ -319,7 +346,8 @@ public class Application {
             createdBy,
             deletedAt,
             deletedBy,
-            orgId);
+            orgId,
+            serviceConfig);
     }
     
     @Override
@@ -333,7 +361,8 @@ public class Application {
                 "createdBy", createdBy,
                 "deletedAt", deletedAt,
                 "deletedBy", deletedBy,
-                "orgId", orgId);
+                "orgId", orgId,
+                "serviceConfig", serviceConfig);
     }
     
     public final static class Builder {
@@ -355,6 +384,8 @@ public class Application {
         private Optional<String> deletedBy = Optional.empty();
  
         private String orgId;
+ 
+        private Optional<? extends ApplicationServiceConfig> serviceConfig = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -455,6 +486,18 @@ public class Application {
             this.orgId = orgId;
             return this;
         }
+
+        public Builder serviceConfig(ApplicationServiceConfig serviceConfig) {
+            Utils.checkNotNull(serviceConfig, "serviceConfig");
+            this.serviceConfig = Optional.ofNullable(serviceConfig);
+            return this;
+        }
+
+        public Builder serviceConfig(Optional<? extends ApplicationServiceConfig> serviceConfig) {
+            Utils.checkNotNull(serviceConfig, "serviceConfig");
+            this.serviceConfig = serviceConfig;
+            return this;
+        }
         
         public Application build() {
             return new Application(
@@ -466,7 +509,8 @@ public class Application {
                 createdBy,
                 deletedAt,
                 deletedBy,
-                orgId);
+                orgId,
+                serviceConfig);
         }
     }
 }

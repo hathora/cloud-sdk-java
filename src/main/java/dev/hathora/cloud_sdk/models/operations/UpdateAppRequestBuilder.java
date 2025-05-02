@@ -3,7 +3,7 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import dev.hathora.cloud_sdk.models.shared.AppConfigWithServiceConfig;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class UpdateAppRequestBuilder {
 
-    private AppConfig appConfig;
+    private AppConfigWithServiceConfig appConfigWithServiceConfig;
     private Optional<String> appId = Optional.empty();
     private final SDKMethodInterfaces.MethodCallUpdateApp sdk;
 
@@ -19,9 +19,9 @@ public class UpdateAppRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UpdateAppRequestBuilder appConfig(AppConfig appConfig) {
-        Utils.checkNotNull(appConfig, "appConfig");
-        this.appConfig = appConfig;
+    public UpdateAppRequestBuilder appConfigWithServiceConfig(AppConfigWithServiceConfig appConfigWithServiceConfig) {
+        Utils.checkNotNull(appConfigWithServiceConfig, "appConfigWithServiceConfig");
+        this.appConfigWithServiceConfig = appConfigWithServiceConfig;
         return this;
     }
                 
@@ -40,7 +40,7 @@ public class UpdateAppRequestBuilder {
     public UpdateAppResponse call() throws Exception {
 
         return sdk.updateApp(
-            appConfig,
+            appConfigWithServiceConfig,
             appId);
     }
 }

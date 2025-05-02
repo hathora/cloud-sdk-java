@@ -11,6 +11,7 @@ Operations that allow you manage your [applications](https://hathora.dev/docs/co
 * [deleteApp](#deleteapp) - DeleteApp
 * [getApp](#getapp) - GetApp
 * [getApps](#getapps) - GetApps
+* [patchApp](#patchapp) - PatchApp
 * [updateApp](#updateapp) - UpdateApp
 
 ## createApp
@@ -237,9 +238,9 @@ public class Application {
 | models/errors/ApiError | 401, 404, 429          | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
-## updateApp
+## patchApp
 
-Update data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+Patch data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
 
 ### Example Usage
 
@@ -248,9 +249,10 @@ package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.operations.UpdateAppResponse;
+import dev.hathora.cloud_sdk.models.operations.PatchAppResponse;
 import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -264,10 +266,10 @@ public class Application {
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
-        UpdateAppResponse res = sdk.appsV2().updateApp()
-                .appConfig(AppConfig.builder()
-                    .appName("minecraft")
-                    .authConfiguration(AuthConfiguration.builder()
+        PatchAppResponse res = sdk.appsV2().patchApp()
+                .partialAppConfigWithServiceConfig(PartialAppConfigWithServiceConfig.builder()
+                    .serviceConfig(ServiceConfig.builder()
+                        .staticProcessAllocation(List.of())
                         .build())
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -282,10 +284,76 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                     | Type                                          | Required                                      | Description                                   | Example                                       |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `appConfig`                                   | [AppConfig](../../models/shared/AppConfig.md) | :heavy_check_mark:                            | N/A                                           |                                               |
-| `appId`                                       | *Optional\<String>*                           | :heavy_minus_sign:                            | N/A                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2      |
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `partialAppConfigWithServiceConfig`                                                           | [PartialAppConfigWithServiceConfig](../../models/shared/PartialAppConfigWithServiceConfig.md) | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `appId`                                                                                       | *Optional\<String>*                                                                           | :heavy_minus_sign:                                                                            | N/A                                                                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                      |
+
+### Response
+
+**[PatchAppResponse](../../models/operations/PatchAppResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
+| models/errors/ApiError | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## updateApp
+
+Set application config (will override all fields) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.UpdateAppResponse;
+import dev.hathora.cloud_sdk.models.shared.*;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+            .build();
+
+        UpdateAppResponse res = sdk.appsV2().updateApp()
+                .appConfigWithServiceConfig(AppConfigWithServiceConfig.builder()
+                    .appName("minecraft")
+                    .authConfiguration(AuthConfiguration.builder()
+                        .build())
+                    .serviceConfig(ServiceConfig.builder()
+                        .staticProcessAllocation(List.of())
+                        .build())
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .call();
+
+        if (res.application().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     | Example                                                                         |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `appConfigWithServiceConfig`                                                    | [AppConfigWithServiceConfig](../../models/shared/AppConfigWithServiceConfig.md) | :heavy_check_mark:                                                              | N/A                                                                             |                                                                                 |
+| `appId`                                                                         | *Optional\<String>*                                                             | :heavy_minus_sign:                                                              | N/A                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                        |
 
 ### Response
 

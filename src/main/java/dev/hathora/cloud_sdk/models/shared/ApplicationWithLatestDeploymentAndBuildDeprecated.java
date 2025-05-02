@@ -80,6 +80,10 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
     @JsonProperty("orgId")
     private String orgId;
 
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("serviceConfig")
+    private Optional<? extends ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig> serviceConfig;
+
     @JsonCreator
     public ApplicationWithLatestDeploymentAndBuildDeprecated(
             @JsonProperty("appId") String appId,
@@ -91,7 +95,8 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
             @JsonProperty("deletedAt") Optional<OffsetDateTime> deletedAt,
             @JsonProperty("deletedBy") Optional<String> deletedBy,
             @JsonProperty("deployment") Optional<? extends ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment> deployment,
-            @JsonProperty("orgId") String orgId) {
+            @JsonProperty("orgId") String orgId,
+            @JsonProperty("serviceConfig") Optional<? extends ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig> serviceConfig) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(appName, "appName");
         Utils.checkNotNull(appSecret, "appSecret");
@@ -102,6 +107,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
         Utils.checkNotNull(deletedBy, "deletedBy");
         Utils.checkNotNull(deployment, "deployment");
         Utils.checkNotNull(orgId, "orgId");
+        Utils.checkNotNull(serviceConfig, "serviceConfig");
         this.appId = appId;
         this.appName = appName;
         this.appSecret = appSecret;
@@ -112,6 +118,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
         this.deletedBy = deletedBy;
         this.deployment = deployment;
         this.orgId = orgId;
+        this.serviceConfig = serviceConfig;
     }
     
     public ApplicationWithLatestDeploymentAndBuildDeprecated(
@@ -122,7 +129,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
             OffsetDateTime createdAt,
             String createdBy,
             String orgId) {
-        this(appId, appName, appSecret, authConfiguration, createdAt, createdBy, Optional.empty(), Optional.empty(), Optional.empty(), orgId);
+        this(appId, appName, appSecret, authConfiguration, createdAt, createdBy, Optional.empty(), Optional.empty(), Optional.empty(), orgId, Optional.empty());
     }
 
     /**
@@ -198,6 +205,12 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
     @JsonIgnore
     public String orgId() {
         return orgId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig> serviceConfig() {
+        return (Optional<ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig>) serviceConfig;
     }
 
     public final static Builder builder() {
@@ -312,6 +325,18 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
         return this;
     }
 
+    public ApplicationWithLatestDeploymentAndBuildDeprecated withServiceConfig(ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig serviceConfig) {
+        Utils.checkNotNull(serviceConfig, "serviceConfig");
+        this.serviceConfig = Optional.ofNullable(serviceConfig);
+        return this;
+    }
+
+    public ApplicationWithLatestDeploymentAndBuildDeprecated withServiceConfig(Optional<? extends ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig> serviceConfig) {
+        Utils.checkNotNull(serviceConfig, "serviceConfig");
+        this.serviceConfig = serviceConfig;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -332,7 +357,8 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
             Objects.deepEquals(this.deletedAt, other.deletedAt) &&
             Objects.deepEquals(this.deletedBy, other.deletedBy) &&
             Objects.deepEquals(this.deployment, other.deployment) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Objects.deepEquals(this.orgId, other.orgId) &&
+            Objects.deepEquals(this.serviceConfig, other.serviceConfig);
     }
     
     @Override
@@ -347,7 +373,8 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
             deletedAt,
             deletedBy,
             deployment,
-            orgId);
+            orgId,
+            serviceConfig);
     }
     
     @Override
@@ -362,7 +389,8 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
                 "deletedAt", deletedAt,
                 "deletedBy", deletedBy,
                 "deployment", deployment,
-                "orgId", orgId);
+                "orgId", orgId,
+                "serviceConfig", serviceConfig);
     }
     
     public final static class Builder {
@@ -386,6 +414,8 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
         private Optional<? extends ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment> deployment = Optional.empty();
  
         private String orgId;
+ 
+        private Optional<? extends ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig> serviceConfig = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -498,6 +528,18 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
             this.orgId = orgId;
             return this;
         }
+
+        public Builder serviceConfig(ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig serviceConfig) {
+            Utils.checkNotNull(serviceConfig, "serviceConfig");
+            this.serviceConfig = Optional.ofNullable(serviceConfig);
+            return this;
+        }
+
+        public Builder serviceConfig(Optional<? extends ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig> serviceConfig) {
+            Utils.checkNotNull(serviceConfig, "serviceConfig");
+            this.serviceConfig = serviceConfig;
+            return this;
+        }
         
         public ApplicationWithLatestDeploymentAndBuildDeprecated build() {
             return new ApplicationWithLatestDeploymentAndBuildDeprecated(
@@ -510,7 +552,8 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
                 deletedAt,
                 deletedBy,
                 deployment,
-                orgId);
+                orgId,
+                serviceConfig);
         }
     }
 }

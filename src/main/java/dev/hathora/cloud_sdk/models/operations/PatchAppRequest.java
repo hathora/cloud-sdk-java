@@ -5,7 +5,7 @@ package dev.hathora.cloud_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.hathora.cloud_sdk.models.shared.AppConfigWithServiceConfig;
+import dev.hathora.cloud_sdk.models.shared.PartialAppConfigWithServiceConfig;
 import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
@@ -13,32 +13,32 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class UpdateAppRequest {
+public class PatchAppRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private AppConfigWithServiceConfig appConfigWithServiceConfig;
+    private PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
 
     @JsonCreator
-    public UpdateAppRequest(
-            AppConfigWithServiceConfig appConfigWithServiceConfig,
+    public PatchAppRequest(
+            PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig,
             Optional<String> appId) {
-        Utils.checkNotNull(appConfigWithServiceConfig, "appConfigWithServiceConfig");
+        Utils.checkNotNull(partialAppConfigWithServiceConfig, "partialAppConfigWithServiceConfig");
         Utils.checkNotNull(appId, "appId");
-        this.appConfigWithServiceConfig = appConfigWithServiceConfig;
+        this.partialAppConfigWithServiceConfig = partialAppConfigWithServiceConfig;
         this.appId = appId;
     }
     
-    public UpdateAppRequest(
-            AppConfigWithServiceConfig appConfigWithServiceConfig) {
-        this(appConfigWithServiceConfig, Optional.empty());
+    public PatchAppRequest(
+            PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig) {
+        this(partialAppConfigWithServiceConfig, Optional.empty());
     }
 
     @JsonIgnore
-    public AppConfigWithServiceConfig appConfigWithServiceConfig() {
-        return appConfigWithServiceConfig;
+    public PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig() {
+        return partialAppConfigWithServiceConfig;
     }
 
     @JsonIgnore
@@ -50,19 +50,19 @@ public class UpdateAppRequest {
         return new Builder();
     }    
 
-    public UpdateAppRequest withAppConfigWithServiceConfig(AppConfigWithServiceConfig appConfigWithServiceConfig) {
-        Utils.checkNotNull(appConfigWithServiceConfig, "appConfigWithServiceConfig");
-        this.appConfigWithServiceConfig = appConfigWithServiceConfig;
+    public PatchAppRequest withPartialAppConfigWithServiceConfig(PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig) {
+        Utils.checkNotNull(partialAppConfigWithServiceConfig, "partialAppConfigWithServiceConfig");
+        this.partialAppConfigWithServiceConfig = partialAppConfigWithServiceConfig;
         return this;
     }
 
-    public UpdateAppRequest withAppId(String appId) {
+    public PatchAppRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
 
-    public UpdateAppRequest withAppId(Optional<String> appId) {
+    public PatchAppRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -77,29 +77,29 @@ public class UpdateAppRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        UpdateAppRequest other = (UpdateAppRequest) o;
+        PatchAppRequest other = (PatchAppRequest) o;
         return 
-            Objects.deepEquals(this.appConfigWithServiceConfig, other.appConfigWithServiceConfig) &&
+            Objects.deepEquals(this.partialAppConfigWithServiceConfig, other.partialAppConfigWithServiceConfig) &&
             Objects.deepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            appConfigWithServiceConfig,
+            partialAppConfigWithServiceConfig,
             appId);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(UpdateAppRequest.class,
-                "appConfigWithServiceConfig", appConfigWithServiceConfig,
+        return Utils.toString(PatchAppRequest.class,
+                "partialAppConfigWithServiceConfig", partialAppConfigWithServiceConfig,
                 "appId", appId);
     }
     
     public final static class Builder {
  
-        private AppConfigWithServiceConfig appConfigWithServiceConfig;
+        private PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig;
  
         private Optional<String> appId = Optional.empty();
         
@@ -107,9 +107,9 @@ public class UpdateAppRequest {
           // force use of static builder() method
         }
 
-        public Builder appConfigWithServiceConfig(AppConfigWithServiceConfig appConfigWithServiceConfig) {
-            Utils.checkNotNull(appConfigWithServiceConfig, "appConfigWithServiceConfig");
-            this.appConfigWithServiceConfig = appConfigWithServiceConfig;
+        public Builder partialAppConfigWithServiceConfig(PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig) {
+            Utils.checkNotNull(partialAppConfigWithServiceConfig, "partialAppConfigWithServiceConfig");
+            this.partialAppConfigWithServiceConfig = partialAppConfigWithServiceConfig;
             return this;
         }
 
@@ -125,9 +125,9 @@ public class UpdateAppRequest {
             return this;
         }
         
-        public UpdateAppRequest build() {
-            return new UpdateAppRequest(
-                appConfigWithServiceConfig,
+        public PatchAppRequest build() {
+            return new PatchAppRequest(
+                partialAppConfigWithServiceConfig,
                 appId);
         }
     }

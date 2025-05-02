@@ -4,7 +4,9 @@
 package dev.hathora.cloud_sdk.models.operations;
 
 import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import dev.hathora.cloud_sdk.models.shared.AppConfigWithServiceConfig;
 import dev.hathora.cloud_sdk.models.shared.CreateBuildParams;
+import dev.hathora.cloud_sdk.models.shared.CreateBuildV3Params;
 import dev.hathora.cloud_sdk.models.shared.CreateLobbyParams;
 import dev.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams;
 import dev.hathora.cloud_sdk.models.shared.CreateOrgToken;
@@ -16,8 +18,10 @@ import dev.hathora.cloud_sdk.models.shared.DeploymentConfigV2;
 import dev.hathora.cloud_sdk.models.shared.DeploymentConfigV3;
 import dev.hathora.cloud_sdk.models.shared.GoogleIdTokenObject;
 import dev.hathora.cloud_sdk.models.shared.NicknameObject;
+import dev.hathora.cloud_sdk.models.shared.PartialAppConfigWithServiceConfig;
 import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.models.shared.RegistryConfig;
 import dev.hathora.cloud_sdk.models.shared.RescindUserInvite;
 import dev.hathora.cloud_sdk.models.shared.SetLobbyStateParams;
 import dev.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams;
@@ -77,9 +81,15 @@ public class SDKMethodInterfaces {
             Optional<String> orgId) throws Exception;
     }
 
+    public interface MethodCallPatchApp {
+        PatchAppResponse patchApp(
+            PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig,
+            Optional<String> appId) throws Exception;
+    }
+
     public interface MethodCallUpdateApp {
         UpdateAppResponse updateApp(
-            AppConfig appConfig,
+            AppConfigWithServiceConfig appConfigWithServiceConfig,
             Optional<String> appId) throws Exception;
     }
 
@@ -209,6 +219,12 @@ public class SDKMethodInterfaces {
             Optional<String> orgId) throws Exception;
     }
 
+    public interface MethodCallCreateBuildRegistry {
+        CreateBuildRegistryResponse createBuildRegistry(
+            CreateBuildV3Params createBuildV3Params,
+            Optional<String> orgId) throws Exception;
+    }
+
     public interface MethodCallDeleteBuild {
         DeleteBuildResponse deleteBuild(
             String buildId,
@@ -228,6 +244,13 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallRunBuild {
         RunBuildResponse runBuild(
+            String buildId,
+            Optional<String> orgId) throws Exception;
+    }
+
+    public interface MethodCallRunBuildRegistry {
+        RunBuildRegistryResponse runBuildRegistry(
+            RegistryConfig registryConfig,
             String buildId,
             Optional<String> orgId) throws Exception;
     }
