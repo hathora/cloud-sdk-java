@@ -39,6 +39,14 @@ public class Organization {
     private boolean isSingleTenant;
 
     /**
+     * The retention period for process logs in hours
+     * If undefined, the default is 72h
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("logRetentionPeriodHours")
+    private Optional<Double> logRetentionPeriodHours;
+
+    /**
      * The maximum memory in MB that can be used by any process in this org.
      */
     @JsonProperty("maxRequestedMemoryMB")
@@ -86,6 +94,7 @@ public class Organization {
             @JsonProperty("concurrentProcessVcpusLimit") Optional<Double> concurrentProcessVcpusLimit,
             @JsonProperty("enabledFeatureFlags") Optional<? extends List<String>> enabledFeatureFlags,
             @JsonProperty("isSingleTenant") boolean isSingleTenant,
+            @JsonProperty("logRetentionPeriodHours") Optional<Double> logRetentionPeriodHours,
             @JsonProperty("maxRequestedMemoryMB") double maxRequestedMemoryMB,
             @JsonProperty("monthlyProcessVcpuHoursLimit") Optional<Double> monthlyProcessVcpuHoursLimit,
             @JsonProperty("name") Optional<String> name,
@@ -96,6 +105,7 @@ public class Organization {
         Utils.checkNotNull(concurrentProcessVcpusLimit, "concurrentProcessVcpusLimit");
         Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
         Utils.checkNotNull(isSingleTenant, "isSingleTenant");
+        Utils.checkNotNull(logRetentionPeriodHours, "logRetentionPeriodHours");
         Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
         Utils.checkNotNull(monthlyProcessVcpuHoursLimit, "monthlyProcessVcpuHoursLimit");
         Utils.checkNotNull(name, "name");
@@ -106,6 +116,7 @@ public class Organization {
         this.concurrentProcessVcpusLimit = concurrentProcessVcpusLimit;
         this.enabledFeatureFlags = enabledFeatureFlags;
         this.isSingleTenant = isSingleTenant;
+        this.logRetentionPeriodHours = logRetentionPeriodHours;
         this.maxRequestedMemoryMB = maxRequestedMemoryMB;
         this.monthlyProcessVcpuHoursLimit = monthlyProcessVcpuHoursLimit;
         this.name = name;
@@ -121,7 +132,7 @@ public class Organization {
             String orgId,
             List<Scope> scopes,
             String stripeCustomerId) {
-        this(Optional.empty(), Optional.empty(), isSingleTenant, maxRequestedMemoryMB, Optional.empty(), Optional.empty(), orgId, Optional.empty(), scopes, stripeCustomerId);
+        this(Optional.empty(), Optional.empty(), isSingleTenant, Optional.empty(), maxRequestedMemoryMB, Optional.empty(), Optional.empty(), orgId, Optional.empty(), scopes, stripeCustomerId);
     }
 
     /**
@@ -145,6 +156,15 @@ public class Organization {
     @JsonIgnore
     public boolean isSingleTenant() {
         return isSingleTenant;
+    }
+
+    /**
+     * The retention period for process logs in hours
+     * If undefined, the default is 72h
+     */
+    @JsonIgnore
+    public Optional<Double> logRetentionPeriodHours() {
+        return logRetentionPeriodHours;
     }
 
     /**
@@ -246,6 +266,26 @@ public class Organization {
     public Organization withIsSingleTenant(boolean isSingleTenant) {
         Utils.checkNotNull(isSingleTenant, "isSingleTenant");
         this.isSingleTenant = isSingleTenant;
+        return this;
+    }
+
+    /**
+     * The retention period for process logs in hours
+     * If undefined, the default is 72h
+     */
+    public Organization withLogRetentionPeriodHours(double logRetentionPeriodHours) {
+        Utils.checkNotNull(logRetentionPeriodHours, "logRetentionPeriodHours");
+        this.logRetentionPeriodHours = Optional.ofNullable(logRetentionPeriodHours);
+        return this;
+    }
+
+    /**
+     * The retention period for process logs in hours
+     * If undefined, the default is 72h
+     */
+    public Organization withLogRetentionPeriodHours(Optional<Double> logRetentionPeriodHours) {
+        Utils.checkNotNull(logRetentionPeriodHours, "logRetentionPeriodHours");
+        this.logRetentionPeriodHours = logRetentionPeriodHours;
         return this;
     }
 
@@ -352,6 +392,7 @@ public class Organization {
             Objects.deepEquals(this.concurrentProcessVcpusLimit, other.concurrentProcessVcpusLimit) &&
             Objects.deepEquals(this.enabledFeatureFlags, other.enabledFeatureFlags) &&
             Objects.deepEquals(this.isSingleTenant, other.isSingleTenant) &&
+            Objects.deepEquals(this.logRetentionPeriodHours, other.logRetentionPeriodHours) &&
             Objects.deepEquals(this.maxRequestedMemoryMB, other.maxRequestedMemoryMB) &&
             Objects.deepEquals(this.monthlyProcessVcpuHoursLimit, other.monthlyProcessVcpuHoursLimit) &&
             Objects.deepEquals(this.name, other.name) &&
@@ -367,6 +408,7 @@ public class Organization {
             concurrentProcessVcpusLimit,
             enabledFeatureFlags,
             isSingleTenant,
+            logRetentionPeriodHours,
             maxRequestedMemoryMB,
             monthlyProcessVcpuHoursLimit,
             name,
@@ -382,6 +424,7 @@ public class Organization {
                 "concurrentProcessVcpusLimit", concurrentProcessVcpusLimit,
                 "enabledFeatureFlags", enabledFeatureFlags,
                 "isSingleTenant", isSingleTenant,
+                "logRetentionPeriodHours", logRetentionPeriodHours,
                 "maxRequestedMemoryMB", maxRequestedMemoryMB,
                 "monthlyProcessVcpuHoursLimit", monthlyProcessVcpuHoursLimit,
                 "name", name,
@@ -398,6 +441,8 @@ public class Organization {
         private Optional<? extends List<String>> enabledFeatureFlags = Optional.empty();
  
         private Boolean isSingleTenant;
+ 
+        private Optional<Double> logRetentionPeriodHours = Optional.empty();
  
         private Double maxRequestedMemoryMB;
  
@@ -458,6 +503,26 @@ public class Organization {
         public Builder isSingleTenant(boolean isSingleTenant) {
             Utils.checkNotNull(isSingleTenant, "isSingleTenant");
             this.isSingleTenant = isSingleTenant;
+            return this;
+        }
+
+        /**
+         * The retention period for process logs in hours
+         * If undefined, the default is 72h
+         */
+        public Builder logRetentionPeriodHours(double logRetentionPeriodHours) {
+            Utils.checkNotNull(logRetentionPeriodHours, "logRetentionPeriodHours");
+            this.logRetentionPeriodHours = Optional.ofNullable(logRetentionPeriodHours);
+            return this;
+        }
+
+        /**
+         * The retention period for process logs in hours
+         * If undefined, the default is 72h
+         */
+        public Builder logRetentionPeriodHours(Optional<Double> logRetentionPeriodHours) {
+            Utils.checkNotNull(logRetentionPeriodHours, "logRetentionPeriodHours");
+            this.logRetentionPeriodHours = logRetentionPeriodHours;
             return this;
         }
 
@@ -555,6 +620,7 @@ public class Organization {
                 concurrentProcessVcpusLimit,
                 enabledFeatureFlags,
                 isSingleTenant,
+                logRetentionPeriodHours,
                 maxRequestedMemoryMB,
                 monthlyProcessVcpuHoursLimit,
                 name,
