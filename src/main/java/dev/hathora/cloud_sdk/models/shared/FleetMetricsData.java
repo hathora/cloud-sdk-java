@@ -31,6 +31,10 @@ public class FleetMetricsData {
     private Optional<? extends List<MetricValue>> provisionedTotal;
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("systemOverhead")
+    private Optional<? extends List<MetricValue>> systemOverhead;
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("utilized")
     private Optional<? extends List<MetricValue>> utilized;
 
@@ -39,19 +43,22 @@ public class FleetMetricsData {
             @JsonProperty("provisionedBareMetal") Optional<? extends List<MetricValue>> provisionedBareMetal,
             @JsonProperty("provisionedCloud") Optional<? extends List<MetricValue>> provisionedCloud,
             @JsonProperty("provisionedTotal") Optional<? extends List<MetricValue>> provisionedTotal,
+            @JsonProperty("systemOverhead") Optional<? extends List<MetricValue>> systemOverhead,
             @JsonProperty("utilized") Optional<? extends List<MetricValue>> utilized) {
         Utils.checkNotNull(provisionedBareMetal, "provisionedBareMetal");
         Utils.checkNotNull(provisionedCloud, "provisionedCloud");
         Utils.checkNotNull(provisionedTotal, "provisionedTotal");
+        Utils.checkNotNull(systemOverhead, "systemOverhead");
         Utils.checkNotNull(utilized, "utilized");
         this.provisionedBareMetal = provisionedBareMetal;
         this.provisionedCloud = provisionedCloud;
         this.provisionedTotal = provisionedTotal;
+        this.systemOverhead = systemOverhead;
         this.utilized = utilized;
     }
     
     public FleetMetricsData() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -70,6 +77,12 @@ public class FleetMetricsData {
     @JsonIgnore
     public Optional<List<MetricValue>> provisionedTotal() {
         return (Optional<List<MetricValue>>) provisionedTotal;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<MetricValue>> systemOverhead() {
+        return (Optional<List<MetricValue>>) systemOverhead;
     }
 
     @SuppressWarnings("unchecked")
@@ -118,6 +131,18 @@ public class FleetMetricsData {
         return this;
     }
 
+    public FleetMetricsData withSystemOverhead(List<MetricValue> systemOverhead) {
+        Utils.checkNotNull(systemOverhead, "systemOverhead");
+        this.systemOverhead = Optional.ofNullable(systemOverhead);
+        return this;
+    }
+
+    public FleetMetricsData withSystemOverhead(Optional<? extends List<MetricValue>> systemOverhead) {
+        Utils.checkNotNull(systemOverhead, "systemOverhead");
+        this.systemOverhead = systemOverhead;
+        return this;
+    }
+
     public FleetMetricsData withUtilized(List<MetricValue> utilized) {
         Utils.checkNotNull(utilized, "utilized");
         this.utilized = Optional.ofNullable(utilized);
@@ -144,6 +169,7 @@ public class FleetMetricsData {
             Objects.deepEquals(this.provisionedBareMetal, other.provisionedBareMetal) &&
             Objects.deepEquals(this.provisionedCloud, other.provisionedCloud) &&
             Objects.deepEquals(this.provisionedTotal, other.provisionedTotal) &&
+            Objects.deepEquals(this.systemOverhead, other.systemOverhead) &&
             Objects.deepEquals(this.utilized, other.utilized);
     }
     
@@ -153,6 +179,7 @@ public class FleetMetricsData {
             provisionedBareMetal,
             provisionedCloud,
             provisionedTotal,
+            systemOverhead,
             utilized);
     }
     
@@ -162,6 +189,7 @@ public class FleetMetricsData {
                 "provisionedBareMetal", provisionedBareMetal,
                 "provisionedCloud", provisionedCloud,
                 "provisionedTotal", provisionedTotal,
+                "systemOverhead", systemOverhead,
                 "utilized", utilized);
     }
     
@@ -172,6 +200,8 @@ public class FleetMetricsData {
         private Optional<? extends List<MetricValue>> provisionedCloud = Optional.empty();
  
         private Optional<? extends List<MetricValue>> provisionedTotal = Optional.empty();
+ 
+        private Optional<? extends List<MetricValue>> systemOverhead = Optional.empty();
  
         private Optional<? extends List<MetricValue>> utilized = Optional.empty();
         
@@ -215,6 +245,18 @@ public class FleetMetricsData {
             return this;
         }
 
+        public Builder systemOverhead(List<MetricValue> systemOverhead) {
+            Utils.checkNotNull(systemOverhead, "systemOverhead");
+            this.systemOverhead = Optional.ofNullable(systemOverhead);
+            return this;
+        }
+
+        public Builder systemOverhead(Optional<? extends List<MetricValue>> systemOverhead) {
+            Utils.checkNotNull(systemOverhead, "systemOverhead");
+            this.systemOverhead = systemOverhead;
+            return this;
+        }
+
         public Builder utilized(List<MetricValue> utilized) {
             Utils.checkNotNull(utilized, "utilized");
             this.utilized = Optional.ofNullable(utilized);
@@ -232,6 +274,7 @@ public class FleetMetricsData {
                 provisionedBareMetal,
                 provisionedCloud,
                 provisionedTotal,
+                systemOverhead,
                 utilized);
         }
     }

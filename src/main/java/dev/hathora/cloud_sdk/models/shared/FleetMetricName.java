@@ -41,6 +41,11 @@ import java.util.Optional;
  * use the {@code asEnum()} method (after dealing with the `Optional` appropriately).
  *
  */
+/**
+ * FleetMetricName
+ * 
+ * <p>Represents the valid metric names available to measure/manage fleets in a given region
+ */
 @JsonDeserialize(using = FleetMetricName._Deserializer.class)
 @JsonSerialize(using = FleetMetricName._Serializer.class)
 public class FleetMetricName {
@@ -49,6 +54,7 @@ public class FleetMetricName {
     public static final FleetMetricName PROVISIONED_BARE_METAL = new FleetMetricName("provisionedBareMetal");
     public static final FleetMetricName PROVISIONED_CLOUD = new FleetMetricName("provisionedCloud");
     public static final FleetMetricName UTILIZED = new FleetMetricName("utilized");
+    public static final FleetMetricName SYSTEM_OVERHEAD = new FleetMetricName("systemOverhead");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -124,6 +130,7 @@ public class FleetMetricName {
         map.put("provisionedBareMetal", PROVISIONED_BARE_METAL);
         map.put("provisionedCloud", PROVISIONED_CLOUD);
         map.put("utilized", UTILIZED);
+        map.put("systemOverhead", SYSTEM_OVERHEAD);
         return map;
     }
 
@@ -133,6 +140,7 @@ public class FleetMetricName {
         map.put("provisionedBareMetal", FleetMetricNameEnum.PROVISIONED_BARE_METAL);
         map.put("provisionedCloud", FleetMetricNameEnum.PROVISIONED_CLOUD);
         map.put("utilized", FleetMetricNameEnum.UTILIZED);
+        map.put("systemOverhead", FleetMetricNameEnum.SYSTEM_OVERHEAD);
         return map;
     }
     
@@ -171,7 +179,8 @@ public class FleetMetricName {
         PROVISIONED_TOTAL("provisionedTotal"),
         PROVISIONED_BARE_METAL("provisionedBareMetal"),
         PROVISIONED_CLOUD("provisionedCloud"),
-        UTILIZED("utilized"),;
+        UTILIZED("utilized"),
+        SYSTEM_OVERHEAD("systemOverhead"),;
 
         private final String value;
 
