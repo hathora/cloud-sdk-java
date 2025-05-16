@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:3.1.4'
+implementation 'dev.hathora:cloud-sdk:3.1.5'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>3.1.4</version>
+    <version>3.1.5</version>
 </dependency>
 ```
 
@@ -228,6 +228,7 @@ public class Application {
 * [getFleetMetrics](docs/sdks/fleetsv1/README.md#getfleetmetrics) - GetFleetMetrics
 * [getFleetRegion](docs/sdks/fleetsv1/README.md#getfleetregion) - GetFleetRegion
 * [getFleets](docs/sdks/fleetsv1/README.md#getfleets) - GetFleets
+* [updateFleet](docs/sdks/fleetsv1/README.md#updatefleet) - UpdateFleet
 * [updateFleetRegion](docs/sdks/fleetsv1/README.md#updatefleetregion) - UpdateFleetRegion
 
 

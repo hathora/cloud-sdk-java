@@ -10,6 +10,7 @@ Operations to manage and view a [fleet](https://hathora.dev/docs/concepts/hathor
 * [getFleetMetrics](#getfleetmetrics) - GetFleetMetrics
 * [getFleetRegion](#getfleetregion) - GetFleetRegion
 * [getFleets](#getfleets) - GetFleets
+* [updateFleet](#updatefleet) - UpdateFleet
 * [updateFleetRegion](#updatefleetregion) - UpdateFleetRegion
 
 ## getFleetMetrics
@@ -186,6 +187,67 @@ public class Application {
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## updateFleet
+
+Updates a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet)'s configuration.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetResponse;
+import dev.hathora.cloud_sdk.models.shared.*;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
+                .security(Security.builder()
+                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+            .build();
+
+        UpdateFleetResponse res = sdk.fleetsV1().updateFleet()
+                .updateFleet(UpdateFleet.builder()
+                    .autoscalerConfig(AutoscalerConfig.builder()
+                        .scaleUpThreshold(679459)
+                        .build())
+                    .build())
+                .fleetId("<id>")
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                         | Type                                              | Required                                          | Description                                       | Example                                           |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `updateFleet`                                     | [UpdateFleet](../../models/shared/UpdateFleet.md) | :heavy_check_mark:                                | N/A                                               |                                                   |
+| `fleetId`                                         | *String*                                          | :heavy_check_mark:                                | N/A                                               |                                                   |
+| `orgId`                                           | *Optional\<String>*                               | :heavy_minus_sign:                                | N/A                                               | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39          |
+
+### Response
+
+**[UpdateFleetResponse](../../models/operations/UpdateFleetResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
+| models/errors/ApiError | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## updateFleetRegion

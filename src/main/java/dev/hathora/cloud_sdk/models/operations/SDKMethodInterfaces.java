@@ -24,6 +24,7 @@ import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.RegistryConfig;
 import dev.hathora.cloud_sdk.models.shared.RescindUserInvite;
 import dev.hathora.cloud_sdk.models.shared.SetLobbyStateParams;
+import dev.hathora.cloud_sdk.models.shared.UpdateFleet;
 import dev.hathora.cloud_sdk.models.shared.UpdateRoomConfigParams;
 import dev.hathora.cloud_sdk.models.shared.UpdateUserInvite;
 import dev.hathora.cloud_sdk.models.shared.VerificationEmailRequest;
@@ -346,6 +347,13 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallGetFleets {
         GetFleetsResponse getFleets(
+            Optional<String> orgId) throws Exception;
+    }
+
+    public interface MethodCallUpdateFleet {
+        UpdateFleetResponse updateFleet(
+            UpdateFleet updateFleet,
+            String fleetId,
             Optional<String> orgId) throws Exception;
     }
 

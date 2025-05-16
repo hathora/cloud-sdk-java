@@ -5,18 +5,26 @@ package dev.hathora.cloud_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Fleet
  * 
- * <p>A fleet is a collection of vCPUs accross your regions that can scale up and down based on demand.
+ * <p>A fleet is a collection of vCPUs across your regions that can scale up and down based on demand.
  */
 public class Fleet {
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("autoscalerConfig")
+    private Optional<? extends AutoscalerConfig> autoscalerConfig;
 
     /**
      * the id of the fleet
@@ -32,12 +40,27 @@ public class Fleet {
 
     @JsonCreator
     public Fleet(
+            @JsonProperty("autoscalerConfig") Optional<? extends AutoscalerConfig> autoscalerConfig,
             @JsonProperty("fleetId") String fleetId,
             @JsonProperty("orgId") String orgId) {
+        Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
         Utils.checkNotNull(fleetId, "fleetId");
         Utils.checkNotNull(orgId, "orgId");
+        this.autoscalerConfig = autoscalerConfig;
         this.fleetId = fleetId;
         this.orgId = orgId;
+    }
+    
+    public Fleet(
+            String fleetId,
+            String orgId) {
+        this(Optional.empty(), fleetId, orgId);
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<AutoscalerConfig> autoscalerConfig() {
+        return (Optional<AutoscalerConfig>) autoscalerConfig;
     }
 
     /**
@@ -59,6 +82,18 @@ public class Fleet {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    public Fleet withAutoscalerConfig(AutoscalerConfig autoscalerConfig) {
+        Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
+        this.autoscalerConfig = Optional.ofNullable(autoscalerConfig);
+        return this;
+    }
+
+    public Fleet withAutoscalerConfig(Optional<? extends AutoscalerConfig> autoscalerConfig) {
+        Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
+        this.autoscalerConfig = autoscalerConfig;
+        return this;
+    }
 
     /**
      * the id of the fleet
@@ -89,6 +124,7 @@ public class Fleet {
         }
         Fleet other = (Fleet) o;
         return 
+            Objects.deepEquals(this.autoscalerConfig, other.autoscalerConfig) &&
             Objects.deepEquals(this.fleetId, other.fleetId) &&
             Objects.deepEquals(this.orgId, other.orgId);
     }
@@ -96,6 +132,7 @@ public class Fleet {
     @Override
     public int hashCode() {
         return Objects.hash(
+            autoscalerConfig,
             fleetId,
             orgId);
     }
@@ -103,11 +140,14 @@ public class Fleet {
     @Override
     public String toString() {
         return Utils.toString(Fleet.class,
+                "autoscalerConfig", autoscalerConfig,
                 "fleetId", fleetId,
                 "orgId", orgId);
     }
     
     public final static class Builder {
+ 
+        private Optional<? extends AutoscalerConfig> autoscalerConfig = Optional.empty();
  
         private String fleetId;
  
@@ -115,6 +155,18 @@ public class Fleet {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder autoscalerConfig(AutoscalerConfig autoscalerConfig) {
+            Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
+            this.autoscalerConfig = Optional.ofNullable(autoscalerConfig);
+            return this;
+        }
+
+        public Builder autoscalerConfig(Optional<? extends AutoscalerConfig> autoscalerConfig) {
+            Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
+            this.autoscalerConfig = autoscalerConfig;
+            return this;
         }
 
         /**
@@ -137,6 +189,7 @@ public class Fleet {
         
         public Fleet build() {
             return new Fleet(
+                autoscalerConfig,
                 fleetId,
                 orgId);
         }

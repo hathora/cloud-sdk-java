@@ -165,6 +165,12 @@ actions:
         - "lang": "java"
           "label": "GetFleets"
           "source": "package hello.world;\n\nimport dev.hathora.cloud_sdk.HathoraCloud;\nimport dev.hathora.cloud_sdk.models.errors.ApiError;\nimport dev.hathora.cloud_sdk.models.operations.GetFleetsResponse;\nimport dev.hathora.cloud_sdk.models.shared.Security;\nimport java.lang.Exception;\n\npublic class Application {\n\n    public static void main(String[] args) throws ApiError, Exception {\n\n        HathoraCloud sdk = HathoraCloud.builder()\n                .security(Security.builder()\n                    .hathoraDevToken(\"<YOUR_BEARER_TOKEN_HERE>\")\n                    .build())\n                .orgId(\"org-6f706e83-0ec1-437a-9a46-7d4281eb2f39\")\n                .appId(\"app-af469a92-5b45-4565-b3c4-b79878de67d2\")\n            .build();\n\n        GetFleetsResponse res = sdk.fleetsV1().getFleets()\n                .call();\n\n        if (res.fleetsPage().isPresent()) {\n            // handle response\n        }\n    }\n}"
+  - target: $["paths"]["/fleets/v1/fleets/{fleetId}"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "java"
+          "label": "UpdateFleet"
+          "source": "package hello.world;\n\nimport dev.hathora.cloud_sdk.HathoraCloud;\nimport dev.hathora.cloud_sdk.models.errors.ApiError;\nimport dev.hathora.cloud_sdk.models.operations.UpdateFleetResponse;\nimport dev.hathora.cloud_sdk.models.shared.*;\nimport java.lang.Exception;\n\npublic class Application {\n\n    public static void main(String[] args) throws ApiError, ApiError, Exception {\n\n        HathoraCloud sdk = HathoraCloud.builder()\n                .security(Security.builder()\n                    .hathoraDevToken(\"<YOUR_BEARER_TOKEN_HERE>\")\n                    .build())\n                .orgId(\"org-6f706e83-0ec1-437a-9a46-7d4281eb2f39\")\n                .appId(\"app-af469a92-5b45-4565-b3c4-b79878de67d2\")\n            .build();\n\n        UpdateFleetResponse res = sdk.fleetsV1().updateFleet()\n                .fleetId(\"<id>\")\n                .updateFleet(UpdateFleet.builder()\n                    .autoscalerConfig(AutoscalerConfig.builder()\n                        .scaleUpThreshold(679459)\n                        .build())\n                    .build())\n                .call();\n\n        // handle response\n    }\n}"
   - target: $["paths"]["/fleets/v1/fleets/{fleetId}/regions/{region}"]["get"]
     update:
       "x-codeSamples":

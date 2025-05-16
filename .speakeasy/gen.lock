@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: ad6787b952846cc650a586f8449dbdb2
+  docChecksum: f3522e0b996c7a5831055ada2045b4e9
   docVersion: 0.0.1
-  speakeasyVersion: 1.544.0
+  speakeasyVersion: 1.545.0
   generationVersion: 2.599.0
-  releaseVersion: 3.1.4
-  configChecksum: 32a6fef31260a4ee5155338ed3968b3d
+  releaseVersion: 3.1.5
+  configChecksum: 63383e884f87400f4433dc173f1e4592
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -275,6 +275,8 @@ generatedFiles:
   - docs/models/operations/UpdateAppV1DeprecatedResponse.md
   - docs/models/operations/UpdateFleetRegionRequest.md
   - docs/models/operations/UpdateFleetRegionResponse.md
+  - docs/models/operations/UpdateFleetRequest.md
+  - docs/models/operations/UpdateFleetResponse.md
   - docs/models/operations/UpdateRoomConfigRequest.md
   - docs/models/operations/UpdateRoomConfigResponse.md
   - docs/models/operations/UpdateUserInviteRequest.md
@@ -294,6 +296,7 @@ generatedFiles:
   - docs/models/shared/ApplicationWithLatestDeploymentAndBuildServiceConfig.md
   - docs/models/shared/ApplicationsPage.md
   - docs/models/shared/AuthConfiguration.md
+  - docs/models/shared/AutoscalerConfig.md
   - docs/models/shared/Build.md
   - docs/models/shared/BuildPart.md
   - docs/models/shared/BuildStatus.md
@@ -414,6 +417,7 @@ generatedFiles:
   - docs/models/shared/Status.md
   - docs/models/shared/TransportType.md
   - docs/models/shared/Two.md
+  - docs/models/shared/UpdateFleet.md
   - docs/models/shared/UpdateRoomConfigParams.md
   - docs/models/shared/UpdateUserInvite.md
   - docs/models/shared/UpdateUserInviteScopes.md
@@ -846,6 +850,9 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateFleetRegionRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateFleetRegionRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateFleetRegionResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateFleetRequest.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateFleetRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateFleetResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateRoomConfigRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateRoomConfigRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateRoomConfigResponse.java
@@ -867,6 +874,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuildServiceConfig.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ApplicationsPage.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/AuthConfiguration.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/AutoscalerConfig.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Build.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/BuildPart.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/BuildStatus.java
@@ -987,6 +995,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Status.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/TransportType.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Two.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/UpdateFleet.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/UpdateRoomConfigParams.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/UpdateUserInvite.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/UpdateUserInviteScopes.java
@@ -2448,6 +2457,20 @@ examples:
         "200":
           application/octet-stream: "x-file: example.file"
         "400":
+          application/json: {"message": "<value>"}
+        "500":
+          application/json: {"message": "<value>"}
+  UpdateFleet:
+    speakeasy-default-update-fleet:
+      parameters:
+        path:
+          fleetId: "<id>"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      requestBody:
+        application/json: {"autoscalerConfig": {"scaleUpThreshold": 679459}}
+      responses:
+        "401":
           application/json: {"message": "<value>"}
         "500":
           application/json: {"message": "<value>"}

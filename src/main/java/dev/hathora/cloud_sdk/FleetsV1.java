@@ -19,10 +19,14 @@ import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionRequest;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionResponse;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetRequest;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetResponse;
 import dev.hathora.cloud_sdk.models.shared.FleetMetricsData;
 import dev.hathora.cloud_sdk.models.shared.FleetRegion;
 import dev.hathora.cloud_sdk.models.shared.FleetsPage;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.models.shared.UpdateFleet;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
@@ -47,6 +51,7 @@ public class FleetsV1 implements
             MethodCallGetFleetMetrics,
             MethodCallGetFleetRegion,
             MethodCallGetFleets,
+            MethodCallUpdateFleet,
             MethodCallUpdateFleetRegion {
 
     private final SDKConfiguration sdkConfiguration;
@@ -535,6 +540,203 @@ public class FleetsV1 implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * UpdateFleet
+     * 
+     * <p>Updates a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet)'s configuration.
+     * 
+     * @return The call builder
+     */
+    public UpdateFleetRequestBuilder updateFleet() {
+        return new UpdateFleetRequestBuilder(this);
+    }
+
+    /**
+     * UpdateFleet
+     * 
+     * <p>Updates a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet)'s configuration.
+     * 
+     * @param updateFleet 
+     * @param fleetId 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public UpdateFleetResponse updateFleet(
+            UpdateFleet updateFleet,
+            String fleetId) throws Exception {
+        return updateFleet(updateFleet, fleetId, Optional.empty());
+    }
+    
+    /**
+     * UpdateFleet
+     * 
+     * <p>Updates a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet)'s configuration.
+     * 
+     * @param updateFleet 
+     * @param fleetId 
+     * @param orgId 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public UpdateFleetResponse updateFleet(
+            UpdateFleet updateFleet,
+            String fleetId,
+            Optional<String> orgId) throws Exception {
+        UpdateFleetRequest request =
+            UpdateFleetRequest
+                .builder()
+                .updateFleet(updateFleet)
+                .fleetId(fleetId)
+                .orgId(orgId)
+                .build();
+        
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                UpdateFleetRequest.class,
+                _baseUrl,
+                "/fleets/v1/fleets/{fleetId}",
+                request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "updateFleet",
+                "json",
+                false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                UpdateFleetRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      _baseUrl,
+                      "UpdateFleet", 
+                      Optional.of(List.of()), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "500", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "UpdateFleet",
+                            Optional.of(List.of()),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            _baseUrl,
+                            "UpdateFleet",
+                            Optional.of(List.of()), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "UpdateFleet",
+                            Optional.of(List.of()),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        UpdateFleetResponse.Builder _resBuilder = 
+            UpdateFleetResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        UpdateFleetResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
+            // no content 
+            return _res;
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ApiError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ApiError>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 ApiError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
