@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Double;
+import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -44,7 +45,15 @@ public class Organization {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("logRetentionPeriodHours")
-    private Optional<Double> logRetentionPeriodHours;
+    private Optional<Integer> logRetentionPeriodHours;
+
+    /**
+     * The maximum number of inbound connections that can be made to a process
+     * If undefined, the default is 1024 connections
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("maxProcessConnections")
+    private Optional<Double> maxProcessConnections;
 
     /**
      * The maximum memory in MB that can be used by any process in this org.
@@ -94,7 +103,8 @@ public class Organization {
             @JsonProperty("concurrentProcessVcpusLimit") Optional<Double> concurrentProcessVcpusLimit,
             @JsonProperty("enabledFeatureFlags") Optional<? extends List<String>> enabledFeatureFlags,
             @JsonProperty("isSingleTenant") boolean isSingleTenant,
-            @JsonProperty("logRetentionPeriodHours") Optional<Double> logRetentionPeriodHours,
+            @JsonProperty("logRetentionPeriodHours") Optional<Integer> logRetentionPeriodHours,
+            @JsonProperty("maxProcessConnections") Optional<Double> maxProcessConnections,
             @JsonProperty("maxRequestedMemoryMB") double maxRequestedMemoryMB,
             @JsonProperty("monthlyProcessVcpuHoursLimit") Optional<Double> monthlyProcessVcpuHoursLimit,
             @JsonProperty("name") Optional<String> name,
@@ -106,6 +116,7 @@ public class Organization {
         Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
         Utils.checkNotNull(isSingleTenant, "isSingleTenant");
         Utils.checkNotNull(logRetentionPeriodHours, "logRetentionPeriodHours");
+        Utils.checkNotNull(maxProcessConnections, "maxProcessConnections");
         Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
         Utils.checkNotNull(monthlyProcessVcpuHoursLimit, "monthlyProcessVcpuHoursLimit");
         Utils.checkNotNull(name, "name");
@@ -117,6 +128,7 @@ public class Organization {
         this.enabledFeatureFlags = enabledFeatureFlags;
         this.isSingleTenant = isSingleTenant;
         this.logRetentionPeriodHours = logRetentionPeriodHours;
+        this.maxProcessConnections = maxProcessConnections;
         this.maxRequestedMemoryMB = maxRequestedMemoryMB;
         this.monthlyProcessVcpuHoursLimit = monthlyProcessVcpuHoursLimit;
         this.name = name;
@@ -132,7 +144,7 @@ public class Organization {
             String orgId,
             List<Scope> scopes,
             String stripeCustomerId) {
-        this(Optional.empty(), Optional.empty(), isSingleTenant, Optional.empty(), maxRequestedMemoryMB, Optional.empty(), Optional.empty(), orgId, Optional.empty(), scopes, stripeCustomerId);
+        this(Optional.empty(), Optional.empty(), isSingleTenant, Optional.empty(), Optional.empty(), maxRequestedMemoryMB, Optional.empty(), Optional.empty(), orgId, Optional.empty(), scopes, stripeCustomerId);
     }
 
     /**
@@ -163,8 +175,17 @@ public class Organization {
      * If undefined, the default is 72h
      */
     @JsonIgnore
-    public Optional<Double> logRetentionPeriodHours() {
+    public Optional<Integer> logRetentionPeriodHours() {
         return logRetentionPeriodHours;
+    }
+
+    /**
+     * The maximum number of inbound connections that can be made to a process
+     * If undefined, the default is 1024 connections
+     */
+    @JsonIgnore
+    public Optional<Double> maxProcessConnections() {
+        return maxProcessConnections;
     }
 
     /**
@@ -273,7 +294,7 @@ public class Organization {
      * The retention period for process logs in hours
      * If undefined, the default is 72h
      */
-    public Organization withLogRetentionPeriodHours(double logRetentionPeriodHours) {
+    public Organization withLogRetentionPeriodHours(int logRetentionPeriodHours) {
         Utils.checkNotNull(logRetentionPeriodHours, "logRetentionPeriodHours");
         this.logRetentionPeriodHours = Optional.ofNullable(logRetentionPeriodHours);
         return this;
@@ -283,9 +304,29 @@ public class Organization {
      * The retention period for process logs in hours
      * If undefined, the default is 72h
      */
-    public Organization withLogRetentionPeriodHours(Optional<Double> logRetentionPeriodHours) {
+    public Organization withLogRetentionPeriodHours(Optional<Integer> logRetentionPeriodHours) {
         Utils.checkNotNull(logRetentionPeriodHours, "logRetentionPeriodHours");
         this.logRetentionPeriodHours = logRetentionPeriodHours;
+        return this;
+    }
+
+    /**
+     * The maximum number of inbound connections that can be made to a process
+     * If undefined, the default is 1024 connections
+     */
+    public Organization withMaxProcessConnections(double maxProcessConnections) {
+        Utils.checkNotNull(maxProcessConnections, "maxProcessConnections");
+        this.maxProcessConnections = Optional.ofNullable(maxProcessConnections);
+        return this;
+    }
+
+    /**
+     * The maximum number of inbound connections that can be made to a process
+     * If undefined, the default is 1024 connections
+     */
+    public Organization withMaxProcessConnections(Optional<Double> maxProcessConnections) {
+        Utils.checkNotNull(maxProcessConnections, "maxProcessConnections");
+        this.maxProcessConnections = maxProcessConnections;
         return this;
     }
 
@@ -393,6 +434,7 @@ public class Organization {
             Objects.deepEquals(this.enabledFeatureFlags, other.enabledFeatureFlags) &&
             Objects.deepEquals(this.isSingleTenant, other.isSingleTenant) &&
             Objects.deepEquals(this.logRetentionPeriodHours, other.logRetentionPeriodHours) &&
+            Objects.deepEquals(this.maxProcessConnections, other.maxProcessConnections) &&
             Objects.deepEquals(this.maxRequestedMemoryMB, other.maxRequestedMemoryMB) &&
             Objects.deepEquals(this.monthlyProcessVcpuHoursLimit, other.monthlyProcessVcpuHoursLimit) &&
             Objects.deepEquals(this.name, other.name) &&
@@ -409,6 +451,7 @@ public class Organization {
             enabledFeatureFlags,
             isSingleTenant,
             logRetentionPeriodHours,
+            maxProcessConnections,
             maxRequestedMemoryMB,
             monthlyProcessVcpuHoursLimit,
             name,
@@ -425,6 +468,7 @@ public class Organization {
                 "enabledFeatureFlags", enabledFeatureFlags,
                 "isSingleTenant", isSingleTenant,
                 "logRetentionPeriodHours", logRetentionPeriodHours,
+                "maxProcessConnections", maxProcessConnections,
                 "maxRequestedMemoryMB", maxRequestedMemoryMB,
                 "monthlyProcessVcpuHoursLimit", monthlyProcessVcpuHoursLimit,
                 "name", name,
@@ -442,7 +486,9 @@ public class Organization {
  
         private Boolean isSingleTenant;
  
-        private Optional<Double> logRetentionPeriodHours = Optional.empty();
+        private Optional<Integer> logRetentionPeriodHours = Optional.empty();
+ 
+        private Optional<Double> maxProcessConnections = Optional.empty();
  
         private Double maxRequestedMemoryMB;
  
@@ -510,7 +556,7 @@ public class Organization {
          * The retention period for process logs in hours
          * If undefined, the default is 72h
          */
-        public Builder logRetentionPeriodHours(double logRetentionPeriodHours) {
+        public Builder logRetentionPeriodHours(int logRetentionPeriodHours) {
             Utils.checkNotNull(logRetentionPeriodHours, "logRetentionPeriodHours");
             this.logRetentionPeriodHours = Optional.ofNullable(logRetentionPeriodHours);
             return this;
@@ -520,9 +566,29 @@ public class Organization {
          * The retention period for process logs in hours
          * If undefined, the default is 72h
          */
-        public Builder logRetentionPeriodHours(Optional<Double> logRetentionPeriodHours) {
+        public Builder logRetentionPeriodHours(Optional<Integer> logRetentionPeriodHours) {
             Utils.checkNotNull(logRetentionPeriodHours, "logRetentionPeriodHours");
             this.logRetentionPeriodHours = logRetentionPeriodHours;
+            return this;
+        }
+
+        /**
+         * The maximum number of inbound connections that can be made to a process
+         * If undefined, the default is 1024 connections
+         */
+        public Builder maxProcessConnections(double maxProcessConnections) {
+            Utils.checkNotNull(maxProcessConnections, "maxProcessConnections");
+            this.maxProcessConnections = Optional.ofNullable(maxProcessConnections);
+            return this;
+        }
+
+        /**
+         * The maximum number of inbound connections that can be made to a process
+         * If undefined, the default is 1024 connections
+         */
+        public Builder maxProcessConnections(Optional<Double> maxProcessConnections) {
+            Utils.checkNotNull(maxProcessConnections, "maxProcessConnections");
+            this.maxProcessConnections = maxProcessConnections;
             return this;
         }
 
@@ -621,6 +687,7 @@ public class Organization {
                 enabledFeatureFlags,
                 isSingleTenant,
                 logRetentionPeriodHours,
+                maxProcessConnections,
                 maxRequestedMemoryMB,
                 monthlyProcessVcpuHoursLimit,
                 name,
