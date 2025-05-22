@@ -321,7 +321,7 @@ public class Application {
 
         InitStripeCustomerPortalUrlResponse res = sdk.billingV1().initStripeCustomerPortalUrl()
                 .customerPortalUrl(CustomerPortalUrl.builder()
-                    .returnUrl("https://smart-puppet.biz/")
+                    .returnUrl("https://sunny-majority.com/")
                     .build())
                 .call();
 

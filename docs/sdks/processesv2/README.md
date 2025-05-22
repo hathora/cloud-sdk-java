@@ -45,7 +45,7 @@ public class Application {
 
         CreateProcessV2DeprecatedResponse res = sdk.processesV2().createProcessV2Deprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.TOKYO)
+                .region(Region.JOHANNESBURG)
                 .call();
 
         if (res.processV2().isPresent()) {

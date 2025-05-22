@@ -44,7 +44,7 @@ public class Application {
 
         GetFleetMetricsRequest req = GetFleetMetricsRequest.builder()
                 .fleetId("<id>")
-                .region(Region.LONDON)
+                .region(Region.WASHINGTON_DC)
                 .build();
 
         GetFleetMetricsResponse res = sdk.fleetsV1().getFleetMetrics()
@@ -106,7 +106,7 @@ public class Application {
 
         GetFleetRegionResponse res = sdk.fleetsV1().getFleetRegion()
                 .fleetId("<id>")
-                .region(Region.SAO_PAULO)
+                .region(Region.SINGAPORE)
                 .call();
 
         if (res.fleetRegion().isPresent()) {
@@ -219,7 +219,7 @@ public class Application {
         UpdateFleetResponse res = sdk.fleetsV1().updateFleet()
                 .updateFleet(UpdateFleet.builder()
                     .autoscalerConfig(AutoscalerConfig.builder()
-                        .scaleUpThreshold(679459)
+                        .scaleUpThreshold(979840)
                         .build())
                     .build())
                 .fleetId("<id>")
@@ -280,10 +280,10 @@ public class Application {
 
         UpdateFleetRegionRequest req = UpdateFleetRegionRequest.builder()
                 .fleetRegionConfig(FleetRegionConfig.builder()
-                    .cloudMinVcpus(511402)
+                    .cloudMinVcpus(503995)
                     .build())
                 .fleetId("<id>")
-                .region(Region.SINGAPORE)
+                .region(Region.CHICAGO)
                 .build();
 
         UpdateFleetRegionResponse res = sdk.fleetsV1().updateFleetRegion()

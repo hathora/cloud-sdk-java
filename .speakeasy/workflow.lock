@@ -1,21 +1,21 @@
-speakeasyVersion: 1.545.0
+speakeasyVersion: 1.548.4
 sources:
     java-source:
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:5ef795f5d0c13110971084276bd543208120c42745b77a7c68da89ac36fdf742
-        sourceBlobDigest: sha256:3335b7cd5bed3d4fe1bc8f15e852ca6b1dd5b1f17360757b53ebe1492df05ad7
+        sourceRevisionDigest: sha256:f0b1f1d9fb5543147f1fef5668d37055fe525fadd54972bbdffe904e56ed7b8f
+        sourceBlobDigest: sha256:59bcadff7a68128bedeb34285f6e2f08283f6222a02b32c9e1c7c2adc047397a
         tags:
             - latest
-            - speakeasy-sdk-regen-1747354141
+            - speakeasy-sdk-regen-1747872535
             - 0.0.1
 targets:
     hathora-java:
         source: java-source
         sourceNamespace: java-source
-        sourceRevisionDigest: sha256:5ef795f5d0c13110971084276bd543208120c42745b77a7c68da89ac36fdf742
-        sourceBlobDigest: sha256:3335b7cd5bed3d4fe1bc8f15e852ca6b1dd5b1f17360757b53ebe1492df05ad7
+        sourceRevisionDigest: sha256:f0b1f1d9fb5543147f1fef5668d37055fe525fadd54972bbdffe904e56ed7b8f
+        sourceBlobDigest: sha256:59bcadff7a68128bedeb34285f6e2f08283f6222a02b32c9e1c7c2adc047397a
         codeSamplesNamespace: code-samples-java-hathora-java
-        codeSamplesRevisionDigest: sha256:35e4d9070e86e50bac4cef87c90007e9aea0a8296aa041ac2c1eb430602550a5
+        codeSamplesRevisionDigest: sha256:a59a2293e0a6e77723471ff7af04a06de5cbe87259910f51bb4fab0296b2937f
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

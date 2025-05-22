@@ -281,7 +281,7 @@ public class Application {
         RunBuildDeprecatedResponse res = sdk.buildsV1().runBuildDeprecated()
                 .requestBody(RunBuildDeprecatedRequestBody.builder()
                     .file(File.builder()
-                        .content("0x9C4e3B3eB2".getBytes(StandardCharsets.UTF_8))
+                        .content("0xDBaE05075A".getBytes(StandardCharsets.UTF_8))
                         .fileName("example.file")
                         .build())
                     .build())
@@ -310,8 +310,8 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 400, 401, 404, 429     | application/json       |
-| models/errors/ApiError | 500                    | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 400, 401, 404, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |

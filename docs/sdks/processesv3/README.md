@@ -44,7 +44,7 @@ public class Application {
 
         CreateProcessResponse res = sdk.processesV3().createProcess()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.SAO_PAULO)
+                .region(Region.MUMBAI)
                 .call();
 
         if (res.processV3().isPresent()) {

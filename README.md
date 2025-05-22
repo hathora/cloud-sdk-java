@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:3.1.5'
+implementation 'dev.hathora:cloud-sdk:3.1.6'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>3.1.5</version>
+    <version>3.1.6</version>
 </dependency>
 ```
 
@@ -606,7 +606,7 @@ public class Application {
 
         CreateLobbyRequest req = CreateLobbyRequest.builder()
                 .createLobbyV3Params(CreateLobbyV3Params.builder()
-                    .region(Region.SEATTLE)
+                    .region(Region.DUBAI)
                     .visibility(LobbyVisibility.PRIVATE)
                     .roomConfig("{\"name\":\"my-room\"}")
                     .build())

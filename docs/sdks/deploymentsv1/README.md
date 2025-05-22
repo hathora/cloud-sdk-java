@@ -51,15 +51,21 @@ public class Application {
                         Env.builder()
                             .name("EULA")
                             .value("TRUE")
-                            .build(),
-                        Env.builder()
-                            .name("EULA")
-                            .value("TRUE")
                             .build()))
                     .planName(PlanName.TINY)
                     .roomsPerProcess(3)
-                    .transportType(TransportType.UDP)
+                    .transportType(TransportType.TLS)
                     .additionalContainerPorts(List.of(
+                        ContainerPort.builder()
+                            .name("default")
+                            .port(8000)
+                            .transportType(TransportType.TCP)
+                            .build(),
+                        ContainerPort.builder()
+                            .name("default")
+                            .port(8000)
+                            .transportType(TransportType.TCP)
+                            .build(),
                         ContainerPort.builder()
                             .name("default")
                             .port(8000)

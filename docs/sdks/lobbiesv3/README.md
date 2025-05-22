@@ -36,7 +36,7 @@ public class Application {
 
         CreateLobbyRequest req = CreateLobbyRequest.builder()
                 .createLobbyV3Params(CreateLobbyV3Params.builder()
-                    .region(Region.SEATTLE)
+                    .region(Region.DUBAI)
                     .visibility(LobbyVisibility.PRIVATE)
                     .roomConfig("{\"name\":\"my-room\"}")
                     .build())

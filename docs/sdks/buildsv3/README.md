@@ -45,7 +45,7 @@ public class Application {
 
         CreateBuildResponse res = sdk.buildsV3().createBuild()
                 .createMultipartBuildParams(CreateMultipartBuildParams.builder()
-                    .buildSizeInBytes(5387.85)
+                    .buildSizeInBytes(2645.24)
                     .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                     .buildTag("0.1.14-14c793")
                     .build())
@@ -358,11 +358,11 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 400, 401, 404, 429     | application/json       |
-| models/errors/ApiError | 500                    | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 400, 401, 404, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
 ## runBuildRegistry
 
@@ -394,7 +394,7 @@ public class Application {
 
         RunBuildRegistryResponse res = sdk.buildsV3().runBuildRegistry()
                 .registryConfig(RegistryConfig.builder()
-                    .image("https://loremflickr.com/1435/2196?lock=7778272511635490")
+                    .image("https://picsum.photos/seed/3gDPgtj/723/1525")
                     .build())
                 .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                 .call();
@@ -420,8 +420,8 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 400, 401, 404, 429     | application/json       |
-| models/errors/ApiError | 500                    | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 400, 401, 404, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
