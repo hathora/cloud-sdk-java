@@ -7,7 +7,7 @@ Deprecated. Does not include latest Regions (missing Dallas region). Use [Discov
 
 ### Available Operations
 
-* [~~getPingServiceEndpointsDeprecated~~](#getpingserviceendpointsdeprecated) - Returns an array of V1 regions with a host and port that a client can directly ping. Open a websocket connection to `wss://<host>:<port>/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back. :warning: **Deprecated**
+* [~~getPingServiceEndpointsDeprecated~~](#getpingserviceendpointsdeprecated) - GetPingServiceEndpointsDeprecated :warning: **Deprecated**
 
 ## ~~getPingServiceEndpointsDeprecated~~
 
@@ -20,51 +20,35 @@ Returns an array of V1 regions with a host and port that a client can directly p
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsDeprecatedResponse;
+import java.lang.Exception;
 
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
 
-            GetPingServiceEndpointsDeprecatedResponse res = sdk.discoveryV1().getPingServiceEndpointsDeprecated()
+        HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+            .build();
+
+        GetPingServiceEndpointsDeprecatedResponse res = sdk.discoveryV1().getPingServiceEndpointsDeprecated()
                 .call();
 
-            if (res.pingEndpoints().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.pingEndpoints().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
 
-
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetPingServiceEndpointsDeprecatedResponse>](../../models/operations/GetPingServiceEndpointsDeprecatedResponse.md)**
+**[GetPingServiceEndpointsDeprecatedResponse](../../models/operations/GetPingServiceEndpointsDeprecatedResponse.md)**
+
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

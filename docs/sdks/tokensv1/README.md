@@ -7,9 +7,9 @@
 
 ### Available Operations
 
-* [createOrgToken](#createorgtoken) - Create a new organization token.
-* [getOrgTokens](#getorgtokens) - List all organization tokens for a given org.
-* [revokeOrgToken](#revokeorgtoken) - Revoke an organization token.
+* [createOrgToken](#createorgtoken) - CreateOrgToken
+* [getOrgTokens](#getorgtokens) - GetOrgTokens
+* [revokeOrgToken](#revokeorgtoken) - RevokeOrgToken
 
 ## createOrgToken
 
@@ -20,73 +20,56 @@ Create a new organization token.
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.CreateOrgTokenResponse;
+import dev.hathora.cloud_sdk.models.shared.CreateOrgToken;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+            .build();
 
-            CreateOrgTokenResponse res = sdk.tokensV1().createOrgToken()
+        CreateOrgTokenResponse res = sdk.tokensV1().createOrgToken()
                 .createOrgToken(CreateOrgToken.builder()
                     .name("ci-token")
                     .build())
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.createdOrgToken().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.createdOrgToken().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `createOrgToken`                                                                            | [dev.hathora.cloud_api.models.shared.CreateOrgToken](../../models/shared/CreateOrgToken.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
-| `orgId`                                                                                     | *String*                                                                                    | :heavy_check_mark:                                                                          | N/A                                                                                         | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                                                    |
-
+| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `createOrgToken`                                        | [CreateOrgToken](../../models/shared/CreateOrgToken.md) | :heavy_check_mark:                                      | N/A                                                     |                                                         |
+| `orgId`                                                 | *String*                                                | :heavy_check_mark:                                      | N/A                                                     | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                |
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.CreateOrgTokenResponse>](../../models/operations/CreateOrgTokenResponse.md)**
+**[CreateOrgTokenResponse](../../models/operations/CreateOrgTokenResponse.md)**
+
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,422,429        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getOrgTokens
 
@@ -97,49 +80,31 @@ List all organization tokens for a given org.
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.GetOrgTokensResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+            .build();
 
-            GetOrgTokensResponse res = sdk.tokensV1().getOrgTokens()
+        GetOrgTokensResponse res = sdk.tokensV1().getOrgTokens()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .call();
 
-            if (res.listOrgTokens().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.listOrgTokens().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -150,16 +115,16 @@ public class Application {
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | `orgId`                                  | *String*                                 | :heavy_check_mark:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
 
-
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetOrgTokensResponse>](../../models/operations/GetOrgTokensResponse.md)**
+**[GetOrgTokensResponse](../../models/operations/GetOrgTokensResponse.md)**
+
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## revokeOrgToken
 
@@ -170,50 +135,32 @@ Revoke an organization token.
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.RevokeOrgTokenResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+            .build();
 
-            RevokeOrgTokenResponse res = sdk.tokensV1().revokeOrgToken()
+        RevokeOrgTokenResponse res = sdk.tokensV1().revokeOrgToken()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .orgTokenId("org-token-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
-            if (res.boolean_().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.boolean_().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -225,13 +172,13 @@ public class Application {
 | `orgId`                                        | *String*                                       | :heavy_check_mark:                             | N/A                                            | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39       |
 | `orgTokenId`                                   | *String*                                       | :heavy_check_mark:                             | N/A                                            | org-token-af469a92-5b45-4565-b3c4-b79878de67d2 |
 
-
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.RevokeOrgTokenResponse>](../../models/operations/RevokeOrgTokenResponse.md)**
+**[RevokeOrgTokenResponse](../../models/operations/RevokeOrgTokenResponse.md)**
+
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

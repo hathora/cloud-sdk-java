@@ -3,13 +3,13 @@
 
 ## Overview
 
-Deprecated. Use [ProcessesV2](https://hathora.dev/api#tag/ProcessesV2).
+Deprecated. Use [ProcessesV3](https://hathora.dev/api#tag/ProcessesV3).
 
 ### Available Operations
 
-* [~~getProcessInfoDeprecated~~](#getprocessinfodeprecated) - Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#process). :warning: **Deprecated**
-* [~~getRunningProcesses~~](#getrunningprocesses) - Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. :warning: **Deprecated**
-* [~~getStoppedProcesses~~](#getstoppedprocesses) - Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. :warning: **Deprecated**
+* [~~getProcessInfoDeprecated~~](#getprocessinfodeprecated) - GetProcessInfoDeprecated :warning: **Deprecated**
+* [~~getRunningProcesses~~](#getrunningprocesses) - GetRunningProcesses :warning: **Deprecated**
+* [~~getStoppedProcesses~~](#getstoppedprocesses) - GetStoppedProcesses :warning: **Deprecated**
 
 ## ~~getProcessInfoDeprecated~~
 
@@ -22,50 +22,32 @@ Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.GetProcessInfoDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+            .build();
 
-            GetProcessInfoDeprecatedResponse res = sdk.processesV1().getProcessInfoDeprecated()
+        GetProcessInfoDeprecatedResponse res = sdk.processesV1().getProcessInfoDeprecated()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
 
-            if (res.process().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.process().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -74,19 +56,20 @@ public class Application {
 
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `appId`                                  | *Optional<? extends String>*             | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `appId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
 | `processId`                              | *String*                                 | :heavy_check_mark:                       | N/A                                      | cbfcddd2-0006-43ae-996c-995fff7bed2e     |
-
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetProcessInfoDeprecatedResponse>](../../models/operations/GetProcessInfoDeprecatedResponse.md)**
+**[GetProcessInfoDeprecatedResponse](../../models/operations/GetProcessInfoDeprecatedResponse.md)**
+
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429,500        | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/ApiError | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~getRunningProcesses~~
 
@@ -99,71 +82,52 @@ Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/ha
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.GetRunningProcessesResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+            .build();
 
-            GetRunningProcessesResponse res = sdk.processesV1().getRunningProcesses()
+        GetRunningProcessesResponse res = sdk.processesV1().getRunningProcesses()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.TOKYO)
                 .call();
 
-            if (res.classes().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.classes().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
-| `region`                                                                                        | [Optional<? extends dev.hathora.cloud_api.models.shared.Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
-
+| Parameter                                          | Type                                               | Required                                           | Description                                        | Example                                            |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `appId`                                            | *Optional\<String>*                                | :heavy_minus_sign:                                 | N/A                                                | app-af469a92-5b45-4565-b3c4-b79878de67d2           |
+| `region`                                           | [Optional\<Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                 | N/A                                                |                                                    |
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetRunningProcessesResponse>](../../models/operations/GetRunningProcessesResponse.md)**
+**[GetRunningProcessesResponse](../../models/operations/GetRunningProcessesResponse.md)**
+
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~getStoppedProcesses~~
 
@@ -176,68 +140,49 @@ Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/ha
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.models.shared.Security;
-import dev.hathora.cloud_api.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.GetStoppedProcessesResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .build();
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+            .build();
 
-            GetStoppedProcessesResponse res = sdk.processesV1().getStoppedProcesses()
+        GetStoppedProcessesResponse res = sdk.processesV1().getStoppedProcesses()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .region(Region.SYDNEY)
                 .call();
 
-            if (res.classes().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.classes().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `appId`                                                                                         | *Optional<? extends String>*                                                                    | :heavy_minus_sign:                                                                              | N/A                                                                                             | app-af469a92-5b45-4565-b3c4-b79878de67d2                                                        |
-| `region`                                                                                        | [Optional<? extends dev.hathora.cloud_api.models.shared.Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
-
+| Parameter                                          | Type                                               | Required                                           | Description                                        | Example                                            |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `appId`                                            | *Optional\<String>*                                | :heavy_minus_sign:                                 | N/A                                                | app-af469a92-5b45-4565-b3c4-b79878de67d2           |
+| `region`                                           | [Optional\<Region>](../../models/shared/Region.md) | :heavy_minus_sign:                                 | N/A                                                |                                                    |
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.GetStoppedProcessesResponse>](../../models/operations/GetStoppedProcessesResponse.md)**
+**[GetStoppedProcessesResponse](../../models/operations/GetStoppedProcessesResponse.md)**
+
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,404,429            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

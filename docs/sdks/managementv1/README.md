@@ -7,75 +7,61 @@
 
 ### Available Operations
 
-* [sendVerificationEmail](#sendverificationemail)
+* [sendVerificationEmail](#sendverificationemail) - SendVerificationEmail
 
 ## sendVerificationEmail
+
+SendVerificationEmail
 
 ### Example Usage
 
 ```java
 package hello.world;
 
-import dev.hathora.cloud_api.HathoraCloud;
-import dev.hathora.cloud_api.models.operations.*;
-import dev.hathora.cloud_api.models.shared.*;
-import dev.hathora.cloud_api.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.SendVerificationEmailResponse;
+import dev.hathora.cloud_sdk.models.shared.VerificationEmailRequest;
+import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            HathoraCloud sdk = HathoraCloud.builder()
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+            .build();
+
+        VerificationEmailRequest req = VerificationEmailRequest.builder()
+                .userId("<id>")
                 .build();
 
-            VerificationEmailRequest req = VerificationEmailRequest.builder()
-                .userId("<value>")
-                .build();
-
-            SendVerificationEmailResponse res = sdk.managementV1().sendVerificationEmail()
+        SendVerificationEmailResponse res = sdk.managementV1().sendVerificationEmail()
                 .request(req)
                 .call();
 
-            if (res.verificationEmailSuccess().isPresent()) {
-                // handle response
-            }
-        } catch (dev.hathora.cloud_api.models.errors.ApiError e) {
-            // handle exception
-            throw e;
-        } catch (dev.hathora.cloud_api.models.errors.SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.verificationEmailSuccess().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [dev.hathora.cloud_api.models.shared.VerificationEmailRequest](../../models/shared/VerificationEmailRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
-
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [VerificationEmailRequest](../../models/shared/VerificationEmailRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 
 ### Response
 
-**[Optional<? extends dev.hathora.cloud_api.models.operations.SendVerificationEmailResponse>](../../models/operations/SendVerificationEmailResponse.md)**
+**[SendVerificationEmailResponse](../../models/operations/SendVerificationEmailResponse.md)**
+
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401,429,500            | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/ApiError | 401, 429               | application/json       |
+| models/errors/ApiError | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

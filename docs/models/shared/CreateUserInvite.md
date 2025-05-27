@@ -3,6 +3,7 @@
 
 ## Fields
 
-| Field               | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `userEmail`         | *String*            | :heavy_check_mark:  | A user's email.     | noreply@hathora.dev |
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `scopes`                                                                           | [Optional\<CreateUserInviteScopes>](../../models/shared/CreateUserInviteScopes.md) | :heavy_minus_sign:                                                                 | If not defined, the user has Admin access.                                         |                                                                                    |
+| `userEmail`                                                                        | *String*                                                                           | :heavy_check_mark:                                                                 | A user's email.                                                                    | noreply@hathora.dev                                                                |

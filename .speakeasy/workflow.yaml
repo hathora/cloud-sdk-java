@@ -10,3 +10,13 @@ targets:
     hathora-java:
         target: java
         source: java-source
+        publish:
+            java:
+                ossrhUsername: hEuK3iaG
+                ossrhPassword: $ossrh_password
+                gpgSecretKey: $java_gpg_secret_key
+                gpgPassPhrase: $java_gpg_passphrase
+        codeSamples:
+            output: codeSamples.yaml
+            registry:
+                location: registry.speakeasyapi.dev/hathora/hathora/code-samples-java-hathora-java
