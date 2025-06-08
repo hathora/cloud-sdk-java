@@ -98,7 +98,7 @@ public class LobbiesV1 implements
                 .region(region)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreatePrivateLobbyDeprecatedRequest.class,
                 _baseUrl,
@@ -118,11 +118,12 @@ public class LobbiesV1 implements
         // hooks will be passed method level security only
         Optional<SecuritySource> _hookSecuritySource = Optional.of(SecuritySource.of(security));
         Utils.configureSecurity(_req, security);
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreatePrivateLobbyDeprecated", 
                       Optional.empty(), 
@@ -135,6 +136,7 @@ public class LobbiesV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreatePrivateLobbyDeprecated",
                             Optional.empty(),
@@ -145,6 +147,7 @@ public class LobbiesV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreatePrivateLobbyDeprecated",
                             Optional.empty(), 
@@ -155,6 +158,7 @@ public class LobbiesV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreatePrivateLobbyDeprecated",
                             Optional.empty(),
@@ -293,7 +297,7 @@ public class LobbiesV1 implements
                 .region(region)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreatePublicLobbyDeprecatedRequest.class,
                 _baseUrl,
@@ -313,11 +317,12 @@ public class LobbiesV1 implements
         // hooks will be passed method level security only
         Optional<SecuritySource> _hookSecuritySource = Optional.of(SecuritySource.of(security));
         Utils.configureSecurity(_req, security);
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreatePublicLobbyDeprecated", 
                       Optional.empty(), 
@@ -330,6 +335,7 @@ public class LobbiesV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreatePublicLobbyDeprecated",
                             Optional.empty(),
@@ -340,6 +346,7 @@ public class LobbiesV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreatePublicLobbyDeprecated",
                             Optional.empty(), 
@@ -350,6 +357,7 @@ public class LobbiesV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreatePublicLobbyDeprecated",
                             Optional.empty(),
@@ -484,7 +492,7 @@ public class LobbiesV1 implements
                 .region(region)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 ListActivePublicLobbiesDeprecatedV1Request.class,
                 _baseUrl,
@@ -501,11 +509,12 @@ public class LobbiesV1 implements
                 request, 
                 this.sdkConfiguration.globals));
         Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "ListActivePublicLobbiesDeprecatedV1", 
                       Optional.of(List.of()), 
@@ -518,6 +527,7 @@ public class LobbiesV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "ListActivePublicLobbiesDeprecatedV1",
                             Optional.of(List.of()),
@@ -528,6 +538,7 @@ public class LobbiesV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "ListActivePublicLobbiesDeprecatedV1",
                             Optional.of(List.of()), 
@@ -538,6 +549,7 @@ public class LobbiesV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "ListActivePublicLobbiesDeprecatedV1",
                             Optional.of(List.of()),

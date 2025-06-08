@@ -56,7 +56,7 @@ public class ManagementV1 implements
      */
     public SendVerificationEmailResponse sendVerificationEmail(
             VerificationEmailRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/management/v1/sendverificationemail");
@@ -79,11 +79,12 @@ public class ManagementV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "SendVerificationEmail", 
                       Optional.of(List.of()), 
@@ -96,6 +97,7 @@ public class ManagementV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "SendVerificationEmail",
                             Optional.of(List.of()),
@@ -106,6 +108,7 @@ public class ManagementV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "SendVerificationEmail",
                             Optional.of(List.of()), 
@@ -116,6 +119,7 @@ public class ManagementV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "SendVerificationEmail",
                             Optional.of(List.of()),

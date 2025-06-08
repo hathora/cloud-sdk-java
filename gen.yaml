@@ -3,6 +3,7 @@ generation:
   sdkClassName: Hathora-Cloud
   usageSnippets:
     optionalPropertyRendering: withExample
+    sdkInitStyle: constructor
   fixes:
     nameResolutionFeb2025: false
     parameterOrderingFeb2024: false
@@ -15,13 +16,14 @@ generation:
   baseServerURL: ""
   flattenGlobalSecurity: true
 java:
-  version: 3.1.10
+  version: 3.2.0
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter-api:5.8.1
     - testRuntimeOnly:org.junit.jupiter:junit-jupiter-engine:5.8.1
     - implementation:org.java-websocket:Java-WebSocket:1.5.6
   additionalPlugins: []
   artifactID: cloud-sdk
+  baseErrorName: HathoraCloudError
   clientServerStatusCodesAsErrors: true
   companyEmail: hello@hathora.dev
   companyName: Hathora
