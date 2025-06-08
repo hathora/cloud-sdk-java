@@ -109,7 +109,7 @@ public class ProcessesV2 implements
                 .region(region)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreateProcessV2DeprecatedRequest.class,
                 _baseUrl,
@@ -121,14 +121,15 @@ public class ProcessesV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreateProcessV2Deprecated", 
                       Optional.of(List.of()), 
@@ -141,6 +142,7 @@ public class ProcessesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateProcessV2Deprecated",
                             Optional.of(List.of()),
@@ -151,6 +153,7 @@ public class ProcessesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateProcessV2Deprecated",
                             Optional.of(List.of()), 
@@ -161,6 +164,7 @@ public class ProcessesV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateProcessV2Deprecated",
                             Optional.of(List.of()),
@@ -301,7 +305,7 @@ public class ProcessesV2 implements
                 .status(status)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetLatestProcessesV2DeprecatedRequest.class,
                 _baseUrl,
@@ -318,14 +322,15 @@ public class ProcessesV2 implements
                 request, 
                 this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetLatestProcessesV2Deprecated", 
                       Optional.of(List.of()), 
@@ -338,6 +343,7 @@ public class ProcessesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetLatestProcessesV2Deprecated",
                             Optional.of(List.of()),
@@ -348,6 +354,7 @@ public class ProcessesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetLatestProcessesV2Deprecated",
                             Optional.of(List.of()), 
@@ -358,6 +365,7 @@ public class ProcessesV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetLatestProcessesV2Deprecated",
                             Optional.of(List.of()),
@@ -483,7 +491,7 @@ public class ProcessesV2 implements
                 .processId(processId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetProcessInfoV2DeprecatedRequest.class,
                 _baseUrl,
@@ -495,14 +503,15 @@ public class ProcessesV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetProcessInfoV2Deprecated", 
                       Optional.of(List.of()), 
@@ -515,6 +524,7 @@ public class ProcessesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetProcessInfoV2Deprecated",
                             Optional.of(List.of()),
@@ -525,6 +535,7 @@ public class ProcessesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetProcessInfoV2Deprecated",
                             Optional.of(List.of()), 
@@ -535,6 +546,7 @@ public class ProcessesV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetProcessInfoV2Deprecated",
                             Optional.of(List.of()),
@@ -661,7 +673,7 @@ public class ProcessesV2 implements
                 .status(status)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetProcessesCountExperimentalV2DeprecatedRequest.class,
                 _baseUrl,
@@ -678,14 +690,15 @@ public class ProcessesV2 implements
                 request, 
                 this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetProcessesCountExperimentalV2Deprecated", 
                       Optional.of(List.of()), 
@@ -698,6 +711,7 @@ public class ProcessesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetProcessesCountExperimentalV2Deprecated",
                             Optional.of(List.of()),
@@ -708,6 +722,7 @@ public class ProcessesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetProcessesCountExperimentalV2Deprecated",
                             Optional.of(List.of()), 
@@ -718,6 +733,7 @@ public class ProcessesV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetProcessesCountExperimentalV2Deprecated",
                             Optional.of(List.of()),
@@ -843,7 +859,7 @@ public class ProcessesV2 implements
                 .processId(processId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 StopProcessV2DeprecatedRequest.class,
                 _baseUrl,
@@ -855,14 +871,15 @@ public class ProcessesV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "StopProcessV2Deprecated", 
                       Optional.of(List.of()), 
@@ -875,6 +892,7 @@ public class ProcessesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "StopProcessV2Deprecated",
                             Optional.of(List.of()),
@@ -885,6 +903,7 @@ public class ProcessesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "StopProcessV2Deprecated",
                             Optional.of(List.of()), 
@@ -895,6 +914,7 @@ public class ProcessesV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "StopProcessV2Deprecated",
                             Optional.of(List.of()),
