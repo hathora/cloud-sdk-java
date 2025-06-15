@@ -72,7 +72,6 @@ public class LobbiesV2 implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * CreateLobbyDeprecated
      * 
@@ -131,7 +130,7 @@ public class LobbiesV2 implements
                 .roomId(roomId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreateLobbyDeprecatedRequest.class,
                 _baseUrl,
@@ -164,11 +163,12 @@ public class LobbiesV2 implements
         // hooks will be passed method level security only
         Optional<SecuritySource> _hookSecuritySource = Optional.of(SecuritySource.of(security));
         Utils.configureSecurity(_req, security);
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreateLobbyDeprecated", 
                       Optional.empty(), 
@@ -181,6 +181,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateLobbyDeprecated",
                             Optional.empty(),
@@ -191,6 +192,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateLobbyDeprecated",
                             Optional.empty(), 
@@ -201,6 +203,7 @@ public class LobbiesV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateLobbyDeprecated",
                             Optional.empty(),
@@ -288,7 +291,6 @@ public class LobbiesV2 implements
     }
 
 
-
     /**
      * CreateLocalLobby
      * 
@@ -341,7 +343,7 @@ public class LobbiesV2 implements
                 .roomId(roomId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreateLocalLobbyRequest.class,
                 _baseUrl,
@@ -374,11 +376,12 @@ public class LobbiesV2 implements
         // hooks will be passed method level security only
         Optional<SecuritySource> _hookSecuritySource = Optional.of(SecuritySource.of(security));
         Utils.configureSecurity(_req, security);
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreateLocalLobby", 
                       Optional.empty(), 
@@ -391,6 +394,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateLocalLobby",
                             Optional.empty(),
@@ -401,6 +405,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateLocalLobby",
                             Optional.empty(), 
@@ -411,6 +416,7 @@ public class LobbiesV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateLocalLobby",
                             Optional.empty(),
@@ -498,7 +504,6 @@ public class LobbiesV2 implements
     }
 
 
-
     /**
      * CreatePrivateLobby
      * 
@@ -551,7 +556,7 @@ public class LobbiesV2 implements
                 .roomId(roomId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreatePrivateLobbyRequest.class,
                 _baseUrl,
@@ -584,11 +589,12 @@ public class LobbiesV2 implements
         // hooks will be passed method level security only
         Optional<SecuritySource> _hookSecuritySource = Optional.of(SecuritySource.of(security));
         Utils.configureSecurity(_req, security);
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreatePrivateLobby", 
                       Optional.empty(), 
@@ -601,6 +607,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreatePrivateLobby",
                             Optional.empty(),
@@ -611,6 +618,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreatePrivateLobby",
                             Optional.empty(), 
@@ -621,6 +629,7 @@ public class LobbiesV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreatePrivateLobby",
                             Optional.empty(),
@@ -708,7 +717,6 @@ public class LobbiesV2 implements
     }
 
 
-
     /**
      * CreatePublicLobby
      * 
@@ -761,7 +769,7 @@ public class LobbiesV2 implements
                 .roomId(roomId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreatePublicLobbyRequest.class,
                 _baseUrl,
@@ -794,11 +802,12 @@ public class LobbiesV2 implements
         // hooks will be passed method level security only
         Optional<SecuritySource> _hookSecuritySource = Optional.of(SecuritySource.of(security));
         Utils.configureSecurity(_req, security);
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreatePublicLobby", 
                       Optional.empty(), 
@@ -811,6 +820,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreatePublicLobby",
                             Optional.empty(),
@@ -821,6 +831,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreatePublicLobby",
                             Optional.empty(), 
@@ -831,6 +842,7 @@ public class LobbiesV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreatePublicLobby",
                             Optional.empty(),
@@ -918,7 +930,6 @@ public class LobbiesV2 implements
     }
 
 
-
     /**
      * GetLobbyInfo
      * 
@@ -970,7 +981,7 @@ public class LobbiesV2 implements
                 .roomId(roomId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetLobbyInfoRequest.class,
                 _baseUrl,
@@ -982,11 +993,12 @@ public class LobbiesV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetLobbyInfo", 
                       Optional.of(List.of()), 
@@ -999,6 +1011,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetLobbyInfo",
                             Optional.of(List.of()),
@@ -1009,6 +1022,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetLobbyInfo",
                             Optional.of(List.of()), 
@@ -1019,6 +1033,7 @@ public class LobbiesV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetLobbyInfo",
                             Optional.of(List.of()),
@@ -1092,7 +1107,6 @@ public class LobbiesV2 implements
     }
 
 
-
     /**
      * ListActivePublicLobbiesDeprecatedV2
      * 
@@ -1142,7 +1156,7 @@ public class LobbiesV2 implements
                 .region(region)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 ListActivePublicLobbiesDeprecatedV2Request.class,
                 _baseUrl,
@@ -1159,11 +1173,12 @@ public class LobbiesV2 implements
                 request, 
                 this.sdkConfiguration.globals));
         Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "ListActivePublicLobbiesDeprecatedV2", 
                       Optional.of(List.of()), 
@@ -1176,6 +1191,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "ListActivePublicLobbiesDeprecatedV2",
                             Optional.of(List.of()),
@@ -1186,6 +1202,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "ListActivePublicLobbiesDeprecatedV2",
                             Optional.of(List.of()), 
@@ -1196,6 +1213,7 @@ public class LobbiesV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "ListActivePublicLobbiesDeprecatedV2",
                             Optional.of(List.of()),
@@ -1269,7 +1287,6 @@ public class LobbiesV2 implements
     }
 
 
-
     /**
      * SetLobbyState
      * 
@@ -1326,7 +1343,7 @@ public class LobbiesV2 implements
                 .roomId(roomId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 SetLobbyStateRequest.class,
                 _baseUrl,
@@ -1351,14 +1368,15 @@ public class LobbiesV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "SetLobbyState", 
                       Optional.of(List.of()), 
@@ -1371,6 +1389,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "SetLobbyState",
                             Optional.of(List.of()),
@@ -1381,6 +1400,7 @@ public class LobbiesV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "SetLobbyState",
                             Optional.of(List.of()), 
@@ -1391,6 +1411,7 @@ public class LobbiesV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "SetLobbyState",
                             Optional.of(List.of()),

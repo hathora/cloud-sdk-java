@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: 0e7dd32640341faad744619051bbb3fe
+  docChecksum: f0f2e18869e667d5df08521d279e6fa4
   docVersion: 0.0.1
-  speakeasyVersion: 1.552.0
-  generationVersion: 2.610.0
-  releaseVersion: 3.1.10
-  configChecksum: aecde5df471c39b5060d341042bf5bdd
+  speakeasyVersion: 1.563.1
+  generationVersion: 2.629.1
+  releaseVersion: 3.2.0
+  configChecksum: 83db35144db4798192f7172165572740
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.37.3
+    core: 3.39.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
@@ -26,7 +26,7 @@ features:
     methodSecurity: 2.82.2
     nullables: 0.1.0
     openEnums: 0.2.0
-    sdkHooks: 1.0.0
+    sdkHooks: 1.1.0
     unions: 0.0.6
 generatedFiles:
   - .gitattributes
@@ -1105,6 +1105,9 @@ examples:
           application/json: {"message": "<value>"}
   CreateApp:
     speakeasy-default-create-app:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"appName": "minecraft", "authConfiguration": {}}
       responses:
@@ -1136,6 +1139,9 @@ examples:
           application/json: {"message": "<value>"}
   GetApps:
     speakeasy-default-get-apps:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"applications": []}
@@ -1205,6 +1211,9 @@ examples:
           application/json: {"message": "<value>"}
   GetBalance:
     speakeasy-default-get-balance:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: 9329.53
@@ -1214,6 +1223,9 @@ examples:
           application/json: {"message": "<value>"}
   GetInvoices:
     speakeasy-default-get-invoices:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: [{"amountDue": 6577.26, "dueDate": "2024-12-02T07:03:39.210Z", "id": "<id>", "month": 2813.23, "pdfUrl": "https://cheap-premier.name/", "status": "paid", "year": 6902.79}, {"amountDue": 6577.26, "dueDate": "2024-12-02T07:03:39.210Z", "id": "<id>", "month": 2813.23, "pdfUrl": "https://cheap-premier.name/", "status": "paid", "year": 6902.79}, {"amountDue": 6577.26, "dueDate": "2024-12-02T07:03:39.210Z", "id": "<id>", "month": 2813.23, "pdfUrl": "https://cheap-premier.name/", "status": "paid", "year": 6902.79}]
@@ -1223,6 +1235,9 @@ examples:
           application/json: {"message": "<value>"}
   GetPaymentMethod:
     speakeasy-default-get-payment-method:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {}
@@ -1232,6 +1247,9 @@ examples:
           application/json: {"message": "<value>"}
   GetUpcomingInvoiceItems:
     speakeasy-default-get-upcoming-invoice-items:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"invoiceItems": []}
@@ -1241,6 +1259,9 @@ examples:
           application/json: {"message": "<value>"}
   GetUpcomingInvoiceTotal:
     speakeasy-default-get-upcoming-invoice-total:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"value": 8856.44}
@@ -1250,6 +1271,9 @@ examples:
           application/json: {"message": "<value>"}
   InitStripeCustomerPortalUrl:
     speakeasy-default-init-stripe-customer-portal-url:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"returnUrl": "https://sunny-majority.com/"}
       responses:
@@ -1312,7 +1336,7 @@ examples:
           appId: "app-af469a92-5b45-4565-b3c4-b79878de67d2"
           buildId: 1
       requestBody:
-        multipart/form-data: {"file": {"": "example.file"}}
+        multipart/form-data: {"file": "x-file: example.file"}
       responses:
         "200":
           text/plain: "<value>"
@@ -1411,6 +1435,9 @@ examples:
           application/json: {"message": "<value>"}
   CreateBuild:
     speakeasy-default-create-build:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildSizeInBytes": 2645.24, "buildTag": "0.1.14-14c793"}
       responses:
@@ -1422,6 +1449,9 @@ examples:
           application/json: {"message": "<value>"}
   CreateBuildRegistry:
     speakeasy-default-create-build-registry:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793"}
       responses:
@@ -1436,6 +1466,8 @@ examples:
       parameters:
         path:
           buildId: "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {}
@@ -1448,6 +1480,8 @@ examples:
       parameters:
         path:
           buildId: "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2024-02-22T18:31:28.580Z", "createdBy": "noreply@hathora.dev", "deletedAt": null, "finishedAt": "2023-05-12T10:29:41.309Z", "imageSize": 608773, "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "startedAt": "2025-07-31T22:59:28.269Z", "status": "failed"}
@@ -1455,6 +1489,9 @@ examples:
           application/json: {"message": "<value>"}
   GetBuilds:
     speakeasy-default-get-builds:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"builds": [{"buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2025-03-13T17:49:05.344Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2024-06-30T01:51:30.058Z", "finishedAt": "2023-12-31T08:08:29.374Z", "imageSize": 961801, "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "startedAt": "2025-05-22T10:57:56.420Z", "status": "failed"}, {"buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2025-03-13T17:49:05.344Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2024-06-30T01:51:30.058Z", "finishedAt": "2023-12-31T08:08:29.374Z", "imageSize": 961801, "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "startedAt": "2025-05-22T10:57:56.420Z", "status": "failed"}]}
@@ -1465,6 +1502,8 @@ examples:
       parameters:
         path:
           buildId: "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/octet-stream: "x-file: example.file"
@@ -1477,6 +1516,8 @@ examples:
       parameters:
         path:
           buildId: "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"image": "https://picsum.photos/seed/3gDPgtj/723/1525"}
       responses:
@@ -1643,6 +1684,7 @@ examples:
           region: "Washington_DC"
         query:
           step: 60
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {}
@@ -1656,6 +1698,8 @@ examples:
         path:
           fleetId: "<id>"
           region: "Singapore"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"cloudMinVcpus": 989408, "cloudMinVcpusUpdatedAt": "2024-06-09T22:13:41.280Z", "scaleIncrementVcpus": 979858}
@@ -1663,6 +1707,9 @@ examples:
           application/json: {"message": "<value>"}
   GetFleets:
     speakeasy-default-get-fleets:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"fleets": [{"fleetId": "<id>", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}, {"fleetId": "<id>", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}]}
@@ -1673,6 +1720,8 @@ examples:
       parameters:
         path:
           fleetId: "<id>"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"autoscalerConfig": {"scaleUpThreshold": 979840}}
       responses:
@@ -1686,6 +1735,8 @@ examples:
         path:
           fleetId: "<id>"
           region: "Chicago"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"cloudMinVcpus": 503995}
       responses:
@@ -1969,6 +2020,9 @@ examples:
           application/json: {"message": "<value>"}
   GetUsageLimits:
     speakeasy-default-get-usage-limits:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"concurrentProcessVcpus7DayMax": 3263.46, "monthlyProcessVcpuHoursConsumed": 9052.16}

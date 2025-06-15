@@ -35,7 +35,6 @@ public class DiscoveryV2 implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * GetPingServiceEndpoints
      * 
@@ -56,7 +55,7 @@ public class DiscoveryV2 implements
      * @throws Exception if the API call fails
      */
     public GetPingServiceEndpointsResponse getPingServiceEndpointsDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/discovery/v2/ping");
@@ -66,11 +65,12 @@ public class DiscoveryV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetPingServiceEndpoints", 
                       Optional.of(List.of()), 
@@ -83,6 +83,7 @@ public class DiscoveryV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetPingServiceEndpoints",
                             Optional.of(List.of()),
@@ -93,6 +94,7 @@ public class DiscoveryV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetPingServiceEndpoints",
                             Optional.of(List.of()), 
@@ -103,6 +105,7 @@ public class DiscoveryV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetPingServiceEndpoints",
                             Optional.of(List.of()),
