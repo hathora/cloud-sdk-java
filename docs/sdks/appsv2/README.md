@@ -34,11 +34,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateAppResponse res = sdk.appsV2().createApp()
@@ -95,15 +94,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         DeleteAppResponse res = sdk.appsV2().deleteApp()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         // handle response
@@ -149,15 +146,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetAppResponse res = sdk.appsV2().getApp()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.application().isPresent()) {
@@ -204,11 +199,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetAppsResponse res = sdk.appsV2().getApps()
@@ -259,11 +253,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         PatchAppResponse res = sdk.appsV2().patchApp()
@@ -290,7 +283,6 @@ public class Application {
                                 .build()))
                         .build())
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.application().isPresent()) {
@@ -340,11 +332,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .security(Security.builder()
                     .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         UpdateAppResponse res = sdk.appsV2().updateApp()
@@ -368,7 +359,6 @@ public class Application {
                                 .build()))
                         .build())
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.application().isPresent()) {

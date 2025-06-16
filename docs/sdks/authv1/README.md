@@ -31,11 +31,9 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         LoginAnonymousResponse res = sdk.authV1().loginAnonymous()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.playerTokenObject().isPresent()) {
@@ -83,14 +81,12 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         LoginGoogleResponse res = sdk.authV1().loginGoogle()
                 .googleIdTokenObject(GoogleIdTokenObject.builder()
                     .idToken("eyJhbGciOiJSUzI1NiIsImtpZCI6ImZkNDhhNzUxMzhkOWQ0OGYwYWE2MzVlZjU2OWM0ZTE5NmY3YWU4ZDYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiODQ4NDEyODI2Nzg4LW00bXNyYjZxNDRkbTJ1ZTNrZ3Z1aTBmcTdrZGE1NWxzLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiODQ4NDEyODI2Nzg4LW00bXNyYjZxNDRkbTJ1ZTNrZ3Z1aTBmcTdrZGE1NWxzLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0NTQyMzMwNzI3MTU2MTMzNzc2IiwiZW1haWwiOiJocGFdkeivmeuzQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoidno1NGhhdTNxbnVR")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.playerTokenObject().isPresent()) {
@@ -139,14 +135,12 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         LoginNicknameResponse res = sdk.authV1().loginNickname()
                 .nicknameObject(NicknameObject.builder()
                     .nickname("squiddytwoshoes")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.playerTokenObject().isPresent()) {

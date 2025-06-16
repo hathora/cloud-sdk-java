@@ -36,7 +36,6 @@ public class DiscoveryV1 implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * GetPingServiceEndpointsDeprecated
      * 
@@ -61,7 +60,7 @@ public class DiscoveryV1 implements
      */
     @Deprecated
     public GetPingServiceEndpointsDeprecatedResponse getPingServiceEndpointsDeprecatedDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/discovery/v1/ping");
@@ -71,11 +70,12 @@ public class DiscoveryV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetPingServiceEndpointsDeprecated", 
                       Optional.of(List.of()), 
@@ -88,6 +88,7 @@ public class DiscoveryV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetPingServiceEndpointsDeprecated",
                             Optional.of(List.of()),
@@ -98,6 +99,7 @@ public class DiscoveryV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetPingServiceEndpointsDeprecated",
                             Optional.of(List.of()), 
@@ -108,6 +110,7 @@ public class DiscoveryV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetPingServiceEndpointsDeprecated",
                             Optional.of(List.of()),
