@@ -65,7 +65,6 @@ public class RoomsV1 implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * CreateRoomDeprecated
      * 
@@ -114,7 +113,7 @@ public class RoomsV1 implements
                 .roomId(roomId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreateRoomDeprecatedRequest.class,
                 _baseUrl,
@@ -144,14 +143,15 @@ public class RoomsV1 implements
                 request, 
                 this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreateRoomDeprecated", 
                       Optional.of(List.of()), 
@@ -164,6 +164,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateRoomDeprecated",
                             Optional.of(List.of()),
@@ -174,6 +175,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateRoomDeprecated",
                             Optional.of(List.of()), 
@@ -184,6 +186,7 @@ public class RoomsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateRoomDeprecated",
                             Optional.of(List.of()),
@@ -271,7 +274,6 @@ public class RoomsV1 implements
     }
 
 
-
     /**
      * DestroyRoomDeprecated
      * 
@@ -317,7 +319,7 @@ public class RoomsV1 implements
                 .roomId(roomId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 DestroyRoomDeprecatedRequest.class,
                 _baseUrl,
@@ -329,14 +331,15 @@ public class RoomsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "DestroyRoomDeprecated", 
                       Optional.of(List.of()), 
@@ -349,6 +352,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "DestroyRoomDeprecated",
                             Optional.of(List.of()),
@@ -359,6 +363,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "DestroyRoomDeprecated",
                             Optional.of(List.of()), 
@@ -369,6 +374,7 @@ public class RoomsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "DestroyRoomDeprecated",
                             Optional.of(List.of()),
@@ -445,7 +451,6 @@ public class RoomsV1 implements
     }
 
 
-
     /**
      * GetActiveRoomsForProcessDeprecated
      * 
@@ -491,7 +496,7 @@ public class RoomsV1 implements
                 .processId(processId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetActiveRoomsForProcessDeprecatedRequest.class,
                 _baseUrl,
@@ -503,14 +508,15 @@ public class RoomsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetActiveRoomsForProcessDeprecated", 
                       Optional.of(List.of()), 
@@ -523,6 +529,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetActiveRoomsForProcessDeprecated",
                             Optional.of(List.of()),
@@ -533,6 +540,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetActiveRoomsForProcessDeprecated",
                             Optional.of(List.of()), 
@@ -543,6 +551,7 @@ public class RoomsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetActiveRoomsForProcessDeprecated",
                             Optional.of(List.of()),
@@ -616,7 +625,6 @@ public class RoomsV1 implements
     }
 
 
-
     /**
      * GetConnectionInfoDeprecated
      * 
@@ -662,7 +670,7 @@ public class RoomsV1 implements
                 .roomId(roomId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetConnectionInfoDeprecatedRequest.class,
                 _baseUrl,
@@ -674,11 +682,12 @@ public class RoomsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetConnectionInfoDeprecated", 
                       Optional.of(List.of()), 
@@ -691,6 +700,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetConnectionInfoDeprecated",
                             Optional.of(List.of()),
@@ -701,6 +711,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetConnectionInfoDeprecated",
                             Optional.of(List.of()), 
@@ -711,6 +722,7 @@ public class RoomsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetConnectionInfoDeprecated",
                             Optional.of(List.of()),
@@ -798,7 +810,6 @@ public class RoomsV1 implements
     }
 
 
-
     /**
      * GetInactiveRoomsForProcessDeprecated
      * 
@@ -844,7 +855,7 @@ public class RoomsV1 implements
                 .processId(processId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetInactiveRoomsForProcessDeprecatedRequest.class,
                 _baseUrl,
@@ -856,14 +867,15 @@ public class RoomsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetInactiveRoomsForProcessDeprecated", 
                       Optional.of(List.of()), 
@@ -876,6 +888,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetInactiveRoomsForProcessDeprecated",
                             Optional.of(List.of()),
@@ -886,6 +899,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetInactiveRoomsForProcessDeprecated",
                             Optional.of(List.of()), 
@@ -896,6 +910,7 @@ public class RoomsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetInactiveRoomsForProcessDeprecated",
                             Optional.of(List.of()),
@@ -969,7 +984,6 @@ public class RoomsV1 implements
     }
 
 
-
     /**
      * GetRoomInfoDeprecated
      * 
@@ -1015,7 +1029,7 @@ public class RoomsV1 implements
                 .roomId(roomId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetRoomInfoDeprecatedRequest.class,
                 _baseUrl,
@@ -1027,14 +1041,15 @@ public class RoomsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetRoomInfoDeprecated", 
                       Optional.of(List.of()), 
@@ -1047,6 +1062,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetRoomInfoDeprecated",
                             Optional.of(List.of()),
@@ -1057,6 +1073,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetRoomInfoDeprecated",
                             Optional.of(List.of()), 
@@ -1067,6 +1084,7 @@ public class RoomsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetRoomInfoDeprecated",
                             Optional.of(List.of()),
@@ -1140,7 +1158,6 @@ public class RoomsV1 implements
     }
 
 
-
     /**
      * SuspendRoomDeprecated
      * 
@@ -1186,7 +1203,7 @@ public class RoomsV1 implements
                 .roomId(roomId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 SuspendRoomDeprecatedRequest.class,
                 _baseUrl,
@@ -1198,14 +1215,15 @@ public class RoomsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "SuspendRoomDeprecated", 
                       Optional.of(List.of()), 
@@ -1218,6 +1236,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "SuspendRoomDeprecated",
                             Optional.of(List.of()),
@@ -1228,6 +1247,7 @@ public class RoomsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "SuspendRoomDeprecated",
                             Optional.of(List.of()), 
@@ -1238,6 +1258,7 @@ public class RoomsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "SuspendRoomDeprecated",
                             Optional.of(List.of()),

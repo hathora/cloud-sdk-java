@@ -54,7 +54,6 @@ public class DeploymentsV3 implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * CreateDeployment
      * 
@@ -100,7 +99,7 @@ public class DeploymentsV3 implements
                 .appId(appId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreateDeploymentRequest.class,
                 _baseUrl,
@@ -125,14 +124,15 @@ public class DeploymentsV3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreateDeployment", 
                       Optional.of(List.of()), 
@@ -145,6 +145,7 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateDeployment",
                             Optional.of(List.of()),
@@ -155,6 +156,7 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateDeployment",
                             Optional.of(List.of()), 
@@ -165,6 +167,7 @@ public class DeploymentsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateDeployment",
                             Optional.of(List.of()),
@@ -252,7 +255,6 @@ public class DeploymentsV3 implements
     }
 
 
-
     /**
      * GetDeployment
      * 
@@ -298,7 +300,7 @@ public class DeploymentsV3 implements
                 .deploymentId(deploymentId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetDeploymentRequest.class,
                 _baseUrl,
@@ -310,14 +312,15 @@ public class DeploymentsV3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetDeployment", 
                       Optional.of(List.of()), 
@@ -330,6 +333,7 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetDeployment",
                             Optional.of(List.of()),
@@ -340,6 +344,7 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetDeployment",
                             Optional.of(List.of()), 
@@ -350,6 +355,7 @@ public class DeploymentsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetDeployment",
                             Optional.of(List.of()),
@@ -423,7 +429,6 @@ public class DeploymentsV3 implements
     }
 
 
-
     /**
      * GetDeployments
      * 
@@ -467,7 +472,7 @@ public class DeploymentsV3 implements
                 .deploymentTag(deploymentTag)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetDeploymentsRequest.class,
                 _baseUrl,
@@ -484,14 +489,15 @@ public class DeploymentsV3 implements
                 request, 
                 this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetDeployments", 
                       Optional.of(List.of()), 
@@ -504,6 +510,7 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetDeployments",
                             Optional.of(List.of()),
@@ -514,6 +521,7 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetDeployments",
                             Optional.of(List.of()), 
@@ -524,6 +532,7 @@ public class DeploymentsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetDeployments",
                             Optional.of(List.of()),
@@ -597,7 +606,6 @@ public class DeploymentsV3 implements
     }
 
 
-
     /**
      * GetLatestDeployment
      * 
@@ -638,7 +646,7 @@ public class DeploymentsV3 implements
                 .appId(appId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetLatestDeploymentRequest.class,
                 _baseUrl,
@@ -650,14 +658,15 @@ public class DeploymentsV3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetLatestDeployment", 
                       Optional.of(List.of()), 
@@ -670,6 +679,7 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetLatestDeployment",
                             Optional.of(List.of()),
@@ -680,6 +690,7 @@ public class DeploymentsV3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetLatestDeployment",
                             Optional.of(List.of()), 
@@ -690,6 +701,7 @@ public class DeploymentsV3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetLatestDeployment",
                             Optional.of(List.of()),
