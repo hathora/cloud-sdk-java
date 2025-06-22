@@ -88,6 +88,13 @@ public class ProcessV3 {
     private Optional<OffsetDateTime> stoppingAt;
 
     /**
+     * The summary of why the process exited, if it has stopped.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("summaryExitReason")
+    private Optional<String> summaryExitReason;
+
+    /**
      * When the process has been terminated.
      */
     @JsonInclude(Include.ALWAYS)
@@ -109,6 +116,7 @@ public class ProcessV3 {
             @JsonProperty("startedAt") Optional<OffsetDateTime> startedAt,
             @JsonProperty("status") ProcessStatus status,
             @JsonProperty("stoppingAt") Optional<OffsetDateTime> stoppingAt,
+            @JsonProperty("summaryExitReason") Optional<String> summaryExitReason,
             @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
         Utils.checkNotNull(appId, "appId");
@@ -123,6 +131,7 @@ public class ProcessV3 {
         Utils.checkNotNull(startedAt, "startedAt");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(stoppingAt, "stoppingAt");
+        Utils.checkNotNull(summaryExitReason, "summaryExitReason");
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.additionalExposedPorts = additionalExposedPorts;
         this.appId = appId;
@@ -137,6 +146,7 @@ public class ProcessV3 {
         this.startedAt = startedAt;
         this.status = status;
         this.stoppingAt = stoppingAt;
+        this.summaryExitReason = summaryExitReason;
         this.terminatedAt = terminatedAt;
     }
     
@@ -150,7 +160,7 @@ public class ProcessV3 {
             int roomsAllocated,
             int roomsPerProcess,
             ProcessStatus status) {
-        this(additionalExposedPorts, appId, createdAt, deploymentId, Optional.empty(), Optional.empty(), processId, region, roomsAllocated, roomsPerProcess, Optional.empty(), status, Optional.empty(), Optional.empty());
+        this(additionalExposedPorts, appId, createdAt, deploymentId, Optional.empty(), Optional.empty(), processId, region, roomsAllocated, roomsPerProcess, Optional.empty(), status, Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -242,6 +252,14 @@ public class ProcessV3 {
     @JsonIgnore
     public Optional<OffsetDateTime> stoppingAt() {
         return stoppingAt;
+    }
+
+    /**
+     * The summary of why the process exited, if it has stopped.
+     */
+    @JsonIgnore
+    public Optional<String> summaryExitReason() {
+        return summaryExitReason;
     }
 
     /**
@@ -389,6 +407,24 @@ public class ProcessV3 {
     }
 
     /**
+     * The summary of why the process exited, if it has stopped.
+     */
+    public ProcessV3 withSummaryExitReason(String summaryExitReason) {
+        Utils.checkNotNull(summaryExitReason, "summaryExitReason");
+        this.summaryExitReason = Optional.ofNullable(summaryExitReason);
+        return this;
+    }
+
+    /**
+     * The summary of why the process exited, if it has stopped.
+     */
+    public ProcessV3 withSummaryExitReason(Optional<String> summaryExitReason) {
+        Utils.checkNotNull(summaryExitReason, "summaryExitReason");
+        this.summaryExitReason = summaryExitReason;
+        return this;
+    }
+
+    /**
      * When the process has been terminated.
      */
     public ProcessV3 withTerminatedAt(OffsetDateTime terminatedAt) {
@@ -430,6 +466,7 @@ public class ProcessV3 {
             Objects.deepEquals(this.startedAt, other.startedAt) &&
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.stoppingAt, other.stoppingAt) &&
+            Objects.deepEquals(this.summaryExitReason, other.summaryExitReason) &&
             Objects.deepEquals(this.terminatedAt, other.terminatedAt);
     }
     
@@ -449,6 +486,7 @@ public class ProcessV3 {
             startedAt,
             status,
             stoppingAt,
+            summaryExitReason,
             terminatedAt);
     }
     
@@ -468,6 +506,7 @@ public class ProcessV3 {
                 "startedAt", startedAt,
                 "status", status,
                 "stoppingAt", stoppingAt,
+                "summaryExitReason", summaryExitReason,
                 "terminatedAt", terminatedAt);
     }
     
@@ -498,6 +537,8 @@ public class ProcessV3 {
         private ProcessStatus status;
  
         private Optional<OffsetDateTime> stoppingAt = Optional.empty();
+ 
+        private Optional<String> summaryExitReason = Optional.empty();
  
         private Optional<OffsetDateTime> terminatedAt = Optional.empty();
         
@@ -638,6 +679,24 @@ public class ProcessV3 {
         }
 
         /**
+         * The summary of why the process exited, if it has stopped.
+         */
+        public Builder summaryExitReason(String summaryExitReason) {
+            Utils.checkNotNull(summaryExitReason, "summaryExitReason");
+            this.summaryExitReason = Optional.ofNullable(summaryExitReason);
+            return this;
+        }
+
+        /**
+         * The summary of why the process exited, if it has stopped.
+         */
+        public Builder summaryExitReason(Optional<String> summaryExitReason) {
+            Utils.checkNotNull(summaryExitReason, "summaryExitReason");
+            this.summaryExitReason = summaryExitReason;
+            return this;
+        }
+
+        /**
          * When the process has been terminated.
          */
         public Builder terminatedAt(OffsetDateTime terminatedAt) {
@@ -670,6 +729,7 @@ public class ProcessV3 {
                 startedAt,
                 status,
                 stoppingAt,
+                summaryExitReason,
                 terminatedAt);
         }
     }

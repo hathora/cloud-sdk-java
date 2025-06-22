@@ -51,7 +51,6 @@ public class DeploymentsV1 implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * CreateDeploymentV1Deprecated
      * 
@@ -108,7 +107,7 @@ public class DeploymentsV1 implements
                 .buildId(buildId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreateDeploymentV1DeprecatedRequest.class,
                 _baseUrl,
@@ -133,14 +132,15 @@ public class DeploymentsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreateDeploymentV1Deprecated", 
                       Optional.of(List.of()), 
@@ -153,6 +153,7 @@ public class DeploymentsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateDeploymentV1Deprecated",
                             Optional.of(List.of()),
@@ -163,6 +164,7 @@ public class DeploymentsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateDeploymentV1Deprecated",
                             Optional.of(List.of()), 
@@ -173,6 +175,7 @@ public class DeploymentsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateDeploymentV1Deprecated",
                             Optional.of(List.of()),
@@ -260,7 +263,6 @@ public class DeploymentsV1 implements
     }
 
 
-
     /**
      * GetDeploymentInfoV1Deprecated
      * 
@@ -312,7 +314,7 @@ public class DeploymentsV1 implements
                 .deploymentId(deploymentId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetDeploymentInfoV1DeprecatedRequest.class,
                 _baseUrl,
@@ -324,14 +326,15 @@ public class DeploymentsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetDeploymentInfoV1Deprecated", 
                       Optional.of(List.of()), 
@@ -344,6 +347,7 @@ public class DeploymentsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetDeploymentInfoV1Deprecated",
                             Optional.of(List.of()),
@@ -354,6 +358,7 @@ public class DeploymentsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetDeploymentInfoV1Deprecated",
                             Optional.of(List.of()), 
@@ -364,6 +369,7 @@ public class DeploymentsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetDeploymentInfoV1Deprecated",
                             Optional.of(List.of()),
@@ -437,7 +443,6 @@ public class DeploymentsV1 implements
     }
 
 
-
     /**
      * GetDeploymentsV1Deprecated
      * 
@@ -484,7 +489,7 @@ public class DeploymentsV1 implements
                 .appId(appId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetDeploymentsV1DeprecatedRequest.class,
                 _baseUrl,
@@ -496,14 +501,15 @@ public class DeploymentsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetDeploymentsV1Deprecated", 
                       Optional.of(List.of()), 
@@ -516,6 +522,7 @@ public class DeploymentsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetDeploymentsV1Deprecated",
                             Optional.of(List.of()),
@@ -526,6 +533,7 @@ public class DeploymentsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetDeploymentsV1Deprecated",
                             Optional.of(List.of()), 
@@ -536,6 +544,7 @@ public class DeploymentsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetDeploymentsV1Deprecated",
                             Optional.of(List.of()),
@@ -609,7 +618,6 @@ public class DeploymentsV1 implements
     }
 
 
-
     /**
      * GetLatestDeploymentV1Deprecated
      * 
@@ -656,7 +664,7 @@ public class DeploymentsV1 implements
                 .appId(appId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetLatestDeploymentV1DeprecatedRequest.class,
                 _baseUrl,
@@ -668,14 +676,15 @@ public class DeploymentsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetLatestDeploymentV1Deprecated", 
                       Optional.of(List.of()), 
@@ -688,6 +697,7 @@ public class DeploymentsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetLatestDeploymentV1Deprecated",
                             Optional.of(List.of()),
@@ -698,6 +708,7 @@ public class DeploymentsV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetLatestDeploymentV1Deprecated",
                             Optional.of(List.of()), 
@@ -708,6 +719,7 @@ public class DeploymentsV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetLatestDeploymentV1Deprecated",
                             Optional.of(List.of()),
