@@ -67,7 +67,6 @@ public class BuildsV2 implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * CreateBuildV2Deprecated
      * 
@@ -119,7 +118,7 @@ public class BuildsV2 implements
                 .appId(appId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreateBuildV2DeprecatedRequest.class,
                 _baseUrl,
@@ -144,14 +143,15 @@ public class BuildsV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreateBuildV2Deprecated", 
                       Optional.of(List.of()), 
@@ -164,6 +164,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateBuildV2Deprecated",
                             Optional.of(List.of()),
@@ -174,6 +175,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateBuildV2Deprecated",
                             Optional.of(List.of()), 
@@ -184,6 +186,7 @@ public class BuildsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateBuildV2Deprecated",
                             Optional.of(List.of()),
@@ -271,7 +274,6 @@ public class BuildsV2 implements
     }
 
 
-
     /**
      * CreateBuildWithUploadUrlV2Deprecated
      * 
@@ -323,7 +325,7 @@ public class BuildsV2 implements
                 .appId(appId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreateBuildWithUploadUrlV2DeprecatedRequest.class,
                 _baseUrl,
@@ -348,14 +350,15 @@ public class BuildsV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreateBuildWithUploadUrlV2Deprecated", 
                       Optional.of(List.of()), 
@@ -368,6 +371,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateBuildWithUploadUrlV2Deprecated",
                             Optional.of(List.of()),
@@ -378,6 +382,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateBuildWithUploadUrlV2Deprecated",
                             Optional.of(List.of()), 
@@ -388,6 +393,7 @@ public class BuildsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateBuildWithUploadUrlV2Deprecated",
                             Optional.of(List.of()),
@@ -475,7 +481,6 @@ public class BuildsV2 implements
     }
 
 
-
     /**
      * CreateWithMultipartUploadsV2Deprecated
      * 
@@ -527,7 +532,7 @@ public class BuildsV2 implements
                 .appId(appId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 CreateWithMultipartUploadsV2DeprecatedRequest.class,
                 _baseUrl,
@@ -552,14 +557,15 @@ public class BuildsV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "CreateWithMultipartUploadsV2Deprecated", 
                       Optional.of(List.of()), 
@@ -572,6 +578,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateWithMultipartUploadsV2Deprecated",
                             Optional.of(List.of()),
@@ -582,6 +589,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateWithMultipartUploadsV2Deprecated",
                             Optional.of(List.of()), 
@@ -592,6 +600,7 @@ public class BuildsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "CreateWithMultipartUploadsV2Deprecated",
                             Optional.of(List.of()),
@@ -679,7 +688,6 @@ public class BuildsV2 implements
     }
 
 
-
     /**
      * DeleteBuildV2Deprecated
      * 
@@ -731,7 +739,7 @@ public class BuildsV2 implements
                 .buildId(buildId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 DeleteBuildV2DeprecatedRequest.class,
                 _baseUrl,
@@ -743,14 +751,15 @@ public class BuildsV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "DeleteBuildV2Deprecated", 
                       Optional.of(List.of()), 
@@ -763,6 +772,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "DeleteBuildV2Deprecated",
                             Optional.of(List.of()),
@@ -773,6 +783,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "DeleteBuildV2Deprecated",
                             Optional.of(List.of()), 
@@ -783,6 +794,7 @@ public class BuildsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "DeleteBuildV2Deprecated",
                             Optional.of(List.of()),
@@ -859,7 +871,6 @@ public class BuildsV2 implements
     }
 
 
-
     /**
      * GetBuildInfoV2Deprecated
      * 
@@ -911,7 +922,7 @@ public class BuildsV2 implements
                 .buildId(buildId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetBuildInfoV2DeprecatedRequest.class,
                 _baseUrl,
@@ -923,14 +934,15 @@ public class BuildsV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetBuildInfoV2Deprecated", 
                       Optional.of(List.of()), 
@@ -943,6 +955,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetBuildInfoV2Deprecated",
                             Optional.of(List.of()),
@@ -953,6 +966,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetBuildInfoV2Deprecated",
                             Optional.of(List.of()), 
@@ -963,6 +977,7 @@ public class BuildsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetBuildInfoV2Deprecated",
                             Optional.of(List.of()),
@@ -1036,7 +1051,6 @@ public class BuildsV2 implements
     }
 
 
-
     /**
      * GetBuildsV2Deprecated
      * 
@@ -1083,7 +1097,7 @@ public class BuildsV2 implements
                 .appId(appId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 GetBuildsV2DeprecatedRequest.class,
                 _baseUrl,
@@ -1095,14 +1109,15 @@ public class BuildsV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "GetBuildsV2Deprecated", 
                       Optional.of(List.of()), 
@@ -1115,6 +1130,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetBuildsV2Deprecated",
                             Optional.of(List.of()),
@@ -1125,6 +1141,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetBuildsV2Deprecated",
                             Optional.of(List.of()), 
@@ -1135,6 +1152,7 @@ public class BuildsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "GetBuildsV2Deprecated",
                             Optional.of(List.of()),
@@ -1208,7 +1226,6 @@ public class BuildsV2 implements
     }
 
 
-
     /**
      * RunBuildV2Deprecated
      * 
@@ -1265,7 +1282,7 @@ public class BuildsV2 implements
                 .buildId(buildId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 RunBuildV2DeprecatedRequest.class,
                 _baseUrl,
@@ -1290,14 +1307,15 @@ public class BuildsV2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "RunBuildV2Deprecated", 
                       Optional.of(List.of()), 
@@ -1310,6 +1328,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "RunBuildV2Deprecated",
                             Optional.of(List.of()),
@@ -1320,6 +1339,7 @@ public class BuildsV2 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "RunBuildV2Deprecated",
                             Optional.of(List.of()), 
@@ -1330,6 +1350,7 @@ public class BuildsV2 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "RunBuildV2Deprecated",
                             Optional.of(List.of()),

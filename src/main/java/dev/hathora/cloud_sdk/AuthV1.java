@@ -50,7 +50,6 @@ public class AuthV1 implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * LoginAnonymous
      * 
@@ -91,7 +90,7 @@ public class AuthV1 implements
                 .appId(appId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 LoginAnonymousRequest.class,
                 _baseUrl,
@@ -103,11 +102,12 @@ public class AuthV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "LoginAnonymous", 
                       Optional.of(List.of()), 
@@ -120,6 +120,7 @@ public class AuthV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "LoginAnonymous",
                             Optional.of(List.of()),
@@ -130,6 +131,7 @@ public class AuthV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "LoginAnonymous",
                             Optional.of(List.of()), 
@@ -140,6 +142,7 @@ public class AuthV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "LoginAnonymous",
                             Optional.of(List.of()),
@@ -213,7 +216,6 @@ public class AuthV1 implements
     }
 
 
-
     /**
      * LoginGoogle
      * 
@@ -259,7 +261,7 @@ public class AuthV1 implements
                 .appId(appId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 LoginGoogleRequest.class,
                 _baseUrl,
@@ -284,11 +286,12 @@ public class AuthV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "LoginGoogle", 
                       Optional.of(List.of()), 
@@ -301,6 +304,7 @@ public class AuthV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "LoginGoogle",
                             Optional.of(List.of()),
@@ -311,6 +315,7 @@ public class AuthV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "LoginGoogle",
                             Optional.of(List.of()), 
@@ -321,6 +326,7 @@ public class AuthV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "LoginGoogle",
                             Optional.of(List.of()),
@@ -394,7 +400,6 @@ public class AuthV1 implements
     }
 
 
-
     /**
      * LoginNickname
      * 
@@ -440,7 +445,7 @@ public class AuthV1 implements
                 .appId(appId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 LoginNicknameRequest.class,
                 _baseUrl,
@@ -465,11 +470,12 @@ public class AuthV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "LoginNickname", 
                       Optional.of(List.of()), 
@@ -482,6 +488,7 @@ public class AuthV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "LoginNickname",
                             Optional.of(List.of()),
@@ -492,6 +499,7 @@ public class AuthV1 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "LoginNickname",
                             Optional.of(List.of()), 
@@ -502,6 +510,7 @@ public class AuthV1 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "LoginNickname",
                             Optional.of(List.of()),
