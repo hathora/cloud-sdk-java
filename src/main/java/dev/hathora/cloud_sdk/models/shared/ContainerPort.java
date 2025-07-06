@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * ContainerPort
@@ -107,14 +106,14 @@ public class ContainerPort {
         }
         ContainerPort other = (ContainerPort) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.port, other.port) &&
-            Objects.deepEquals(this.transportType, other.transportType);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.port, other.port) &&
+            Utils.enhancedDeepEquals(this.transportType, other.transportType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             port,
             transportType);

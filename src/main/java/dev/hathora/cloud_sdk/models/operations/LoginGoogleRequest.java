@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class LoginGoogleRequest {
@@ -79,13 +78,13 @@ public class LoginGoogleRequest {
         }
         LoginGoogleRequest other = (LoginGoogleRequest) o;
         return 
-            Objects.deepEquals(this.googleIdTokenObject, other.googleIdTokenObject) &&
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.googleIdTokenObject, other.googleIdTokenObject) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             googleIdTokenObject,
             appId);
     }

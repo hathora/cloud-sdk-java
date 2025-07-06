@@ -9,7 +9,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetBuildRequest {
@@ -78,13 +77,13 @@ public class GetBuildRequest {
         }
         GetBuildRequest other = (GetBuildRequest) o;
         return 
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             buildId,
             orgId);
     }

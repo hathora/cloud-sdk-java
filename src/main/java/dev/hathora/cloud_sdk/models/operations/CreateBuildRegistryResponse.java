@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateBuildRegistryResponse implements Response {
@@ -143,15 +142,15 @@ public class CreateBuildRegistryResponse implements Response {
         }
         CreateBuildRegistryResponse other = (CreateBuildRegistryResponse) o;
         return 
-            Objects.deepEquals(this.buildV3, other.buildV3) &&
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.buildV3, other.buildV3) &&
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             buildV3,
             contentType,
             statusCode,

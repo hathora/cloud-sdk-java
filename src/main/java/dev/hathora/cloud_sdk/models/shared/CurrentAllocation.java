@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -141,15 +140,15 @@ public class CurrentAllocation {
         }
         CurrentAllocation other = (CurrentAllocation) o;
         return 
-            Objects.deepEquals(this.processId, other.processId) &&
-            Objects.deepEquals(this.roomAllocationId, other.roomAllocationId) &&
-            Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
-            Objects.deepEquals(this.unscheduledAt, other.unscheduledAt);
+            Utils.enhancedDeepEquals(this.processId, other.processId) &&
+            Utils.enhancedDeepEquals(this.roomAllocationId, other.roomAllocationId) &&
+            Utils.enhancedDeepEquals(this.scheduledAt, other.scheduledAt) &&
+            Utils.enhancedDeepEquals(this.unscheduledAt, other.unscheduledAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             processId,
             roomAllocationId,
             scheduledAt,

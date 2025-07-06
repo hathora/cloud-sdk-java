@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class RescindUserInvite {
 
@@ -58,12 +57,12 @@ public class RescindUserInvite {
         }
         RescindUserInvite other = (RescindUserInvite) o;
         return 
-            Objects.deepEquals(this.userEmail, other.userEmail);
+            Utils.enhancedDeepEquals(this.userEmail, other.userEmail);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             userEmail);
     }
     

@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DeploymentConfigV2 {
@@ -273,19 +272,19 @@ public class DeploymentConfigV2 {
         }
         DeploymentConfigV2 other = (DeploymentConfigV2) o;
         return 
-            Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
-            Objects.deepEquals(this.containerPort, other.containerPort) &&
-            Objects.deepEquals(this.env, other.env) &&
-            Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
-            Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
-            Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
-            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            Objects.deepEquals(this.transportType, other.transportType);
+            Utils.enhancedDeepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            Utils.enhancedDeepEquals(this.containerPort, other.containerPort) &&
+            Utils.enhancedDeepEquals(this.env, other.env) &&
+            Utils.enhancedDeepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
+            Utils.enhancedDeepEquals(this.requestedCPU, other.requestedCPU) &&
+            Utils.enhancedDeepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
+            Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Utils.enhancedDeepEquals(this.transportType, other.transportType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             additionalContainerPorts,
             containerPort,
             env,

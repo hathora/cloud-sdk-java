@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class StaticProcessAllocationConfig {
 
@@ -134,15 +133,15 @@ public class StaticProcessAllocationConfig {
         }
         StaticProcessAllocationConfig other = (StaticProcessAllocationConfig) o;
         return 
-            Objects.deepEquals(this.maxProcesses, other.maxProcesses) &&
-            Objects.deepEquals(this.minProcesses, other.minProcesses) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.targetProcesses, other.targetProcesses);
+            Utils.enhancedDeepEquals(this.maxProcesses, other.maxProcesses) &&
+            Utils.enhancedDeepEquals(this.minProcesses, other.minProcesses) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.targetProcesses, other.targetProcesses);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             maxProcesses,
             minProcesses,
             region,

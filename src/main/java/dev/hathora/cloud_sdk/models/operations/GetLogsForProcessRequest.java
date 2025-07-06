@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetLogsForProcessRequest {
@@ -128,15 +127,15 @@ public class GetLogsForProcessRequest {
         }
         GetLogsForProcessRequest other = (GetLogsForProcessRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.follow, other.follow) &&
-            Objects.deepEquals(this.processId, other.processId) &&
-            Objects.deepEquals(this.tailLines, other.tailLines);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.follow, other.follow) &&
+            Utils.enhancedDeepEquals(this.processId, other.processId) &&
+            Utils.enhancedDeepEquals(this.tailLines, other.tailLines);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             follow,
             processId,

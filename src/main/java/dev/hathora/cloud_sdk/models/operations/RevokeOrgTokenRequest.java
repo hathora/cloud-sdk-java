@@ -9,7 +9,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class RevokeOrgTokenRequest {
 
@@ -66,13 +65,13 @@ public class RevokeOrgTokenRequest {
         }
         RevokeOrgTokenRequest other = (RevokeOrgTokenRequest) o;
         return 
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.orgTokenId, other.orgTokenId);
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.orgTokenId, other.orgTokenId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             orgId,
             orgTokenId);
     }

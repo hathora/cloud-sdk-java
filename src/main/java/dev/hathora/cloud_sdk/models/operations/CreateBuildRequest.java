@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateBuildRequest {
@@ -79,13 +78,13 @@ public class CreateBuildRequest {
         }
         CreateBuildRequest other = (CreateBuildRequest) o;
         return 
-            Objects.deepEquals(this.createMultipartBuildParams, other.createMultipartBuildParams) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.createMultipartBuildParams, other.createMultipartBuildParams) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             createMultipartBuildParams,
             orgId);
     }

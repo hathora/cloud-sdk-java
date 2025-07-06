@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 
 public class PendingOrgInvite {
 
@@ -136,16 +135,16 @@ public class PendingOrgInvite {
         }
         PendingOrgInvite other = (PendingOrgInvite) o;
         return 
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.invitedBy, other.invitedBy) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.userEmail, other.userEmail);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.invitedBy, other.invitedBy) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.userEmail, other.userEmail);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             createdAt,
             invitedBy,
             orgId,

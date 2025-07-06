@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateBuildV3Params {
@@ -111,13 +110,13 @@ public class CreateBuildV3Params {
         }
         CreateBuildV3Params other = (CreateBuildV3Params) o;
         return 
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.buildTag, other.buildTag);
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.buildTag, other.buildTag);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             buildId,
             buildTag);
     }

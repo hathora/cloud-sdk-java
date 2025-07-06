@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UpdateAppV1DeprecatedRequest {
@@ -79,13 +78,13 @@ public class UpdateAppV1DeprecatedRequest {
         }
         UpdateAppV1DeprecatedRequest other = (UpdateAppV1DeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.appConfig, other.appConfig) &&
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.appConfig, other.appConfig) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appConfig,
             appId);
     }

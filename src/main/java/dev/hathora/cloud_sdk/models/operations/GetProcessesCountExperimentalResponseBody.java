@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * GetProcessesCountExperimentalResponseBody
@@ -55,12 +54,12 @@ public class GetProcessesCountExperimentalResponseBody {
         }
         GetProcessesCountExperimentalResponseBody other = (GetProcessesCountExperimentalResponseBody) o;
         return 
-            Objects.deepEquals(this.count, other.count);
+            Utils.enhancedDeepEquals(this.count, other.count);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             count);
     }
     

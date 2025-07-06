@@ -11,7 +11,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UpdateFleetRegionRequest {
@@ -116,15 +115,15 @@ public class UpdateFleetRegionRequest {
         }
         UpdateFleetRegionRequest other = (UpdateFleetRegionRequest) o;
         return 
-            Objects.deepEquals(this.fleetRegionConfig, other.fleetRegionConfig) &&
-            Objects.deepEquals(this.fleetId, other.fleetId) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.fleetRegionConfig, other.fleetRegionConfig) &&
+            Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             fleetRegionConfig,
             fleetId,
             orgId,

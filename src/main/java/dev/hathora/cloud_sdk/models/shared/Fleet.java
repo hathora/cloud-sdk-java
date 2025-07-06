@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -124,14 +123,14 @@ public class Fleet {
         }
         Fleet other = (Fleet) o;
         return 
-            Objects.deepEquals(this.autoscalerConfig, other.autoscalerConfig) &&
-            Objects.deepEquals(this.fleetId, other.fleetId) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.autoscalerConfig, other.autoscalerConfig) &&
+            Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             autoscalerConfig,
             fleetId,
             orgId);

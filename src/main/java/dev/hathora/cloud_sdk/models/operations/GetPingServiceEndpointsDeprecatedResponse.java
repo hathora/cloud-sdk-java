@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetPingServiceEndpointsDeprecatedResponse implements Response {
@@ -156,15 +155,15 @@ public class GetPingServiceEndpointsDeprecatedResponse implements Response {
         }
         GetPingServiceEndpointsDeprecatedResponse other = (GetPingServiceEndpointsDeprecatedResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.pingEndpoints, other.pingEndpoints) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.pingEndpoints, other.pingEndpoints) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             contentType,
             pingEndpoints,
             statusCode,

@@ -8,7 +8,6 @@ import dev.hathora.cloud_sdk.utils.RetryConfig;
 import dev.hathora.cloud_sdk.utils.SpeakeasyHTTPClient;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -25,6 +24,8 @@ public class HathoraCloud {
         "https://api.hathora.dev",
         "/",
     };
+
+    
 
     private final AppsV1 appsV1;
 
@@ -247,8 +248,7 @@ public class HathoraCloud {
     public TokensV1 tokensV1() {
         return tokensV1;
     }
-
-    private final SDKConfiguration sdkConfiguration;
+    private SDKConfiguration sdkConfiguration;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -256,6 +256,9 @@ public class HathoraCloud {
     public static class Builder {
 
         private final SDKConfiguration sdkConfiguration = new SDKConfiguration();
+        private String serverUrl;
+        private String server;
+        
 
         private Builder() {
         }
@@ -267,18 +270,18 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder client(HTTPClient client) {
-            this.sdkConfiguration.defaultClient = client;
+            this.sdkConfiguration.setClient(client);
             return this;
         }
         
         /**
          * Configures the SDK to use the provided security details.
          *
-         * @param security The security details to use for all requests.
+         * @param security The security details to use for all requests. Can be {@code null}.
          * @return The builder instance.
          */
         public Builder security(dev.hathora.cloud_sdk.models.shared.Security security) {
-            this.sdkConfiguration.securitySource = SecuritySource.of(security);
+            this.sdkConfiguration.setSecuritySource(SecuritySource.of(security));
             return this;
         }
 
@@ -289,7 +292,8 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder securitySource(SecuritySource securitySource) {
-            this.sdkConfiguration.securitySource = securitySource;
+            Utils.checkNotNull(securitySource, "securitySource");
+            this.sdkConfiguration.setSecuritySource(securitySource);
             return this;
         }
         
@@ -300,7 +304,7 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl) {
-            this.sdkConfiguration.serverUrl = serverUrl;
+            this.serverUrl = serverUrl;
             return this;
         }
 
@@ -312,7 +316,7 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl, Map<String, String> params) {
-            this.sdkConfiguration.serverUrl = Utils.templateUrl(serverUrl, params);
+            this.serverUrl = Utils.templateUrl(serverUrl, params);
             return this;
         }
         
@@ -323,8 +327,8 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder serverIndex(int serverIdx) {
-            this.sdkConfiguration.serverIdx = serverIdx;
-            this.sdkConfiguration.serverUrl = SERVERS[serverIdx];
+            this.sdkConfiguration.setServerIdx(serverIdx);
+            this.serverUrl= SERVERS[serverIdx];
             return this;
         }
         
@@ -335,9 +339,24 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder retryConfig(RetryConfig retryConfig) {
-            this.sdkConfiguration.retryConfig = Optional.of(retryConfig);
+            this.sdkConfiguration.setRetryConfig(Optional.of(retryConfig));
             return this;
         }
+
+        /**
+         * Enables debug logging for HTTP requests and responses, including JSON body content.
+         *
+         * Convenience method that calls {@link HTTPClient#enableDebugLogging(boolean)}.
+         * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
+         * it is up to the custom client to honor this setting.
+         *
+         * @return The builder instance.
+         */
+        public Builder enableHTTPDebugLogging(boolean enabled) {
+            this.sdkConfiguration.client().enableDebugLogging(enabled);
+            return this;
+        }
+
         /**
          * Allows setting the appId parameter for all supported operations.
          *
@@ -345,12 +364,7 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder appId(String appId) {
-            if (!this.sdkConfiguration.globals.get("parameters").containsKey("pathParam")) {
-                this.sdkConfiguration.globals.get("parameters").put("pathParam", new HashMap<>());
-            }
-
-            this.sdkConfiguration.globals.get("parameters").get("pathParam").put("appId", appId);
-
+            this.sdkConfiguration.globals.putParam("pathParam", "appId", appId);
             return this;
         }
         
@@ -361,12 +375,7 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder orgId(String orgId) {
-            if (!this.sdkConfiguration.globals.get("parameters").containsKey("queryParam")) {
-                this.sdkConfiguration.globals.get("parameters").put("queryParam", new HashMap<>());
-            }
-
-            this.sdkConfiguration.globals.get("parameters").get("queryParam").put("orgId", orgId);
-
+            this.sdkConfiguration.globals.putParam("queryParam", "orgId", orgId);
             return this;
         }
         
@@ -376,19 +385,11 @@ public class HathoraCloud {
          * @return The SDK instance.
          */
         public HathoraCloud build() {
-            if (sdkConfiguration.defaultClient == null) {
-                sdkConfiguration.defaultClient = new SpeakeasyHTTPClient();
+            if (serverUrl == null || serverUrl.isBlank()) {
+                serverUrl = SERVERS[0];
+                sdkConfiguration.setServerIdx(0);
             }
-	        if (sdkConfiguration.securitySource == null) {
-	    	    sdkConfiguration.securitySource = SecuritySource.of(null);
-	        }
-            if (sdkConfiguration.serverUrl == null || sdkConfiguration.serverUrl.isBlank()) {
-                sdkConfiguration.serverUrl = SERVERS[0];
-                sdkConfiguration.serverIdx = 0;
-            }
-            if (sdkConfiguration.serverUrl.endsWith("/")) {
-                sdkConfiguration.serverUrl = sdkConfiguration.serverUrl.substring(0, sdkConfiguration.serverUrl.length() - 1);
-            }
+            sdkConfiguration.setServerUrl(serverUrl);
             return new HathoraCloud(sdkConfiguration);
         }
     }
@@ -404,6 +405,7 @@ public class HathoraCloud {
 
     private HathoraCloud(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.sdkConfiguration.initialize();
         this.appsV1 = new AppsV1(sdkConfiguration);
         this.appsV2 = new AppsV2(sdkConfiguration);
         this.authV1 = new AuthV1(sdkConfiguration);
@@ -430,6 +432,6 @@ public class HathoraCloud {
         this.roomsV1 = new RoomsV1(sdkConfiguration);
         this.roomsV2 = new RoomsV2(sdkConfiguration);
         this.tokensV1 = new TokensV1(sdkConfiguration);
-        this.sdkConfiguration.initialize();
+        
     }
 }

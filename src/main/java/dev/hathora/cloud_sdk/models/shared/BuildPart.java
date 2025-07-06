@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class BuildPart {
 
@@ -67,13 +66,13 @@ public class BuildPart {
         }
         BuildPart other = (BuildPart) o;
         return 
-            Objects.deepEquals(this.partNumber, other.partNumber) &&
-            Objects.deepEquals(this.putRequestUrl, other.putRequestUrl);
+            Utils.enhancedDeepEquals(this.partNumber, other.partNumber) &&
+            Utils.enhancedDeepEquals(this.putRequestUrl, other.putRequestUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             partNumber,
             putRequestUrl);
     }

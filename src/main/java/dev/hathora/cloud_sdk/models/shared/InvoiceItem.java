@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class InvoiceItem {
 
@@ -118,16 +117,16 @@ public class InvoiceItem {
         }
         InvoiceItem other = (InvoiceItem) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.productName, other.productName) &&
-            Objects.deepEquals(this.quantity, other.quantity) &&
-            Objects.deepEquals(this.unit, other.unit) &&
-            Objects.deepEquals(this.unitPrice, other.unitPrice);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.productName, other.productName) &&
+            Utils.enhancedDeepEquals(this.quantity, other.quantity) &&
+            Utils.enhancedDeepEquals(this.unit, other.unit) &&
+            Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             amount,
             productName,
             quantity,

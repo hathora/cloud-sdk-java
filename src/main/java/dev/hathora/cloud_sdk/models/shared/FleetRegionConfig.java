@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class FleetRegionConfig {
 
@@ -50,12 +49,12 @@ public class FleetRegionConfig {
         }
         FleetRegionConfig other = (FleetRegionConfig) o;
         return 
-            Objects.deepEquals(this.cloudMinVcpus, other.cloudMinVcpus);
+            Utils.enhancedDeepEquals(this.cloudMinVcpus, other.cloudMinVcpus);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             cloudMinVcpus);
     }
     

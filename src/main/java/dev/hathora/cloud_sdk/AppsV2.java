@@ -3,9 +3,8 @@
  */
 package dev.hathora.cloud_sdk;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
 import dev.hathora.cloud_sdk.models.operations.CreateAppRequest;
 import dev.hathora.cloud_sdk.models.operations.CreateAppRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.CreateAppResponse;
@@ -21,49 +20,32 @@ import dev.hathora.cloud_sdk.models.operations.GetAppsResponse;
 import dev.hathora.cloud_sdk.models.operations.PatchAppRequest;
 import dev.hathora.cloud_sdk.models.operations.PatchAppRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.PatchAppResponse;
-import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_sdk.models.operations.UpdateAppRequest;
 import dev.hathora.cloud_sdk.models.operations.UpdateAppRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.UpdateAppResponse;
 import dev.hathora.cloud_sdk.models.shared.AppConfig;
 import dev.hathora.cloud_sdk.models.shared.AppConfigWithServiceConfig;
-import dev.hathora.cloud_sdk.models.shared.Application;
-import dev.hathora.cloud_sdk.models.shared.ApplicationsPage;
 import dev.hathora.cloud_sdk.models.shared.PartialAppConfigWithServiceConfig;
-import dev.hathora.cloud_sdk.utils.HTTPClient;
-import dev.hathora.cloud_sdk.utils.HTTPRequest;
-import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import dev.hathora.cloud_sdk.utils.SerializedBody;
-import dev.hathora.cloud_sdk.utils.Utils.JsonShape;
-import dev.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
+import dev.hathora.cloud_sdk.operations.CreateAppOperation;
+import dev.hathora.cloud_sdk.operations.DeleteAppOperation;
+import dev.hathora.cloud_sdk.operations.GetAppOperation;
+import dev.hathora.cloud_sdk.operations.GetAppsOperation;
+import dev.hathora.cloud_sdk.operations.PatchAppOperation;
+import dev.hathora.cloud_sdk.operations.UpdateAppOperation;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * Operations that allow you manage your [applications](https://hathora.dev/docs/concepts/hathora-entities#application).
  */
-public class AppsV2 implements
-            MethodCallCreateApp,
-            MethodCallDeleteApp,
-            MethodCallGetApp,
-            MethodCallGetApps,
-            MethodCallPatchApp,
-            MethodCallUpdateApp {
-
+public class AppsV2 {
     private final SDKConfiguration sdkConfiguration;
 
     AppsV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
 
     /**
      * CreateApp
@@ -73,7 +55,7 @@ public class AppsV2 implements
      * @return The call builder
      */
     public CreateAppRequestBuilder createApp() {
-        return new CreateAppRequestBuilder(this);
+        return new CreateAppRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -85,11 +67,10 @@ public class AppsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateAppResponse createApp(
-            AppConfig appConfig) throws Exception {
+    public CreateAppResponse createApp(AppConfig appConfig) throws Exception {
         return createApp(appConfig, Optional.empty());
     }
-    
+
     /**
      * CreateApp
      * 
@@ -109,161 +90,10 @@ public class AppsV2 implements
                 .appConfig(appConfig)
                 .orgId(orgId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/apps/v2/apps");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "appConfig",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreateAppRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "CreateApp", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "CreateApp",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "CreateApp",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "CreateApp",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreateAppResponse.Builder _resBuilder = 
-            CreateAppResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreateAppResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Application _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Application>() {});
-                _res.withApplication(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CreateAppRequest, CreateAppResponse> operation
+              = new CreateAppOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
 
 
     /**
@@ -274,7 +104,7 @@ public class AppsV2 implements
      * @return The call builder
      */
     public DeleteAppRequestBuilder deleteApp() {
-        return new DeleteAppRequestBuilder(this);
+        return new DeleteAppRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -288,7 +118,7 @@ public class AppsV2 implements
     public DeleteAppResponse deleteAppDirect() throws Exception {
         return deleteApp(Optional.empty());
     }
-    
+
     /**
      * DeleteApp
      * 
@@ -305,134 +135,10 @@ public class AppsV2 implements
                 .builder()
                 .appId(appId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                DeleteAppRequest.class,
-                _baseUrl,
-                "/apps/v2/apps/{appId}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "DELETE");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "DeleteApp", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "DeleteApp",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "DeleteApp",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "DeleteApp",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        DeleteAppResponse.Builder _resBuilder = 
-            DeleteAppResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        DeleteAppResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<DeleteAppRequest, DeleteAppResponse> operation
+              = new DeleteAppOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
 
 
     /**
@@ -443,7 +149,7 @@ public class AppsV2 implements
      * @return The call builder
      */
     public GetAppRequestBuilder getApp() {
-        return new GetAppRequestBuilder(this);
+        return new GetAppRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -457,7 +163,7 @@ public class AppsV2 implements
     public GetAppResponse getAppDirect() throws Exception {
         return getApp(Optional.empty());
     }
-    
+
     /**
      * GetApp
      * 
@@ -474,131 +180,10 @@ public class AppsV2 implements
                 .builder()
                 .appId(appId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                GetAppRequest.class,
-                _baseUrl,
-                "/apps/v2/apps/{appId}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetApp", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetApp",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetApp",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetApp",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetAppResponse.Builder _resBuilder = 
-            GetAppResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetAppResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Application _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Application>() {});
-                _res.withApplication(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetAppRequest, GetAppResponse> operation
+              = new GetAppOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
 
 
     /**
@@ -609,7 +194,7 @@ public class AppsV2 implements
      * @return The call builder
      */
     public GetAppsRequestBuilder getApps() {
-        return new GetAppsRequestBuilder(this);
+        return new GetAppsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -623,7 +208,7 @@ public class AppsV2 implements
     public GetAppsResponse getAppsDirect() throws Exception {
         return getApps(Optional.empty());
     }
-    
+
     /**
      * GetApps
      * 
@@ -640,134 +225,10 @@ public class AppsV2 implements
                 .builder()
                 .orgId(orgId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/apps/v2/apps");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetAppsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetApps", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetApps",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetApps",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetApps",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetAppsResponse.Builder _resBuilder = 
-            GetAppsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetAppsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApplicationsPage _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApplicationsPage>() {});
-                _res.withApplicationsPage(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetAppsRequest, GetAppsResponse> operation
+              = new GetAppsOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
 
 
     /**
@@ -778,7 +239,7 @@ public class AppsV2 implements
      * @return The call builder
      */
     public PatchAppRequestBuilder patchApp() {
-        return new PatchAppRequestBuilder(this);
+        return new PatchAppRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -790,11 +251,10 @@ public class AppsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PatchAppResponse patchApp(
-            PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig) throws Exception {
+    public PatchAppResponse patchApp(PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig) throws Exception {
         return patchApp(partialAppConfigWithServiceConfig, Optional.empty());
     }
-    
+
     /**
      * PatchApp
      * 
@@ -814,158 +274,10 @@ public class AppsV2 implements
                 .partialAppConfigWithServiceConfig(partialAppConfigWithServiceConfig)
                 .appId(appId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                PatchAppRequest.class,
-                _baseUrl,
-                "/apps/v2/apps/{appId}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "PATCH");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "partialAppConfigWithServiceConfig",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "PatchApp", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "PatchApp",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "PatchApp",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "PatchApp",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PatchAppResponse.Builder _resBuilder = 
-            PatchAppResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PatchAppResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Application _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Application>() {});
-                _res.withApplication(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<PatchAppRequest, PatchAppResponse> operation
+              = new PatchAppOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
 
 
     /**
@@ -976,7 +288,7 @@ public class AppsV2 implements
      * @return The call builder
      */
     public UpdateAppRequestBuilder updateApp() {
-        return new UpdateAppRequestBuilder(this);
+        return new UpdateAppRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -988,11 +300,10 @@ public class AppsV2 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateAppResponse updateApp(
-            AppConfigWithServiceConfig appConfigWithServiceConfig) throws Exception {
+    public UpdateAppResponse updateApp(AppConfigWithServiceConfig appConfigWithServiceConfig) throws Exception {
         return updateApp(appConfigWithServiceConfig, Optional.empty());
     }
-    
+
     /**
      * UpdateApp
      * 
@@ -1012,156 +323,9 @@ public class AppsV2 implements
                 .appConfigWithServiceConfig(appConfigWithServiceConfig)
                 .appId(appId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                UpdateAppRequest.class,
-                _baseUrl,
-                "/apps/v2/apps/{appId}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "appConfigWithServiceConfig",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "UpdateApp", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "UpdateApp",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "UpdateApp",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "UpdateApp",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        UpdateAppResponse.Builder _resBuilder = 
-            UpdateAppResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        UpdateAppResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Application _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Application>() {});
-                _res.withApplication(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<UpdateAppRequest, UpdateAppResponse> operation
+              = new UpdateAppOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

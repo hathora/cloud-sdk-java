@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -131,14 +130,14 @@ public class PartialAppConfigWithServiceConfig {
         }
         PartialAppConfigWithServiceConfig other = (PartialAppConfigWithServiceConfig) o;
         return 
-            Objects.deepEquals(this.appName, other.appName) &&
-            Objects.deepEquals(this.authConfiguration, other.authConfiguration) &&
-            Objects.deepEquals(this.serviceConfig, other.serviceConfig);
+            Utils.enhancedDeepEquals(this.appName, other.appName) &&
+            Utils.enhancedDeepEquals(this.authConfiguration, other.authConfiguration) &&
+            Utils.enhancedDeepEquals(this.serviceConfig, other.serviceConfig);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appName,
             authConfiguration,
             serviceConfig);

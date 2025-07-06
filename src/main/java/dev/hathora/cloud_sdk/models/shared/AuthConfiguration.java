@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -156,14 +155,14 @@ public class AuthConfiguration {
         }
         AuthConfiguration other = (AuthConfiguration) o;
         return 
-            Objects.deepEquals(this.anonymous, other.anonymous) &&
-            Objects.deepEquals(this.google, other.google) &&
-            Objects.deepEquals(this.nickname, other.nickname);
+            Utils.enhancedDeepEquals(this.anonymous, other.anonymous) &&
+            Utils.enhancedDeepEquals(this.google, other.google) &&
+            Utils.enhancedDeepEquals(this.nickname, other.nickname);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             anonymous,
             google,
             nickname);

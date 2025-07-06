@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 
 public class DeploymentV2 {
 
@@ -343,23 +342,23 @@ public class DeploymentV2 {
         }
         DeploymentV2 other = (DeploymentV2) o;
         return 
-            Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
-            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            Objects.deepEquals(this.env, other.env) &&
-            Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
-            Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
-            Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
-            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess);
+            Utils.enhancedDeepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
+            Utils.enhancedDeepEquals(this.deploymentId, other.deploymentId) &&
+            Utils.enhancedDeepEquals(this.env, other.env) &&
+            Utils.enhancedDeepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
+            Utils.enhancedDeepEquals(this.requestedCPU, other.requestedCPU) &&
+            Utils.enhancedDeepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
+            Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             additionalContainerPorts,
             appId,
             buildId,

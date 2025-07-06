@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class BuildsV3Page {
 
@@ -50,12 +49,12 @@ public class BuildsV3Page {
         }
         BuildsV3Page other = (BuildsV3Page) o;
         return 
-            Objects.deepEquals(this.builds, other.builds);
+            Utils.enhancedDeepEquals(this.builds, other.builds);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             builds);
     }
     

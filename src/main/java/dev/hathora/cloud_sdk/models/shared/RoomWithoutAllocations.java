@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -192,16 +191,16 @@ public class RoomWithoutAllocations {
         }
         RoomWithoutAllocations other = (RoomWithoutAllocations) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.currentAllocation, other.currentAllocation) &&
-            Objects.deepEquals(this.roomConfig, other.roomConfig) &&
-            Objects.deepEquals(this.roomId, other.roomId) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.currentAllocation, other.currentAllocation) &&
+            Utils.enhancedDeepEquals(this.roomConfig, other.roomConfig) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             currentAllocation,
             roomConfig,

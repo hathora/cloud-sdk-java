@@ -11,7 +11,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateDeploymentV1DeprecatedRequest {
@@ -98,14 +97,14 @@ public class CreateDeploymentV1DeprecatedRequest {
         }
         CreateDeploymentV1DeprecatedRequest other = (CreateDeploymentV1DeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.deploymentConfig, other.deploymentConfig) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.buildId, other.buildId);
+            Utils.enhancedDeepEquals(this.deploymentConfig, other.deploymentConfig) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             deploymentConfig,
             appId,
             buildId);

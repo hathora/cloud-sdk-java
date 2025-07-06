@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UsageLimits {
@@ -174,15 +173,15 @@ public class UsageLimits {
         }
         UsageLimits other = (UsageLimits) o;
         return 
-            Objects.deepEquals(this.concurrentProcessVcpus7DayMax, other.concurrentProcessVcpus7DayMax) &&
-            Objects.deepEquals(this.concurrentProcessVcpusLimit, other.concurrentProcessVcpusLimit) &&
-            Objects.deepEquals(this.monthlyProcessVcpuHoursConsumed, other.monthlyProcessVcpuHoursConsumed) &&
-            Objects.deepEquals(this.monthlyProcessVcpuHoursLimit, other.monthlyProcessVcpuHoursLimit);
+            Utils.enhancedDeepEquals(this.concurrentProcessVcpus7DayMax, other.concurrentProcessVcpus7DayMax) &&
+            Utils.enhancedDeepEquals(this.concurrentProcessVcpusLimit, other.concurrentProcessVcpusLimit) &&
+            Utils.enhancedDeepEquals(this.monthlyProcessVcpuHoursConsumed, other.monthlyProcessVcpuHoursConsumed) &&
+            Utils.enhancedDeepEquals(this.monthlyProcessVcpuHoursLimit, other.monthlyProcessVcpuHoursLimit);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             concurrentProcessVcpus7DayMax,
             concurrentProcessVcpusLimit,
             monthlyProcessVcpuHoursConsumed,

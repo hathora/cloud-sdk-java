@@ -11,7 +11,6 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 
 public class Invoice {
 
@@ -153,18 +152,18 @@ public class Invoice {
         }
         Invoice other = (Invoice) o;
         return 
-            Objects.deepEquals(this.amountDue, other.amountDue) &&
-            Objects.deepEquals(this.dueDate, other.dueDate) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.month, other.month) &&
-            Objects.deepEquals(this.pdfUrl, other.pdfUrl) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.year, other.year);
+            Utils.enhancedDeepEquals(this.amountDue, other.amountDue) &&
+            Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.month, other.month) &&
+            Utils.enhancedDeepEquals(this.pdfUrl, other.pdfUrl) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.year, other.year);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             amountDue,
             dueDate,
             id,

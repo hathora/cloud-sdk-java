@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * Google
@@ -63,12 +62,12 @@ public class Google {
         }
         Google other = (Google) o;
         return 
-            Objects.deepEquals(this.clientId, other.clientId);
+            Utils.enhancedDeepEquals(this.clientId, other.clientId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             clientId);
     }
     

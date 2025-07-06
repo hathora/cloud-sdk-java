@@ -9,7 +9,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetDeploymentsRequest {
@@ -83,13 +82,13 @@ public class GetDeploymentsRequest {
         }
         GetDeploymentsRequest other = (GetDeploymentsRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.deploymentTag, other.deploymentTag);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.deploymentTag, other.deploymentTag);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             deploymentTag);
     }

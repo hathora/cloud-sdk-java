@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class MetricValue {
 
@@ -67,13 +66,13 @@ public class MetricValue {
         }
         MetricValue other = (MetricValue) o;
         return 
-            Objects.deepEquals(this.timestamp, other.timestamp) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             timestamp,
             value);
     }

@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class UpdateRoomConfigParams {
 
@@ -58,12 +57,12 @@ public class UpdateRoomConfigParams {
         }
         UpdateRoomConfigParams other = (UpdateRoomConfigParams) o;
         return 
-            Objects.deepEquals(this.roomConfig, other.roomConfig);
+            Utils.enhancedDeepEquals(this.roomConfig, other.roomConfig);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             roomConfig);
     }
     

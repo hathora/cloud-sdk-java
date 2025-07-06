@@ -11,7 +11,6 @@ import java.lang.Override;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 
 @SuppressWarnings("serial")
 public class ApiError extends RuntimeException {
@@ -22,7 +21,7 @@ public class ApiError extends RuntimeException {
     @JsonCreator
     public ApiError(
             @JsonProperty("message") String message) {
-        super(message);
+        super("API error occurred");
         Utils.checkNotNull(message, "message");
         this.message = message;
     }
@@ -59,12 +58,12 @@ public class ApiError extends RuntimeException {
         }
         ApiError other = (ApiError) o;
         return 
-            Objects.deepEquals(this.message, other.message);
+            Utils.enhancedDeepEquals(this.message, other.message);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             message);
     }
     

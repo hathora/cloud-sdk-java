@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class AutoscalerConfig {
 
@@ -65,12 +64,12 @@ public class AutoscalerConfig {
         }
         AutoscalerConfig other = (AutoscalerConfig) o;
         return 
-            Objects.deepEquals(this.scaleUpThreshold, other.scaleUpThreshold);
+            Utils.enhancedDeepEquals(this.scaleUpThreshold, other.scaleUpThreshold);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             scaleUpThreshold);
     }
     

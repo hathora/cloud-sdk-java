@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateLobbyRequest {
@@ -125,15 +124,15 @@ public class CreateLobbyRequest {
         }
         CreateLobbyRequest other = (CreateLobbyRequest) o;
         return 
-            Objects.deepEquals(this.createLobbyV3Params, other.createLobbyV3Params) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.roomId, other.roomId) &&
-            Objects.deepEquals(this.shortCode, other.shortCode);
+            Utils.enhancedDeepEquals(this.createLobbyV3Params, other.createLobbyV3Params) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId) &&
+            Utils.enhancedDeepEquals(this.shortCode, other.shortCode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             createLobbyV3Params,
             appId,
             roomId,

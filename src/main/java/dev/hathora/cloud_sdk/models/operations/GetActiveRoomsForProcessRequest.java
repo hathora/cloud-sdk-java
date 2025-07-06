@@ -9,7 +9,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetActiveRoomsForProcessRequest {
@@ -78,13 +77,13 @@ public class GetActiveRoomsForProcessRequest {
         }
         GetActiveRoomsForProcessRequest other = (GetActiveRoomsForProcessRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.processId, other.processId);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.processId, other.processId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             processId);
     }
