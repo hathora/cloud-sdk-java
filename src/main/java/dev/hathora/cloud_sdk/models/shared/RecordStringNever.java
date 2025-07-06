@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * RecordStringNever
@@ -40,7 +39,7 @@ public class RecordStringNever {
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             );
     }
     

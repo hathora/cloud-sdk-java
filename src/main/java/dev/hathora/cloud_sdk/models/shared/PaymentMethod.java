@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -120,14 +119,14 @@ public class PaymentMethod {
         }
         PaymentMethod other = (PaymentMethod) o;
         return 
-            Objects.deepEquals(this.ach, other.ach) &&
-            Objects.deepEquals(this.card, other.card) &&
-            Objects.deepEquals(this.link, other.link);
+            Utils.enhancedDeepEquals(this.ach, other.ach) &&
+            Utils.enhancedDeepEquals(this.card, other.card) &&
+            Utils.enhancedDeepEquals(this.link, other.link);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             ach,
             card,
             link);

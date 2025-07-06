@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PatchAppRequest {
@@ -79,13 +78,13 @@ public class PatchAppRequest {
         }
         PatchAppRequest other = (PatchAppRequest) o;
         return 
-            Objects.deepEquals(this.partialAppConfigWithServiceConfig, other.partialAppConfigWithServiceConfig) &&
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.partialAppConfigWithServiceConfig, other.partialAppConfigWithServiceConfig) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             partialAppConfigWithServiceConfig,
             appId);
     }

@@ -9,7 +9,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class RunBuildDeprecatedRequestBody {
 
@@ -49,12 +48,12 @@ public class RunBuildDeprecatedRequestBody {
         }
         RunBuildDeprecatedRequestBody other = (RunBuildDeprecatedRequestBody) o;
         return 
-            Objects.deepEquals(this.file, other.file);
+            Utils.enhancedDeepEquals(this.file, other.file);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             file);
     }
     

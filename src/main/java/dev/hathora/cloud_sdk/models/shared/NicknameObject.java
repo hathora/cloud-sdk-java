@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class NicknameObject {
 
@@ -58,12 +57,12 @@ public class NicknameObject {
         }
         NicknameObject other = (NicknameObject) o;
         return 
-            Objects.deepEquals(this.nickname, other.nickname);
+            Utils.enhancedDeepEquals(this.nickname, other.nickname);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             nickname);
     }
     

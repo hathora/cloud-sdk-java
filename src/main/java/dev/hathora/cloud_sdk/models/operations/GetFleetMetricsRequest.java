@@ -17,7 +17,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetFleetMetricsRequest {
@@ -221,18 +220,18 @@ public class GetFleetMetricsRequest {
         }
         GetFleetMetricsRequest other = (GetFleetMetricsRequest) o;
         return 
-            Objects.deepEquals(this.end, other.end) &&
-            Objects.deepEquals(this.fleetId, other.fleetId) &&
-            Objects.deepEquals(this.metrics, other.metrics) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.start, other.start) &&
-            Objects.deepEquals(this.step, other.step);
+            Utils.enhancedDeepEquals(this.end, other.end) &&
+            Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
+            Utils.enhancedDeepEquals(this.metrics, other.metrics) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.start, other.start) &&
+            Utils.enhancedDeepEquals(this.step, other.step);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             end,
             fleetId,
             metrics,

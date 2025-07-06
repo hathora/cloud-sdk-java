@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetProcessMetricsRequest {
@@ -214,17 +213,17 @@ public class GetProcessMetricsRequest {
         }
         GetProcessMetricsRequest other = (GetProcessMetricsRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.end, other.end) &&
-            Objects.deepEquals(this.metrics, other.metrics) &&
-            Objects.deepEquals(this.processId, other.processId) &&
-            Objects.deepEquals(this.start, other.start) &&
-            Objects.deepEquals(this.step, other.step);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.end, other.end) &&
+            Utils.enhancedDeepEquals(this.metrics, other.metrics) &&
+            Utils.enhancedDeepEquals(this.processId, other.processId) &&
+            Utils.enhancedDeepEquals(this.start, other.start) &&
+            Utils.enhancedDeepEquals(this.step, other.step);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             end,
             metrics,

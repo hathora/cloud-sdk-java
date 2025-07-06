@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class BuildWithMultipartUrlsRegionalContainerTags {
 
@@ -66,13 +65,13 @@ public class BuildWithMultipartUrlsRegionalContainerTags {
         }
         BuildWithMultipartUrlsRegionalContainerTags other = (BuildWithMultipartUrlsRegionalContainerTags) o;
         return 
-            Objects.deepEquals(this.containerTag, other.containerTag) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.containerTag, other.containerTag) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             containerTag,
             region);
     }

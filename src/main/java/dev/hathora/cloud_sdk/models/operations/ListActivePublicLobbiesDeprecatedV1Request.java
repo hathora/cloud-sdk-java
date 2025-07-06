@@ -14,7 +14,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListActivePublicLobbiesDeprecatedV1Request {
@@ -112,14 +111,14 @@ public class ListActivePublicLobbiesDeprecatedV1Request {
         }
         ListActivePublicLobbiesDeprecatedV1Request other = (ListActivePublicLobbiesDeprecatedV1Request) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.local, other.local) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.local, other.local) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             local,
             region);

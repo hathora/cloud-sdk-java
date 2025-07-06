@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ProcessMetricsData {
@@ -166,16 +165,16 @@ public class ProcessMetricsData {
         }
         ProcessMetricsData other = (ProcessMetricsData) o;
         return 
-            Objects.deepEquals(this.activeConnections, other.activeConnections) &&
-            Objects.deepEquals(this.cpu, other.cpu) &&
-            Objects.deepEquals(this.memory, other.memory) &&
-            Objects.deepEquals(this.rateEgress, other.rateEgress) &&
-            Objects.deepEquals(this.totalEgress, other.totalEgress);
+            Utils.enhancedDeepEquals(this.activeConnections, other.activeConnections) &&
+            Utils.enhancedDeepEquals(this.cpu, other.cpu) &&
+            Utils.enhancedDeepEquals(this.memory, other.memory) &&
+            Utils.enhancedDeepEquals(this.rateEgress, other.rateEgress) &&
+            Utils.enhancedDeepEquals(this.totalEgress, other.totalEgress);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             activeConnections,
             cpu,
             memory,

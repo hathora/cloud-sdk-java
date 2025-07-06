@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class SetLobbyStateParams {
 
@@ -59,12 +58,12 @@ public class SetLobbyStateParams {
         }
         SetLobbyStateParams other = (SetLobbyStateParams) o;
         return 
-            Objects.deepEquals(this.state, other.state);
+            Utils.enhancedDeepEquals(this.state, other.state);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             state);
     }
     

@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class CreateLobbyParams {
 
@@ -120,14 +119,14 @@ public class CreateLobbyParams {
         }
         CreateLobbyParams other = (CreateLobbyParams) o;
         return 
-            Objects.deepEquals(this.initialConfig, other.initialConfig) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.visibility, other.visibility);
+            Utils.enhancedDeepEquals(this.initialConfig, other.initialConfig) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.visibility, other.visibility);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             initialConfig,
             region,
             visibility);

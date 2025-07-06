@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateRoomParams {
@@ -168,15 +167,15 @@ public class CreateRoomParams {
         }
         CreateRoomParams other = (CreateRoomParams) o;
         return 
-            Objects.deepEquals(this.clientIPs, other.clientIPs) &&
-            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.roomConfig, other.roomConfig);
+            Utils.enhancedDeepEquals(this.clientIPs, other.clientIPs) &&
+            Utils.enhancedDeepEquals(this.deploymentId, other.deploymentId) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.roomConfig, other.roomConfig);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             clientIPs,
             deploymentId,
             region,

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -348,22 +347,22 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecated {
         }
         ApplicationWithLatestDeploymentAndBuildDeprecated other = (ApplicationWithLatestDeploymentAndBuildDeprecated) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.appName, other.appName) &&
-            Objects.deepEquals(this.appSecret, other.appSecret) &&
-            Objects.deepEquals(this.authConfiguration, other.authConfiguration) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.deletedAt, other.deletedAt) &&
-            Objects.deepEquals(this.deletedBy, other.deletedBy) &&
-            Objects.deepEquals(this.deployment, other.deployment) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.serviceConfig, other.serviceConfig);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.appName, other.appName) &&
+            Utils.enhancedDeepEquals(this.appSecret, other.appSecret) &&
+            Utils.enhancedDeepEquals(this.authConfiguration, other.authConfiguration) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.deletedAt, other.deletedAt) &&
+            Utils.enhancedDeepEquals(this.deletedBy, other.deletedBy) &&
+            Utils.enhancedDeepEquals(this.deployment, other.deployment) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.serviceConfig, other.serviceConfig);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             appName,
             appSecret,

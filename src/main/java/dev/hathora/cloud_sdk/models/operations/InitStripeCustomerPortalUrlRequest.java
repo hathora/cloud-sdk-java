@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class InitStripeCustomerPortalUrlRequest {
@@ -79,13 +78,13 @@ public class InitStripeCustomerPortalUrlRequest {
         }
         InitStripeCustomerPortalUrlRequest other = (InitStripeCustomerPortalUrlRequest) o;
         return 
-            Objects.deepEquals(this.customerPortalUrl, other.customerPortalUrl) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.customerPortalUrl, other.customerPortalUrl) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             customerPortalUrl,
             orgId);
     }

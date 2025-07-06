@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class CustomerPortalUrl {
 
@@ -49,12 +48,12 @@ public class CustomerPortalUrl {
         }
         CustomerPortalUrl other = (CustomerPortalUrl) o;
         return 
-            Objects.deepEquals(this.returnUrl, other.returnUrl);
+            Utils.enhancedDeepEquals(this.returnUrl, other.returnUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             returnUrl);
     }
     

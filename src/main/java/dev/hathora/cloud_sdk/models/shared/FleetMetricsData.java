@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FleetMetricsData {
@@ -166,16 +165,16 @@ public class FleetMetricsData {
         }
         FleetMetricsData other = (FleetMetricsData) o;
         return 
-            Objects.deepEquals(this.provisionedBareMetal, other.provisionedBareMetal) &&
-            Objects.deepEquals(this.provisionedCloud, other.provisionedCloud) &&
-            Objects.deepEquals(this.provisionedTotal, other.provisionedTotal) &&
-            Objects.deepEquals(this.systemOverhead, other.systemOverhead) &&
-            Objects.deepEquals(this.utilized, other.utilized);
+            Utils.enhancedDeepEquals(this.provisionedBareMetal, other.provisionedBareMetal) &&
+            Utils.enhancedDeepEquals(this.provisionedCloud, other.provisionedCloud) &&
+            Utils.enhancedDeepEquals(this.provisionedTotal, other.provisionedTotal) &&
+            Utils.enhancedDeepEquals(this.systemOverhead, other.systemOverhead) &&
+            Utils.enhancedDeepEquals(this.utilized, other.utilized);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             provisionedBareMetal,
             provisionedCloud,
             provisionedTotal,

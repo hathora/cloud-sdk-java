@@ -11,7 +11,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class CreatePublicLobbyRequestBody {
 
@@ -77,13 +76,13 @@ public class CreatePublicLobbyRequestBody {
         }
         CreatePublicLobbyRequestBody other = (CreatePublicLobbyRequestBody) o;
         return 
-            Objects.deepEquals(this.initialConfig, other.initialConfig) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.initialConfig, other.initialConfig) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             initialConfig,
             region);
     }

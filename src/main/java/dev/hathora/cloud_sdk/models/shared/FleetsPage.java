@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class FleetsPage {
 
@@ -50,12 +49,12 @@ public class FleetsPage {
         }
         FleetsPage other = (FleetsPage) o;
         return 
-            Objects.deepEquals(this.fleets, other.fleets);
+            Utils.enhancedDeepEquals(this.fleets, other.fleets);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             fleets);
     }
     

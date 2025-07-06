@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class RegistryConfig {
@@ -105,14 +104,14 @@ public class RegistryConfig {
         }
         RegistryConfig other = (RegistryConfig) o;
         return 
-            Objects.deepEquals(this.auth, other.auth) &&
-            Objects.deepEquals(this.image, other.image) &&
-            Objects.deepEquals(this.registryUrl, other.registryUrl);
+            Utils.enhancedDeepEquals(this.auth, other.auth) &&
+            Utils.enhancedDeepEquals(this.image, other.image) &&
+            Utils.enhancedDeepEquals(this.registryUrl, other.registryUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             auth,
             image,
             registryUrl);

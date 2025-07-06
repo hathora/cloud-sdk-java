@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class StartingConnectionInfo {
 
@@ -78,13 +77,13 @@ public class StartingConnectionInfo {
         }
         StartingConnectionInfo other = (StartingConnectionInfo) o;
         return 
-            Objects.deepEquals(this.roomId, other.roomId) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.roomId, other.roomId) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             roomId,
             status);
     }

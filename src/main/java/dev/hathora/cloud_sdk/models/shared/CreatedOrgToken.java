@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class CreatedOrgToken {
 
@@ -66,13 +65,13 @@ public class CreatedOrgToken {
         }
         CreatedOrgToken other = (CreatedOrgToken) o;
         return 
-            Objects.deepEquals(this.orgToken, other.orgToken) &&
-            Objects.deepEquals(this.plainTextToken, other.plainTextToken);
+            Utils.enhancedDeepEquals(this.orgToken, other.orgToken) &&
+            Utils.enhancedDeepEquals(this.plainTextToken, other.plainTextToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             orgToken,
             plainTextToken);
     }

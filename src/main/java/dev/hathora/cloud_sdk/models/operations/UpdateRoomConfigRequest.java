@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UpdateRoomConfigRequest {
@@ -97,14 +96,14 @@ public class UpdateRoomConfigRequest {
         }
         UpdateRoomConfigRequest other = (UpdateRoomConfigRequest) o;
         return 
-            Objects.deepEquals(this.updateRoomConfigParams, other.updateRoomConfigParams) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.roomId, other.roomId);
+            Utils.enhancedDeepEquals(this.updateRoomConfigParams, other.updateRoomConfigParams) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             updateRoomConfigParams,
             appId,
             roomId);

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class LinkPaymentMethod {
@@ -63,12 +62,12 @@ public class LinkPaymentMethod {
         }
         LinkPaymentMethod other = (LinkPaymentMethod) o;
         return 
-            Objects.deepEquals(this.email, other.email);
+            Utils.enhancedDeepEquals(this.email, other.email);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             email);
     }
     

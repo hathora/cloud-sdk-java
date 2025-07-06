@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class GoogleIdTokenObject {
 
@@ -58,12 +57,12 @@ public class GoogleIdTokenObject {
         }
         GoogleIdTokenObject other = (GoogleIdTokenObject) o;
         return 
-            Objects.deepEquals(this.idToken, other.idToken);
+            Utils.enhancedDeepEquals(this.idToken, other.idToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             idToken);
     }
     

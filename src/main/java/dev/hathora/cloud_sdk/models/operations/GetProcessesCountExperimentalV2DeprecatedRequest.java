@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetProcessesCountExperimentalV2DeprecatedRequest {
@@ -112,14 +111,14 @@ public class GetProcessesCountExperimentalV2DeprecatedRequest {
         }
         GetProcessesCountExperimentalV2DeprecatedRequest other = (GetProcessesCountExperimentalV2DeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             region,
             status);

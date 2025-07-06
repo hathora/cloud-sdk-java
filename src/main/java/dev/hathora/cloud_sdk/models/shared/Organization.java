@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Organization {
@@ -430,23 +429,23 @@ public class Organization {
         }
         Organization other = (Organization) o;
         return 
-            Objects.deepEquals(this.concurrentProcessVcpusLimit, other.concurrentProcessVcpusLimit) &&
-            Objects.deepEquals(this.enabledFeatureFlags, other.enabledFeatureFlags) &&
-            Objects.deepEquals(this.isSingleTenant, other.isSingleTenant) &&
-            Objects.deepEquals(this.logRetentionPeriodHours, other.logRetentionPeriodHours) &&
-            Objects.deepEquals(this.maxProcessConnections, other.maxProcessConnections) &&
-            Objects.deepEquals(this.maxRequestedMemoryMB, other.maxRequestedMemoryMB) &&
-            Objects.deepEquals(this.monthlyProcessVcpuHoursLimit, other.monthlyProcessVcpuHoursLimit) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.podMaxLifespanHrs, other.podMaxLifespanHrs) &&
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.stripeCustomerId, other.stripeCustomerId);
+            Utils.enhancedDeepEquals(this.concurrentProcessVcpusLimit, other.concurrentProcessVcpusLimit) &&
+            Utils.enhancedDeepEquals(this.enabledFeatureFlags, other.enabledFeatureFlags) &&
+            Utils.enhancedDeepEquals(this.isSingleTenant, other.isSingleTenant) &&
+            Utils.enhancedDeepEquals(this.logRetentionPeriodHours, other.logRetentionPeriodHours) &&
+            Utils.enhancedDeepEquals(this.maxProcessConnections, other.maxProcessConnections) &&
+            Utils.enhancedDeepEquals(this.maxRequestedMemoryMB, other.maxRequestedMemoryMB) &&
+            Utils.enhancedDeepEquals(this.monthlyProcessVcpuHoursLimit, other.monthlyProcessVcpuHoursLimit) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.podMaxLifespanHrs, other.podMaxLifespanHrs) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.stripeCustomerId, other.stripeCustomerId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             concurrentProcessVcpusLimit,
             enabledFeatureFlags,
             isSingleTenant,

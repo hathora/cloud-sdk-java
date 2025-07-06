@@ -17,7 +17,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -450,26 +449,26 @@ public class BuildWithMultipartUrls {
         }
         BuildWithMultipartUrls other = (BuildWithMultipartUrls) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.buildTag, other.buildTag) &&
-            Objects.deepEquals(this.completeUploadPostRequestUrl, other.completeUploadPostRequestUrl) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.deletedAt, other.deletedAt) &&
-            Objects.deepEquals(this.expiredAt, other.expiredAt) &&
-            Objects.deepEquals(this.finishedAt, other.finishedAt) &&
-            Objects.deepEquals(this.imageSize, other.imageSize) &&
-            Objects.deepEquals(this.maxChunkSize, other.maxChunkSize) &&
-            Objects.deepEquals(this.regionalContainerTags, other.regionalContainerTags) &&
-            Objects.deepEquals(this.startedAt, other.startedAt) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.uploadParts, other.uploadParts);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.buildTag, other.buildTag) &&
+            Utils.enhancedDeepEquals(this.completeUploadPostRequestUrl, other.completeUploadPostRequestUrl) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.deletedAt, other.deletedAt) &&
+            Utils.enhancedDeepEquals(this.expiredAt, other.expiredAt) &&
+            Utils.enhancedDeepEquals(this.finishedAt, other.finishedAt) &&
+            Utils.enhancedDeepEquals(this.imageSize, other.imageSize) &&
+            Utils.enhancedDeepEquals(this.maxChunkSize, other.maxChunkSize) &&
+            Utils.enhancedDeepEquals(this.regionalContainerTags, other.regionalContainerTags) &&
+            Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.uploadParts, other.uploadParts);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             buildId,
             buildTag,

@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class ListOrgTokens {
 
@@ -50,12 +49,12 @@ public class ListOrgTokens {
         }
         ListOrgTokens other = (ListOrgTokens) o;
         return 
-            Objects.deepEquals(this.tokens, other.tokens);
+            Utils.enhancedDeepEquals(this.tokens, other.tokens);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             tokens);
     }
     

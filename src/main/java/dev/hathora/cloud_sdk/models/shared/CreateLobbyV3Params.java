@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateLobbyV3Params {
@@ -138,14 +137,14 @@ public class CreateLobbyV3Params {
         }
         CreateLobbyV3Params other = (CreateLobbyV3Params) o;
         return 
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.roomConfig, other.roomConfig) &&
-            Objects.deepEquals(this.visibility, other.visibility);
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.roomConfig, other.roomConfig) &&
+            Utils.enhancedDeepEquals(this.visibility, other.visibility);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             region,
             roomConfig,
             visibility);

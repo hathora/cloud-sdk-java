@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class VerificationEmailRequest {
 
@@ -49,12 +48,12 @@ public class VerificationEmailRequest {
         }
         VerificationEmailRequest other = (VerificationEmailRequest) o;
         return 
-            Objects.deepEquals(this.userId, other.userId);
+            Utils.enhancedDeepEquals(this.userId, other.userId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             userId);
     }
     

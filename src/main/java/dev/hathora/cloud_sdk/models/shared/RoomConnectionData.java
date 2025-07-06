@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -176,16 +175,16 @@ public class RoomConnectionData {
         }
         RoomConnectionData other = (RoomConnectionData) o;
         return 
-            Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
-            Objects.deepEquals(this.exposedPort, other.exposedPort) &&
-            Objects.deepEquals(this.processId, other.processId) &&
-            Objects.deepEquals(this.roomId, other.roomId) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
+            Utils.enhancedDeepEquals(this.exposedPort, other.exposedPort) &&
+            Utils.enhancedDeepEquals(this.processId, other.processId) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             additionalExposedPorts,
             exposedPort,
             processId,

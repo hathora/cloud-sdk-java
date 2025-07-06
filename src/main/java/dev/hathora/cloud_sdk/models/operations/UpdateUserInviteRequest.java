@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class UpdateUserInviteRequest {
 
@@ -67,13 +66,13 @@ public class UpdateUserInviteRequest {
         }
         UpdateUserInviteRequest other = (UpdateUserInviteRequest) o;
         return 
-            Objects.deepEquals(this.updateUserInvite, other.updateUserInvite) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.updateUserInvite, other.updateUserInvite) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             updateUserInvite,
             orgId);
     }

@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class ApplicationServiceConfig {
 
@@ -62,12 +61,12 @@ public class ApplicationServiceConfig {
         }
         ApplicationServiceConfig other = (ApplicationServiceConfig) o;
         return 
-            Objects.deepEquals(this.staticProcessAllocation, other.staticProcessAllocation);
+            Utils.enhancedDeepEquals(this.staticProcessAllocation, other.staticProcessAllocation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             staticProcessAllocation);
     }
     

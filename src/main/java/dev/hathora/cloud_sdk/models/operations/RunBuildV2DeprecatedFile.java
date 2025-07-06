@@ -9,7 +9,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class RunBuildV2DeprecatedFile {
 
@@ -66,13 +65,13 @@ public class RunBuildV2DeprecatedFile {
         }
         RunBuildV2DeprecatedFile other = (RunBuildV2DeprecatedFile) o;
         return 
-            Objects.deepEquals(this.content, other.content) &&
-            Objects.deepEquals(this.fileName, other.fileName);
+            Utils.enhancedDeepEquals(this.content, other.content) &&
+            Utils.enhancedDeepEquals(this.fileName, other.fileName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             content,
             fileName);
     }

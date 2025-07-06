@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateUserInvite {
@@ -104,13 +103,13 @@ public class CreateUserInvite {
         }
         CreateUserInvite other = (CreateUserInvite) o;
         return 
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.userEmail, other.userEmail);
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.userEmail, other.userEmail);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             scopes,
             userEmail);
     }

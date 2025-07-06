@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateMultipartBuildParams {
@@ -130,14 +129,14 @@ public class CreateMultipartBuildParams {
         }
         CreateMultipartBuildParams other = (CreateMultipartBuildParams) o;
         return 
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.buildSizeInBytes, other.buildSizeInBytes) &&
-            Objects.deepEquals(this.buildTag, other.buildTag);
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.buildSizeInBytes, other.buildSizeInBytes) &&
+            Utils.enhancedDeepEquals(this.buildTag, other.buildTag);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             buildId,
             buildSizeInBytes,
             buildTag);

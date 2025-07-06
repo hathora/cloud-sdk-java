@@ -11,7 +11,6 @@ import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 
 /**
  * FleetRegion
@@ -92,14 +91,14 @@ public class FleetRegion {
         }
         FleetRegion other = (FleetRegion) o;
         return 
-            Objects.deepEquals(this.cloudMinVcpus, other.cloudMinVcpus) &&
-            Objects.deepEquals(this.cloudMinVcpusUpdatedAt, other.cloudMinVcpusUpdatedAt) &&
-            Objects.deepEquals(this.scaleIncrementVcpus, other.scaleIncrementVcpus);
+            Utils.enhancedDeepEquals(this.cloudMinVcpus, other.cloudMinVcpus) &&
+            Utils.enhancedDeepEquals(this.cloudMinVcpusUpdatedAt, other.cloudMinVcpusUpdatedAt) &&
+            Utils.enhancedDeepEquals(this.scaleIncrementVcpus, other.scaleIncrementVcpus);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             cloudMinVcpus,
             cloudMinVcpusUpdatedAt,
             scaleIncrementVcpus);

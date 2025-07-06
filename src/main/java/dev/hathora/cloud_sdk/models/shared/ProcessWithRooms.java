@@ -18,7 +18,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -735,35 +734,35 @@ public class ProcessWithRooms {
         }
         ProcessWithRooms other = (ProcessWithRooms) o;
         return 
-            Objects.deepEquals(this.activeConnections, other.activeConnections) &&
-            Objects.deepEquals(this.activeConnectionsUpdatedAt, other.activeConnectionsUpdatedAt) &&
-            Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            Objects.deepEquals(this.draining, other.draining) &&
-            Objects.deepEquals(this.egressedBytes, other.egressedBytes) &&
-            Objects.deepEquals(this.exposedPort, other.exposedPort) &&
-            Objects.deepEquals(this.host, other.host) &&
-            Objects.deepEquals(this.idleSince, other.idleSince) &&
-            Objects.deepEquals(this.port, other.port) &&
-            Objects.deepEquals(this.processId, other.processId) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.roomSlotsAvailable, other.roomSlotsAvailable) &&
-            Objects.deepEquals(this.roomSlotsAvailableUpdatedAt, other.roomSlotsAvailableUpdatedAt) &&
-            Objects.deepEquals(this.rooms, other.rooms) &&
-            Objects.deepEquals(this.roomsAllocated, other.roomsAllocated) &&
-            Objects.deepEquals(this.roomsAllocatedUpdatedAt, other.roomsAllocatedUpdatedAt) &&
-            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            Objects.deepEquals(this.startedAt, other.startedAt) &&
-            Objects.deepEquals(this.startingAt, other.startingAt) &&
-            Objects.deepEquals(this.stoppingAt, other.stoppingAt) &&
-            Objects.deepEquals(this.terminatedAt, other.terminatedAt) &&
-            Objects.deepEquals(this.totalRooms, other.totalRooms);
+            Utils.enhancedDeepEquals(this.activeConnections, other.activeConnections) &&
+            Utils.enhancedDeepEquals(this.activeConnectionsUpdatedAt, other.activeConnectionsUpdatedAt) &&
+            Utils.enhancedDeepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.deploymentId, other.deploymentId) &&
+            Utils.enhancedDeepEquals(this.draining, other.draining) &&
+            Utils.enhancedDeepEquals(this.egressedBytes, other.egressedBytes) &&
+            Utils.enhancedDeepEquals(this.exposedPort, other.exposedPort) &&
+            Utils.enhancedDeepEquals(this.host, other.host) &&
+            Utils.enhancedDeepEquals(this.idleSince, other.idleSince) &&
+            Utils.enhancedDeepEquals(this.port, other.port) &&
+            Utils.enhancedDeepEquals(this.processId, other.processId) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.roomSlotsAvailable, other.roomSlotsAvailable) &&
+            Utils.enhancedDeepEquals(this.roomSlotsAvailableUpdatedAt, other.roomSlotsAvailableUpdatedAt) &&
+            Utils.enhancedDeepEquals(this.rooms, other.rooms) &&
+            Utils.enhancedDeepEquals(this.roomsAllocated, other.roomsAllocated) &&
+            Utils.enhancedDeepEquals(this.roomsAllocatedUpdatedAt, other.roomsAllocatedUpdatedAt) &&
+            Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
+            Utils.enhancedDeepEquals(this.startingAt, other.startingAt) &&
+            Utils.enhancedDeepEquals(this.stoppingAt, other.stoppingAt) &&
+            Utils.enhancedDeepEquals(this.terminatedAt, other.terminatedAt) &&
+            Utils.enhancedDeepEquals(this.totalRooms, other.totalRooms);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             activeConnections,
             activeConnectionsUpdatedAt,
             additionalExposedPorts,

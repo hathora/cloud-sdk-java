@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class RunBuildV2DeprecatedRequest {
@@ -97,14 +96,14 @@ public class RunBuildV2DeprecatedRequest {
         }
         RunBuildV2DeprecatedRequest other = (RunBuildV2DeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.buildId, other.buildId);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             requestBody,
             appId,
             buildId);

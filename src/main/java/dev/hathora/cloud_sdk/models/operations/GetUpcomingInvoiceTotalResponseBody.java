@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * GetUpcomingInvoiceTotalResponseBody
@@ -55,12 +54,12 @@ public class GetUpcomingInvoiceTotalResponseBody {
         }
         GetUpcomingInvoiceTotalResponseBody other = (GetUpcomingInvoiceTotalResponseBody) o;
         return 
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             value);
     }
     

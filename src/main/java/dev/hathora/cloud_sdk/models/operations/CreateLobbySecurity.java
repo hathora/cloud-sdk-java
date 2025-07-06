@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class CreateLobbySecurity implements HasSecurity {
 
@@ -50,12 +49,12 @@ public class CreateLobbySecurity implements HasSecurity {
         }
         CreateLobbySecurity other = (CreateLobbySecurity) o;
         return 
-            Objects.deepEquals(this.playerAuth, other.playerAuth);
+            Utils.enhancedDeepEquals(this.playerAuth, other.playerAuth);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             playerAuth);
     }
     

@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class CardPaymentMethod {
 
@@ -66,13 +65,13 @@ public class CardPaymentMethod {
         }
         CardPaymentMethod other = (CardPaymentMethod) o;
         return 
-            Objects.deepEquals(this.brand, other.brand) &&
-            Objects.deepEquals(this.last4, other.last4);
+            Utils.enhancedDeepEquals(this.brand, other.brand) &&
+            Utils.enhancedDeepEquals(this.last4, other.last4);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             brand,
             last4);
     }

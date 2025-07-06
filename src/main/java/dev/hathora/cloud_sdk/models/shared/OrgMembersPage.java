@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class OrgMembersPage {
 
@@ -50,12 +49,12 @@ public class OrgMembersPage {
         }
         OrgMembersPage other = (OrgMembersPage) o;
         return 
-            Objects.deepEquals(this.members, other.members);
+            Utils.enhancedDeepEquals(this.members, other.members);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             members);
     }
     

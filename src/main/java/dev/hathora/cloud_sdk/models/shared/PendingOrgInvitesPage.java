@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class PendingOrgInvitesPage {
 
@@ -50,12 +49,12 @@ public class PendingOrgInvitesPage {
         }
         PendingOrgInvitesPage other = (PendingOrgInvitesPage) o;
         return 
-            Objects.deepEquals(this.invites, other.invites);
+            Utils.enhancedDeepEquals(this.invites, other.invites);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             invites);
     }
     
