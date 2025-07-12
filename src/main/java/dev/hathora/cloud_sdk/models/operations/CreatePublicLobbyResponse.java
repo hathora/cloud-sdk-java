@@ -14,15 +14,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreatePublicLobbyResponse implements Response {
 
+public class CreatePublicLobbyResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
+
 
     private Optional<? extends Lobby> lobby;
 
@@ -56,7 +56,8 @@ public class CreatePublicLobbyResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, Optional.empty(), statusCode, rawResponse);
+        this(contentType, Optional.empty(), statusCode,
+            rawResponse);
     }
 
     /**
@@ -89,9 +90,10 @@ public class CreatePublicLobbyResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -107,6 +109,7 @@ public class CreatePublicLobbyResponse implements Response {
         this.lobby = Optional.ofNullable(lobby);
         return this;
     }
+
 
     public CreatePublicLobbyResponse withLobby(Optional<? extends Lobby> lobby) {
         Utils.checkNotNull(lobby, "lobby");
@@ -132,7 +135,6 @@ public class CreatePublicLobbyResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -143,18 +145,16 @@ public class CreatePublicLobbyResponse implements Response {
         }
         CreatePublicLobbyResponse other = (CreatePublicLobbyResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.lobby, other.lobby) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.lobby, other.lobby) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            lobby,
-            statusCode,
+        return Utils.enhancedHash(
+            contentType, lobby, statusCode,
             rawResponse);
     }
     
@@ -166,20 +166,22 @@ public class CreatePublicLobbyResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Optional<? extends Lobby> lobby = Optional.empty();
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -189,6 +191,7 @@ public class CreatePublicLobbyResponse implements Response {
             this.contentType = contentType;
             return this;
         }
+
 
         public Builder lobby(Lobby lobby) {
             Utils.checkNotNull(lobby, "lobby");
@@ -202,6 +205,7 @@ public class CreatePublicLobbyResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -211,6 +215,7 @@ public class CreatePublicLobbyResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -219,13 +224,13 @@ public class CreatePublicLobbyResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public CreatePublicLobbyResponse build() {
+
             return new CreatePublicLobbyResponse(
-                contentType,
-                lobby,
-                statusCode,
+                contentType, lobby, statusCode,
                 rawResponse);
         }
+
     }
 }

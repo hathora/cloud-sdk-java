@@ -12,19 +12,22 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrgMember {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("invitedBy")
     private String invitedBy;
 
+
     @JsonProperty("joinedAt")
     private OffsetDateTime joinedAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastLogin")
@@ -35,6 +38,7 @@ public class OrgMember {
      */
     @JsonProperty("orgId")
     private String orgId;
+
 
     @JsonProperty("scopes")
     private OrgMemberScopes scopes;
@@ -77,7 +81,9 @@ public class OrgMember {
             String orgId,
             OrgMemberScopes scopes,
             String userEmail) {
-        this(createdAt, invitedBy, joinedAt, Optional.empty(), orgId, scopes, userEmail);
+        this(createdAt, invitedBy, joinedAt,
+            Optional.empty(), orgId, scopes,
+            userEmail);
     }
 
     @JsonIgnore
@@ -121,9 +127,10 @@ public class OrgMember {
         return userEmail;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrgMember withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -148,6 +155,7 @@ public class OrgMember {
         this.lastLogin = Optional.ofNullable(lastLogin);
         return this;
     }
+
 
     public OrgMember withLastLogin(Optional<OffsetDateTime> lastLogin) {
         Utils.checkNotNull(lastLogin, "lastLogin");
@@ -179,7 +187,6 @@ public class OrgMember {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -190,24 +197,20 @@ public class OrgMember {
         }
         OrgMember other = (OrgMember) o;
         return 
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.invitedBy, other.invitedBy) &&
-            Objects.deepEquals(this.joinedAt, other.joinedAt) &&
-            Objects.deepEquals(this.lastLogin, other.lastLogin) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.userEmail, other.userEmail);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.invitedBy, other.invitedBy) &&
+            Utils.enhancedDeepEquals(this.joinedAt, other.joinedAt) &&
+            Utils.enhancedDeepEquals(this.lastLogin, other.lastLogin) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.userEmail, other.userEmail);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createdAt,
-            invitedBy,
-            joinedAt,
-            lastLogin,
-            orgId,
-            scopes,
+        return Utils.enhancedHash(
+            createdAt, invitedBy, joinedAt,
+            lastLogin, orgId, scopes,
             userEmail);
     }
     
@@ -222,26 +225,28 @@ public class OrgMember {
                 "scopes", scopes,
                 "userEmail", userEmail);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String invitedBy;
- 
+
         private OffsetDateTime joinedAt;
- 
+
         private Optional<OffsetDateTime> lastLogin = Optional.empty();
- 
+
         private String orgId;
- 
+
         private OrgMemberScopes scopes;
- 
+
         private String userEmail;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -249,17 +254,20 @@ public class OrgMember {
             return this;
         }
 
+
         public Builder invitedBy(String invitedBy) {
             Utils.checkNotNull(invitedBy, "invitedBy");
             this.invitedBy = invitedBy;
             return this;
         }
 
+
         public Builder joinedAt(OffsetDateTime joinedAt) {
             Utils.checkNotNull(joinedAt, "joinedAt");
             this.joinedAt = joinedAt;
             return this;
         }
+
 
         public Builder lastLogin(OffsetDateTime lastLogin) {
             Utils.checkNotNull(lastLogin, "lastLogin");
@@ -273,6 +281,7 @@ public class OrgMember {
             return this;
         }
 
+
         /**
          * System generated unique identifier for an organization. Not guaranteed to have a specific format.
          */
@@ -282,11 +291,13 @@ public class OrgMember {
             return this;
         }
 
+
         public Builder scopes(OrgMemberScopes scopes) {
             Utils.checkNotNull(scopes, "scopes");
             this.scopes = scopes;
             return this;
         }
+
 
         /**
          * A user's email.
@@ -296,16 +307,14 @@ public class OrgMember {
             this.userEmail = userEmail;
             return this;
         }
-        
+
         public OrgMember build() {
+
             return new OrgMember(
-                createdAt,
-                invitedBy,
-                joinedAt,
-                lastLogin,
-                orgId,
-                scopes,
+                createdAt, invitedBy, joinedAt,
+                lastLogin, orgId, scopes,
                 userEmail);
         }
+
     }
 }

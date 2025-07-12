@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * ProcessExposedPort
@@ -22,8 +21,10 @@ public class ProcessExposedPort {
     @JsonProperty("host")
     private String host;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonProperty("port")
     private int port;
@@ -73,9 +74,10 @@ public class ProcessExposedPort {
         return transportType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ProcessExposedPort withHost(String host) {
         Utils.checkNotNull(host, "host");
@@ -104,7 +106,6 @@ public class ProcessExposedPort {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,18 +116,16 @@ public class ProcessExposedPort {
         }
         ProcessExposedPort other = (ProcessExposedPort) o;
         return 
-            Objects.deepEquals(this.host, other.host) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.port, other.port) &&
-            Objects.deepEquals(this.transportType, other.transportType);
+            Utils.enhancedDeepEquals(this.host, other.host) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.port, other.port) &&
+            Utils.enhancedDeepEquals(this.transportType, other.transportType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            host,
-            name,
-            port,
+        return Utils.enhancedHash(
+            host, name, port,
             transportType);
     }
     
@@ -138,20 +137,22 @@ public class ProcessExposedPort {
                 "port", port,
                 "transportType", transportType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String host;
- 
+
         private String name;
- 
+
         private Integer port;
- 
+
         private TransportType transportType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder host(String host) {
             Utils.checkNotNull(host, "host");
@@ -159,17 +160,20 @@ public class ProcessExposedPort {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
 
+
         public Builder port(int port) {
             Utils.checkNotNull(port, "port");
             this.port = port;
             return this;
         }
+
 
         /**
          * Transport type specifies the underlying communication protocol to the exposed port.
@@ -179,13 +183,13 @@ public class ProcessExposedPort {
             this.transportType = transportType;
             return this;
         }
-        
+
         public ProcessExposedPort build() {
+
             return new ProcessExposedPort(
-                host,
-                name,
-                port,
+                host, name, port,
                 transportType);
         }
+
     }
 }

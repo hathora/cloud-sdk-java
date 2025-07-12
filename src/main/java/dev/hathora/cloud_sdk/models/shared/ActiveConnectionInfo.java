@@ -10,12 +10,13 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ActiveConnectionInfo {
 
     @JsonProperty("host")
     private String host;
+
 
     @JsonProperty("port")
     private double port;
@@ -26,6 +27,7 @@ public class ActiveConnectionInfo {
      */
     @JsonProperty("roomId")
     private String roomId;
+
 
     @JsonProperty("status")
     private Status status;
@@ -87,9 +89,10 @@ public class ActiveConnectionInfo {
         return transportType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ActiveConnectionInfo withHost(String host) {
         Utils.checkNotNull(host, "host");
@@ -128,7 +131,6 @@ public class ActiveConnectionInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -139,21 +141,18 @@ public class ActiveConnectionInfo {
         }
         ActiveConnectionInfo other = (ActiveConnectionInfo) o;
         return 
-            Objects.deepEquals(this.host, other.host) &&
-            Objects.deepEquals(this.port, other.port) &&
-            Objects.deepEquals(this.roomId, other.roomId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.transportType, other.transportType);
+            Utils.enhancedDeepEquals(this.host, other.host) &&
+            Utils.enhancedDeepEquals(this.port, other.port) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.transportType, other.transportType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            host,
-            port,
-            roomId,
-            status,
-            transportType);
+        return Utils.enhancedHash(
+            host, port, roomId,
+            status, transportType);
     }
     
     @Override
@@ -165,22 +164,24 @@ public class ActiveConnectionInfo {
                 "status", status,
                 "transportType", transportType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String host;
- 
+
         private Double port;
- 
+
         private String roomId;
- 
+
         private Status status;
- 
+
         private TransportType transportType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder host(String host) {
             Utils.checkNotNull(host, "host");
@@ -188,11 +189,13 @@ public class ActiveConnectionInfo {
             return this;
         }
 
+
         public Builder port(double port) {
             Utils.checkNotNull(port, "port");
             this.port = port;
             return this;
         }
+
 
         /**
          * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
@@ -204,11 +207,13 @@ public class ActiveConnectionInfo {
             return this;
         }
 
+
         public Builder status(Status status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         /**
          * Transport type specifies the underlying communication protocol to the exposed port.
@@ -218,14 +223,13 @@ public class ActiveConnectionInfo {
             this.transportType = transportType;
             return this;
         }
-        
+
         public ActiveConnectionInfo build() {
+
             return new ActiveConnectionInfo(
-                host,
-                port,
-                roomId,
-                status,
-                transportType);
+                host, port, roomId,
+                status, transportType);
         }
+
     }
 }

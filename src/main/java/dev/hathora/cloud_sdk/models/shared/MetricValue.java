@@ -10,12 +10,13 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class MetricValue {
 
     @JsonProperty("timestamp")
     private double timestamp;
+
 
     @JsonProperty("value")
     private double value;
@@ -40,9 +41,10 @@ public class MetricValue {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public MetricValue withTimestamp(double timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
@@ -56,7 +58,6 @@ public class MetricValue {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -67,15 +68,14 @@ public class MetricValue {
         }
         MetricValue other = (MetricValue) o;
         return 
-            Objects.deepEquals(this.timestamp, other.timestamp) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            timestamp,
-            value);
+        return Utils.enhancedHash(
+            timestamp, value);
     }
     
     @Override
@@ -84,16 +84,18 @@ public class MetricValue {
                 "timestamp", timestamp,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Double timestamp;
- 
+
         private Double value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder timestamp(double timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
@@ -101,16 +103,18 @@ public class MetricValue {
             return this;
         }
 
+
         public Builder value(double value) {
             Utils.checkNotNull(value, "value");
             this.value = value;
             return this;
         }
-        
+
         public MetricValue build() {
+
             return new MetricValue(
-                timestamp,
-                value);
+                timestamp, value);
         }
+
     }
 }

@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class GetConnectionInfoResponse implements Response {
 
+public class GetConnectionInfoResponse implements Response {
     /**
      * Ok
      */
@@ -59,7 +58,8 @@ public class GetConnectionInfoResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, statusCode, rawResponse);
+        this(Optional.empty(), contentType, statusCode,
+            rawResponse);
     }
 
     /**
@@ -95,9 +95,10 @@ public class GetConnectionInfoResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Ok
@@ -107,6 +108,7 @@ public class GetConnectionInfoResponse implements Response {
         this.connectionInfoV2 = Optional.ofNullable(connectionInfoV2);
         return this;
     }
+
 
     /**
      * Ok
@@ -144,7 +146,6 @@ public class GetConnectionInfoResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -155,18 +156,16 @@ public class GetConnectionInfoResponse implements Response {
         }
         GetConnectionInfoResponse other = (GetConnectionInfoResponse) o;
         return 
-            Objects.deepEquals(this.connectionInfoV2, other.connectionInfoV2) &&
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.connectionInfoV2, other.connectionInfoV2) &&
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connectionInfoV2,
-            contentType,
-            statusCode,
+        return Utils.enhancedHash(
+            connectionInfoV2, contentType, statusCode,
             rawResponse);
     }
     
@@ -178,20 +177,22 @@ public class GetConnectionInfoResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ConnectionInfoV2> connectionInfoV2 = Optional.empty();
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Ok
@@ -211,6 +212,7 @@ public class GetConnectionInfoResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response content type for this operation
          */
@@ -219,6 +221,7 @@ public class GetConnectionInfoResponse implements Response {
             this.contentType = contentType;
             return this;
         }
+
 
         /**
          * HTTP response status code for this operation
@@ -229,6 +232,7 @@ public class GetConnectionInfoResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -237,13 +241,13 @@ public class GetConnectionInfoResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public GetConnectionInfoResponse build() {
+
             return new GetConnectionInfoResponse(
-                connectionInfoV2,
-                contentType,
-                statusCode,
+                connectionInfoV2, contentType, statusCode,
                 rawResponse);
         }
+
     }
 }

@@ -14,15 +14,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateDeploymentV1DeprecatedResponse implements Response {
 
+public class CreateDeploymentV1DeprecatedResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
+
 
     private Optional<? extends DeploymentV1> deploymentV1;
 
@@ -56,7 +56,8 @@ public class CreateDeploymentV1DeprecatedResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, Optional.empty(), statusCode, rawResponse);
+        this(contentType, Optional.empty(), statusCode,
+            rawResponse);
     }
 
     /**
@@ -89,9 +90,10 @@ public class CreateDeploymentV1DeprecatedResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -107,6 +109,7 @@ public class CreateDeploymentV1DeprecatedResponse implements Response {
         this.deploymentV1 = Optional.ofNullable(deploymentV1);
         return this;
     }
+
 
     public CreateDeploymentV1DeprecatedResponse withDeploymentV1(Optional<? extends DeploymentV1> deploymentV1) {
         Utils.checkNotNull(deploymentV1, "deploymentV1");
@@ -132,7 +135,6 @@ public class CreateDeploymentV1DeprecatedResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -143,18 +145,16 @@ public class CreateDeploymentV1DeprecatedResponse implements Response {
         }
         CreateDeploymentV1DeprecatedResponse other = (CreateDeploymentV1DeprecatedResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.deploymentV1, other.deploymentV1) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.deploymentV1, other.deploymentV1) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            deploymentV1,
-            statusCode,
+        return Utils.enhancedHash(
+            contentType, deploymentV1, statusCode,
             rawResponse);
     }
     
@@ -166,20 +166,22 @@ public class CreateDeploymentV1DeprecatedResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Optional<? extends DeploymentV1> deploymentV1 = Optional.empty();
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -189,6 +191,7 @@ public class CreateDeploymentV1DeprecatedResponse implements Response {
             this.contentType = contentType;
             return this;
         }
+
 
         public Builder deploymentV1(DeploymentV1 deploymentV1) {
             Utils.checkNotNull(deploymentV1, "deploymentV1");
@@ -202,6 +205,7 @@ public class CreateDeploymentV1DeprecatedResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -211,6 +215,7 @@ public class CreateDeploymentV1DeprecatedResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -219,13 +224,13 @@ public class CreateDeploymentV1DeprecatedResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public CreateDeploymentV1DeprecatedResponse build() {
+
             return new CreateDeploymentV1DeprecatedResponse(
-                contentType,
-                deploymentV1,
-                statusCode,
+                contentType, deploymentV1, statusCode,
                 rawResponse);
         }
+
     }
 }

@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -21,7 +20,6 @@ import java.util.Optional;
  * <p>Metadata on an allocated instance of a room.
  */
 public class RoomWithoutAllocationsCurrentAllocation {
-
     /**
      * System generated unique identifier to a runtime instance of your game server.
      */
@@ -34,8 +32,10 @@ public class RoomWithoutAllocationsCurrentAllocation {
     @JsonProperty("roomAllocationId")
     private String roomAllocationId;
 
+
     @JsonProperty("scheduledAt")
     private OffsetDateTime scheduledAt;
+
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("unscheduledAt")
@@ -61,7 +61,8 @@ public class RoomWithoutAllocationsCurrentAllocation {
             String processId,
             String roomAllocationId,
             OffsetDateTime scheduledAt) {
-        this(processId, roomAllocationId, scheduledAt, Optional.empty());
+        this(processId, roomAllocationId, scheduledAt,
+            Optional.empty());
     }
 
     /**
@@ -90,9 +91,10 @@ public class RoomWithoutAllocationsCurrentAllocation {
         return unscheduledAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * System generated unique identifier to a runtime instance of your game server.
@@ -124,13 +126,13 @@ public class RoomWithoutAllocationsCurrentAllocation {
         return this;
     }
 
+
     public RoomWithoutAllocationsCurrentAllocation withUnscheduledAt(Optional<OffsetDateTime> unscheduledAt) {
         Utils.checkNotNull(unscheduledAt, "unscheduledAt");
         this.unscheduledAt = unscheduledAt;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -141,18 +143,16 @@ public class RoomWithoutAllocationsCurrentAllocation {
         }
         RoomWithoutAllocationsCurrentAllocation other = (RoomWithoutAllocationsCurrentAllocation) o;
         return 
-            Objects.deepEquals(this.processId, other.processId) &&
-            Objects.deepEquals(this.roomAllocationId, other.roomAllocationId) &&
-            Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
-            Objects.deepEquals(this.unscheduledAt, other.unscheduledAt);
+            Utils.enhancedDeepEquals(this.processId, other.processId) &&
+            Utils.enhancedDeepEquals(this.roomAllocationId, other.roomAllocationId) &&
+            Utils.enhancedDeepEquals(this.scheduledAt, other.scheduledAt) &&
+            Utils.enhancedDeepEquals(this.unscheduledAt, other.unscheduledAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            processId,
-            roomAllocationId,
-            scheduledAt,
+        return Utils.enhancedHash(
+            processId, roomAllocationId, scheduledAt,
             unscheduledAt);
     }
     
@@ -164,20 +164,22 @@ public class RoomWithoutAllocationsCurrentAllocation {
                 "scheduledAt", scheduledAt,
                 "unscheduledAt", unscheduledAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String processId;
- 
+
         private String roomAllocationId;
- 
+
         private OffsetDateTime scheduledAt;
- 
+
         private Optional<OffsetDateTime> unscheduledAt = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * System generated unique identifier to a runtime instance of your game server.
@@ -188,6 +190,7 @@ public class RoomWithoutAllocationsCurrentAllocation {
             return this;
         }
 
+
         /**
          * System generated unique identifier to an allocated instance of a room.
          */
@@ -197,11 +200,13 @@ public class RoomWithoutAllocationsCurrentAllocation {
             return this;
         }
 
+
         public Builder scheduledAt(OffsetDateTime scheduledAt) {
             Utils.checkNotNull(scheduledAt, "scheduledAt");
             this.scheduledAt = scheduledAt;
             return this;
         }
+
 
         public Builder unscheduledAt(OffsetDateTime unscheduledAt) {
             Utils.checkNotNull(unscheduledAt, "unscheduledAt");
@@ -214,13 +219,13 @@ public class RoomWithoutAllocationsCurrentAllocation {
             this.unscheduledAt = unscheduledAt;
             return this;
         }
-        
+
         public RoomWithoutAllocationsCurrentAllocation build() {
+
             return new RoomWithoutAllocationsCurrentAllocation(
-                processId,
-                roomAllocationId,
-                scheduledAt,
+                processId, roomAllocationId, scheduledAt,
                 unscheduledAt);
         }
+
     }
 }

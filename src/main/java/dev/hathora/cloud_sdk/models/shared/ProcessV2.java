@@ -15,8 +15,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ProcessV2 {
 
@@ -41,6 +41,7 @@ public class ProcessV2 {
     @JsonProperty("deploymentId")
     private int deploymentId;
 
+
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("exposedPort")
     private Optional<? extends ProcessV2ExposedPort> exposedPort;
@@ -50,6 +51,7 @@ public class ProcessV2 {
      */
     @JsonProperty("processId")
     private String processId;
+
 
     @JsonProperty("region")
     private Region region;
@@ -72,6 +74,7 @@ public class ProcessV2 {
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("startedAt")
     private Optional<OffsetDateTime> startedAt;
+
 
     @JsonProperty("status")
     private ProcessStatus status;
@@ -143,7 +146,11 @@ public class ProcessV2 {
             int roomsAllocated,
             int roomsPerProcess,
             ProcessStatus status) {
-        this(additionalExposedPorts, appId, createdAt, deploymentId, Optional.empty(), processId, region, roomsAllocated, roomsPerProcess, Optional.empty(), status, Optional.empty(), Optional.empty());
+        this(additionalExposedPorts, appId, createdAt,
+            deploymentId, Optional.empty(), processId,
+            region, roomsAllocated, roomsPerProcess,
+            Optional.empty(), status, Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -239,9 +246,10 @@ public class ProcessV2 {
         return terminatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ProcessV2 withAdditionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
         Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
@@ -281,6 +289,7 @@ public class ProcessV2 {
         this.exposedPort = Optional.ofNullable(exposedPort);
         return this;
     }
+
 
     public ProcessV2 withExposedPort(Optional<? extends ProcessV2ExposedPort> exposedPort) {
         Utils.checkNotNull(exposedPort, "exposedPort");
@@ -330,6 +339,7 @@ public class ProcessV2 {
         return this;
     }
 
+
     /**
      * When the process bound to the specified port. We use this to determine when we should start billing.
      */
@@ -354,6 +364,7 @@ public class ProcessV2 {
         return this;
     }
 
+
     /**
      * When the process is issued to stop. We use this to determine when we should stop billing.
      */
@@ -372,6 +383,7 @@ public class ProcessV2 {
         return this;
     }
 
+
     /**
      * When the process has been terminated.
      */
@@ -381,7 +393,6 @@ public class ProcessV2 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -392,36 +403,28 @@ public class ProcessV2 {
         }
         ProcessV2 other = (ProcessV2) o;
         return 
-            Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            Objects.deepEquals(this.exposedPort, other.exposedPort) &&
-            Objects.deepEquals(this.processId, other.processId) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.roomsAllocated, other.roomsAllocated) &&
-            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            Objects.deepEquals(this.startedAt, other.startedAt) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.stoppingAt, other.stoppingAt) &&
-            Objects.deepEquals(this.terminatedAt, other.terminatedAt);
+            Utils.enhancedDeepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.deploymentId, other.deploymentId) &&
+            Utils.enhancedDeepEquals(this.exposedPort, other.exposedPort) &&
+            Utils.enhancedDeepEquals(this.processId, other.processId) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.roomsAllocated, other.roomsAllocated) &&
+            Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.stoppingAt, other.stoppingAt) &&
+            Utils.enhancedDeepEquals(this.terminatedAt, other.terminatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            additionalExposedPorts,
-            appId,
-            createdAt,
-            deploymentId,
-            exposedPort,
-            processId,
-            region,
-            roomsAllocated,
-            roomsPerProcess,
-            startedAt,
-            status,
-            stoppingAt,
+        return Utils.enhancedHash(
+            additionalExposedPorts, appId, createdAt,
+            deploymentId, exposedPort, processId,
+            region, roomsAllocated, roomsPerProcess,
+            startedAt, status, stoppingAt,
             terminatedAt);
     }
     
@@ -442,44 +445,47 @@ public class ProcessV2 {
                 "stoppingAt", stoppingAt,
                 "terminatedAt", terminatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<ExposedPort> additionalExposedPorts;
- 
+
         private String appId;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private Integer deploymentId;
- 
+
         private Optional<? extends ProcessV2ExposedPort> exposedPort = Optional.empty();
- 
+
         private String processId;
- 
+
         private Region region;
- 
+
         private Integer roomsAllocated;
- 
+
         private Integer roomsPerProcess;
- 
+
         private Optional<OffsetDateTime> startedAt = Optional.empty();
- 
+
         private ProcessStatus status;
- 
+
         private Optional<OffsetDateTime> stoppingAt = Optional.empty();
- 
+
         private Optional<OffsetDateTime> terminatedAt = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder additionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
             Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
             this.additionalExposedPorts = additionalExposedPorts;
             return this;
         }
+
 
         /**
          * System generated unique identifier for an application.
@@ -490,6 +496,7 @@ public class ProcessV2 {
             return this;
         }
 
+
         /**
          * When the process started being provisioned.
          */
@@ -499,6 +506,7 @@ public class ProcessV2 {
             return this;
         }
 
+
         /**
          * System generated id for a deployment. Increments by 1.
          */
@@ -507,6 +515,7 @@ public class ProcessV2 {
             this.deploymentId = deploymentId;
             return this;
         }
+
 
         public Builder exposedPort(ProcessV2ExposedPort exposedPort) {
             Utils.checkNotNull(exposedPort, "exposedPort");
@@ -520,6 +529,7 @@ public class ProcessV2 {
             return this;
         }
 
+
         /**
          * System generated unique identifier to a runtime instance of your game server.
          */
@@ -529,11 +539,13 @@ public class ProcessV2 {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
+
 
         /**
          * Tracks the number of rooms that have been allocated to the process.
@@ -544,6 +556,7 @@ public class ProcessV2 {
             return this;
         }
 
+
         /**
          * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
          */
@@ -552,6 +565,7 @@ public class ProcessV2 {
             this.roomsPerProcess = roomsPerProcess;
             return this;
         }
+
 
         /**
          * When the process bound to the specified port. We use this to determine when we should start billing.
@@ -571,11 +585,13 @@ public class ProcessV2 {
             return this;
         }
 
+
         public Builder status(ProcessStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         /**
          * When the process is issued to stop. We use this to determine when we should stop billing.
@@ -595,6 +611,7 @@ public class ProcessV2 {
             return this;
         }
 
+
         /**
          * When the process has been terminated.
          */
@@ -612,22 +629,16 @@ public class ProcessV2 {
             this.terminatedAt = terminatedAt;
             return this;
         }
-        
+
         public ProcessV2 build() {
+
             return new ProcessV2(
-                additionalExposedPorts,
-                appId,
-                createdAt,
-                deploymentId,
-                exposedPort,
-                processId,
-                region,
-                roomsAllocated,
-                roomsPerProcess,
-                startedAt,
-                status,
-                stoppingAt,
+                additionalExposedPorts, appId, createdAt,
+                deploymentId, exposedPort, processId,
+                region, roomsAllocated, roomsPerProcess,
+                startedAt, status, stoppingAt,
                 terminatedAt);
         }
+
     }
 }

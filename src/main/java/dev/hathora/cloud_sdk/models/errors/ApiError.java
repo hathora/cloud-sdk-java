@@ -11,7 +11,7 @@ import java.lang.Override;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
+
 
 @SuppressWarnings("serial")
 public class ApiError extends RuntimeException {
@@ -22,7 +22,7 @@ public class ApiError extends RuntimeException {
     @JsonCreator
     public ApiError(
             @JsonProperty("message") String message) {
-        super(message);
+        super("API error occurred");
         Utils.checkNotNull(message, "message");
         this.message = message;
     }
@@ -38,9 +38,10 @@ public class ApiError extends RuntimeException {
         return Utils.valueOrNull(message);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ApiError withMessage(String message) {
         Utils.checkNotNull(message, "message");
@@ -48,7 +49,6 @@ public class ApiError extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -59,12 +59,12 @@ public class ApiError extends RuntimeException {
         }
         ApiError other = (ApiError) o;
         return 
-            Objects.deepEquals(this.message, other.message);
+            Utils.enhancedDeepEquals(this.message, other.message);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             message);
     }
     
@@ -73,25 +73,29 @@ public class ApiError extends RuntimeException {
         return Utils.toString(ApiError.class,
                 "message", message);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String message;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder message(String message) {
             Utils.checkNotNull(message, "message");
             this.message = message;
             return this;
         }
-        
+
         public ApiError build() {
+
             return new ApiError(
                 message);
         }
+
     }
 }
 

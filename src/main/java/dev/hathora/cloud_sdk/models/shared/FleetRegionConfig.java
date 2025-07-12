@@ -10,7 +10,7 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class FleetRegionConfig {
 
@@ -29,9 +29,10 @@ public class FleetRegionConfig {
         return cloudMinVcpus;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public FleetRegionConfig withCloudMinVcpus(int cloudMinVcpus) {
         Utils.checkNotNull(cloudMinVcpus, "cloudMinVcpus");
@@ -39,7 +40,6 @@ public class FleetRegionConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class FleetRegionConfig {
         }
         FleetRegionConfig other = (FleetRegionConfig) o;
         return 
-            Objects.deepEquals(this.cloudMinVcpus, other.cloudMinVcpus);
+            Utils.enhancedDeepEquals(this.cloudMinVcpus, other.cloudMinVcpus);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             cloudMinVcpus);
     }
     
@@ -64,24 +64,28 @@ public class FleetRegionConfig {
         return Utils.toString(FleetRegionConfig.class,
                 "cloudMinVcpus", cloudMinVcpus);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Integer cloudMinVcpus;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder cloudMinVcpus(int cloudMinVcpus) {
             Utils.checkNotNull(cloudMinVcpus, "cloudMinVcpus");
             this.cloudMinVcpus = cloudMinVcpus;
             return this;
         }
-        
+
         public FleetRegionConfig build() {
+
             return new FleetRegionConfig(
                 cloudMinVcpus);
         }
+
     }
 }

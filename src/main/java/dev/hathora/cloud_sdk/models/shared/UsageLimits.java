@@ -12,11 +12,10 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class UsageLimits {
 
+public class UsageLimits {
     /**
      * The maximum number of concurrent processes that have been run by the organization in the last 7 days.
      */
@@ -64,7 +63,8 @@ public class UsageLimits {
     public UsageLimits(
             double concurrentProcessVcpus7DayMax,
             double monthlyProcessVcpuHoursConsumed) {
-        this(concurrentProcessVcpus7DayMax, Optional.empty(), monthlyProcessVcpuHoursConsumed, Optional.empty());
+        this(concurrentProcessVcpus7DayMax, Optional.empty(), monthlyProcessVcpuHoursConsumed,
+            Optional.empty());
     }
 
     /**
@@ -101,9 +101,10 @@ public class UsageLimits {
         return monthlyProcessVcpuHoursLimit;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The maximum number of concurrent processes that have been run by the organization in the last 7 days.
@@ -123,6 +124,7 @@ public class UsageLimits {
         this.concurrentProcessVcpusLimit = Optional.ofNullable(concurrentProcessVcpusLimit);
         return this;
     }
+
 
     /**
      * The maximum number of concurrent processes that can be run by the organization
@@ -153,6 +155,7 @@ public class UsageLimits {
         return this;
     }
 
+
     /**
      * The maximum number of monthly process vcpu hours that can be run by the organization
      * If undefined, the organization has no limit.
@@ -163,7 +166,6 @@ public class UsageLimits {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -174,18 +176,16 @@ public class UsageLimits {
         }
         UsageLimits other = (UsageLimits) o;
         return 
-            Objects.deepEquals(this.concurrentProcessVcpus7DayMax, other.concurrentProcessVcpus7DayMax) &&
-            Objects.deepEquals(this.concurrentProcessVcpusLimit, other.concurrentProcessVcpusLimit) &&
-            Objects.deepEquals(this.monthlyProcessVcpuHoursConsumed, other.monthlyProcessVcpuHoursConsumed) &&
-            Objects.deepEquals(this.monthlyProcessVcpuHoursLimit, other.monthlyProcessVcpuHoursLimit);
+            Utils.enhancedDeepEquals(this.concurrentProcessVcpus7DayMax, other.concurrentProcessVcpus7DayMax) &&
+            Utils.enhancedDeepEquals(this.concurrentProcessVcpusLimit, other.concurrentProcessVcpusLimit) &&
+            Utils.enhancedDeepEquals(this.monthlyProcessVcpuHoursConsumed, other.monthlyProcessVcpuHoursConsumed) &&
+            Utils.enhancedDeepEquals(this.monthlyProcessVcpuHoursLimit, other.monthlyProcessVcpuHoursLimit);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            concurrentProcessVcpus7DayMax,
-            concurrentProcessVcpusLimit,
-            monthlyProcessVcpuHoursConsumed,
+        return Utils.enhancedHash(
+            concurrentProcessVcpus7DayMax, concurrentProcessVcpusLimit, monthlyProcessVcpuHoursConsumed,
             monthlyProcessVcpuHoursLimit);
     }
     
@@ -197,20 +197,22 @@ public class UsageLimits {
                 "monthlyProcessVcpuHoursConsumed", monthlyProcessVcpuHoursConsumed,
                 "monthlyProcessVcpuHoursLimit", monthlyProcessVcpuHoursLimit);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Double concurrentProcessVcpus7DayMax;
- 
+
         private Optional<Double> concurrentProcessVcpusLimit = Optional.empty();
- 
+
         private Double monthlyProcessVcpuHoursConsumed;
- 
+
         private Optional<Double> monthlyProcessVcpuHoursLimit = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The maximum number of concurrent processes that have been run by the organization in the last 7 days.
@@ -220,6 +222,7 @@ public class UsageLimits {
             this.concurrentProcessVcpus7DayMax = concurrentProcessVcpus7DayMax;
             return this;
         }
+
 
         /**
          * The maximum number of concurrent processes that can be run by the organization
@@ -241,6 +244,7 @@ public class UsageLimits {
             return this;
         }
 
+
         /**
          * The number of vCPU hours used up by the organization in the current month.
          */
@@ -249,6 +253,7 @@ public class UsageLimits {
             this.monthlyProcessVcpuHoursConsumed = monthlyProcessVcpuHoursConsumed;
             return this;
         }
+
 
         /**
          * The maximum number of monthly process vcpu hours that can be run by the organization
@@ -269,13 +274,13 @@ public class UsageLimits {
             this.monthlyProcessVcpuHoursLimit = monthlyProcessVcpuHoursLimit;
             return this;
         }
-        
+
         public UsageLimits build() {
+
             return new UsageLimits(
-                concurrentProcessVcpus7DayMax,
-                concurrentProcessVcpusLimit,
-                monthlyProcessVcpuHoursConsumed,
+                concurrentProcessVcpus7DayMax, concurrentProcessVcpusLimit, monthlyProcessVcpuHoursConsumed,
                 monthlyProcessVcpuHoursLimit);
         }
+
     }
 }

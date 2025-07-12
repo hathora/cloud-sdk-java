@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -40,6 +39,7 @@ public class ConnectionInfoV2 {
     @JsonProperty("roomId")
     private String roomId;
 
+
     @JsonProperty("status")
     private RoomReadyStatus status;
 
@@ -63,7 +63,8 @@ public class ConnectionInfoV2 {
             List<ExposedPort> additionalExposedPorts,
             String roomId,
             RoomReadyStatus status) {
-        this(additionalExposedPorts, Optional.empty(), roomId, status);
+        this(additionalExposedPorts, Optional.empty(), roomId,
+            status);
     }
 
     @JsonIgnore
@@ -94,9 +95,10 @@ public class ConnectionInfoV2 {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConnectionInfoV2 withAdditionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
         Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
@@ -112,6 +114,7 @@ public class ConnectionInfoV2 {
         this.exposedPort = Optional.ofNullable(exposedPort);
         return this;
     }
+
 
     /**
      * Connection details for an active process.
@@ -138,7 +141,6 @@ public class ConnectionInfoV2 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -149,18 +151,16 @@ public class ConnectionInfoV2 {
         }
         ConnectionInfoV2 other = (ConnectionInfoV2) o;
         return 
-            Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
-            Objects.deepEquals(this.exposedPort, other.exposedPort) &&
-            Objects.deepEquals(this.roomId, other.roomId) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
+            Utils.enhancedDeepEquals(this.exposedPort, other.exposedPort) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            additionalExposedPorts,
-            exposedPort,
-            roomId,
+        return Utils.enhancedHash(
+            additionalExposedPorts, exposedPort, roomId,
             status);
     }
     
@@ -172,26 +172,29 @@ public class ConnectionInfoV2 {
                 "roomId", roomId,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<ExposedPort> additionalExposedPorts;
- 
+
         private Optional<? extends ExposedPort> exposedPort = Optional.empty();
- 
+
         private String roomId;
- 
+
         private RoomReadyStatus status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder additionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
             Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
             this.additionalExposedPorts = additionalExposedPorts;
             return this;
         }
+
 
         /**
          * Connection details for an active process.
@@ -211,6 +214,7 @@ public class ConnectionInfoV2 {
             return this;
         }
 
+
         /**
          * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
          * Note: error will be returned if `roomId` is not globally unique.
@@ -221,18 +225,19 @@ public class ConnectionInfoV2 {
             return this;
         }
 
+
         public Builder status(RoomReadyStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
-        
+
         public ConnectionInfoV2 build() {
+
             return new ConnectionInfoV2(
-                additionalExposedPorts,
-                exposedPort,
-                roomId,
+                additionalExposedPorts, exposedPort, roomId,
                 status);
         }
+
     }
 }

@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateLobbyParams;
+import dev.hathora.cloud_sdk.operations.CreateLobbyDeprecatedOperation;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -15,10 +19,10 @@ public class CreateLobbyDeprecatedRequestBuilder {
     private CreateLobbyParams createLobbyParams;
     private Optional<String> appId = Optional.empty();
     private Optional<String> roomId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateLobbyDeprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateLobbyDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallCreateLobbyDeprecated sdk) {
-        this.sdk = sdk;
+    public CreateLobbyDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateLobbyDeprecatedRequestBuilder security(CreateLobbyDeprecatedSecurity security) {
@@ -57,12 +61,24 @@ public class CreateLobbyDeprecatedRequestBuilder {
         return this;
     }
 
-    public CreateLobbyDeprecatedResponse call() throws Exception {
 
-        return sdk.createLobbyDeprecated(
-            security,
-            createLobbyParams,
+    private CreateLobbyDeprecatedRequest buildRequest() {
+
+        CreateLobbyDeprecatedRequest request = new CreateLobbyDeprecatedRequest(createLobbyParams,
             appId,
             roomId);
+
+        return request;
+    }
+
+    public CreateLobbyDeprecatedResponse call() throws Exception {
+        
+        RequestOperation<CreateLobbyDeprecatedRequest, CreateLobbyDeprecatedResponse> operation
+              = new CreateLobbyDeprecatedOperation(
+                sdkConfiguration,
+                security);
+        CreateLobbyDeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

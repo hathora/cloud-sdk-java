@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class AppConfig {
-
     /**
      * Readable name for an application. Must be unique within an organization.
      */
@@ -51,9 +50,10 @@ public class AppConfig {
         return authConfiguration;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Readable name for an application. Must be unique within an organization.
@@ -73,7 +73,6 @@ public class AppConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,15 +83,14 @@ public class AppConfig {
         }
         AppConfig other = (AppConfig) o;
         return 
-            Objects.deepEquals(this.appName, other.appName) &&
-            Objects.deepEquals(this.authConfiguration, other.authConfiguration);
+            Utils.enhancedDeepEquals(this.appName, other.appName) &&
+            Utils.enhancedDeepEquals(this.authConfiguration, other.authConfiguration);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appName,
-            authConfiguration);
+        return Utils.enhancedHash(
+            appName, authConfiguration);
     }
     
     @Override
@@ -101,16 +99,18 @@ public class AppConfig {
                 "appName", appName,
                 "authConfiguration", authConfiguration);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String appName;
- 
+
         private AuthConfiguration authConfiguration;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Readable name for an application. Must be unique within an organization.
@@ -121,6 +121,7 @@ public class AppConfig {
             return this;
         }
 
+
         /**
          * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
          */
@@ -129,11 +130,12 @@ public class AppConfig {
             this.authConfiguration = authConfiguration;
             return this;
         }
-        
+
         public AppConfig build() {
+
             return new AppConfig(
-                appName,
-                authConfiguration);
+                appName, authConfiguration);
         }
+
     }
 }

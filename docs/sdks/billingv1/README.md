@@ -36,11 +36,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetBalanceResponse res = sdk.billingV1().getBalance()
@@ -91,11 +90,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetInvoicesResponse res = sdk.billingV1().getInvoices()
@@ -146,11 +144,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetPaymentMethodResponse res = sdk.billingV1().getPaymentMethod()
@@ -201,11 +198,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetUpcomingInvoiceItemsResponse res = sdk.billingV1().getUpcomingInvoiceItems()
@@ -256,11 +252,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetUpcomingInvoiceTotalResponse res = sdk.billingV1().getUpcomingInvoiceTotal()
@@ -312,11 +307,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         InitStripeCustomerPortalUrlResponse res = sdk.billingV1().initStripeCustomerPortalUrl()

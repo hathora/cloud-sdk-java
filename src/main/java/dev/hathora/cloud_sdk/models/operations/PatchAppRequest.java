@@ -10,13 +10,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class PatchAppRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
@@ -46,9 +47,10 @@ public class PatchAppRequest {
         return appId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PatchAppRequest withPartialAppConfigWithServiceConfig(PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig) {
         Utils.checkNotNull(partialAppConfigWithServiceConfig, "partialAppConfigWithServiceConfig");
@@ -62,13 +64,13 @@ public class PatchAppRequest {
         return this;
     }
 
+
     public PatchAppRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,15 +81,14 @@ public class PatchAppRequest {
         }
         PatchAppRequest other = (PatchAppRequest) o;
         return 
-            Objects.deepEquals(this.partialAppConfigWithServiceConfig, other.partialAppConfigWithServiceConfig) &&
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.partialAppConfigWithServiceConfig, other.partialAppConfigWithServiceConfig) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            partialAppConfigWithServiceConfig,
-            appId);
+        return Utils.enhancedHash(
+            partialAppConfigWithServiceConfig, appId);
     }
     
     @Override
@@ -96,22 +97,25 @@ public class PatchAppRequest {
                 "partialAppConfigWithServiceConfig", partialAppConfigWithServiceConfig,
                 "appId", appId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig;
- 
+
         private Optional<String> appId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder partialAppConfigWithServiceConfig(PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig) {
             Utils.checkNotNull(partialAppConfigWithServiceConfig, "partialAppConfigWithServiceConfig");
             this.partialAppConfigWithServiceConfig = partialAppConfigWithServiceConfig;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -124,11 +128,12 @@ public class PatchAppRequest {
             this.appId = appId;
             return this;
         }
-        
+
         public PatchAppRequest build() {
+
             return new PatchAppRequest(
-                partialAppConfigWithServiceConfig,
-                appId);
+                partialAppConfigWithServiceConfig, appId);
         }
+
     }
 }

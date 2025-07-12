@@ -10,10 +10,9 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class StaticProcessAllocationConfig {
-
     /**
      * The maximum number of running processes that can be spun up during upgrades
      * Invariant: minProcesses &lt;= maxProcesses
@@ -27,6 +26,7 @@ public class StaticProcessAllocationConfig {
      */
     @JsonProperty("minProcesses")
     private int minProcesses;
+
 
     @JsonProperty("region")
     private Region region;
@@ -84,9 +84,10 @@ public class StaticProcessAllocationConfig {
         return targetProcesses;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The maximum number of running processes that can be spun up during upgrades
@@ -123,7 +124,6 @@ public class StaticProcessAllocationConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -134,18 +134,16 @@ public class StaticProcessAllocationConfig {
         }
         StaticProcessAllocationConfig other = (StaticProcessAllocationConfig) o;
         return 
-            Objects.deepEquals(this.maxProcesses, other.maxProcesses) &&
-            Objects.deepEquals(this.minProcesses, other.minProcesses) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.targetProcesses, other.targetProcesses);
+            Utils.enhancedDeepEquals(this.maxProcesses, other.maxProcesses) &&
+            Utils.enhancedDeepEquals(this.minProcesses, other.minProcesses) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.targetProcesses, other.targetProcesses);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            maxProcesses,
-            minProcesses,
-            region,
+        return Utils.enhancedHash(
+            maxProcesses, minProcesses, region,
             targetProcesses);
     }
     
@@ -157,20 +155,22 @@ public class StaticProcessAllocationConfig {
                 "region", region,
                 "targetProcesses", targetProcesses);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Integer maxProcesses;
- 
+
         private Integer minProcesses;
- 
+
         private Region region;
- 
+
         private Integer targetProcesses;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The maximum number of running processes that can be spun up during upgrades
@@ -182,6 +182,7 @@ public class StaticProcessAllocationConfig {
             return this;
         }
 
+
         /**
          * The minimum running processes required during upgrades.
          * Invariant: 0 &lt;= minProcesses &lt; targetProcesses
@@ -192,11 +193,13 @@ public class StaticProcessAllocationConfig {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
+
 
         /**
          * The target number of running processes
@@ -206,13 +209,13 @@ public class StaticProcessAllocationConfig {
             this.targetProcesses = targetProcesses;
             return this;
         }
-        
+
         public StaticProcessAllocationConfig build() {
+
             return new StaticProcessAllocationConfig(
-                maxProcesses,
-                minProcesses,
-                region,
+                maxProcesses, minProcesses, region,
                 targetProcesses);
         }
+
     }
 }

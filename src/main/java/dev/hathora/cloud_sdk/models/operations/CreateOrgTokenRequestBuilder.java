@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateOrgToken;
+import dev.hathora.cloud_sdk.operations.CreateOrgTokenOperation;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class CreateOrgTokenRequestBuilder {
 
     private CreateOrgToken createOrgToken;
     private String orgId;
-    private final SDKMethodInterfaces.MethodCallCreateOrgToken sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateOrgTokenRequestBuilder(SDKMethodInterfaces.MethodCallCreateOrgToken sdk) {
-        this.sdk = sdk;
+    public CreateOrgTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateOrgTokenRequestBuilder createOrgToken(CreateOrgToken createOrgToken) {
@@ -30,10 +34,21 @@ public class CreateOrgTokenRequestBuilder {
         return this;
     }
 
-    public CreateOrgTokenResponse call() throws Exception {
 
-        return sdk.createOrgToken(
-            createOrgToken,
+    private CreateOrgTokenRequest buildRequest() {
+
+        CreateOrgTokenRequest request = new CreateOrgTokenRequest(createOrgToken,
             orgId);
+
+        return request;
+    }
+
+    public CreateOrgTokenResponse call() throws Exception {
+        
+        RequestOperation<CreateOrgTokenRequest, CreateOrgTokenResponse> operation
+              = new CreateOrgTokenOperation(sdkConfiguration);
+        CreateOrgTokenRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

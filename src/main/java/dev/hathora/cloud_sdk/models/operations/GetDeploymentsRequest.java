@@ -9,13 +9,18 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetDeploymentsRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
+
+
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buildTag")
+    private Optional<String> buildTag;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=deploymentTag")
     private Optional<String> deploymentTag;
@@ -23,15 +28,18 @@ public class GetDeploymentsRequest {
     @JsonCreator
     public GetDeploymentsRequest(
             Optional<String> appId,
+            Optional<String> buildTag,
             Optional<String> deploymentTag) {
         Utils.checkNotNull(appId, "appId");
+        Utils.checkNotNull(buildTag, "buildTag");
         Utils.checkNotNull(deploymentTag, "deploymentTag");
         this.appId = appId;
+        this.buildTag = buildTag;
         this.deploymentTag = deploymentTag;
     }
     
     public GetDeploymentsRequest() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -40,13 +48,19 @@ public class GetDeploymentsRequest {
     }
 
     @JsonIgnore
+    public Optional<String> buildTag() {
+        return buildTag;
+    }
+
+    @JsonIgnore
     public Optional<String> deploymentTag() {
         return deploymentTag;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetDeploymentsRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
@@ -54,9 +68,23 @@ public class GetDeploymentsRequest {
         return this;
     }
 
+
     public GetDeploymentsRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
+        return this;
+    }
+
+    public GetDeploymentsRequest withBuildTag(String buildTag) {
+        Utils.checkNotNull(buildTag, "buildTag");
+        this.buildTag = Optional.ofNullable(buildTag);
+        return this;
+    }
+
+
+    public GetDeploymentsRequest withBuildTag(Optional<String> buildTag) {
+        Utils.checkNotNull(buildTag, "buildTag");
+        this.buildTag = buildTag;
         return this;
     }
 
@@ -66,13 +94,13 @@ public class GetDeploymentsRequest {
         return this;
     }
 
+
     public GetDeploymentsRequest withDeploymentTag(Optional<String> deploymentTag) {
         Utils.checkNotNull(deploymentTag, "deploymentTag");
         this.deploymentTag = deploymentTag;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -83,33 +111,38 @@ public class GetDeploymentsRequest {
         }
         GetDeploymentsRequest other = (GetDeploymentsRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.deploymentTag, other.deploymentTag);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.buildTag, other.buildTag) &&
+            Utils.enhancedDeepEquals(this.deploymentTag, other.deploymentTag);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            deploymentTag);
+        return Utils.enhancedHash(
+            appId, buildTag, deploymentTag);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetDeploymentsRequest.class,
                 "appId", appId,
+                "buildTag", buildTag,
                 "deploymentTag", deploymentTag);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
+        private Optional<String> buildTag = Optional.empty();
+
         private Optional<String> deploymentTag = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -123,6 +156,20 @@ public class GetDeploymentsRequest {
             return this;
         }
 
+
+        public Builder buildTag(String buildTag) {
+            Utils.checkNotNull(buildTag, "buildTag");
+            this.buildTag = Optional.ofNullable(buildTag);
+            return this;
+        }
+
+        public Builder buildTag(Optional<String> buildTag) {
+            Utils.checkNotNull(buildTag, "buildTag");
+            this.buildTag = buildTag;
+            return this;
+        }
+
+
         public Builder deploymentTag(String deploymentTag) {
             Utils.checkNotNull(deploymentTag, "deploymentTag");
             this.deploymentTag = Optional.ofNullable(deploymentTag);
@@ -134,11 +181,12 @@ public class GetDeploymentsRequest {
             this.deploymentTag = deploymentTag;
             return this;
         }
-        
+
         public GetDeploymentsRequest build() {
+
             return new GetDeploymentsRequest(
-                appId,
-                deploymentTag);
+                appId, buildTag, deploymentTag);
         }
+
     }
 }
