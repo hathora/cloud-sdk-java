@@ -10,16 +10,18 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class RunBuildRegistryRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private RegistryConfig registryConfig;
 
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buildId")
     private String buildId;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
     private Optional<String> orgId;
@@ -58,9 +60,10 @@ public class RunBuildRegistryRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RunBuildRegistryRequest withRegistryConfig(RegistryConfig registryConfig) {
         Utils.checkNotNull(registryConfig, "registryConfig");
@@ -80,13 +83,13 @@ public class RunBuildRegistryRequest {
         return this;
     }
 
+
     public RunBuildRegistryRequest withOrgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,17 +100,15 @@ public class RunBuildRegistryRequest {
         }
         RunBuildRegistryRequest other = (RunBuildRegistryRequest) o;
         return 
-            Objects.deepEquals(this.registryConfig, other.registryConfig) &&
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.registryConfig, other.registryConfig) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            registryConfig,
-            buildId,
-            orgId);
+        return Utils.enhancedHash(
+            registryConfig, buildId, orgId);
     }
     
     @Override
@@ -117,18 +118,20 @@ public class RunBuildRegistryRequest {
                 "buildId", buildId,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private RegistryConfig registryConfig;
- 
+
         private String buildId;
- 
+
         private Optional<String> orgId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder registryConfig(RegistryConfig registryConfig) {
             Utils.checkNotNull(registryConfig, "registryConfig");
@@ -136,11 +139,13 @@ public class RunBuildRegistryRequest {
             return this;
         }
 
+
         public Builder buildId(String buildId) {
             Utils.checkNotNull(buildId, "buildId");
             this.buildId = buildId;
             return this;
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -153,12 +158,12 @@ public class RunBuildRegistryRequest {
             this.orgId = orgId;
             return this;
         }
-        
+
         public RunBuildRegistryRequest build() {
+
             return new RunBuildRegistryRequest(
-                registryConfig,
-                buildId,
-                orgId);
+                registryConfig, buildId, orgId);
         }
+
     }
 }

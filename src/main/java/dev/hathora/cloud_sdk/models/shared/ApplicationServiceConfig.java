@@ -10,10 +10,9 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class ApplicationServiceConfig {
-
     /**
      * The headroom configuration for each region.
      * EXPERIMENTAL - this feature is in closed beta.
@@ -37,9 +36,10 @@ public class ApplicationServiceConfig {
         return staticProcessAllocation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The headroom configuration for each region.
@@ -51,7 +51,6 @@ public class ApplicationServiceConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -62,12 +61,12 @@ public class ApplicationServiceConfig {
         }
         ApplicationServiceConfig other = (ApplicationServiceConfig) o;
         return 
-            Objects.deepEquals(this.staticProcessAllocation, other.staticProcessAllocation);
+            Utils.enhancedDeepEquals(this.staticProcessAllocation, other.staticProcessAllocation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             staticProcessAllocation);
     }
     
@@ -76,14 +75,16 @@ public class ApplicationServiceConfig {
         return Utils.toString(ApplicationServiceConfig.class,
                 "staticProcessAllocation", staticProcessAllocation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<StaticProcessAllocationConfig> staticProcessAllocation;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The headroom configuration for each region.
@@ -94,10 +95,12 @@ public class ApplicationServiceConfig {
             this.staticProcessAllocation = staticProcessAllocation;
             return this;
         }
-        
+
         public ApplicationServiceConfig build() {
+
             return new ApplicationServiceConfig(
                 staticProcessAllocation);
         }
+
     }
 }

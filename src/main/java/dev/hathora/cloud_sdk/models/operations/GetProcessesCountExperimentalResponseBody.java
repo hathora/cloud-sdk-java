@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * GetProcessesCountExperimentalResponseBody
@@ -34,9 +33,10 @@ public class GetProcessesCountExperimentalResponseBody {
         return count;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetProcessesCountExperimentalResponseBody withCount(double count) {
         Utils.checkNotNull(count, "count");
@@ -44,7 +44,6 @@ public class GetProcessesCountExperimentalResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -55,12 +54,12 @@ public class GetProcessesCountExperimentalResponseBody {
         }
         GetProcessesCountExperimentalResponseBody other = (GetProcessesCountExperimentalResponseBody) o;
         return 
-            Objects.deepEquals(this.count, other.count);
+            Utils.enhancedDeepEquals(this.count, other.count);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             count);
     }
     
@@ -69,24 +68,28 @@ public class GetProcessesCountExperimentalResponseBody {
         return Utils.toString(GetProcessesCountExperimentalResponseBody.class,
                 "count", count);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Double count;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder count(double count) {
             Utils.checkNotNull(count, "count");
             this.count = count;
             return this;
         }
-        
+
         public GetProcessesCountExperimentalResponseBody build() {
+
             return new GetProcessesCountExperimentalResponseBody(
                 count);
         }
+
     }
 }

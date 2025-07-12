@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -79,15 +78,17 @@ public class Fleet {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Fleet withAutoscalerConfig(AutoscalerConfig autoscalerConfig) {
         Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
         this.autoscalerConfig = Optional.ofNullable(autoscalerConfig);
         return this;
     }
+
 
     public Fleet withAutoscalerConfig(Optional<? extends AutoscalerConfig> autoscalerConfig) {
         Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
@@ -113,7 +114,6 @@ public class Fleet {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -124,17 +124,15 @@ public class Fleet {
         }
         Fleet other = (Fleet) o;
         return 
-            Objects.deepEquals(this.autoscalerConfig, other.autoscalerConfig) &&
-            Objects.deepEquals(this.fleetId, other.fleetId) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.autoscalerConfig, other.autoscalerConfig) &&
+            Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            autoscalerConfig,
-            fleetId,
-            orgId);
+        return Utils.enhancedHash(
+            autoscalerConfig, fleetId, orgId);
     }
     
     @Override
@@ -144,18 +142,20 @@ public class Fleet {
                 "fleetId", fleetId,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends AutoscalerConfig> autoscalerConfig = Optional.empty();
- 
+
         private String fleetId;
- 
+
         private String orgId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder autoscalerConfig(AutoscalerConfig autoscalerConfig) {
             Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
@@ -169,6 +169,7 @@ public class Fleet {
             return this;
         }
 
+
         /**
          * the id of the fleet
          */
@@ -178,6 +179,7 @@ public class Fleet {
             return this;
         }
 
+
         /**
          * System generated unique identifier for an organization. Not guaranteed to have a specific format.
          */
@@ -186,12 +188,12 @@ public class Fleet {
             this.orgId = orgId;
             return this;
         }
-        
+
         public Fleet build() {
+
             return new Fleet(
-                autoscalerConfig,
-                fleetId,
-                orgId);
+                autoscalerConfig, fleetId, orgId);
         }
+
     }
 }

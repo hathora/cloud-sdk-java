@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -26,7 +25,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>A build represents a game server artifact and its associated metadata.
  */
 public class BuildWithUploadUrl {
-
     /**
      * System generated unique identifier for an application.
      */
@@ -39,6 +37,7 @@ public class BuildWithUploadUrl {
     @JsonProperty("buildId")
     private int buildId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buildTag")
     private JsonNullable<String> buildTag;
@@ -48,6 +47,7 @@ public class BuildWithUploadUrl {
      */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("createdBy")
     private String createdBy;
@@ -94,11 +94,14 @@ public class BuildWithUploadUrl {
     @JsonProperty("startedAt")
     private Optional<OffsetDateTime> startedAt;
 
+
     @JsonProperty("status")
     private BuildStatus status;
 
+
     @JsonProperty("uploadBodyParams")
     private List<UploadBodyParams> uploadBodyParams;
+
 
     @JsonProperty("uploadUrl")
     private String uploadUrl;
@@ -159,7 +162,11 @@ public class BuildWithUploadUrl {
             BuildStatus status,
             List<UploadBodyParams> uploadBodyParams,
             String uploadUrl) {
-        this(appId, buildId, JsonNullable.undefined(), createdAt, createdBy, Optional.empty(), Optional.empty(), Optional.empty(), imageSize, regionalContainerTags, Optional.empty(), status, uploadBodyParams, uploadUrl);
+        this(appId, buildId, JsonNullable.undefined(),
+            createdAt, createdBy, Optional.empty(),
+            Optional.empty(), Optional.empty(), imageSize,
+            regionalContainerTags, Optional.empty(), status,
+            uploadBodyParams, uploadUrl);
     }
 
     /**
@@ -261,9 +268,10 @@ public class BuildWithUploadUrl {
         return uploadUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * System generated unique identifier for an application.
@@ -319,6 +327,7 @@ public class BuildWithUploadUrl {
         return this;
     }
 
+
     /**
      * When the build was deleted.
      */
@@ -337,6 +346,7 @@ public class BuildWithUploadUrl {
         return this;
     }
 
+
     /**
      * When the build expired
      */
@@ -354,6 +364,7 @@ public class BuildWithUploadUrl {
         this.finishedAt = Optional.ofNullable(finishedAt);
         return this;
     }
+
 
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
@@ -393,6 +404,7 @@ public class BuildWithUploadUrl {
         return this;
     }
 
+
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
@@ -420,7 +432,6 @@ public class BuildWithUploadUrl {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -431,39 +442,30 @@ public class BuildWithUploadUrl {
         }
         BuildWithUploadUrl other = (BuildWithUploadUrl) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.buildTag, other.buildTag) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.deletedAt, other.deletedAt) &&
-            Objects.deepEquals(this.expiredAt, other.expiredAt) &&
-            Objects.deepEquals(this.finishedAt, other.finishedAt) &&
-            Objects.deepEquals(this.imageSize, other.imageSize) &&
-            Objects.deepEquals(this.regionalContainerTags, other.regionalContainerTags) &&
-            Objects.deepEquals(this.startedAt, other.startedAt) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.uploadBodyParams, other.uploadBodyParams) &&
-            Objects.deepEquals(this.uploadUrl, other.uploadUrl);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.buildTag, other.buildTag) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.deletedAt, other.deletedAt) &&
+            Utils.enhancedDeepEquals(this.expiredAt, other.expiredAt) &&
+            Utils.enhancedDeepEquals(this.finishedAt, other.finishedAt) &&
+            Utils.enhancedDeepEquals(this.imageSize, other.imageSize) &&
+            Utils.enhancedDeepEquals(this.regionalContainerTags, other.regionalContainerTags) &&
+            Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.uploadBodyParams, other.uploadBodyParams) &&
+            Utils.enhancedDeepEquals(this.uploadUrl, other.uploadUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            buildId,
-            buildTag,
-            createdAt,
-            createdBy,
-            deletedAt,
-            expiredAt,
-            finishedAt,
-            imageSize,
-            regionalContainerTags,
-            startedAt,
-            status,
-            uploadBodyParams,
-            uploadUrl);
+        return Utils.enhancedHash(
+            appId, buildId, buildTag,
+            createdAt, createdBy, deletedAt,
+            expiredAt, finishedAt, imageSize,
+            regionalContainerTags, startedAt, status,
+            uploadBodyParams, uploadUrl);
     }
     
     @Override
@@ -484,41 +486,43 @@ public class BuildWithUploadUrl {
                 "uploadBodyParams", uploadBodyParams,
                 "uploadUrl", uploadUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String appId;
- 
+
         private Integer buildId;
- 
+
         private JsonNullable<String> buildTag = JsonNullable.undefined();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String createdBy;
- 
+
         private Optional<OffsetDateTime> deletedAt = Optional.empty();
- 
+
         private Optional<OffsetDateTime> expiredAt = Optional.empty();
- 
+
         private Optional<OffsetDateTime> finishedAt = Optional.empty();
- 
+
         private Long imageSize;
- 
+
         @Deprecated
         private List<BuildWithUploadUrlRegionalContainerTags> regionalContainerTags;
- 
+
         private Optional<OffsetDateTime> startedAt = Optional.empty();
- 
+
         private BuildStatus status;
- 
+
         private List<UploadBodyParams> uploadBodyParams;
- 
+
         private String uploadUrl;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * System generated unique identifier for an application.
@@ -529,6 +533,7 @@ public class BuildWithUploadUrl {
             return this;
         }
 
+
         /**
          * System generated id for a build. Increments by 1.
          */
@@ -537,6 +542,7 @@ public class BuildWithUploadUrl {
             this.buildId = buildId;
             return this;
         }
+
 
         public Builder buildTag(String buildTag) {
             Utils.checkNotNull(buildTag, "buildTag");
@@ -550,6 +556,7 @@ public class BuildWithUploadUrl {
             return this;
         }
 
+
         /**
          * When [`CreateBuild()`](https://hathora.dev/api#tag/BuildV2/operation/CreateBuild) is called.
          */
@@ -559,11 +566,13 @@ public class BuildWithUploadUrl {
             return this;
         }
 
+
         public Builder createdBy(String createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * When the build was deleted.
@@ -583,6 +592,7 @@ public class BuildWithUploadUrl {
             return this;
         }
 
+
         /**
          * When the build expired
          */
@@ -600,6 +610,7 @@ public class BuildWithUploadUrl {
             this.expiredAt = expiredAt;
             return this;
         }
+
 
         /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
@@ -619,6 +630,7 @@ public class BuildWithUploadUrl {
             return this;
         }
 
+
         /**
          * The size (in bytes) of the Docker image built by Hathora.
          */
@@ -627,6 +639,7 @@ public class BuildWithUploadUrl {
             this.imageSize = imageSize;
             return this;
         }
+
 
         /**
          * 
@@ -638,6 +651,7 @@ public class BuildWithUploadUrl {
             this.regionalContainerTags = regionalContainerTags;
             return this;
         }
+
 
         /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
@@ -657,11 +671,13 @@ public class BuildWithUploadUrl {
             return this;
         }
 
+
         public Builder status(BuildStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         public Builder uploadBodyParams(List<UploadBodyParams> uploadBodyParams) {
             Utils.checkNotNull(uploadBodyParams, "uploadBodyParams");
@@ -669,28 +685,22 @@ public class BuildWithUploadUrl {
             return this;
         }
 
+
         public Builder uploadUrl(String uploadUrl) {
             Utils.checkNotNull(uploadUrl, "uploadUrl");
             this.uploadUrl = uploadUrl;
             return this;
         }
-        
+
         public BuildWithUploadUrl build() {
+
             return new BuildWithUploadUrl(
-                appId,
-                buildId,
-                buildTag,
-                createdAt,
-                createdBy,
-                deletedAt,
-                expiredAt,
-                finishedAt,
-                imageSize,
-                regionalContainerTags,
-                startedAt,
-                status,
-                uploadBodyParams,
-                uploadUrl);
+                appId, buildId, buildTag,
+                createdAt, createdBy, deletedAt,
+                expiredAt, finishedAt, imageSize,
+                regionalContainerTags, startedAt, status,
+                uploadBodyParams, uploadUrl);
         }
+
     }
 }

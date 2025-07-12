@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -26,7 +25,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>A lobby object allows you to store and manage metadata for your rooms.
  */
 public class Lobby {
-
     /**
      * System generated unique identifier for an application.
      */
@@ -59,6 +57,7 @@ public class Lobby {
     @Deprecated
     private boolean local;
 
+
     @JsonProperty("region")
     private Region region;
 
@@ -68,6 +67,7 @@ public class Lobby {
      */
     @JsonProperty("roomId")
     private String roomId;
+
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("shortCode")
@@ -135,7 +135,10 @@ public class Lobby {
             Region region,
             String roomId,
             LobbyVisibility visibility) {
-        this(appId, createdAt, createdBy, initialConfig, local, region, roomId, Optional.empty(), JsonNullable.undefined(), visibility);
+        this(appId, createdAt, createdBy,
+            initialConfig, local, region,
+            roomId, Optional.empty(), JsonNullable.undefined(),
+            visibility);
     }
 
     /**
@@ -222,9 +225,10 @@ public class Lobby {
         return visibility;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * System generated unique identifier for an application.
@@ -295,6 +299,7 @@ public class Lobby {
         return this;
     }
 
+
     public Lobby withShortCode(Optional<String> shortCode) {
         Utils.checkNotNull(shortCode, "shortCode");
         this.shortCode = shortCode;
@@ -334,7 +339,6 @@ public class Lobby {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -345,30 +349,24 @@ public class Lobby {
         }
         Lobby other = (Lobby) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.initialConfig, other.initialConfig) &&
-            Objects.deepEquals(this.local, other.local) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.roomId, other.roomId) &&
-            Objects.deepEquals(this.shortCode, other.shortCode) &&
-            Objects.deepEquals(this.state, other.state) &&
-            Objects.deepEquals(this.visibility, other.visibility);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.initialConfig, other.initialConfig) &&
+            Utils.enhancedDeepEquals(this.local, other.local) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId) &&
+            Utils.enhancedDeepEquals(this.shortCode, other.shortCode) &&
+            Utils.enhancedDeepEquals(this.state, other.state) &&
+            Utils.enhancedDeepEquals(this.visibility, other.visibility);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            createdAt,
-            createdBy,
-            initialConfig,
-            local,
-            region,
-            roomId,
-            shortCode,
-            state,
+        return Utils.enhancedHash(
+            appId, createdAt, createdBy,
+            initialConfig, local, region,
+            roomId, shortCode, state,
             visibility);
     }
     
@@ -386,33 +384,35 @@ public class Lobby {
                 "state", state,
                 "visibility", visibility);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String appId;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private CreatedBy createdBy;
- 
+
         private Object initialConfig;
- 
+
         @Deprecated
         private Boolean local;
- 
+
         private Region region;
- 
+
         private String roomId;
- 
+
         private Optional<String> shortCode = Optional.empty();
- 
+
         private JsonNullable<? extends Object> state = JsonNullable.undefined();
- 
+
         private LobbyVisibility visibility;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * System generated unique identifier for an application.
@@ -423,6 +423,7 @@ public class Lobby {
             return this;
         }
 
+
         /**
          * When the lobby was created.
          */
@@ -431,6 +432,7 @@ public class Lobby {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * UserId or email address for the user that created the lobby.
@@ -441,6 +443,7 @@ public class Lobby {
             return this;
         }
 
+
         /**
          * User input to initialize the game state. Object must be smaller than 64KB.
          */
@@ -449,6 +452,7 @@ public class Lobby {
             this.initialConfig = initialConfig;
             return this;
         }
+
 
         /**
          * 
@@ -461,11 +465,13 @@ public class Lobby {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
+
 
         /**
          * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
@@ -476,6 +482,7 @@ public class Lobby {
             this.roomId = roomId;
             return this;
         }
+
 
         public Builder shortCode(String shortCode) {
             Utils.checkNotNull(shortCode, "shortCode");
@@ -488,6 +495,7 @@ public class Lobby {
             this.shortCode = shortCode;
             return this;
         }
+
 
         /**
          * JSON blob to store metadata for a room. Must be smaller than 1MB.
@@ -507,6 +515,7 @@ public class Lobby {
             return this;
         }
 
+
         /**
          * Types of lobbies a player can create.
          * 
@@ -521,19 +530,15 @@ public class Lobby {
             this.visibility = visibility;
             return this;
         }
-        
+
         public Lobby build() {
+
             return new Lobby(
-                appId,
-                createdAt,
-                createdBy,
-                initialConfig,
-                local,
-                region,
-                roomId,
-                shortCode,
-                state,
+                appId, createdAt, createdBy,
+                initialConfig, local, region,
+                roomId, shortCode, state,
                 visibility);
         }
+
     }
 }

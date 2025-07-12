@@ -10,16 +10,18 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class UpdateFleetRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private UpdateFleet updateFleet;
 
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=fleetId")
     private String fleetId;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
     private Optional<String> orgId;
@@ -58,9 +60,10 @@ public class UpdateFleetRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateFleetRequest withUpdateFleet(UpdateFleet updateFleet) {
         Utils.checkNotNull(updateFleet, "updateFleet");
@@ -80,13 +83,13 @@ public class UpdateFleetRequest {
         return this;
     }
 
+
     public UpdateFleetRequest withOrgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,17 +100,15 @@ public class UpdateFleetRequest {
         }
         UpdateFleetRequest other = (UpdateFleetRequest) o;
         return 
-            Objects.deepEquals(this.updateFleet, other.updateFleet) &&
-            Objects.deepEquals(this.fleetId, other.fleetId) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.updateFleet, other.updateFleet) &&
+            Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            updateFleet,
-            fleetId,
-            orgId);
+        return Utils.enhancedHash(
+            updateFleet, fleetId, orgId);
     }
     
     @Override
@@ -117,18 +118,20 @@ public class UpdateFleetRequest {
                 "fleetId", fleetId,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private UpdateFleet updateFleet;
- 
+
         private String fleetId;
- 
+
         private Optional<String> orgId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder updateFleet(UpdateFleet updateFleet) {
             Utils.checkNotNull(updateFleet, "updateFleet");
@@ -136,11 +139,13 @@ public class UpdateFleetRequest {
             return this;
         }
 
+
         public Builder fleetId(String fleetId) {
             Utils.checkNotNull(fleetId, "fleetId");
             this.fleetId = fleetId;
             return this;
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -153,12 +158,12 @@ public class UpdateFleetRequest {
             this.orgId = orgId;
             return this;
         }
-        
+
         public UpdateFleetRequest build() {
+
             return new UpdateFleetRequest(
-                updateFleet,
-                fleetId,
-                orgId);
+                updateFleet, fleetId, orgId);
         }
+
     }
 }

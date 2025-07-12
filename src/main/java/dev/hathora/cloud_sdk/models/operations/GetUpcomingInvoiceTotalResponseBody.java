@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * GetUpcomingInvoiceTotalResponseBody
@@ -34,9 +33,10 @@ public class GetUpcomingInvoiceTotalResponseBody {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetUpcomingInvoiceTotalResponseBody withValue(double value) {
         Utils.checkNotNull(value, "value");
@@ -44,7 +44,6 @@ public class GetUpcomingInvoiceTotalResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -55,12 +54,12 @@ public class GetUpcomingInvoiceTotalResponseBody {
         }
         GetUpcomingInvoiceTotalResponseBody other = (GetUpcomingInvoiceTotalResponseBody) o;
         return 
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             value);
     }
     
@@ -69,24 +68,28 @@ public class GetUpcomingInvoiceTotalResponseBody {
         return Utils.toString(GetUpcomingInvoiceTotalResponseBody.class,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Double value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder value(double value) {
             Utils.checkNotNull(value, "value");
             this.value = value;
             return this;
         }
-        
+
         public GetUpcomingInvoiceTotalResponseBody build() {
+
             return new GetUpcomingInvoiceTotalResponseBody(
                 value);
         }
+
     }
 }

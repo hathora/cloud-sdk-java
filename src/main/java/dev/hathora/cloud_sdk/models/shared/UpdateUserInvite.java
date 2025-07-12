@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class UpdateUserInvite {
-
     /**
      * Scopes can only be removed or added if a user has those scopes.
      */
@@ -51,9 +50,10 @@ public class UpdateUserInvite {
         return userEmail;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Scopes can only be removed or added if a user has those scopes.
@@ -73,7 +73,6 @@ public class UpdateUserInvite {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,15 +83,14 @@ public class UpdateUserInvite {
         }
         UpdateUserInvite other = (UpdateUserInvite) o;
         return 
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.userEmail, other.userEmail);
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.userEmail, other.userEmail);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            scopes,
-            userEmail);
+        return Utils.enhancedHash(
+            scopes, userEmail);
     }
     
     @Override
@@ -101,16 +99,18 @@ public class UpdateUserInvite {
                 "scopes", scopes,
                 "userEmail", userEmail);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private UpdateUserInviteScopes scopes;
- 
+
         private String userEmail;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Scopes can only be removed or added if a user has those scopes.
@@ -121,6 +121,7 @@ public class UpdateUserInvite {
             return this;
         }
 
+
         /**
          * A user's email.
          */
@@ -129,11 +130,12 @@ public class UpdateUserInvite {
             this.userEmail = userEmail;
             return this;
         }
-        
+
         public UpdateUserInvite build() {
+
             return new UpdateUserInvite(
-                scopes,
-                userEmail);
+                scopes, userEmail);
         }
+
     }
 }

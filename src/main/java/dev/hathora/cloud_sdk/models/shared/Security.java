@@ -10,8 +10,8 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Security implements HasSecurity {
 
@@ -34,9 +34,10 @@ public class Security implements HasSecurity {
         return hathoraDevToken;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Security withHathoraDevToken(String hathoraDevToken) {
         Utils.checkNotNull(hathoraDevToken, "hathoraDevToken");
@@ -44,13 +45,13 @@ public class Security implements HasSecurity {
         return this;
     }
 
+
     public Security withHathoraDevToken(Optional<String> hathoraDevToken) {
         Utils.checkNotNull(hathoraDevToken, "hathoraDevToken");
         this.hathoraDevToken = hathoraDevToken;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -61,12 +62,12 @@ public class Security implements HasSecurity {
         }
         Security other = (Security) o;
         return 
-            Objects.deepEquals(this.hathoraDevToken, other.hathoraDevToken);
+            Utils.enhancedDeepEquals(this.hathoraDevToken, other.hathoraDevToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             hathoraDevToken);
     }
     
@@ -75,14 +76,16 @@ public class Security implements HasSecurity {
         return Utils.toString(Security.class,
                 "hathoraDevToken", hathoraDevToken);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> hathoraDevToken = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder hathoraDevToken(String hathoraDevToken) {
             Utils.checkNotNull(hathoraDevToken, "hathoraDevToken");
@@ -95,10 +98,12 @@ public class Security implements HasSecurity {
             this.hathoraDevToken = hathoraDevToken;
             return this;
         }
-        
+
         public Security build() {
+
             return new Security(
                 hathoraDevToken);
         }
+
     }
 }

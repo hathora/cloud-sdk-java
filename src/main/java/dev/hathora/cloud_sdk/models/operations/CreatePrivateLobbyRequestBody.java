@@ -11,15 +11,15 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class CreatePrivateLobbyRequestBody {
-
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
      */
     @JsonProperty("initialConfig")
     private Object initialConfig;
+
 
     @JsonProperty("region")
     private Region region;
@@ -47,9 +47,10 @@ public class CreatePrivateLobbyRequestBody {
         return region;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * User input to initialize the game state. Object must be smaller than 64KB.
@@ -66,7 +67,6 @@ public class CreatePrivateLobbyRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -77,15 +77,14 @@ public class CreatePrivateLobbyRequestBody {
         }
         CreatePrivateLobbyRequestBody other = (CreatePrivateLobbyRequestBody) o;
         return 
-            Objects.deepEquals(this.initialConfig, other.initialConfig) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.initialConfig, other.initialConfig) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            initialConfig,
-            region);
+        return Utils.enhancedHash(
+            initialConfig, region);
     }
     
     @Override
@@ -94,16 +93,18 @@ public class CreatePrivateLobbyRequestBody {
                 "initialConfig", initialConfig,
                 "region", region);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Object initialConfig;
- 
+
         private Region region;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * User input to initialize the game state. Object must be smaller than 64KB.
@@ -114,16 +115,18 @@ public class CreatePrivateLobbyRequestBody {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
-        
+
         public CreatePrivateLobbyRequestBody build() {
+
             return new CreatePrivateLobbyRequestBody(
-                initialConfig,
-                region);
+                initialConfig, region);
         }
+
     }
 }

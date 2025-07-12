@@ -9,12 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class BuildWithMultipartUrlsRegionalContainerTags {
 
     @JsonProperty("containerTag")
     private String containerTag;
+
 
     @JsonProperty("region")
     private Region region;
@@ -39,9 +40,10 @@ public class BuildWithMultipartUrlsRegionalContainerTags {
         return region;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public BuildWithMultipartUrlsRegionalContainerTags withContainerTag(String containerTag) {
         Utils.checkNotNull(containerTag, "containerTag");
@@ -55,7 +57,6 @@ public class BuildWithMultipartUrlsRegionalContainerTags {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,15 +67,14 @@ public class BuildWithMultipartUrlsRegionalContainerTags {
         }
         BuildWithMultipartUrlsRegionalContainerTags other = (BuildWithMultipartUrlsRegionalContainerTags) o;
         return 
-            Objects.deepEquals(this.containerTag, other.containerTag) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.containerTag, other.containerTag) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            containerTag,
-            region);
+        return Utils.enhancedHash(
+            containerTag, region);
     }
     
     @Override
@@ -83,16 +83,18 @@ public class BuildWithMultipartUrlsRegionalContainerTags {
                 "containerTag", containerTag,
                 "region", region);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String containerTag;
- 
+
         private Region region;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder containerTag(String containerTag) {
             Utils.checkNotNull(containerTag, "containerTag");
@@ -100,16 +102,18 @@ public class BuildWithMultipartUrlsRegionalContainerTags {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
-        
+
         public BuildWithMultipartUrlsRegionalContainerTags build() {
+
             return new BuildWithMultipartUrlsRegionalContainerTags(
-                containerTag,
-                region);
+                containerTag, region);
         }
+
     }
 }
