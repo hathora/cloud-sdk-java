@@ -19,7 +19,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -28,7 +27,6 @@ import java.util.Optional;
  * <p>Deployment is a versioned configuration for a build that describes runtime behavior.
  */
 public class DeploymentV1 {
-
     /**
      * Additional ports your server listens on.
      */
@@ -60,6 +58,7 @@ public class DeploymentV1 {
      */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("createdBy")
     private String createdBy;
@@ -194,7 +193,11 @@ public class DeploymentV1 {
             int requestedMemoryMB,
             int roomsPerProcess,
             DeploymentV1TransportType transportType) {
-        this(additionalContainerPorts, appId, buildId, containerPort, createdAt, createdBy, defaultContainerPort, deploymentId, env, Optional.empty(), planName, requestedCPU, requestedMemoryMB, roomsPerProcess, transportType);
+        this(additionalContainerPorts, appId, buildId,
+            containerPort, createdAt, createdBy,
+            defaultContainerPort, deploymentId, env,
+            Optional.empty(), planName, requestedCPU,
+            requestedMemoryMB, roomsPerProcess, transportType);
     }
 
     /**
@@ -327,9 +330,10 @@ public class DeploymentV1 {
         return transportType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Additional ports your server listens on.
@@ -421,6 +425,7 @@ public class DeploymentV1 {
         return this;
     }
 
+
     /**
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
@@ -486,7 +491,6 @@ public class DeploymentV1 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -497,41 +501,31 @@ public class DeploymentV1 {
         }
         DeploymentV1 other = (DeploymentV1) o;
         return 
-            Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.containerPort, other.containerPort) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
-            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            Objects.deepEquals(this.env, other.env) &&
-            Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
-            Objects.deepEquals(this.planName, other.planName) &&
-            Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
-            Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
-            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            Objects.deepEquals(this.transportType, other.transportType);
+            Utils.enhancedDeepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.containerPort, other.containerPort) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
+            Utils.enhancedDeepEquals(this.deploymentId, other.deploymentId) &&
+            Utils.enhancedDeepEquals(this.env, other.env) &&
+            Utils.enhancedDeepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
+            Utils.enhancedDeepEquals(this.planName, other.planName) &&
+            Utils.enhancedDeepEquals(this.requestedCPU, other.requestedCPU) &&
+            Utils.enhancedDeepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
+            Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Utils.enhancedDeepEquals(this.transportType, other.transportType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            additionalContainerPorts,
-            appId,
-            buildId,
-            containerPort,
-            createdAt,
-            createdBy,
-            defaultContainerPort,
-            deploymentId,
-            env,
-            idleTimeoutEnabled,
-            planName,
-            requestedCPU,
-            requestedMemoryMB,
-            roomsPerProcess,
-            transportType);
+        return Utils.enhancedHash(
+            additionalContainerPorts, appId, buildId,
+            containerPort, createdAt, createdBy,
+            defaultContainerPort, deploymentId, env,
+            idleTimeoutEnabled, planName, requestedCPU,
+            requestedMemoryMB, roomsPerProcess, transportType);
     }
     
     @Override
@@ -553,44 +547,46 @@ public class DeploymentV1 {
                 "roomsPerProcess", roomsPerProcess,
                 "transportType", transportType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<ContainerPort> additionalContainerPorts;
- 
+
         private String appId;
- 
+
         private Integer buildId;
- 
+
         @Deprecated
         private Double containerPort;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String createdBy;
- 
+
         private ContainerPort defaultContainerPort;
- 
+
         private Integer deploymentId;
- 
+
         private List<DeploymentV1Env> env;
- 
+
         private Optional<Boolean> idleTimeoutEnabled;
- 
+
         private PlanName planName;
- 
+
         private Double requestedCPU;
- 
+
         private Integer requestedMemoryMB;
- 
+
         private Integer roomsPerProcess;
- 
+
         @Deprecated
         private DeploymentV1TransportType transportType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Additional ports your server listens on.
@@ -601,6 +597,7 @@ public class DeploymentV1 {
             return this;
         }
 
+
         /**
          * System generated unique identifier for an application.
          */
@@ -610,6 +607,7 @@ public class DeploymentV1 {
             return this;
         }
 
+
         /**
          * System generated id for a build. Increments by 1.
          */
@@ -618,6 +616,7 @@ public class DeploymentV1 {
             this.buildId = buildId;
             return this;
         }
+
 
         /**
          * 
@@ -630,6 +629,7 @@ public class DeploymentV1 {
             return this;
         }
 
+
         /**
          * When the deployment was created.
          */
@@ -639,11 +639,13 @@ public class DeploymentV1 {
             return this;
         }
 
+
         public Builder createdBy(String createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * A container port object represents the transport configruations for how your server will listen.
@@ -654,6 +656,7 @@ public class DeploymentV1 {
             return this;
         }
 
+
         /**
          * System generated id for a deployment. Increments by 1.
          */
@@ -663,6 +666,7 @@ public class DeploymentV1 {
             return this;
         }
 
+
         /**
          * The environment variable that our process will have access to at runtime.
          */
@@ -671,6 +675,7 @@ public class DeploymentV1 {
             this.env = env;
             return this;
         }
+
 
         /**
          * Option to shut down processes that have had no new connections or rooms
@@ -692,6 +697,7 @@ public class DeploymentV1 {
             return this;
         }
 
+
         /**
          * A plan defines how much CPU and memory is required to run an instance of your game server.
          * 
@@ -709,6 +715,7 @@ public class DeploymentV1 {
             return this;
         }
 
+
         /**
          * The number of cores allocated to your process.
          */
@@ -717,6 +724,7 @@ public class DeploymentV1 {
             this.requestedCPU = requestedCPU;
             return this;
         }
+
 
         /**
          * The amount of memory allocated to your process.
@@ -727,6 +735,7 @@ public class DeploymentV1 {
             return this;
         }
 
+
         /**
          * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
          */
@@ -735,6 +744,7 @@ public class DeploymentV1 {
             this.roomsPerProcess = roomsPerProcess;
             return this;
         }
+
 
         /**
          * 
@@ -746,28 +756,20 @@ public class DeploymentV1 {
             this.transportType = transportType;
             return this;
         }
-        
+
         public DeploymentV1 build() {
             if (idleTimeoutEnabled == null) {
                 idleTimeoutEnabled = _SINGLETON_VALUE_IdleTimeoutEnabled.value();
             }
+
             return new DeploymentV1(
-                additionalContainerPorts,
-                appId,
-                buildId,
-                containerPort,
-                createdAt,
-                createdBy,
-                defaultContainerPort,
-                deploymentId,
-                env,
-                idleTimeoutEnabled,
-                planName,
-                requestedCPU,
-                requestedMemoryMB,
-                roomsPerProcess,
-                transportType);
+                additionalContainerPorts, appId, buildId,
+                containerPort, createdAt, createdBy,
+                defaultContainerPort, deploymentId, env,
+                idleTimeoutEnabled, planName, requestedCPU,
+                requestedMemoryMB, roomsPerProcess, transportType);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_IdleTimeoutEnabled =
                 new LazySingletonValue<>(

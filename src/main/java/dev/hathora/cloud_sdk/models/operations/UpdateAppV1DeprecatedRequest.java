@@ -10,13 +10,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class UpdateAppV1DeprecatedRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private AppConfig appConfig;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
@@ -46,9 +47,10 @@ public class UpdateAppV1DeprecatedRequest {
         return appId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateAppV1DeprecatedRequest withAppConfig(AppConfig appConfig) {
         Utils.checkNotNull(appConfig, "appConfig");
@@ -62,13 +64,13 @@ public class UpdateAppV1DeprecatedRequest {
         return this;
     }
 
+
     public UpdateAppV1DeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,15 +81,14 @@ public class UpdateAppV1DeprecatedRequest {
         }
         UpdateAppV1DeprecatedRequest other = (UpdateAppV1DeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.appConfig, other.appConfig) &&
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.appConfig, other.appConfig) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appConfig,
-            appId);
+        return Utils.enhancedHash(
+            appConfig, appId);
     }
     
     @Override
@@ -96,22 +97,25 @@ public class UpdateAppV1DeprecatedRequest {
                 "appConfig", appConfig,
                 "appId", appId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private AppConfig appConfig;
- 
+
         private Optional<String> appId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appConfig(AppConfig appConfig) {
             Utils.checkNotNull(appConfig, "appConfig");
             this.appConfig = appConfig;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -124,11 +128,12 @@ public class UpdateAppV1DeprecatedRequest {
             this.appId = appId;
             return this;
         }
-        
+
         public UpdateAppV1DeprecatedRequest build() {
+
             return new UpdateAppV1DeprecatedRequest(
-                appConfig,
-                appId);
+                appConfig, appId);
         }
+
     }
 }

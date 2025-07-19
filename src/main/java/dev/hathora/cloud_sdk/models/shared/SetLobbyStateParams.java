@@ -10,10 +10,9 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class SetLobbyStateParams {
-
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
      */
@@ -35,9 +34,10 @@ public class SetLobbyStateParams {
         return state;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * JSON blob to store metadata for a room. Must be smaller than 1MB.
@@ -48,7 +48,6 @@ public class SetLobbyStateParams {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -59,12 +58,12 @@ public class SetLobbyStateParams {
         }
         SetLobbyStateParams other = (SetLobbyStateParams) o;
         return 
-            Objects.deepEquals(this.state, other.state);
+            Utils.enhancedDeepEquals(this.state, other.state);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             state);
     }
     
@@ -73,14 +72,16 @@ public class SetLobbyStateParams {
         return Utils.toString(SetLobbyStateParams.class,
                 "state", state);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Object state;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * JSON blob to store metadata for a room. Must be smaller than 1MB.
@@ -90,10 +91,12 @@ public class SetLobbyStateParams {
             this.state = state;
             return this;
         }
-        
+
         public SetLobbyStateParams build() {
+
             return new SetLobbyStateParams(
                 state);
         }
+
     }
 }

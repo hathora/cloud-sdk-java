@@ -9,12 +9,13 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class RevokeOrgTokenRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=orgId")
     private String orgId;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=orgTokenId")
     private String orgTokenId;
@@ -39,9 +40,10 @@ public class RevokeOrgTokenRequest {
         return orgTokenId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RevokeOrgTokenRequest withOrgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
@@ -55,7 +57,6 @@ public class RevokeOrgTokenRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,15 +67,14 @@ public class RevokeOrgTokenRequest {
         }
         RevokeOrgTokenRequest other = (RevokeOrgTokenRequest) o;
         return 
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.orgTokenId, other.orgTokenId);
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.orgTokenId, other.orgTokenId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            orgId,
-            orgTokenId);
+        return Utils.enhancedHash(
+            orgId, orgTokenId);
     }
     
     @Override
@@ -83,16 +83,18 @@ public class RevokeOrgTokenRequest {
                 "orgId", orgId,
                 "orgTokenId", orgTokenId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String orgId;
- 
+
         private String orgTokenId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -100,16 +102,18 @@ public class RevokeOrgTokenRequest {
             return this;
         }
 
+
         public Builder orgTokenId(String orgTokenId) {
             Utils.checkNotNull(orgTokenId, "orgTokenId");
             this.orgTokenId = orgTokenId;
             return this;
         }
-        
+
         public RevokeOrgTokenRequest build() {
+
             return new RevokeOrgTokenRequest(
-                orgId,
-                orgTokenId);
+                orgId, orgTokenId);
         }
+
     }
 }

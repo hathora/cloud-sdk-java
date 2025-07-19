@@ -13,16 +13,18 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetProcessesCountExperimentalV2DeprecatedRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=region")
     private Optional<? extends List<Region>> region;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=status")
     private Optional<? extends List<ProcessStatus>> status;
@@ -61,15 +63,17 @@ public class GetProcessesCountExperimentalV2DeprecatedRequest {
         return (Optional<List<ProcessStatus>>) status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetProcessesCountExperimentalV2DeprecatedRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     public GetProcessesCountExperimentalV2DeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
@@ -83,6 +87,7 @@ public class GetProcessesCountExperimentalV2DeprecatedRequest {
         return this;
     }
 
+
     public GetProcessesCountExperimentalV2DeprecatedRequest withRegion(Optional<? extends List<Region>> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
@@ -95,13 +100,13 @@ public class GetProcessesCountExperimentalV2DeprecatedRequest {
         return this;
     }
 
+
     public GetProcessesCountExperimentalV2DeprecatedRequest withStatus(Optional<? extends List<ProcessStatus>> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,17 +117,15 @@ public class GetProcessesCountExperimentalV2DeprecatedRequest {
         }
         GetProcessesCountExperimentalV2DeprecatedRequest other = (GetProcessesCountExperimentalV2DeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            region,
-            status);
+        return Utils.enhancedHash(
+            appId, region, status);
     }
     
     @Override
@@ -132,18 +135,20 @@ public class GetProcessesCountExperimentalV2DeprecatedRequest {
                 "region", region,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<? extends List<Region>> region = Optional.empty();
- 
+
         private Optional<? extends List<ProcessStatus>> status = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -157,6 +162,7 @@ public class GetProcessesCountExperimentalV2DeprecatedRequest {
             return this;
         }
 
+
         public Builder region(List<Region> region) {
             Utils.checkNotNull(region, "region");
             this.region = Optional.ofNullable(region);
@@ -169,6 +175,7 @@ public class GetProcessesCountExperimentalV2DeprecatedRequest {
             return this;
         }
 
+
         public Builder status(List<ProcessStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
@@ -180,12 +187,12 @@ public class GetProcessesCountExperimentalV2DeprecatedRequest {
             this.status = status;
             return this;
         }
-        
+
         public GetProcessesCountExperimentalV2DeprecatedRequest build() {
+
             return new GetProcessesCountExperimentalV2DeprecatedRequest(
-                appId,
-                region,
-                status);
+                appId, region, status);
         }
+
     }
 }

@@ -10,13 +10,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateBuildRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CreateMultipartBuildParams createMultipartBuildParams;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
     private Optional<String> orgId;
@@ -46,9 +47,10 @@ public class CreateBuildRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateBuildRequest withCreateMultipartBuildParams(CreateMultipartBuildParams createMultipartBuildParams) {
         Utils.checkNotNull(createMultipartBuildParams, "createMultipartBuildParams");
@@ -62,13 +64,13 @@ public class CreateBuildRequest {
         return this;
     }
 
+
     public CreateBuildRequest withOrgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,15 +81,14 @@ public class CreateBuildRequest {
         }
         CreateBuildRequest other = (CreateBuildRequest) o;
         return 
-            Objects.deepEquals(this.createMultipartBuildParams, other.createMultipartBuildParams) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.createMultipartBuildParams, other.createMultipartBuildParams) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createMultipartBuildParams,
-            orgId);
+        return Utils.enhancedHash(
+            createMultipartBuildParams, orgId);
     }
     
     @Override
@@ -96,22 +97,25 @@ public class CreateBuildRequest {
                 "createMultipartBuildParams", createMultipartBuildParams,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CreateMultipartBuildParams createMultipartBuildParams;
- 
+
         private Optional<String> orgId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createMultipartBuildParams(CreateMultipartBuildParams createMultipartBuildParams) {
             Utils.checkNotNull(createMultipartBuildParams, "createMultipartBuildParams");
             this.createMultipartBuildParams = createMultipartBuildParams;
             return this;
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -124,11 +128,12 @@ public class CreateBuildRequest {
             this.orgId = orgId;
             return this;
         }
-        
+
         public CreateBuildRequest build() {
+
             return new CreateBuildRequest(
-                createMultipartBuildParams,
-                orgId);
+                createMultipartBuildParams, orgId);
         }
+
     }
 }

@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class GoogleIdTokenObject {
-
     /**
      * A Google-signed OIDC ID token representing a player's authenticated identity. Learn how to get an `idToken` [here](https://cloud.google.com/docs/authentication/get-id-token).
      */
@@ -34,9 +33,10 @@ public class GoogleIdTokenObject {
         return idToken;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A Google-signed OIDC ID token representing a player's authenticated identity. Learn how to get an `idToken` [here](https://cloud.google.com/docs/authentication/get-id-token).
@@ -47,7 +47,6 @@ public class GoogleIdTokenObject {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class GoogleIdTokenObject {
         }
         GoogleIdTokenObject other = (GoogleIdTokenObject) o;
         return 
-            Objects.deepEquals(this.idToken, other.idToken);
+            Utils.enhancedDeepEquals(this.idToken, other.idToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             idToken);
     }
     
@@ -72,14 +71,16 @@ public class GoogleIdTokenObject {
         return Utils.toString(GoogleIdTokenObject.class,
                 "idToken", idToken);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String idToken;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A Google-signed OIDC ID token representing a player's authenticated identity. Learn how to get an `idToken` [here](https://cloud.google.com/docs/authentication/get-id-token).
@@ -89,10 +90,12 @@ public class GoogleIdTokenObject {
             this.idToken = idToken;
             return this;
         }
-        
+
         public GoogleIdTokenObject build() {
+
             return new GoogleIdTokenObject(
                 idToken);
         }
+
     }
 }

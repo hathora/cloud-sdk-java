@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -24,7 +23,6 @@ import java.util.Optional;
  * <p>A build represents a game server artifact and its associated metadata.
  */
 public class CreatedBuildV3WithMultipartUrls {
-
     /**
      * System generated id for a build. Can also be user defined when creating a build.
      */
@@ -38,8 +36,10 @@ public class CreatedBuildV3WithMultipartUrls {
     @JsonProperty("buildTag")
     private Optional<String> buildTag;
 
+
     @JsonProperty("completeUploadPostRequestUrl")
     private String completeUploadPostRequestUrl;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("contentHash")
@@ -50,6 +50,7 @@ public class CreatedBuildV3WithMultipartUrls {
      */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("createdBy")
     private String createdBy;
@@ -81,6 +82,7 @@ public class CreatedBuildV3WithMultipartUrls {
     @JsonProperty("imageSize")
     private long imageSize;
 
+
     @JsonProperty("maxChunkSize")
     private double maxChunkSize;
 
@@ -104,8 +106,10 @@ public class CreatedBuildV3WithMultipartUrls {
     @JsonProperty("startedAt")
     private Optional<OffsetDateTime> startedAt;
 
+
     @JsonProperty("status")
     private BuildStatus status;
+
 
     @JsonProperty("uploadParts")
     private List<BuildPart> uploadParts;
@@ -172,7 +176,12 @@ public class CreatedBuildV3WithMultipartUrls {
             String orgId,
             BuildStatus status,
             List<BuildPart> uploadParts) {
-        this(buildId, Optional.empty(), completeUploadPostRequestUrl, Optional.empty(), createdAt, createdBy, Optional.empty(), Optional.empty(), Optional.empty(), imageSize, maxChunkSize, orgId, Optional.empty(), Optional.empty(), status, uploadParts);
+        this(buildId, Optional.empty(), completeUploadPostRequestUrl,
+            Optional.empty(), createdAt, createdBy,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            imageSize, maxChunkSize, orgId,
+            Optional.empty(), Optional.empty(), status,
+            uploadParts);
     }
 
     /**
@@ -285,9 +294,10 @@ public class CreatedBuildV3WithMultipartUrls {
         return uploadParts;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * System generated id for a build. Can also be user defined when creating a build.
@@ -306,6 +316,7 @@ public class CreatedBuildV3WithMultipartUrls {
         this.buildTag = Optional.ofNullable(buildTag);
         return this;
     }
+
 
     /**
      * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
@@ -327,6 +338,7 @@ public class CreatedBuildV3WithMultipartUrls {
         this.contentHash = Optional.ofNullable(contentHash);
         return this;
     }
+
 
     public CreatedBuildV3WithMultipartUrls withContentHash(Optional<String> contentHash) {
         Utils.checkNotNull(contentHash, "contentHash");
@@ -358,6 +370,7 @@ public class CreatedBuildV3WithMultipartUrls {
         return this;
     }
 
+
     /**
      * When the build was deleted.
      */
@@ -376,6 +389,7 @@ public class CreatedBuildV3WithMultipartUrls {
         return this;
     }
 
+
     /**
      * When the build expired
      */
@@ -393,6 +407,7 @@ public class CreatedBuildV3WithMultipartUrls {
         this.finishedAt = Optional.ofNullable(finishedAt);
         return this;
     }
+
 
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
@@ -436,6 +451,7 @@ public class CreatedBuildV3WithMultipartUrls {
         return this;
     }
 
+
     /**
      * Url to view details, like build logs, of the build.
      */
@@ -453,6 +469,7 @@ public class CreatedBuildV3WithMultipartUrls {
         this.startedAt = Optional.ofNullable(startedAt);
         return this;
     }
+
 
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
@@ -475,7 +492,6 @@ public class CreatedBuildV3WithMultipartUrls {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -486,42 +502,32 @@ public class CreatedBuildV3WithMultipartUrls {
         }
         CreatedBuildV3WithMultipartUrls other = (CreatedBuildV3WithMultipartUrls) o;
         return 
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.buildTag, other.buildTag) &&
-            Objects.deepEquals(this.completeUploadPostRequestUrl, other.completeUploadPostRequestUrl) &&
-            Objects.deepEquals(this.contentHash, other.contentHash) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.deletedAt, other.deletedAt) &&
-            Objects.deepEquals(this.expiredAt, other.expiredAt) &&
-            Objects.deepEquals(this.finishedAt, other.finishedAt) &&
-            Objects.deepEquals(this.imageSize, other.imageSize) &&
-            Objects.deepEquals(this.maxChunkSize, other.maxChunkSize) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.shareUrl, other.shareUrl) &&
-            Objects.deepEquals(this.startedAt, other.startedAt) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.uploadParts, other.uploadParts);
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.buildTag, other.buildTag) &&
+            Utils.enhancedDeepEquals(this.completeUploadPostRequestUrl, other.completeUploadPostRequestUrl) &&
+            Utils.enhancedDeepEquals(this.contentHash, other.contentHash) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.deletedAt, other.deletedAt) &&
+            Utils.enhancedDeepEquals(this.expiredAt, other.expiredAt) &&
+            Utils.enhancedDeepEquals(this.finishedAt, other.finishedAt) &&
+            Utils.enhancedDeepEquals(this.imageSize, other.imageSize) &&
+            Utils.enhancedDeepEquals(this.maxChunkSize, other.maxChunkSize) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.shareUrl, other.shareUrl) &&
+            Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.uploadParts, other.uploadParts);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            buildId,
-            buildTag,
-            completeUploadPostRequestUrl,
-            contentHash,
-            createdAt,
-            createdBy,
-            deletedAt,
-            expiredAt,
-            finishedAt,
-            imageSize,
-            maxChunkSize,
-            orgId,
-            shareUrl,
-            startedAt,
-            status,
+        return Utils.enhancedHash(
+            buildId, buildTag, completeUploadPostRequestUrl,
+            contentHash, createdAt, createdBy,
+            deletedAt, expiredAt, finishedAt,
+            imageSize, maxChunkSize, orgId,
+            shareUrl, startedAt, status,
             uploadParts);
     }
     
@@ -545,44 +551,46 @@ public class CreatedBuildV3WithMultipartUrls {
                 "status", status,
                 "uploadParts", uploadParts);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String buildId;
- 
+
         private Optional<String> buildTag = Optional.empty();
- 
+
         private String completeUploadPostRequestUrl;
- 
+
         private Optional<String> contentHash = Optional.empty();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String createdBy;
- 
+
         private Optional<OffsetDateTime> deletedAt = Optional.empty();
- 
+
         private Optional<OffsetDateTime> expiredAt = Optional.empty();
- 
+
         private Optional<OffsetDateTime> finishedAt = Optional.empty();
- 
+
         private Long imageSize;
- 
+
         private Double maxChunkSize;
- 
+
         private String orgId;
- 
+
         private Optional<String> shareUrl = Optional.empty();
- 
+
         private Optional<OffsetDateTime> startedAt = Optional.empty();
- 
+
         private BuildStatus status;
- 
+
         private List<BuildPart> uploadParts;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * System generated id for a build. Can also be user defined when creating a build.
@@ -592,6 +600,7 @@ public class CreatedBuildV3WithMultipartUrls {
             this.buildId = buildId;
             return this;
         }
+
 
         /**
          * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
@@ -611,11 +620,13 @@ public class CreatedBuildV3WithMultipartUrls {
             return this;
         }
 
+
         public Builder completeUploadPostRequestUrl(String completeUploadPostRequestUrl) {
             Utils.checkNotNull(completeUploadPostRequestUrl, "completeUploadPostRequestUrl");
             this.completeUploadPostRequestUrl = completeUploadPostRequestUrl;
             return this;
         }
+
 
         public Builder contentHash(String contentHash) {
             Utils.checkNotNull(contentHash, "contentHash");
@@ -629,6 +640,7 @@ public class CreatedBuildV3WithMultipartUrls {
             return this;
         }
 
+
         /**
          * When [`CreateBuild()`](https://hathora.dev/api#tag/BuildV2/operation/CreateBuild) is called.
          */
@@ -638,11 +650,13 @@ public class CreatedBuildV3WithMultipartUrls {
             return this;
         }
 
+
         public Builder createdBy(String createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * When the build was deleted.
@@ -662,6 +676,7 @@ public class CreatedBuildV3WithMultipartUrls {
             return this;
         }
 
+
         /**
          * When the build expired
          */
@@ -679,6 +694,7 @@ public class CreatedBuildV3WithMultipartUrls {
             this.expiredAt = expiredAt;
             return this;
         }
+
 
         /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
@@ -698,6 +714,7 @@ public class CreatedBuildV3WithMultipartUrls {
             return this;
         }
 
+
         /**
          * The size (in bytes) of the Docker image built by Hathora.
          */
@@ -707,11 +724,13 @@ public class CreatedBuildV3WithMultipartUrls {
             return this;
         }
 
+
         public Builder maxChunkSize(double maxChunkSize) {
             Utils.checkNotNull(maxChunkSize, "maxChunkSize");
             this.maxChunkSize = maxChunkSize;
             return this;
         }
+
 
         /**
          * System generated unique identifier for an organization. Not guaranteed to have a specific format.
@@ -721,6 +740,7 @@ public class CreatedBuildV3WithMultipartUrls {
             this.orgId = orgId;
             return this;
         }
+
 
         /**
          * Url to view details, like build logs, of the build.
@@ -740,6 +760,7 @@ public class CreatedBuildV3WithMultipartUrls {
             return this;
         }
 
+
         /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
          */
@@ -758,36 +779,30 @@ public class CreatedBuildV3WithMultipartUrls {
             return this;
         }
 
+
         public Builder status(BuildStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
+
         public Builder uploadParts(List<BuildPart> uploadParts) {
             Utils.checkNotNull(uploadParts, "uploadParts");
             this.uploadParts = uploadParts;
             return this;
         }
-        
+
         public CreatedBuildV3WithMultipartUrls build() {
+
             return new CreatedBuildV3WithMultipartUrls(
-                buildId,
-                buildTag,
-                completeUploadPostRequestUrl,
-                contentHash,
-                createdAt,
-                createdBy,
-                deletedAt,
-                expiredAt,
-                finishedAt,
-                imageSize,
-                maxChunkSize,
-                orgId,
-                shareUrl,
-                startedAt,
-                status,
+                buildId, buildTag, completeUploadPostRequestUrl,
+                contentHash, createdAt, createdBy,
+                deletedAt, expiredAt, finishedAt,
+                imageSize, maxChunkSize, orgId,
+                shareUrl, startedAt, status,
                 uploadParts);
         }
+
     }
 }

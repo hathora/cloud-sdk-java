@@ -9,8 +9,8 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetBalanceRequest {
 
@@ -33,9 +33,10 @@ public class GetBalanceRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetBalanceRequest withOrgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
@@ -43,13 +44,13 @@ public class GetBalanceRequest {
         return this;
     }
 
+
     public GetBalanceRequest withOrgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -60,12 +61,12 @@ public class GetBalanceRequest {
         }
         GetBalanceRequest other = (GetBalanceRequest) o;
         return 
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             orgId);
     }
     
@@ -74,14 +75,16 @@ public class GetBalanceRequest {
         return Utils.toString(GetBalanceRequest.class,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> orgId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -94,10 +97,12 @@ public class GetBalanceRequest {
             this.orgId = orgId;
             return this;
         }
-        
+
         public GetBalanceRequest build() {
+
             return new GetBalanceRequest(
                 orgId);
         }
+
     }
 }

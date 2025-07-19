@@ -9,13 +9,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetActiveRoomsForProcessRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=processId")
     private String processId;
@@ -45,15 +46,17 @@ public class GetActiveRoomsForProcessRequest {
         return processId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetActiveRoomsForProcessRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     public GetActiveRoomsForProcessRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
@@ -67,7 +70,6 @@ public class GetActiveRoomsForProcessRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,15 +80,14 @@ public class GetActiveRoomsForProcessRequest {
         }
         GetActiveRoomsForProcessRequest other = (GetActiveRoomsForProcessRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.processId, other.processId);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.processId, other.processId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            processId);
+        return Utils.enhancedHash(
+            appId, processId);
     }
     
     @Override
@@ -95,16 +96,18 @@ public class GetActiveRoomsForProcessRequest {
                 "appId", appId,
                 "processId", processId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String processId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -118,16 +121,18 @@ public class GetActiveRoomsForProcessRequest {
             return this;
         }
 
+
         public Builder processId(String processId) {
             Utils.checkNotNull(processId, "processId");
             this.processId = processId;
             return this;
         }
-        
+
         public GetActiveRoomsForProcessRequest build() {
+
             return new GetActiveRoomsForProcessRequest(
-                appId,
-                processId);
+                appId, processId);
         }
+
     }
 }

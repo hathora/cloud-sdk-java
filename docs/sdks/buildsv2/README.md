@@ -36,18 +36,16 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateBuildV2DeprecatedResponse res = sdk.buildsV2().createBuildV2Deprecated()
                 .createBuildParams(CreateBuildParams.builder()
                     .buildTag("0.1.14-14c793")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.build().isPresent()) {
@@ -99,18 +97,16 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateBuildWithUploadUrlV2DeprecatedResponse res = sdk.buildsV2().createBuildWithUploadUrlV2Deprecated()
                 .createBuildParams(CreateBuildParams.builder()
                     .buildTag("0.1.14-14c793")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.buildWithUploadUrl().isPresent()) {
@@ -162,11 +158,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateWithMultipartUploadsV2DeprecatedResponse res = sdk.buildsV2().createWithMultipartUploadsV2Deprecated()
@@ -175,7 +170,6 @@ public class Application {
                     .buildId("bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                     .buildTag("0.1.14-14c793")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.buildWithMultipartUrls().isPresent()) {
@@ -226,15 +220,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         DeleteBuildV2DeprecatedResponse res = sdk.buildsV2().deleteBuildV2Deprecated()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
                 .call();
 
@@ -284,15 +276,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetBuildInfoV2DeprecatedResponse res = sdk.buildsV2().getBuildInfoV2Deprecated()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
                 .call();
 
@@ -343,15 +333,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetBuildsV2DeprecatedResponse res = sdk.buildsV2().getBuildsV2Deprecated()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.classes().isPresent()) {
@@ -401,17 +389,15 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         RunBuildV2DeprecatedResponse res = sdk.buildsV2().runBuildV2Deprecated()
                 .requestBody(RunBuildV2DeprecatedRequestBody.builder()
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
                 .call();
 

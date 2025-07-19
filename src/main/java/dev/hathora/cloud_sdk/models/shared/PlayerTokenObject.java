@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class PlayerTokenObject {
-
     /**
      * A unique Hathora-signed JWT player token.
      */
@@ -34,9 +33,10 @@ public class PlayerTokenObject {
         return token;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique Hathora-signed JWT player token.
@@ -47,7 +47,6 @@ public class PlayerTokenObject {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class PlayerTokenObject {
         }
         PlayerTokenObject other = (PlayerTokenObject) o;
         return 
-            Objects.deepEquals(this.token, other.token);
+            Utils.enhancedDeepEquals(this.token, other.token);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             token);
     }
     
@@ -72,14 +71,16 @@ public class PlayerTokenObject {
         return Utils.toString(PlayerTokenObject.class,
                 "token", token);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String token;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique Hathora-signed JWT player token.
@@ -89,10 +90,12 @@ public class PlayerTokenObject {
             this.token = token;
             return this;
         }
-        
+
         public PlayerTokenObject build() {
+
             return new PlayerTokenObject(
                 token);
         }
+
     }
 }

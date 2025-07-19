@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -22,7 +21,6 @@ import java.util.Optional;
  * <p>An application object is the top level namespace for the game server.
  */
 public class Application {
-
     /**
      * System generated unique identifier for an application.
      */
@@ -53,6 +51,7 @@ public class Application {
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("createdBy")
     private String createdBy;
 
@@ -75,6 +74,7 @@ public class Application {
      */
     @JsonProperty("orgId")
     private String orgId;
+
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("serviceConfig")
@@ -122,7 +122,10 @@ public class Application {
             OffsetDateTime createdAt,
             String createdBy,
             String orgId) {
-        this(appId, appName, appSecret, authConfiguration, createdAt, createdBy, Optional.empty(), Optional.empty(), orgId, Optional.empty());
+        this(appId, appName, appSecret,
+            authConfiguration, createdAt, createdBy,
+            Optional.empty(), Optional.empty(), orgId,
+            Optional.empty());
     }
 
     /**
@@ -200,9 +203,10 @@ public class Application {
         return (Optional<ApplicationServiceConfig>) serviceConfig;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * System generated unique identifier for an application.
@@ -264,6 +268,7 @@ public class Application {
         return this;
     }
 
+
     /**
      * When the application was deleted.
      */
@@ -281,6 +286,7 @@ public class Application {
         this.deletedBy = Optional.ofNullable(deletedBy);
         return this;
     }
+
 
     /**
      * The email address or token id for the user that deleted the application.
@@ -306,13 +312,13 @@ public class Application {
         return this;
     }
 
+
     public Application withServiceConfig(Optional<? extends ApplicationServiceConfig> serviceConfig) {
         Utils.checkNotNull(serviceConfig, "serviceConfig");
         this.serviceConfig = serviceConfig;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -323,30 +329,24 @@ public class Application {
         }
         Application other = (Application) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.appName, other.appName) &&
-            Objects.deepEquals(this.appSecret, other.appSecret) &&
-            Objects.deepEquals(this.authConfiguration, other.authConfiguration) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.deletedAt, other.deletedAt) &&
-            Objects.deepEquals(this.deletedBy, other.deletedBy) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.serviceConfig, other.serviceConfig);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.appName, other.appName) &&
+            Utils.enhancedDeepEquals(this.appSecret, other.appSecret) &&
+            Utils.enhancedDeepEquals(this.authConfiguration, other.authConfiguration) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.deletedAt, other.deletedAt) &&
+            Utils.enhancedDeepEquals(this.deletedBy, other.deletedBy) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.serviceConfig, other.serviceConfig);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            appName,
-            appSecret,
-            authConfiguration,
-            createdAt,
-            createdBy,
-            deletedAt,
-            deletedBy,
-            orgId,
+        return Utils.enhancedHash(
+            appId, appName, appSecret,
+            authConfiguration, createdAt, createdBy,
+            deletedAt, deletedBy, orgId,
             serviceConfig);
     }
     
@@ -364,32 +364,34 @@ public class Application {
                 "orgId", orgId,
                 "serviceConfig", serviceConfig);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String appId;
- 
+
         private String appName;
- 
+
         private String appSecret;
- 
+
         private AuthConfiguration authConfiguration;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String createdBy;
- 
+
         private Optional<OffsetDateTime> deletedAt = Optional.empty();
- 
+
         private Optional<String> deletedBy = Optional.empty();
- 
+
         private String orgId;
- 
+
         private Optional<? extends ApplicationServiceConfig> serviceConfig = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * System generated unique identifier for an application.
@@ -400,6 +402,7 @@ public class Application {
             return this;
         }
 
+
         /**
          * Readable name for an application. Must be unique within an organization.
          */
@@ -408,6 +411,7 @@ public class Application {
             this.appName = appName;
             return this;
         }
+
 
         /**
          * Secret that is used for identity and access management.
@@ -418,6 +422,7 @@ public class Application {
             return this;
         }
 
+
         /**
          * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
          */
@@ -426,6 +431,7 @@ public class Application {
             this.authConfiguration = authConfiguration;
             return this;
         }
+
 
         /**
          * When the application was created.
@@ -436,11 +442,13 @@ public class Application {
             return this;
         }
 
+
         public Builder createdBy(String createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * When the application was deleted.
@@ -460,6 +468,7 @@ public class Application {
             return this;
         }
 
+
         /**
          * The email address or token id for the user that deleted the application.
          */
@@ -478,6 +487,7 @@ public class Application {
             return this;
         }
 
+
         /**
          * System generated unique identifier for an organization. Not guaranteed to have a specific format.
          */
@@ -486,6 +496,7 @@ public class Application {
             this.orgId = orgId;
             return this;
         }
+
 
         public Builder serviceConfig(ApplicationServiceConfig serviceConfig) {
             Utils.checkNotNull(serviceConfig, "serviceConfig");
@@ -498,19 +509,15 @@ public class Application {
             this.serviceConfig = serviceConfig;
             return this;
         }
-        
+
         public Application build() {
+
             return new Application(
-                appId,
-                appName,
-                appSecret,
-                authConfiguration,
-                createdAt,
-                createdBy,
-                deletedAt,
-                deletedBy,
-                orgId,
+                appId, appName, appSecret,
+                authConfiguration, createdAt, createdBy,
+                deletedAt, deletedBy, orgId,
                 serviceConfig);
         }
+
     }
 }

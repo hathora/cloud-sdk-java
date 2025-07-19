@@ -9,12 +9,13 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class File {
 
     @SpeakeasyMetadata("multipartForm:content")
     private byte[] content;
+
 
     @SpeakeasyMetadata("multipartForm:name=fileName")
     private String fileName;
@@ -39,9 +40,10 @@ public class File {
         return fileName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public File withContent(byte[] content) {
         Utils.checkNotNull(content, "content");
@@ -55,7 +57,6 @@ public class File {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,15 +67,14 @@ public class File {
         }
         File other = (File) o;
         return 
-            Objects.deepEquals(this.content, other.content) &&
-            Objects.deepEquals(this.fileName, other.fileName);
+            Utils.enhancedDeepEquals(this.content, other.content) &&
+            Utils.enhancedDeepEquals(this.fileName, other.fileName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            content,
-            fileName);
+        return Utils.enhancedHash(
+            content, fileName);
     }
     
     @Override
@@ -83,16 +83,18 @@ public class File {
                 "content", content,
                 "fileName", fileName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private byte[] content;
- 
+
         private String fileName;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder content(byte[] content) {
             Utils.checkNotNull(content, "content");
@@ -100,16 +102,18 @@ public class File {
             return this;
         }
 
+
         public Builder fileName(String fileName) {
             Utils.checkNotNull(fileName, "fileName");
             this.fileName = fileName;
             return this;
         }
-        
+
         public File build() {
+
             return new File(
-                content,
-                fileName);
+                content, fileName);
         }
+
     }
 }
