@@ -10,7 +10,7 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class OrgMembersPage {
 
@@ -29,9 +29,10 @@ public class OrgMembersPage {
         return members;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrgMembersPage withMembers(List<OrgMember> members) {
         Utils.checkNotNull(members, "members");
@@ -39,7 +40,6 @@ public class OrgMembersPage {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class OrgMembersPage {
         }
         OrgMembersPage other = (OrgMembersPage) o;
         return 
-            Objects.deepEquals(this.members, other.members);
+            Utils.enhancedDeepEquals(this.members, other.members);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             members);
     }
     
@@ -64,24 +64,28 @@ public class OrgMembersPage {
         return Utils.toString(OrgMembersPage.class,
                 "members", members);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<OrgMember> members;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder members(List<OrgMember> members) {
             Utils.checkNotNull(members, "members");
             this.members = members;
             return this;
         }
-        
+
         public OrgMembersPage build() {
+
             return new OrgMembersPage(
                 members);
         }
+
     }
 }

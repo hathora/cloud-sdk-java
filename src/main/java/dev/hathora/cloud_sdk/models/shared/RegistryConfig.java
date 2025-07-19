@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class RegistryConfig {
 
@@ -20,8 +20,10 @@ public class RegistryConfig {
     @JsonProperty("auth")
     private Optional<String> auth;
 
+
     @JsonProperty("image")
     private String image;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("registryUrl")
@@ -60,15 +62,17 @@ public class RegistryConfig {
         return registryUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RegistryConfig withAuth(String auth) {
         Utils.checkNotNull(auth, "auth");
         this.auth = Optional.ofNullable(auth);
         return this;
     }
+
 
     public RegistryConfig withAuth(Optional<String> auth) {
         Utils.checkNotNull(auth, "auth");
@@ -88,13 +92,13 @@ public class RegistryConfig {
         return this;
     }
 
+
     public RegistryConfig withRegistryUrl(Optional<String> registryUrl) {
         Utils.checkNotNull(registryUrl, "registryUrl");
         this.registryUrl = registryUrl;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,17 +109,15 @@ public class RegistryConfig {
         }
         RegistryConfig other = (RegistryConfig) o;
         return 
-            Objects.deepEquals(this.auth, other.auth) &&
-            Objects.deepEquals(this.image, other.image) &&
-            Objects.deepEquals(this.registryUrl, other.registryUrl);
+            Utils.enhancedDeepEquals(this.auth, other.auth) &&
+            Utils.enhancedDeepEquals(this.image, other.image) &&
+            Utils.enhancedDeepEquals(this.registryUrl, other.registryUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            auth,
-            image,
-            registryUrl);
+        return Utils.enhancedHash(
+            auth, image, registryUrl);
     }
     
     @Override
@@ -125,18 +127,20 @@ public class RegistryConfig {
                 "image", image,
                 "registryUrl", registryUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> auth = Optional.empty();
- 
+
         private String image;
- 
+
         private Optional<String> registryUrl = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder auth(String auth) {
             Utils.checkNotNull(auth, "auth");
@@ -150,11 +154,13 @@ public class RegistryConfig {
             return this;
         }
 
+
         public Builder image(String image) {
             Utils.checkNotNull(image, "image");
             this.image = image;
             return this;
         }
+
 
         public Builder registryUrl(String registryUrl) {
             Utils.checkNotNull(registryUrl, "registryUrl");
@@ -167,12 +173,12 @@ public class RegistryConfig {
             this.registryUrl = registryUrl;
             return this;
         }
-        
+
         public RegistryConfig build() {
+
             return new RegistryConfig(
-                auth,
-                image,
-                registryUrl);
+                auth, image, registryUrl);
         }
+
     }
 }

@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateBuildParams {
 
+public class CreateBuildParams {
     /**
      * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
      */
@@ -42,9 +41,10 @@ public class CreateBuildParams {
         return buildTag;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
@@ -55,6 +55,7 @@ public class CreateBuildParams {
         return this;
     }
 
+
     /**
      * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
      */
@@ -64,7 +65,6 @@ public class CreateBuildParams {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,12 +75,12 @@ public class CreateBuildParams {
         }
         CreateBuildParams other = (CreateBuildParams) o;
         return 
-            Objects.deepEquals(this.buildTag, other.buildTag);
+            Utils.enhancedDeepEquals(this.buildTag, other.buildTag);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             buildTag);
     }
     
@@ -89,14 +89,16 @@ public class CreateBuildParams {
         return Utils.toString(CreateBuildParams.class,
                 "buildTag", buildTag);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> buildTag = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
@@ -115,10 +117,12 @@ public class CreateBuildParams {
             this.buildTag = buildTag;
             return this;
         }
-        
+
         public CreateBuildParams build() {
+
             return new CreateBuildParams(
                 buildTag);
         }
+
     }
 }

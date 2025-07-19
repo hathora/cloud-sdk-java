@@ -10,7 +10,7 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class PendingOrgInvitesPage {
 
@@ -29,9 +29,10 @@ public class PendingOrgInvitesPage {
         return invites;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PendingOrgInvitesPage withInvites(List<PendingOrgInvite> invites) {
         Utils.checkNotNull(invites, "invites");
@@ -39,7 +40,6 @@ public class PendingOrgInvitesPage {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class PendingOrgInvitesPage {
         }
         PendingOrgInvitesPage other = (PendingOrgInvitesPage) o;
         return 
-            Objects.deepEquals(this.invites, other.invites);
+            Utils.enhancedDeepEquals(this.invites, other.invites);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             invites);
     }
     
@@ -64,24 +64,28 @@ public class PendingOrgInvitesPage {
         return Utils.toString(PendingOrgInvitesPage.class,
                 "invites", invites);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<PendingOrgInvite> invites;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder invites(List<PendingOrgInvite> invites) {
             Utils.checkNotNull(invites, "invites");
             this.invites = invites;
             return this;
         }
-        
+
         public PendingOrgInvitesPage build() {
+
             return new PendingOrgInvitesPage(
                 invites);
         }
+
     }
 }

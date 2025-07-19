@@ -10,10 +10,9 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class AutoscalerConfig {
-
     /**
      * If vCPU utilization rate is above this threshold percentage, the autoscaler will scale up.
      * If set to 100 this disables preemptive autoscaling (i.e. nodes will only scale up when you
@@ -39,9 +38,10 @@ public class AutoscalerConfig {
         return scaleUpThreshold;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * If vCPU utilization rate is above this threshold percentage, the autoscaler will scale up.
@@ -54,7 +54,6 @@ public class AutoscalerConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -65,12 +64,12 @@ public class AutoscalerConfig {
         }
         AutoscalerConfig other = (AutoscalerConfig) o;
         return 
-            Objects.deepEquals(this.scaleUpThreshold, other.scaleUpThreshold);
+            Utils.enhancedDeepEquals(this.scaleUpThreshold, other.scaleUpThreshold);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             scaleUpThreshold);
     }
     
@@ -79,14 +78,16 @@ public class AutoscalerConfig {
         return Utils.toString(AutoscalerConfig.class,
                 "scaleUpThreshold", scaleUpThreshold);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Integer scaleUpThreshold;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * If vCPU utilization rate is above this threshold percentage, the autoscaler will scale up.
@@ -98,10 +99,12 @@ public class AutoscalerConfig {
             this.scaleUpThreshold = scaleUpThreshold;
             return this;
         }
-        
+
         public AutoscalerConfig build() {
+
             return new AutoscalerConfig(
                 scaleUpThreshold);
         }
+
     }
 }

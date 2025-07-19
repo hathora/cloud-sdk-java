@@ -10,13 +10,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateWithMultipartUploadsV2DeprecatedRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CreateMultipartBuildParams createMultipartBuildParams;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
@@ -46,9 +47,10 @@ public class CreateWithMultipartUploadsV2DeprecatedRequest {
         return appId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateWithMultipartUploadsV2DeprecatedRequest withCreateMultipartBuildParams(CreateMultipartBuildParams createMultipartBuildParams) {
         Utils.checkNotNull(createMultipartBuildParams, "createMultipartBuildParams");
@@ -62,13 +64,13 @@ public class CreateWithMultipartUploadsV2DeprecatedRequest {
         return this;
     }
 
+
     public CreateWithMultipartUploadsV2DeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,15 +81,14 @@ public class CreateWithMultipartUploadsV2DeprecatedRequest {
         }
         CreateWithMultipartUploadsV2DeprecatedRequest other = (CreateWithMultipartUploadsV2DeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.createMultipartBuildParams, other.createMultipartBuildParams) &&
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.createMultipartBuildParams, other.createMultipartBuildParams) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createMultipartBuildParams,
-            appId);
+        return Utils.enhancedHash(
+            createMultipartBuildParams, appId);
     }
     
     @Override
@@ -96,22 +97,25 @@ public class CreateWithMultipartUploadsV2DeprecatedRequest {
                 "createMultipartBuildParams", createMultipartBuildParams,
                 "appId", appId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CreateMultipartBuildParams createMultipartBuildParams;
- 
+
         private Optional<String> appId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createMultipartBuildParams(CreateMultipartBuildParams createMultipartBuildParams) {
             Utils.checkNotNull(createMultipartBuildParams, "createMultipartBuildParams");
             this.createMultipartBuildParams = createMultipartBuildParams;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -124,11 +128,12 @@ public class CreateWithMultipartUploadsV2DeprecatedRequest {
             this.appId = appId;
             return this;
         }
-        
+
         public CreateWithMultipartUploadsV2DeprecatedRequest build() {
+
             return new CreateWithMultipartUploadsV2DeprecatedRequest(
-                createMultipartBuildParams,
-                appId);
+                createMultipartBuildParams, appId);
         }
+
     }
 }

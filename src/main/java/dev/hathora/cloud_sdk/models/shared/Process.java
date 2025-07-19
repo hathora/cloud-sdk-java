@@ -18,7 +18,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -27,7 +26,6 @@ import java.util.Optional;
  * <p>A process object represents a runtime instance of your game server and its metadata.
  */
 public class Process {
-
     /**
      * Tracks the number of active connections to a process.
      * 
@@ -44,6 +42,7 @@ public class Process {
     @JsonProperty("activeConnectionsUpdatedAt")
     @Deprecated
     private OffsetDateTime activeConnectionsUpdatedAt;
+
 
     @JsonProperty("additionalExposedPorts")
     private List<ExposedPort> additionalExposedPorts;
@@ -71,6 +70,7 @@ public class Process {
      */
     @JsonProperty("egressedBytes")
     private int egressedBytes;
+
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("exposedPort")
@@ -107,6 +107,7 @@ public class Process {
     @JsonProperty("processId")
     private String processId;
 
+
     @JsonProperty("region")
     private Region region;
 
@@ -131,6 +132,7 @@ public class Process {
      */
     @JsonProperty("roomsAllocated")
     private int roomsAllocated;
+
 
     @JsonProperty("roomsAllocatedUpdatedAt")
     private OffsetDateTime roomsAllocatedUpdatedAt;
@@ -256,7 +258,14 @@ public class Process {
             OffsetDateTime roomsAllocatedUpdatedAt,
             int roomsPerProcess,
             OffsetDateTime startingAt) {
-        this(activeConnections, activeConnectionsUpdatedAt, additionalExposedPorts, appId, deploymentId, draining, egressedBytes, Optional.empty(), host, Optional.empty(), port, processId, region, roomSlotsAvailable, roomSlotsAvailableUpdatedAt, roomsAllocated, roomsAllocatedUpdatedAt, roomsPerProcess, Optional.empty(), startingAt, Optional.empty(), Optional.empty());
+        this(activeConnections, activeConnectionsUpdatedAt, additionalExposedPorts,
+            appId, deploymentId, draining,
+            egressedBytes, Optional.empty(), host,
+            Optional.empty(), port, processId,
+            region, roomSlotsAvailable, roomSlotsAvailableUpdatedAt,
+            roomsAllocated, roomsAllocatedUpdatedAt, roomsPerProcess,
+            Optional.empty(), startingAt, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -439,9 +448,10 @@ public class Process {
         return terminatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Tracks the number of active connections to a process.
@@ -514,6 +524,7 @@ public class Process {
         return this;
     }
 
+
     public Process withExposedPort(Optional<? extends ProcessExposedPort> exposedPort) {
         Utils.checkNotNull(exposedPort, "exposedPort");
         this.exposedPort = exposedPort;
@@ -541,6 +552,7 @@ public class Process {
         this.idleSince = Optional.ofNullable(idleSince);
         return this;
     }
+
 
     /**
      * 
@@ -634,6 +646,7 @@ public class Process {
         return this;
     }
 
+
     /**
      * When the process bound to the specified port. We use this to determine when we should start billing.
      */
@@ -661,6 +674,7 @@ public class Process {
         return this;
     }
 
+
     /**
      * When the process is issued to stop. We use this to determine when we should stop billing.
      */
@@ -679,6 +693,7 @@ public class Process {
         return this;
     }
 
+
     /**
      * When the process has been terminated.
      */
@@ -688,7 +703,6 @@ public class Process {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -699,54 +713,40 @@ public class Process {
         }
         Process other = (Process) o;
         return 
-            Objects.deepEquals(this.activeConnections, other.activeConnections) &&
-            Objects.deepEquals(this.activeConnectionsUpdatedAt, other.activeConnectionsUpdatedAt) &&
-            Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            Objects.deepEquals(this.draining, other.draining) &&
-            Objects.deepEquals(this.egressedBytes, other.egressedBytes) &&
-            Objects.deepEquals(this.exposedPort, other.exposedPort) &&
-            Objects.deepEquals(this.host, other.host) &&
-            Objects.deepEquals(this.idleSince, other.idleSince) &&
-            Objects.deepEquals(this.port, other.port) &&
-            Objects.deepEquals(this.processId, other.processId) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.roomSlotsAvailable, other.roomSlotsAvailable) &&
-            Objects.deepEquals(this.roomSlotsAvailableUpdatedAt, other.roomSlotsAvailableUpdatedAt) &&
-            Objects.deepEquals(this.roomsAllocated, other.roomsAllocated) &&
-            Objects.deepEquals(this.roomsAllocatedUpdatedAt, other.roomsAllocatedUpdatedAt) &&
-            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            Objects.deepEquals(this.startedAt, other.startedAt) &&
-            Objects.deepEquals(this.startingAt, other.startingAt) &&
-            Objects.deepEquals(this.stoppingAt, other.stoppingAt) &&
-            Objects.deepEquals(this.terminatedAt, other.terminatedAt);
+            Utils.enhancedDeepEquals(this.activeConnections, other.activeConnections) &&
+            Utils.enhancedDeepEquals(this.activeConnectionsUpdatedAt, other.activeConnectionsUpdatedAt) &&
+            Utils.enhancedDeepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.deploymentId, other.deploymentId) &&
+            Utils.enhancedDeepEquals(this.draining, other.draining) &&
+            Utils.enhancedDeepEquals(this.egressedBytes, other.egressedBytes) &&
+            Utils.enhancedDeepEquals(this.exposedPort, other.exposedPort) &&
+            Utils.enhancedDeepEquals(this.host, other.host) &&
+            Utils.enhancedDeepEquals(this.idleSince, other.idleSince) &&
+            Utils.enhancedDeepEquals(this.port, other.port) &&
+            Utils.enhancedDeepEquals(this.processId, other.processId) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.roomSlotsAvailable, other.roomSlotsAvailable) &&
+            Utils.enhancedDeepEquals(this.roomSlotsAvailableUpdatedAt, other.roomSlotsAvailableUpdatedAt) &&
+            Utils.enhancedDeepEquals(this.roomsAllocated, other.roomsAllocated) &&
+            Utils.enhancedDeepEquals(this.roomsAllocatedUpdatedAt, other.roomsAllocatedUpdatedAt) &&
+            Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
+            Utils.enhancedDeepEquals(this.startingAt, other.startingAt) &&
+            Utils.enhancedDeepEquals(this.stoppingAt, other.stoppingAt) &&
+            Utils.enhancedDeepEquals(this.terminatedAt, other.terminatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            activeConnections,
-            activeConnectionsUpdatedAt,
-            additionalExposedPorts,
-            appId,
-            deploymentId,
-            draining,
-            egressedBytes,
-            exposedPort,
-            host,
-            idleSince,
-            port,
-            processId,
-            region,
-            roomSlotsAvailable,
-            roomSlotsAvailableUpdatedAt,
-            roomsAllocated,
-            roomsAllocatedUpdatedAt,
-            roomsPerProcess,
-            startedAt,
-            startingAt,
-            stoppingAt,
+        return Utils.enhancedHash(
+            activeConnections, activeConnectionsUpdatedAt, additionalExposedPorts,
+            appId, deploymentId, draining,
+            egressedBytes, exposedPort, host,
+            idleSince, port, processId,
+            region, roomSlotsAvailable, roomSlotsAvailableUpdatedAt,
+            roomsAllocated, roomsAllocatedUpdatedAt, roomsPerProcess,
+            startedAt, startingAt, stoppingAt,
             terminatedAt);
     }
     
@@ -776,63 +776,65 @@ public class Process {
                 "stoppingAt", stoppingAt,
                 "terminatedAt", terminatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         @Deprecated
         private Integer activeConnections;
- 
+
         @Deprecated
         private OffsetDateTime activeConnectionsUpdatedAt;
- 
+
         private List<ExposedPort> additionalExposedPorts;
- 
+
         private String appId;
- 
+
         private Integer deploymentId;
- 
+
         private Boolean draining;
- 
+
         private Integer egressedBytes;
- 
+
         private Optional<? extends ProcessExposedPort> exposedPort = Optional.empty();
- 
+
         @Deprecated
         private String host;
- 
+
         @Deprecated
         private Optional<OffsetDateTime> idleSince = Optional.empty();
- 
+
         @Deprecated
         private Double port;
- 
+
         private String processId;
- 
+
         private Region region;
- 
+
         @Deprecated
         private Double roomSlotsAvailable;
- 
+
         @Deprecated
         private OffsetDateTime roomSlotsAvailableUpdatedAt;
- 
+
         private Integer roomsAllocated;
- 
+
         private OffsetDateTime roomsAllocatedUpdatedAt;
- 
+
         private Integer roomsPerProcess;
- 
+
         private Optional<OffsetDateTime> startedAt = Optional.empty();
- 
+
         private OffsetDateTime startingAt;
- 
+
         private Optional<OffsetDateTime> stoppingAt = Optional.empty();
- 
+
         private Optional<OffsetDateTime> terminatedAt = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Tracks the number of active connections to a process.
@@ -846,6 +848,7 @@ public class Process {
             return this;
         }
 
+
         /**
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -857,11 +860,13 @@ public class Process {
             return this;
         }
 
+
         public Builder additionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
             Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
             this.additionalExposedPorts = additionalExposedPorts;
             return this;
         }
+
 
         /**
          * System generated unique identifier for an application.
@@ -872,6 +877,7 @@ public class Process {
             return this;
         }
 
+
         /**
          * System generated id for a deployment. Increments by 1.
          */
@@ -880,6 +886,7 @@ public class Process {
             this.deploymentId = deploymentId;
             return this;
         }
+
 
         /**
          * Process in drain will not accept any new rooms.
@@ -890,6 +897,7 @@ public class Process {
             return this;
         }
 
+
         /**
          * Measures network traffic leaving the process in bytes.
          */
@@ -898,6 +906,7 @@ public class Process {
             this.egressedBytes = egressedBytes;
             return this;
         }
+
 
         public Builder exposedPort(ProcessExposedPort exposedPort) {
             Utils.checkNotNull(exposedPort, "exposedPort");
@@ -911,6 +920,7 @@ public class Process {
             return this;
         }
 
+
         /**
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -921,6 +931,7 @@ public class Process {
             this.host = host;
             return this;
         }
+
 
         /**
          * 
@@ -944,6 +955,7 @@ public class Process {
             return this;
         }
 
+
         /**
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -955,6 +967,7 @@ public class Process {
             return this;
         }
 
+
         /**
          * System generated unique identifier to a runtime instance of your game server.
          */
@@ -964,11 +977,13 @@ public class Process {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
+
 
         /**
          * 
@@ -981,6 +996,7 @@ public class Process {
             return this;
         }
 
+
         /**
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -992,6 +1008,7 @@ public class Process {
             return this;
         }
 
+
         /**
          * Tracks the number of rooms that have been allocated to the process.
          */
@@ -1001,11 +1018,13 @@ public class Process {
             return this;
         }
 
+
         public Builder roomsAllocatedUpdatedAt(OffsetDateTime roomsAllocatedUpdatedAt) {
             Utils.checkNotNull(roomsAllocatedUpdatedAt, "roomsAllocatedUpdatedAt");
             this.roomsAllocatedUpdatedAt = roomsAllocatedUpdatedAt;
             return this;
         }
+
 
         /**
          * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
@@ -1015,6 +1034,7 @@ public class Process {
             this.roomsPerProcess = roomsPerProcess;
             return this;
         }
+
 
         /**
          * When the process bound to the specified port. We use this to determine when we should start billing.
@@ -1034,6 +1054,7 @@ public class Process {
             return this;
         }
 
+
         /**
          * When the process started being provisioned.
          */
@@ -1042,6 +1063,7 @@ public class Process {
             this.startingAt = startingAt;
             return this;
         }
+
 
         /**
          * When the process is issued to stop. We use this to determine when we should stop billing.
@@ -1061,6 +1083,7 @@ public class Process {
             return this;
         }
 
+
         /**
          * When the process has been terminated.
          */
@@ -1078,31 +1101,19 @@ public class Process {
             this.terminatedAt = terminatedAt;
             return this;
         }
-        
+
         public Process build() {
+
             return new Process(
-                activeConnections,
-                activeConnectionsUpdatedAt,
-                additionalExposedPorts,
-                appId,
-                deploymentId,
-                draining,
-                egressedBytes,
-                exposedPort,
-                host,
-                idleSince,
-                port,
-                processId,
-                region,
-                roomSlotsAvailable,
-                roomSlotsAvailableUpdatedAt,
-                roomsAllocated,
-                roomsAllocatedUpdatedAt,
-                roomsPerProcess,
-                startedAt,
-                startingAt,
-                stoppingAt,
+                activeConnections, activeConnectionsUpdatedAt, additionalExposedPorts,
+                appId, deploymentId, draining,
+                egressedBytes, exposedPort, host,
+                idleSince, port, processId,
+                region, roomSlotsAvailable, roomSlotsAvailableUpdatedAt,
+                roomsAllocated, roomsAllocatedUpdatedAt, roomsPerProcess,
+                startedAt, startingAt, stoppingAt,
                 terminatedAt);
         }
+
     }
 }

@@ -10,8 +10,8 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class RunBuildV2DeprecatedRequestBody {
 
@@ -35,9 +35,10 @@ public class RunBuildV2DeprecatedRequestBody {
         return (Optional<RunBuildV2DeprecatedFile>) file;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RunBuildV2DeprecatedRequestBody withFile(RunBuildV2DeprecatedFile file) {
         Utils.checkNotNull(file, "file");
@@ -45,13 +46,13 @@ public class RunBuildV2DeprecatedRequestBody {
         return this;
     }
 
+
     public RunBuildV2DeprecatedRequestBody withFile(Optional<? extends RunBuildV2DeprecatedFile> file) {
         Utils.checkNotNull(file, "file");
         this.file = file;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -62,12 +63,12 @@ public class RunBuildV2DeprecatedRequestBody {
         }
         RunBuildV2DeprecatedRequestBody other = (RunBuildV2DeprecatedRequestBody) o;
         return 
-            Objects.deepEquals(this.file, other.file);
+            Utils.enhancedDeepEquals(this.file, other.file);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             file);
     }
     
@@ -76,14 +77,16 @@ public class RunBuildV2DeprecatedRequestBody {
         return Utils.toString(RunBuildV2DeprecatedRequestBody.class,
                 "file", file);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends RunBuildV2DeprecatedFile> file = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder file(RunBuildV2DeprecatedFile file) {
             Utils.checkNotNull(file, "file");
@@ -96,10 +99,12 @@ public class RunBuildV2DeprecatedRequestBody {
             this.file = file;
             return this;
         }
-        
+
         public RunBuildV2DeprecatedRequestBody build() {
+
             return new RunBuildV2DeprecatedRequestBody(
                 file);
         }
+
     }
 }

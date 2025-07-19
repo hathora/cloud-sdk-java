@@ -12,11 +12,10 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateUserInvite {
 
+public class CreateUserInvite {
     /**
      * If not defined, the user has Admin access.
      */
@@ -62,9 +61,10 @@ public class CreateUserInvite {
         return userEmail;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * If not defined, the user has Admin access.
@@ -74,6 +74,7 @@ public class CreateUserInvite {
         this.scopes = Optional.ofNullable(scopes);
         return this;
     }
+
 
     /**
      * If not defined, the user has Admin access.
@@ -93,7 +94,6 @@ public class CreateUserInvite {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -104,15 +104,14 @@ public class CreateUserInvite {
         }
         CreateUserInvite other = (CreateUserInvite) o;
         return 
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.userEmail, other.userEmail);
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.userEmail, other.userEmail);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            scopes,
-            userEmail);
+        return Utils.enhancedHash(
+            scopes, userEmail);
     }
     
     @Override
@@ -121,16 +120,18 @@ public class CreateUserInvite {
                 "scopes", scopes,
                 "userEmail", userEmail);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends CreateUserInviteScopes> scopes = Optional.empty();
- 
+
         private String userEmail;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * If not defined, the user has Admin access.
@@ -150,6 +151,7 @@ public class CreateUserInvite {
             return this;
         }
 
+
         /**
          * A user's email.
          */
@@ -158,11 +160,12 @@ public class CreateUserInvite {
             this.userEmail = userEmail;
             return this;
         }
-        
+
         public CreateUserInvite build() {
+
             return new CreateUserInvite(
-                scopes,
-                userEmail);
+                scopes, userEmail);
         }
+
     }
 }

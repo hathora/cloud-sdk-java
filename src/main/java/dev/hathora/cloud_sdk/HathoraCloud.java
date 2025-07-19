@@ -8,7 +8,6 @@ import dev.hathora.cloud_sdk.utils.RetryConfig;
 import dev.hathora.cloud_sdk.utils.SpeakeasyHTTPClient;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -22,9 +21,12 @@ public class HathoraCloud {
      * SERVERS contains the list of server urls available to the SDK.
      */
     public static final String[] SERVERS = {
+
         "https://api.hathora.dev",
+
         "/",
     };
+
 
     private final AppsV1 appsV1;
 
@@ -38,9 +40,12 @@ public class HathoraCloud {
      */
     private final AuthV1 authV1;
 
+
     private final BillingV1 billingV1;
 
+
     private final BuildsV1 buildsV1;
+
 
     private final BuildsV2 buildsV2;
 
@@ -49,7 +54,9 @@ public class HathoraCloud {
      */
     private final BuildsV3 buildsV3;
 
+
     private final DeploymentsV1 deploymentsV1;
+
 
     private final DeploymentsV2 deploymentsV2;
 
@@ -73,13 +80,18 @@ public class HathoraCloud {
      */
     private final FleetsV1 fleetsV1;
 
+
     private final LobbiesV1 lobbiesV1;
+
 
     private final LobbiesV2 lobbiesV2;
 
+
     private final LobbiesV3 lobbiesV3;
 
+
     private final LogsV1 logsV1;
+
 
     private final ManagementV1 managementV1;
 
@@ -87,6 +99,7 @@ public class HathoraCloud {
      * Deprecated. Use [ProcessesV3#GetProcessMetrics](https://hathora.dev/api#tag/ProcessesV3/operation/GetProcessMetrics) to fetch metrics about a specific process.
      */
     private final MetricsV1 metricsV1;
+
 
     private final OrganizationsV1 organizationsV1;
 
@@ -105,11 +118,15 @@ public class HathoraCloud {
      */
     private final ProcessesV3 processesV3;
 
+
     private final RoomsV1 roomsV1;
+
 
     private final RoomsV2 roomsV2;
 
+
     private final TokensV1 tokensV1;
+
 
     public AppsV1 appsV1() {
         return appsV1;
@@ -129,13 +146,16 @@ public class HathoraCloud {
         return authV1;
     }
 
+
     public BillingV1 billingV1() {
         return billingV1;
     }
 
+
     public BuildsV1 buildsV1() {
         return buildsV1;
     }
+
 
     public BuildsV2 buildsV2() {
         return buildsV2;
@@ -148,9 +168,11 @@ public class HathoraCloud {
         return buildsV3;
     }
 
+
     public DeploymentsV1 deploymentsV1() {
         return deploymentsV1;
     }
+
 
     public DeploymentsV2 deploymentsV2() {
         return deploymentsV2;
@@ -184,21 +206,26 @@ public class HathoraCloud {
         return fleetsV1;
     }
 
+
     public LobbiesV1 lobbiesV1() {
         return lobbiesV1;
     }
+
 
     public LobbiesV2 lobbiesV2() {
         return lobbiesV2;
     }
 
+
     public LobbiesV3 lobbiesV3() {
         return lobbiesV3;
     }
 
+
     public LogsV1 logsV1() {
         return logsV1;
     }
+
 
     public ManagementV1 managementV1() {
         return managementV1;
@@ -210,6 +237,7 @@ public class HathoraCloud {
     public MetricsV1 metricsV1() {
         return metricsV1;
     }
+
 
     public OrganizationsV1 organizationsV1() {
         return organizationsV1;
@@ -236,13 +264,16 @@ public class HathoraCloud {
         return processesV3;
     }
 
+
     public RoomsV1 roomsV1() {
         return roomsV1;
     }
 
+
     public RoomsV2 roomsV2() {
         return roomsV2;
     }
+
 
     public TokensV1 tokensV1() {
         return tokensV1;
@@ -256,6 +287,9 @@ public class HathoraCloud {
     public static class Builder {
 
         private final SDKConfiguration sdkConfiguration = new SDKConfiguration();
+        private String serverUrl;
+        private String server;
+        
 
         private Builder() {
         }
@@ -267,18 +301,18 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder client(HTTPClient client) {
-            this.sdkConfiguration.defaultClient = client;
+            this.sdkConfiguration.setClient(client);
             return this;
         }
         
         /**
          * Configures the SDK to use the provided security details.
          *
-         * @param security The security details to use for all requests.
+         * @param security The security details to use for all requests. Can be {@code null}.
          * @return The builder instance.
          */
         public Builder security(dev.hathora.cloud_sdk.models.shared.Security security) {
-            this.sdkConfiguration.securitySource = SecuritySource.of(security);
+            this.sdkConfiguration.setSecuritySource(SecuritySource.of(security));
             return this;
         }
 
@@ -289,7 +323,8 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder securitySource(SecuritySource securitySource) {
-            this.sdkConfiguration.securitySource = securitySource;
+            Utils.checkNotNull(securitySource, "securitySource");
+            this.sdkConfiguration.setSecuritySource(securitySource);
             return this;
         }
         
@@ -300,7 +335,7 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl) {
-            this.sdkConfiguration.serverUrl = serverUrl;
+            this.serverUrl = serverUrl;
             return this;
         }
 
@@ -312,7 +347,7 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl, Map<String, String> params) {
-            this.sdkConfiguration.serverUrl = Utils.templateUrl(serverUrl, params);
+            this.serverUrl = Utils.templateUrl(serverUrl, params);
             return this;
         }
         
@@ -323,8 +358,8 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder serverIndex(int serverIdx) {
-            this.sdkConfiguration.serverIdx = serverIdx;
-            this.sdkConfiguration.serverUrl = SERVERS[serverIdx];
+            this.sdkConfiguration.setServerIdx(serverIdx);
+            this.serverUrl= SERVERS[serverIdx];
             return this;
         }
         
@@ -335,9 +370,26 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder retryConfig(RetryConfig retryConfig) {
-            this.sdkConfiguration.retryConfig = Optional.of(retryConfig);
+            this.sdkConfiguration.setRetryConfig(Optional.of(retryConfig));
             return this;
         }
+
+        /**
+         * Enables debug logging for HTTP requests and responses, including JSON body content.
+         * <p>
+         * Convenience method that calls {@link HTTPClient#enableDebugLogging(boolean)}.
+         * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
+         * it is up to the custom client to honor this setting.
+         * </p>
+         *
+         * @param enabled Whether to enable debug logging.
+         * @return The builder instance.
+         */
+        public Builder enableHTTPDebugLogging(boolean enabled) {
+            this.sdkConfiguration.client().enableDebugLogging(enabled);
+            return this;
+        }
+
         /**
          * Allows setting the appId parameter for all supported operations.
          *
@@ -345,12 +397,7 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder appId(String appId) {
-            if (!this.sdkConfiguration.globals.get("parameters").containsKey("pathParam")) {
-                this.sdkConfiguration.globals.get("parameters").put("pathParam", new HashMap<>());
-            }
-
-            this.sdkConfiguration.globals.get("parameters").get("pathParam").put("appId", appId);
-
+            this.sdkConfiguration.globals.putParam("pathParam", "appId", appId);
             return this;
         }
         
@@ -361,12 +408,7 @@ public class HathoraCloud {
          * @return The builder instance.
          */
         public Builder orgId(String orgId) {
-            if (!this.sdkConfiguration.globals.get("parameters").containsKey("queryParam")) {
-                this.sdkConfiguration.globals.get("parameters").put("queryParam", new HashMap<>());
-            }
-
-            this.sdkConfiguration.globals.get("parameters").get("queryParam").put("orgId", orgId);
-
+            this.sdkConfiguration.globals.putParam("queryParam", "orgId", orgId);
             return this;
         }
         
@@ -376,19 +418,11 @@ public class HathoraCloud {
          * @return The SDK instance.
          */
         public HathoraCloud build() {
-            if (sdkConfiguration.defaultClient == null) {
-                sdkConfiguration.defaultClient = new SpeakeasyHTTPClient();
+            if (serverUrl == null || serverUrl.isBlank()) {
+                serverUrl = SERVERS[0];
+                sdkConfiguration.setServerIdx(0);
             }
-	        if (sdkConfiguration.securitySource == null) {
-	    	    sdkConfiguration.securitySource = SecuritySource.of(null);
-	        }
-            if (sdkConfiguration.serverUrl == null || sdkConfiguration.serverUrl.isBlank()) {
-                sdkConfiguration.serverUrl = SERVERS[0];
-                sdkConfiguration.serverIdx = 0;
-            }
-            if (sdkConfiguration.serverUrl.endsWith("/")) {
-                sdkConfiguration.serverUrl = sdkConfiguration.serverUrl.substring(0, sdkConfiguration.serverUrl.length() - 1);
-            }
+            sdkConfiguration.setServerUrl(serverUrl);
             return new HathoraCloud(sdkConfiguration);
         }
     }
@@ -404,6 +438,7 @@ public class HathoraCloud {
 
     private HathoraCloud(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.sdkConfiguration.initialize();
         this.appsV1 = new AppsV1(sdkConfiguration);
         this.appsV2 = new AppsV2(sdkConfiguration);
         this.authV1 = new AuthV1(sdkConfiguration);
@@ -430,6 +465,5 @@ public class HathoraCloud {
         this.roomsV1 = new RoomsV1(sdkConfiguration);
         this.roomsV2 = new RoomsV2(sdkConfiguration);
         this.tokensV1 = new TokensV1(sdkConfiguration);
-        this.sdkConfiguration.initialize();
     }
 }

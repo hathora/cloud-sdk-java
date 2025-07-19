@@ -17,7 +17,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -27,7 +26,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>A build represents a game server artifact and its associated metadata.
  */
 public class BuildWithMultipartUrls {
-
     /**
      * System generated unique identifier for an application.
      */
@@ -40,9 +38,11 @@ public class BuildWithMultipartUrls {
     @JsonProperty("buildId")
     private int buildId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buildTag")
     private JsonNullable<String> buildTag;
+
 
     @JsonProperty("completeUploadPostRequestUrl")
     private String completeUploadPostRequestUrl;
@@ -52,6 +52,7 @@ public class BuildWithMultipartUrls {
      */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("createdBy")
     private String createdBy;
@@ -83,6 +84,7 @@ public class BuildWithMultipartUrls {
     @JsonProperty("imageSize")
     private long imageSize;
 
+
     @JsonProperty("maxChunkSize")
     private double maxChunkSize;
 
@@ -101,8 +103,10 @@ public class BuildWithMultipartUrls {
     @JsonProperty("startedAt")
     private Optional<OffsetDateTime> startedAt;
 
+
     @JsonProperty("status")
     private BuildStatus status;
+
 
     @JsonProperty("uploadParts")
     private List<BuildPart> uploadParts;
@@ -167,7 +171,11 @@ public class BuildWithMultipartUrls {
             List<BuildWithMultipartUrlsRegionalContainerTags> regionalContainerTags,
             BuildStatus status,
             List<BuildPart> uploadParts) {
-        this(appId, buildId, JsonNullable.undefined(), completeUploadPostRequestUrl, createdAt, createdBy, Optional.empty(), Optional.empty(), Optional.empty(), imageSize, maxChunkSize, regionalContainerTags, Optional.empty(), status, uploadParts);
+        this(appId, buildId, JsonNullable.undefined(),
+            completeUploadPostRequestUrl, createdAt, createdBy,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            imageSize, maxChunkSize, regionalContainerTags,
+            Optional.empty(), status, uploadParts);
     }
 
     /**
@@ -274,9 +282,10 @@ public class BuildWithMultipartUrls {
         return uploadParts;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * System generated unique identifier for an application.
@@ -338,6 +347,7 @@ public class BuildWithMultipartUrls {
         return this;
     }
 
+
     /**
      * When the build was deleted.
      */
@@ -356,6 +366,7 @@ public class BuildWithMultipartUrls {
         return this;
     }
 
+
     /**
      * When the build expired
      */
@@ -373,6 +384,7 @@ public class BuildWithMultipartUrls {
         this.finishedAt = Optional.ofNullable(finishedAt);
         return this;
     }
+
 
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
@@ -418,6 +430,7 @@ public class BuildWithMultipartUrls {
         return this;
     }
 
+
     /**
      * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
      */
@@ -439,7 +452,6 @@ public class BuildWithMultipartUrls {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -450,41 +462,31 @@ public class BuildWithMultipartUrls {
         }
         BuildWithMultipartUrls other = (BuildWithMultipartUrls) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.buildTag, other.buildTag) &&
-            Objects.deepEquals(this.completeUploadPostRequestUrl, other.completeUploadPostRequestUrl) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.deletedAt, other.deletedAt) &&
-            Objects.deepEquals(this.expiredAt, other.expiredAt) &&
-            Objects.deepEquals(this.finishedAt, other.finishedAt) &&
-            Objects.deepEquals(this.imageSize, other.imageSize) &&
-            Objects.deepEquals(this.maxChunkSize, other.maxChunkSize) &&
-            Objects.deepEquals(this.regionalContainerTags, other.regionalContainerTags) &&
-            Objects.deepEquals(this.startedAt, other.startedAt) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.uploadParts, other.uploadParts);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.buildTag, other.buildTag) &&
+            Utils.enhancedDeepEquals(this.completeUploadPostRequestUrl, other.completeUploadPostRequestUrl) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.deletedAt, other.deletedAt) &&
+            Utils.enhancedDeepEquals(this.expiredAt, other.expiredAt) &&
+            Utils.enhancedDeepEquals(this.finishedAt, other.finishedAt) &&
+            Utils.enhancedDeepEquals(this.imageSize, other.imageSize) &&
+            Utils.enhancedDeepEquals(this.maxChunkSize, other.maxChunkSize) &&
+            Utils.enhancedDeepEquals(this.regionalContainerTags, other.regionalContainerTags) &&
+            Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.uploadParts, other.uploadParts);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            buildId,
-            buildTag,
-            completeUploadPostRequestUrl,
-            createdAt,
-            createdBy,
-            deletedAt,
-            expiredAt,
-            finishedAt,
-            imageSize,
-            maxChunkSize,
-            regionalContainerTags,
-            startedAt,
-            status,
-            uploadParts);
+        return Utils.enhancedHash(
+            appId, buildId, buildTag,
+            completeUploadPostRequestUrl, createdAt, createdBy,
+            deletedAt, expiredAt, finishedAt,
+            imageSize, maxChunkSize, regionalContainerTags,
+            startedAt, status, uploadParts);
     }
     
     @Override
@@ -506,43 +508,45 @@ public class BuildWithMultipartUrls {
                 "status", status,
                 "uploadParts", uploadParts);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String appId;
- 
+
         private Integer buildId;
- 
+
         private JsonNullable<String> buildTag = JsonNullable.undefined();
- 
+
         private String completeUploadPostRequestUrl;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String createdBy;
- 
+
         private Optional<OffsetDateTime> deletedAt = Optional.empty();
- 
+
         private Optional<OffsetDateTime> expiredAt = Optional.empty();
- 
+
         private Optional<OffsetDateTime> finishedAt = Optional.empty();
- 
+
         private Long imageSize;
- 
+
         private Double maxChunkSize;
- 
+
         @Deprecated
         private List<BuildWithMultipartUrlsRegionalContainerTags> regionalContainerTags;
- 
+
         private Optional<OffsetDateTime> startedAt = Optional.empty();
- 
+
         private BuildStatus status;
- 
+
         private List<BuildPart> uploadParts;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * System generated unique identifier for an application.
@@ -553,6 +557,7 @@ public class BuildWithMultipartUrls {
             return this;
         }
 
+
         /**
          * System generated id for a build. Increments by 1.
          */
@@ -561,6 +566,7 @@ public class BuildWithMultipartUrls {
             this.buildId = buildId;
             return this;
         }
+
 
         public Builder buildTag(String buildTag) {
             Utils.checkNotNull(buildTag, "buildTag");
@@ -574,11 +580,13 @@ public class BuildWithMultipartUrls {
             return this;
         }
 
+
         public Builder completeUploadPostRequestUrl(String completeUploadPostRequestUrl) {
             Utils.checkNotNull(completeUploadPostRequestUrl, "completeUploadPostRequestUrl");
             this.completeUploadPostRequestUrl = completeUploadPostRequestUrl;
             return this;
         }
+
 
         /**
          * When [`CreateBuild()`](https://hathora.dev/api#tag/BuildV2/operation/CreateBuild) is called.
@@ -589,11 +597,13 @@ public class BuildWithMultipartUrls {
             return this;
         }
 
+
         public Builder createdBy(String createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * When the build was deleted.
@@ -613,6 +623,7 @@ public class BuildWithMultipartUrls {
             return this;
         }
 
+
         /**
          * When the build expired
          */
@@ -630,6 +641,7 @@ public class BuildWithMultipartUrls {
             this.expiredAt = expiredAt;
             return this;
         }
+
 
         /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) finished executing.
@@ -649,6 +661,7 @@ public class BuildWithMultipartUrls {
             return this;
         }
 
+
         /**
          * The size (in bytes) of the Docker image built by Hathora.
          */
@@ -658,11 +671,13 @@ public class BuildWithMultipartUrls {
             return this;
         }
 
+
         public Builder maxChunkSize(double maxChunkSize) {
             Utils.checkNotNull(maxChunkSize, "maxChunkSize");
             this.maxChunkSize = maxChunkSize;
             return this;
         }
+
 
         /**
          * 
@@ -674,6 +689,7 @@ public class BuildWithMultipartUrls {
             this.regionalContainerTags = regionalContainerTags;
             return this;
         }
+
 
         /**
          * When [`RunBuild()`](https://hathora.dev/api#tag/BuildV2/operation/RunBuild) is called.
@@ -693,35 +709,29 @@ public class BuildWithMultipartUrls {
             return this;
         }
 
+
         public Builder status(BuildStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
+
         public Builder uploadParts(List<BuildPart> uploadParts) {
             Utils.checkNotNull(uploadParts, "uploadParts");
             this.uploadParts = uploadParts;
             return this;
         }
-        
+
         public BuildWithMultipartUrls build() {
+
             return new BuildWithMultipartUrls(
-                appId,
-                buildId,
-                buildTag,
-                completeUploadPostRequestUrl,
-                createdAt,
-                createdBy,
-                deletedAt,
-                expiredAt,
-                finishedAt,
-                imageSize,
-                maxChunkSize,
-                regionalContainerTags,
-                startedAt,
-                status,
-                uploadParts);
+                appId, buildId, buildTag,
+                completeUploadPostRequestUrl, createdAt, createdBy,
+                deletedAt, expiredAt, finishedAt,
+                imageSize, maxChunkSize, regionalContainerTags,
+                startedAt, status, uploadParts);
         }
+
     }
 }

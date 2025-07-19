@@ -9,8 +9,8 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetFleetsRequest {
 
@@ -33,9 +33,10 @@ public class GetFleetsRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetFleetsRequest withOrgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
@@ -43,13 +44,13 @@ public class GetFleetsRequest {
         return this;
     }
 
+
     public GetFleetsRequest withOrgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -60,12 +61,12 @@ public class GetFleetsRequest {
         }
         GetFleetsRequest other = (GetFleetsRequest) o;
         return 
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             orgId);
     }
     
@@ -74,14 +75,16 @@ public class GetFleetsRequest {
         return Utils.toString(GetFleetsRequest.class,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> orgId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -94,10 +97,12 @@ public class GetFleetsRequest {
             this.orgId = orgId;
             return this;
         }
-        
+
         public GetFleetsRequest build() {
+
             return new GetFleetsRequest(
                 orgId);
         }
+
     }
 }

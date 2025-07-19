@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -32,6 +31,7 @@ public class PartialAppConfigWithServiceConfig {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("authConfiguration")
     private Optional<? extends AuthConfiguration> authConfiguration;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("serviceConfig")
@@ -74,15 +74,17 @@ public class PartialAppConfigWithServiceConfig {
         return (Optional<ServiceConfig>) serviceConfig;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PartialAppConfigWithServiceConfig withAppName(String appName) {
         Utils.checkNotNull(appName, "appName");
         this.appName = Optional.ofNullable(appName);
         return this;
     }
+
 
     public PartialAppConfigWithServiceConfig withAppName(Optional<String> appName) {
         Utils.checkNotNull(appName, "appName");
@@ -99,6 +101,7 @@ public class PartialAppConfigWithServiceConfig {
         return this;
     }
 
+
     /**
      * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
@@ -114,13 +117,13 @@ public class PartialAppConfigWithServiceConfig {
         return this;
     }
 
+
     public PartialAppConfigWithServiceConfig withServiceConfig(Optional<? extends ServiceConfig> serviceConfig) {
         Utils.checkNotNull(serviceConfig, "serviceConfig");
         this.serviceConfig = serviceConfig;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -131,17 +134,15 @@ public class PartialAppConfigWithServiceConfig {
         }
         PartialAppConfigWithServiceConfig other = (PartialAppConfigWithServiceConfig) o;
         return 
-            Objects.deepEquals(this.appName, other.appName) &&
-            Objects.deepEquals(this.authConfiguration, other.authConfiguration) &&
-            Objects.deepEquals(this.serviceConfig, other.serviceConfig);
+            Utils.enhancedDeepEquals(this.appName, other.appName) &&
+            Utils.enhancedDeepEquals(this.authConfiguration, other.authConfiguration) &&
+            Utils.enhancedDeepEquals(this.serviceConfig, other.serviceConfig);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appName,
-            authConfiguration,
-            serviceConfig);
+        return Utils.enhancedHash(
+            appName, authConfiguration, serviceConfig);
     }
     
     @Override
@@ -151,18 +152,20 @@ public class PartialAppConfigWithServiceConfig {
                 "authConfiguration", authConfiguration,
                 "serviceConfig", serviceConfig);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appName = Optional.empty();
- 
+
         private Optional<? extends AuthConfiguration> authConfiguration = Optional.empty();
- 
+
         private Optional<? extends ServiceConfig> serviceConfig = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appName(String appName) {
             Utils.checkNotNull(appName, "appName");
@@ -175,6 +178,7 @@ public class PartialAppConfigWithServiceConfig {
             this.appName = appName;
             return this;
         }
+
 
         /**
          * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
@@ -194,6 +198,7 @@ public class PartialAppConfigWithServiceConfig {
             return this;
         }
 
+
         public Builder serviceConfig(ServiceConfig serviceConfig) {
             Utils.checkNotNull(serviceConfig, "serviceConfig");
             this.serviceConfig = Optional.ofNullable(serviceConfig);
@@ -205,12 +210,12 @@ public class PartialAppConfigWithServiceConfig {
             this.serviceConfig = serviceConfig;
             return this;
         }
-        
+
         public PartialAppConfigWithServiceConfig build() {
+
             return new PartialAppConfigWithServiceConfig(
-                appName,
-                authConfiguration,
-                serviceConfig);
+                appName, authConfiguration, serviceConfig);
         }
+
     }
 }
