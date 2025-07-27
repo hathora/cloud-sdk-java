@@ -9,8 +9,8 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetPaymentMethodRequest {
 
@@ -33,9 +33,10 @@ public class GetPaymentMethodRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetPaymentMethodRequest withOrgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
@@ -43,13 +44,13 @@ public class GetPaymentMethodRequest {
         return this;
     }
 
+
     public GetPaymentMethodRequest withOrgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -60,12 +61,12 @@ public class GetPaymentMethodRequest {
         }
         GetPaymentMethodRequest other = (GetPaymentMethodRequest) o;
         return 
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             orgId);
     }
     
@@ -74,14 +75,16 @@ public class GetPaymentMethodRequest {
         return Utils.toString(GetPaymentMethodRequest.class,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> orgId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -94,10 +97,12 @@ public class GetPaymentMethodRequest {
             this.orgId = orgId;
             return this;
         }
-        
+
         public GetPaymentMethodRequest build() {
+
             return new GetPaymentMethodRequest(
                 orgId);
         }
+
     }
 }

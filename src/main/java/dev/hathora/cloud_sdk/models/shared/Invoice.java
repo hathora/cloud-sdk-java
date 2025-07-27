@@ -11,27 +11,33 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class Invoice {
 
     @JsonProperty("amountDue")
     private double amountDue;
 
+
     @JsonProperty("dueDate")
     private OffsetDateTime dueDate;
+
 
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("month")
     private double month;
+
 
     @JsonProperty("pdfUrl")
     private String pdfUrl;
 
+
     @JsonProperty("status")
     private InvoiceStatus status;
+
 
     @JsonProperty("year")
     private double year;
@@ -96,9 +102,10 @@ public class Invoice {
         return year;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Invoice withAmountDue(double amountDue) {
         Utils.checkNotNull(amountDue, "amountDue");
@@ -142,7 +149,6 @@ public class Invoice {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,24 +159,20 @@ public class Invoice {
         }
         Invoice other = (Invoice) o;
         return 
-            Objects.deepEquals(this.amountDue, other.amountDue) &&
-            Objects.deepEquals(this.dueDate, other.dueDate) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.month, other.month) &&
-            Objects.deepEquals(this.pdfUrl, other.pdfUrl) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.year, other.year);
+            Utils.enhancedDeepEquals(this.amountDue, other.amountDue) &&
+            Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.month, other.month) &&
+            Utils.enhancedDeepEquals(this.pdfUrl, other.pdfUrl) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.year, other.year);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amountDue,
-            dueDate,
-            id,
-            month,
-            pdfUrl,
-            status,
+        return Utils.enhancedHash(
+            amountDue, dueDate, id,
+            month, pdfUrl, status,
             year);
     }
     
@@ -185,26 +187,28 @@ public class Invoice {
                 "status", status,
                 "year", year);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Double amountDue;
- 
+
         private OffsetDateTime dueDate;
- 
+
         private String id;
- 
+
         private Double month;
- 
+
         private String pdfUrl;
- 
+
         private InvoiceStatus status;
- 
+
         private Double year;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amountDue(double amountDue) {
             Utils.checkNotNull(amountDue, "amountDue");
@@ -212,11 +216,13 @@ public class Invoice {
             return this;
         }
 
+
         public Builder dueDate(OffsetDateTime dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
             this.dueDate = dueDate;
             return this;
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -224,11 +230,13 @@ public class Invoice {
             return this;
         }
 
+
         public Builder month(double month) {
             Utils.checkNotNull(month, "month");
             this.month = month;
             return this;
         }
+
 
         public Builder pdfUrl(String pdfUrl) {
             Utils.checkNotNull(pdfUrl, "pdfUrl");
@@ -236,27 +244,27 @@ public class Invoice {
             return this;
         }
 
+
         public Builder status(InvoiceStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
+
         public Builder year(double year) {
             Utils.checkNotNull(year, "year");
             this.year = year;
             return this;
         }
-        
+
         public Invoice build() {
+
             return new Invoice(
-                amountDue,
-                dueDate,
-                id,
-                month,
-                pdfUrl,
-                status,
+                amountDue, dueDate, id,
+                month, pdfUrl, status,
                 year);
         }
+
     }
 }

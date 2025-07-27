@@ -10,13 +10,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateBuildRegistryRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CreateBuildV3Params createBuildV3Params;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
     private Optional<String> orgId;
@@ -46,9 +47,10 @@ public class CreateBuildRegistryRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateBuildRegistryRequest withCreateBuildV3Params(CreateBuildV3Params createBuildV3Params) {
         Utils.checkNotNull(createBuildV3Params, "createBuildV3Params");
@@ -62,13 +64,13 @@ public class CreateBuildRegistryRequest {
         return this;
     }
 
+
     public CreateBuildRegistryRequest withOrgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,15 +81,14 @@ public class CreateBuildRegistryRequest {
         }
         CreateBuildRegistryRequest other = (CreateBuildRegistryRequest) o;
         return 
-            Objects.deepEquals(this.createBuildV3Params, other.createBuildV3Params) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.createBuildV3Params, other.createBuildV3Params) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createBuildV3Params,
-            orgId);
+        return Utils.enhancedHash(
+            createBuildV3Params, orgId);
     }
     
     @Override
@@ -96,22 +97,25 @@ public class CreateBuildRegistryRequest {
                 "createBuildV3Params", createBuildV3Params,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CreateBuildV3Params createBuildV3Params;
- 
+
         private Optional<String> orgId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createBuildV3Params(CreateBuildV3Params createBuildV3Params) {
             Utils.checkNotNull(createBuildV3Params, "createBuildV3Params");
             this.createBuildV3Params = createBuildV3Params;
             return this;
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -124,11 +128,12 @@ public class CreateBuildRegistryRequest {
             this.orgId = orgId;
             return this;
         }
-        
+
         public CreateBuildRegistryRequest build() {
+
             return new CreateBuildRegistryRequest(
-                createBuildV3Params,
-                orgId);
+                createBuildV3Params, orgId);
         }
+
     }
 }

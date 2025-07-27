@@ -16,11 +16,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class DeploymentConfigV2 {
 
+public class DeploymentConfigV2 {
     /**
      * Additional ports your server listens on.
      */
@@ -107,7 +106,9 @@ public class DeploymentConfigV2 {
             double requestedMemoryMB,
             int roomsPerProcess,
             TransportType transportType) {
-        this(Optional.empty(), containerPort, env, idleTimeoutEnabled, requestedCPU, requestedMemoryMB, roomsPerProcess, transportType);
+        this(Optional.empty(), containerPort, env,
+            idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
+            roomsPerProcess, transportType);
     }
 
     /**
@@ -176,9 +177,10 @@ public class DeploymentConfigV2 {
         return transportType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Additional ports your server listens on.
@@ -188,6 +190,7 @@ public class DeploymentConfigV2 {
         this.additionalContainerPorts = Optional.ofNullable(additionalContainerPorts);
         return this;
     }
+
 
     /**
      * Additional ports your server listens on.
@@ -262,7 +265,6 @@ public class DeploymentConfigV2 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -273,27 +275,22 @@ public class DeploymentConfigV2 {
         }
         DeploymentConfigV2 other = (DeploymentConfigV2) o;
         return 
-            Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
-            Objects.deepEquals(this.containerPort, other.containerPort) &&
-            Objects.deepEquals(this.env, other.env) &&
-            Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
-            Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
-            Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
-            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            Objects.deepEquals(this.transportType, other.transportType);
+            Utils.enhancedDeepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            Utils.enhancedDeepEquals(this.containerPort, other.containerPort) &&
+            Utils.enhancedDeepEquals(this.env, other.env) &&
+            Utils.enhancedDeepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
+            Utils.enhancedDeepEquals(this.requestedCPU, other.requestedCPU) &&
+            Utils.enhancedDeepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
+            Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Utils.enhancedDeepEquals(this.transportType, other.transportType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            additionalContainerPorts,
-            containerPort,
-            env,
-            idleTimeoutEnabled,
-            requestedCPU,
-            requestedMemoryMB,
-            roomsPerProcess,
-            transportType);
+        return Utils.enhancedHash(
+            additionalContainerPorts, containerPort, env,
+            idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
+            roomsPerProcess, transportType);
     }
     
     @Override
@@ -308,28 +305,30 @@ public class DeploymentConfigV2 {
                 "roomsPerProcess", roomsPerProcess,
                 "transportType", transportType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ContainerPort>> additionalContainerPorts = Optional.empty();
- 
+
         private Integer containerPort;
- 
+
         private List<DeploymentConfigV2Env> env;
- 
+
         private Boolean idleTimeoutEnabled;
- 
+
         private Double requestedCPU;
- 
+
         private Double requestedMemoryMB;
- 
+
         private Integer roomsPerProcess;
- 
+
         private TransportType transportType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Additional ports your server listens on.
@@ -349,6 +348,7 @@ public class DeploymentConfigV2 {
             return this;
         }
 
+
         /**
          * Default port the server listens on.
          */
@@ -358,6 +358,7 @@ public class DeploymentConfigV2 {
             return this;
         }
 
+
         /**
          * The environment variable that our process will have access to at runtime.
          */
@@ -366,6 +367,7 @@ public class DeploymentConfigV2 {
             this.env = env;
             return this;
         }
+
 
         /**
          * Option to shut down processes that have had no new connections or rooms
@@ -377,6 +379,7 @@ public class DeploymentConfigV2 {
             return this;
         }
 
+
         /**
          * The number of cores allocated to your process.
          */
@@ -385,6 +388,7 @@ public class DeploymentConfigV2 {
             this.requestedCPU = requestedCPU;
             return this;
         }
+
 
         /**
          * The amount of memory allocated to your process.
@@ -395,6 +399,7 @@ public class DeploymentConfigV2 {
             return this;
         }
 
+
         /**
          * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
          */
@@ -404,6 +409,7 @@ public class DeploymentConfigV2 {
             return this;
         }
 
+
         /**
          * Transport type specifies the underlying communication protocol to the exposed port.
          */
@@ -412,17 +418,14 @@ public class DeploymentConfigV2 {
             this.transportType = transportType;
             return this;
         }
-        
+
         public DeploymentConfigV2 build() {
+
             return new DeploymentConfigV2(
-                additionalContainerPorts,
-                containerPort,
-                env,
-                idleTimeoutEnabled,
-                requestedCPU,
-                requestedMemoryMB,
-                roomsPerProcess,
-                transportType);
+                additionalContainerPorts, containerPort, env,
+                idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
+                roomsPerProcess, transportType);
         }
+
     }
 }

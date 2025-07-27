@@ -10,16 +10,18 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class RunBuildDeprecatedRequest {
 
     @SpeakeasyMetadata("request:mediaType=multipart/form-data")
     private RunBuildDeprecatedRequestBody requestBody;
 
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buildId")
     private int buildId;
@@ -58,9 +60,10 @@ public class RunBuildDeprecatedRequest {
         return buildId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RunBuildDeprecatedRequest withRequestBody(RunBuildDeprecatedRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -74,6 +77,7 @@ public class RunBuildDeprecatedRequest {
         return this;
     }
 
+
     public RunBuildDeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
@@ -86,7 +90,6 @@ public class RunBuildDeprecatedRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,17 +100,15 @@ public class RunBuildDeprecatedRequest {
         }
         RunBuildDeprecatedRequest other = (RunBuildDeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.buildId, other.buildId);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            appId,
-            buildId);
+        return Utils.enhancedHash(
+            requestBody, appId, buildId);
     }
     
     @Override
@@ -117,24 +118,27 @@ public class RunBuildDeprecatedRequest {
                 "appId", appId,
                 "buildId", buildId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private RunBuildDeprecatedRequestBody requestBody;
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Integer buildId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(RunBuildDeprecatedRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -148,17 +152,18 @@ public class RunBuildDeprecatedRequest {
             return this;
         }
 
+
         public Builder buildId(int buildId) {
             Utils.checkNotNull(buildId, "buildId");
             this.buildId = buildId;
             return this;
         }
-        
+
         public RunBuildDeprecatedRequest build() {
+
             return new RunBuildDeprecatedRequest(
-                requestBody,
-                appId,
-                buildId);
+                requestBody, appId, buildId);
         }
+
     }
 }

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -46,6 +45,7 @@ public class RoomConnectionData {
     @JsonProperty("roomId")
     private String roomId;
 
+
     @JsonProperty("status")
     private RoomReadyStatus status;
 
@@ -73,7 +73,8 @@ public class RoomConnectionData {
             String processId,
             String roomId,
             RoomReadyStatus status) {
-        this(additionalExposedPorts, Optional.empty(), processId, roomId, status);
+        this(additionalExposedPorts, Optional.empty(), processId,
+            roomId, status);
     }
 
     @JsonIgnore
@@ -112,9 +113,10 @@ public class RoomConnectionData {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RoomConnectionData withAdditionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
         Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
@@ -130,6 +132,7 @@ public class RoomConnectionData {
         this.exposedPort = Optional.ofNullable(exposedPort);
         return this;
     }
+
 
     /**
      * Connection details for an active process.
@@ -165,7 +168,6 @@ public class RoomConnectionData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -176,21 +178,18 @@ public class RoomConnectionData {
         }
         RoomConnectionData other = (RoomConnectionData) o;
         return 
-            Objects.deepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
-            Objects.deepEquals(this.exposedPort, other.exposedPort) &&
-            Objects.deepEquals(this.processId, other.processId) &&
-            Objects.deepEquals(this.roomId, other.roomId) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
+            Utils.enhancedDeepEquals(this.exposedPort, other.exposedPort) &&
+            Utils.enhancedDeepEquals(this.processId, other.processId) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            additionalExposedPorts,
-            exposedPort,
-            processId,
-            roomId,
-            status);
+        return Utils.enhancedHash(
+            additionalExposedPorts, exposedPort, processId,
+            roomId, status);
     }
     
     @Override
@@ -202,28 +201,31 @@ public class RoomConnectionData {
                 "roomId", roomId,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<ExposedPort> additionalExposedPorts;
- 
+
         private Optional<? extends ExposedPort> exposedPort = Optional.empty();
- 
+
         private String processId;
- 
+
         private String roomId;
- 
+
         private RoomReadyStatus status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder additionalExposedPorts(List<ExposedPort> additionalExposedPorts) {
             Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
             this.additionalExposedPorts = additionalExposedPorts;
             return this;
         }
+
 
         /**
          * Connection details for an active process.
@@ -243,6 +245,7 @@ public class RoomConnectionData {
             return this;
         }
 
+
         /**
          * System generated unique identifier to a runtime instance of your game server.
          */
@@ -251,6 +254,7 @@ public class RoomConnectionData {
             this.processId = processId;
             return this;
         }
+
 
         /**
          * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
@@ -262,19 +266,19 @@ public class RoomConnectionData {
             return this;
         }
 
+
         public Builder status(RoomReadyStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
-        
+
         public RoomConnectionData build() {
+
             return new RoomConnectionData(
-                additionalExposedPorts,
-                exposedPort,
-                processId,
-                roomId,
-                status);
+                additionalExposedPorts, exposedPort, processId,
+                roomId, status);
         }
+
     }
 }

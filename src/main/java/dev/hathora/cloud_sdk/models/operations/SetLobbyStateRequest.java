@@ -10,16 +10,18 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class SetLobbyStateRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private SetLobbyStateParams setLobbyStateParams;
 
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=roomId")
     private String roomId;
@@ -58,9 +60,10 @@ public class SetLobbyStateRequest {
         return roomId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public SetLobbyStateRequest withSetLobbyStateParams(SetLobbyStateParams setLobbyStateParams) {
         Utils.checkNotNull(setLobbyStateParams, "setLobbyStateParams");
@@ -74,6 +77,7 @@ public class SetLobbyStateRequest {
         return this;
     }
 
+
     public SetLobbyStateRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
@@ -86,7 +90,6 @@ public class SetLobbyStateRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,17 +100,15 @@ public class SetLobbyStateRequest {
         }
         SetLobbyStateRequest other = (SetLobbyStateRequest) o;
         return 
-            Objects.deepEquals(this.setLobbyStateParams, other.setLobbyStateParams) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.roomId, other.roomId);
+            Utils.enhancedDeepEquals(this.setLobbyStateParams, other.setLobbyStateParams) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            setLobbyStateParams,
-            appId,
-            roomId);
+        return Utils.enhancedHash(
+            setLobbyStateParams, appId, roomId);
     }
     
     @Override
@@ -117,24 +118,27 @@ public class SetLobbyStateRequest {
                 "appId", appId,
                 "roomId", roomId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private SetLobbyStateParams setLobbyStateParams;
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String roomId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder setLobbyStateParams(SetLobbyStateParams setLobbyStateParams) {
             Utils.checkNotNull(setLobbyStateParams, "setLobbyStateParams");
             this.setLobbyStateParams = setLobbyStateParams;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -148,17 +152,18 @@ public class SetLobbyStateRequest {
             return this;
         }
 
+
         public Builder roomId(String roomId) {
             Utils.checkNotNull(roomId, "roomId");
             this.roomId = roomId;
             return this;
         }
-        
+
         public SetLobbyStateRequest build() {
+
             return new SetLobbyStateRequest(
-                setLobbyStateParams,
-                appId,
-                roomId);
+                setLobbyStateParams, appId, roomId);
         }
+
     }
 }

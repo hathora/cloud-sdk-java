@@ -11,19 +11,22 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class UpdateFleetRegionRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private FleetRegionConfig fleetRegionConfig;
 
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=fleetId")
     private String fleetId;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
     private Optional<String> orgId;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=region")
     private Region region;
@@ -48,7 +51,8 @@ public class UpdateFleetRegionRequest {
             FleetRegionConfig fleetRegionConfig,
             String fleetId,
             Region region) {
-        this(fleetRegionConfig, fleetId, Optional.empty(), region);
+        this(fleetRegionConfig, fleetId, Optional.empty(),
+            region);
     }
 
     @JsonIgnore
@@ -71,9 +75,10 @@ public class UpdateFleetRegionRequest {
         return region;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateFleetRegionRequest withFleetRegionConfig(FleetRegionConfig fleetRegionConfig) {
         Utils.checkNotNull(fleetRegionConfig, "fleetRegionConfig");
@@ -93,6 +98,7 @@ public class UpdateFleetRegionRequest {
         return this;
     }
 
+
     public UpdateFleetRegionRequest withOrgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
@@ -105,7 +111,6 @@ public class UpdateFleetRegionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -116,18 +121,16 @@ public class UpdateFleetRegionRequest {
         }
         UpdateFleetRegionRequest other = (UpdateFleetRegionRequest) o;
         return 
-            Objects.deepEquals(this.fleetRegionConfig, other.fleetRegionConfig) &&
-            Objects.deepEquals(this.fleetId, other.fleetId) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.fleetRegionConfig, other.fleetRegionConfig) &&
+            Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            fleetRegionConfig,
-            fleetId,
-            orgId,
+        return Utils.enhancedHash(
+            fleetRegionConfig, fleetId, orgId,
             region);
     }
     
@@ -139,20 +142,22 @@ public class UpdateFleetRegionRequest {
                 "orgId", orgId,
                 "region", region);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private FleetRegionConfig fleetRegionConfig;
- 
+
         private String fleetId;
- 
+
         private Optional<String> orgId = Optional.empty();
- 
+
         private Region region;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder fleetRegionConfig(FleetRegionConfig fleetRegionConfig) {
             Utils.checkNotNull(fleetRegionConfig, "fleetRegionConfig");
@@ -160,11 +165,13 @@ public class UpdateFleetRegionRequest {
             return this;
         }
 
+
         public Builder fleetId(String fleetId) {
             Utils.checkNotNull(fleetId, "fleetId");
             this.fleetId = fleetId;
             return this;
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -178,18 +185,19 @@ public class UpdateFleetRegionRequest {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
-        
+
         public UpdateFleetRegionRequest build() {
+
             return new UpdateFleetRegionRequest(
-                fleetRegionConfig,
-                fleetId,
-                orgId,
+                fleetRegionConfig, fleetId, orgId,
                 region);
         }
+
     }
 }
