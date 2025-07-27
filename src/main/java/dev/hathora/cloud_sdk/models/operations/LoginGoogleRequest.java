@@ -10,13 +10,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class LoginGoogleRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private GoogleIdTokenObject googleIdTokenObject;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
@@ -46,9 +47,10 @@ public class LoginGoogleRequest {
         return appId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public LoginGoogleRequest withGoogleIdTokenObject(GoogleIdTokenObject googleIdTokenObject) {
         Utils.checkNotNull(googleIdTokenObject, "googleIdTokenObject");
@@ -62,13 +64,13 @@ public class LoginGoogleRequest {
         return this;
     }
 
+
     public LoginGoogleRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,15 +81,14 @@ public class LoginGoogleRequest {
         }
         LoginGoogleRequest other = (LoginGoogleRequest) o;
         return 
-            Objects.deepEquals(this.googleIdTokenObject, other.googleIdTokenObject) &&
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.googleIdTokenObject, other.googleIdTokenObject) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            googleIdTokenObject,
-            appId);
+        return Utils.enhancedHash(
+            googleIdTokenObject, appId);
     }
     
     @Override
@@ -96,22 +97,25 @@ public class LoginGoogleRequest {
                 "googleIdTokenObject", googleIdTokenObject,
                 "appId", appId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private GoogleIdTokenObject googleIdTokenObject;
- 
+
         private Optional<String> appId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder googleIdTokenObject(GoogleIdTokenObject googleIdTokenObject) {
             Utils.checkNotNull(googleIdTokenObject, "googleIdTokenObject");
             this.googleIdTokenObject = googleIdTokenObject;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -124,11 +128,12 @@ public class LoginGoogleRequest {
             this.appId = appId;
             return this;
         }
-        
+
         public LoginGoogleRequest build() {
+
             return new LoginGoogleRequest(
-                googleIdTokenObject,
-                appId);
+                googleIdTokenObject, appId);
         }
+
     }
 }

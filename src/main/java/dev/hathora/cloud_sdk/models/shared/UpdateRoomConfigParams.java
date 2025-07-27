@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class UpdateRoomConfigParams {
-
     /**
      * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
@@ -34,9 +33,10 @@ public class UpdateRoomConfigParams {
         return roomConfig;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
@@ -47,7 +47,6 @@ public class UpdateRoomConfigParams {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class UpdateRoomConfigParams {
         }
         UpdateRoomConfigParams other = (UpdateRoomConfigParams) o;
         return 
-            Objects.deepEquals(this.roomConfig, other.roomConfig);
+            Utils.enhancedDeepEquals(this.roomConfig, other.roomConfig);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             roomConfig);
     }
     
@@ -72,14 +71,16 @@ public class UpdateRoomConfigParams {
         return Utils.toString(UpdateRoomConfigParams.class,
                 "roomConfig", roomConfig);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String roomConfig;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
@@ -89,10 +90,12 @@ public class UpdateRoomConfigParams {
             this.roomConfig = roomConfig;
             return this;
         }
-        
+
         public UpdateRoomConfigParams build() {
+
             return new UpdateRoomConfigParams(
                 roomConfig);
         }
+
     }
 }

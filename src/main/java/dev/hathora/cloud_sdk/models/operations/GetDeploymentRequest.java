@@ -9,13 +9,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetDeploymentRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=deploymentId")
     private String deploymentId;
@@ -45,15 +46,17 @@ public class GetDeploymentRequest {
         return deploymentId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetDeploymentRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     public GetDeploymentRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
@@ -67,7 +70,6 @@ public class GetDeploymentRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,15 +80,14 @@ public class GetDeploymentRequest {
         }
         GetDeploymentRequest other = (GetDeploymentRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.deploymentId, other.deploymentId);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.deploymentId, other.deploymentId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            deploymentId);
+        return Utils.enhancedHash(
+            appId, deploymentId);
     }
     
     @Override
@@ -95,16 +96,18 @@ public class GetDeploymentRequest {
                 "appId", appId,
                 "deploymentId", deploymentId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String deploymentId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -118,16 +121,18 @@ public class GetDeploymentRequest {
             return this;
         }
 
+
         public Builder deploymentId(String deploymentId) {
             Utils.checkNotNull(deploymentId, "deploymentId");
             this.deploymentId = deploymentId;
             return this;
         }
-        
+
         public GetDeploymentRequest build() {
+
             return new GetDeploymentRequest(
-                appId,
-                deploymentId);
+                appId, deploymentId);
         }
+
     }
 }

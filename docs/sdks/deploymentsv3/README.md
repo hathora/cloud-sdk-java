@@ -33,11 +33,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateDeploymentResponse res = sdk.deploymentsV3().createDeployment()
@@ -55,7 +54,7 @@ public class Application {
                             .build()))
                     .idleTimeoutEnabled(true)
                     .requestedCPU(0.5)
-                    .requestedMemoryMB(1024)
+                    .requestedMemoryMB(1024d)
                     .roomsPerProcess(3)
                     .transportType(TransportType.UDP)
                     .additionalContainerPorts(List.of(
@@ -70,9 +69,8 @@ public class Application {
                             .transportType(TransportType.UDP)
                             .build()))
                     .deploymentTag("alpha")
-                    .experimentalRequestedGPU(1)
+                    .experimentalRequestedGPU(1d)
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.deploymentV3().isPresent()) {
@@ -121,15 +119,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetDeploymentResponse res = sdk.deploymentsV3().getDeployment()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .deploymentId("dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                 .call();
 
@@ -160,7 +156,7 @@ public class Application {
 
 ## getDeployments
 
-Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag.
+Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag or buildTag.
 
 ### Example Usage
 
@@ -178,15 +174,14 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetDeploymentsResponse res = sdk.deploymentsV3().getDeployments()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .buildTag("0.1.14-14c793")
                 .deploymentTag("alpha")
                 .call();
 
@@ -202,6 +197,7 @@ public class Application {
 | Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | `appId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | app-af469a92-5b45-4565-b3c4-b79878de67d2 |
+| `buildTag`                               | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | 0.1.14-14c793                            |
 | `deploymentTag`                          | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | alpha                                    |
 
 ### Response
@@ -235,15 +231,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetLatestDeploymentResponse res = sdk.deploymentsV3().getLatestDeployment()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.deploymentV3().isPresent()) {

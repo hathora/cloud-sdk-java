@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class RescindUserInvite {
-
     /**
      * A user's email.
      */
@@ -34,9 +33,10 @@ public class RescindUserInvite {
         return userEmail;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A user's email.
@@ -47,7 +47,6 @@ public class RescindUserInvite {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class RescindUserInvite {
         }
         RescindUserInvite other = (RescindUserInvite) o;
         return 
-            Objects.deepEquals(this.userEmail, other.userEmail);
+            Utils.enhancedDeepEquals(this.userEmail, other.userEmail);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             userEmail);
     }
     
@@ -72,14 +71,16 @@ public class RescindUserInvite {
         return Utils.toString(RescindUserInvite.class,
                 "userEmail", userEmail);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String userEmail;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A user's email.
@@ -89,10 +90,12 @@ public class RescindUserInvite {
             this.userEmail = userEmail;
             return this;
         }
-        
+
         public RescindUserInvite build() {
+
             return new RescindUserInvite(
                 userEmail);
         }
+
     }
 }

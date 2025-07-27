@@ -10,19 +10,22 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateLobbyRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CreateLobbyV3Params createLobbyV3Params;
 
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=roomId")
     private Optional<String> roomId;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=shortCode")
     private Optional<String> shortCode;
@@ -45,7 +48,8 @@ public class CreateLobbyRequest {
     
     public CreateLobbyRequest(
             CreateLobbyV3Params createLobbyV3Params) {
-        this(createLobbyV3Params, Optional.empty(), Optional.empty(), Optional.empty());
+        this(createLobbyV3Params, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -68,9 +72,10 @@ public class CreateLobbyRequest {
         return shortCode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateLobbyRequest withCreateLobbyV3Params(CreateLobbyV3Params createLobbyV3Params) {
         Utils.checkNotNull(createLobbyV3Params, "createLobbyV3Params");
@@ -84,6 +89,7 @@ public class CreateLobbyRequest {
         return this;
     }
 
+
     public CreateLobbyRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
@@ -95,6 +101,7 @@ public class CreateLobbyRequest {
         this.roomId = Optional.ofNullable(roomId);
         return this;
     }
+
 
     public CreateLobbyRequest withRoomId(Optional<String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
@@ -108,13 +115,13 @@ public class CreateLobbyRequest {
         return this;
     }
 
+
     public CreateLobbyRequest withShortCode(Optional<String> shortCode) {
         Utils.checkNotNull(shortCode, "shortCode");
         this.shortCode = shortCode;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,18 +132,16 @@ public class CreateLobbyRequest {
         }
         CreateLobbyRequest other = (CreateLobbyRequest) o;
         return 
-            Objects.deepEquals(this.createLobbyV3Params, other.createLobbyV3Params) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.roomId, other.roomId) &&
-            Objects.deepEquals(this.shortCode, other.shortCode);
+            Utils.enhancedDeepEquals(this.createLobbyV3Params, other.createLobbyV3Params) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId) &&
+            Utils.enhancedDeepEquals(this.shortCode, other.shortCode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createLobbyV3Params,
-            appId,
-            roomId,
+        return Utils.enhancedHash(
+            createLobbyV3Params, appId, roomId,
             shortCode);
     }
     
@@ -148,26 +153,29 @@ public class CreateLobbyRequest {
                 "roomId", roomId,
                 "shortCode", shortCode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CreateLobbyV3Params createLobbyV3Params;
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> roomId = Optional.empty();
- 
+
         private Optional<String> shortCode = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createLobbyV3Params(CreateLobbyV3Params createLobbyV3Params) {
             Utils.checkNotNull(createLobbyV3Params, "createLobbyV3Params");
             this.createLobbyV3Params = createLobbyV3Params;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -181,6 +189,7 @@ public class CreateLobbyRequest {
             return this;
         }
 
+
         public Builder roomId(String roomId) {
             Utils.checkNotNull(roomId, "roomId");
             this.roomId = Optional.ofNullable(roomId);
@@ -193,6 +202,7 @@ public class CreateLobbyRequest {
             return this;
         }
 
+
         public Builder shortCode(String shortCode) {
             Utils.checkNotNull(shortCode, "shortCode");
             this.shortCode = Optional.ofNullable(shortCode);
@@ -204,13 +214,13 @@ public class CreateLobbyRequest {
             this.shortCode = shortCode;
             return this;
         }
-        
+
         public CreateLobbyRequest build() {
+
             return new CreateLobbyRequest(
-                createLobbyV3Params,
-                appId,
-                roomId,
+                createLobbyV3Params, appId, roomId,
                 shortCode);
         }
+
     }
 }

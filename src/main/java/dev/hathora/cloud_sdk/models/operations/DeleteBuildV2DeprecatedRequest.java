@@ -10,13 +10,14 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class DeleteBuildV2DeprecatedRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buildId")
     private int buildId;
@@ -46,15 +47,17 @@ public class DeleteBuildV2DeprecatedRequest {
         return buildId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DeleteBuildV2DeprecatedRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     public DeleteBuildV2DeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
@@ -68,7 +71,6 @@ public class DeleteBuildV2DeprecatedRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,15 +81,14 @@ public class DeleteBuildV2DeprecatedRequest {
         }
         DeleteBuildV2DeprecatedRequest other = (DeleteBuildV2DeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.buildId, other.buildId);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            buildId);
+        return Utils.enhancedHash(
+            appId, buildId);
     }
     
     @Override
@@ -96,16 +97,18 @@ public class DeleteBuildV2DeprecatedRequest {
                 "appId", appId,
                 "buildId", buildId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Integer buildId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -119,16 +122,18 @@ public class DeleteBuildV2DeprecatedRequest {
             return this;
         }
 
+
         public Builder buildId(int buildId) {
             Utils.checkNotNull(buildId, "buildId");
             this.buildId = buildId;
             return this;
         }
-        
+
         public DeleteBuildV2DeprecatedRequest build() {
+
             return new DeleteBuildV2DeprecatedRequest(
-                appId,
-                buildId);
+                appId, buildId);
         }
+
     }
 }

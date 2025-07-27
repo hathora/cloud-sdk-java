@@ -16,11 +16,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class Organization {
 
+public class Organization {
     /**
      * The maximum number of concurrent processes that can be run by the organization
      * If undefined, the organization has no limit.
@@ -35,6 +34,7 @@ public class Organization {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("enabledFeatureFlags")
     private Optional<? extends List<String>> enabledFeatureFlags;
+
 
     @JsonProperty("isSingleTenant")
     private boolean isSingleTenant;
@@ -95,6 +95,7 @@ public class Organization {
     @JsonProperty("scopes")
     private List<Scope> scopes;
 
+
     @JsonProperty("stripeCustomerId")
     private String stripeCustomerId;
 
@@ -144,7 +145,10 @@ public class Organization {
             String orgId,
             List<Scope> scopes,
             String stripeCustomerId) {
-        this(Optional.empty(), Optional.empty(), isSingleTenant, Optional.empty(), Optional.empty(), maxRequestedMemoryMB, Optional.empty(), Optional.empty(), orgId, Optional.empty(), scopes, stripeCustomerId);
+        this(Optional.empty(), Optional.empty(), isSingleTenant,
+            Optional.empty(), Optional.empty(), maxRequestedMemoryMB,
+            Optional.empty(), Optional.empty(), orgId,
+            Optional.empty(), scopes, stripeCustomerId);
     }
 
     /**
@@ -242,9 +246,10 @@ public class Organization {
         return stripeCustomerId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The maximum number of concurrent processes that can be run by the organization
@@ -255,6 +260,7 @@ public class Organization {
         this.concurrentProcessVcpusLimit = Optional.ofNullable(concurrentProcessVcpusLimit);
         return this;
     }
+
 
     /**
      * The maximum number of concurrent processes that can be run by the organization
@@ -274,6 +280,7 @@ public class Organization {
         this.enabledFeatureFlags = Optional.ofNullable(enabledFeatureFlags);
         return this;
     }
+
 
     /**
      * The features enabled for this org and user.
@@ -300,6 +307,7 @@ public class Organization {
         return this;
     }
 
+
     /**
      * The retention period for process logs in hours
      * If undefined, the default is 72h
@@ -319,6 +327,7 @@ public class Organization {
         this.maxProcessConnections = Optional.ofNullable(maxProcessConnections);
         return this;
     }
+
 
     /**
      * The maximum number of inbound connections that can be made to a process
@@ -349,6 +358,7 @@ public class Organization {
         return this;
     }
 
+
     /**
      * The maximum number of monthly process vcpu hours that can be run by the organization
      * If undefined, the organization has no limit.
@@ -367,6 +377,7 @@ public class Organization {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The name of an organization.
@@ -395,6 +406,7 @@ public class Organization {
         return this;
     }
 
+
     /**
      * The maximum lifespan in hours of a pod.
      */
@@ -419,7 +431,6 @@ public class Organization {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -430,35 +441,27 @@ public class Organization {
         }
         Organization other = (Organization) o;
         return 
-            Objects.deepEquals(this.concurrentProcessVcpusLimit, other.concurrentProcessVcpusLimit) &&
-            Objects.deepEquals(this.enabledFeatureFlags, other.enabledFeatureFlags) &&
-            Objects.deepEquals(this.isSingleTenant, other.isSingleTenant) &&
-            Objects.deepEquals(this.logRetentionPeriodHours, other.logRetentionPeriodHours) &&
-            Objects.deepEquals(this.maxProcessConnections, other.maxProcessConnections) &&
-            Objects.deepEquals(this.maxRequestedMemoryMB, other.maxRequestedMemoryMB) &&
-            Objects.deepEquals(this.monthlyProcessVcpuHoursLimit, other.monthlyProcessVcpuHoursLimit) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.podMaxLifespanHrs, other.podMaxLifespanHrs) &&
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.stripeCustomerId, other.stripeCustomerId);
+            Utils.enhancedDeepEquals(this.concurrentProcessVcpusLimit, other.concurrentProcessVcpusLimit) &&
+            Utils.enhancedDeepEquals(this.enabledFeatureFlags, other.enabledFeatureFlags) &&
+            Utils.enhancedDeepEquals(this.isSingleTenant, other.isSingleTenant) &&
+            Utils.enhancedDeepEquals(this.logRetentionPeriodHours, other.logRetentionPeriodHours) &&
+            Utils.enhancedDeepEquals(this.maxProcessConnections, other.maxProcessConnections) &&
+            Utils.enhancedDeepEquals(this.maxRequestedMemoryMB, other.maxRequestedMemoryMB) &&
+            Utils.enhancedDeepEquals(this.monthlyProcessVcpuHoursLimit, other.monthlyProcessVcpuHoursLimit) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.podMaxLifespanHrs, other.podMaxLifespanHrs) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.stripeCustomerId, other.stripeCustomerId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            concurrentProcessVcpusLimit,
-            enabledFeatureFlags,
-            isSingleTenant,
-            logRetentionPeriodHours,
-            maxProcessConnections,
-            maxRequestedMemoryMB,
-            monthlyProcessVcpuHoursLimit,
-            name,
-            orgId,
-            podMaxLifespanHrs,
-            scopes,
-            stripeCustomerId);
+        return Utils.enhancedHash(
+            concurrentProcessVcpusLimit, enabledFeatureFlags, isSingleTenant,
+            logRetentionPeriodHours, maxProcessConnections, maxRequestedMemoryMB,
+            monthlyProcessVcpuHoursLimit, name, orgId,
+            podMaxLifespanHrs, scopes, stripeCustomerId);
     }
     
     @Override
@@ -477,36 +480,38 @@ public class Organization {
                 "scopes", scopes,
                 "stripeCustomerId", stripeCustomerId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Double> concurrentProcessVcpusLimit = Optional.empty();
- 
+
         private Optional<? extends List<String>> enabledFeatureFlags = Optional.empty();
- 
+
         private Boolean isSingleTenant;
- 
+
         private Optional<Integer> logRetentionPeriodHours = Optional.empty();
- 
+
         private Optional<Double> maxProcessConnections = Optional.empty();
- 
+
         private Double maxRequestedMemoryMB;
- 
+
         private Optional<Double> monthlyProcessVcpuHoursLimit = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private String orgId;
- 
+
         private Optional<Double> podMaxLifespanHrs = Optional.empty();
- 
+
         private List<Scope> scopes;
- 
+
         private String stripeCustomerId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The maximum number of concurrent processes that can be run by the organization
@@ -528,6 +533,7 @@ public class Organization {
             return this;
         }
 
+
         /**
          * The features enabled for this org and user.
          */
@@ -546,11 +552,13 @@ public class Organization {
             return this;
         }
 
+
         public Builder isSingleTenant(boolean isSingleTenant) {
             Utils.checkNotNull(isSingleTenant, "isSingleTenant");
             this.isSingleTenant = isSingleTenant;
             return this;
         }
+
 
         /**
          * The retention period for process logs in hours
@@ -572,6 +580,7 @@ public class Organization {
             return this;
         }
 
+
         /**
          * The maximum number of inbound connections that can be made to a process
          * If undefined, the default is 1024 connections
@@ -592,6 +601,7 @@ public class Organization {
             return this;
         }
 
+
         /**
          * The maximum memory in MB that can be used by any process in this org.
          */
@@ -600,6 +610,7 @@ public class Organization {
             this.maxRequestedMemoryMB = maxRequestedMemoryMB;
             return this;
         }
+
 
         /**
          * The maximum number of monthly process vcpu hours that can be run by the organization
@@ -621,6 +632,7 @@ public class Organization {
             return this;
         }
 
+
         /**
          * The name of an organization.
          */
@@ -639,6 +651,7 @@ public class Organization {
             return this;
         }
 
+
         /**
          * System generated unique identifier for an organization. Not guaranteed to have a specific format.
          */
@@ -647,6 +660,7 @@ public class Organization {
             this.orgId = orgId;
             return this;
         }
+
 
         /**
          * The maximum lifespan in hours of a pod.
@@ -666,6 +680,7 @@ public class Organization {
             return this;
         }
 
+
         /**
          * The scopes the user who loaded this has on this org.
          */
@@ -675,26 +690,21 @@ public class Organization {
             return this;
         }
 
+
         public Builder stripeCustomerId(String stripeCustomerId) {
             Utils.checkNotNull(stripeCustomerId, "stripeCustomerId");
             this.stripeCustomerId = stripeCustomerId;
             return this;
         }
-        
+
         public Organization build() {
+
             return new Organization(
-                concurrentProcessVcpusLimit,
-                enabledFeatureFlags,
-                isSingleTenant,
-                logRetentionPeriodHours,
-                maxProcessConnections,
-                maxRequestedMemoryMB,
-                monthlyProcessVcpuHoursLimit,
-                name,
-                orgId,
-                podMaxLifespanHrs,
-                scopes,
-                stripeCustomerId);
+                concurrentProcessVcpusLimit, enabledFeatureFlags, isSingleTenant,
+                logRetentionPeriodHours, maxProcessConnections, maxRequestedMemoryMB,
+                monthlyProcessVcpuHoursLimit, name, orgId,
+                podMaxLifespanHrs, scopes, stripeCustomerId);
         }
+
     }
 }

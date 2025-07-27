@@ -10,13 +10,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class LoginNicknameRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private NicknameObject nicknameObject;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
@@ -46,9 +47,10 @@ public class LoginNicknameRequest {
         return appId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public LoginNicknameRequest withNicknameObject(NicknameObject nicknameObject) {
         Utils.checkNotNull(nicknameObject, "nicknameObject");
@@ -62,13 +64,13 @@ public class LoginNicknameRequest {
         return this;
     }
 
+
     public LoginNicknameRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,15 +81,14 @@ public class LoginNicknameRequest {
         }
         LoginNicknameRequest other = (LoginNicknameRequest) o;
         return 
-            Objects.deepEquals(this.nicknameObject, other.nicknameObject) &&
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.nicknameObject, other.nicknameObject) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            nicknameObject,
-            appId);
+        return Utils.enhancedHash(
+            nicknameObject, appId);
     }
     
     @Override
@@ -96,22 +97,25 @@ public class LoginNicknameRequest {
                 "nicknameObject", nicknameObject,
                 "appId", appId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private NicknameObject nicknameObject;
- 
+
         private Optional<String> appId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder nicknameObject(NicknameObject nicknameObject) {
             Utils.checkNotNull(nicknameObject, "nicknameObject");
             this.nicknameObject = nicknameObject;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -124,11 +128,12 @@ public class LoginNicknameRequest {
             this.appId = appId;
             return this;
         }
-        
+
         public LoginNicknameRequest build() {
+
             return new LoginNicknameRequest(
-                nicknameObject,
-                appId);
+                nicknameObject, appId);
         }
+
     }
 }

@@ -14,16 +14,18 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreatePublicLobbyDeprecatedRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=local")
     private Optional<Boolean> local;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=region")
     private Optional<? extends Region> region;
@@ -61,15 +63,17 @@ public class CreatePublicLobbyDeprecatedRequest {
         return (Optional<Region>) region;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreatePublicLobbyDeprecatedRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     public CreatePublicLobbyDeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
@@ -83,6 +87,7 @@ public class CreatePublicLobbyDeprecatedRequest {
         return this;
     }
 
+
     public CreatePublicLobbyDeprecatedRequest withLocal(Optional<Boolean> local) {
         Utils.checkNotNull(local, "local");
         this.local = local;
@@ -95,13 +100,13 @@ public class CreatePublicLobbyDeprecatedRequest {
         return this;
     }
 
+
     public CreatePublicLobbyDeprecatedRequest withRegion(Optional<? extends Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,17 +117,15 @@ public class CreatePublicLobbyDeprecatedRequest {
         }
         CreatePublicLobbyDeprecatedRequest other = (CreatePublicLobbyDeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.local, other.local) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.local, other.local) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            local,
-            region);
+        return Utils.enhancedHash(
+            appId, local, region);
     }
     
     @Override
@@ -132,18 +135,20 @@ public class CreatePublicLobbyDeprecatedRequest {
                 "local", local,
                 "region", region);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<Boolean> local;
- 
+
         private Optional<? extends Region> region = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -157,6 +162,7 @@ public class CreatePublicLobbyDeprecatedRequest {
             return this;
         }
 
+
         public Builder local(boolean local) {
             Utils.checkNotNull(local, "local");
             this.local = Optional.ofNullable(local);
@@ -169,6 +175,7 @@ public class CreatePublicLobbyDeprecatedRequest {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = Optional.ofNullable(region);
@@ -180,16 +187,16 @@ public class CreatePublicLobbyDeprecatedRequest {
             this.region = region;
             return this;
         }
-        
+
         public CreatePublicLobbyDeprecatedRequest build() {
             if (local == null) {
                 local = _SINGLETON_VALUE_Local.value();
             }
+
             return new CreatePublicLobbyDeprecatedRequest(
-                appId,
-                local,
-                region);
+                appId, local, region);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Local =
                 new LazySingletonValue<>(

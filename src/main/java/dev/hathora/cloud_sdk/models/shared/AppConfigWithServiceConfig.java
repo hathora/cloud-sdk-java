@@ -12,11 +12,10 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AppConfigWithServiceConfig {
 
+public class AppConfigWithServiceConfig {
     /**
      * Readable name for an application. Must be unique within an organization.
      */
@@ -24,10 +23,11 @@ public class AppConfigWithServiceConfig {
     private String appName;
 
     /**
-     * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
     @JsonProperty("authConfiguration")
     private AuthConfiguration authConfiguration;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("serviceConfig")
@@ -61,7 +61,7 @@ public class AppConfigWithServiceConfig {
     }
 
     /**
-     * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
     @JsonIgnore
     public AuthConfiguration authConfiguration() {
@@ -74,9 +74,10 @@ public class AppConfigWithServiceConfig {
         return (Optional<ServiceConfig>) serviceConfig;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Readable name for an application. Must be unique within an organization.
@@ -88,7 +89,7 @@ public class AppConfigWithServiceConfig {
     }
 
     /**
-     * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
     public AppConfigWithServiceConfig withAuthConfiguration(AuthConfiguration authConfiguration) {
         Utils.checkNotNull(authConfiguration, "authConfiguration");
@@ -102,13 +103,13 @@ public class AppConfigWithServiceConfig {
         return this;
     }
 
+
     public AppConfigWithServiceConfig withServiceConfig(Optional<? extends ServiceConfig> serviceConfig) {
         Utils.checkNotNull(serviceConfig, "serviceConfig");
         this.serviceConfig = serviceConfig;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -119,17 +120,15 @@ public class AppConfigWithServiceConfig {
         }
         AppConfigWithServiceConfig other = (AppConfigWithServiceConfig) o;
         return 
-            Objects.deepEquals(this.appName, other.appName) &&
-            Objects.deepEquals(this.authConfiguration, other.authConfiguration) &&
-            Objects.deepEquals(this.serviceConfig, other.serviceConfig);
+            Utils.enhancedDeepEquals(this.appName, other.appName) &&
+            Utils.enhancedDeepEquals(this.authConfiguration, other.authConfiguration) &&
+            Utils.enhancedDeepEquals(this.serviceConfig, other.serviceConfig);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appName,
-            authConfiguration,
-            serviceConfig);
+        return Utils.enhancedHash(
+            appName, authConfiguration, serviceConfig);
     }
     
     @Override
@@ -139,18 +138,20 @@ public class AppConfigWithServiceConfig {
                 "authConfiguration", authConfiguration,
                 "serviceConfig", serviceConfig);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String appName;
- 
+
         private AuthConfiguration authConfiguration;
- 
+
         private Optional<? extends ServiceConfig> serviceConfig = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Readable name for an application. Must be unique within an organization.
@@ -161,14 +162,16 @@ public class AppConfigWithServiceConfig {
             return this;
         }
 
+
         /**
-         * Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+         * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
          */
         public Builder authConfiguration(AuthConfiguration authConfiguration) {
             Utils.checkNotNull(authConfiguration, "authConfiguration");
             this.authConfiguration = authConfiguration;
             return this;
         }
+
 
         public Builder serviceConfig(ServiceConfig serviceConfig) {
             Utils.checkNotNull(serviceConfig, "serviceConfig");
@@ -181,12 +184,12 @@ public class AppConfigWithServiceConfig {
             this.serviceConfig = serviceConfig;
             return this;
         }
-        
+
         public AppConfigWithServiceConfig build() {
+
             return new AppConfigWithServiceConfig(
-                appName,
-                authConfiguration,
-                serviceConfig);
+                appName, authConfiguration, serviceConfig);
         }
+
     }
 }

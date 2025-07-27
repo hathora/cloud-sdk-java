@@ -16,11 +16,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class DeploymentConfigV3 {
 
+public class DeploymentConfigV3 {
     /**
      * Additional ports your server listens on.
      */
@@ -139,7 +138,10 @@ public class DeploymentConfigV3 {
             double requestedMemoryMB,
             int roomsPerProcess,
             TransportType transportType) {
-        this(Optional.empty(), buildId, containerPort, Optional.empty(), env, Optional.empty(), idleTimeoutEnabled, requestedCPU, requestedMemoryMB, roomsPerProcess, transportType);
+        this(Optional.empty(), buildId, containerPort,
+            Optional.empty(), env, Optional.empty(),
+            idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
+            roomsPerProcess, transportType);
     }
 
     /**
@@ -234,9 +236,10 @@ public class DeploymentConfigV3 {
         return transportType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Additional ports your server listens on.
@@ -246,6 +249,7 @@ public class DeploymentConfigV3 {
         this.additionalContainerPorts = Optional.ofNullable(additionalContainerPorts);
         return this;
     }
+
 
     /**
      * Additional ports your server listens on.
@@ -283,6 +287,7 @@ public class DeploymentConfigV3 {
         return this;
     }
 
+
     /**
      * Arbitrary metadata associated with a deployment.
      */
@@ -311,6 +316,7 @@ public class DeploymentConfigV3 {
         this.experimentalRequestedGPU = Optional.ofNullable(experimentalRequestedGPU);
         return this;
     }
+
 
     /**
      * EXPERIMENTAL - this feature is in closed beta.
@@ -369,7 +375,6 @@ public class DeploymentConfigV3 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -380,33 +385,26 @@ public class DeploymentConfigV3 {
         }
         DeploymentConfigV3 other = (DeploymentConfigV3) o;
         return 
-            Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.containerPort, other.containerPort) &&
-            Objects.deepEquals(this.deploymentTag, other.deploymentTag) &&
-            Objects.deepEquals(this.env, other.env) &&
-            Objects.deepEquals(this.experimentalRequestedGPU, other.experimentalRequestedGPU) &&
-            Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
-            Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
-            Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
-            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            Objects.deepEquals(this.transportType, other.transportType);
+            Utils.enhancedDeepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.containerPort, other.containerPort) &&
+            Utils.enhancedDeepEquals(this.deploymentTag, other.deploymentTag) &&
+            Utils.enhancedDeepEquals(this.env, other.env) &&
+            Utils.enhancedDeepEquals(this.experimentalRequestedGPU, other.experimentalRequestedGPU) &&
+            Utils.enhancedDeepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
+            Utils.enhancedDeepEquals(this.requestedCPU, other.requestedCPU) &&
+            Utils.enhancedDeepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
+            Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Utils.enhancedDeepEquals(this.transportType, other.transportType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            additionalContainerPorts,
-            buildId,
-            containerPort,
-            deploymentTag,
-            env,
-            experimentalRequestedGPU,
-            idleTimeoutEnabled,
-            requestedCPU,
-            requestedMemoryMB,
-            roomsPerProcess,
-            transportType);
+        return Utils.enhancedHash(
+            additionalContainerPorts, buildId, containerPort,
+            deploymentTag, env, experimentalRequestedGPU,
+            idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
+            roomsPerProcess, transportType);
     }
     
     @Override
@@ -424,34 +422,36 @@ public class DeploymentConfigV3 {
                 "roomsPerProcess", roomsPerProcess,
                 "transportType", transportType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ContainerPort>> additionalContainerPorts = Optional.empty();
- 
+
         private String buildId;
- 
+
         private Integer containerPort;
- 
+
         private Optional<String> deploymentTag = Optional.empty();
- 
+
         private List<DeploymentConfigV3Env> env;
- 
+
         private Optional<Double> experimentalRequestedGPU = Optional.empty();
- 
+
         private Boolean idleTimeoutEnabled;
- 
+
         private Double requestedCPU;
- 
+
         private Double requestedMemoryMB;
- 
+
         private Integer roomsPerProcess;
- 
+
         private TransportType transportType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Additional ports your server listens on.
@@ -471,6 +471,7 @@ public class DeploymentConfigV3 {
             return this;
         }
 
+
         /**
          * System generated id for a build. Can also be user defined when creating a build.
          */
@@ -480,6 +481,7 @@ public class DeploymentConfigV3 {
             return this;
         }
 
+
         /**
          * Default port the server listens on.
          */
@@ -488,6 +490,7 @@ public class DeploymentConfigV3 {
             this.containerPort = containerPort;
             return this;
         }
+
 
         /**
          * Arbitrary metadata associated with a deployment.
@@ -507,6 +510,7 @@ public class DeploymentConfigV3 {
             return this;
         }
 
+
         /**
          * The environment variable that our process will have access to at runtime.
          */
@@ -515,6 +519,7 @@ public class DeploymentConfigV3 {
             this.env = env;
             return this;
         }
+
 
         /**
          * EXPERIMENTAL - this feature is in closed beta.
@@ -538,6 +543,7 @@ public class DeploymentConfigV3 {
             return this;
         }
 
+
         /**
          * Option to shut down processes that have had no new connections or rooms
          * for five minutes.
@@ -548,6 +554,7 @@ public class DeploymentConfigV3 {
             return this;
         }
 
+
         /**
          * The number of cores allocated to your process.
          */
@@ -556,6 +563,7 @@ public class DeploymentConfigV3 {
             this.requestedCPU = requestedCPU;
             return this;
         }
+
 
         /**
          * The amount of memory allocated to your process.
@@ -566,6 +574,7 @@ public class DeploymentConfigV3 {
             return this;
         }
 
+
         /**
          * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
          */
@@ -575,6 +584,7 @@ public class DeploymentConfigV3 {
             return this;
         }
 
+
         /**
          * Transport type specifies the underlying communication protocol to the exposed port.
          */
@@ -583,20 +593,15 @@ public class DeploymentConfigV3 {
             this.transportType = transportType;
             return this;
         }
-        
+
         public DeploymentConfigV3 build() {
+
             return new DeploymentConfigV3(
-                additionalContainerPorts,
-                buildId,
-                containerPort,
-                deploymentTag,
-                env,
-                experimentalRequestedGPU,
-                idleTimeoutEnabled,
-                requestedCPU,
-                requestedMemoryMB,
-                roomsPerProcess,
-                transportType);
+                additionalContainerPorts, buildId, containerPort,
+                deploymentTag, env, experimentalRequestedGPU,
+                idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
+                roomsPerProcess, transportType);
         }
+
     }
 }
