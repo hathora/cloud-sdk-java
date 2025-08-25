@@ -19,6 +19,7 @@ Create a new [application](https://hathora.dev/docs/concepts/hathora-entities#ap
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="CreateAppV1Deprecated" method="post" path="/apps/v1/create" -->
 ```java
 package hello.world;
 
@@ -34,13 +35,11 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
-        AppConfig req = AppConfig.builder()
+        CreateAppConfig req = CreateAppConfig.builder()
                 .appName("minecraft")
                 .authConfiguration(AuthConfiguration.builder()
                     .build())
@@ -59,9 +58,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                     | Type                                          | Required                                      | Description                                   |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `request`                                     | [AppConfig](../../models/shared/AppConfig.md) | :heavy_check_mark:                            | The request object to use for the request.    |
+| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `request`                                                 | [CreateAppConfig](../../models/shared/CreateAppConfig.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
 
 ### Response
 
@@ -71,7 +70,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 422, 429          | application/json       |
+| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
 | models/errors/ApiError | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
@@ -83,6 +82,7 @@ Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#appli
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="DeleteAppV1Deprecated" method="delete" path="/apps/v1/delete/{appId}" -->
 ```java
 package hello.world;
 
@@ -97,15 +97,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         DeleteAppV1DeprecatedResponse res = sdk.appsV1().deleteAppV1Deprecated()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         // handle response
@@ -139,6 +137,7 @@ Get details for an [application](https://hathora.dev/docs/concepts/hathora-entit
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetAppInfoV1Deprecated" method="get" path="/apps/v1/info/{appId}" -->
 ```java
 package hello.world;
 
@@ -153,15 +152,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetAppInfoV1DeprecatedResponse res = sdk.appsV1().getAppInfoV1Deprecated()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.application().isPresent()) {
@@ -196,6 +193,7 @@ Returns an unsorted list of your organization’s [applications](https://hathora
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetAppsV1Deprecated" method="get" path="/apps/v1/list" -->
 ```java
 package hello.world;
 
@@ -211,10 +209,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetAppsV1DeprecatedResponse res = sdk.appsV1().getAppsV1Deprecated()
@@ -246,6 +242,7 @@ Update data for an existing [application](https://hathora.dev/docs/concepts/hath
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="UpdateAppV1Deprecated" method="post" path="/apps/v1/update/{appId}" -->
 ```java
 package hello.world;
 
@@ -260,20 +257,18 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         UpdateAppV1DeprecatedResponse res = sdk.appsV1().updateAppV1Deprecated()
-                .appConfig(AppConfig.builder()
+                .createAppConfig(CreateAppConfig.builder()
                     .appName("minecraft")
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.application().isPresent()) {
@@ -285,10 +280,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                     | Type                                          | Required                                      | Description                                   | Example                                       |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `appConfig`                                   | [AppConfig](../../models/shared/AppConfig.md) | :heavy_check_mark:                            | N/A                                           |                                               |
-| `appId`                                       | *Optional\<String>*                           | :heavy_minus_sign:                            | N/A                                           | app-af469a92-5b45-4565-b3c4-b79878de67d2      |
+| Parameter                                                 | Type                                                      | Required                                                  | Description                                               | Example                                                   |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `createAppConfig`                                         | [CreateAppConfig](../../models/shared/CreateAppConfig.md) | :heavy_check_mark:                                        | N/A                                                       |                                                           |
+| `appId`                                                   | *Optional\<String>*                                       | :heavy_minus_sign:                                        | N/A                                                       | app-af469a92-5b45-4565-b3c4-b79878de67d2                  |
 
 ### Response
 

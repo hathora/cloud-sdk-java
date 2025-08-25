@@ -3,18 +3,25 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetAppsV1Deprecated;
 import java.lang.Exception;
 
 public class GetAppsV1DeprecatedRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallGetAppsV1Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetAppsV1DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallGetAppsV1Deprecated sdk) {
-        this.sdk = sdk;
+    public GetAppsV1DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetAppsV1DeprecatedResponse call() throws Exception {
+        
+        RequestlessOperation<GetAppsV1DeprecatedResponse> operation
+            = new GetAppsV1Deprecated.Sync(sdkConfiguration);
 
-        return sdk.getAppsV1DeprecatedDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

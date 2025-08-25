@@ -3,28 +3,34 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.models.shared.CreateAppConfig;
+import dev.hathora.cloud_sdk.operations.CreateAppV1Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class CreateAppV1DeprecatedRequestBuilder {
 
-    private AppConfig request;
-    private final SDKMethodInterfaces.MethodCallCreateAppV1Deprecated sdk;
+    private CreateAppConfig request;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateAppV1DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallCreateAppV1Deprecated sdk) {
-        this.sdk = sdk;
+    public CreateAppV1DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CreateAppV1DeprecatedRequestBuilder request(AppConfig request) {
+    public CreateAppV1DeprecatedRequestBuilder request(CreateAppConfig request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
     }
 
     public CreateAppV1DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<CreateAppConfig, CreateAppV1DeprecatedResponse> operation
+              = new CreateAppV1Deprecated.Sync(sdkConfiguration);
 
-        return sdk.createAppV1Deprecated(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetLobbyInfoByShortCode;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetLobbyInfoByShortCodeRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String shortCode;
-    private final SDKMethodInterfaces.MethodCallGetLobbyInfoByShortCode sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetLobbyInfoByShortCodeRequestBuilder(SDKMethodInterfaces.MethodCallGetLobbyInfoByShortCode sdk) {
-        this.sdk = sdk;
+    public GetLobbyInfoByShortCodeRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetLobbyInfoByShortCodeRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class GetLobbyInfoByShortCodeRequestBuilder {
         return this;
     }
 
-    public GetLobbyInfoByShortCodeResponse call() throws Exception {
 
-        return sdk.getLobbyInfoByShortCode(
-            appId,
+    private GetLobbyInfoByShortCodeRequest buildRequest() {
+
+        GetLobbyInfoByShortCodeRequest request = new GetLobbyInfoByShortCodeRequest(appId,
             shortCode);
+
+        return request;
+    }
+
+    public GetLobbyInfoByShortCodeResponse call() throws Exception {
+        
+        RequestOperation<GetLobbyInfoByShortCodeRequest, GetLobbyInfoByShortCodeResponse> operation
+              = new GetLobbyInfoByShortCode.Sync(sdkConfiguration);
+        GetLobbyInfoByShortCodeRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

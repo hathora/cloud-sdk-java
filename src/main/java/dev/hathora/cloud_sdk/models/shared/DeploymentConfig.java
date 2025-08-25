@@ -17,7 +17,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -26,7 +25,6 @@ import java.util.Optional;
  * <p>User specified deployment configuration for your application at runtime.
  */
 public class DeploymentConfig {
-
     /**
      * Additional ports your server listens on.
      */
@@ -111,7 +109,9 @@ public class DeploymentConfig {
             PlanName planName,
             int roomsPerProcess,
             TransportType transportType) {
-        this(Optional.empty(), containerPort, env, Optional.empty(), planName, roomsPerProcess, transportType);
+        this(Optional.empty(), containerPort, env,
+            Optional.empty(), planName, roomsPerProcess,
+            transportType);
     }
 
     /**
@@ -180,9 +180,10 @@ public class DeploymentConfig {
         return transportType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Additional ports your server listens on.
@@ -192,6 +193,7 @@ public class DeploymentConfig {
         this.additionalContainerPorts = Optional.ofNullable(additionalContainerPorts);
         return this;
     }
+
 
     /**
      * Additional ports your server listens on.
@@ -229,6 +231,7 @@ public class DeploymentConfig {
         this.idleTimeoutEnabled = Optional.ofNullable(idleTimeoutEnabled);
         return this;
     }
+
 
     /**
      * Option to shut down processes that have had no new connections or rooms
@@ -275,7 +278,6 @@ public class DeploymentConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -286,24 +288,20 @@ public class DeploymentConfig {
         }
         DeploymentConfig other = (DeploymentConfig) o;
         return 
-            Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
-            Objects.deepEquals(this.containerPort, other.containerPort) &&
-            Objects.deepEquals(this.env, other.env) &&
-            Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
-            Objects.deepEquals(this.planName, other.planName) &&
-            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
-            Objects.deepEquals(this.transportType, other.transportType);
+            Utils.enhancedDeepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            Utils.enhancedDeepEquals(this.containerPort, other.containerPort) &&
+            Utils.enhancedDeepEquals(this.env, other.env) &&
+            Utils.enhancedDeepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
+            Utils.enhancedDeepEquals(this.planName, other.planName) &&
+            Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Utils.enhancedDeepEquals(this.transportType, other.transportType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            additionalContainerPorts,
-            containerPort,
-            env,
-            idleTimeoutEnabled,
-            planName,
-            roomsPerProcess,
+        return Utils.enhancedHash(
+            additionalContainerPorts, containerPort, env,
+            idleTimeoutEnabled, planName, roomsPerProcess,
             transportType);
     }
     
@@ -318,26 +316,28 @@ public class DeploymentConfig {
                 "roomsPerProcess", roomsPerProcess,
                 "transportType", transportType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ContainerPort>> additionalContainerPorts = Optional.empty();
- 
+
         private Integer containerPort;
- 
+
         private List<Env> env;
- 
+
         private Optional<Boolean> idleTimeoutEnabled;
- 
+
         private PlanName planName;
- 
+
         private Integer roomsPerProcess;
- 
+
         private TransportType transportType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Additional ports your server listens on.
@@ -357,6 +357,7 @@ public class DeploymentConfig {
             return this;
         }
 
+
         /**
          * Default port the server listens on.
          */
@@ -366,6 +367,7 @@ public class DeploymentConfig {
             return this;
         }
 
+
         /**
          * The environment variable that our process will have access to at runtime.
          */
@@ -374,6 +376,7 @@ public class DeploymentConfig {
             this.env = env;
             return this;
         }
+
 
         /**
          * Option to shut down processes that have had no new connections or rooms
@@ -395,6 +398,7 @@ public class DeploymentConfig {
             return this;
         }
 
+
         /**
          * A plan defines how much CPU and memory is required to run an instance of your game server.
          * 
@@ -412,6 +416,7 @@ public class DeploymentConfig {
             return this;
         }
 
+
         /**
          * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
          */
@@ -421,6 +426,7 @@ public class DeploymentConfig {
             return this;
         }
 
+
         /**
          * Transport type specifies the underlying communication protocol to the exposed port.
          */
@@ -429,20 +435,18 @@ public class DeploymentConfig {
             this.transportType = transportType;
             return this;
         }
-        
+
         public DeploymentConfig build() {
             if (idleTimeoutEnabled == null) {
                 idleTimeoutEnabled = _SINGLETON_VALUE_IdleTimeoutEnabled.value();
             }
+
             return new DeploymentConfig(
-                additionalContainerPorts,
-                containerPort,
-                env,
-                idleTimeoutEnabled,
-                planName,
-                roomsPerProcess,
+                additionalContainerPorts, containerPort, env,
+                idleTimeoutEnabled, planName, roomsPerProcess,
                 transportType);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_IdleTimeoutEnabled =
                 new LazySingletonValue<>(

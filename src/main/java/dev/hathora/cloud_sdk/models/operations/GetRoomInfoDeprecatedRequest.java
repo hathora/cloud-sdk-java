@@ -9,13 +9,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetRoomInfoDeprecatedRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=roomId")
     private String roomId;
@@ -45,15 +46,17 @@ public class GetRoomInfoDeprecatedRequest {
         return roomId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetRoomInfoDeprecatedRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     public GetRoomInfoDeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
@@ -67,7 +70,6 @@ public class GetRoomInfoDeprecatedRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,15 +80,14 @@ public class GetRoomInfoDeprecatedRequest {
         }
         GetRoomInfoDeprecatedRequest other = (GetRoomInfoDeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.roomId, other.roomId);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            roomId);
+        return Utils.enhancedHash(
+            appId, roomId);
     }
     
     @Override
@@ -95,16 +96,18 @@ public class GetRoomInfoDeprecatedRequest {
                 "appId", appId,
                 "roomId", roomId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String roomId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -118,16 +121,18 @@ public class GetRoomInfoDeprecatedRequest {
             return this;
         }
 
+
         public Builder roomId(String roomId) {
             Utils.checkNotNull(roomId, "roomId");
             this.roomId = roomId;
             return this;
         }
-        
+
         public GetRoomInfoDeprecatedRequest build() {
+
             return new GetRoomInfoDeprecatedRequest(
-                appId,
-                roomId);
+                appId, roomId);
         }
+
     }
 }

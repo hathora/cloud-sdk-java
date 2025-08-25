@@ -3,17 +3,21 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.VerificationEmailRequest;
+import dev.hathora.cloud_sdk.operations.SendVerificationEmail;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class SendVerificationEmailRequestBuilder {
 
     private VerificationEmailRequest request;
-    private final SDKMethodInterfaces.MethodCallSendVerificationEmail sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public SendVerificationEmailRequestBuilder(SDKMethodInterfaces.MethodCallSendVerificationEmail sdk) {
-        this.sdk = sdk;
+    public SendVerificationEmailRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public SendVerificationEmailRequestBuilder request(VerificationEmailRequest request) {
@@ -23,8 +27,10 @@ public class SendVerificationEmailRequestBuilder {
     }
 
     public SendVerificationEmailResponse call() throws Exception {
+        
+        RequestOperation<VerificationEmailRequest, SendVerificationEmailResponse> operation
+              = new SendVerificationEmail.Sync(sdkConfiguration);
 
-        return sdk.sendVerificationEmail(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

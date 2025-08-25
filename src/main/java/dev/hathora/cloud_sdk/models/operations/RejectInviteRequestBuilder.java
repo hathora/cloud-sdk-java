@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.RejectInvite;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -10,10 +14,10 @@ import java.lang.String;
 public class RejectInviteRequestBuilder {
 
     private String orgId;
-    private final SDKMethodInterfaces.MethodCallRejectInvite sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public RejectInviteRequestBuilder(SDKMethodInterfaces.MethodCallRejectInvite sdk) {
-        this.sdk = sdk;
+    public RejectInviteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public RejectInviteRequestBuilder orgId(String orgId) {
@@ -22,9 +26,20 @@ public class RejectInviteRequestBuilder {
         return this;
     }
 
-    public RejectInviteResponse call() throws Exception {
 
-        return sdk.rejectInvite(
-            orgId);
+    private RejectInviteRequest buildRequest() {
+
+        RejectInviteRequest request = new RejectInviteRequest(orgId);
+
+        return request;
+    }
+
+    public RejectInviteResponse call() throws Exception {
+        
+        RequestOperation<RejectInviteRequest, RejectInviteResponse> operation
+              = new RejectInvite.Sync(sdkConfiguration);
+        RejectInviteRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.DeleteBuildV2Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.Integer;
@@ -13,10 +17,10 @@ public class DeleteBuildV2DeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private Integer buildId;
-    private final SDKMethodInterfaces.MethodCallDeleteBuildV2Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteBuildV2DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallDeleteBuildV2Deprecated sdk) {
-        this.sdk = sdk;
+    public DeleteBuildV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public DeleteBuildV2DeprecatedRequestBuilder appId(String appId) {
@@ -37,10 +41,21 @@ public class DeleteBuildV2DeprecatedRequestBuilder {
         return this;
     }
 
-    public DeleteBuildV2DeprecatedResponse call() throws Exception {
 
-        return sdk.deleteBuildV2Deprecated(
-            appId,
+    private DeleteBuildV2DeprecatedRequest buildRequest() {
+
+        DeleteBuildV2DeprecatedRequest request = new DeleteBuildV2DeprecatedRequest(appId,
             buildId);
+
+        return request;
+    }
+
+    public DeleteBuildV2DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<DeleteBuildV2DeprecatedRequest, DeleteBuildV2DeprecatedResponse> operation
+              = new DeleteBuildV2Deprecated.Sync(sdkConfiguration);
+        DeleteBuildV2DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

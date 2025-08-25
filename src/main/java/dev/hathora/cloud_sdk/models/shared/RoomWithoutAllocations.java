@@ -12,21 +12,22 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class RoomWithoutAllocations {
 
+public class RoomWithoutAllocations {
     /**
      * System generated unique identifier for an application.
      */
     @JsonProperty("appId")
     private String appId;
 
+
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("currentAllocation")
     private Optional<? extends RoomWithoutAllocationsCurrentAllocation> currentAllocation;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("roomConfig")
@@ -74,7 +75,8 @@ public class RoomWithoutAllocations {
             String appId,
             String roomId,
             RoomStatus status) {
-        this(appId, Optional.empty(), JsonNullable.undefined(), roomId, status);
+        this(appId, Optional.empty(), JsonNullable.undefined(),
+            roomId, status);
     }
 
     /**
@@ -119,9 +121,10 @@ public class RoomWithoutAllocations {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * System generated unique identifier for an application.
@@ -137,6 +140,7 @@ public class RoomWithoutAllocations {
         this.currentAllocation = Optional.ofNullable(currentAllocation);
         return this;
     }
+
 
     public RoomWithoutAllocations withCurrentAllocation(Optional<? extends RoomWithoutAllocationsCurrentAllocation> currentAllocation) {
         Utils.checkNotNull(currentAllocation, "currentAllocation");
@@ -181,7 +185,6 @@ public class RoomWithoutAllocations {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -192,21 +195,18 @@ public class RoomWithoutAllocations {
         }
         RoomWithoutAllocations other = (RoomWithoutAllocations) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.currentAllocation, other.currentAllocation) &&
-            Objects.deepEquals(this.roomConfig, other.roomConfig) &&
-            Objects.deepEquals(this.roomId, other.roomId) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.currentAllocation, other.currentAllocation) &&
+            Utils.enhancedDeepEquals(this.roomConfig, other.roomConfig) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            currentAllocation,
-            roomConfig,
-            roomId,
-            status);
+        return Utils.enhancedHash(
+            appId, currentAllocation, roomConfig,
+            roomId, status);
     }
     
     @Override
@@ -218,22 +218,24 @@ public class RoomWithoutAllocations {
                 "roomId", roomId,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String appId;
- 
+
         private Optional<? extends RoomWithoutAllocationsCurrentAllocation> currentAllocation = Optional.empty();
- 
+
         private JsonNullable<String> roomConfig = JsonNullable.undefined();
- 
+
         private String roomId;
- 
+
         private RoomStatus status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * System generated unique identifier for an application.
@@ -243,6 +245,7 @@ public class RoomWithoutAllocations {
             this.appId = appId;
             return this;
         }
+
 
         public Builder currentAllocation(RoomWithoutAllocationsCurrentAllocation currentAllocation) {
             Utils.checkNotNull(currentAllocation, "currentAllocation");
@@ -256,6 +259,7 @@ public class RoomWithoutAllocations {
             return this;
         }
 
+
         public Builder roomConfig(String roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
             this.roomConfig = JsonNullable.of(roomConfig);
@@ -268,6 +272,7 @@ public class RoomWithoutAllocations {
             return this;
         }
 
+
         /**
          * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
          * Note: error will be returned if `roomId` is not globally unique.
@@ -277,6 +282,7 @@ public class RoomWithoutAllocations {
             this.roomId = roomId;
             return this;
         }
+
 
         /**
          * The allocation status of a room.
@@ -292,14 +298,13 @@ public class RoomWithoutAllocations {
             this.status = status;
             return this;
         }
-        
+
         public RoomWithoutAllocations build() {
+
             return new RoomWithoutAllocations(
-                appId,
-                currentAllocation,
-                roomConfig,
-                roomId,
-                status);
+                appId, currentAllocation, roomConfig,
+                roomId, status);
         }
+
     }
 }

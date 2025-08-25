@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.DeleteAppV1Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class DeleteAppV1DeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallDeleteAppV1Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteAppV1DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallDeleteAppV1Deprecated sdk) {
-        this.sdk = sdk;
+    public DeleteAppV1DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public DeleteAppV1DeprecatedRequestBuilder appId(String appId) {
@@ -29,9 +33,20 @@ public class DeleteAppV1DeprecatedRequestBuilder {
         return this;
     }
 
-    public DeleteAppV1DeprecatedResponse call() throws Exception {
 
-        return sdk.deleteAppV1Deprecated(
-            appId);
+    private DeleteAppV1DeprecatedRequest buildRequest() {
+
+        DeleteAppV1DeprecatedRequest request = new DeleteAppV1DeprecatedRequest(appId);
+
+        return request;
+    }
+
+    public DeleteAppV1DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<DeleteAppV1DeprecatedRequest, DeleteAppV1DeprecatedResponse> operation
+              = new DeleteAppV1Deprecated.Sync(sdkConfiguration);
+        DeleteAppV1DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

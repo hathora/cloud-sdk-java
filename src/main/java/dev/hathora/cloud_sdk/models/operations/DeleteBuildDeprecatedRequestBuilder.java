@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.DeleteBuildDeprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.Integer;
@@ -13,10 +17,10 @@ public class DeleteBuildDeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private Integer buildId;
-    private final SDKMethodInterfaces.MethodCallDeleteBuildDeprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteBuildDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallDeleteBuildDeprecated sdk) {
-        this.sdk = sdk;
+    public DeleteBuildDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public DeleteBuildDeprecatedRequestBuilder appId(String appId) {
@@ -37,10 +41,21 @@ public class DeleteBuildDeprecatedRequestBuilder {
         return this;
     }
 
-    public DeleteBuildDeprecatedResponse call() throws Exception {
 
-        return sdk.deleteBuildDeprecated(
-            appId,
+    private DeleteBuildDeprecatedRequest buildRequest() {
+
+        DeleteBuildDeprecatedRequest request = new DeleteBuildDeprecatedRequest(appId,
             buildId);
+
+        return request;
+    }
+
+    public DeleteBuildDeprecatedResponse call() throws Exception {
+        
+        RequestOperation<DeleteBuildDeprecatedRequest, DeleteBuildDeprecatedResponse> operation
+              = new DeleteBuildDeprecated.Sync(sdkConfiguration);
+        DeleteBuildDeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

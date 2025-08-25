@@ -13,11 +13,10 @@ import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class RevokeOrgTokenResponse implements Response {
 
+public class RevokeOrgTokenResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -58,7 +57,8 @@ public class RevokeOrgTokenResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty());
     }
 
     /**
@@ -93,9 +93,10 @@ public class RevokeOrgTokenResponse implements Response {
         return boolean_;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -133,6 +134,7 @@ public class RevokeOrgTokenResponse implements Response {
         return this;
     }
 
+
     /**
      * Ok
      */
@@ -142,7 +144,6 @@ public class RevokeOrgTokenResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,18 +154,16 @@ public class RevokeOrgTokenResponse implements Response {
         }
         RevokeOrgTokenResponse other = (RevokeOrgTokenResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.boolean_, other.boolean_);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
+            Utils.enhancedDeepEquals(this.boolean_, other.boolean_);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            statusCode,
-            rawResponse,
+        return Utils.enhancedHash(
+            contentType, statusCode, rawResponse,
             boolean_);
     }
     
@@ -176,20 +175,22 @@ public class RevokeOrgTokenResponse implements Response {
                 "rawResponse", rawResponse,
                 "boolean_", boolean_);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<Boolean> boolean_ = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -200,6 +201,7 @@ public class RevokeOrgTokenResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -209,6 +211,7 @@ public class RevokeOrgTokenResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -217,6 +220,7 @@ public class RevokeOrgTokenResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * Ok
@@ -235,13 +239,13 @@ public class RevokeOrgTokenResponse implements Response {
             this.boolean_ = boolean_;
             return this;
         }
-        
+
         public RevokeOrgTokenResponse build() {
+
             return new RevokeOrgTokenResponse(
-                contentType,
-                statusCode,
-                rawResponse,
+                contentType, statusCode, rawResponse,
                 boolean_);
         }
+
     }
 }

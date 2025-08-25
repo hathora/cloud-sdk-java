@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetDeployments;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,11 +15,12 @@ import java.util.Optional;
 public class GetDeploymentsRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
+    private Optional<String> buildTag = Optional.empty();
     private Optional<String> deploymentTag = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetDeployments sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetDeploymentsRequestBuilder(SDKMethodInterfaces.MethodCallGetDeployments sdk) {
-        this.sdk = sdk;
+    public GetDeploymentsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetDeploymentsRequestBuilder appId(String appId) {
@@ -27,6 +32,18 @@ public class GetDeploymentsRequestBuilder {
     public GetDeploymentsRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
+        return this;
+    }
+                
+    public GetDeploymentsRequestBuilder buildTag(String buildTag) {
+        Utils.checkNotNull(buildTag, "buildTag");
+        this.buildTag = Optional.of(buildTag);
+        return this;
+    }
+
+    public GetDeploymentsRequestBuilder buildTag(Optional<String> buildTag) {
+        Utils.checkNotNull(buildTag, "buildTag");
+        this.buildTag = buildTag;
         return this;
     }
                 
@@ -42,10 +59,22 @@ public class GetDeploymentsRequestBuilder {
         return this;
     }
 
-    public GetDeploymentsResponse call() throws Exception {
 
-        return sdk.getDeployments(
-            appId,
+    private GetDeploymentsRequest buildRequest() {
+
+        GetDeploymentsRequest request = new GetDeploymentsRequest(appId,
+            buildTag,
             deploymentTag);
+
+        return request;
+    }
+
+    public GetDeploymentsResponse call() throws Exception {
+        
+        RequestOperation<GetDeploymentsRequest, GetDeploymentsResponse> operation
+              = new GetDeployments.Sync(sdkConfiguration);
+        GetDeploymentsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

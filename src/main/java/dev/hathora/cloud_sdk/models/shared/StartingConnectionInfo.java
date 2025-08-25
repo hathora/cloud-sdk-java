@@ -9,16 +9,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class StartingConnectionInfo {
-
     /**
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
     @JsonProperty("roomId")
     private String roomId;
+
 
     @JsonProperty("status")
     private StartingConnectionInfoStatus status;
@@ -47,9 +47,10 @@ public class StartingConnectionInfo {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
@@ -67,7 +68,6 @@ public class StartingConnectionInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,15 +78,14 @@ public class StartingConnectionInfo {
         }
         StartingConnectionInfo other = (StartingConnectionInfo) o;
         return 
-            Objects.deepEquals(this.roomId, other.roomId) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.roomId, other.roomId) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            roomId,
-            status);
+        return Utils.enhancedHash(
+            roomId, status);
     }
     
     @Override
@@ -95,16 +94,18 @@ public class StartingConnectionInfo {
                 "roomId", roomId,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String roomId;
- 
+
         private StartingConnectionInfoStatus status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
@@ -116,16 +117,18 @@ public class StartingConnectionInfo {
             return this;
         }
 
+
         public Builder status(StartingConnectionInfoStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
-        
+
         public StartingConnectionInfo build() {
+
             return new StartingConnectionInfo(
-                roomId,
-                status);
+                roomId, status);
         }
+
     }
 }

@@ -19,6 +19,7 @@ Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fl
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetFleetMetrics" method="get" path="/fleets/v1/fleets/{fleetId}/regions/{region}/metrics" -->
 ```java
 package hello.world;
 
@@ -35,11 +36,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetFleetMetricsRequest req = GetFleetMetricsRequest.builder()
@@ -82,6 +82,7 @@ Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hat
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetFleetRegion" method="get" path="/fleets/v1/fleets/{fleetId}/regions/{region}" -->
 ```java
 package hello.world;
 
@@ -97,11 +98,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetFleetRegionResponse res = sdk.fleetsV1().getFleetRegion()
@@ -141,6 +141,7 @@ Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetFleets" method="get" path="/fleets/v1/fleets" -->
 ```java
 package hello.world;
 
@@ -155,11 +156,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetFleetsResponse res = sdk.fleetsV1().getFleets()
@@ -195,6 +195,7 @@ Updates a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet)'s co
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="UpdateFleet" method="post" path="/fleets/v1/fleets/{fleetId}" -->
 ```java
 package hello.world;
 
@@ -209,11 +210,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         UpdateFleetResponse res = sdk.fleetsV1().updateFleet()
@@ -256,6 +256,7 @@ Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="UpdateFleetRegion" method="put" path="/fleets/v1/fleets/{fleetId}/regions/{region}" -->
 ```java
 package hello.world;
 
@@ -271,11 +272,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         UpdateFleetRegionRequest req = UpdateFleetRegionRequest.builder()

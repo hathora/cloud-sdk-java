@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -21,7 +20,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>A lobby object allows you to store and manage metadata for your rooms.
  */
 public class LobbyV3 {
-
     /**
      * System generated unique identifier for an application.
      */
@@ -40,8 +38,10 @@ public class LobbyV3 {
     @JsonProperty("createdBy")
     private LobbyV3CreatedBy createdBy;
 
+
     @JsonProperty("region")
     private Region region;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("roomConfig")
@@ -108,7 +108,9 @@ public class LobbyV3 {
             String roomId,
             String shortCode,
             LobbyVisibility visibility) {
-        this(appId, createdAt, createdBy, region, JsonNullable.undefined(), roomId, shortCode, visibility);
+        this(appId, createdAt, createdBy,
+            region, JsonNullable.undefined(), roomId,
+            shortCode, visibility);
     }
 
     /**
@@ -176,9 +178,10 @@ public class LobbyV3 {
         return visibility;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * System generated unique identifier for an application.
@@ -259,7 +262,6 @@ public class LobbyV3 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -270,27 +272,22 @@ public class LobbyV3 {
         }
         LobbyV3 other = (LobbyV3) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.roomConfig, other.roomConfig) &&
-            Objects.deepEquals(this.roomId, other.roomId) &&
-            Objects.deepEquals(this.shortCode, other.shortCode) &&
-            Objects.deepEquals(this.visibility, other.visibility);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.roomConfig, other.roomConfig) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId) &&
+            Utils.enhancedDeepEquals(this.shortCode, other.shortCode) &&
+            Utils.enhancedDeepEquals(this.visibility, other.visibility);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            createdAt,
-            createdBy,
-            region,
-            roomConfig,
-            roomId,
-            shortCode,
-            visibility);
+        return Utils.enhancedHash(
+            appId, createdAt, createdBy,
+            region, roomConfig, roomId,
+            shortCode, visibility);
     }
     
     @Override
@@ -305,28 +302,30 @@ public class LobbyV3 {
                 "shortCode", shortCode,
                 "visibility", visibility);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String appId;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private LobbyV3CreatedBy createdBy;
- 
+
         private Region region;
- 
+
         private JsonNullable<String> roomConfig = JsonNullable.undefined();
- 
+
         private String roomId;
- 
+
         private String shortCode;
- 
+
         private LobbyVisibility visibility;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * System generated unique identifier for an application.
@@ -337,6 +336,7 @@ public class LobbyV3 {
             return this;
         }
 
+
         /**
          * When the lobby was created.
          */
@@ -345,6 +345,7 @@ public class LobbyV3 {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * UserId or email address for the user that created the lobby.
@@ -355,11 +356,13 @@ public class LobbyV3 {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
+
 
         public Builder roomConfig(String roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
@@ -373,6 +376,7 @@ public class LobbyV3 {
             return this;
         }
 
+
         /**
          * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
          * Note: error will be returned if `roomId` is not globally unique.
@@ -383,6 +387,7 @@ public class LobbyV3 {
             return this;
         }
 
+
         /**
          * User-defined identifier for a lobby.
          */
@@ -391,6 +396,7 @@ public class LobbyV3 {
             this.shortCode = shortCode;
             return this;
         }
+
 
         /**
          * Types of lobbies a player can create.
@@ -406,17 +412,14 @@ public class LobbyV3 {
             this.visibility = visibility;
             return this;
         }
-        
+
         public LobbyV3 build() {
+
             return new LobbyV3(
-                appId,
-                createdAt,
-                createdBy,
-                region,
-                roomConfig,
-                roomId,
-                shortCode,
-                visibility);
+                appId, createdAt, createdBy,
+                region, roomConfig, roomId,
+                shortCode, visibility);
         }
+
     }
 }

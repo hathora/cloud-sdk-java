@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.ResumeRoom;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class ResumeRoomRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String roomId;
-    private final SDKMethodInterfaces.MethodCallResumeRoom sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ResumeRoomRequestBuilder(SDKMethodInterfaces.MethodCallResumeRoom sdk) {
-        this.sdk = sdk;
+    public ResumeRoomRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ResumeRoomRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class ResumeRoomRequestBuilder {
         return this;
     }
 
-    public ResumeRoomResponse call() throws Exception {
 
-        return sdk.resumeRoom(
-            appId,
+    private ResumeRoomRequest buildRequest() {
+
+        ResumeRoomRequest request = new ResumeRoomRequest(appId,
             roomId);
+
+        return request;
+    }
+
+    public ResumeRoomResponse call() throws Exception {
+        
+        RequestOperation<ResumeRoomRequest, ResumeRoomResponse> operation
+              = new ResumeRoom.Sync(sdkConfiguration);
+        ResumeRoomRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

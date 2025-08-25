@@ -14,10 +14,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
+
 
 public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
-
     /**
      * Additional ports your server listens on.
      */
@@ -47,6 +46,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
      */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("createdBy")
     private String createdBy;
@@ -239,9 +239,10 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
         return roomsPerProcess;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Additional ports your server listens on.
@@ -358,7 +359,6 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -369,36 +369,28 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
         }
         ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment other = (ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment) o;
         return 
-            Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.build, other.build) &&
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
-            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            Objects.deepEquals(this.env, other.env) &&
-            Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
-            Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
-            Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
-            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess);
+            Utils.enhancedDeepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.build, other.build) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
+            Utils.enhancedDeepEquals(this.deploymentId, other.deploymentId) &&
+            Utils.enhancedDeepEquals(this.env, other.env) &&
+            Utils.enhancedDeepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
+            Utils.enhancedDeepEquals(this.requestedCPU, other.requestedCPU) &&
+            Utils.enhancedDeepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
+            Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            additionalContainerPorts,
-            appId,
-            build,
-            buildId,
-            createdAt,
-            createdBy,
-            defaultContainerPort,
-            deploymentId,
-            env,
-            idleTimeoutEnabled,
-            requestedCPU,
-            requestedMemoryMB,
+        return Utils.enhancedHash(
+            additionalContainerPorts, appId, build,
+            buildId, createdAt, createdBy,
+            defaultContainerPort, deploymentId, env,
+            idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
             roomsPerProcess);
     }
     
@@ -419,38 +411,40 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
                 "requestedMemoryMB", requestedMemoryMB,
                 "roomsPerProcess", roomsPerProcess);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<ContainerPort> additionalContainerPorts;
- 
+
         private String appId;
- 
+
         private Build build;
- 
+
         private Integer buildId;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String createdBy;
- 
+
         private ContainerPort defaultContainerPort;
- 
+
         private Integer deploymentId;
- 
+
         private List<ApplicationWithLatestDeploymentAndBuildDeprecatedEnv> env;
- 
+
         private Boolean idleTimeoutEnabled;
- 
+
         private Double requestedCPU;
- 
+
         private Double requestedMemoryMB;
- 
+
         private Integer roomsPerProcess;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Additional ports your server listens on.
@@ -461,6 +455,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
             return this;
         }
 
+
         /**
          * System generated unique identifier for an application.
          */
@@ -469,6 +464,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * A build represents a game server artifact and its associated metadata.
@@ -479,6 +475,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
             return this;
         }
 
+
         /**
          * System generated id for a build. Increments by 1.
          */
@@ -487,6 +484,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
             this.buildId = buildId;
             return this;
         }
+
 
         /**
          * When the deployment was created.
@@ -497,11 +495,13 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
             return this;
         }
 
+
         public Builder createdBy(String createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * A container port object represents the transport configruations for how your server will listen.
@@ -512,6 +512,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
             return this;
         }
 
+
         /**
          * System generated id for a deployment. Increments by 1.
          */
@@ -521,6 +522,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
             return this;
         }
 
+
         /**
          * The environment variable that our process will have access to at runtime.
          */
@@ -529,6 +531,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
             this.env = env;
             return this;
         }
+
 
         /**
          * Option to shut down processes that have had no new connections or rooms
@@ -540,6 +543,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
             return this;
         }
 
+
         /**
          * The number of cores allocated to your process.
          */
@@ -548,6 +552,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
             this.requestedCPU = requestedCPU;
             return this;
         }
+
 
         /**
          * The amount of memory allocated to your process.
@@ -558,6 +563,7 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
             return this;
         }
 
+
         /**
          * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
          */
@@ -566,22 +572,16 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment {
             this.roomsPerProcess = roomsPerProcess;
             return this;
         }
-        
+
         public ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment build() {
+
             return new ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment(
-                additionalContainerPorts,
-                appId,
-                build,
-                buildId,
-                createdAt,
-                createdBy,
-                defaultContainerPort,
-                deploymentId,
-                env,
-                idleTimeoutEnabled,
-                requestedCPU,
-                requestedMemoryMB,
+                additionalContainerPorts, appId, build,
+                buildId, createdAt, createdBy,
+                defaultContainerPort, deploymentId, env,
+                idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
                 roomsPerProcess);
         }
+
     }
 }

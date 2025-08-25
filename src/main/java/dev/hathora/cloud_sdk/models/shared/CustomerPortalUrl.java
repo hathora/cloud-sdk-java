@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class CustomerPortalUrl {
 
@@ -28,9 +28,10 @@ public class CustomerPortalUrl {
         return returnUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CustomerPortalUrl withReturnUrl(String returnUrl) {
         Utils.checkNotNull(returnUrl, "returnUrl");
@@ -38,7 +39,6 @@ public class CustomerPortalUrl {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class CustomerPortalUrl {
         }
         CustomerPortalUrl other = (CustomerPortalUrl) o;
         return 
-            Objects.deepEquals(this.returnUrl, other.returnUrl);
+            Utils.enhancedDeepEquals(this.returnUrl, other.returnUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             returnUrl);
     }
     
@@ -63,24 +63,28 @@ public class CustomerPortalUrl {
         return Utils.toString(CustomerPortalUrl.class,
                 "returnUrl", returnUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String returnUrl;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder returnUrl(String returnUrl) {
             Utils.checkNotNull(returnUrl, "returnUrl");
             this.returnUrl = returnUrl;
             return this;
         }
-        
+
         public CustomerPortalUrl build() {
+
             return new CustomerPortalUrl(
                 returnUrl);
         }
+
     }
 }

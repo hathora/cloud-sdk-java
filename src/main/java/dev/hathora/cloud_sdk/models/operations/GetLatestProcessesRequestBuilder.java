@@ -3,16 +3,20 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetLatestProcesses;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetLatestProcessesRequestBuilder {
 
     private GetLatestProcessesRequest request;
-    private final SDKMethodInterfaces.MethodCallGetLatestProcesses sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetLatestProcessesRequestBuilder(SDKMethodInterfaces.MethodCallGetLatestProcesses sdk) {
-        this.sdk = sdk;
+    public GetLatestProcessesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetLatestProcessesRequestBuilder request(GetLatestProcessesRequest request) {
@@ -22,8 +26,10 @@ public class GetLatestProcessesRequestBuilder {
     }
 
     public GetLatestProcessesResponse call() throws Exception {
+        
+        RequestOperation<GetLatestProcessesRequest, GetLatestProcessesResponse> operation
+              = new GetLatestProcesses.Sync(sdkConfiguration);
 
-        return sdk.getLatestProcesses(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

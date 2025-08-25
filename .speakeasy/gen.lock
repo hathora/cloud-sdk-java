@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: 0e7dd32640341faad744619051bbb3fe
+  docChecksum: deb2b45350ba2195d5a88586355d73d1
   docVersion: 0.0.1
-  speakeasyVersion: 1.552.0
-  generationVersion: 2.610.0
-  releaseVersion: 3.1.10
-  configChecksum: aecde5df471c39b5060d341042bf5bdd
+  speakeasyVersion: 1.606.3
+  generationVersion: 2.687.1
+  releaseVersion: 3.2.0
+  configChecksum: 996fafffca752ddbdda19e8d5002620b
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,19 +14,19 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.37.3
+    core: 3.45.4
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
-    globalSecurity: 2.82.8
+    globalSecurity: 2.83.0
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
-    globals: 2.82.1
+    globals: 2.82.2
     groups: 2.81.2
     methodSecurity: 2.82.2
     nullables: 0.1.0
     openEnums: 0.2.0
-    sdkHooks: 1.0.0
+    sdkHooks: 1.1.0
     unions: 0.0.6
 generatedFiles:
   - .gitattributes
@@ -283,10 +283,8 @@ generatedFiles:
   - docs/models/operations/UpdateUserInviteResponse.md
   - docs/models/shared/AchPaymentMethod.md
   - docs/models/shared/ActiveConnectionInfo.md
-  - docs/models/shared/AppConfig.md
   - docs/models/shared/AppConfigWithServiceConfig.md
   - docs/models/shared/Application.md
-  - docs/models/shared/ApplicationServiceConfig.md
   - docs/models/shared/ApplicationWithLatestDeploymentAndBuild.md
   - docs/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecated.md
   - docs/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment.md
@@ -297,6 +295,7 @@ generatedFiles:
   - docs/models/shared/ApplicationsPage.md
   - docs/models/shared/AuthConfiguration.md
   - docs/models/shared/AutoscalerConfig.md
+  - docs/models/shared/AutoscalerTargetMetric.md
   - docs/models/shared/Build.md
   - docs/models/shared/BuildPart.md
   - docs/models/shared/BuildStatus.md
@@ -311,6 +310,7 @@ generatedFiles:
   - docs/models/shared/ConnectionInfo.md
   - docs/models/shared/ConnectionInfoV2.md
   - docs/models/shared/ContainerPort.md
+  - docs/models/shared/CreateAppConfig.md
   - docs/models/shared/CreateBuildParams.md
   - docs/models/shared/CreateBuildV3Params.md
   - docs/models/shared/CreateLobbyParams.md
@@ -359,12 +359,15 @@ generatedFiles:
   - docs/models/shared/InvoiceStatus.md
   - docs/models/shared/LinkPaymentMethod.md
   - docs/models/shared/ListOrgTokens.md
+  - docs/models/shared/LoadBalancerConfig.md
   - docs/models/shared/Lobby.md
   - docs/models/shared/LobbyV3.md
   - docs/models/shared/LobbyV3CreatedBy.md
   - docs/models/shared/LobbyVisibility.md
+  - docs/models/shared/MetricName.md
   - docs/models/shared/MetricValue.md
   - docs/models/shared/NicknameObject.md
+  - docs/models/shared/NodeShape.md
   - docs/models/shared/OrgMember.md
   - docs/models/shared/OrgMemberScopes.md
   - docs/models/shared/OrgMembersPage.md
@@ -383,6 +386,7 @@ generatedFiles:
   - docs/models/shared/PlanName.md
   - docs/models/shared/PlayerTokenObject.md
   - docs/models/shared/Process.md
+  - docs/models/shared/ProcessAutoscalerConfig.md
   - docs/models/shared/ProcessExposedPort.md
   - docs/models/shared/ProcessMetricName.md
   - docs/models/shared/ProcessMetricsData.md
@@ -410,10 +414,12 @@ generatedFiles:
   - docs/models/shared/Scopes.md
   - docs/models/shared/Security.md
   - docs/models/shared/ServiceConfig.md
+  - docs/models/shared/ServiceConfigWrite.md
   - docs/models/shared/SetLobbyStateParams.md
   - docs/models/shared/StartingConnectionInfo.md
   - docs/models/shared/StartingConnectionInfoStatus.md
   - docs/models/shared/StaticProcessAllocationConfig.md
+  - docs/models/shared/StaticProcessAllocationConfigWrite.md
   - docs/models/shared/Status.md
   - docs/models/shared/TransportType.md
   - docs/models/shared/Two.md
@@ -823,7 +829,6 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedRequestBody.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/RunBuildV2DeprecatedResponse.java
-  - src/main/java/dev/hathora/cloud_sdk/models/operations/SDKMethodInterfaces.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/SendVerificationEmailRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/SendVerificationEmailResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/SetLobbyStateRequest.java
@@ -861,10 +866,8 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateUserInviteResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/AchPaymentMethod.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ActiveConnectionInfo.java
-  - src/main/java/dev/hathora/cloud_sdk/models/shared/AppConfig.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/AppConfigWithServiceConfig.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Application.java
-  - src/main/java/dev/hathora/cloud_sdk/models/shared/ApplicationServiceConfig.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuild.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecated.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ApplicationWithLatestDeploymentAndBuildDeprecatedDeployment.java
@@ -875,6 +878,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ApplicationsPage.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/AuthConfiguration.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/AutoscalerConfig.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/AutoscalerTargetMetric.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Build.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/BuildPart.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/BuildStatus.java
@@ -889,6 +893,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ConnectionInfo.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ConnectionInfoV2.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ContainerPort.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateAppConfig.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateBuildParams.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateBuildV3Params.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateLobbyParams.java
@@ -937,12 +942,15 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/InvoiceStatus.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/LinkPaymentMethod.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ListOrgTokens.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/LoadBalancerConfig.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Lobby.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/LobbyV3.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/LobbyV3CreatedBy.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/LobbyVisibility.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/MetricName.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/MetricValue.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/NicknameObject.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/NodeShape.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgMember.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgMemberScopes.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/OrgMembersPage.java
@@ -961,6 +969,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/PlanName.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/PlayerTokenObject.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Process.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/ProcessAutoscalerConfig.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ProcessExposedPort.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ProcessMetricName.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ProcessMetricsData.java
@@ -988,10 +997,12 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Scopes.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Security.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ServiceConfig.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/ServiceConfigWrite.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/SetLobbyStateParams.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/StartingConnectionInfo.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/StartingConnectionInfoStatus.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/StaticProcessAllocationConfig.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/StaticProcessAllocationConfigWrite.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Status.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/TransportType.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/Two.java
@@ -1004,16 +1015,138 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/UserRole.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/VerificationEmailRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/VerificationEmailSuccess.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/AcceptInvite.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateApp.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateAppV1Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateBuild.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateBuildDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateBuildRegistry.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateBuildV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateBuildWithUploadUrlV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateDeployment.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateDeploymentV1Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateDeploymentV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateLobby.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateLobbyDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateLocalLobby.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateOrgToken.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreatePrivateLobby.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreatePrivateLobbyDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateProcess.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateProcessV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreatePublicLobby.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreatePublicLobbyDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateRoom.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateRoomDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateWithMultipartUploadsV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/DeleteApp.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/DeleteAppV1Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/DeleteBuild.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/DeleteBuildDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/DeleteBuildV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/DestroyRoom.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/DestroyRoomDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/DownloadLogForProcess.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetActiveRoomsForProcess.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetActiveRoomsForProcessDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetApp.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetAppInfoV1Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetApps.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetAppsV1Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetBalance.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetBuild.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetBuildInfoDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetBuildInfoV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetBuilds.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetBuildsDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetBuildsV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetConnectionInfo.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetConnectionInfoDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetDeployment.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetDeploymentInfoV1Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetDeploymentInfoV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetDeployments.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetDeploymentsV1Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetDeploymentsV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetFleetMetrics.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetFleetRegion.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetFleets.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetInactiveRoomsForProcess.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetInactiveRoomsForProcessDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetInvoices.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetLatestDeployment.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetLatestDeploymentV1Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetLatestDeploymentV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetLatestProcesses.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetLatestProcessesV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetLobbyInfo.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetLobbyInfoByRoomId.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetLobbyInfoByShortCode.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetLogsForProcess.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetMetricsDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetOrgMembers.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetOrgPendingInvites.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetOrgTokens.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetOrgs.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetPaymentMethod.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetPingServiceEndpoints.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetPingServiceEndpointsDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetProcess.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetProcessInfoDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetProcessInfoV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetProcessMetrics.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetProcessesCountExperimental.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetProcessesCountExperimentalV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetRoomInfo.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetRoomInfoDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetRunningProcesses.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetStoppedProcesses.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetUpcomingInvoiceItems.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetUpcomingInvoiceTotal.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetUsageLimits.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetUserPendingInvites.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/InitStripeCustomerPortalUrl.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/InviteUser.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/ListActivePublicLobbies.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/ListActivePublicLobbiesDeprecatedV1.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/ListActivePublicLobbiesDeprecatedV2.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/LoginAnonymous.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/LoginGoogle.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/LoginNickname.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/Operations.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/PatchApp.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/RejectInvite.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/RescindInvite.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/ResumeRoom.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/RevokeOrgToken.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/RunBuild.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/RunBuildDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/RunBuildRegistry.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/RunBuildV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/SendVerificationEmail.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/SetLobbyState.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/StopProcess.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/StopProcessV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/SuspendRoomDeprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/SuspendRoomV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/UpdateApp.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/UpdateAppV1Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/UpdateFleet.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/UpdateFleetRegion.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/UpdateRoomConfig.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/UpdateUserInvite.java
   - src/main/java/dev/hathora/cloud_sdk/utils/BackoffStrategy.java
   - src/main/java/dev/hathora/cloud_sdk/utils/BigDecimalString.java
   - src/main/java/dev/hathora/cloud_sdk/utils/BigIntegerString.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/BlockingParser.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Constants.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/CopiableInputStream.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Deserializers.java
   - src/main/java/dev/hathora/cloud_sdk/utils/EventStream.java
-  - src/main/java/dev/hathora/cloud_sdk/utils/EventStreamLineReader.java
   - src/main/java/dev/hathora/cloud_sdk/utils/EventStreamMessage.java
-  - src/main/java/dev/hathora/cloud_sdk/utils/EventStreamReader.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/Exceptions.java
   - src/main/java/dev/hathora/cloud_sdk/utils/FormMetadata.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/Globals.java
   - src/main/java/dev/hathora/cloud_sdk/utils/HTTPClient.java
   - src/main/java/dev/hathora/cloud_sdk/utils/HTTPRequest.java
   - src/main/java/dev/hathora/cloud_sdk/utils/HasSecurity.java
@@ -1038,6 +1171,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/utils/RequestBody.java
   - src/main/java/dev/hathora/cloud_sdk/utils/RequestMetadata.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Response.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/ResponseWithBody.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Retries.java
   - src/main/java/dev/hathora/cloud_sdk/utils/RetryConfig.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Security.java
@@ -1046,6 +1180,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/utils/SessionManager.java
   - src/main/java/dev/hathora/cloud_sdk/utils/SpeakeasyHTTPClient.java
   - src/main/java/dev/hathora/cloud_sdk/utils/SpeakeasyMetadata.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/StreamingParser.java
   - src/main/java/dev/hathora/cloud_sdk/utils/TypedObject.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Types.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Utf8UrlEncoder.java
@@ -1105,6 +1240,9 @@ examples:
           application/json: {"message": "<value>"}
   CreateApp:
     speakeasy-default-create-app:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"appName": "minecraft", "authConfiguration": {}}
       responses:
@@ -1136,6 +1274,9 @@ examples:
           application/json: {"message": "<value>"}
   GetApps:
     speakeasy-default-get-apps:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"applications": []}
@@ -1205,6 +1346,9 @@ examples:
           application/json: {"message": "<value>"}
   GetBalance:
     speakeasy-default-get-balance:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: 9329.53
@@ -1214,6 +1358,9 @@ examples:
           application/json: {"message": "<value>"}
   GetInvoices:
     speakeasy-default-get-invoices:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: [{"amountDue": 6577.26, "dueDate": "2024-12-02T07:03:39.210Z", "id": "<id>", "month": 2813.23, "pdfUrl": "https://cheap-premier.name/", "status": "paid", "year": 6902.79}, {"amountDue": 6577.26, "dueDate": "2024-12-02T07:03:39.210Z", "id": "<id>", "month": 2813.23, "pdfUrl": "https://cheap-premier.name/", "status": "paid", "year": 6902.79}, {"amountDue": 6577.26, "dueDate": "2024-12-02T07:03:39.210Z", "id": "<id>", "month": 2813.23, "pdfUrl": "https://cheap-premier.name/", "status": "paid", "year": 6902.79}]
@@ -1223,6 +1370,9 @@ examples:
           application/json: {"message": "<value>"}
   GetPaymentMethod:
     speakeasy-default-get-payment-method:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {}
@@ -1232,6 +1382,9 @@ examples:
           application/json: {"message": "<value>"}
   GetUpcomingInvoiceItems:
     speakeasy-default-get-upcoming-invoice-items:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"invoiceItems": []}
@@ -1241,6 +1394,9 @@ examples:
           application/json: {"message": "<value>"}
   GetUpcomingInvoiceTotal:
     speakeasy-default-get-upcoming-invoice-total:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"value": 8856.44}
@@ -1250,6 +1406,9 @@ examples:
           application/json: {"message": "<value>"}
   InitStripeCustomerPortalUrl:
     speakeasy-default-init-stripe-customer-portal-url:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"returnUrl": "https://sunny-majority.com/"}
       responses:
@@ -1312,7 +1471,7 @@ examples:
           appId: "app-af469a92-5b45-4565-b3c4-b79878de67d2"
           buildId: 1
       requestBody:
-        multipart/form-data: {"file": {"": "example.file"}}
+        multipart/form-data: {"file": "x-file: example.file"}
       responses:
         "200":
           text/plain: "<value>"
@@ -1411,6 +1570,9 @@ examples:
           application/json: {"message": "<value>"}
   CreateBuild:
     speakeasy-default-create-build:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildSizeInBytes": 2645.24, "buildTag": "0.1.14-14c793"}
       responses:
@@ -1422,6 +1584,9 @@ examples:
           application/json: {"message": "<value>"}
   CreateBuildRegistry:
     speakeasy-default-create-build-registry:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793"}
       responses:
@@ -1436,6 +1601,8 @@ examples:
       parameters:
         path:
           buildId: "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {}
@@ -1448,6 +1615,8 @@ examples:
       parameters:
         path:
           buildId: "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2024-02-22T18:31:28.580Z", "createdBy": "noreply@hathora.dev", "deletedAt": null, "finishedAt": "2023-05-12T10:29:41.309Z", "imageSize": 608773, "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "startedAt": "2025-07-31T22:59:28.269Z", "status": "failed"}
@@ -1455,6 +1624,9 @@ examples:
           application/json: {"message": "<value>"}
   GetBuilds:
     speakeasy-default-get-builds:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"builds": [{"buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2025-03-13T17:49:05.344Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2024-06-30T01:51:30.058Z", "finishedAt": "2023-12-31T08:08:29.374Z", "imageSize": 961801, "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "startedAt": "2025-05-22T10:57:56.420Z", "status": "failed"}, {"buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2025-03-13T17:49:05.344Z", "createdBy": "noreply@hathora.dev", "deletedAt": "2024-06-30T01:51:30.058Z", "finishedAt": "2023-12-31T08:08:29.374Z", "imageSize": 961801, "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39", "startedAt": "2025-05-22T10:57:56.420Z", "status": "failed"}]}
@@ -1465,6 +1637,8 @@ examples:
       parameters:
         path:
           buildId: "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/octet-stream: "x-file: example.file"
@@ -1477,6 +1651,8 @@ examples:
       parameters:
         path:
           buildId: "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"image": "https://picsum.photos/seed/3gDPgtj/723/1525"}
       responses:
@@ -1610,6 +1786,7 @@ examples:
           appId: "app-af469a92-5b45-4565-b3c4-b79878de67d2"
         query:
           deploymentTag: "alpha"
+          buildTag: "0.1.14-14c793"
       responses:
         "200":
           application/json: {"deployments": []}
@@ -1643,6 +1820,7 @@ examples:
           region: "Washington_DC"
         query:
           step: 60
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {}
@@ -1656,6 +1834,8 @@ examples:
         path:
           fleetId: "<id>"
           region: "Singapore"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"cloudMinVcpus": 989408, "cloudMinVcpusUpdatedAt": "2024-06-09T22:13:41.280Z", "scaleIncrementVcpus": 979858}
@@ -1663,9 +1843,12 @@ examples:
           application/json: {"message": "<value>"}
   GetFleets:
     speakeasy-default-get-fleets:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
-          application/json: {"fleets": [{"fleetId": "<id>", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}, {"fleetId": "<id>", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}]}
+          application/json: {"fleets": [{"fleetId": "<id>", "nodeShape": "cpu-16-64", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}, {"fleetId": "<id>", "nodeShape": "cpu-16-32", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}]}
         "401":
           application/json: {"message": "<value>"}
   UpdateFleet:
@@ -1673,6 +1856,8 @@ examples:
       parameters:
         path:
           fleetId: "<id>"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"autoscalerConfig": {"scaleUpThreshold": 979840}}
       responses:
@@ -1686,6 +1871,8 @@ examples:
         path:
           fleetId: "<id>"
           region: "Chicago"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
         application/json: {"cloudMinVcpus": 503995}
       responses:
@@ -1969,6 +2156,9 @@ examples:
           application/json: {"message": "<value>"}
   GetUsageLimits:
     speakeasy-default-get-usage-limits:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
           application/json: {"concurrentProcessVcpus7DayMax": 3263.46, "monthlyProcessVcpuHoursConsumed": 9052.16}
@@ -2414,3 +2604,4 @@ examples:
           application/json: {"message": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## SDK Changes Detected:\n* `hathora-cloud.appsV1.updateAppV1Deprecated()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response.serviceconfig` **Changed**\n* `hathora-cloud.appsV2.createApp()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response.serviceconfig` **Changed**\n* `hathora-cloud.appsV2.updateApp()`: \n  *  `request.appconfigwithserviceconfig.serviceConfig` **Changed**\n  *  `response.serviceconfig` **Changed**\n* `hathora-cloud.deploymentsV3.getDeployments()`:  `request.buildtag` **Added**\n* `hathora-cloud.appsV1.getAppInfoV1Deprecated()`:  `response.serviceconfig` **Changed**\n* `hathora-cloud.appsV2.getApp()`:  `response.serviceconfig` **Changed**\n* `hathora-cloud.appsV2.getApps()`:  `response.applications.[].serviceConfig` **Changed**\n* `hathora-cloud.appsV2.patchApp()`: \n  *  `request.partial_appconfigwithserviceconfig_.serviceConfig` **Changed**\n  *  `response.serviceconfig` **Changed**\n* `hathora-cloud.appsV1.createAppV1Deprecated()`: \n  *  `request.loadBalancer` **Added**\n  *  `response.serviceconfig` **Changed**\n  *  `error.status[404]` **Added**\n* `hathora-cloud.appsV1.getAppsV1Deprecated()`:  `response.[].serviceConfig` **Changed**\n* `hathora-cloud.fleetsV1.getFleets()`:  `response.fleets.[].nodeShape` **Added**\n* `hathora-cloud.fleetsV1.updateFleet()`: \n  *  `request.updatefleet.nodeShape` **Added**\n* `hathora-cloud.organizationsV1.getOrgs()`:  `response.orgs.[].maxCloudBaseline` **Added**\n* `hathora-cloud.processesV3.createProcess()`:  `response.summaryexitreason` **Added**\n* `hathora-cloud.processesV3.getLatestProcesses()`:  `response.[].summaryExitReason` **Added**\n* `hathora-cloud.processesV3.getProcess()`:  `response.summaryexitreason` **Added**\n"

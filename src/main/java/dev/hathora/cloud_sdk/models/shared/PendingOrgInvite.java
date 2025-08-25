@@ -10,12 +10,13 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class PendingOrgInvite {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("invitedBy")
     private String invitedBy;
@@ -25,6 +26,7 @@ public class PendingOrgInvite {
      */
     @JsonProperty("orgId")
     private String orgId;
+
 
     @JsonProperty("scopes")
     private PendingOrgInviteScopes scopes;
@@ -85,9 +87,10 @@ public class PendingOrgInvite {
         return userEmail;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PendingOrgInvite withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -125,7 +128,6 @@ public class PendingOrgInvite {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -136,21 +138,18 @@ public class PendingOrgInvite {
         }
         PendingOrgInvite other = (PendingOrgInvite) o;
         return 
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.invitedBy, other.invitedBy) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.userEmail, other.userEmail);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.invitedBy, other.invitedBy) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.userEmail, other.userEmail);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createdAt,
-            invitedBy,
-            orgId,
-            scopes,
-            userEmail);
+        return Utils.enhancedHash(
+            createdAt, invitedBy, orgId,
+            scopes, userEmail);
     }
     
     @Override
@@ -162,22 +161,24 @@ public class PendingOrgInvite {
                 "scopes", scopes,
                 "userEmail", userEmail);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String invitedBy;
- 
+
         private String orgId;
- 
+
         private PendingOrgInviteScopes scopes;
- 
+
         private String userEmail;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -185,11 +186,13 @@ public class PendingOrgInvite {
             return this;
         }
 
+
         public Builder invitedBy(String invitedBy) {
             Utils.checkNotNull(invitedBy, "invitedBy");
             this.invitedBy = invitedBy;
             return this;
         }
+
 
         /**
          * System generated unique identifier for an organization. Not guaranteed to have a specific format.
@@ -200,11 +203,13 @@ public class PendingOrgInvite {
             return this;
         }
 
+
         public Builder scopes(PendingOrgInviteScopes scopes) {
             Utils.checkNotNull(scopes, "scopes");
             this.scopes = scopes;
             return this;
         }
+
 
         /**
          * A user's email.
@@ -214,14 +219,13 @@ public class PendingOrgInvite {
             this.userEmail = userEmail;
             return this;
         }
-        
+
         public PendingOrgInvite build() {
+
             return new PendingOrgInvite(
-                createdAt,
-                invitedBy,
-                orgId,
-                scopes,
-                userEmail);
+                createdAt, invitedBy, orgId,
+                scopes, userEmail);
         }
+
     }
 }

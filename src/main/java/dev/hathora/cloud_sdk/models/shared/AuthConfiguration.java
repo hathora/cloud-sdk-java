@@ -12,16 +12,14 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
  * AuthConfiguration
  * 
- * <p>Configure [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+ * <p>Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
  */
 public class AuthConfiguration {
-
     /**
      * Construct a type with a set of properties K of type T
      */
@@ -87,9 +85,10 @@ public class AuthConfiguration {
         return (Optional<RecordStringNever>) nickname;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Construct a type with a set of properties K of type T
@@ -99,6 +98,7 @@ public class AuthConfiguration {
         this.anonymous = Optional.ofNullable(anonymous);
         return this;
     }
+
 
     /**
      * Construct a type with a set of properties K of type T
@@ -118,6 +118,7 @@ public class AuthConfiguration {
         return this;
     }
 
+
     /**
      * Enable google auth for your application.
      */
@@ -136,6 +137,7 @@ public class AuthConfiguration {
         return this;
     }
 
+
     /**
      * Construct a type with a set of properties K of type T
      */
@@ -145,7 +147,6 @@ public class AuthConfiguration {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -156,17 +157,15 @@ public class AuthConfiguration {
         }
         AuthConfiguration other = (AuthConfiguration) o;
         return 
-            Objects.deepEquals(this.anonymous, other.anonymous) &&
-            Objects.deepEquals(this.google, other.google) &&
-            Objects.deepEquals(this.nickname, other.nickname);
+            Utils.enhancedDeepEquals(this.anonymous, other.anonymous) &&
+            Utils.enhancedDeepEquals(this.google, other.google) &&
+            Utils.enhancedDeepEquals(this.nickname, other.nickname);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            anonymous,
-            google,
-            nickname);
+        return Utils.enhancedHash(
+            anonymous, google, nickname);
     }
     
     @Override
@@ -176,18 +175,20 @@ public class AuthConfiguration {
                 "google", google,
                 "nickname", nickname);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends RecordStringNever> anonymous = Optional.empty();
- 
+
         private Optional<? extends Google> google = Optional.empty();
- 
+
         private Optional<? extends RecordStringNever> nickname = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Construct a type with a set of properties K of type T
@@ -207,6 +208,7 @@ public class AuthConfiguration {
             return this;
         }
 
+
         /**
          * Enable google auth for your application.
          */
@@ -225,6 +227,7 @@ public class AuthConfiguration {
             return this;
         }
 
+
         /**
          * Construct a type with a set of properties K of type T
          */
@@ -242,12 +245,12 @@ public class AuthConfiguration {
             this.nickname = nickname;
             return this;
         }
-        
+
         public AuthConfiguration build() {
+
             return new AuthConfiguration(
-                anonymous,
-                google,
-                nickname);
+                anonymous, google, nickname);
         }
+
     }
 }

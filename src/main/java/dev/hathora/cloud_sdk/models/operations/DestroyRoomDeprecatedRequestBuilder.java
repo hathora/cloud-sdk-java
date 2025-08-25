@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.DestroyRoomDeprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class DestroyRoomDeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String roomId;
-    private final SDKMethodInterfaces.MethodCallDestroyRoomDeprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DestroyRoomDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallDestroyRoomDeprecated sdk) {
-        this.sdk = sdk;
+    public DestroyRoomDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public DestroyRoomDeprecatedRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class DestroyRoomDeprecatedRequestBuilder {
         return this;
     }
 
-    public DestroyRoomDeprecatedResponse call() throws Exception {
 
-        return sdk.destroyRoomDeprecated(
-            appId,
+    private DestroyRoomDeprecatedRequest buildRequest() {
+
+        DestroyRoomDeprecatedRequest request = new DestroyRoomDeprecatedRequest(appId,
             roomId);
+
+        return request;
+    }
+
+    public DestroyRoomDeprecatedResponse call() throws Exception {
+        
+        RequestOperation<DestroyRoomDeprecatedRequest, DestroyRoomDeprecatedResponse> operation
+              = new DestroyRoomDeprecated.Sync(sdkConfiguration);
+        DestroyRoomDeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

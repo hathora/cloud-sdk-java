@@ -3,18 +3,25 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetOrgs;
 import java.lang.Exception;
 
 public class GetOrgsRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallGetOrgs sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetOrgsRequestBuilder(SDKMethodInterfaces.MethodCallGetOrgs sdk) {
-        this.sdk = sdk;
+    public GetOrgsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetOrgsResponse call() throws Exception {
+        
+        RequestlessOperation<GetOrgsResponse> operation
+            = new GetOrgs.Sync(sdkConfiguration);
 
-        return sdk.getOrgsDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

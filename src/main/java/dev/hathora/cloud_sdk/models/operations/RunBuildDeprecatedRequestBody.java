@@ -9,7 +9,7 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class RunBuildDeprecatedRequestBody {
 
@@ -28,9 +28,10 @@ public class RunBuildDeprecatedRequestBody {
         return file;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RunBuildDeprecatedRequestBody withFile(File file) {
         Utils.checkNotNull(file, "file");
@@ -38,7 +39,6 @@ public class RunBuildDeprecatedRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class RunBuildDeprecatedRequestBody {
         }
         RunBuildDeprecatedRequestBody other = (RunBuildDeprecatedRequestBody) o;
         return 
-            Objects.deepEquals(this.file, other.file);
+            Utils.enhancedDeepEquals(this.file, other.file);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             file);
     }
     
@@ -63,24 +63,28 @@ public class RunBuildDeprecatedRequestBody {
         return Utils.toString(RunBuildDeprecatedRequestBody.class,
                 "file", file);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private File file;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder file(File file) {
             Utils.checkNotNull(file, "file");
             this.file = file;
             return this;
         }
-        
+
         public RunBuildDeprecatedRequestBody build() {
+
             return new RunBuildDeprecatedRequestBody(
                 file);
         }
+
     }
 }

@@ -13,19 +13,22 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetLogsForProcessRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=follow")
     private Optional<Boolean> follow;
 
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=processId")
     private String processId;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=tailLines")
     private Optional<Integer> tailLines;
@@ -48,7 +51,8 @@ public class GetLogsForProcessRequest {
     
     public GetLogsForProcessRequest(
             String processId) {
-        this(Optional.empty(), Optional.empty(), processId, Optional.empty());
+        this(Optional.empty(), Optional.empty(), processId,
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -71,15 +75,17 @@ public class GetLogsForProcessRequest {
         return tailLines;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetLogsForProcessRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     public GetLogsForProcessRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
@@ -92,6 +98,7 @@ public class GetLogsForProcessRequest {
         this.follow = Optional.ofNullable(follow);
         return this;
     }
+
 
     public GetLogsForProcessRequest withFollow(Optional<Boolean> follow) {
         Utils.checkNotNull(follow, "follow");
@@ -111,13 +118,13 @@ public class GetLogsForProcessRequest {
         return this;
     }
 
+
     public GetLogsForProcessRequest withTailLines(Optional<Integer> tailLines) {
         Utils.checkNotNull(tailLines, "tailLines");
         this.tailLines = tailLines;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -128,18 +135,16 @@ public class GetLogsForProcessRequest {
         }
         GetLogsForProcessRequest other = (GetLogsForProcessRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.follow, other.follow) &&
-            Objects.deepEquals(this.processId, other.processId) &&
-            Objects.deepEquals(this.tailLines, other.tailLines);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.follow, other.follow) &&
+            Utils.enhancedDeepEquals(this.processId, other.processId) &&
+            Utils.enhancedDeepEquals(this.tailLines, other.tailLines);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            follow,
-            processId,
+        return Utils.enhancedHash(
+            appId, follow, processId,
             tailLines);
     }
     
@@ -151,20 +156,22 @@ public class GetLogsForProcessRequest {
                 "processId", processId,
                 "tailLines", tailLines);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<Boolean> follow = Optional.empty();
- 
+
         private String processId;
- 
+
         private Optional<Integer> tailLines;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -178,6 +185,7 @@ public class GetLogsForProcessRequest {
             return this;
         }
 
+
         public Builder follow(boolean follow) {
             Utils.checkNotNull(follow, "follow");
             this.follow = Optional.ofNullable(follow);
@@ -190,11 +198,13 @@ public class GetLogsForProcessRequest {
             return this;
         }
 
+
         public Builder processId(String processId) {
             Utils.checkNotNull(processId, "processId");
             this.processId = processId;
             return this;
         }
+
 
         public Builder tailLines(int tailLines) {
             Utils.checkNotNull(tailLines, "tailLines");
@@ -207,17 +217,17 @@ public class GetLogsForProcessRequest {
             this.tailLines = tailLines;
             return this;
         }
-        
+
         public GetLogsForProcessRequest build() {
             if (tailLines == null) {
                 tailLines = _SINGLETON_VALUE_TailLines.value();
             }
+
             return new GetLogsForProcessRequest(
-                appId,
-                follow,
-                processId,
+                appId, follow, processId,
                 tailLines);
         }
+
 
         private static final LazySingletonValue<Optional<Integer>> _SINGLETON_VALUE_TailLines =
                 new LazySingletonValue<>(

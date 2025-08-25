@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateWithMultipartUploadsV2DeprecatedResponse implements Response {
 
@@ -56,7 +56,8 @@ public class CreateWithMultipartUploadsV2DeprecatedResponse implements Response 
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, statusCode, rawResponse);
+        this(Optional.empty(), contentType, statusCode,
+            rawResponse);
     }
 
     @SuppressWarnings("unchecked")
@@ -89,15 +90,17 @@ public class CreateWithMultipartUploadsV2DeprecatedResponse implements Response 
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateWithMultipartUploadsV2DeprecatedResponse withBuildWithMultipartUrls(BuildWithMultipartUrls buildWithMultipartUrls) {
         Utils.checkNotNull(buildWithMultipartUrls, "buildWithMultipartUrls");
         this.buildWithMultipartUrls = Optional.ofNullable(buildWithMultipartUrls);
         return this;
     }
+
 
     public CreateWithMultipartUploadsV2DeprecatedResponse withBuildWithMultipartUrls(Optional<? extends BuildWithMultipartUrls> buildWithMultipartUrls) {
         Utils.checkNotNull(buildWithMultipartUrls, "buildWithMultipartUrls");
@@ -132,7 +135,6 @@ public class CreateWithMultipartUploadsV2DeprecatedResponse implements Response 
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -143,18 +145,16 @@ public class CreateWithMultipartUploadsV2DeprecatedResponse implements Response 
         }
         CreateWithMultipartUploadsV2DeprecatedResponse other = (CreateWithMultipartUploadsV2DeprecatedResponse) o;
         return 
-            Objects.deepEquals(this.buildWithMultipartUrls, other.buildWithMultipartUrls) &&
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.buildWithMultipartUrls, other.buildWithMultipartUrls) &&
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            buildWithMultipartUrls,
-            contentType,
-            statusCode,
+        return Utils.enhancedHash(
+            buildWithMultipartUrls, contentType, statusCode,
             rawResponse);
     }
     
@@ -166,20 +166,22 @@ public class CreateWithMultipartUploadsV2DeprecatedResponse implements Response 
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends BuildWithMultipartUrls> buildWithMultipartUrls = Optional.empty();
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder buildWithMultipartUrls(BuildWithMultipartUrls buildWithMultipartUrls) {
             Utils.checkNotNull(buildWithMultipartUrls, "buildWithMultipartUrls");
@@ -193,6 +195,7 @@ public class CreateWithMultipartUploadsV2DeprecatedResponse implements Response 
             return this;
         }
 
+
         /**
          * HTTP response content type for this operation
          */
@@ -201,6 +204,7 @@ public class CreateWithMultipartUploadsV2DeprecatedResponse implements Response 
             this.contentType = contentType;
             return this;
         }
+
 
         /**
          * HTTP response status code for this operation
@@ -211,6 +215,7 @@ public class CreateWithMultipartUploadsV2DeprecatedResponse implements Response 
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -219,13 +224,13 @@ public class CreateWithMultipartUploadsV2DeprecatedResponse implements Response 
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public CreateWithMultipartUploadsV2DeprecatedResponse build() {
+
             return new CreateWithMultipartUploadsV2DeprecatedResponse(
-                buildWithMultipartUrls,
-                contentType,
-                statusCode,
+                buildWithMultipartUrls, contentType, statusCode,
                 rawResponse);
         }
+
     }
 }

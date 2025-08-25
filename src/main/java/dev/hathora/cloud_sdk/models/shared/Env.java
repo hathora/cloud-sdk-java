@@ -9,12 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class Env {
 
     @JsonProperty("name")
     private String name;
+
 
     @JsonProperty("value")
     private String value;
@@ -39,9 +40,10 @@ public class Env {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Env withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -55,7 +57,6 @@ public class Env {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,15 +67,14 @@ public class Env {
         }
         Env other = (Env) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            value);
+        return Utils.enhancedHash(
+            name, value);
     }
     
     @Override
@@ -83,16 +83,18 @@ public class Env {
                 "name", name,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -100,16 +102,18 @@ public class Env {
             return this;
         }
 
+
         public Builder value(String value) {
             Utils.checkNotNull(value, "value");
             this.value = value;
             return this;
         }
-        
+
         public Env build() {
+
             return new Env(
-                name,
-                value);
+                name, value);
         }
+
     }
 }

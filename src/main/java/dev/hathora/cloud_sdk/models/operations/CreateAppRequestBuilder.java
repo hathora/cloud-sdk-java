@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.models.shared.CreateAppConfig;
+import dev.hathora.cloud_sdk.operations.CreateApp;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,17 +15,17 @@ import java.util.Optional;
 
 public class CreateAppRequestBuilder {
 
-    private AppConfig appConfig;
+    private CreateAppConfig createAppConfig;
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateApp sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateAppRequestBuilder(SDKMethodInterfaces.MethodCallCreateApp sdk) {
-        this.sdk = sdk;
+    public CreateAppRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CreateAppRequestBuilder appConfig(AppConfig appConfig) {
-        Utils.checkNotNull(appConfig, "appConfig");
-        this.appConfig = appConfig;
+    public CreateAppRequestBuilder createAppConfig(CreateAppConfig createAppConfig) {
+        Utils.checkNotNull(createAppConfig, "createAppConfig");
+        this.createAppConfig = createAppConfig;
         return this;
     }
                 
@@ -37,10 +41,21 @@ public class CreateAppRequestBuilder {
         return this;
     }
 
-    public CreateAppResponse call() throws Exception {
 
-        return sdk.createApp(
-            appConfig,
+    private CreateAppRequest buildRequest() {
+
+        CreateAppRequest request = new CreateAppRequest(createAppConfig,
             orgId);
+
+        return request;
+    }
+
+    public CreateAppResponse call() throws Exception {
+        
+        RequestOperation<CreateAppRequest, CreateAppResponse> operation
+              = new CreateApp.Sync(sdkConfiguration);
+        CreateAppRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

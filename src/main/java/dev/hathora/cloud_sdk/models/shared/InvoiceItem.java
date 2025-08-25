@@ -10,21 +10,25 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class InvoiceItem {
 
     @JsonProperty("amount")
     private double amount;
 
+
     @JsonProperty("productName")
     private String productName;
+
 
     @JsonProperty("quantity")
     private double quantity;
 
+
     @JsonProperty("unit")
     private String unit;
+
 
     @JsonProperty("unitPrice")
     private double unitPrice;
@@ -73,9 +77,10 @@ public class InvoiceItem {
         return unitPrice;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public InvoiceItem withAmount(double amount) {
         Utils.checkNotNull(amount, "amount");
@@ -107,7 +112,6 @@ public class InvoiceItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,21 +122,18 @@ public class InvoiceItem {
         }
         InvoiceItem other = (InvoiceItem) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.productName, other.productName) &&
-            Objects.deepEquals(this.quantity, other.quantity) &&
-            Objects.deepEquals(this.unit, other.unit) &&
-            Objects.deepEquals(this.unitPrice, other.unitPrice);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.productName, other.productName) &&
+            Utils.enhancedDeepEquals(this.quantity, other.quantity) &&
+            Utils.enhancedDeepEquals(this.unit, other.unit) &&
+            Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            productName,
-            quantity,
-            unit,
-            unitPrice);
+        return Utils.enhancedHash(
+            amount, productName, quantity,
+            unit, unitPrice);
     }
     
     @Override
@@ -144,22 +145,24 @@ public class InvoiceItem {
                 "unit", unit,
                 "unitPrice", unitPrice);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Double amount;
- 
+
         private String productName;
- 
+
         private Double quantity;
- 
+
         private String unit;
- 
+
         private Double unitPrice;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(double amount) {
             Utils.checkNotNull(amount, "amount");
@@ -167,11 +170,13 @@ public class InvoiceItem {
             return this;
         }
 
+
         public Builder productName(String productName) {
             Utils.checkNotNull(productName, "productName");
             this.productName = productName;
             return this;
         }
+
 
         public Builder quantity(double quantity) {
             Utils.checkNotNull(quantity, "quantity");
@@ -179,25 +184,26 @@ public class InvoiceItem {
             return this;
         }
 
+
         public Builder unit(String unit) {
             Utils.checkNotNull(unit, "unit");
             this.unit = unit;
             return this;
         }
 
+
         public Builder unitPrice(double unitPrice) {
             Utils.checkNotNull(unitPrice, "unitPrice");
             this.unitPrice = unitPrice;
             return this;
         }
-        
+
         public InvoiceItem build() {
+
             return new InvoiceItem(
-                amount,
-                productName,
-                quantity,
-                unit,
-                unitPrice);
+                amount, productName, quantity,
+                unit, unitPrice);
         }
+
     }
 }

@@ -5,56 +5,90 @@ package dev.hathora.cloud_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+import java.util.Optional;
+
 
 public class StaticProcessAllocationConfig {
+    /**
+     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+     * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("autoscalingEnabled")
+    private Optional<Boolean> autoscalingEnabled;
 
     /**
-     * The maximum number of running processes that can be spun up during upgrades
+     * The maximum number of running processes.
      * Invariant: minProcesses &lt;= maxProcesses
      */
     @JsonProperty("maxProcesses")
     private int maxProcesses;
 
     /**
-     * The minimum running processes required during upgrades.
+     * The minimum number of running processes.
      * Invariant: 0 &lt;= minProcesses &lt; targetProcesses
      */
     @JsonProperty("minProcesses")
     private int minProcesses;
+
 
     @JsonProperty("region")
     private Region region;
 
     /**
      * The target number of running processes
+     * When autoscaling is enabled, this field is managed by the Process Autoscaler
      */
     @JsonProperty("targetProcesses")
     private int targetProcesses;
 
     @JsonCreator
     public StaticProcessAllocationConfig(
+            @JsonProperty("autoscalingEnabled") Optional<Boolean> autoscalingEnabled,
             @JsonProperty("maxProcesses") int maxProcesses,
             @JsonProperty("minProcesses") int minProcesses,
             @JsonProperty("region") Region region,
             @JsonProperty("targetProcesses") int targetProcesses) {
+        Utils.checkNotNull(autoscalingEnabled, "autoscalingEnabled");
         Utils.checkNotNull(maxProcesses, "maxProcesses");
         Utils.checkNotNull(minProcesses, "minProcesses");
         Utils.checkNotNull(region, "region");
         Utils.checkNotNull(targetProcesses, "targetProcesses");
+        this.autoscalingEnabled = autoscalingEnabled;
         this.maxProcesses = maxProcesses;
         this.minProcesses = minProcesses;
         this.region = region;
         this.targetProcesses = targetProcesses;
     }
+    
+    public StaticProcessAllocationConfig(
+            int maxProcesses,
+            int minProcesses,
+            Region region,
+            int targetProcesses) {
+        this(Optional.empty(), maxProcesses, minProcesses,
+            region, targetProcesses);
+    }
 
     /**
-     * The maximum number of running processes that can be spun up during upgrades
+     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+     * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
+     */
+    @JsonIgnore
+    public Optional<Boolean> autoscalingEnabled() {
+        return autoscalingEnabled;
+    }
+
+    /**
+     * The maximum number of running processes.
      * Invariant: minProcesses &lt;= maxProcesses
      */
     @JsonIgnore
@@ -63,7 +97,7 @@ public class StaticProcessAllocationConfig {
     }
 
     /**
-     * The minimum running processes required during upgrades.
+     * The minimum number of running processes.
      * Invariant: 0 &lt;= minProcesses &lt; targetProcesses
      */
     @JsonIgnore
@@ -78,18 +112,41 @@ public class StaticProcessAllocationConfig {
 
     /**
      * The target number of running processes
+     * When autoscaling is enabled, this field is managed by the Process Autoscaler
      */
     @JsonIgnore
     public int targetProcesses() {
         return targetProcesses;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
-     * The maximum number of running processes that can be spun up during upgrades
+     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+     * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
+     */
+    public StaticProcessAllocationConfig withAutoscalingEnabled(boolean autoscalingEnabled) {
+        Utils.checkNotNull(autoscalingEnabled, "autoscalingEnabled");
+        this.autoscalingEnabled = Optional.ofNullable(autoscalingEnabled);
+        return this;
+    }
+
+
+    /**
+     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+     * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
+     */
+    public StaticProcessAllocationConfig withAutoscalingEnabled(Optional<Boolean> autoscalingEnabled) {
+        Utils.checkNotNull(autoscalingEnabled, "autoscalingEnabled");
+        this.autoscalingEnabled = autoscalingEnabled;
+        return this;
+    }
+
+    /**
+     * The maximum number of running processes.
      * Invariant: minProcesses &lt;= maxProcesses
      */
     public StaticProcessAllocationConfig withMaxProcesses(int maxProcesses) {
@@ -99,7 +156,7 @@ public class StaticProcessAllocationConfig {
     }
 
     /**
-     * The minimum running processes required during upgrades.
+     * The minimum number of running processes.
      * Invariant: 0 &lt;= minProcesses &lt; targetProcesses
      */
     public StaticProcessAllocationConfig withMinProcesses(int minProcesses) {
@@ -116,6 +173,7 @@ public class StaticProcessAllocationConfig {
 
     /**
      * The target number of running processes
+     * When autoscaling is enabled, this field is managed by the Process Autoscaler
      */
     public StaticProcessAllocationConfig withTargetProcesses(int targetProcesses) {
         Utils.checkNotNull(targetProcesses, "targetProcesses");
@@ -123,7 +181,6 @@ public class StaticProcessAllocationConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -134,46 +191,71 @@ public class StaticProcessAllocationConfig {
         }
         StaticProcessAllocationConfig other = (StaticProcessAllocationConfig) o;
         return 
-            Objects.deepEquals(this.maxProcesses, other.maxProcesses) &&
-            Objects.deepEquals(this.minProcesses, other.minProcesses) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.targetProcesses, other.targetProcesses);
+            Utils.enhancedDeepEquals(this.autoscalingEnabled, other.autoscalingEnabled) &&
+            Utils.enhancedDeepEquals(this.maxProcesses, other.maxProcesses) &&
+            Utils.enhancedDeepEquals(this.minProcesses, other.minProcesses) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.targetProcesses, other.targetProcesses);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            maxProcesses,
-            minProcesses,
-            region,
-            targetProcesses);
+        return Utils.enhancedHash(
+            autoscalingEnabled, maxProcesses, minProcesses,
+            region, targetProcesses);
     }
     
     @Override
     public String toString() {
         return Utils.toString(StaticProcessAllocationConfig.class,
+                "autoscalingEnabled", autoscalingEnabled,
                 "maxProcesses", maxProcesses,
                 "minProcesses", minProcesses,
                 "region", region,
                 "targetProcesses", targetProcesses);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
+        private Optional<Boolean> autoscalingEnabled = Optional.empty();
+
         private Integer maxProcesses;
- 
+
         private Integer minProcesses;
- 
+
         private Region region;
- 
+
         private Integer targetProcesses;
-        
+
         private Builder() {
           // force use of static builder() method
         }
 
+
         /**
-         * The maximum number of running processes that can be spun up during upgrades
+         * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+         * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
+         */
+        public Builder autoscalingEnabled(boolean autoscalingEnabled) {
+            Utils.checkNotNull(autoscalingEnabled, "autoscalingEnabled");
+            this.autoscalingEnabled = Optional.ofNullable(autoscalingEnabled);
+            return this;
+        }
+
+        /**
+         * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+         * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
+         */
+        public Builder autoscalingEnabled(Optional<Boolean> autoscalingEnabled) {
+            Utils.checkNotNull(autoscalingEnabled, "autoscalingEnabled");
+            this.autoscalingEnabled = autoscalingEnabled;
+            return this;
+        }
+
+
+        /**
+         * The maximum number of running processes.
          * Invariant: minProcesses &lt;= maxProcesses
          */
         public Builder maxProcesses(int maxProcesses) {
@@ -182,8 +264,9 @@ public class StaticProcessAllocationConfig {
             return this;
         }
 
+
         /**
-         * The minimum running processes required during upgrades.
+         * The minimum number of running processes.
          * Invariant: 0 &lt;= minProcesses &lt; targetProcesses
          */
         public Builder minProcesses(int minProcesses) {
@@ -192,27 +275,30 @@ public class StaticProcessAllocationConfig {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
 
+
         /**
          * The target number of running processes
+         * When autoscaling is enabled, this field is managed by the Process Autoscaler
          */
         public Builder targetProcesses(int targetProcesses) {
             Utils.checkNotNull(targetProcesses, "targetProcesses");
             this.targetProcesses = targetProcesses;
             return this;
         }
-        
+
         public StaticProcessAllocationConfig build() {
+
             return new StaticProcessAllocationConfig(
-                maxProcesses,
-                minProcesses,
-                region,
-                targetProcesses);
+                autoscalingEnabled, maxProcesses, minProcesses,
+                region, targetProcesses);
         }
+
     }
 }

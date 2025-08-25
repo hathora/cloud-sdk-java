@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.SuspendRoomV2Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class SuspendRoomV2DeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String roomId;
-    private final SDKMethodInterfaces.MethodCallSuspendRoomV2Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public SuspendRoomV2DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallSuspendRoomV2Deprecated sdk) {
-        this.sdk = sdk;
+    public SuspendRoomV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public SuspendRoomV2DeprecatedRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class SuspendRoomV2DeprecatedRequestBuilder {
         return this;
     }
 
-    public SuspendRoomV2DeprecatedResponse call() throws Exception {
 
-        return sdk.suspendRoomV2Deprecated(
-            appId,
+    private SuspendRoomV2DeprecatedRequest buildRequest() {
+
+        SuspendRoomV2DeprecatedRequest request = new SuspendRoomV2DeprecatedRequest(appId,
             roomId);
+
+        return request;
+    }
+
+    public SuspendRoomV2DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<SuspendRoomV2DeprecatedRequest, SuspendRoomV2DeprecatedResponse> operation
+              = new SuspendRoomV2Deprecated.Sync(sdkConfiguration);
+        SuspendRoomV2DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

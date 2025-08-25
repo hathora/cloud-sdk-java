@@ -3,16 +3,20 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetFleetMetrics;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetFleetMetricsRequestBuilder {
 
     private GetFleetMetricsRequest request;
-    private final SDKMethodInterfaces.MethodCallGetFleetMetrics sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetFleetMetricsRequestBuilder(SDKMethodInterfaces.MethodCallGetFleetMetrics sdk) {
-        this.sdk = sdk;
+    public GetFleetMetricsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetFleetMetricsRequestBuilder request(GetFleetMetricsRequest request) {
@@ -22,8 +26,10 @@ public class GetFleetMetricsRequestBuilder {
     }
 
     public GetFleetMetricsResponse call() throws Exception {
+        
+        RequestOperation<GetFleetMetricsRequest, GetFleetMetricsResponse> operation
+              = new GetFleetMetrics.Sync(sdkConfiguration);
 
-        return sdk.getFleetMetrics(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

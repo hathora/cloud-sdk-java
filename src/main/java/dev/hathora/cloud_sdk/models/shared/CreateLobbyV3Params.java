@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateLobbyV3Params {
 
@@ -84,9 +84,10 @@ public class CreateLobbyV3Params {
         return visibility;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateLobbyV3Params withRegion(Region region) {
         Utils.checkNotNull(region, "region");
@@ -102,6 +103,7 @@ public class CreateLobbyV3Params {
         this.roomConfig = Optional.ofNullable(roomConfig);
         return this;
     }
+
 
     /**
      * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
@@ -127,7 +129,6 @@ public class CreateLobbyV3Params {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -138,17 +139,15 @@ public class CreateLobbyV3Params {
         }
         CreateLobbyV3Params other = (CreateLobbyV3Params) o;
         return 
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.roomConfig, other.roomConfig) &&
-            Objects.deepEquals(this.visibility, other.visibility);
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.roomConfig, other.roomConfig) &&
+            Utils.enhancedDeepEquals(this.visibility, other.visibility);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            region,
-            roomConfig,
-            visibility);
+        return Utils.enhancedHash(
+            region, roomConfig, visibility);
     }
     
     @Override
@@ -158,24 +157,27 @@ public class CreateLobbyV3Params {
                 "roomConfig", roomConfig,
                 "visibility", visibility);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Region region;
- 
+
         private Optional<String> roomConfig = Optional.empty();
- 
+
         private LobbyVisibility visibility;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
+
 
         /**
          * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
@@ -195,6 +197,7 @@ public class CreateLobbyV3Params {
             return this;
         }
 
+
         /**
          * Types of lobbies a player can create.
          * 
@@ -209,12 +212,12 @@ public class CreateLobbyV3Params {
             this.visibility = visibility;
             return this;
         }
-        
+
         public CreateLobbyV3Params build() {
+
             return new CreateLobbyV3Params(
-                region,
-                roomConfig,
-                visibility);
+                region, roomConfig, visibility);
         }
+
     }
 }

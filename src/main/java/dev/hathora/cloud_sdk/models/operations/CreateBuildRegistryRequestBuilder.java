@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateBuildV3Params;
+import dev.hathora.cloud_sdk.operations.CreateBuildRegistry;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreateBuildRegistryRequestBuilder {
 
     private CreateBuildV3Params createBuildV3Params;
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateBuildRegistry sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateBuildRegistryRequestBuilder(SDKMethodInterfaces.MethodCallCreateBuildRegistry sdk) {
-        this.sdk = sdk;
+    public CreateBuildRegistryRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateBuildRegistryRequestBuilder createBuildV3Params(CreateBuildV3Params createBuildV3Params) {
@@ -37,10 +41,21 @@ public class CreateBuildRegistryRequestBuilder {
         return this;
     }
 
-    public CreateBuildRegistryResponse call() throws Exception {
 
-        return sdk.createBuildRegistry(
-            createBuildV3Params,
+    private CreateBuildRegistryRequest buildRequest() {
+
+        CreateBuildRegistryRequest request = new CreateBuildRegistryRequest(createBuildV3Params,
             orgId);
+
+        return request;
+    }
+
+    public CreateBuildRegistryResponse call() throws Exception {
+        
+        RequestOperation<CreateBuildRegistryRequest, CreateBuildRegistryResponse> operation
+              = new CreateBuildRegistry.Sync(sdkConfiguration);
+        CreateBuildRegistryRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

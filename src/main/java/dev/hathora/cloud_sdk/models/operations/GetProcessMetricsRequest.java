@@ -16,8 +16,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetProcessMetricsRequest {
 
@@ -36,6 +36,7 @@ public class GetProcessMetricsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=metrics")
     private Optional<? extends List<ProcessMetricName>> metrics;
 
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=processId")
     private String processId;
 
@@ -44,6 +45,7 @@ public class GetProcessMetricsRequest {
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=start")
     private Optional<Double> start;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=step")
     private Optional<Integer> step;
@@ -72,7 +74,8 @@ public class GetProcessMetricsRequest {
     
     public GetProcessMetricsRequest(
             String processId) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), processId, Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            processId, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -115,15 +118,17 @@ public class GetProcessMetricsRequest {
         return step;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetProcessMetricsRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     public GetProcessMetricsRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
@@ -139,6 +144,7 @@ public class GetProcessMetricsRequest {
         this.end = Optional.ofNullable(end);
         return this;
     }
+
 
     /**
      * Unix timestamp. Default is current time.
@@ -157,6 +163,7 @@ public class GetProcessMetricsRequest {
         this.metrics = Optional.ofNullable(metrics);
         return this;
     }
+
 
     /**
      * Available metrics to query over time.
@@ -182,6 +189,7 @@ public class GetProcessMetricsRequest {
         return this;
     }
 
+
     /**
      * Unix timestamp. Default is -1 hour from `end`.
      */
@@ -197,13 +205,13 @@ public class GetProcessMetricsRequest {
         return this;
     }
 
+
     public GetProcessMetricsRequest withStep(Optional<Integer> step) {
         Utils.checkNotNull(step, "step");
         this.step = step;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -214,23 +222,19 @@ public class GetProcessMetricsRequest {
         }
         GetProcessMetricsRequest other = (GetProcessMetricsRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.end, other.end) &&
-            Objects.deepEquals(this.metrics, other.metrics) &&
-            Objects.deepEquals(this.processId, other.processId) &&
-            Objects.deepEquals(this.start, other.start) &&
-            Objects.deepEquals(this.step, other.step);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.end, other.end) &&
+            Utils.enhancedDeepEquals(this.metrics, other.metrics) &&
+            Utils.enhancedDeepEquals(this.processId, other.processId) &&
+            Utils.enhancedDeepEquals(this.start, other.start) &&
+            Utils.enhancedDeepEquals(this.step, other.step);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            end,
-            metrics,
-            processId,
-            start,
-            step);
+        return Utils.enhancedHash(
+            appId, end, metrics,
+            processId, start, step);
     }
     
     @Override
@@ -243,24 +247,26 @@ public class GetProcessMetricsRequest {
                 "start", start,
                 "step", step);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<Double> end = Optional.empty();
- 
+
         private Optional<? extends List<ProcessMetricName>> metrics = Optional.empty();
- 
+
         private String processId;
- 
+
         private Optional<Double> start = Optional.empty();
- 
+
         private Optional<Integer> step;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -273,6 +279,7 @@ public class GetProcessMetricsRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Unix timestamp. Default is current time.
@@ -292,6 +299,7 @@ public class GetProcessMetricsRequest {
             return this;
         }
 
+
         /**
          * Available metrics to query over time.
          */
@@ -310,11 +318,13 @@ public class GetProcessMetricsRequest {
             return this;
         }
 
+
         public Builder processId(String processId) {
             Utils.checkNotNull(processId, "processId");
             this.processId = processId;
             return this;
         }
+
 
         /**
          * Unix timestamp. Default is -1 hour from `end`.
@@ -334,6 +344,7 @@ public class GetProcessMetricsRequest {
             return this;
         }
 
+
         public Builder step(int step) {
             Utils.checkNotNull(step, "step");
             this.step = Optional.ofNullable(step);
@@ -345,19 +356,17 @@ public class GetProcessMetricsRequest {
             this.step = step;
             return this;
         }
-        
+
         public GetProcessMetricsRequest build() {
             if (step == null) {
                 step = _SINGLETON_VALUE_Step.value();
             }
+
             return new GetProcessMetricsRequest(
-                appId,
-                end,
-                metrics,
-                processId,
-                start,
-                step);
+                appId, end, metrics,
+                processId, start, step);
         }
+
 
         private static final LazySingletonValue<Optional<Integer>> _SINGLETON_VALUE_Step =
                 new LazySingletonValue<>(

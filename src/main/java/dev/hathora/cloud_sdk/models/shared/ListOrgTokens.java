@@ -10,7 +10,7 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class ListOrgTokens {
 
@@ -29,9 +29,10 @@ public class ListOrgTokens {
         return tokens;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListOrgTokens withTokens(List<OrgToken> tokens) {
         Utils.checkNotNull(tokens, "tokens");
@@ -39,7 +40,6 @@ public class ListOrgTokens {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class ListOrgTokens {
         }
         ListOrgTokens other = (ListOrgTokens) o;
         return 
-            Objects.deepEquals(this.tokens, other.tokens);
+            Utils.enhancedDeepEquals(this.tokens, other.tokens);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             tokens);
     }
     
@@ -64,24 +64,28 @@ public class ListOrgTokens {
         return Utils.toString(ListOrgTokens.class,
                 "tokens", tokens);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<OrgToken> tokens;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder tokens(List<OrgToken> tokens) {
             Utils.checkNotNull(tokens, "tokens");
             this.tokens = tokens;
             return this;
         }
-        
+
         public ListOrgTokens build() {
+
             return new ListOrgTokens(
                 tokens);
         }
+
     }
 }

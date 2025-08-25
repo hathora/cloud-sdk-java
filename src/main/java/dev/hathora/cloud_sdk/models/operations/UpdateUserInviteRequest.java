@@ -10,12 +10,13 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class UpdateUserInviteRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private UpdateUserInvite updateUserInvite;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=orgId")
     private String orgId;
@@ -40,9 +41,10 @@ public class UpdateUserInviteRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateUserInviteRequest withUpdateUserInvite(UpdateUserInvite updateUserInvite) {
         Utils.checkNotNull(updateUserInvite, "updateUserInvite");
@@ -56,7 +58,6 @@ public class UpdateUserInviteRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -67,15 +68,14 @@ public class UpdateUserInviteRequest {
         }
         UpdateUserInviteRequest other = (UpdateUserInviteRequest) o;
         return 
-            Objects.deepEquals(this.updateUserInvite, other.updateUserInvite) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.updateUserInvite, other.updateUserInvite) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            updateUserInvite,
-            orgId);
+        return Utils.enhancedHash(
+            updateUserInvite, orgId);
     }
     
     @Override
@@ -84,16 +84,18 @@ public class UpdateUserInviteRequest {
                 "updateUserInvite", updateUserInvite,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private UpdateUserInvite updateUserInvite;
- 
+
         private String orgId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder updateUserInvite(UpdateUserInvite updateUserInvite) {
             Utils.checkNotNull(updateUserInvite, "updateUserInvite");
@@ -101,16 +103,18 @@ public class UpdateUserInviteRequest {
             return this;
         }
 
+
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
             this.orgId = orgId;
             return this;
         }
-        
+
         public UpdateUserInviteRequest build() {
+
             return new UpdateUserInviteRequest(
-                updateUserInvite,
-                orgId);
+                updateUserInvite, orgId);
         }
+
     }
 }

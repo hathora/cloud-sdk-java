@@ -3,6 +3,9 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.UpdateFleet;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
@@ -14,10 +17,10 @@ public class UpdateFleetRequestBuilder {
     private UpdateFleet updateFleet;
     private String fleetId;
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallUpdateFleet sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateFleetRequestBuilder(SDKMethodInterfaces.MethodCallUpdateFleet sdk) {
-        this.sdk = sdk;
+    public UpdateFleetRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateFleetRequestBuilder updateFleet(UpdateFleet updateFleet) {
@@ -44,11 +47,22 @@ public class UpdateFleetRequestBuilder {
         return this;
     }
 
-    public UpdateFleetResponse call() throws Exception {
 
-        return sdk.updateFleet(
-            updateFleet,
+    private UpdateFleetRequest buildRequest() {
+
+        UpdateFleetRequest request = new UpdateFleetRequest(updateFleet,
             fleetId,
             orgId);
+
+        return request;
+    }
+
+    public UpdateFleetResponse call() throws Exception {
+        
+        RequestOperation<UpdateFleetRequest, UpdateFleetResponse> operation
+              = new dev.hathora.cloud_sdk.operations.UpdateFleet.Sync(sdkConfiguration);
+        UpdateFleetRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

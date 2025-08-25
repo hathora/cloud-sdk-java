@@ -3,18 +3,25 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetUserPendingInvites;
 import java.lang.Exception;
 
 public class GetUserPendingInvitesRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallGetUserPendingInvites sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetUserPendingInvitesRequestBuilder(SDKMethodInterfaces.MethodCallGetUserPendingInvites sdk) {
-        this.sdk = sdk;
+    public GetUserPendingInvitesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetUserPendingInvitesResponse call() throws Exception {
+        
+        RequestlessOperation<GetUserPendingInvitesResponse> operation
+            = new GetUserPendingInvites.Sync(sdkConfiguration);
 
-        return sdk.getUserPendingInvitesDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class FleetMetricsData {
 
@@ -22,17 +22,21 @@ public class FleetMetricsData {
     @JsonProperty("provisionedBareMetal")
     private Optional<? extends List<MetricValue>> provisionedBareMetal;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provisionedCloud")
     private Optional<? extends List<MetricValue>> provisionedCloud;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provisionedTotal")
     private Optional<? extends List<MetricValue>> provisionedTotal;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("systemOverhead")
     private Optional<? extends List<MetricValue>> systemOverhead;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("utilized")
@@ -58,7 +62,8 @@ public class FleetMetricsData {
     }
     
     public FleetMetricsData() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -91,15 +96,17 @@ public class FleetMetricsData {
         return (Optional<List<MetricValue>>) utilized;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public FleetMetricsData withProvisionedBareMetal(List<MetricValue> provisionedBareMetal) {
         Utils.checkNotNull(provisionedBareMetal, "provisionedBareMetal");
         this.provisionedBareMetal = Optional.ofNullable(provisionedBareMetal);
         return this;
     }
+
 
     public FleetMetricsData withProvisionedBareMetal(Optional<? extends List<MetricValue>> provisionedBareMetal) {
         Utils.checkNotNull(provisionedBareMetal, "provisionedBareMetal");
@@ -113,6 +120,7 @@ public class FleetMetricsData {
         return this;
     }
 
+
     public FleetMetricsData withProvisionedCloud(Optional<? extends List<MetricValue>> provisionedCloud) {
         Utils.checkNotNull(provisionedCloud, "provisionedCloud");
         this.provisionedCloud = provisionedCloud;
@@ -124,6 +132,7 @@ public class FleetMetricsData {
         this.provisionedTotal = Optional.ofNullable(provisionedTotal);
         return this;
     }
+
 
     public FleetMetricsData withProvisionedTotal(Optional<? extends List<MetricValue>> provisionedTotal) {
         Utils.checkNotNull(provisionedTotal, "provisionedTotal");
@@ -137,6 +146,7 @@ public class FleetMetricsData {
         return this;
     }
 
+
     public FleetMetricsData withSystemOverhead(Optional<? extends List<MetricValue>> systemOverhead) {
         Utils.checkNotNull(systemOverhead, "systemOverhead");
         this.systemOverhead = systemOverhead;
@@ -149,13 +159,13 @@ public class FleetMetricsData {
         return this;
     }
 
+
     public FleetMetricsData withUtilized(Optional<? extends List<MetricValue>> utilized) {
         Utils.checkNotNull(utilized, "utilized");
         this.utilized = utilized;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -166,21 +176,18 @@ public class FleetMetricsData {
         }
         FleetMetricsData other = (FleetMetricsData) o;
         return 
-            Objects.deepEquals(this.provisionedBareMetal, other.provisionedBareMetal) &&
-            Objects.deepEquals(this.provisionedCloud, other.provisionedCloud) &&
-            Objects.deepEquals(this.provisionedTotal, other.provisionedTotal) &&
-            Objects.deepEquals(this.systemOverhead, other.systemOverhead) &&
-            Objects.deepEquals(this.utilized, other.utilized);
+            Utils.enhancedDeepEquals(this.provisionedBareMetal, other.provisionedBareMetal) &&
+            Utils.enhancedDeepEquals(this.provisionedCloud, other.provisionedCloud) &&
+            Utils.enhancedDeepEquals(this.provisionedTotal, other.provisionedTotal) &&
+            Utils.enhancedDeepEquals(this.systemOverhead, other.systemOverhead) &&
+            Utils.enhancedDeepEquals(this.utilized, other.utilized);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            provisionedBareMetal,
-            provisionedCloud,
-            provisionedTotal,
-            systemOverhead,
-            utilized);
+        return Utils.enhancedHash(
+            provisionedBareMetal, provisionedCloud, provisionedTotal,
+            systemOverhead, utilized);
     }
     
     @Override
@@ -192,22 +199,24 @@ public class FleetMetricsData {
                 "systemOverhead", systemOverhead,
                 "utilized", utilized);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<MetricValue>> provisionedBareMetal = Optional.empty();
- 
+
         private Optional<? extends List<MetricValue>> provisionedCloud = Optional.empty();
- 
+
         private Optional<? extends List<MetricValue>> provisionedTotal = Optional.empty();
- 
+
         private Optional<? extends List<MetricValue>> systemOverhead = Optional.empty();
- 
+
         private Optional<? extends List<MetricValue>> utilized = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder provisionedBareMetal(List<MetricValue> provisionedBareMetal) {
             Utils.checkNotNull(provisionedBareMetal, "provisionedBareMetal");
@@ -221,6 +230,7 @@ public class FleetMetricsData {
             return this;
         }
 
+
         public Builder provisionedCloud(List<MetricValue> provisionedCloud) {
             Utils.checkNotNull(provisionedCloud, "provisionedCloud");
             this.provisionedCloud = Optional.ofNullable(provisionedCloud);
@@ -232,6 +242,7 @@ public class FleetMetricsData {
             this.provisionedCloud = provisionedCloud;
             return this;
         }
+
 
         public Builder provisionedTotal(List<MetricValue> provisionedTotal) {
             Utils.checkNotNull(provisionedTotal, "provisionedTotal");
@@ -245,6 +256,7 @@ public class FleetMetricsData {
             return this;
         }
 
+
         public Builder systemOverhead(List<MetricValue> systemOverhead) {
             Utils.checkNotNull(systemOverhead, "systemOverhead");
             this.systemOverhead = Optional.ofNullable(systemOverhead);
@@ -257,6 +269,7 @@ public class FleetMetricsData {
             return this;
         }
 
+
         public Builder utilized(List<MetricValue> utilized) {
             Utils.checkNotNull(utilized, "utilized");
             this.utilized = Optional.ofNullable(utilized);
@@ -268,14 +281,13 @@ public class FleetMetricsData {
             this.utilized = utilized;
             return this;
         }
-        
+
         public FleetMetricsData build() {
+
             return new FleetMetricsData(
-                provisionedBareMetal,
-                provisionedCloud,
-                provisionedTotal,
-                systemOverhead,
-                utilized);
+                provisionedBareMetal, provisionedCloud, provisionedTotal,
+                systemOverhead, utilized);
         }
+
     }
 }

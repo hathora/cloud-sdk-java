@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateRoomParams;
+import dev.hathora.cloud_sdk.operations.CreateRoomDeprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class CreateRoomDeprecatedRequestBuilder {
     private CreateRoomParams createRoomParams;
     private Optional<String> appId = Optional.empty();
     private Optional<String> roomId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateRoomDeprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateRoomDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallCreateRoomDeprecated sdk) {
-        this.sdk = sdk;
+    public CreateRoomDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateRoomDeprecatedRequestBuilder createRoomParams(CreateRoomParams createRoomParams) {
@@ -50,11 +54,22 @@ public class CreateRoomDeprecatedRequestBuilder {
         return this;
     }
 
-    public CreateRoomDeprecatedResponse call() throws Exception {
 
-        return sdk.createRoomDeprecated(
-            createRoomParams,
+    private CreateRoomDeprecatedRequest buildRequest() {
+
+        CreateRoomDeprecatedRequest request = new CreateRoomDeprecatedRequest(createRoomParams,
             appId,
             roomId);
+
+        return request;
+    }
+
+    public CreateRoomDeprecatedResponse call() throws Exception {
+        
+        RequestOperation<CreateRoomDeprecatedRequest, CreateRoomDeprecatedResponse> operation
+              = new CreateRoomDeprecated.Sync(sdkConfiguration);
+        CreateRoomDeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

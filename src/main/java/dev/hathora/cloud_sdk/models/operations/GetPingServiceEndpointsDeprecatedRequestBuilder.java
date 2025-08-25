@@ -3,18 +3,25 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetPingServiceEndpointsDeprecated;
 import java.lang.Exception;
 
 public class GetPingServiceEndpointsDeprecatedRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallGetPingServiceEndpointsDeprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPingServiceEndpointsDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallGetPingServiceEndpointsDeprecated sdk) {
-        this.sdk = sdk;
+    public GetPingServiceEndpointsDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetPingServiceEndpointsDeprecatedResponse call() throws Exception {
+        
+        RequestlessOperation<GetPingServiceEndpointsDeprecatedResponse> operation
+            = new GetPingServiceEndpointsDeprecated.Sync(sdkConfiguration);
 
-        return sdk.getPingServiceEndpointsDeprecatedDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

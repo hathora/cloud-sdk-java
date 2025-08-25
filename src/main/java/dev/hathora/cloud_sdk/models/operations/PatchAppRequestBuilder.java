@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.PartialAppConfigWithServiceConfig;
+import dev.hathora.cloud_sdk.operations.PatchApp;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class PatchAppRequestBuilder {
 
     private PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig;
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallPatchApp sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PatchAppRequestBuilder(SDKMethodInterfaces.MethodCallPatchApp sdk) {
-        this.sdk = sdk;
+    public PatchAppRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PatchAppRequestBuilder partialAppConfigWithServiceConfig(PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig) {
@@ -37,10 +41,21 @@ public class PatchAppRequestBuilder {
         return this;
     }
 
-    public PatchAppResponse call() throws Exception {
 
-        return sdk.patchApp(
-            partialAppConfigWithServiceConfig,
+    private PatchAppRequest buildRequest() {
+
+        PatchAppRequest request = new PatchAppRequest(partialAppConfigWithServiceConfig,
             appId);
+
+        return request;
+    }
+
+    public PatchAppResponse call() throws Exception {
+        
+        RequestOperation<PatchAppRequest, PatchAppResponse> operation
+              = new PatchApp.Sync(sdkConfiguration);
+        PatchAppRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetOrgMembers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -10,10 +14,10 @@ import java.lang.String;
 public class GetOrgMembersRequestBuilder {
 
     private String orgId;
-    private final SDKMethodInterfaces.MethodCallGetOrgMembers sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetOrgMembersRequestBuilder(SDKMethodInterfaces.MethodCallGetOrgMembers sdk) {
-        this.sdk = sdk;
+    public GetOrgMembersRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetOrgMembersRequestBuilder orgId(String orgId) {
@@ -22,9 +26,20 @@ public class GetOrgMembersRequestBuilder {
         return this;
     }
 
-    public GetOrgMembersResponse call() throws Exception {
 
-        return sdk.getOrgMembers(
-            orgId);
+    private GetOrgMembersRequest buildRequest() {
+
+        GetOrgMembersRequest request = new GetOrgMembersRequest(orgId);
+
+        return request;
+    }
+
+    public GetOrgMembersResponse call() throws Exception {
+        
+        RequestOperation<GetOrgMembersRequest, GetOrgMembersResponse> operation
+              = new GetOrgMembers.Sync(sdkConfiguration);
+        GetOrgMembersRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

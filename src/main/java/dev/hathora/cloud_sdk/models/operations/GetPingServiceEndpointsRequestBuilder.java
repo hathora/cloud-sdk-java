@@ -3,18 +3,25 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetPingServiceEndpoints;
 import java.lang.Exception;
 
 public class GetPingServiceEndpointsRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallGetPingServiceEndpoints sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPingServiceEndpointsRequestBuilder(SDKMethodInterfaces.MethodCallGetPingServiceEndpoints sdk) {
-        this.sdk = sdk;
+    public GetPingServiceEndpointsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetPingServiceEndpointsResponse call() throws Exception {
+        
+        RequestlessOperation<GetPingServiceEndpointsResponse> operation
+            = new GetPingServiceEndpoints.Sync(sdkConfiguration);
 
-        return sdk.getPingServiceEndpointsDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

@@ -10,7 +10,7 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class DeploymentsV3Page {
 
@@ -29,9 +29,10 @@ public class DeploymentsV3Page {
         return deployments;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DeploymentsV3Page withDeployments(List<DeploymentV3> deployments) {
         Utils.checkNotNull(deployments, "deployments");
@@ -39,7 +40,6 @@ public class DeploymentsV3Page {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class DeploymentsV3Page {
         }
         DeploymentsV3Page other = (DeploymentsV3Page) o;
         return 
-            Objects.deepEquals(this.deployments, other.deployments);
+            Utils.enhancedDeepEquals(this.deployments, other.deployments);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             deployments);
     }
     
@@ -64,24 +64,28 @@ public class DeploymentsV3Page {
         return Utils.toString(DeploymentsV3Page.class,
                 "deployments", deployments);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<DeploymentV3> deployments;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder deployments(List<DeploymentV3> deployments) {
             Utils.checkNotNull(deployments, "deployments");
             this.deployments = deployments;
             return this;
         }
-        
+
         public DeploymentsV3Page build() {
+
             return new DeploymentsV3Page(
                 deployments);
         }
+
     }
 }

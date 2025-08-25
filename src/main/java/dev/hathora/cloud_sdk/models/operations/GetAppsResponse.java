@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class GetAppsResponse implements Response {
 
+public class GetAppsResponse implements Response {
     /**
      * Ok
      */
@@ -59,7 +58,8 @@ public class GetAppsResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, statusCode, rawResponse);
+        this(Optional.empty(), contentType, statusCode,
+            rawResponse);
     }
 
     /**
@@ -95,9 +95,10 @@ public class GetAppsResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Ok
@@ -107,6 +108,7 @@ public class GetAppsResponse implements Response {
         this.applicationsPage = Optional.ofNullable(applicationsPage);
         return this;
     }
+
 
     /**
      * Ok
@@ -144,7 +146,6 @@ public class GetAppsResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -155,18 +156,16 @@ public class GetAppsResponse implements Response {
         }
         GetAppsResponse other = (GetAppsResponse) o;
         return 
-            Objects.deepEquals(this.applicationsPage, other.applicationsPage) &&
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.applicationsPage, other.applicationsPage) &&
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            applicationsPage,
-            contentType,
-            statusCode,
+        return Utils.enhancedHash(
+            applicationsPage, contentType, statusCode,
             rawResponse);
     }
     
@@ -178,20 +177,22 @@ public class GetAppsResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ApplicationsPage> applicationsPage = Optional.empty();
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Ok
@@ -211,6 +212,7 @@ public class GetAppsResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response content type for this operation
          */
@@ -219,6 +221,7 @@ public class GetAppsResponse implements Response {
             this.contentType = contentType;
             return this;
         }
+
 
         /**
          * HTTP response status code for this operation
@@ -229,6 +232,7 @@ public class GetAppsResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -237,13 +241,13 @@ public class GetAppsResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public GetAppsResponse build() {
+
             return new GetAppsResponse(
-                applicationsPage,
-                contentType,
-                statusCode,
+                applicationsPage, contentType, statusCode,
                 rawResponse);
         }
+
     }
 }

@@ -5,40 +5,41 @@ package dev.hathora.cloud_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import dev.hathora.cloud_sdk.models.shared.CreateAppConfig;
 import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class UpdateAppV1DeprecatedRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private AppConfig appConfig;
+    private CreateAppConfig createAppConfig;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
 
     @JsonCreator
     public UpdateAppV1DeprecatedRequest(
-            AppConfig appConfig,
+            CreateAppConfig createAppConfig,
             Optional<String> appId) {
-        Utils.checkNotNull(appConfig, "appConfig");
+        Utils.checkNotNull(createAppConfig, "createAppConfig");
         Utils.checkNotNull(appId, "appId");
-        this.appConfig = appConfig;
+        this.createAppConfig = createAppConfig;
         this.appId = appId;
     }
     
     public UpdateAppV1DeprecatedRequest(
-            AppConfig appConfig) {
-        this(appConfig, Optional.empty());
+            CreateAppConfig createAppConfig) {
+        this(createAppConfig, Optional.empty());
     }
 
     @JsonIgnore
-    public AppConfig appConfig() {
-        return appConfig;
+    public CreateAppConfig createAppConfig() {
+        return createAppConfig;
     }
 
     @JsonIgnore
@@ -46,13 +47,14 @@ public class UpdateAppV1DeprecatedRequest {
         return appId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    public UpdateAppV1DeprecatedRequest withAppConfig(AppConfig appConfig) {
-        Utils.checkNotNull(appConfig, "appConfig");
-        this.appConfig = appConfig;
+
+    public UpdateAppV1DeprecatedRequest withCreateAppConfig(CreateAppConfig createAppConfig) {
+        Utils.checkNotNull(createAppConfig, "createAppConfig");
+        this.createAppConfig = createAppConfig;
         return this;
     }
 
@@ -62,13 +64,13 @@ public class UpdateAppV1DeprecatedRequest {
         return this;
     }
 
+
     public UpdateAppV1DeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,39 +81,41 @@ public class UpdateAppV1DeprecatedRequest {
         }
         UpdateAppV1DeprecatedRequest other = (UpdateAppV1DeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.appConfig, other.appConfig) &&
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.createAppConfig, other.createAppConfig) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appConfig,
-            appId);
+        return Utils.enhancedHash(
+            createAppConfig, appId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(UpdateAppV1DeprecatedRequest.class,
-                "appConfig", appConfig,
+                "createAppConfig", createAppConfig,
                 "appId", appId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
-        private AppConfig appConfig;
- 
+
+        private CreateAppConfig createAppConfig;
+
         private Optional<String> appId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder appConfig(AppConfig appConfig) {
-            Utils.checkNotNull(appConfig, "appConfig");
-            this.appConfig = appConfig;
+
+        public Builder createAppConfig(CreateAppConfig createAppConfig) {
+            Utils.checkNotNull(createAppConfig, "createAppConfig");
+            this.createAppConfig = createAppConfig;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -124,11 +128,12 @@ public class UpdateAppV1DeprecatedRequest {
             this.appId = appId;
             return this;
         }
-        
+
         public UpdateAppV1DeprecatedRequest build() {
+
             return new UpdateAppV1DeprecatedRequest(
-                appConfig,
-                appId);
+                createAppConfig, appId);
         }
+
     }
 }

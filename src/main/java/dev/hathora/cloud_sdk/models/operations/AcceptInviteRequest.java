@@ -9,7 +9,7 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class AcceptInviteRequest {
 
@@ -28,9 +28,10 @@ public class AcceptInviteRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AcceptInviteRequest withOrgId(String orgId) {
         Utils.checkNotNull(orgId, "orgId");
@@ -38,7 +39,6 @@ public class AcceptInviteRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class AcceptInviteRequest {
         }
         AcceptInviteRequest other = (AcceptInviteRequest) o;
         return 
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             orgId);
     }
     
@@ -63,24 +63,28 @@ public class AcceptInviteRequest {
         return Utils.toString(AcceptInviteRequest.class,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String orgId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
             this.orgId = orgId;
             return this;
         }
-        
+
         public AcceptInviteRequest build() {
+
             return new AcceptInviteRequest(
                 orgId);
         }
+
     }
 }

@@ -10,7 +10,7 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class BuildsV3Page {
 
@@ -29,9 +29,10 @@ public class BuildsV3Page {
         return builds;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public BuildsV3Page withBuilds(List<BuildV3> builds) {
         Utils.checkNotNull(builds, "builds");
@@ -39,7 +40,6 @@ public class BuildsV3Page {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class BuildsV3Page {
         }
         BuildsV3Page other = (BuildsV3Page) o;
         return 
-            Objects.deepEquals(this.builds, other.builds);
+            Utils.enhancedDeepEquals(this.builds, other.builds);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             builds);
     }
     
@@ -64,24 +64,28 @@ public class BuildsV3Page {
         return Utils.toString(BuildsV3Page.class,
                 "builds", builds);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<BuildV3> builds;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder builds(List<BuildV3> builds) {
             Utils.checkNotNull(builds, "builds");
             this.builds = builds;
             return this;
         }
-        
+
         public BuildsV3Page build() {
+
             return new BuildsV3Page(
                 builds);
         }
+
     }
 }

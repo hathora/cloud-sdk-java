@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetApps;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class GetAppsRequestBuilder {
 
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetApps sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetAppsRequestBuilder(SDKMethodInterfaces.MethodCallGetApps sdk) {
-        this.sdk = sdk;
+    public GetAppsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetAppsRequestBuilder orgId(String orgId) {
@@ -29,9 +33,20 @@ public class GetAppsRequestBuilder {
         return this;
     }
 
-    public GetAppsResponse call() throws Exception {
 
-        return sdk.getApps(
-            orgId);
+    private GetAppsRequest buildRequest() {
+
+        GetAppsRequest request = new GetAppsRequest(orgId);
+
+        return request;
+    }
+
+    public GetAppsResponse call() throws Exception {
+        
+        RequestOperation<GetAppsRequest, GetAppsResponse> operation
+              = new GetApps.Sync(sdkConfiguration);
+        GetAppsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

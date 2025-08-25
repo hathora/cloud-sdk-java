@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetInactiveRoomsForProcessDeprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetInactiveRoomsForProcessDeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String processId;
-    private final SDKMethodInterfaces.MethodCallGetInactiveRoomsForProcessDeprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetInactiveRoomsForProcessDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallGetInactiveRoomsForProcessDeprecated sdk) {
-        this.sdk = sdk;
+    public GetInactiveRoomsForProcessDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetInactiveRoomsForProcessDeprecatedRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class GetInactiveRoomsForProcessDeprecatedRequestBuilder {
         return this;
     }
 
-    public GetInactiveRoomsForProcessDeprecatedResponse call() throws Exception {
 
-        return sdk.getInactiveRoomsForProcessDeprecated(
-            appId,
+    private GetInactiveRoomsForProcessDeprecatedRequest buildRequest() {
+
+        GetInactiveRoomsForProcessDeprecatedRequest request = new GetInactiveRoomsForProcessDeprecatedRequest(appId,
             processId);
+
+        return request;
+    }
+
+    public GetInactiveRoomsForProcessDeprecatedResponse call() throws Exception {
+        
+        RequestOperation<GetInactiveRoomsForProcessDeprecatedRequest, GetInactiveRoomsForProcessDeprecatedResponse> operation
+              = new GetInactiveRoomsForProcessDeprecated.Sync(sdkConfiguration);
+        GetInactiveRoomsForProcessDeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

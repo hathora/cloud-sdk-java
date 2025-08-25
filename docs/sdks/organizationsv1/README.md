@@ -22,6 +22,7 @@ AcceptInvite
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="AcceptInvite" method="post" path="/orgs/v1/{orgId}/invites/accept" -->
 ```java
 package hello.world;
 
@@ -37,10 +38,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         AcceptInviteResponse res = sdk.organizationsV1().acceptInvite()
@@ -75,6 +74,7 @@ GetOrgMembers
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetOrgMembers" method="get" path="/orgs/v1/{orgId}/members" -->
 ```java
 package hello.world;
 
@@ -90,10 +90,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetOrgMembersResponse res = sdk.organizationsV1().getOrgMembers()
@@ -130,6 +128,7 @@ GetOrgPendingInvites
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetOrgPendingInvites" method="get" path="/orgs/v1/{orgId}/invites/pending" -->
 ```java
 package hello.world;
 
@@ -145,10 +144,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetOrgPendingInvitesResponse res = sdk.organizationsV1().getOrgPendingInvites()
@@ -185,6 +182,7 @@ Returns an unsorted list of all organizations that you are a member of (an accep
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetOrgs" method="get" path="/orgs/v1" -->
 ```java
 package hello.world;
 
@@ -200,10 +198,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetOrgsResponse res = sdk.organizationsV1().getOrgs()
@@ -233,6 +229,7 @@ GetUsageLimits
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetUsageLimits" method="get" path="/orgs/v1/metadata/usageLimits" -->
 ```java
 package hello.world;
 
@@ -247,11 +244,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetUsageLimitsResponse res = sdk.organizationsV1().getUsageLimits()
@@ -288,6 +284,7 @@ GetUserPendingInvites
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetUserPendingInvites" method="get" path="/orgs/v1/user/invites/pending" -->
 ```java
 package hello.world;
 
@@ -303,10 +300,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetUserPendingInvitesResponse res = sdk.organizationsV1().getUserPendingInvites()
@@ -336,6 +331,7 @@ InviteUser
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="InviteUser" method="put" path="/orgs/v1/{orgId}/invites" -->
 ```java
 package hello.world;
 
@@ -352,10 +348,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         InviteUserResponse res = sdk.organizationsV1().inviteUser()
@@ -396,6 +390,7 @@ RejectInvite
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="RejectInvite" method="post" path="/orgs/v1/{orgId}/invites/reject" -->
 ```java
 package hello.world;
 
@@ -411,10 +406,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         RejectInviteResponse res = sdk.organizationsV1().rejectInvite()
@@ -449,6 +442,7 @@ RescindInvite
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="RescindInvite" method="post" path="/orgs/v1/{orgId}/invites/rescind" -->
 ```java
 package hello.world;
 
@@ -465,10 +459,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         RescindInviteResponse res = sdk.organizationsV1().rescindInvite()
@@ -508,6 +500,7 @@ UpdateUserInvite
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="UpdateUserInvite" method="post" path="/orgs/v1/{orgId}/invites" -->
 ```java
 package hello.world;
 
@@ -523,10 +516,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         UpdateUserInviteResponse res = sdk.organizationsV1().updateUserInvite()

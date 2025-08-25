@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.LoginAnonymous;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class LoginAnonymousRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallLoginAnonymous sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public LoginAnonymousRequestBuilder(SDKMethodInterfaces.MethodCallLoginAnonymous sdk) {
-        this.sdk = sdk;
+    public LoginAnonymousRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public LoginAnonymousRequestBuilder appId(String appId) {
@@ -29,9 +33,20 @@ public class LoginAnonymousRequestBuilder {
         return this;
     }
 
-    public LoginAnonymousResponse call() throws Exception {
 
-        return sdk.loginAnonymous(
-            appId);
+    private LoginAnonymousRequest buildRequest() {
+
+        LoginAnonymousRequest request = new LoginAnonymousRequest(appId);
+
+        return request;
+    }
+
+    public LoginAnonymousResponse call() throws Exception {
+        
+        RequestOperation<LoginAnonymousRequest, LoginAnonymousResponse> operation
+              = new LoginAnonymous.Sync(sdkConfiguration);
+        LoginAnonymousRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

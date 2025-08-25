@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class VerificationEmailRequest {
 
@@ -28,9 +28,10 @@ public class VerificationEmailRequest {
         return userId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public VerificationEmailRequest withUserId(String userId) {
         Utils.checkNotNull(userId, "userId");
@@ -38,7 +39,6 @@ public class VerificationEmailRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class VerificationEmailRequest {
         }
         VerificationEmailRequest other = (VerificationEmailRequest) o;
         return 
-            Objects.deepEquals(this.userId, other.userId);
+            Utils.enhancedDeepEquals(this.userId, other.userId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             userId);
     }
     
@@ -63,24 +63,28 @@ public class VerificationEmailRequest {
         return Utils.toString(VerificationEmailRequest.class,
                 "userId", userId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String userId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder userId(String userId) {
             Utils.checkNotNull(userId, "userId");
             this.userId = userId;
             return this;
         }
-        
+
         public VerificationEmailRequest build() {
+
             return new VerificationEmailRequest(
                 userId);
         }
+
     }
 }

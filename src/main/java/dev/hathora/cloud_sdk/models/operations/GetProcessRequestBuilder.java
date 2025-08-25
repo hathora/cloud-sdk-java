@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetProcess;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetProcessRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String processId;
-    private final SDKMethodInterfaces.MethodCallGetProcess sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetProcessRequestBuilder(SDKMethodInterfaces.MethodCallGetProcess sdk) {
-        this.sdk = sdk;
+    public GetProcessRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetProcessRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class GetProcessRequestBuilder {
         return this;
     }
 
-    public GetProcessResponse call() throws Exception {
 
-        return sdk.getProcess(
-            appId,
+    private GetProcessRequest buildRequest() {
+
+        GetProcessRequest request = new GetProcessRequest(appId,
             processId);
+
+        return request;
+    }
+
+    public GetProcessResponse call() throws Exception {
+        
+        RequestOperation<GetProcessRequest, GetProcessResponse> operation
+              = new GetProcess.Sync(sdkConfiguration);
+        GetProcessRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

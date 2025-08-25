@@ -10,12 +10,13 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class CreateOrgTokenRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CreateOrgToken createOrgToken;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=orgId")
     private String orgId;
@@ -40,9 +41,10 @@ public class CreateOrgTokenRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateOrgTokenRequest withCreateOrgToken(CreateOrgToken createOrgToken) {
         Utils.checkNotNull(createOrgToken, "createOrgToken");
@@ -56,7 +58,6 @@ public class CreateOrgTokenRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -67,15 +68,14 @@ public class CreateOrgTokenRequest {
         }
         CreateOrgTokenRequest other = (CreateOrgTokenRequest) o;
         return 
-            Objects.deepEquals(this.createOrgToken, other.createOrgToken) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.createOrgToken, other.createOrgToken) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createOrgToken,
-            orgId);
+        return Utils.enhancedHash(
+            createOrgToken, orgId);
     }
     
     @Override
@@ -84,16 +84,18 @@ public class CreateOrgTokenRequest {
                 "createOrgToken", createOrgToken,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CreateOrgToken createOrgToken;
- 
+
         private String orgId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createOrgToken(CreateOrgToken createOrgToken) {
             Utils.checkNotNull(createOrgToken, "createOrgToken");
@@ -101,16 +103,18 @@ public class CreateOrgTokenRequest {
             return this;
         }
 
+
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
             this.orgId = orgId;
             return this;
         }
-        
+
         public CreateOrgTokenRequest build() {
+
             return new CreateOrgTokenRequest(
-                createOrgToken,
-                orgId);
+                createOrgToken, orgId);
         }
+
     }
 }
