@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams;
+import dev.hathora.cloud_sdk.operations.CreateBuild;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreateBuildRequestBuilder {
 
     private CreateMultipartBuildParams createMultipartBuildParams;
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateBuild sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateBuildRequestBuilder(SDKMethodInterfaces.MethodCallCreateBuild sdk) {
-        this.sdk = sdk;
+    public CreateBuildRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateBuildRequestBuilder createMultipartBuildParams(CreateMultipartBuildParams createMultipartBuildParams) {
@@ -37,10 +41,21 @@ public class CreateBuildRequestBuilder {
         return this;
     }
 
-    public CreateBuildResponse call() throws Exception {
 
-        return sdk.createBuild(
-            createMultipartBuildParams,
+    private CreateBuildRequest buildRequest() {
+
+        CreateBuildRequest request = new CreateBuildRequest(createMultipartBuildParams,
             orgId);
+
+        return request;
+    }
+
+    public CreateBuildResponse call() throws Exception {
+        
+        RequestOperation<CreateBuildRequest, CreateBuildResponse> operation
+              = new CreateBuild.Sync(sdkConfiguration);
+        CreateBuildRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

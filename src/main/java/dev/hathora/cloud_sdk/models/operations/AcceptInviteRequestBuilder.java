@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.AcceptInvite;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -10,10 +14,10 @@ import java.lang.String;
 public class AcceptInviteRequestBuilder {
 
     private String orgId;
-    private final SDKMethodInterfaces.MethodCallAcceptInvite sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AcceptInviteRequestBuilder(SDKMethodInterfaces.MethodCallAcceptInvite sdk) {
-        this.sdk = sdk;
+    public AcceptInviteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AcceptInviteRequestBuilder orgId(String orgId) {
@@ -22,9 +26,20 @@ public class AcceptInviteRequestBuilder {
         return this;
     }
 
-    public AcceptInviteResponse call() throws Exception {
 
-        return sdk.acceptInvite(
-            orgId);
+    private AcceptInviteRequest buildRequest() {
+
+        AcceptInviteRequest request = new AcceptInviteRequest(orgId);
+
+        return request;
+    }
+
+    public AcceptInviteResponse call() throws Exception {
+        
+        RequestOperation<AcceptInviteRequest, AcceptInviteResponse> operation
+              = new AcceptInvite.Sync(sdkConfiguration);
+        AcceptInviteRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

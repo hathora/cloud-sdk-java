@@ -12,11 +12,10 @@ import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class RunBuildDeprecatedResponse implements Response {
 
+public class RunBuildDeprecatedResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -57,7 +56,8 @@ public class RunBuildDeprecatedResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty());
     }
 
     /**
@@ -92,9 +92,10 @@ public class RunBuildDeprecatedResponse implements Response {
         return res;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -132,6 +133,7 @@ public class RunBuildDeprecatedResponse implements Response {
         return this;
     }
 
+
     /**
      * Ok
      */
@@ -141,7 +143,6 @@ public class RunBuildDeprecatedResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -152,18 +153,16 @@ public class RunBuildDeprecatedResponse implements Response {
         }
         RunBuildDeprecatedResponse other = (RunBuildDeprecatedResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.res, other.res);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
+            Utils.enhancedDeepEquals(this.res, other.res);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            statusCode,
-            rawResponse,
+        return Utils.enhancedHash(
+            contentType, statusCode, rawResponse,
             res);
     }
     
@@ -175,20 +174,22 @@ public class RunBuildDeprecatedResponse implements Response {
                 "rawResponse", rawResponse,
                 "res", res);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<String> res = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -199,6 +200,7 @@ public class RunBuildDeprecatedResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -208,6 +210,7 @@ public class RunBuildDeprecatedResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -216,6 +219,7 @@ public class RunBuildDeprecatedResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * Ok
@@ -234,13 +238,13 @@ public class RunBuildDeprecatedResponse implements Response {
             this.res = res;
             return this;
         }
-        
+
         public RunBuildDeprecatedResponse build() {
+
             return new RunBuildDeprecatedResponse(
-                contentType,
-                statusCode,
-                rawResponse,
+                contentType, statusCode, rawResponse,
                 res);
         }
+
     }
 }

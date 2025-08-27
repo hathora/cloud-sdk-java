@@ -3,9 +3,8 @@
  */
 package dev.hathora.cloud_sdk;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
 import dev.hathora.cloud_sdk.models.operations.CreateBuildRegistryRequest;
 import dev.hathora.cloud_sdk.models.operations.CreateBuildRegistryRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.CreateBuildRegistryResponse;
@@ -27,49 +26,29 @@ import dev.hathora.cloud_sdk.models.operations.RunBuildRegistryResponse;
 import dev.hathora.cloud_sdk.models.operations.RunBuildRequest;
 import dev.hathora.cloud_sdk.models.operations.RunBuildRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.RunBuildResponse;
-import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
-import dev.hathora.cloud_sdk.models.shared.BuildV3;
-import dev.hathora.cloud_sdk.models.shared.BuildsV3Page;
 import dev.hathora.cloud_sdk.models.shared.CreateBuildV3Params;
 import dev.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams;
-import dev.hathora.cloud_sdk.models.shared.CreatedBuildV3WithMultipartUrls;
-import dev.hathora.cloud_sdk.models.shared.DeletedBuild;
 import dev.hathora.cloud_sdk.models.shared.RegistryConfig;
-import dev.hathora.cloud_sdk.utils.HTTPClient;
-import dev.hathora.cloud_sdk.utils.HTTPRequest;
-import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import dev.hathora.cloud_sdk.utils.SerializedBody;
-import dev.hathora.cloud_sdk.utils.Utils.JsonShape;
-import dev.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
+import dev.hathora.cloud_sdk.operations.CreateBuild;
+import dev.hathora.cloud_sdk.operations.CreateBuildRegistry;
+import dev.hathora.cloud_sdk.operations.DeleteBuild;
+import dev.hathora.cloud_sdk.operations.GetBuild;
+import dev.hathora.cloud_sdk.operations.GetBuilds;
+import dev.hathora.cloud_sdk.operations.RunBuild;
+import dev.hathora.cloud_sdk.operations.RunBuildRegistry;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Optional;
 
 /**
  * Operations that allow you create and manage your [builds](https://hathora.dev/docs/concepts/hathora-entities#build).
  */
-public class BuildsV3 implements
-            MethodCallCreateBuild,
-            MethodCallCreateBuildRegistry,
-            MethodCallDeleteBuild,
-            MethodCallGetBuild,
-            MethodCallGetBuilds,
-            MethodCallRunBuild,
-            MethodCallRunBuildRegistry {
-
+public class BuildsV3 {
     private final SDKConfiguration sdkConfiguration;
 
     BuildsV3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
 
     /**
      * CreateBuild
@@ -79,7 +58,7 @@ public class BuildsV3 implements
      * @return The call builder
      */
     public CreateBuildRequestBuilder createBuild() {
-        return new CreateBuildRequestBuilder(this);
+        return new CreateBuildRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -91,11 +70,10 @@ public class BuildsV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateBuildResponse createBuild(
-            CreateMultipartBuildParams createMultipartBuildParams) throws Exception {
+    public CreateBuildResponse createBuild(CreateMultipartBuildParams createMultipartBuildParams) throws Exception {
         return createBuild(createMultipartBuildParams, Optional.empty());
     }
-    
+
     /**
      * CreateBuild
      * 
@@ -106,171 +84,17 @@ public class BuildsV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateBuildResponse createBuild(
-            CreateMultipartBuildParams createMultipartBuildParams,
-            Optional<String> orgId) throws Exception {
+    public CreateBuildResponse createBuild(CreateMultipartBuildParams createMultipartBuildParams, Optional<String> orgId) throws Exception {
         CreateBuildRequest request =
             CreateBuildRequest
                 .builder()
                 .createMultipartBuildParams(createMultipartBuildParams)
                 .orgId(orgId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/builds/v3/builds");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "createMultipartBuildParams",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreateBuildRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "CreateBuild", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "422", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "CreateBuild",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "CreateBuild",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "CreateBuild",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreateBuildResponse.Builder _resBuilder = 
-            CreateBuildResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreateBuildResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CreatedBuildV3WithMultipartUrls _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreatedBuildV3WithMultipartUrls>() {});
-                _res.withCreatedBuildV3WithMultipartUrls(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CreateBuildRequest, CreateBuildResponse> operation
+              = new CreateBuild.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * CreateBuildRegistry
@@ -280,7 +104,7 @@ public class BuildsV3 implements
      * @return The call builder
      */
     public CreateBuildRegistryRequestBuilder createBuildRegistry() {
-        return new CreateBuildRegistryRequestBuilder(this);
+        return new CreateBuildRegistryRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -292,11 +116,10 @@ public class BuildsV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateBuildRegistryResponse createBuildRegistry(
-            CreateBuildV3Params createBuildV3Params) throws Exception {
+    public CreateBuildRegistryResponse createBuildRegistry(CreateBuildV3Params createBuildV3Params) throws Exception {
         return createBuildRegistry(createBuildV3Params, Optional.empty());
     }
-    
+
     /**
      * CreateBuildRegistry
      * 
@@ -307,171 +130,17 @@ public class BuildsV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateBuildRegistryResponse createBuildRegistry(
-            CreateBuildV3Params createBuildV3Params,
-            Optional<String> orgId) throws Exception {
+    public CreateBuildRegistryResponse createBuildRegistry(CreateBuildV3Params createBuildV3Params, Optional<String> orgId) throws Exception {
         CreateBuildRegistryRequest request =
             CreateBuildRegistryRequest
                 .builder()
                 .createBuildV3Params(createBuildV3Params)
                 .orgId(orgId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/builds/v3/builds/registry");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "createBuildV3Params",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreateBuildRegistryRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "CreateBuildRegistry", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "422", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "CreateBuildRegistry",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "CreateBuildRegistry",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "CreateBuildRegistry",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreateBuildRegistryResponse.Builder _resBuilder = 
-            CreateBuildRegistryResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreateBuildRegistryResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                BuildV3 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<BuildV3>() {});
-                _res.withBuildV3(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CreateBuildRegistryRequest, CreateBuildRegistryResponse> operation
+              = new CreateBuildRegistry.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * DeleteBuild
@@ -483,7 +152,7 @@ public class BuildsV3 implements
      * @return The call builder
      */
     public DeleteBuildRequestBuilder deleteBuild() {
-        return new DeleteBuildRequestBuilder(this);
+        return new DeleteBuildRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -497,11 +166,10 @@ public class BuildsV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteBuildResponse deleteBuild(
-            String buildId) throws Exception {
+    public DeleteBuildResponse deleteBuild(String buildId) throws Exception {
         return deleteBuild(buildId, Optional.empty());
     }
-    
+
     /**
      * DeleteBuild
      * 
@@ -514,160 +182,17 @@ public class BuildsV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteBuildResponse deleteBuild(
-            String buildId,
-            Optional<String> orgId) throws Exception {
+    public DeleteBuildResponse deleteBuild(String buildId, Optional<String> orgId) throws Exception {
         DeleteBuildRequest request =
             DeleteBuildRequest
                 .builder()
                 .buildId(buildId)
                 .orgId(orgId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                DeleteBuildRequest.class,
-                _baseUrl,
-                "/builds/v3/builds/{buildId}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "DELETE");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeleteBuildRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "DeleteBuild", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "DeleteBuild",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "DeleteBuild",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "DeleteBuild",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        DeleteBuildResponse.Builder _resBuilder = 
-            DeleteBuildResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        DeleteBuildResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                DeletedBuild _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<DeletedBuild>() {});
-                _res.withDeletedBuild(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<DeleteBuildRequest, DeleteBuildResponse> operation
+              = new DeleteBuild.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * GetBuild
@@ -677,7 +202,7 @@ public class BuildsV3 implements
      * @return The call builder
      */
     public GetBuildRequestBuilder getBuild() {
-        return new GetBuildRequestBuilder(this);
+        return new GetBuildRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -689,11 +214,10 @@ public class BuildsV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetBuildResponse getBuild(
-            String buildId) throws Exception {
+    public GetBuildResponse getBuild(String buildId) throws Exception {
         return getBuild(buildId, Optional.empty());
     }
-    
+
     /**
      * GetBuild
      * 
@@ -704,146 +228,17 @@ public class BuildsV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetBuildResponse getBuild(
-            String buildId,
-            Optional<String> orgId) throws Exception {
+    public GetBuildResponse getBuild(String buildId, Optional<String> orgId) throws Exception {
         GetBuildRequest request =
             GetBuildRequest
                 .builder()
                 .buildId(buildId)
                 .orgId(orgId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                GetBuildRequest.class,
-                _baseUrl,
-                "/builds/v3/builds/{buildId}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetBuildRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetBuild", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetBuild",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetBuild",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetBuild",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetBuildResponse.Builder _resBuilder = 
-            GetBuildResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetBuildResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                BuildV3 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<BuildV3>() {});
-                _res.withBuildV3(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetBuildRequest, GetBuildResponse> operation
+              = new GetBuild.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * GetBuilds
@@ -853,7 +248,7 @@ public class BuildsV3 implements
      * @return The call builder
      */
     public GetBuildsRequestBuilder getBuilds() {
-        return new GetBuildsRequestBuilder(this);
+        return new GetBuildsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -867,7 +262,7 @@ public class BuildsV3 implements
     public GetBuildsResponse getBuildsDirect() throws Exception {
         return getBuilds(Optional.empty());
     }
-    
+
     /**
      * GetBuilds
      * 
@@ -877,142 +272,16 @@ public class BuildsV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetBuildsResponse getBuilds(
-            Optional<String> orgId) throws Exception {
+    public GetBuildsResponse getBuilds(Optional<String> orgId) throws Exception {
         GetBuildsRequest request =
             GetBuildsRequest
                 .builder()
                 .orgId(orgId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/builds/v3/builds");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetBuildsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetBuilds", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetBuilds",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetBuilds",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetBuilds",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetBuildsResponse.Builder _resBuilder = 
-            GetBuildsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetBuildsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                BuildsV3Page _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<BuildsV3Page>() {});
-                _res.withBuildsV3Page(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetBuildsRequest, GetBuildsResponse> operation
+              = new GetBuilds.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * RunBuild
@@ -1022,7 +291,7 @@ public class BuildsV3 implements
      * @return The call builder
      */
     public RunBuildRequestBuilder runBuild() {
-        return new RunBuildRequestBuilder(this);
+        return new RunBuildRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1034,11 +303,10 @@ public class BuildsV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RunBuildResponse runBuild(
-            String buildId) throws Exception {
+    public RunBuildResponse runBuild(String buildId) throws Exception {
         return runBuild(buildId, Optional.empty());
     }
-    
+
     /**
      * RunBuild
      * 
@@ -1049,159 +317,17 @@ public class BuildsV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RunBuildResponse runBuild(
-            String buildId,
-            Optional<String> orgId) throws Exception {
+    public RunBuildResponse runBuild(String buildId, Optional<String> orgId) throws Exception {
         RunBuildRequest request =
             RunBuildRequest
                 .builder()
                 .buildId(buildId)
                 .orgId(orgId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                RunBuildRequest.class,
-                _baseUrl,
-                "/builds/v3/builds/{buildId}/run",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        _req.addHeader("Accept", "application/octet-stream")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                RunBuildRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "RunBuild", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "422", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "RunBuild",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "RunBuild",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "RunBuild",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        RunBuildResponse.Builder _resBuilder = 
-            RunBuildResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200") && Utils.contentTypeMatches(_contentType, "application/octet-stream")) {
-            _resBuilder.responseStream(_httpRes.body());
-        }
-
-        RunBuildResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/octet-stream")) {
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<RunBuildRequest, RunBuildResponse> operation
+              = new RunBuild.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * RunBuildRegistry
@@ -1211,7 +337,7 @@ public class BuildsV3 implements
      * @return The call builder
      */
     public RunBuildRegistryRequestBuilder runBuildRegistry() {
-        return new RunBuildRegistryRequestBuilder(this);
+        return new RunBuildRegistryRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1224,12 +350,10 @@ public class BuildsV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RunBuildRegistryResponse runBuildRegistry(
-            RegistryConfig registryConfig,
-            String buildId) throws Exception {
+    public RunBuildRegistryResponse runBuildRegistry(RegistryConfig registryConfig, String buildId) throws Exception {
         return runBuildRegistry(registryConfig, buildId, Optional.empty());
     }
-    
+
     /**
      * RunBuildRegistry
      * 
@@ -1242,8 +366,7 @@ public class BuildsV3 implements
      * @throws Exception if the API call fails
      */
     public RunBuildRegistryResponse runBuildRegistry(
-            RegistryConfig registryConfig,
-            String buildId,
+            RegistryConfig registryConfig, String buildId,
             Optional<String> orgId) throws Exception {
         RunBuildRegistryRequest request =
             RunBuildRegistryRequest
@@ -1252,160 +375,9 @@ public class BuildsV3 implements
                 .buildId(buildId)
                 .orgId(orgId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                RunBuildRegistryRequest.class,
-                _baseUrl,
-                "/builds/v3/builds/{buildId}/runRegistry",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "registryConfig",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/octet-stream")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                RunBuildRegistryRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "RunBuildRegistry", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "422", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "RunBuildRegistry",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "RunBuildRegistry",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "RunBuildRegistry",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        RunBuildRegistryResponse.Builder _resBuilder = 
-            RunBuildRegistryResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200") && Utils.contentTypeMatches(_contentType, "application/octet-stream")) {
-            _resBuilder.responseStream(_httpRes.body());
-        }
-
-        RunBuildRegistryResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/octet-stream")) {
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<RunBuildRegistryRequest, RunBuildRegistryResponse> operation
+              = new RunBuildRegistry.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

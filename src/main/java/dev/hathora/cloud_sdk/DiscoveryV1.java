@@ -3,39 +3,23 @@
  */
 package dev.hathora.cloud_sdk;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
+
 import dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsDeprecatedRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsDeprecatedResponse;
-import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
-import dev.hathora.cloud_sdk.models.shared.PingEndpoints;
-import dev.hathora.cloud_sdk.utils.HTTPClient;
-import dev.hathora.cloud_sdk.utils.HTTPRequest;
-import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import dev.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
+import dev.hathora.cloud_sdk.operations.GetPingServiceEndpointsDeprecated;
 import java.lang.Deprecated;
 import java.lang.Exception;
-import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Deprecated. Does not include latest Regions (missing Dallas region). Use [DiscoveryV2](https://hathora.dev/api#tag/DiscoveryV2).
  */
-public class DiscoveryV1 implements
-            MethodCallGetPingServiceEndpointsDeprecated {
-
+public class DiscoveryV1 {
     private final SDKConfiguration sdkConfiguration;
 
     DiscoveryV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
 
     /**
      * GetPingServiceEndpointsDeprecated
@@ -47,7 +31,7 @@ public class DiscoveryV1 implements
      */
     @Deprecated
     public GetPingServiceEndpointsDeprecatedRequestBuilder getPingServiceEndpointsDeprecated() {
-        return new GetPingServiceEndpointsDeprecatedRequestBuilder(this);
+        return new GetPingServiceEndpointsDeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -61,109 +45,9 @@ public class DiscoveryV1 implements
      */
     @Deprecated
     public GetPingServiceEndpointsDeprecatedResponse getPingServiceEndpointsDeprecatedDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/discovery/v1/ping");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetPingServiceEndpointsDeprecated", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetPingServiceEndpointsDeprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetPingServiceEndpointsDeprecated",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetPingServiceEndpointsDeprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetPingServiceEndpointsDeprecatedResponse.Builder _resBuilder = 
-            GetPingServiceEndpointsDeprecatedResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetPingServiceEndpointsDeprecatedResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                List<PingEndpoints> _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<List<PingEndpoints>>() {});
-                _res.withPingEndpoints(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestlessOperation<GetPingServiceEndpointsDeprecatedResponse> operation
+            = new GetPingServiceEndpointsDeprecated.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest());
     }
 
 }

@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetOrgPendingInvites;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -10,10 +14,10 @@ import java.lang.String;
 public class GetOrgPendingInvitesRequestBuilder {
 
     private String orgId;
-    private final SDKMethodInterfaces.MethodCallGetOrgPendingInvites sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetOrgPendingInvitesRequestBuilder(SDKMethodInterfaces.MethodCallGetOrgPendingInvites sdk) {
-        this.sdk = sdk;
+    public GetOrgPendingInvitesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetOrgPendingInvitesRequestBuilder orgId(String orgId) {
@@ -22,9 +26,20 @@ public class GetOrgPendingInvitesRequestBuilder {
         return this;
     }
 
-    public GetOrgPendingInvitesResponse call() throws Exception {
 
-        return sdk.getOrgPendingInvites(
-            orgId);
+    private GetOrgPendingInvitesRequest buildRequest() {
+
+        GetOrgPendingInvitesRequest request = new GetOrgPendingInvitesRequest(orgId);
+
+        return request;
+    }
+
+    public GetOrgPendingInvitesResponse call() throws Exception {
+        
+        RequestOperation<GetOrgPendingInvitesRequest, GetOrgPendingInvitesResponse> operation
+              = new GetOrgPendingInvites.Sync(sdkConfiguration);
+        GetOrgPendingInvitesRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

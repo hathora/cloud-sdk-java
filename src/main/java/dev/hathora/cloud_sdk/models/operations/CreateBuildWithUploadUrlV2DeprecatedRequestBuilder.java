@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateBuildParams;
+import dev.hathora.cloud_sdk.operations.CreateBuildWithUploadUrlV2Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreateBuildWithUploadUrlV2DeprecatedRequestBuilder {
 
     private CreateBuildParams createBuildParams;
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateBuildWithUploadUrlV2Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateBuildWithUploadUrlV2DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallCreateBuildWithUploadUrlV2Deprecated sdk) {
-        this.sdk = sdk;
+    public CreateBuildWithUploadUrlV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateBuildWithUploadUrlV2DeprecatedRequestBuilder createBuildParams(CreateBuildParams createBuildParams) {
@@ -37,10 +41,21 @@ public class CreateBuildWithUploadUrlV2DeprecatedRequestBuilder {
         return this;
     }
 
-    public CreateBuildWithUploadUrlV2DeprecatedResponse call() throws Exception {
 
-        return sdk.createBuildWithUploadUrlV2Deprecated(
-            createBuildParams,
+    private CreateBuildWithUploadUrlV2DeprecatedRequest buildRequest() {
+
+        CreateBuildWithUploadUrlV2DeprecatedRequest request = new CreateBuildWithUploadUrlV2DeprecatedRequest(createBuildParams,
             appId);
+
+        return request;
+    }
+
+    public CreateBuildWithUploadUrlV2DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<CreateBuildWithUploadUrlV2DeprecatedRequest, CreateBuildWithUploadUrlV2DeprecatedResponse> operation
+              = new CreateBuildWithUploadUrlV2Deprecated.Sync(sdkConfiguration);
+        CreateBuildWithUploadUrlV2DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

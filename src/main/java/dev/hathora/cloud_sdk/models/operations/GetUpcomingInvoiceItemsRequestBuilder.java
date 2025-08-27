@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetUpcomingInvoiceItems;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class GetUpcomingInvoiceItemsRequestBuilder {
 
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetUpcomingInvoiceItems sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetUpcomingInvoiceItemsRequestBuilder(SDKMethodInterfaces.MethodCallGetUpcomingInvoiceItems sdk) {
-        this.sdk = sdk;
+    public GetUpcomingInvoiceItemsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetUpcomingInvoiceItemsRequestBuilder orgId(String orgId) {
@@ -29,9 +33,20 @@ public class GetUpcomingInvoiceItemsRequestBuilder {
         return this;
     }
 
-    public GetUpcomingInvoiceItemsResponse call() throws Exception {
 
-        return sdk.getUpcomingInvoiceItems(
-            orgId);
+    private GetUpcomingInvoiceItemsRequest buildRequest() {
+
+        GetUpcomingInvoiceItemsRequest request = new GetUpcomingInvoiceItemsRequest(orgId);
+
+        return request;
+    }
+
+    public GetUpcomingInvoiceItemsResponse call() throws Exception {
+        
+        RequestOperation<GetUpcomingInvoiceItemsRequest, GetUpcomingInvoiceItemsResponse> operation
+              = new GetUpcomingInvoiceItems.Sync(sdkConfiguration);
+        GetUpcomingInvoiceItemsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

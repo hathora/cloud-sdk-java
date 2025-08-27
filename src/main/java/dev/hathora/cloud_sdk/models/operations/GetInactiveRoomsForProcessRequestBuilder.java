@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetInactiveRoomsForProcess;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetInactiveRoomsForProcessRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String processId;
-    private final SDKMethodInterfaces.MethodCallGetInactiveRoomsForProcess sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetInactiveRoomsForProcessRequestBuilder(SDKMethodInterfaces.MethodCallGetInactiveRoomsForProcess sdk) {
-        this.sdk = sdk;
+    public GetInactiveRoomsForProcessRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetInactiveRoomsForProcessRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class GetInactiveRoomsForProcessRequestBuilder {
         return this;
     }
 
-    public GetInactiveRoomsForProcessResponse call() throws Exception {
 
-        return sdk.getInactiveRoomsForProcess(
-            appId,
+    private GetInactiveRoomsForProcessRequest buildRequest() {
+
+        GetInactiveRoomsForProcessRequest request = new GetInactiveRoomsForProcessRequest(appId,
             processId);
+
+        return request;
+    }
+
+    public GetInactiveRoomsForProcessResponse call() throws Exception {
+        
+        RequestOperation<GetInactiveRoomsForProcessRequest, GetInactiveRoomsForProcessResponse> operation
+              = new GetInactiveRoomsForProcess.Sync(sdkConfiguration);
+        GetInactiveRoomsForProcessRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

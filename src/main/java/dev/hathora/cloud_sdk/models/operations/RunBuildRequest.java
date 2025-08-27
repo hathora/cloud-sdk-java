@@ -9,13 +9,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class RunBuildRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buildId")
     private String buildId;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
     private Optional<String> orgId;
@@ -45,9 +46,10 @@ public class RunBuildRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RunBuildRequest withBuildId(String buildId) {
         Utils.checkNotNull(buildId, "buildId");
@@ -61,13 +63,13 @@ public class RunBuildRequest {
         return this;
     }
 
+
     public RunBuildRequest withOrgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,15 +80,14 @@ public class RunBuildRequest {
         }
         RunBuildRequest other = (RunBuildRequest) o;
         return 
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            buildId,
-            orgId);
+        return Utils.enhancedHash(
+            buildId, orgId);
     }
     
     @Override
@@ -95,22 +96,25 @@ public class RunBuildRequest {
                 "buildId", buildId,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String buildId;
- 
+
         private Optional<String> orgId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder buildId(String buildId) {
             Utils.checkNotNull(buildId, "buildId");
             this.buildId = buildId;
             return this;
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -123,11 +127,12 @@ public class RunBuildRequest {
             this.orgId = orgId;
             return this;
         }
-        
+
         public RunBuildRequest build() {
+
             return new RunBuildRequest(
-                buildId,
-                orgId);
+                buildId, orgId);
         }
+
     }
 }

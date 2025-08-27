@@ -17,6 +17,7 @@ Create a new organization token.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="CreateOrgToken" method="post" path="/tokens/v1/orgs/{orgId}/create" -->
 ```java
 package hello.world;
 
@@ -33,10 +34,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateOrgTokenResponse res = sdk.tokensV1().createOrgToken()
@@ -77,6 +76,7 @@ List all organization tokens for a given org.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetOrgTokens" method="get" path="/tokens/v1/orgs/{orgId}" -->
 ```java
 package hello.world;
 
@@ -92,10 +92,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetOrgTokensResponse res = sdk.tokensV1().getOrgTokens()
@@ -132,6 +130,7 @@ Revoke an organization token.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="RevokeOrgToken" method="post" path="/tokens/v1/orgs/{orgId}/tokens/{orgTokenId}/revoke" -->
 ```java
 package hello.world;
 
@@ -147,10 +146,8 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         RevokeOrgTokenResponse res = sdk.tokensV1().revokeOrgToken()

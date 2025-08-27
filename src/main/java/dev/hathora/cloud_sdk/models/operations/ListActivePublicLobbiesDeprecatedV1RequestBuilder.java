@@ -3,8 +3,12 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
 import com.fasterxml.jackson.core.type.TypeReference;
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.operations.ListActivePublicLobbiesDeprecatedV1;
 import dev.hathora.cloud_sdk.utils.LazySingletonValue;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Boolean;
@@ -20,10 +24,10 @@ public class ListActivePublicLobbiesDeprecatedV1RequestBuilder {
                             "false",
                             new TypeReference<Optional<Boolean>>() {});
     private Optional<? extends Region> region = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListActivePublicLobbiesDeprecatedV1 sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListActivePublicLobbiesDeprecatedV1RequestBuilder(SDKMethodInterfaces.MethodCallListActivePublicLobbiesDeprecatedV1 sdk) {
-        this.sdk = sdk;
+    public ListActivePublicLobbiesDeprecatedV1RequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ListActivePublicLobbiesDeprecatedV1RequestBuilder appId(String appId) {
@@ -62,14 +66,26 @@ public class ListActivePublicLobbiesDeprecatedV1RequestBuilder {
         return this;
     }
 
-    public ListActivePublicLobbiesDeprecatedV1Response call() throws Exception {
+
+    private ListActivePublicLobbiesDeprecatedV1Request buildRequest() {
         if (local == null) {
             local = _SINGLETON_VALUE_Local.value();
         }
-        return sdk.listActivePublicLobbiesDeprecatedV1(
-            appId,
+
+        ListActivePublicLobbiesDeprecatedV1Request request = new ListActivePublicLobbiesDeprecatedV1Request(appId,
             local,
             region);
+
+        return request;
+    }
+
+    public ListActivePublicLobbiesDeprecatedV1Response call() throws Exception {
+        
+        RequestOperation<ListActivePublicLobbiesDeprecatedV1Request, ListActivePublicLobbiesDeprecatedV1Response> operation
+              = new ListActivePublicLobbiesDeprecatedV1.Sync(sdkConfiguration);
+        ListActivePublicLobbiesDeprecatedV1Request request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Local =

@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.CreatePrivateLobby;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class CreatePrivateLobbyRequestBuilder {
     private CreatePrivateLobbyRequestBody requestBody;
     private Optional<String> appId = Optional.empty();
     private Optional<String> roomId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreatePrivateLobby sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreatePrivateLobbyRequestBuilder(SDKMethodInterfaces.MethodCallCreatePrivateLobby sdk) {
-        this.sdk = sdk;
+    public CreatePrivateLobbyRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreatePrivateLobbyRequestBuilder security(CreatePrivateLobbySecurity security) {
@@ -56,12 +60,22 @@ public class CreatePrivateLobbyRequestBuilder {
         return this;
     }
 
-    public CreatePrivateLobbyResponse call() throws Exception {
 
-        return sdk.createPrivateLobby(
-            security,
-            requestBody,
+    private CreatePrivateLobbyRequest buildRequest() {
+
+        CreatePrivateLobbyRequest request = new CreatePrivateLobbyRequest(requestBody,
             appId,
             roomId);
+
+        return request;
+    }
+
+    public CreatePrivateLobbyResponse call() throws Exception {
+        
+        RequestOperation<CreatePrivateLobbyRequest, CreatePrivateLobbyResponse> operation
+              = new CreatePrivateLobby.Sync(sdkConfiguration, security);
+        CreatePrivateLobbyRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

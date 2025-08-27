@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetFleets;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class GetFleetsRequestBuilder {
 
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetFleets sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetFleetsRequestBuilder(SDKMethodInterfaces.MethodCallGetFleets sdk) {
-        this.sdk = sdk;
+    public GetFleetsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetFleetsRequestBuilder orgId(String orgId) {
@@ -29,9 +33,20 @@ public class GetFleetsRequestBuilder {
         return this;
     }
 
-    public GetFleetsResponse call() throws Exception {
 
-        return sdk.getFleets(
-            orgId);
+    private GetFleetsRequest buildRequest() {
+
+        GetFleetsRequest request = new GetFleetsRequest(orgId);
+
+        return request;
+    }
+
+    public GetFleetsResponse call() throws Exception {
+        
+        RequestOperation<GetFleetsRequest, GetFleetsResponse> operation
+              = new GetFleets.Sync(sdkConfiguration);
+        GetFleetsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

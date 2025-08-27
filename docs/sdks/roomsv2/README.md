@@ -21,6 +21,7 @@ Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="CreateRoom" method="post" path="/rooms/v2/{appId}/create" -->
 ```java
 package hello.world;
 
@@ -36,11 +37,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateRoomResponse res = sdk.roomsV2().createRoom()
@@ -51,7 +51,6 @@ public class Application {
                     .deploymentId("dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5")
                     .roomConfig("{\"name\":\"my-room\"}")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
@@ -88,6 +87,7 @@ Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All a
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="DestroyRoom" method="post" path="/rooms/v2/{appId}/destroy/{roomId}" -->
 ```java
 package hello.world;
 
@@ -102,15 +102,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         DestroyRoomResponse res = sdk.roomsV2().destroyRoom()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
@@ -144,6 +142,7 @@ Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetActiveRoomsForProcess" method="get" path="/rooms/v2/{appId}/list/{processId}/active" -->
 ```java
 package hello.world;
 
@@ -158,15 +157,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetActiveRoomsForProcessResponse res = sdk.roomsV2().getActiveRoomsForProcess()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
 
@@ -201,6 +198,7 @@ Poll this endpoint to get connection details to a [room](https://hathora.dev/doc
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetConnectionInfo" method="get" path="/rooms/v2/{appId}/connectioninfo/{roomId}" -->
 ```java
 package hello.world;
 
@@ -215,11 +213,9 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetConnectionInfoResponse res = sdk.roomsV2().getConnectionInfo()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
@@ -255,6 +251,7 @@ Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetInactiveRoomsForProcess" method="get" path="/rooms/v2/{appId}/list/{processId}/inactive" -->
 ```java
 package hello.world;
 
@@ -269,15 +266,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetInactiveRoomsForProcessResponse res = sdk.roomsV2().getInactiveRoomsForProcess()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
 
@@ -312,6 +307,7 @@ Retreive current and historical allocation data for a [room](https://hathora.dev
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetRoomInfo" method="get" path="/rooms/v2/{appId}/info/{roomId}" -->
 ```java
 package hello.world;
 
@@ -326,15 +322,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetRoomInfoResponse res = sdk.roomsV2().getRoomInfo()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
@@ -369,6 +363,7 @@ ResumeRoom
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ResumeRoom" method="post" path="/rooms/v2/{appId}/resume/{roomId}" -->
 ```java
 package hello.world;
 
@@ -383,15 +378,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         ResumeRoomResponse res = sdk.roomsV2().resumeRoom()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
@@ -429,6 +422,7 @@ Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The r
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="SuspendRoomV2Deprecated" method="post" path="/rooms/v2/{appId}/suspend/{roomId}" -->
 ```java
 package hello.world;
 
@@ -443,15 +437,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         SuspendRoomV2DeprecatedResponse res = sdk.roomsV2().suspendRoomV2Deprecated()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
@@ -485,6 +477,7 @@ UpdateRoomConfig
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="UpdateRoomConfig" method="post" path="/rooms/v2/{appId}/update/{roomId}" -->
 ```java
 package hello.world;
 
@@ -500,18 +493,16 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         UpdateRoomConfigResponse res = sdk.roomsV2().updateRoomConfig()
                 .updateRoomConfigParams(UpdateRoomConfigParams.builder()
                     .roomConfig("{\"name\":\"my-room\"}")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 

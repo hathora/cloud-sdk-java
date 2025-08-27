@@ -10,12 +10,13 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class BuildPart {
 
     @JsonProperty("partNumber")
     private double partNumber;
+
 
     @JsonProperty("putRequestUrl")
     private String putRequestUrl;
@@ -40,9 +41,10 @@ public class BuildPart {
         return putRequestUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public BuildPart withPartNumber(double partNumber) {
         Utils.checkNotNull(partNumber, "partNumber");
@@ -56,7 +58,6 @@ public class BuildPart {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -67,15 +68,14 @@ public class BuildPart {
         }
         BuildPart other = (BuildPart) o;
         return 
-            Objects.deepEquals(this.partNumber, other.partNumber) &&
-            Objects.deepEquals(this.putRequestUrl, other.putRequestUrl);
+            Utils.enhancedDeepEquals(this.partNumber, other.partNumber) &&
+            Utils.enhancedDeepEquals(this.putRequestUrl, other.putRequestUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            partNumber,
-            putRequestUrl);
+        return Utils.enhancedHash(
+            partNumber, putRequestUrl);
     }
     
     @Override
@@ -84,16 +84,18 @@ public class BuildPart {
                 "partNumber", partNumber,
                 "putRequestUrl", putRequestUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Double partNumber;
- 
+
         private String putRequestUrl;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder partNumber(double partNumber) {
             Utils.checkNotNull(partNumber, "partNumber");
@@ -101,16 +103,18 @@ public class BuildPart {
             return this;
         }
 
+
         public Builder putRequestUrl(String putRequestUrl) {
             Utils.checkNotNull(putRequestUrl, "putRequestUrl");
             this.putRequestUrl = putRequestUrl;
             return this;
         }
-        
+
         public BuildPart build() {
+
             return new BuildPart(
-                partNumber,
-                putRequestUrl);
+                partNumber, putRequestUrl);
         }
+
     }
 }

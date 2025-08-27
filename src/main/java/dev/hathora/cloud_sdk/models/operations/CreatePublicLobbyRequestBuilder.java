@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.CreatePublicLobby;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class CreatePublicLobbyRequestBuilder {
     private CreatePublicLobbyRequestBody requestBody;
     private Optional<String> appId = Optional.empty();
     private Optional<String> roomId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreatePublicLobby sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreatePublicLobbyRequestBuilder(SDKMethodInterfaces.MethodCallCreatePublicLobby sdk) {
-        this.sdk = sdk;
+    public CreatePublicLobbyRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreatePublicLobbyRequestBuilder security(CreatePublicLobbySecurity security) {
@@ -56,12 +60,22 @@ public class CreatePublicLobbyRequestBuilder {
         return this;
     }
 
-    public CreatePublicLobbyResponse call() throws Exception {
 
-        return sdk.createPublicLobby(
-            security,
-            requestBody,
+    private CreatePublicLobbyRequest buildRequest() {
+
+        CreatePublicLobbyRequest request = new CreatePublicLobbyRequest(requestBody,
             appId,
             roomId);
+
+        return request;
+    }
+
+    public CreatePublicLobbyResponse call() throws Exception {
+        
+        RequestOperation<CreatePublicLobbyRequest, CreatePublicLobbyResponse> operation
+              = new CreatePublicLobby.Sync(sdkConfiguration, security);
+        CreatePublicLobbyRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

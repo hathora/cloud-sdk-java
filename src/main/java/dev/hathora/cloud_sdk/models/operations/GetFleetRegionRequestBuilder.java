@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.operations.GetFleetRegion;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class GetFleetRegionRequestBuilder {
     private String fleetId;
     private Optional<String> orgId = Optional.empty();
     private Region region;
-    private final SDKMethodInterfaces.MethodCallGetFleetRegion sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetFleetRegionRequestBuilder(SDKMethodInterfaces.MethodCallGetFleetRegion sdk) {
-        this.sdk = sdk;
+    public GetFleetRegionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetFleetRegionRequestBuilder fleetId(String fleetId) {
@@ -44,11 +48,22 @@ public class GetFleetRegionRequestBuilder {
         return this;
     }
 
-    public GetFleetRegionResponse call() throws Exception {
 
-        return sdk.getFleetRegion(
-            fleetId,
+    private GetFleetRegionRequest buildRequest() {
+
+        GetFleetRegionRequest request = new GetFleetRegionRequest(fleetId,
             orgId,
             region);
+
+        return request;
+    }
+
+    public GetFleetRegionResponse call() throws Exception {
+        
+        RequestOperation<GetFleetRegionRequest, GetFleetRegionResponse> operation
+              = new GetFleetRegion.Sync(sdkConfiguration);
+        GetFleetRegionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

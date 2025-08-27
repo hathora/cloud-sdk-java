@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetLatestDeployment;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class GetLatestDeploymentRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetLatestDeployment sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetLatestDeploymentRequestBuilder(SDKMethodInterfaces.MethodCallGetLatestDeployment sdk) {
-        this.sdk = sdk;
+    public GetLatestDeploymentRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetLatestDeploymentRequestBuilder appId(String appId) {
@@ -29,9 +33,20 @@ public class GetLatestDeploymentRequestBuilder {
         return this;
     }
 
-    public GetLatestDeploymentResponse call() throws Exception {
 
-        return sdk.getLatestDeployment(
-            appId);
+    private GetLatestDeploymentRequest buildRequest() {
+
+        GetLatestDeploymentRequest request = new GetLatestDeploymentRequest(appId);
+
+        return request;
+    }
+
+    public GetLatestDeploymentResponse call() throws Exception {
+        
+        RequestOperation<GetLatestDeploymentRequest, GetLatestDeploymentResponse> operation
+              = new GetLatestDeployment.Sync(sdkConfiguration);
+        GetLatestDeploymentRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetUpcomingInvoiceTotal;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class GetUpcomingInvoiceTotalRequestBuilder {
 
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetUpcomingInvoiceTotal sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetUpcomingInvoiceTotalRequestBuilder(SDKMethodInterfaces.MethodCallGetUpcomingInvoiceTotal sdk) {
-        this.sdk = sdk;
+    public GetUpcomingInvoiceTotalRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetUpcomingInvoiceTotalRequestBuilder orgId(String orgId) {
@@ -29,9 +33,20 @@ public class GetUpcomingInvoiceTotalRequestBuilder {
         return this;
     }
 
-    public GetUpcomingInvoiceTotalResponse call() throws Exception {
 
-        return sdk.getUpcomingInvoiceTotal(
-            orgId);
+    private GetUpcomingInvoiceTotalRequest buildRequest() {
+
+        GetUpcomingInvoiceTotalRequest request = new GetUpcomingInvoiceTotalRequest(orgId);
+
+        return request;
+    }
+
+    public GetUpcomingInvoiceTotalResponse call() throws Exception {
+        
+        RequestOperation<GetUpcomingInvoiceTotalRequest, GetUpcomingInvoiceTotalResponse> operation
+              = new GetUpcomingInvoiceTotal.Sync(sdkConfiguration);
+        GetUpcomingInvoiceTotalRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

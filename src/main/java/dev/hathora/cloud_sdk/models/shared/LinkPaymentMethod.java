@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class LinkPaymentMethod {
 
@@ -36,9 +36,10 @@ public class LinkPaymentMethod {
         return email;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public LinkPaymentMethod withEmail(String email) {
         Utils.checkNotNull(email, "email");
@@ -46,13 +47,13 @@ public class LinkPaymentMethod {
         return this;
     }
 
+
     public LinkPaymentMethod withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -63,12 +64,12 @@ public class LinkPaymentMethod {
         }
         LinkPaymentMethod other = (LinkPaymentMethod) o;
         return 
-            Objects.deepEquals(this.email, other.email);
+            Utils.enhancedDeepEquals(this.email, other.email);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             email);
     }
     
@@ -77,14 +78,16 @@ public class LinkPaymentMethod {
         return Utils.toString(LinkPaymentMethod.class,
                 "email", email);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> email = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
@@ -97,10 +100,12 @@ public class LinkPaymentMethod {
             this.email = email;
             return this;
         }
-        
+
         public LinkPaymentMethod build() {
+
             return new LinkPaymentMethod(
                 email);
         }
+
     }
 }

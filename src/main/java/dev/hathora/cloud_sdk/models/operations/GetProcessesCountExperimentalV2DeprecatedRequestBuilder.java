@@ -3,8 +3,12 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.operations.GetProcessesCountExperimentalV2Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -16,10 +20,10 @@ public class GetProcessesCountExperimentalV2DeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Optional<? extends List<Region>> region = Optional.empty();
     private Optional<? extends List<ProcessStatus>> status = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetProcessesCountExperimentalV2Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallGetProcessesCountExperimentalV2Deprecated sdk) {
-        this.sdk = sdk;
+    public GetProcessesCountExperimentalV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetProcessesCountExperimentalV2DeprecatedRequestBuilder appId(String appId) {
@@ -58,11 +62,22 @@ public class GetProcessesCountExperimentalV2DeprecatedRequestBuilder {
         return this;
     }
 
-    public GetProcessesCountExperimentalV2DeprecatedResponse call() throws Exception {
 
-        return sdk.getProcessesCountExperimentalV2Deprecated(
-            appId,
+    private GetProcessesCountExperimentalV2DeprecatedRequest buildRequest() {
+
+        GetProcessesCountExperimentalV2DeprecatedRequest request = new GetProcessesCountExperimentalV2DeprecatedRequest(appId,
             region,
             status);
+
+        return request;
+    }
+
+    public GetProcessesCountExperimentalV2DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<GetProcessesCountExperimentalV2DeprecatedRequest, GetProcessesCountExperimentalV2DeprecatedResponse> operation
+              = new GetProcessesCountExperimentalV2Deprecated.Sync(sdkConfiguration);
+        GetProcessesCountExperimentalV2DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

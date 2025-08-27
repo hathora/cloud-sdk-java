@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.operations.CreateProcessV2Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreateProcessV2DeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private Region region;
-    private final SDKMethodInterfaces.MethodCallCreateProcessV2Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateProcessV2DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallCreateProcessV2Deprecated sdk) {
-        this.sdk = sdk;
+    public CreateProcessV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public CreateProcessV2DeprecatedRequestBuilder appId(String appId) {
@@ -37,10 +41,21 @@ public class CreateProcessV2DeprecatedRequestBuilder {
         return this;
     }
 
-    public CreateProcessV2DeprecatedResponse call() throws Exception {
 
-        return sdk.createProcessV2Deprecated(
-            appId,
+    private CreateProcessV2DeprecatedRequest buildRequest() {
+
+        CreateProcessV2DeprecatedRequest request = new CreateProcessV2DeprecatedRequest(appId,
             region);
+
+        return request;
+    }
+
+    public CreateProcessV2DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<CreateProcessV2DeprecatedRequest, CreateProcessV2DeprecatedResponse> operation
+              = new CreateProcessV2Deprecated.Sync(sdkConfiguration);
+        CreateProcessV2DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

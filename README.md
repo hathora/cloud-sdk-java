@@ -22,6 +22,7 @@ Hathora Cloud API: Welcome to the Hathora Cloud API documentation! Learn how to 
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
   * [Authentication](#authentication)
+  * [Debugging](#debugging)
 
 <!-- End Table of Contents [toc] -->
 
@@ -36,7 +37,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:3.1.10'
+implementation 'dev.hathora:cloud-sdk:3.2.0'
 ```
 
 Maven:
@@ -44,7 +45,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>3.1.10</version>
+    <version>3.2.0</version>
 </dependency>
 ```
 
@@ -61,29 +62,6 @@ On Windows:
 ```bash
 gradlew.bat publishToMavenLocal -Pskip.signing
 ```
-
-### Logging
-A logging framework/facade has not yet been adopted but is under consideration.
-
-For request and response logging (especially json bodies) use:
-```java
-SpeakeasyHTTPClient.setDebugLogging(true); // experimental API only (may change without warning)
-```
-Example output:
-```
-Sending request: http://localhost:35123/bearer#global GET
-Request headers: {Accept=[application/json], Authorization=[******], Client-Level-Header=[added by client], Idempotency-Key=[some-key], x-speakeasy-user-agent=[speakeasy-sdk/java 0.0.1 internal 0.1.0 org.openapis.openapi]}
-Received response: (GET http://localhost:35123/bearer#global) 200
-Response headers: {access-control-allow-credentials=[true], access-control-allow-origin=[*], connection=[keep-alive], content-length=[50], content-type=[application/json], date=[Wed, 09 Apr 2025 01:43:29 GMT], server=[gunicorn/19.9.0]}
-Response body:
-{
-  "authenticated": true, 
-  "token": "global"
-}
-```
-WARNING: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
-
-Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End SDK Installation [installation] -->
 
 <!-- Start SDK Example Usage [usage] -->
@@ -105,15 +83,14 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateAppResponse res = sdk.appsV2().createApp()
-                .appConfig(AppConfig.builder()
+                .createAppConfig(CreateAppConfig.builder()
                     .appName("minecraft")
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
@@ -368,15 +345,15 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateAppResponse res = sdk.appsV2().createApp()
-                .appConfig(AppConfig.builder()
+                .createAppConfig(CreateAppConfig.builder()
                     .appName("minecraft")
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
@@ -420,15 +397,14 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateAppResponse res = sdk.appsV2().createApp()
-                .appConfig(AppConfig.builder()
+                .createAppConfig(CreateAppConfig.builder()
                     .appName("minecraft")
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
@@ -472,15 +448,14 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .serverIndex(1)
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateAppResponse res = sdk.appsV2().createApp()
-                .appConfig(AppConfig.builder()
+                .createAppConfig(CreateAppConfig.builder()
                     .appName("minecraft")
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
@@ -512,15 +487,14 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .serverURL("https://api.hathora.dev")
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateAppResponse res = sdk.appsV2().createApp()
-                .appConfig(AppConfig.builder()
+                .createAppConfig(CreateAppConfig.builder()
                     .appName("minecraft")
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
@@ -562,14 +536,13 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateAppResponse res = sdk.appsV2().createApp()
-                .appConfig(AppConfig.builder()
+                .createAppConfig(CreateAppConfig.builder()
                     .appName("minecraft")
                     .authConfiguration(AuthConfiguration.builder()
                         .build())
@@ -601,7 +574,6 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateLobbyRequest req = CreateLobbyRequest.builder()
@@ -610,7 +582,6 @@ public class Application {
                     .visibility(LobbyVisibility.PRIVATE)
                     .roomConfig("{\"name\":\"my-room\"}")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .shortCode("LFG4")
                 .build();
@@ -618,7 +589,7 @@ public class Application {
         CreateLobbyResponse res = sdk.lobbiesV3().createLobby()
                 .request(req)
                 .security(CreateLobbySecurity.builder()
-                    .playerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                    .playerAuth(System.getenv().getOrDefault("PLAYER_AUTH", ""))
                     .build())
                 .call();
 
@@ -629,6 +600,37 @@ public class Application {
 }
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+### Debug
+You can setup your SDK to emit debug logs for SDK requests and responses.
+
+For request and response logging (especially json bodies), call `enableHTTPDebugLogging(boolean)` on the SDK builder like so:
+```java
+SDK.builder()
+    .enableHTTPDebugLogging(true)
+    .build();
+```
+Example output:
+```
+Sending request: http://localhost:35123/bearer#global GET
+Request headers: {Accept=[application/json], Authorization=[******], Client-Level-Header=[added by client], Idempotency-Key=[some-key], x-speakeasy-user-agent=[speakeasy-sdk/java 0.0.1 internal 0.1.0 org.openapis.openapi]}
+Received response: (GET http://localhost:35123/bearer#global) 200
+Response headers: {access-control-allow-credentials=[true], access-control-allow-origin=[*], connection=[keep-alive], content-length=[50], content-type=[application/json], date=[Wed, 09 Apr 2025 01:43:29 GMT], server=[gunicorn/19.9.0]}
+Response body:
+{
+  "authenticated": true, 
+  "token": "global"
+}
+```
+__WARNING__: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
+
+__NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging()`. The `SpeakeasyHTTPClient` honors this setting. If you are using a custom HTTP client, it is up to the custom client to honor this setting.
+
+Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
+<!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

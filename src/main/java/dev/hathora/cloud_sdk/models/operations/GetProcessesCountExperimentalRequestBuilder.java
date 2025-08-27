@@ -3,16 +3,20 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetProcessesCountExperimental;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetProcessesCountExperimentalRequestBuilder {
 
     private GetProcessesCountExperimentalRequest request;
-    private final SDKMethodInterfaces.MethodCallGetProcessesCountExperimental sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetProcessesCountExperimentalRequestBuilder(SDKMethodInterfaces.MethodCallGetProcessesCountExperimental sdk) {
-        this.sdk = sdk;
+    public GetProcessesCountExperimentalRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetProcessesCountExperimentalRequestBuilder request(GetProcessesCountExperimentalRequest request) {
@@ -22,8 +26,10 @@ public class GetProcessesCountExperimentalRequestBuilder {
     }
 
     public GetProcessesCountExperimentalResponse call() throws Exception {
+        
+        RequestOperation<GetProcessesCountExperimentalRequest, GetProcessesCountExperimentalResponse> operation
+              = new GetProcessesCountExperimental.Sync(sdkConfiguration);
 
-        return sdk.getProcessesCountExperimental(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

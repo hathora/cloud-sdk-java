@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetProcessInfoV2Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetProcessInfoV2DeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String processId;
-    private final SDKMethodInterfaces.MethodCallGetProcessInfoV2Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetProcessInfoV2DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallGetProcessInfoV2Deprecated sdk) {
-        this.sdk = sdk;
+    public GetProcessInfoV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetProcessInfoV2DeprecatedRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class GetProcessInfoV2DeprecatedRequestBuilder {
         return this;
     }
 
-    public GetProcessInfoV2DeprecatedResponse call() throws Exception {
 
-        return sdk.getProcessInfoV2Deprecated(
-            appId,
+    private GetProcessInfoV2DeprecatedRequest buildRequest() {
+
+        GetProcessInfoV2DeprecatedRequest request = new GetProcessInfoV2DeprecatedRequest(appId,
             processId);
+
+        return request;
+    }
+
+    public GetProcessInfoV2DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<GetProcessInfoV2DeprecatedRequest, GetProcessInfoV2DeprecatedResponse> operation
+              = new GetProcessInfoV2Deprecated.Sync(sdkConfiguration);
+        GetProcessInfoV2DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -9,12 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class UploadBodyParams {
 
     @JsonProperty("key")
     private String key;
+
 
     @JsonProperty("value")
     private String value;
@@ -39,9 +40,10 @@ public class UploadBodyParams {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UploadBodyParams withKey(String key) {
         Utils.checkNotNull(key, "key");
@@ -55,7 +57,6 @@ public class UploadBodyParams {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,15 +67,14 @@ public class UploadBodyParams {
         }
         UploadBodyParams other = (UploadBodyParams) o;
         return 
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            key,
-            value);
+        return Utils.enhancedHash(
+            key, value);
     }
     
     @Override
@@ -83,16 +83,18 @@ public class UploadBodyParams {
                 "key", key,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String key;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder key(String key) {
             Utils.checkNotNull(key, "key");
@@ -100,16 +102,18 @@ public class UploadBodyParams {
             return this;
         }
 
+
         public Builder value(String value) {
             Utils.checkNotNull(value, "value");
             this.value = value;
             return this;
         }
-        
+
         public UploadBodyParams build() {
+
             return new UploadBodyParams(
-                key,
-                value);
+                key, value);
         }
+
     }
 }

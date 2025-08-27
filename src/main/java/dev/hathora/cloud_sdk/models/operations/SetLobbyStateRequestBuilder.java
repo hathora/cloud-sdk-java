@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.SetLobbyStateParams;
+import dev.hathora.cloud_sdk.operations.SetLobbyState;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class SetLobbyStateRequestBuilder {
     private SetLobbyStateParams setLobbyStateParams;
     private Optional<String> appId = Optional.empty();
     private String roomId;
-    private final SDKMethodInterfaces.MethodCallSetLobbyState sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public SetLobbyStateRequestBuilder(SDKMethodInterfaces.MethodCallSetLobbyState sdk) {
-        this.sdk = sdk;
+    public SetLobbyStateRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public SetLobbyStateRequestBuilder setLobbyStateParams(SetLobbyStateParams setLobbyStateParams) {
@@ -44,11 +48,22 @@ public class SetLobbyStateRequestBuilder {
         return this;
     }
 
-    public SetLobbyStateResponse call() throws Exception {
 
-        return sdk.setLobbyState(
-            setLobbyStateParams,
+    private SetLobbyStateRequest buildRequest() {
+
+        SetLobbyStateRequest request = new SetLobbyStateRequest(setLobbyStateParams,
             appId,
             roomId);
+
+        return request;
+    }
+
+    public SetLobbyStateResponse call() throws Exception {
+        
+        RequestOperation<SetLobbyStateRequest, SetLobbyStateResponse> operation
+              = new SetLobbyState.Sync(sdkConfiguration);
+        SetLobbyStateRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

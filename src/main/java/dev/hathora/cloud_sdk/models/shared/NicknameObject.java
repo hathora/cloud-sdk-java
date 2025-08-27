@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class NicknameObject {
-
     /**
      * An alias to represent a player.
      */
@@ -34,9 +33,10 @@ public class NicknameObject {
         return nickname;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An alias to represent a player.
@@ -47,7 +47,6 @@ public class NicknameObject {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class NicknameObject {
         }
         NicknameObject other = (NicknameObject) o;
         return 
-            Objects.deepEquals(this.nickname, other.nickname);
+            Utils.enhancedDeepEquals(this.nickname, other.nickname);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             nickname);
     }
     
@@ -72,14 +71,16 @@ public class NicknameObject {
         return Utils.toString(NicknameObject.class,
                 "nickname", nickname);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String nickname;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An alias to represent a player.
@@ -89,10 +90,12 @@ public class NicknameObject {
             this.nickname = nickname;
             return this;
         }
-        
+
         public NicknameObject build() {
+
             return new NicknameObject(
                 nickname);
         }
+
     }
 }

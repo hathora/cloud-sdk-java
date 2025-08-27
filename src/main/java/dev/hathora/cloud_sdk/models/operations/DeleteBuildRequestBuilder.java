@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.DeleteBuild;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class DeleteBuildRequestBuilder {
 
     private String buildId;
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallDeleteBuild sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteBuildRequestBuilder(SDKMethodInterfaces.MethodCallDeleteBuild sdk) {
-        this.sdk = sdk;
+    public DeleteBuildRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteBuildRequestBuilder buildId(String buildId) {
@@ -36,10 +40,21 @@ public class DeleteBuildRequestBuilder {
         return this;
     }
 
-    public DeleteBuildResponse call() throws Exception {
 
-        return sdk.deleteBuild(
-            buildId,
+    private DeleteBuildRequest buildRequest() {
+
+        DeleteBuildRequest request = new DeleteBuildRequest(buildId,
             orgId);
+
+        return request;
+    }
+
+    public DeleteBuildResponse call() throws Exception {
+        
+        RequestOperation<DeleteBuildRequest, DeleteBuildResponse> operation
+              = new DeleteBuild.Sync(sdkConfiguration);
+        DeleteBuildRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

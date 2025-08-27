@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetConnectionInfo;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetConnectionInfoRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String roomId;
-    private final SDKMethodInterfaces.MethodCallGetConnectionInfo sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetConnectionInfoRequestBuilder(SDKMethodInterfaces.MethodCallGetConnectionInfo sdk) {
-        this.sdk = sdk;
+    public GetConnectionInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetConnectionInfoRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class GetConnectionInfoRequestBuilder {
         return this;
     }
 
-    public GetConnectionInfoResponse call() throws Exception {
 
-        return sdk.getConnectionInfo(
-            appId,
+    private GetConnectionInfoRequest buildRequest() {
+
+        GetConnectionInfoRequest request = new GetConnectionInfoRequest(appId,
             roomId);
+
+        return request;
+    }
+
+    public GetConnectionInfoResponse call() throws Exception {
+        
+        RequestOperation<GetConnectionInfoRequest, GetConnectionInfoResponse> operation
+              = new GetConnectionInfo.Sync(sdkConfiguration);
+        GetConnectionInfoRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

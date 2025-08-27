@@ -19,6 +19,7 @@ Get details for a [process](https://hathora.dev/docs/concepts/hathora-entities#p
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetProcessInfoDeprecated" method="get" path="/processes/v1/{appId}/info/{processId}" -->
 ```java
 package hello.world;
 
@@ -33,15 +34,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetProcessInfoDeprecatedResponse res = sdk.processesV1().getProcessInfoDeprecated()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .processId("cbfcddd2-0006-43ae-996c-995fff7bed2e")
                 .call();
 
@@ -79,6 +78,7 @@ Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/ha
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetRunningProcesses" method="get" path="/processes/v1/{appId}/list/running" -->
 ```java
 package hello.world;
 
@@ -93,15 +93,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetRunningProcessesResponse res = sdk.processesV1().getRunningProcesses()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.classes().isPresent()) {
@@ -137,6 +135,7 @@ Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/ha
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetStoppedProcesses" method="get" path="/processes/v1/{appId}/list/stopped" -->
 ```java
 package hello.world;
 
@@ -151,15 +150,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetStoppedProcessesResponse res = sdk.processesV1().getStoppedProcesses()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.classes().isPresent()) {

@@ -3,9 +3,8 @@
  */
 package dev.hathora.cloud_sdk;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
 import dev.hathora.cloud_sdk.models.operations.CreateLobbyRequest;
 import dev.hathora.cloud_sdk.models.operations.CreateLobbyRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.CreateLobbyResponse;
@@ -19,38 +18,22 @@ import dev.hathora.cloud_sdk.models.operations.GetLobbyInfoByShortCodeResponse;
 import dev.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesRequest;
 import dev.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesResponse;
-import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
-import dev.hathora.cloud_sdk.models.shared.LobbyV3;
 import dev.hathora.cloud_sdk.models.shared.Region;
-import dev.hathora.cloud_sdk.utils.HTTPClient;
-import dev.hathora.cloud_sdk.utils.HTTPRequest;
-import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import dev.hathora.cloud_sdk.utils.SerializedBody;
-import dev.hathora.cloud_sdk.utils.Utils.JsonShape;
-import dev.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
+import dev.hathora.cloud_sdk.operations.CreateLobby;
+import dev.hathora.cloud_sdk.operations.GetLobbyInfoByRoomId;
+import dev.hathora.cloud_sdk.operations.GetLobbyInfoByShortCode;
+import dev.hathora.cloud_sdk.operations.ListActivePublicLobbies;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Optional;
 
-public class LobbiesV3 implements
-            MethodCallCreateLobby,
-            MethodCallGetLobbyInfoByRoomId,
-            MethodCallGetLobbyInfoByShortCode,
-            MethodCallListActivePublicLobbies {
 
+public class LobbiesV3 {
     private final SDKConfiguration sdkConfiguration;
 
     LobbiesV3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
 
     /**
      * CreateLobby
@@ -60,7 +43,7 @@ public class LobbiesV3 implements
      * @return The call builder
      */
     public CreateLobbyRequestBuilder createLobby() {
-        return new CreateLobbyRequestBuilder(this);
+        return new CreateLobbyRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -68,171 +51,16 @@ public class LobbiesV3 implements
      * 
      * <p>Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateLobbyResponse createLobby(
-            CreateLobbyRequest request,
-            CreateLobbySecurity security) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                CreateLobbyRequest.class,
-                _baseUrl,
-                "/lobby/v3/{appId}/create",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<CreateLobbyRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "createLobbyV3Params",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreateLobbyRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-
-        // hooks will be passed method level security only
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(SecuritySource.of(security));
-        Utils.configureSecurity(_req, security);
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "CreateLobby", 
-                      Optional.empty(), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "CreateLobby",
-                            Optional.empty(),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "CreateLobby",
-                            Optional.empty(), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "CreateLobby",
-                            Optional.empty(),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreateLobbyResponse.Builder _resBuilder = 
-            CreateLobbyResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreateLobbyResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                LobbyV3 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<LobbyV3>() {});
-                _res.withLobbyV3(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "402", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+    public CreateLobbyResponse createLobby(CreateLobbyRequest request, CreateLobbySecurity security) throws Exception {
+        RequestOperation<CreateLobbyRequest, CreateLobbyResponse> operation
+              = new CreateLobby.Sync(sdkConfiguration, security);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * GetLobbyInfoByRoomId
@@ -242,7 +70,7 @@ public class LobbiesV3 implements
      * @return The call builder
      */
     public GetLobbyInfoByRoomIdRequestBuilder getLobbyInfoByRoomId() {
-        return new GetLobbyInfoByRoomIdRequestBuilder(this);
+        return new GetLobbyInfoByRoomIdRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -254,11 +82,10 @@ public class LobbiesV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetLobbyInfoByRoomIdResponse getLobbyInfoByRoomId(
-            String roomId) throws Exception {
+    public GetLobbyInfoByRoomIdResponse getLobbyInfoByRoomId(String roomId) throws Exception {
         return getLobbyInfoByRoomId(Optional.empty(), roomId);
     }
-    
+
     /**
      * GetLobbyInfoByRoomId
      * 
@@ -269,138 +96,17 @@ public class LobbiesV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetLobbyInfoByRoomIdResponse getLobbyInfoByRoomId(
-            Optional<String> appId,
-            String roomId) throws Exception {
+    public GetLobbyInfoByRoomIdResponse getLobbyInfoByRoomId(Optional<String> appId, String roomId) throws Exception {
         GetLobbyInfoByRoomIdRequest request =
             GetLobbyInfoByRoomIdRequest
                 .builder()
                 .appId(appId)
                 .roomId(roomId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                GetLobbyInfoByRoomIdRequest.class,
-                _baseUrl,
-                "/lobby/v3/{appId}/info/roomid/{roomId}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetLobbyInfoByRoomId", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "422", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetLobbyInfoByRoomId",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetLobbyInfoByRoomId",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetLobbyInfoByRoomId",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetLobbyInfoByRoomIdResponse.Builder _resBuilder = 
-            GetLobbyInfoByRoomIdResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetLobbyInfoByRoomIdResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                LobbyV3 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<LobbyV3>() {});
-                _res.withLobbyV3(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetLobbyInfoByRoomIdRequest, GetLobbyInfoByRoomIdResponse> operation
+              = new GetLobbyInfoByRoomId.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * GetLobbyInfoByShortCode
@@ -410,7 +116,7 @@ public class LobbiesV3 implements
      * @return The call builder
      */
     public GetLobbyInfoByShortCodeRequestBuilder getLobbyInfoByShortCode() {
-        return new GetLobbyInfoByShortCodeRequestBuilder(this);
+        return new GetLobbyInfoByShortCodeRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -422,11 +128,10 @@ public class LobbiesV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetLobbyInfoByShortCodeResponse getLobbyInfoByShortCode(
-            String shortCode) throws Exception {
+    public GetLobbyInfoByShortCodeResponse getLobbyInfoByShortCode(String shortCode) throws Exception {
         return getLobbyInfoByShortCode(Optional.empty(), shortCode);
     }
-    
+
     /**
      * GetLobbyInfoByShortCode
      * 
@@ -437,138 +142,17 @@ public class LobbiesV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetLobbyInfoByShortCodeResponse getLobbyInfoByShortCode(
-            Optional<String> appId,
-            String shortCode) throws Exception {
+    public GetLobbyInfoByShortCodeResponse getLobbyInfoByShortCode(Optional<String> appId, String shortCode) throws Exception {
         GetLobbyInfoByShortCodeRequest request =
             GetLobbyInfoByShortCodeRequest
                 .builder()
                 .appId(appId)
                 .shortCode(shortCode)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                GetLobbyInfoByShortCodeRequest.class,
-                _baseUrl,
-                "/lobby/v3/{appId}/info/shortcode/{shortCode}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetLobbyInfoByShortCode", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetLobbyInfoByShortCode",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetLobbyInfoByShortCode",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetLobbyInfoByShortCode",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetLobbyInfoByShortCodeResponse.Builder _resBuilder = 
-            GetLobbyInfoByShortCodeResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetLobbyInfoByShortCodeResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                LobbyV3 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<LobbyV3>() {});
-                _res.withLobbyV3(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetLobbyInfoByShortCodeRequest, GetLobbyInfoByShortCodeResponse> operation
+              = new GetLobbyInfoByShortCode.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * ListActivePublicLobbies
@@ -578,7 +162,7 @@ public class LobbiesV3 implements
      * @return The call builder
      */
     public ListActivePublicLobbiesRequestBuilder listActivePublicLobbies() {
-        return new ListActivePublicLobbiesRequestBuilder(this);
+        return new ListActivePublicLobbiesRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -592,7 +176,7 @@ public class LobbiesV3 implements
     public ListActivePublicLobbiesResponse listActivePublicLobbiesDirect() throws Exception {
         return listActivePublicLobbies(Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * ListActivePublicLobbies
      * 
@@ -603,140 +187,16 @@ public class LobbiesV3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListActivePublicLobbiesResponse listActivePublicLobbies(
-            Optional<String> appId,
-            Optional<? extends Region> region) throws Exception {
+    public ListActivePublicLobbiesResponse listActivePublicLobbies(Optional<String> appId, Optional<? extends Region> region) throws Exception {
         ListActivePublicLobbiesRequest request =
             ListActivePublicLobbiesRequest
                 .builder()
                 .appId(appId)
                 .region(region)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                ListActivePublicLobbiesRequest.class,
-                _baseUrl,
-                "/lobby/v3/{appId}/list/public",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListActivePublicLobbiesRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "ListActivePublicLobbies", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "ListActivePublicLobbies",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "ListActivePublicLobbies",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "ListActivePublicLobbies",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        ListActivePublicLobbiesResponse.Builder _resBuilder = 
-            ListActivePublicLobbiesResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        ListActivePublicLobbiesResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                List<LobbyV3> _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<List<LobbyV3>>() {});
-                _res.withClasses(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<ListActivePublicLobbiesRequest, ListActivePublicLobbiesResponse> operation
+              = new ListActivePublicLobbies.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

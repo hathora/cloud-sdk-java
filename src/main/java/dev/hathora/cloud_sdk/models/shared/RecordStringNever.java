@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * RecordStringNever
@@ -15,18 +14,15 @@ import java.util.Objects;
  * <p>Construct a type with a set of properties K of type T
  */
 public class RecordStringNever {
-
     @JsonCreator
     public RecordStringNever() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -40,7 +36,7 @@ public class RecordStringNever {
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             );
     }
     
@@ -48,16 +44,19 @@ public class RecordStringNever {
     public String toString() {
         return Utils.toString(RecordStringNever.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public RecordStringNever build() {
+
             return new RecordStringNever(
                 );
         }
+
     }
 }

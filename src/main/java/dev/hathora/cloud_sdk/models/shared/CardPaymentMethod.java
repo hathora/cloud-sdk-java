@@ -9,12 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class CardPaymentMethod {
 
     @JsonProperty("brand")
     private CardBrand brand;
+
 
     @JsonProperty("last4")
     private String last4;
@@ -39,9 +40,10 @@ public class CardPaymentMethod {
         return last4;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CardPaymentMethod withBrand(CardBrand brand) {
         Utils.checkNotNull(brand, "brand");
@@ -55,7 +57,6 @@ public class CardPaymentMethod {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,15 +67,14 @@ public class CardPaymentMethod {
         }
         CardPaymentMethod other = (CardPaymentMethod) o;
         return 
-            Objects.deepEquals(this.brand, other.brand) &&
-            Objects.deepEquals(this.last4, other.last4);
+            Utils.enhancedDeepEquals(this.brand, other.brand) &&
+            Utils.enhancedDeepEquals(this.last4, other.last4);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            brand,
-            last4);
+        return Utils.enhancedHash(
+            brand, last4);
     }
     
     @Override
@@ -83,16 +83,18 @@ public class CardPaymentMethod {
                 "brand", brand,
                 "last4", last4);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CardBrand brand;
- 
+
         private String last4;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder brand(CardBrand brand) {
             Utils.checkNotNull(brand, "brand");
@@ -100,16 +102,18 @@ public class CardPaymentMethod {
             return this;
         }
 
+
         public Builder last4(String last4) {
             Utils.checkNotNull(last4, "last4");
             this.last4 = last4;
             return this;
         }
-        
+
         public CardPaymentMethod build() {
+
             return new CardPaymentMethod(
-                brand,
-                last4);
+                brand, last4);
         }
+
     }
 }

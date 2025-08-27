@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateRoomParams {
 
+public class CreateRoomParams {
     /**
      * An optional list of client IP addresses to whitelist for DDoS protection.
      */
@@ -31,6 +30,7 @@ public class CreateRoomParams {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("deploymentId")
     private Optional<String> deploymentId;
+
 
     @JsonProperty("region")
     private Region region;
@@ -60,7 +60,8 @@ public class CreateRoomParams {
     
     public CreateRoomParams(
             Region region) {
-        this(Optional.empty(), Optional.empty(), region, Optional.empty());
+        this(Optional.empty(), Optional.empty(), region,
+            Optional.empty());
     }
 
     /**
@@ -93,9 +94,10 @@ public class CreateRoomParams {
         return roomConfig;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An optional list of client IP addresses to whitelist for DDoS protection.
@@ -105,6 +107,7 @@ public class CreateRoomParams {
         this.clientIPs = Optional.ofNullable(clientIPs);
         return this;
     }
+
 
     /**
      * An optional list of client IP addresses to whitelist for DDoS protection.
@@ -123,6 +126,7 @@ public class CreateRoomParams {
         this.deploymentId = Optional.ofNullable(deploymentId);
         return this;
     }
+
 
     /**
      * System generated id for a deployment.
@@ -148,6 +152,7 @@ public class CreateRoomParams {
         return this;
     }
 
+
     /**
      * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
@@ -157,7 +162,6 @@ public class CreateRoomParams {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -168,18 +172,16 @@ public class CreateRoomParams {
         }
         CreateRoomParams other = (CreateRoomParams) o;
         return 
-            Objects.deepEquals(this.clientIPs, other.clientIPs) &&
-            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.roomConfig, other.roomConfig);
+            Utils.enhancedDeepEquals(this.clientIPs, other.clientIPs) &&
+            Utils.enhancedDeepEquals(this.deploymentId, other.deploymentId) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.roomConfig, other.roomConfig);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            clientIPs,
-            deploymentId,
-            region,
+        return Utils.enhancedHash(
+            clientIPs, deploymentId, region,
             roomConfig);
     }
     
@@ -191,20 +193,22 @@ public class CreateRoomParams {
                 "region", region,
                 "roomConfig", roomConfig);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> clientIPs = Optional.empty();
- 
+
         private Optional<String> deploymentId = Optional.empty();
- 
+
         private Region region;
- 
+
         private Optional<String> roomConfig = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An optional list of client IP addresses to whitelist for DDoS protection.
@@ -224,6 +228,7 @@ public class CreateRoomParams {
             return this;
         }
 
+
         /**
          * System generated id for a deployment.
          */
@@ -242,11 +247,13 @@ public class CreateRoomParams {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
+
 
         /**
          * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
@@ -265,13 +272,13 @@ public class CreateRoomParams {
             this.roomConfig = roomConfig;
             return this;
         }
-        
+
         public CreateRoomParams build() {
+
             return new CreateRoomParams(
-                clientIPs,
-                deploymentId,
-                region,
+                clientIPs, deploymentId, region,
                 roomConfig);
         }
+
     }
 }

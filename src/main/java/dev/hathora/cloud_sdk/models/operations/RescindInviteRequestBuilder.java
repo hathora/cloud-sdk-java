@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.RescindUserInvite;
+import dev.hathora.cloud_sdk.operations.RescindInvite;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class RescindInviteRequestBuilder {
 
     private RescindUserInvite rescindUserInvite;
     private String orgId;
-    private final SDKMethodInterfaces.MethodCallRescindInvite sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public RescindInviteRequestBuilder(SDKMethodInterfaces.MethodCallRescindInvite sdk) {
-        this.sdk = sdk;
+    public RescindInviteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public RescindInviteRequestBuilder rescindUserInvite(RescindUserInvite rescindUserInvite) {
@@ -30,10 +34,21 @@ public class RescindInviteRequestBuilder {
         return this;
     }
 
-    public RescindInviteResponse call() throws Exception {
 
-        return sdk.rescindInvite(
-            rescindUserInvite,
+    private RescindInviteRequest buildRequest() {
+
+        RescindInviteRequest request = new RescindInviteRequest(rescindUserInvite,
             orgId);
+
+        return request;
+    }
+
+    public RescindInviteResponse call() throws Exception {
+        
+        RequestOperation<RescindInviteRequest, RescindInviteResponse> operation
+              = new RescindInvite.Sync(sdkConfiguration);
+        RescindInviteRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

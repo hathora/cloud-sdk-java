@@ -10,16 +10,18 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetFleetRegionRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=fleetId")
     private String fleetId;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
     private Optional<String> orgId;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=region")
     private Region region;
@@ -58,9 +60,10 @@ public class GetFleetRegionRequest {
         return region;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetFleetRegionRequest withFleetId(String fleetId) {
         Utils.checkNotNull(fleetId, "fleetId");
@@ -74,6 +77,7 @@ public class GetFleetRegionRequest {
         return this;
     }
 
+
     public GetFleetRegionRequest withOrgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
@@ -86,7 +90,6 @@ public class GetFleetRegionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,17 +100,15 @@ public class GetFleetRegionRequest {
         }
         GetFleetRegionRequest other = (GetFleetRegionRequest) o;
         return 
-            Objects.deepEquals(this.fleetId, other.fleetId) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            fleetId,
-            orgId,
-            region);
+        return Utils.enhancedHash(
+            fleetId, orgId, region);
     }
     
     @Override
@@ -117,24 +118,27 @@ public class GetFleetRegionRequest {
                 "orgId", orgId,
                 "region", region);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String fleetId;
- 
+
         private Optional<String> orgId = Optional.empty();
- 
+
         private Region region;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder fleetId(String fleetId) {
             Utils.checkNotNull(fleetId, "fleetId");
             this.fleetId = fleetId;
             return this;
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -148,17 +152,18 @@ public class GetFleetRegionRequest {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
-        
+
         public GetFleetRegionRequest build() {
+
             return new GetFleetRegionRequest(
-                fleetId,
-                orgId,
-                region);
+                fleetId, orgId, region);
         }
+
     }
 }

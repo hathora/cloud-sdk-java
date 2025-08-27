@@ -13,16 +13,18 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrgToken {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("createdBy")
     private String createdBy;
+
 
     @JsonProperty("lastFourCharsOfKey")
     private String lastFourCharsOfKey;
@@ -32,6 +34,7 @@ public class OrgToken {
      */
     @JsonProperty("name")
     private String name;
+
 
     @JsonProperty("orgId")
     private String orgId;
@@ -48,6 +51,7 @@ public class OrgToken {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("scopes")
     private Optional<? extends OrgTokenScopes> scopes;
+
 
     @JsonProperty("status")
     private OrgTokenStatus status;
@@ -88,7 +92,9 @@ public class OrgToken {
             String orgId,
             String orgTokenId,
             OrgTokenStatus status) {
-        this(createdAt, createdBy, lastFourCharsOfKey, name, orgId, orgTokenId, Optional.empty(), status);
+        this(createdAt, createdBy, lastFourCharsOfKey,
+            name, orgId, orgTokenId,
+            Optional.empty(), status);
     }
 
     @JsonIgnore
@@ -141,9 +147,10 @@ public class OrgToken {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrgToken withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -196,6 +203,7 @@ public class OrgToken {
         return this;
     }
 
+
     /**
      * If not defined, the token has Admin access.
      */
@@ -211,7 +219,6 @@ public class OrgToken {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -222,27 +229,22 @@ public class OrgToken {
         }
         OrgToken other = (OrgToken) o;
         return 
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.lastFourCharsOfKey, other.lastFourCharsOfKey) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.orgId, other.orgId) &&
-            Objects.deepEquals(this.orgTokenId, other.orgTokenId) &&
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.lastFourCharsOfKey, other.lastFourCharsOfKey) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
+            Utils.enhancedDeepEquals(this.orgTokenId, other.orgTokenId) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createdAt,
-            createdBy,
-            lastFourCharsOfKey,
-            name,
-            orgId,
-            orgTokenId,
-            scopes,
-            status);
+        return Utils.enhancedHash(
+            createdAt, createdBy, lastFourCharsOfKey,
+            name, orgId, orgTokenId,
+            scopes, status);
     }
     
     @Override
@@ -257,28 +259,30 @@ public class OrgToken {
                 "scopes", scopes,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String createdBy;
- 
+
         private String lastFourCharsOfKey;
- 
+
         private String name;
- 
+
         private String orgId;
- 
+
         private String orgTokenId;
- 
+
         private Optional<? extends OrgTokenScopes> scopes = Optional.empty();
- 
+
         private OrgTokenStatus status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -286,17 +290,20 @@ public class OrgToken {
             return this;
         }
 
+
         public Builder createdBy(String createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;
             return this;
         }
 
+
         public Builder lastFourCharsOfKey(String lastFourCharsOfKey) {
             Utils.checkNotNull(lastFourCharsOfKey, "lastFourCharsOfKey");
             this.lastFourCharsOfKey = lastFourCharsOfKey;
             return this;
         }
+
 
         /**
          * Readable name for a token. Must be unique within an organization.
@@ -307,11 +314,13 @@ public class OrgToken {
             return this;
         }
 
+
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
             this.orgId = orgId;
             return this;
         }
+
 
         /**
          * System generated unique identifier for an organization token.
@@ -321,6 +330,7 @@ public class OrgToken {
             this.orgTokenId = orgTokenId;
             return this;
         }
+
 
         /**
          * If not defined, the token has Admin access.
@@ -340,22 +350,20 @@ public class OrgToken {
             return this;
         }
 
+
         public Builder status(OrgTokenStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
-        
+
         public OrgToken build() {
+
             return new OrgToken(
-                createdAt,
-                createdBy,
-                lastFourCharsOfKey,
-                name,
-                orgId,
-                orgTokenId,
-                scopes,
-                status);
+                createdAt, createdBy, lastFourCharsOfKey,
+                name, orgId, orgTokenId,
+                scopes, status);
         }
+
     }
 }

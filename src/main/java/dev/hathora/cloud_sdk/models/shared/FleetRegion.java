@@ -11,7 +11,6 @@ import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 
 /**
  * FleetRegion
@@ -25,8 +24,10 @@ public class FleetRegion {
     @JsonProperty("cloudMinVcpus")
     private int cloudMinVcpus;
 
+
     @JsonProperty("cloudMinVcpusUpdatedAt")
     private OffsetDateTime cloudMinVcpusUpdatedAt;
+
 
     @JsonProperty("scaleIncrementVcpus")
     private int scaleIncrementVcpus;
@@ -59,9 +60,10 @@ public class FleetRegion {
         return scaleIncrementVcpus;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public FleetRegion withCloudMinVcpus(int cloudMinVcpus) {
         Utils.checkNotNull(cloudMinVcpus, "cloudMinVcpus");
@@ -81,7 +83,6 @@ public class FleetRegion {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -92,17 +93,15 @@ public class FleetRegion {
         }
         FleetRegion other = (FleetRegion) o;
         return 
-            Objects.deepEquals(this.cloudMinVcpus, other.cloudMinVcpus) &&
-            Objects.deepEquals(this.cloudMinVcpusUpdatedAt, other.cloudMinVcpusUpdatedAt) &&
-            Objects.deepEquals(this.scaleIncrementVcpus, other.scaleIncrementVcpus);
+            Utils.enhancedDeepEquals(this.cloudMinVcpus, other.cloudMinVcpus) &&
+            Utils.enhancedDeepEquals(this.cloudMinVcpusUpdatedAt, other.cloudMinVcpusUpdatedAt) &&
+            Utils.enhancedDeepEquals(this.scaleIncrementVcpus, other.scaleIncrementVcpus);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            cloudMinVcpus,
-            cloudMinVcpusUpdatedAt,
-            scaleIncrementVcpus);
+        return Utils.enhancedHash(
+            cloudMinVcpus, cloudMinVcpusUpdatedAt, scaleIncrementVcpus);
     }
     
     @Override
@@ -112,18 +111,20 @@ public class FleetRegion {
                 "cloudMinVcpusUpdatedAt", cloudMinVcpusUpdatedAt,
                 "scaleIncrementVcpus", scaleIncrementVcpus);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Integer cloudMinVcpus;
- 
+
         private OffsetDateTime cloudMinVcpusUpdatedAt;
- 
+
         private Integer scaleIncrementVcpus;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder cloudMinVcpus(int cloudMinVcpus) {
             Utils.checkNotNull(cloudMinVcpus, "cloudMinVcpus");
@@ -131,23 +132,25 @@ public class FleetRegion {
             return this;
         }
 
+
         public Builder cloudMinVcpusUpdatedAt(OffsetDateTime cloudMinVcpusUpdatedAt) {
             Utils.checkNotNull(cloudMinVcpusUpdatedAt, "cloudMinVcpusUpdatedAt");
             this.cloudMinVcpusUpdatedAt = cloudMinVcpusUpdatedAt;
             return this;
         }
 
+
         public Builder scaleIncrementVcpus(int scaleIncrementVcpus) {
             Utils.checkNotNull(scaleIncrementVcpus, "scaleIncrementVcpus");
             this.scaleIncrementVcpus = scaleIncrementVcpus;
             return this;
         }
-        
+
         public FleetRegion build() {
+
             return new FleetRegion(
-                cloudMinVcpus,
-                cloudMinVcpusUpdatedAt,
-                scaleIncrementVcpus);
+                cloudMinVcpus, cloudMinVcpusUpdatedAt, scaleIncrementVcpus);
         }
+
     }
 }

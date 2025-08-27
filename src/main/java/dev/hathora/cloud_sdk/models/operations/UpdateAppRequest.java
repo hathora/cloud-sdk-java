@@ -10,13 +10,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class UpdateAppRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private AppConfigWithServiceConfig appConfigWithServiceConfig;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
@@ -46,9 +47,10 @@ public class UpdateAppRequest {
         return appId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateAppRequest withAppConfigWithServiceConfig(AppConfigWithServiceConfig appConfigWithServiceConfig) {
         Utils.checkNotNull(appConfigWithServiceConfig, "appConfigWithServiceConfig");
@@ -62,13 +64,13 @@ public class UpdateAppRequest {
         return this;
     }
 
+
     public UpdateAppRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,15 +81,14 @@ public class UpdateAppRequest {
         }
         UpdateAppRequest other = (UpdateAppRequest) o;
         return 
-            Objects.deepEquals(this.appConfigWithServiceConfig, other.appConfigWithServiceConfig) &&
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.appConfigWithServiceConfig, other.appConfigWithServiceConfig) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appConfigWithServiceConfig,
-            appId);
+        return Utils.enhancedHash(
+            appConfigWithServiceConfig, appId);
     }
     
     @Override
@@ -96,22 +97,25 @@ public class UpdateAppRequest {
                 "appConfigWithServiceConfig", appConfigWithServiceConfig,
                 "appId", appId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private AppConfigWithServiceConfig appConfigWithServiceConfig;
- 
+
         private Optional<String> appId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appConfigWithServiceConfig(AppConfigWithServiceConfig appConfigWithServiceConfig) {
             Utils.checkNotNull(appConfigWithServiceConfig, "appConfigWithServiceConfig");
             this.appConfigWithServiceConfig = appConfigWithServiceConfig;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -124,11 +128,12 @@ public class UpdateAppRequest {
             this.appId = appId;
             return this;
         }
-        
+
         public UpdateAppRequest build() {
+
             return new UpdateAppRequest(
-                appConfigWithServiceConfig,
-                appId);
+                appConfigWithServiceConfig, appId);
         }
+
     }
 }

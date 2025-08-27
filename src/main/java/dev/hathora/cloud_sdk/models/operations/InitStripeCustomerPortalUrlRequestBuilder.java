@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CustomerPortalUrl;
+import dev.hathora.cloud_sdk.operations.InitStripeCustomerPortalUrl;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class InitStripeCustomerPortalUrlRequestBuilder {
 
     private CustomerPortalUrl customerPortalUrl;
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallInitStripeCustomerPortalUrl sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public InitStripeCustomerPortalUrlRequestBuilder(SDKMethodInterfaces.MethodCallInitStripeCustomerPortalUrl sdk) {
-        this.sdk = sdk;
+    public InitStripeCustomerPortalUrlRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public InitStripeCustomerPortalUrlRequestBuilder customerPortalUrl(CustomerPortalUrl customerPortalUrl) {
@@ -37,10 +41,21 @@ public class InitStripeCustomerPortalUrlRequestBuilder {
         return this;
     }
 
-    public InitStripeCustomerPortalUrlResponse call() throws Exception {
 
-        return sdk.initStripeCustomerPortalUrl(
-            customerPortalUrl,
+    private InitStripeCustomerPortalUrlRequest buildRequest() {
+
+        InitStripeCustomerPortalUrlRequest request = new InitStripeCustomerPortalUrlRequest(customerPortalUrl,
             orgId);
+
+        return request;
+    }
+
+    public InitStripeCustomerPortalUrlResponse call() throws Exception {
+        
+        RequestOperation<InitStripeCustomerPortalUrlRequest, InitStripeCustomerPortalUrlResponse> operation
+              = new InitStripeCustomerPortalUrl.Sync(sdkConfiguration);
+        InitStripeCustomerPortalUrlRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

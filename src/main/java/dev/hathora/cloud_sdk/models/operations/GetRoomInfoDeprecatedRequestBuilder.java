@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetRoomInfoDeprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetRoomInfoDeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String roomId;
-    private final SDKMethodInterfaces.MethodCallGetRoomInfoDeprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetRoomInfoDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallGetRoomInfoDeprecated sdk) {
-        this.sdk = sdk;
+    public GetRoomInfoDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetRoomInfoDeprecatedRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class GetRoomInfoDeprecatedRequestBuilder {
         return this;
     }
 
-    public GetRoomInfoDeprecatedResponse call() throws Exception {
 
-        return sdk.getRoomInfoDeprecated(
-            appId,
+    private GetRoomInfoDeprecatedRequest buildRequest() {
+
+        GetRoomInfoDeprecatedRequest request = new GetRoomInfoDeprecatedRequest(appId,
             roomId);
+
+        return request;
+    }
+
+    public GetRoomInfoDeprecatedResponse call() throws Exception {
+        
+        RequestOperation<GetRoomInfoDeprecatedRequest, GetRoomInfoDeprecatedResponse> operation
+              = new GetRoomInfoDeprecated.Sync(sdkConfiguration);
+        GetRoomInfoDeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

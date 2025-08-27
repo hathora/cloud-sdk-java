@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.operations.GetStoppedProcesses;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class GetStoppedProcessesRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private Optional<? extends Region> region = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetStoppedProcesses sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetStoppedProcessesRequestBuilder(SDKMethodInterfaces.MethodCallGetStoppedProcesses sdk) {
-        this.sdk = sdk;
+    public GetStoppedProcessesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetStoppedProcessesRequestBuilder appId(String appId) {
@@ -43,10 +47,21 @@ public class GetStoppedProcessesRequestBuilder {
         return this;
     }
 
-    public GetStoppedProcessesResponse call() throws Exception {
 
-        return sdk.getStoppedProcesses(
-            appId,
+    private GetStoppedProcessesRequest buildRequest() {
+
+        GetStoppedProcessesRequest request = new GetStoppedProcessesRequest(appId,
             region);
+
+        return request;
+    }
+
+    public GetStoppedProcessesResponse call() throws Exception {
+        
+        RequestOperation<GetStoppedProcessesRequest, GetStoppedProcessesResponse> operation
+              = new GetStoppedProcesses.Sync(sdkConfiguration);
+        GetStoppedProcessesRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

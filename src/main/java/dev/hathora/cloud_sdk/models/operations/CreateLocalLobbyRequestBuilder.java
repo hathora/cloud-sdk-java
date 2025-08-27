@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.CreateLocalLobby;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class CreateLocalLobbyRequestBuilder {
     private CreateLocalLobbyRequestBody requestBody;
     private Optional<String> appId = Optional.empty();
     private Optional<String> roomId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateLocalLobby sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateLocalLobbyRequestBuilder(SDKMethodInterfaces.MethodCallCreateLocalLobby sdk) {
-        this.sdk = sdk;
+    public CreateLocalLobbyRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateLocalLobbyRequestBuilder security(CreateLocalLobbySecurity security) {
@@ -56,12 +60,22 @@ public class CreateLocalLobbyRequestBuilder {
         return this;
     }
 
-    public CreateLocalLobbyResponse call() throws Exception {
 
-        return sdk.createLocalLobby(
-            security,
-            requestBody,
+    private CreateLocalLobbyRequest buildRequest() {
+
+        CreateLocalLobbyRequest request = new CreateLocalLobbyRequest(requestBody,
             appId,
             roomId);
+
+        return request;
+    }
+
+    public CreateLocalLobbyResponse call() throws Exception {
+        
+        RequestOperation<CreateLocalLobbyRequest, CreateLocalLobbyResponse> operation
+              = new CreateLocalLobby.Sync(sdkConfiguration, security);
+        CreateLocalLobbyRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

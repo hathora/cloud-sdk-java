@@ -19,6 +19,7 @@ Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build).
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="CreateBuildDeprecated" method="post" path="/builds/v1/{appId}/create" -->
 ```java
 package hello.world;
 
@@ -34,18 +35,16 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateBuildDeprecatedResponse res = sdk.buildsV1().createBuildDeprecated()
                 .createBuildParams(CreateBuildParams.builder()
                     .buildTag("0.1.14-14c793")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.build().isPresent()) {
@@ -82,6 +81,7 @@ Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="DeleteBuildDeprecated" method="delete" path="/builds/v1/{appId}/delete/{buildId}" -->
 ```java
 package hello.world;
 
@@ -96,15 +96,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         DeleteBuildDeprecatedResponse res = sdk.buildsV1().deleteBuildDeprecated()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
                 .call();
 
@@ -140,6 +138,7 @@ Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#bui
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetBuildInfoDeprecated" method="get" path="/builds/v1/{appId}/info/{buildId}" -->
 ```java
 package hello.world;
 
@@ -154,15 +153,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetBuildInfoDeprecatedResponse res = sdk.buildsV1().getBuildInfoDeprecated()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
                 .call();
 
@@ -199,6 +196,7 @@ Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetBuildsDeprecated" method="get" path="/builds/v1/{appId}/list" -->
 ```java
 package hello.world;
 
@@ -213,15 +211,13 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetBuildsDeprecatedResponse res = sdk.buildsV1().getBuildsDeprecated()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.classes().isPresent()) {
@@ -256,6 +252,7 @@ Builds a game server artifact from a tarball you provide. Pass in the `buildId` 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="RunBuildDeprecated" method="post" path="/builds/v1/{appId}/run/{buildId}" -->
 ```java
 package hello.world;
 
@@ -263,29 +260,27 @@ import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.*;
 import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
-import java.nio.charset.StandardCharsets;
 
 public class Application {
 
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         RunBuildDeprecatedResponse res = sdk.buildsV1().runBuildDeprecated()
                 .requestBody(RunBuildDeprecatedRequestBody.builder()
                     .file(File.builder()
-                        .content("0xDBaE05075A".getBytes(StandardCharsets.UTF_8))
+                        .content(Utils.readBytes("example.file"))
                         .fileName("example.file")
                         .build())
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .buildId(1)
                 .call();
 

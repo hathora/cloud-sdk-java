@@ -10,7 +10,7 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class InvoiceItemPage {
 
@@ -29,9 +29,10 @@ public class InvoiceItemPage {
         return invoiceItems;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public InvoiceItemPage withInvoiceItems(List<InvoiceItem> invoiceItems) {
         Utils.checkNotNull(invoiceItems, "invoiceItems");
@@ -39,7 +40,6 @@ public class InvoiceItemPage {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class InvoiceItemPage {
         }
         InvoiceItemPage other = (InvoiceItemPage) o;
         return 
-            Objects.deepEquals(this.invoiceItems, other.invoiceItems);
+            Utils.enhancedDeepEquals(this.invoiceItems, other.invoiceItems);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             invoiceItems);
     }
     
@@ -64,24 +64,28 @@ public class InvoiceItemPage {
         return Utils.toString(InvoiceItemPage.class,
                 "invoiceItems", invoiceItems);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<InvoiceItem> invoiceItems;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder invoiceItems(List<InvoiceItem> invoiceItems) {
             Utils.checkNotNull(invoiceItems, "invoiceItems");
             this.invoiceItems = invoiceItems;
             return this;
         }
-        
+
         public InvoiceItemPage build() {
+
             return new InvoiceItemPage(
                 invoiceItems);
         }
+
     }
 }

@@ -3,9 +3,8 @@
  */
 package dev.hathora.cloud_sdk;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
 import dev.hathora.cloud_sdk.models.operations.CreateProcessV2DeprecatedRequest;
 import dev.hathora.cloud_sdk.models.operations.CreateProcessV2DeprecatedRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.CreateProcessV2DeprecatedResponse;
@@ -18,45 +17,31 @@ import dev.hathora.cloud_sdk.models.operations.GetProcessInfoV2DeprecatedRespons
 import dev.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedRequest;
 import dev.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedResponse;
-import dev.hathora.cloud_sdk.models.operations.GetProcessesCountExperimentalV2DeprecatedResponseBody;
-import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_sdk.models.operations.StopProcessV2DeprecatedRequest;
 import dev.hathora.cloud_sdk.models.operations.StopProcessV2DeprecatedRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.StopProcessV2DeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
-import dev.hathora.cloud_sdk.models.shared.ProcessV2;
 import dev.hathora.cloud_sdk.models.shared.Region;
-import dev.hathora.cloud_sdk.utils.HTTPClient;
-import dev.hathora.cloud_sdk.utils.HTTPRequest;
-import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import dev.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
+import dev.hathora.cloud_sdk.operations.CreateProcessV2Deprecated;
+import dev.hathora.cloud_sdk.operations.GetLatestProcessesV2Deprecated;
+import dev.hathora.cloud_sdk.operations.GetProcessInfoV2Deprecated;
+import dev.hathora.cloud_sdk.operations.GetProcessesCountExperimentalV2Deprecated;
+import dev.hathora.cloud_sdk.operations.StopProcessV2Deprecated;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * Deprecated. Use [ProcessesV3](https://hathora.dev/api#tag/ProcessesV3).
  */
-public class ProcessesV2 implements
-            MethodCallCreateProcessV2Deprecated,
-            MethodCallGetLatestProcessesV2Deprecated,
-            MethodCallGetProcessInfoV2Deprecated,
-            MethodCallGetProcessesCountExperimentalV2Deprecated,
-            MethodCallStopProcessV2Deprecated {
-
+public class ProcessesV2 {
     private final SDKConfiguration sdkConfiguration;
 
     ProcessesV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
 
     /**
      * CreateProcessV2Deprecated
@@ -68,7 +53,7 @@ public class ProcessesV2 implements
      */
     @Deprecated
     public CreateProcessV2DeprecatedRequestBuilder createProcessV2Deprecated() {
-        return new CreateProcessV2DeprecatedRequestBuilder(this);
+        return new CreateProcessV2DeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -82,11 +67,10 @@ public class ProcessesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateProcessV2DeprecatedResponse createProcessV2Deprecated(
-            Region region) throws Exception {
+    public CreateProcessV2DeprecatedResponse createProcessV2Deprecated(Region region) throws Exception {
         return createProcessV2Deprecated(Optional.empty(), region);
     }
-    
+
     /**
      * CreateProcessV2Deprecated
      * 
@@ -99,155 +83,17 @@ public class ProcessesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateProcessV2DeprecatedResponse createProcessV2Deprecated(
-            Optional<String> appId,
-            Region region) throws Exception {
+    public CreateProcessV2DeprecatedResponse createProcessV2Deprecated(Optional<String> appId, Region region) throws Exception {
         CreateProcessV2DeprecatedRequest request =
             CreateProcessV2DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .region(region)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                CreateProcessV2DeprecatedRequest.class,
-                _baseUrl,
-                "/processes/v2/{appId}/create/{region}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "CreateProcessV2Deprecated", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "CreateProcessV2Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "CreateProcessV2Deprecated",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "CreateProcessV2Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreateProcessV2DeprecatedResponse.Builder _resBuilder = 
-            CreateProcessV2DeprecatedResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreateProcessV2DeprecatedResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ProcessV2 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ProcessV2>() {});
-                _res.withProcessV2(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "402", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CreateProcessV2DeprecatedRequest, CreateProcessV2DeprecatedResponse> operation
+              = new CreateProcessV2Deprecated.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * GetLatestProcessesV2Deprecated
@@ -259,7 +105,7 @@ public class ProcessesV2 implements
      */
     @Deprecated
     public GetLatestProcessesV2DeprecatedRequestBuilder getLatestProcessesV2Deprecated() {
-        return new GetLatestProcessesV2DeprecatedRequestBuilder(this);
+        return new GetLatestProcessesV2DeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -275,7 +121,7 @@ public class ProcessesV2 implements
     public GetLatestProcessesV2DeprecatedResponse getLatestProcessesV2DeprecatedDirect() throws Exception {
         return getLatestProcessesV2Deprecated(Optional.empty(), Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * GetLatestProcessesV2Deprecated
      * 
@@ -290,8 +136,7 @@ public class ProcessesV2 implements
      */
     @Deprecated
     public GetLatestProcessesV2DeprecatedResponse getLatestProcessesV2Deprecated(
-            Optional<String> appId,
-            Optional<? extends List<Region>> region,
+            Optional<String> appId, Optional<? extends List<Region>> region,
             Optional<? extends List<ProcessStatus>> status) throws Exception {
         GetLatestProcessesV2DeprecatedRequest request =
             GetLatestProcessesV2DeprecatedRequest
@@ -300,137 +145,10 @@ public class ProcessesV2 implements
                 .region(region)
                 .status(status)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                GetLatestProcessesV2DeprecatedRequest.class,
-                _baseUrl,
-                "/processes/v2/{appId}/list/latest",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetLatestProcessesV2DeprecatedRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetLatestProcessesV2Deprecated", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetLatestProcessesV2Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetLatestProcessesV2Deprecated",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetLatestProcessesV2Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetLatestProcessesV2DeprecatedResponse.Builder _resBuilder = 
-            GetLatestProcessesV2DeprecatedResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetLatestProcessesV2DeprecatedResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                List<ProcessV2> _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<List<ProcessV2>>() {});
-                _res.withClasses(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetLatestProcessesV2DeprecatedRequest, GetLatestProcessesV2DeprecatedResponse> operation
+              = new GetLatestProcessesV2Deprecated.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * GetProcessInfoV2Deprecated
@@ -442,7 +160,7 @@ public class ProcessesV2 implements
      */
     @Deprecated
     public GetProcessInfoV2DeprecatedRequestBuilder getProcessInfoV2Deprecated() {
-        return new GetProcessInfoV2DeprecatedRequestBuilder(this);
+        return new GetProcessInfoV2DeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -456,11 +174,10 @@ public class ProcessesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(
-            String processId) throws Exception {
+    public GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(String processId) throws Exception {
         return getProcessInfoV2Deprecated(Optional.empty(), processId);
     }
-    
+
     /**
      * GetProcessInfoV2Deprecated
      * 
@@ -473,141 +190,17 @@ public class ProcessesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(
-            Optional<String> appId,
-            String processId) throws Exception {
+    public GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(Optional<String> appId, String processId) throws Exception {
         GetProcessInfoV2DeprecatedRequest request =
             GetProcessInfoV2DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .processId(processId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                GetProcessInfoV2DeprecatedRequest.class,
-                _baseUrl,
-                "/processes/v2/{appId}/info/{processId}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetProcessInfoV2Deprecated", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetProcessInfoV2Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetProcessInfoV2Deprecated",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetProcessInfoV2Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetProcessInfoV2DeprecatedResponse.Builder _resBuilder = 
-            GetProcessInfoV2DeprecatedResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetProcessInfoV2DeprecatedResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ProcessV2 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ProcessV2>() {});
-                _res.withProcessV2(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetProcessInfoV2DeprecatedRequest, GetProcessInfoV2DeprecatedResponse> operation
+              = new GetProcessInfoV2Deprecated.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * GetProcessesCountExperimentalV2Deprecated
@@ -619,7 +212,7 @@ public class ProcessesV2 implements
      */
     @Deprecated
     public GetProcessesCountExperimentalV2DeprecatedRequestBuilder getProcessesCountExperimentalV2Deprecated() {
-        return new GetProcessesCountExperimentalV2DeprecatedRequestBuilder(this);
+        return new GetProcessesCountExperimentalV2DeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -635,7 +228,7 @@ public class ProcessesV2 implements
     public GetProcessesCountExperimentalV2DeprecatedResponse getProcessesCountExperimentalV2DeprecatedDirect() throws Exception {
         return getProcessesCountExperimentalV2Deprecated(Optional.empty(), Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * GetProcessesCountExperimentalV2Deprecated
      * 
@@ -650,8 +243,7 @@ public class ProcessesV2 implements
      */
     @Deprecated
     public GetProcessesCountExperimentalV2DeprecatedResponse getProcessesCountExperimentalV2Deprecated(
-            Optional<String> appId,
-            Optional<? extends List<Region>> region,
+            Optional<String> appId, Optional<? extends List<Region>> region,
             Optional<? extends List<ProcessStatus>> status) throws Exception {
         GetProcessesCountExperimentalV2DeprecatedRequest request =
             GetProcessesCountExperimentalV2DeprecatedRequest
@@ -660,137 +252,10 @@ public class ProcessesV2 implements
                 .region(region)
                 .status(status)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                GetProcessesCountExperimentalV2DeprecatedRequest.class,
-                _baseUrl,
-                "/processes/v2/{appId}/count",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetProcessesCountExperimentalV2DeprecatedRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetProcessesCountExperimentalV2Deprecated", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetProcessesCountExperimentalV2Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetProcessesCountExperimentalV2Deprecated",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetProcessesCountExperimentalV2Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetProcessesCountExperimentalV2DeprecatedResponse.Builder _resBuilder = 
-            GetProcessesCountExperimentalV2DeprecatedResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetProcessesCountExperimentalV2DeprecatedResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                GetProcessesCountExperimentalV2DeprecatedResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetProcessesCountExperimentalV2DeprecatedResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetProcessesCountExperimentalV2DeprecatedRequest, GetProcessesCountExperimentalV2DeprecatedResponse> operation
+              = new GetProcessesCountExperimentalV2Deprecated.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * StopProcessV2Deprecated
@@ -802,7 +267,7 @@ public class ProcessesV2 implements
      */
     @Deprecated
     public StopProcessV2DeprecatedRequestBuilder stopProcessV2Deprecated() {
-        return new StopProcessV2DeprecatedRequestBuilder(this);
+        return new StopProcessV2DeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -816,11 +281,10 @@ public class ProcessesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public StopProcessV2DeprecatedResponse stopProcessV2Deprecated(
-            String processId) throws Exception {
+    public StopProcessV2DeprecatedResponse stopProcessV2Deprecated(String processId) throws Exception {
         return stopProcessV2Deprecated(Optional.empty(), processId);
     }
-    
+
     /**
      * StopProcessV2Deprecated
      * 
@@ -833,141 +297,16 @@ public class ProcessesV2 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public StopProcessV2DeprecatedResponse stopProcessV2Deprecated(
-            Optional<String> appId,
-            String processId) throws Exception {
+    public StopProcessV2DeprecatedResponse stopProcessV2Deprecated(Optional<String> appId, String processId) throws Exception {
         StopProcessV2DeprecatedRequest request =
             StopProcessV2DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .processId(processId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                StopProcessV2DeprecatedRequest.class,
-                _baseUrl,
-                "/processes/v2/{appId}/stop/{processId}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "StopProcessV2Deprecated", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "StopProcessV2Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "StopProcessV2Deprecated",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "StopProcessV2Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        StopProcessV2DeprecatedResponse.Builder _resBuilder = 
-            StopProcessV2DeprecatedResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        StopProcessV2DeprecatedResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<StopProcessV2DeprecatedRequest, StopProcessV2DeprecatedResponse> operation
+              = new StopProcessV2Deprecated.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

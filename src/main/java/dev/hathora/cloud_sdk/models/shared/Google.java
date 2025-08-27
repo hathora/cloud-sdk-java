@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * Google
@@ -17,7 +16,6 @@ import java.util.Objects;
  * <p>Enable google auth for your application.
  */
 public class Google {
-
     /**
      * A Google generated token representing the developer's credentials for [Google's API Console](https://console.cloud.google.com/apis/dashboard?pli=1&amp;project=discourse-login-388921). Learn how to get a `clientId` [here](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
      */
@@ -39,9 +37,10 @@ public class Google {
         return clientId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A Google generated token representing the developer's credentials for [Google's API Console](https://console.cloud.google.com/apis/dashboard?pli=1&amp;project=discourse-login-388921). Learn how to get a `clientId` [here](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
@@ -52,7 +51,6 @@ public class Google {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -63,12 +61,12 @@ public class Google {
         }
         Google other = (Google) o;
         return 
-            Objects.deepEquals(this.clientId, other.clientId);
+            Utils.enhancedDeepEquals(this.clientId, other.clientId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             clientId);
     }
     
@@ -77,14 +75,16 @@ public class Google {
         return Utils.toString(Google.class,
                 "clientId", clientId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String clientId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A Google generated token representing the developer's credentials for [Google's API Console](https://console.cloud.google.com/apis/dashboard?pli=1&amp;project=discourse-login-388921). Learn how to get a `clientId` [here](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
@@ -94,10 +94,12 @@ public class Google {
             this.clientId = clientId;
             return this;
         }
-        
+
         public Google build() {
+
             return new Google(
                 clientId);
         }
+
     }
 }

@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetActiveRoomsForProcessDeprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetActiveRoomsForProcessDeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String processId;
-    private final SDKMethodInterfaces.MethodCallGetActiveRoomsForProcessDeprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetActiveRoomsForProcessDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallGetActiveRoomsForProcessDeprecated sdk) {
-        this.sdk = sdk;
+    public GetActiveRoomsForProcessDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetActiveRoomsForProcessDeprecatedRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class GetActiveRoomsForProcessDeprecatedRequestBuilder {
         return this;
     }
 
-    public GetActiveRoomsForProcessDeprecatedResponse call() throws Exception {
 
-        return sdk.getActiveRoomsForProcessDeprecated(
-            appId,
+    private GetActiveRoomsForProcessDeprecatedRequest buildRequest() {
+
+        GetActiveRoomsForProcessDeprecatedRequest request = new GetActiveRoomsForProcessDeprecatedRequest(appId,
             processId);
+
+        return request;
+    }
+
+    public GetActiveRoomsForProcessDeprecatedResponse call() throws Exception {
+        
+        RequestOperation<GetActiveRoomsForProcessDeprecatedRequest, GetActiveRoomsForProcessDeprecatedResponse> operation
+              = new GetActiveRoomsForProcessDeprecated.Sync(sdkConfiguration);
+        GetActiveRoomsForProcessDeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

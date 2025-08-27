@@ -11,13 +11,14 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetStoppedProcessesRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=region")
     private Optional<? extends Region> region;
@@ -47,15 +48,17 @@ public class GetStoppedProcessesRequest {
         return (Optional<Region>) region;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetStoppedProcessesRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     public GetStoppedProcessesRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
@@ -69,13 +72,13 @@ public class GetStoppedProcessesRequest {
         return this;
     }
 
+
     public GetStoppedProcessesRequest withRegion(Optional<? extends Region> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -86,15 +89,14 @@ public class GetStoppedProcessesRequest {
         }
         GetStoppedProcessesRequest other = (GetStoppedProcessesRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            region);
+        return Utils.enhancedHash(
+            appId, region);
     }
     
     @Override
@@ -103,16 +105,18 @@ public class GetStoppedProcessesRequest {
                 "appId", appId,
                 "region", region);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<? extends Region> region = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -126,6 +130,7 @@ public class GetStoppedProcessesRequest {
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = Optional.ofNullable(region);
@@ -137,11 +142,12 @@ public class GetStoppedProcessesRequest {
             this.region = region;
             return this;
         }
-        
+
         public GetStoppedProcessesRequest build() {
+
             return new GetStoppedProcessesRequest(
-                appId,
-                region);
+                appId, region);
         }
+
     }
 }

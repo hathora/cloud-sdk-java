@@ -12,7 +12,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -26,9 +25,11 @@ public class PaymentMethod {
     @JsonProperty("ach")
     private Optional<? extends AchPaymentMethod> ach;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("card")
     private Optional<? extends CardPaymentMethod> card;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("link")
@@ -69,15 +70,17 @@ public class PaymentMethod {
         return (Optional<LinkPaymentMethod>) link;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PaymentMethod withAch(AchPaymentMethod ach) {
         Utils.checkNotNull(ach, "ach");
         this.ach = Optional.ofNullable(ach);
         return this;
     }
+
 
     public PaymentMethod withAch(Optional<? extends AchPaymentMethod> ach) {
         Utils.checkNotNull(ach, "ach");
@@ -91,6 +94,7 @@ public class PaymentMethod {
         return this;
     }
 
+
     public PaymentMethod withCard(Optional<? extends CardPaymentMethod> card) {
         Utils.checkNotNull(card, "card");
         this.card = card;
@@ -103,13 +107,13 @@ public class PaymentMethod {
         return this;
     }
 
+
     public PaymentMethod withLink(Optional<? extends LinkPaymentMethod> link) {
         Utils.checkNotNull(link, "link");
         this.link = link;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -120,17 +124,15 @@ public class PaymentMethod {
         }
         PaymentMethod other = (PaymentMethod) o;
         return 
-            Objects.deepEquals(this.ach, other.ach) &&
-            Objects.deepEquals(this.card, other.card) &&
-            Objects.deepEquals(this.link, other.link);
+            Utils.enhancedDeepEquals(this.ach, other.ach) &&
+            Utils.enhancedDeepEquals(this.card, other.card) &&
+            Utils.enhancedDeepEquals(this.link, other.link);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            ach,
-            card,
-            link);
+        return Utils.enhancedHash(
+            ach, card, link);
     }
     
     @Override
@@ -140,18 +142,20 @@ public class PaymentMethod {
                 "card", card,
                 "link", link);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends AchPaymentMethod> ach = Optional.empty();
- 
+
         private Optional<? extends CardPaymentMethod> card = Optional.empty();
- 
+
         private Optional<? extends LinkPaymentMethod> link = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder ach(AchPaymentMethod ach) {
             Utils.checkNotNull(ach, "ach");
@@ -165,6 +169,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         public Builder card(CardPaymentMethod card) {
             Utils.checkNotNull(card, "card");
             this.card = Optional.ofNullable(card);
@@ -177,6 +182,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         public Builder link(LinkPaymentMethod link) {
             Utils.checkNotNull(link, "link");
             this.link = Optional.ofNullable(link);
@@ -188,12 +194,12 @@ public class PaymentMethod {
             this.link = link;
             return this;
         }
-        
+
         public PaymentMethod build() {
+
             return new PaymentMethod(
-                ach,
-                card,
-                link);
+                ach, card, link);
         }
+
     }
 }

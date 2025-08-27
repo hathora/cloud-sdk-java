@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateUserInvite;
+import dev.hathora.cloud_sdk.operations.InviteUser;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class InviteUserRequestBuilder {
 
     private CreateUserInvite createUserInvite;
     private String orgId;
-    private final SDKMethodInterfaces.MethodCallInviteUser sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public InviteUserRequestBuilder(SDKMethodInterfaces.MethodCallInviteUser sdk) {
-        this.sdk = sdk;
+    public InviteUserRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public InviteUserRequestBuilder createUserInvite(CreateUserInvite createUserInvite) {
@@ -30,10 +34,21 @@ public class InviteUserRequestBuilder {
         return this;
     }
 
-    public InviteUserResponse call() throws Exception {
 
-        return sdk.inviteUser(
-            createUserInvite,
+    private InviteUserRequest buildRequest() {
+
+        InviteUserRequest request = new InviteUserRequest(createUserInvite,
             orgId);
+
+        return request;
+    }
+
+    public InviteUserResponse call() throws Exception {
+        
+        RequestOperation<InviteUserRequest, InviteUserResponse> operation
+              = new InviteUser.Sync(sdkConfiguration);
+        InviteUserRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

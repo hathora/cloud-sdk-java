@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.RevokeOrgToken;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ public class RevokeOrgTokenRequestBuilder {
 
     private String orgId;
     private String orgTokenId;
-    private final SDKMethodInterfaces.MethodCallRevokeOrgToken sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public RevokeOrgTokenRequestBuilder(SDKMethodInterfaces.MethodCallRevokeOrgToken sdk) {
-        this.sdk = sdk;
+    public RevokeOrgTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public RevokeOrgTokenRequestBuilder orgId(String orgId) {
@@ -29,10 +33,21 @@ public class RevokeOrgTokenRequestBuilder {
         return this;
     }
 
-    public RevokeOrgTokenResponse call() throws Exception {
 
-        return sdk.revokeOrgToken(
-            orgId,
+    private RevokeOrgTokenRequest buildRequest() {
+
+        RevokeOrgTokenRequest request = new RevokeOrgTokenRequest(orgId,
             orgTokenId);
+
+        return request;
+    }
+
+    public RevokeOrgTokenResponse call() throws Exception {
+        
+        RequestOperation<RevokeOrgTokenRequest, RevokeOrgTokenResponse> operation
+              = new RevokeOrgToken.Sync(sdkConfiguration);
+        RevokeOrgTokenRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

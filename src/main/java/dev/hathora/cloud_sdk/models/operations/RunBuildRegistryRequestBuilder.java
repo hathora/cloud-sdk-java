@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.RegistryConfig;
+import dev.hathora.cloud_sdk.operations.RunBuildRegistry;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class RunBuildRegistryRequestBuilder {
     private RegistryConfig registryConfig;
     private String buildId;
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallRunBuildRegistry sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public RunBuildRegistryRequestBuilder(SDKMethodInterfaces.MethodCallRunBuildRegistry sdk) {
-        this.sdk = sdk;
+    public RunBuildRegistryRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public RunBuildRegistryRequestBuilder registryConfig(RegistryConfig registryConfig) {
@@ -44,11 +48,22 @@ public class RunBuildRegistryRequestBuilder {
         return this;
     }
 
-    public RunBuildRegistryResponse call() throws Exception {
 
-        return sdk.runBuildRegistry(
-            registryConfig,
+    private RunBuildRegistryRequest buildRequest() {
+
+        RunBuildRegistryRequest request = new RunBuildRegistryRequest(registryConfig,
             buildId,
             orgId);
+
+        return request;
+    }
+
+    public RunBuildRegistryResponse call() throws Exception {
+        
+        RequestOperation<RunBuildRegistryRequest, RunBuildRegistryResponse> operation
+              = new RunBuildRegistry.Sync(sdkConfiguration);
+        RunBuildRegistryRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

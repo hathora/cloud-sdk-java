@@ -11,16 +11,18 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateDeploymentV2DeprecatedRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private DeploymentConfigV2 deploymentConfigV2;
 
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buildId")
     private int buildId;
@@ -59,9 +61,10 @@ public class CreateDeploymentV2DeprecatedRequest {
         return buildId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateDeploymentV2DeprecatedRequest withDeploymentConfigV2(DeploymentConfigV2 deploymentConfigV2) {
         Utils.checkNotNull(deploymentConfigV2, "deploymentConfigV2");
@@ -75,6 +78,7 @@ public class CreateDeploymentV2DeprecatedRequest {
         return this;
     }
 
+
     public CreateDeploymentV2DeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
@@ -87,7 +91,6 @@ public class CreateDeploymentV2DeprecatedRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -98,17 +101,15 @@ public class CreateDeploymentV2DeprecatedRequest {
         }
         CreateDeploymentV2DeprecatedRequest other = (CreateDeploymentV2DeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.deploymentConfigV2, other.deploymentConfigV2) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.buildId, other.buildId);
+            Utils.enhancedDeepEquals(this.deploymentConfigV2, other.deploymentConfigV2) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            deploymentConfigV2,
-            appId,
-            buildId);
+        return Utils.enhancedHash(
+            deploymentConfigV2, appId, buildId);
     }
     
     @Override
@@ -118,24 +119,27 @@ public class CreateDeploymentV2DeprecatedRequest {
                 "appId", appId,
                 "buildId", buildId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private DeploymentConfigV2 deploymentConfigV2;
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Integer buildId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder deploymentConfigV2(DeploymentConfigV2 deploymentConfigV2) {
             Utils.checkNotNull(deploymentConfigV2, "deploymentConfigV2");
             this.deploymentConfigV2 = deploymentConfigV2;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -149,17 +153,18 @@ public class CreateDeploymentV2DeprecatedRequest {
             return this;
         }
 
+
         public Builder buildId(int buildId) {
             Utils.checkNotNull(buildId, "buildId");
             this.buildId = buildId;
             return this;
         }
-        
+
         public CreateDeploymentV2DeprecatedRequest build() {
+
             return new CreateDeploymentV2DeprecatedRequest(
-                deploymentConfigV2,
-                appId,
-                buildId);
+                deploymentConfigV2, appId, buildId);
         }
+
     }
 }

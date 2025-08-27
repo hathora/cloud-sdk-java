@@ -21,6 +21,7 @@ Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="CreateBuild" method="post" path="/builds/v3/builds" -->
 ```java
 package hello.world;
 
@@ -36,11 +37,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateBuildResponse res = sdk.buildsV3().createBuild()
@@ -83,6 +83,7 @@ Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="CreateBuildRegistry" method="post" path="/builds/v3/builds/registry" -->
 ```java
 package hello.world;
 
@@ -98,11 +99,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         CreateBuildRegistryResponse res = sdk.buildsV3().createBuildRegistry()
@@ -146,6 +146,7 @@ Deleting a build that is actively build used by an app's deployment will cause f
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="DeleteBuild" method="delete" path="/builds/v3/builds/{buildId}" -->
 ```java
 package hello.world;
 
@@ -160,11 +161,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         DeleteBuildResponse res = sdk.buildsV3().deleteBuild()
@@ -203,6 +203,7 @@ Get details for a [build](https://hathora.dev/docs/concepts/hathora-entities#bui
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetBuild" method="get" path="/builds/v3/builds/{buildId}" -->
 ```java
 package hello.world;
 
@@ -217,11 +218,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetBuildResponse res = sdk.buildsV3().getBuild()
@@ -259,6 +259,7 @@ Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetBuilds" method="get" path="/builds/v3/builds" -->
 ```java
 package hello.world;
 
@@ -273,11 +274,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         GetBuildsResponse res = sdk.buildsV3().getBuilds()
@@ -313,6 +313,7 @@ Builds a game server artifact from a tarball you provide. Pass in the `buildId` 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="RunBuild" method="post" path="/builds/v3/builds/{buildId}/run" -->
 ```java
 package hello.world;
 
@@ -327,11 +328,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         RunBuildResponse res = sdk.buildsV3().runBuild()
@@ -370,6 +370,7 @@ Builds a game server artifact from a public or private registry. Pass in the `bu
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="RunBuildRegistry" method="post" path="/builds/v3/builds/{buildId}/runRegistry" -->
 ```java
 package hello.world;
 
@@ -385,11 +386,10 @@ public class Application {
     public static void main(String[] args) throws ApiError, ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .security(Security.builder()
-                    .hathoraDevToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
             .build();
 
         RunBuildRegistryResponse res = sdk.buildsV3().runBuildRegistry()

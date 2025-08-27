@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.NicknameObject;
+import dev.hathora.cloud_sdk.operations.LoginNickname;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class LoginNicknameRequestBuilder {
 
     private NicknameObject nicknameObject;
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallLoginNickname sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public LoginNicknameRequestBuilder(SDKMethodInterfaces.MethodCallLoginNickname sdk) {
-        this.sdk = sdk;
+    public LoginNicknameRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public LoginNicknameRequestBuilder nicknameObject(NicknameObject nicknameObject) {
@@ -37,10 +41,21 @@ public class LoginNicknameRequestBuilder {
         return this;
     }
 
-    public LoginNicknameResponse call() throws Exception {
 
-        return sdk.loginNickname(
-            nicknameObject,
+    private LoginNicknameRequest buildRequest() {
+
+        LoginNicknameRequest request = new LoginNicknameRequest(nicknameObject,
             appId);
+
+        return request;
+    }
+
+    public LoginNicknameResponse call() throws Exception {
+        
+        RequestOperation<LoginNicknameRequest, LoginNicknameResponse> operation
+              = new LoginNickname.Sync(sdkConfiguration);
+        LoginNicknameRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -10,15 +10,17 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class PingEndpoints {
 
     @JsonProperty("host")
     private String host;
 
+
     @JsonProperty("port")
     private double port;
+
 
     @JsonProperty("region")
     private Region region;
@@ -51,9 +53,10 @@ public class PingEndpoints {
         return region;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PingEndpoints withHost(String host) {
         Utils.checkNotNull(host, "host");
@@ -73,7 +76,6 @@ public class PingEndpoints {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,17 +86,15 @@ public class PingEndpoints {
         }
         PingEndpoints other = (PingEndpoints) o;
         return 
-            Objects.deepEquals(this.host, other.host) &&
-            Objects.deepEquals(this.port, other.port) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.host, other.host) &&
+            Utils.enhancedDeepEquals(this.port, other.port) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            host,
-            port,
-            region);
+        return Utils.enhancedHash(
+            host, port, region);
     }
     
     @Override
@@ -104,18 +104,20 @@ public class PingEndpoints {
                 "port", port,
                 "region", region);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String host;
- 
+
         private Double port;
- 
+
         private Region region;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder host(String host) {
             Utils.checkNotNull(host, "host");
@@ -123,23 +125,25 @@ public class PingEndpoints {
             return this;
         }
 
+
         public Builder port(double port) {
             Utils.checkNotNull(port, "port");
             this.port = port;
             return this;
         }
 
+
         public Builder region(Region region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
-        
+
         public PingEndpoints build() {
+
             return new PingEndpoints(
-                host,
-                port,
-                region);
+                host, port, region);
         }
+
     }
 }

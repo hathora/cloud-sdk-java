@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetBalance;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class GetBalanceRequestBuilder {
 
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetBalance sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetBalanceRequestBuilder(SDKMethodInterfaces.MethodCallGetBalance sdk) {
-        this.sdk = sdk;
+    public GetBalanceRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetBalanceRequestBuilder orgId(String orgId) {
@@ -29,9 +33,20 @@ public class GetBalanceRequestBuilder {
         return this;
     }
 
-    public GetBalanceResponse call() throws Exception {
 
-        return sdk.getBalance(
-            orgId);
+    private GetBalanceRequest buildRequest() {
+
+        GetBalanceRequest request = new GetBalanceRequest(orgId);
+
+        return request;
+    }
+
+    public GetBalanceResponse call() throws Exception {
+        
+        RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
+              = new GetBalance.Sync(sdkConfiguration);
+        GetBalanceRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

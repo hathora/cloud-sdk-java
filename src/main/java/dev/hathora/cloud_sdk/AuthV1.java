@@ -3,9 +3,8 @@
  */
 package dev.hathora.cloud_sdk;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
 import dev.hathora.cloud_sdk.models.operations.LoginAnonymousRequest;
 import dev.hathora.cloud_sdk.models.operations.LoginAnonymousRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.LoginAnonymousResponse;
@@ -15,41 +14,24 @@ import dev.hathora.cloud_sdk.models.operations.LoginGoogleResponse;
 import dev.hathora.cloud_sdk.models.operations.LoginNicknameRequest;
 import dev.hathora.cloud_sdk.models.operations.LoginNicknameRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.LoginNicknameResponse;
-import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_sdk.models.shared.GoogleIdTokenObject;
 import dev.hathora.cloud_sdk.models.shared.NicknameObject;
-import dev.hathora.cloud_sdk.models.shared.PlayerTokenObject;
-import dev.hathora.cloud_sdk.utils.HTTPClient;
-import dev.hathora.cloud_sdk.utils.HTTPRequest;
-import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import dev.hathora.cloud_sdk.utils.SerializedBody;
-import dev.hathora.cloud_sdk.utils.Utils.JsonShape;
-import dev.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
+import dev.hathora.cloud_sdk.operations.LoginAnonymous;
+import dev.hathora.cloud_sdk.operations.LoginGoogle;
+import dev.hathora.cloud_sdk.operations.LoginNickname;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Optional;
 
 /**
  * Operations that allow you to generate a Hathora-signed [JSON web token (JWT)](https://jwt.io/) for [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service).
  */
-public class AuthV1 implements
-            MethodCallLoginAnonymous,
-            MethodCallLoginGoogle,
-            MethodCallLoginNickname {
-
+public class AuthV1 {
     private final SDKConfiguration sdkConfiguration;
 
     AuthV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
 
     /**
      * LoginAnonymous
@@ -59,7 +41,7 @@ public class AuthV1 implements
      * @return The call builder
      */
     public LoginAnonymousRequestBuilder loginAnonymous() {
-        return new LoginAnonymousRequestBuilder(this);
+        return new LoginAnonymousRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -73,7 +55,7 @@ public class AuthV1 implements
     public LoginAnonymousResponse loginAnonymousDirect() throws Exception {
         return loginAnonymous(Optional.empty());
     }
-    
+
     /**
      * LoginAnonymous
      * 
@@ -83,136 +65,16 @@ public class AuthV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public LoginAnonymousResponse loginAnonymous(
-            Optional<String> appId) throws Exception {
+    public LoginAnonymousResponse loginAnonymous(Optional<String> appId) throws Exception {
         LoginAnonymousRequest request =
             LoginAnonymousRequest
                 .builder()
                 .appId(appId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                LoginAnonymousRequest.class,
-                _baseUrl,
-                "/auth/v1/{appId}/login/anonymous",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "LoginAnonymous", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "LoginAnonymous",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "LoginAnonymous",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "LoginAnonymous",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        LoginAnonymousResponse.Builder _resBuilder = 
-            LoginAnonymousResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        LoginAnonymousResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                PlayerTokenObject _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<PlayerTokenObject>() {});
-                _res.withPlayerTokenObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<LoginAnonymousRequest, LoginAnonymousResponse> operation
+              = new LoginAnonymous.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * LoginGoogle
@@ -222,7 +84,7 @@ public class AuthV1 implements
      * @return The call builder
      */
     public LoginGoogleRequestBuilder loginGoogle() {
-        return new LoginGoogleRequestBuilder(this);
+        return new LoginGoogleRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -234,11 +96,10 @@ public class AuthV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public LoginGoogleResponse loginGoogle(
-            GoogleIdTokenObject googleIdTokenObject) throws Exception {
+    public LoginGoogleResponse loginGoogle(GoogleIdTokenObject googleIdTokenObject) throws Exception {
         return loginGoogle(googleIdTokenObject, Optional.empty());
     }
-    
+
     /**
      * LoginGoogle
      * 
@@ -249,151 +110,17 @@ public class AuthV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public LoginGoogleResponse loginGoogle(
-            GoogleIdTokenObject googleIdTokenObject,
-            Optional<String> appId) throws Exception {
+    public LoginGoogleResponse loginGoogle(GoogleIdTokenObject googleIdTokenObject, Optional<String> appId) throws Exception {
         LoginGoogleRequest request =
             LoginGoogleRequest
                 .builder()
                 .googleIdTokenObject(googleIdTokenObject)
                 .appId(appId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                LoginGoogleRequest.class,
-                _baseUrl,
-                "/auth/v1/{appId}/login/google",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "googleIdTokenObject",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "LoginGoogle", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "LoginGoogle",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "LoginGoogle",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "LoginGoogle",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        LoginGoogleResponse.Builder _resBuilder = 
-            LoginGoogleResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        LoginGoogleResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                PlayerTokenObject _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<PlayerTokenObject>() {});
-                _res.withPlayerTokenObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<LoginGoogleRequest, LoginGoogleResponse> operation
+              = new LoginGoogle.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * LoginNickname
@@ -403,7 +130,7 @@ public class AuthV1 implements
      * @return The call builder
      */
     public LoginNicknameRequestBuilder loginNickname() {
-        return new LoginNicknameRequestBuilder(this);
+        return new LoginNicknameRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -415,11 +142,10 @@ public class AuthV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public LoginNicknameResponse loginNickname(
-            NicknameObject nicknameObject) throws Exception {
+    public LoginNicknameResponse loginNickname(NicknameObject nicknameObject) throws Exception {
         return loginNickname(nicknameObject, Optional.empty());
     }
-    
+
     /**
      * LoginNickname
      * 
@@ -430,148 +156,16 @@ public class AuthV1 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public LoginNicknameResponse loginNickname(
-            NicknameObject nicknameObject,
-            Optional<String> appId) throws Exception {
+    public LoginNicknameResponse loginNickname(NicknameObject nicknameObject, Optional<String> appId) throws Exception {
         LoginNicknameRequest request =
             LoginNicknameRequest
                 .builder()
                 .nicknameObject(nicknameObject)
                 .appId(appId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                LoginNicknameRequest.class,
-                _baseUrl,
-                "/auth/v1/{appId}/login/nickname",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "nicknameObject",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "LoginNickname", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "422", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "LoginNickname",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "LoginNickname",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "LoginNickname",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        LoginNicknameResponse.Builder _resBuilder = 
-            LoginNicknameResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        LoginNicknameResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                PlayerTokenObject _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<PlayerTokenObject>() {});
-                _res.withPlayerTokenObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<LoginNicknameRequest, LoginNicknameResponse> operation
+              = new LoginNickname.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

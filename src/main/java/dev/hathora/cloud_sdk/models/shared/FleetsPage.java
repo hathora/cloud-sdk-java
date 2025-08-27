@@ -10,7 +10,7 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class FleetsPage {
 
@@ -29,9 +29,10 @@ public class FleetsPage {
         return fleets;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public FleetsPage withFleets(List<Fleet> fleets) {
         Utils.checkNotNull(fleets, "fleets");
@@ -39,7 +40,6 @@ public class FleetsPage {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class FleetsPage {
         }
         FleetsPage other = (FleetsPage) o;
         return 
-            Objects.deepEquals(this.fleets, other.fleets);
+            Utils.enhancedDeepEquals(this.fleets, other.fleets);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             fleets);
     }
     
@@ -64,24 +64,28 @@ public class FleetsPage {
         return Utils.toString(FleetsPage.class,
                 "fleets", fleets);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<Fleet> fleets;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder fleets(List<Fleet> fleets) {
             Utils.checkNotNull(fleets, "fleets");
             this.fleets = fleets;
             return this;
         }
-        
+
         public FleetsPage build() {
+
             return new FleetsPage(
                 fleets);
         }
+
     }
 }

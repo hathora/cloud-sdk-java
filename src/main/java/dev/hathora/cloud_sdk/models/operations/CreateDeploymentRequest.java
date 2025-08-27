@@ -10,13 +10,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateDeploymentRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private DeploymentConfigV3 deploymentConfigV3;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
@@ -46,9 +47,10 @@ public class CreateDeploymentRequest {
         return appId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateDeploymentRequest withDeploymentConfigV3(DeploymentConfigV3 deploymentConfigV3) {
         Utils.checkNotNull(deploymentConfigV3, "deploymentConfigV3");
@@ -62,13 +64,13 @@ public class CreateDeploymentRequest {
         return this;
     }
 
+
     public CreateDeploymentRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,15 +81,14 @@ public class CreateDeploymentRequest {
         }
         CreateDeploymentRequest other = (CreateDeploymentRequest) o;
         return 
-            Objects.deepEquals(this.deploymentConfigV3, other.deploymentConfigV3) &&
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.deploymentConfigV3, other.deploymentConfigV3) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            deploymentConfigV3,
-            appId);
+        return Utils.enhancedHash(
+            deploymentConfigV3, appId);
     }
     
     @Override
@@ -96,22 +97,25 @@ public class CreateDeploymentRequest {
                 "deploymentConfigV3", deploymentConfigV3,
                 "appId", appId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private DeploymentConfigV3 deploymentConfigV3;
- 
+
         private Optional<String> appId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder deploymentConfigV3(DeploymentConfigV3 deploymentConfigV3) {
             Utils.checkNotNull(deploymentConfigV3, "deploymentConfigV3");
             this.deploymentConfigV3 = deploymentConfigV3;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -124,11 +128,12 @@ public class CreateDeploymentRequest {
             this.appId = appId;
             return this;
         }
-        
+
         public CreateDeploymentRequest build() {
+
             return new CreateDeploymentRequest(
-                deploymentConfigV3,
-                appId);
+                deploymentConfigV3, appId);
         }
+
     }
 }

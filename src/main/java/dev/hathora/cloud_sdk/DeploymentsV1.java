@@ -3,9 +3,8 @@
  */
 package dev.hathora.cloud_sdk;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.errors.SDKError;
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
 import dev.hathora.cloud_sdk.models.operations.CreateDeploymentV1DeprecatedRequest;
 import dev.hathora.cloud_sdk.models.operations.CreateDeploymentV1DeprecatedRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.CreateDeploymentV1DeprecatedResponse;
@@ -18,39 +17,23 @@ import dev.hathora.cloud_sdk.models.operations.GetDeploymentsV1DeprecatedRespons
 import dev.hathora.cloud_sdk.models.operations.GetLatestDeploymentV1DeprecatedRequest;
 import dev.hathora.cloud_sdk.models.operations.GetLatestDeploymentV1DeprecatedRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetLatestDeploymentV1DeprecatedResponse;
-import dev.hathora.cloud_sdk.models.operations.SDKMethodInterfaces.*;
 import dev.hathora.cloud_sdk.models.shared.DeploymentConfig;
-import dev.hathora.cloud_sdk.models.shared.DeploymentV1;
-import dev.hathora.cloud_sdk.utils.HTTPClient;
-import dev.hathora.cloud_sdk.utils.HTTPRequest;
-import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
-import dev.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
-import dev.hathora.cloud_sdk.utils.SerializedBody;
-import dev.hathora.cloud_sdk.utils.Utils.JsonShape;
-import dev.hathora.cloud_sdk.utils.Utils;
-import java.io.InputStream;
+import dev.hathora.cloud_sdk.operations.CreateDeploymentV1Deprecated;
+import dev.hathora.cloud_sdk.operations.GetDeploymentInfoV1Deprecated;
+import dev.hathora.cloud_sdk.operations.GetDeploymentsV1Deprecated;
+import dev.hathora.cloud_sdk.operations.GetLatestDeploymentV1Deprecated;
 import java.lang.Deprecated;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Optional;
 
-public class DeploymentsV1 implements
-            MethodCallCreateDeploymentV1Deprecated,
-            MethodCallGetDeploymentInfoV1Deprecated,
-            MethodCallGetDeploymentsV1Deprecated,
-            MethodCallGetLatestDeploymentV1Deprecated {
 
+public class DeploymentsV1 {
     private final SDKConfiguration sdkConfiguration;
 
     DeploymentsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
 
     /**
      * CreateDeploymentV1Deprecated
@@ -62,7 +45,7 @@ public class DeploymentsV1 implements
      */
     @Deprecated
     public CreateDeploymentV1DeprecatedRequestBuilder createDeploymentV1Deprecated() {
-        return new CreateDeploymentV1DeprecatedRequestBuilder(this);
+        return new CreateDeploymentV1DeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -77,12 +60,10 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateDeploymentV1DeprecatedResponse createDeploymentV1Deprecated(
-            DeploymentConfig deploymentConfig,
-            int buildId) throws Exception {
+    public CreateDeploymentV1DeprecatedResponse createDeploymentV1Deprecated(DeploymentConfig deploymentConfig, int buildId) throws Exception {
         return createDeploymentV1Deprecated(deploymentConfig, Optional.empty(), buildId);
     }
-    
+
     /**
      * CreateDeploymentV1Deprecated
      * 
@@ -97,8 +78,7 @@ public class DeploymentsV1 implements
      */
     @Deprecated
     public CreateDeploymentV1DeprecatedResponse createDeploymentV1Deprecated(
-            DeploymentConfig deploymentConfig,
-            Optional<String> appId,
+            DeploymentConfig deploymentConfig, Optional<String> appId,
             int buildId) throws Exception {
         CreateDeploymentV1DeprecatedRequest request =
             CreateDeploymentV1DeprecatedRequest
@@ -107,159 +87,10 @@ public class DeploymentsV1 implements
                 .appId(appId)
                 .buildId(buildId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                CreateDeploymentV1DeprecatedRequest.class,
-                _baseUrl,
-                "/deployments/v1/{appId}/create/{buildId}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "deploymentConfig",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "CreateDeploymentV1Deprecated", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "422", "429", "4XX", "500", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "CreateDeploymentV1Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "CreateDeploymentV1Deprecated",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "CreateDeploymentV1Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreateDeploymentV1DeprecatedResponse.Builder _resBuilder = 
-            CreateDeploymentV1DeprecatedResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreateDeploymentV1DeprecatedResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                DeploymentV1 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<DeploymentV1>() {});
-                _res.withDeploymentV1(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CreateDeploymentV1DeprecatedRequest, CreateDeploymentV1DeprecatedResponse> operation
+              = new CreateDeploymentV1Deprecated.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * GetDeploymentInfoV1Deprecated
@@ -271,7 +102,7 @@ public class DeploymentsV1 implements
      */
     @Deprecated
     public GetDeploymentInfoV1DeprecatedRequestBuilder getDeploymentInfoV1Deprecated() {
-        return new GetDeploymentInfoV1DeprecatedRequestBuilder(this);
+        return new GetDeploymentInfoV1DeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -285,11 +116,10 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetDeploymentInfoV1DeprecatedResponse getDeploymentInfoV1Deprecated(
-            int deploymentId) throws Exception {
+    public GetDeploymentInfoV1DeprecatedResponse getDeploymentInfoV1Deprecated(int deploymentId) throws Exception {
         return getDeploymentInfoV1Deprecated(Optional.empty(), deploymentId);
     }
-    
+
     /**
      * GetDeploymentInfoV1Deprecated
      * 
@@ -302,141 +132,17 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetDeploymentInfoV1DeprecatedResponse getDeploymentInfoV1Deprecated(
-            Optional<String> appId,
-            int deploymentId) throws Exception {
+    public GetDeploymentInfoV1DeprecatedResponse getDeploymentInfoV1Deprecated(Optional<String> appId, int deploymentId) throws Exception {
         GetDeploymentInfoV1DeprecatedRequest request =
             GetDeploymentInfoV1DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .deploymentId(deploymentId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                GetDeploymentInfoV1DeprecatedRequest.class,
-                _baseUrl,
-                "/deployments/v1/{appId}/info/{deploymentId}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetDeploymentInfoV1Deprecated", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetDeploymentInfoV1Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetDeploymentInfoV1Deprecated",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetDeploymentInfoV1Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetDeploymentInfoV1DeprecatedResponse.Builder _resBuilder = 
-            GetDeploymentInfoV1DeprecatedResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetDeploymentInfoV1DeprecatedResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                DeploymentV1 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<DeploymentV1>() {});
-                _res.withDeploymentV1(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetDeploymentInfoV1DeprecatedRequest, GetDeploymentInfoV1DeprecatedResponse> operation
+              = new GetDeploymentInfoV1Deprecated.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * GetDeploymentsV1Deprecated
@@ -448,7 +154,7 @@ public class DeploymentsV1 implements
      */
     @Deprecated
     public GetDeploymentsV1DeprecatedRequestBuilder getDeploymentsV1Deprecated() {
-        return new GetDeploymentsV1DeprecatedRequestBuilder(this);
+        return new GetDeploymentsV1DeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -464,7 +170,7 @@ public class DeploymentsV1 implements
     public GetDeploymentsV1DeprecatedResponse getDeploymentsV1DeprecatedDirect() throws Exception {
         return getDeploymentsV1Deprecated(Optional.empty());
     }
-    
+
     /**
      * GetDeploymentsV1Deprecated
      * 
@@ -476,139 +182,16 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetDeploymentsV1DeprecatedResponse getDeploymentsV1Deprecated(
-            Optional<String> appId) throws Exception {
+    public GetDeploymentsV1DeprecatedResponse getDeploymentsV1Deprecated(Optional<String> appId) throws Exception {
         GetDeploymentsV1DeprecatedRequest request =
             GetDeploymentsV1DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                GetDeploymentsV1DeprecatedRequest.class,
-                _baseUrl,
-                "/deployments/v1/{appId}/list",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetDeploymentsV1Deprecated", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetDeploymentsV1Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetDeploymentsV1Deprecated",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetDeploymentsV1Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetDeploymentsV1DeprecatedResponse.Builder _resBuilder = 
-            GetDeploymentsV1DeprecatedResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetDeploymentsV1DeprecatedResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                List<DeploymentV1> _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<List<DeploymentV1>>() {});
-                _res.withClasses(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetDeploymentsV1DeprecatedRequest, GetDeploymentsV1DeprecatedResponse> operation
+              = new GetDeploymentsV1Deprecated.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
-
-
 
     /**
      * GetLatestDeploymentV1Deprecated
@@ -620,7 +203,7 @@ public class DeploymentsV1 implements
      */
     @Deprecated
     public GetLatestDeploymentV1DeprecatedRequestBuilder getLatestDeploymentV1Deprecated() {
-        return new GetLatestDeploymentV1DeprecatedRequestBuilder(this);
+        return new GetLatestDeploymentV1DeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -636,7 +219,7 @@ public class DeploymentsV1 implements
     public GetLatestDeploymentV1DeprecatedResponse getLatestDeploymentV1DeprecatedDirect() throws Exception {
         return getLatestDeploymentV1Deprecated(Optional.empty());
     }
-    
+
     /**
      * GetLatestDeploymentV1Deprecated
      * 
@@ -648,136 +231,15 @@ public class DeploymentsV1 implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetLatestDeploymentV1DeprecatedResponse getLatestDeploymentV1Deprecated(
-            Optional<String> appId) throws Exception {
+    public GetLatestDeploymentV1DeprecatedResponse getLatestDeploymentV1Deprecated(Optional<String> appId) throws Exception {
         GetLatestDeploymentV1DeprecatedRequest request =
             GetLatestDeploymentV1DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                GetLatestDeploymentV1DeprecatedRequest.class,
-                _baseUrl,
-                "/deployments/v1/{appId}/latest",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "GetLatestDeploymentV1Deprecated", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetLatestDeploymentV1Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "GetLatestDeploymentV1Deprecated",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "GetLatestDeploymentV1Deprecated",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetLatestDeploymentV1DeprecatedResponse.Builder _resBuilder = 
-            GetLatestDeploymentV1DeprecatedResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetLatestDeploymentV1DeprecatedResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                DeploymentV1 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<DeploymentV1>() {});
-                _res.withDeploymentV1(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401", "404", "422", "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ApiError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ApiError>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetLatestDeploymentV1DeprecatedRequest, GetLatestDeploymentV1DeprecatedResponse> operation
+              = new GetLatestDeploymentV1Deprecated.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

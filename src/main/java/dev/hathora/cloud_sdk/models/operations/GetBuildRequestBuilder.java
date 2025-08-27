@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetBuild;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetBuildRequestBuilder {
 
     private String buildId;
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetBuild sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetBuildRequestBuilder(SDKMethodInterfaces.MethodCallGetBuild sdk) {
-        this.sdk = sdk;
+    public GetBuildRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetBuildRequestBuilder buildId(String buildId) {
@@ -36,10 +40,21 @@ public class GetBuildRequestBuilder {
         return this;
     }
 
-    public GetBuildResponse call() throws Exception {
 
-        return sdk.getBuild(
-            buildId,
+    private GetBuildRequest buildRequest() {
+
+        GetBuildRequest request = new GetBuildRequest(buildId,
             orgId);
+
+        return request;
+    }
+
+    public GetBuildResponse call() throws Exception {
+        
+        RequestOperation<GetBuildRequest, GetBuildResponse> operation
+              = new GetBuild.Sync(sdkConfiguration);
+        GetBuildRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

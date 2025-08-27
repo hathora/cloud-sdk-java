@@ -5,40 +5,41 @@ package dev.hathora.cloud_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import dev.hathora.cloud_sdk.models.shared.CreateAppConfig;
 import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateAppRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private AppConfig appConfig;
+    private CreateAppConfig createAppConfig;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
     private Optional<String> orgId;
 
     @JsonCreator
     public CreateAppRequest(
-            AppConfig appConfig,
+            CreateAppConfig createAppConfig,
             Optional<String> orgId) {
-        Utils.checkNotNull(appConfig, "appConfig");
+        Utils.checkNotNull(createAppConfig, "createAppConfig");
         Utils.checkNotNull(orgId, "orgId");
-        this.appConfig = appConfig;
+        this.createAppConfig = createAppConfig;
         this.orgId = orgId;
     }
     
     public CreateAppRequest(
-            AppConfig appConfig) {
-        this(appConfig, Optional.empty());
+            CreateAppConfig createAppConfig) {
+        this(createAppConfig, Optional.empty());
     }
 
     @JsonIgnore
-    public AppConfig appConfig() {
-        return appConfig;
+    public CreateAppConfig createAppConfig() {
+        return createAppConfig;
     }
 
     @JsonIgnore
@@ -46,13 +47,14 @@ public class CreateAppRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    public CreateAppRequest withAppConfig(AppConfig appConfig) {
-        Utils.checkNotNull(appConfig, "appConfig");
-        this.appConfig = appConfig;
+
+    public CreateAppRequest withCreateAppConfig(CreateAppConfig createAppConfig) {
+        Utils.checkNotNull(createAppConfig, "createAppConfig");
+        this.createAppConfig = createAppConfig;
         return this;
     }
 
@@ -62,13 +64,13 @@ public class CreateAppRequest {
         return this;
     }
 
+
     public CreateAppRequest withOrgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,39 +81,41 @@ public class CreateAppRequest {
         }
         CreateAppRequest other = (CreateAppRequest) o;
         return 
-            Objects.deepEquals(this.appConfig, other.appConfig) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.createAppConfig, other.createAppConfig) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appConfig,
-            orgId);
+        return Utils.enhancedHash(
+            createAppConfig, orgId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateAppRequest.class,
-                "appConfig", appConfig,
+                "createAppConfig", createAppConfig,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
-        private AppConfig appConfig;
- 
+
+        private CreateAppConfig createAppConfig;
+
         private Optional<String> orgId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder appConfig(AppConfig appConfig) {
-            Utils.checkNotNull(appConfig, "appConfig");
-            this.appConfig = appConfig;
+
+        public Builder createAppConfig(CreateAppConfig createAppConfig) {
+            Utils.checkNotNull(createAppConfig, "createAppConfig");
+            this.createAppConfig = createAppConfig;
             return this;
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -124,11 +128,12 @@ public class CreateAppRequest {
             this.orgId = orgId;
             return this;
         }
-        
+
         public CreateAppRequest build() {
+
             return new CreateAppRequest(
-                appConfig,
-                orgId);
+                createAppConfig, orgId);
         }
+
     }
 }
