@@ -12,11 +12,10 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateOrgToken {
 
+public class CreateOrgToken {
     /**
      * Readable name for a token. Must be unique within an organization.
      */
@@ -62,9 +61,10 @@ public class CreateOrgToken {
         return (Optional<Scopes>) scopes;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Readable name for a token. Must be unique within an organization.
@@ -84,6 +84,7 @@ public class CreateOrgToken {
         return this;
     }
 
+
     /**
      * If not defined, the token has Admin access.
      */
@@ -93,7 +94,6 @@ public class CreateOrgToken {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -104,15 +104,14 @@ public class CreateOrgToken {
         }
         CreateOrgToken other = (CreateOrgToken) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.scopes, other.scopes);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            scopes);
+        return Utils.enhancedHash(
+            name, scopes);
     }
     
     @Override
@@ -121,16 +120,18 @@ public class CreateOrgToken {
                 "name", name,
                 "scopes", scopes);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private Optional<? extends Scopes> scopes = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Readable name for a token. Must be unique within an organization.
@@ -140,6 +141,7 @@ public class CreateOrgToken {
             this.name = name;
             return this;
         }
+
 
         /**
          * If not defined, the token has Admin access.
@@ -158,11 +160,12 @@ public class CreateOrgToken {
             this.scopes = scopes;
             return this;
         }
-        
+
         public CreateOrgToken build() {
+
             return new CreateOrgToken(
-                name,
-                scopes);
+                name, scopes);
         }
+
     }
 }

@@ -11,8 +11,8 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ListActivePublicLobbiesRequest {
 
@@ -53,15 +53,17 @@ public class ListActivePublicLobbiesRequest {
         return (Optional<Region>) region;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListActivePublicLobbiesRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     public ListActivePublicLobbiesRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
@@ -78,6 +80,7 @@ public class ListActivePublicLobbiesRequest {
         return this;
     }
 
+
     /**
      * If omitted, active public lobbies in all regions will be returned.
      */
@@ -87,7 +90,6 @@ public class ListActivePublicLobbiesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -98,15 +100,14 @@ public class ListActivePublicLobbiesRequest {
         }
         ListActivePublicLobbiesRequest other = (ListActivePublicLobbiesRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            region);
+        return Utils.enhancedHash(
+            appId, region);
     }
     
     @Override
@@ -115,16 +116,18 @@ public class ListActivePublicLobbiesRequest {
                 "appId", appId,
                 "region", region);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<? extends Region> region = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -137,6 +140,7 @@ public class ListActivePublicLobbiesRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * If omitted, active public lobbies in all regions will be returned.
@@ -155,11 +159,12 @@ public class ListActivePublicLobbiesRequest {
             this.region = region;
             return this;
         }
-        
+
         public ListActivePublicLobbiesRequest build() {
+
             return new ListActivePublicLobbiesRequest(
-                appId,
-                region);
+                appId, region);
         }
+
     }
 }

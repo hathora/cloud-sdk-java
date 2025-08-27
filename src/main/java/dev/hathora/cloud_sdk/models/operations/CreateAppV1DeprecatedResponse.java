@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateAppV1DeprecatedResponse implements Response {
 
@@ -56,7 +56,8 @@ public class CreateAppV1DeprecatedResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, statusCode, rawResponse);
+        this(Optional.empty(), contentType, statusCode,
+            rawResponse);
     }
 
     @SuppressWarnings("unchecked")
@@ -89,15 +90,17 @@ public class CreateAppV1DeprecatedResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateAppV1DeprecatedResponse withApplication(Application application) {
         Utils.checkNotNull(application, "application");
         this.application = Optional.ofNullable(application);
         return this;
     }
+
 
     public CreateAppV1DeprecatedResponse withApplication(Optional<? extends Application> application) {
         Utils.checkNotNull(application, "application");
@@ -132,7 +135,6 @@ public class CreateAppV1DeprecatedResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -143,18 +145,16 @@ public class CreateAppV1DeprecatedResponse implements Response {
         }
         CreateAppV1DeprecatedResponse other = (CreateAppV1DeprecatedResponse) o;
         return 
-            Objects.deepEquals(this.application, other.application) &&
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.application, other.application) &&
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            application,
-            contentType,
-            statusCode,
+        return Utils.enhancedHash(
+            application, contentType, statusCode,
             rawResponse);
     }
     
@@ -166,20 +166,22 @@ public class CreateAppV1DeprecatedResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Application> application = Optional.empty();
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder application(Application application) {
             Utils.checkNotNull(application, "application");
@@ -193,6 +195,7 @@ public class CreateAppV1DeprecatedResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response content type for this operation
          */
@@ -201,6 +204,7 @@ public class CreateAppV1DeprecatedResponse implements Response {
             this.contentType = contentType;
             return this;
         }
+
 
         /**
          * HTTP response status code for this operation
@@ -211,6 +215,7 @@ public class CreateAppV1DeprecatedResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -219,13 +224,13 @@ public class CreateAppV1DeprecatedResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public CreateAppV1DeprecatedResponse build() {
+
             return new CreateAppV1DeprecatedResponse(
-                application,
-                contentType,
-                statusCode,
+                application, contentType, statusCode,
                 rawResponse);
         }
+
     }
 }

@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.AppConfigWithServiceConfig;
+import dev.hathora.cloud_sdk.operations.UpdateApp;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class UpdateAppRequestBuilder {
 
     private AppConfigWithServiceConfig appConfigWithServiceConfig;
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallUpdateApp sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateAppRequestBuilder(SDKMethodInterfaces.MethodCallUpdateApp sdk) {
-        this.sdk = sdk;
+    public UpdateAppRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateAppRequestBuilder appConfigWithServiceConfig(AppConfigWithServiceConfig appConfigWithServiceConfig) {
@@ -37,10 +41,21 @@ public class UpdateAppRequestBuilder {
         return this;
     }
 
-    public UpdateAppResponse call() throws Exception {
 
-        return sdk.updateApp(
-            appConfigWithServiceConfig,
+    private UpdateAppRequest buildRequest() {
+
+        UpdateAppRequest request = new UpdateAppRequest(appConfigWithServiceConfig,
             appId);
+
+        return request;
+    }
+
+    public UpdateAppResponse call() throws Exception {
+        
+        RequestOperation<UpdateAppRequest, UpdateAppResponse> operation
+              = new UpdateApp.Sync(sdkConfiguration);
+        UpdateAppRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

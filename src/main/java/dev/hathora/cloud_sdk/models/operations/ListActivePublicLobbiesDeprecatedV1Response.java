@@ -15,11 +15,10 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ListActivePublicLobbiesDeprecatedV1Response implements Response {
 
+public class ListActivePublicLobbiesDeprecatedV1Response implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -60,7 +59,8 @@ public class ListActivePublicLobbiesDeprecatedV1Response implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty());
     }
 
     /**
@@ -96,9 +96,10 @@ public class ListActivePublicLobbiesDeprecatedV1Response implements Response {
         return (Optional<List<Lobby>>) classes;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -136,6 +137,7 @@ public class ListActivePublicLobbiesDeprecatedV1Response implements Response {
         return this;
     }
 
+
     /**
      * Ok
      */
@@ -145,7 +147,6 @@ public class ListActivePublicLobbiesDeprecatedV1Response implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -156,18 +157,16 @@ public class ListActivePublicLobbiesDeprecatedV1Response implements Response {
         }
         ListActivePublicLobbiesDeprecatedV1Response other = (ListActivePublicLobbiesDeprecatedV1Response) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.classes, other.classes);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
+            Utils.enhancedDeepEquals(this.classes, other.classes);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            statusCode,
-            rawResponse,
+        return Utils.enhancedHash(
+            contentType, statusCode, rawResponse,
             classes);
     }
     
@@ -179,20 +178,22 @@ public class ListActivePublicLobbiesDeprecatedV1Response implements Response {
                 "rawResponse", rawResponse,
                 "classes", classes);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<? extends List<Lobby>> classes = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -203,6 +204,7 @@ public class ListActivePublicLobbiesDeprecatedV1Response implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -212,6 +214,7 @@ public class ListActivePublicLobbiesDeprecatedV1Response implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -220,6 +223,7 @@ public class ListActivePublicLobbiesDeprecatedV1Response implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * Ok
@@ -238,13 +242,13 @@ public class ListActivePublicLobbiesDeprecatedV1Response implements Response {
             this.classes = classes;
             return this;
         }
-        
+
         public ListActivePublicLobbiesDeprecatedV1Response build() {
+
             return new ListActivePublicLobbiesDeprecatedV1Response(
-                contentType,
-                statusCode,
-                rawResponse,
+                contentType, statusCode, rawResponse,
                 classes);
         }
+
     }
 }

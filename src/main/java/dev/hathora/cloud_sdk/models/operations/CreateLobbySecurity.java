@@ -10,7 +10,7 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class CreateLobbySecurity implements HasSecurity {
 
@@ -29,9 +29,10 @@ public class CreateLobbySecurity implements HasSecurity {
         return playerAuth;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateLobbySecurity withPlayerAuth(String playerAuth) {
         Utils.checkNotNull(playerAuth, "playerAuth");
@@ -39,7 +40,6 @@ public class CreateLobbySecurity implements HasSecurity {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class CreateLobbySecurity implements HasSecurity {
         }
         CreateLobbySecurity other = (CreateLobbySecurity) o;
         return 
-            Objects.deepEquals(this.playerAuth, other.playerAuth);
+            Utils.enhancedDeepEquals(this.playerAuth, other.playerAuth);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             playerAuth);
     }
     
@@ -64,24 +64,28 @@ public class CreateLobbySecurity implements HasSecurity {
         return Utils.toString(CreateLobbySecurity.class,
                 "playerAuth", playerAuth);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String playerAuth;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder playerAuth(String playerAuth) {
             Utils.checkNotNull(playerAuth, "playerAuth");
             this.playerAuth = playerAuth;
             return this;
         }
-        
+
         public CreateLobbySecurity build() {
+
             return new CreateLobbySecurity(
                 playerAuth);
         }
+
     }
 }

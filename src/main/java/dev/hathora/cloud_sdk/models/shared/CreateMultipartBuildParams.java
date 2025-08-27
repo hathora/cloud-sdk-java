@@ -12,17 +12,17 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateMultipartBuildParams {
 
+public class CreateMultipartBuildParams {
     /**
      * System generated id for a build. Can also be user defined when creating a build.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buildId")
     private Optional<String> buildId;
+
 
     @JsonProperty("buildSizeInBytes")
     private double buildSizeInBytes;
@@ -73,9 +73,10 @@ public class CreateMultipartBuildParams {
         return buildTag;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * System generated id for a build. Can also be user defined when creating a build.
@@ -85,6 +86,7 @@ public class CreateMultipartBuildParams {
         this.buildId = Optional.ofNullable(buildId);
         return this;
     }
+
 
     /**
      * System generated id for a build. Can also be user defined when creating a build.
@@ -110,6 +112,7 @@ public class CreateMultipartBuildParams {
         return this;
     }
 
+
     /**
      * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
      */
@@ -119,7 +122,6 @@ public class CreateMultipartBuildParams {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -130,17 +132,15 @@ public class CreateMultipartBuildParams {
         }
         CreateMultipartBuildParams other = (CreateMultipartBuildParams) o;
         return 
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.buildSizeInBytes, other.buildSizeInBytes) &&
-            Objects.deepEquals(this.buildTag, other.buildTag);
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.buildSizeInBytes, other.buildSizeInBytes) &&
+            Utils.enhancedDeepEquals(this.buildTag, other.buildTag);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            buildId,
-            buildSizeInBytes,
-            buildTag);
+        return Utils.enhancedHash(
+            buildId, buildSizeInBytes, buildTag);
     }
     
     @Override
@@ -150,18 +150,20 @@ public class CreateMultipartBuildParams {
                 "buildSizeInBytes", buildSizeInBytes,
                 "buildTag", buildTag);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> buildId = Optional.empty();
- 
+
         private Double buildSizeInBytes;
- 
+
         private Optional<String> buildTag = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * System generated id for a build. Can also be user defined when creating a build.
@@ -181,11 +183,13 @@ public class CreateMultipartBuildParams {
             return this;
         }
 
+
         public Builder buildSizeInBytes(double buildSizeInBytes) {
             Utils.checkNotNull(buildSizeInBytes, "buildSizeInBytes");
             this.buildSizeInBytes = buildSizeInBytes;
             return this;
         }
+
 
         /**
          * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
@@ -204,12 +208,12 @@ public class CreateMultipartBuildParams {
             this.buildTag = buildTag;
             return this;
         }
-        
+
         public CreateMultipartBuildParams build() {
+
             return new CreateMultipartBuildParams(
-                buildId,
-                buildSizeInBytes,
-                buildTag);
+                buildId, buildSizeInBytes, buildTag);
         }
+
     }
 }

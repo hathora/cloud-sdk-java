@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.DestroyRoom;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class DestroyRoomRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String roomId;
-    private final SDKMethodInterfaces.MethodCallDestroyRoom sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DestroyRoomRequestBuilder(SDKMethodInterfaces.MethodCallDestroyRoom sdk) {
-        this.sdk = sdk;
+    public DestroyRoomRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public DestroyRoomRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class DestroyRoomRequestBuilder {
         return this;
     }
 
-    public DestroyRoomResponse call() throws Exception {
 
-        return sdk.destroyRoom(
-            appId,
+    private DestroyRoomRequest buildRequest() {
+
+        DestroyRoomRequest request = new DestroyRoomRequest(appId,
             roomId);
+
+        return request;
+    }
+
+    public DestroyRoomResponse call() throws Exception {
+        
+        RequestOperation<DestroyRoomRequest, DestroyRoomResponse> operation
+              = new DestroyRoom.Sync(sdkConfiguration);
+        DestroyRoomRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

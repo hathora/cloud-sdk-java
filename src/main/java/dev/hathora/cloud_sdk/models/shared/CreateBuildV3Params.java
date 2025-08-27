@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateBuildV3Params {
 
+public class CreateBuildV3Params {
     /**
      * System generated id for a build. Can also be user defined when creating a build.
      */
@@ -60,9 +59,10 @@ public class CreateBuildV3Params {
         return buildTag;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * System generated id for a build. Can also be user defined when creating a build.
@@ -72,6 +72,7 @@ public class CreateBuildV3Params {
         this.buildId = Optional.ofNullable(buildId);
         return this;
     }
+
 
     /**
      * System generated id for a build. Can also be user defined when creating a build.
@@ -91,6 +92,7 @@ public class CreateBuildV3Params {
         return this;
     }
 
+
     /**
      * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
      */
@@ -100,7 +102,6 @@ public class CreateBuildV3Params {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,15 +112,14 @@ public class CreateBuildV3Params {
         }
         CreateBuildV3Params other = (CreateBuildV3Params) o;
         return 
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.buildTag, other.buildTag);
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.buildTag, other.buildTag);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            buildId,
-            buildTag);
+        return Utils.enhancedHash(
+            buildId, buildTag);
     }
     
     @Override
@@ -128,16 +128,18 @@ public class CreateBuildV3Params {
                 "buildId", buildId,
                 "buildTag", buildTag);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> buildId = Optional.empty();
- 
+
         private Optional<String> buildTag = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * System generated id for a build. Can also be user defined when creating a build.
@@ -157,6 +159,7 @@ public class CreateBuildV3Params {
             return this;
         }
 
+
         /**
          * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
          */
@@ -174,11 +177,12 @@ public class CreateBuildV3Params {
             this.buildTag = buildTag;
             return this;
         }
-        
+
         public CreateBuildV3Params build() {
+
             return new CreateBuildV3Params(
-                buildId,
-                buildTag);
+                buildId, buildTag);
         }
+
     }
 }

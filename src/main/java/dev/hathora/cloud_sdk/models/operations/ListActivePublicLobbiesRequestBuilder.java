@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.operations.ListActivePublicLobbies;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class ListActivePublicLobbiesRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private Optional<? extends Region> region = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListActivePublicLobbies sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListActivePublicLobbiesRequestBuilder(SDKMethodInterfaces.MethodCallListActivePublicLobbies sdk) {
-        this.sdk = sdk;
+    public ListActivePublicLobbiesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ListActivePublicLobbiesRequestBuilder appId(String appId) {
@@ -43,10 +47,21 @@ public class ListActivePublicLobbiesRequestBuilder {
         return this;
     }
 
-    public ListActivePublicLobbiesResponse call() throws Exception {
 
-        return sdk.listActivePublicLobbies(
-            appId,
+    private ListActivePublicLobbiesRequest buildRequest() {
+
+        ListActivePublicLobbiesRequest request = new ListActivePublicLobbiesRequest(appId,
             region);
+
+        return request;
+    }
+
+    public ListActivePublicLobbiesResponse call() throws Exception {
+        
+        RequestOperation<ListActivePublicLobbiesRequest, ListActivePublicLobbiesResponse> operation
+              = new ListActivePublicLobbies.Sync(sdkConfiguration);
+        ListActivePublicLobbiesRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

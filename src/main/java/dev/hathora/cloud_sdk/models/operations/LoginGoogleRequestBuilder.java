@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.GoogleIdTokenObject;
+import dev.hathora.cloud_sdk.operations.LoginGoogle;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class LoginGoogleRequestBuilder {
 
     private GoogleIdTokenObject googleIdTokenObject;
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallLoginGoogle sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public LoginGoogleRequestBuilder(SDKMethodInterfaces.MethodCallLoginGoogle sdk) {
-        this.sdk = sdk;
+    public LoginGoogleRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public LoginGoogleRequestBuilder googleIdTokenObject(GoogleIdTokenObject googleIdTokenObject) {
@@ -37,10 +41,21 @@ public class LoginGoogleRequestBuilder {
         return this;
     }
 
-    public LoginGoogleResponse call() throws Exception {
 
-        return sdk.loginGoogle(
-            googleIdTokenObject,
+    private LoginGoogleRequest buildRequest() {
+
+        LoginGoogleRequest request = new LoginGoogleRequest(googleIdTokenObject,
             appId);
+
+        return request;
+    }
+
+    public LoginGoogleResponse call() throws Exception {
+        
+        RequestOperation<LoginGoogleRequest, LoginGoogleResponse> operation
+              = new LoginGoogle.Sync(sdkConfiguration);
+        LoginGoogleRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.operations.GetRunningProcesses;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class GetRunningProcessesRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private Optional<? extends Region> region = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetRunningProcesses sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetRunningProcessesRequestBuilder(SDKMethodInterfaces.MethodCallGetRunningProcesses sdk) {
-        this.sdk = sdk;
+    public GetRunningProcessesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetRunningProcessesRequestBuilder appId(String appId) {
@@ -43,10 +47,21 @@ public class GetRunningProcessesRequestBuilder {
         return this;
     }
 
-    public GetRunningProcessesResponse call() throws Exception {
 
-        return sdk.getRunningProcesses(
-            appId,
+    private GetRunningProcessesRequest buildRequest() {
+
+        GetRunningProcessesRequest request = new GetRunningProcessesRequest(appId,
             region);
+
+        return request;
+    }
+
+    public GetRunningProcessesResponse call() throws Exception {
+        
+        RequestOperation<GetRunningProcessesRequest, GetRunningProcessesResponse> operation
+              = new GetRunningProcesses.Sync(sdkConfiguration);
+        GetRunningProcessesRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

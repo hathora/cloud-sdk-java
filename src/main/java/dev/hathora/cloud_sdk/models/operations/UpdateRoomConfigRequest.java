@@ -10,16 +10,18 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class UpdateRoomConfigRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private UpdateRoomConfigParams updateRoomConfigParams;
 
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=roomId")
     private String roomId;
@@ -58,9 +60,10 @@ public class UpdateRoomConfigRequest {
         return roomId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateRoomConfigRequest withUpdateRoomConfigParams(UpdateRoomConfigParams updateRoomConfigParams) {
         Utils.checkNotNull(updateRoomConfigParams, "updateRoomConfigParams");
@@ -74,6 +77,7 @@ public class UpdateRoomConfigRequest {
         return this;
     }
 
+
     public UpdateRoomConfigRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
@@ -86,7 +90,6 @@ public class UpdateRoomConfigRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,17 +100,15 @@ public class UpdateRoomConfigRequest {
         }
         UpdateRoomConfigRequest other = (UpdateRoomConfigRequest) o;
         return 
-            Objects.deepEquals(this.updateRoomConfigParams, other.updateRoomConfigParams) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.roomId, other.roomId);
+            Utils.enhancedDeepEquals(this.updateRoomConfigParams, other.updateRoomConfigParams) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            updateRoomConfigParams,
-            appId,
-            roomId);
+        return Utils.enhancedHash(
+            updateRoomConfigParams, appId, roomId);
     }
     
     @Override
@@ -117,24 +118,27 @@ public class UpdateRoomConfigRequest {
                 "appId", appId,
                 "roomId", roomId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private UpdateRoomConfigParams updateRoomConfigParams;
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String roomId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder updateRoomConfigParams(UpdateRoomConfigParams updateRoomConfigParams) {
             Utils.checkNotNull(updateRoomConfigParams, "updateRoomConfigParams");
             this.updateRoomConfigParams = updateRoomConfigParams;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -148,17 +152,18 @@ public class UpdateRoomConfigRequest {
             return this;
         }
 
+
         public Builder roomId(String roomId) {
             Utils.checkNotNull(roomId, "roomId");
             this.roomId = roomId;
             return this;
         }
-        
+
         public UpdateRoomConfigRequest build() {
+
             return new UpdateRoomConfigRequest(
-                updateRoomConfigParams,
-                appId,
-                roomId);
+                updateRoomConfigParams, appId, roomId);
         }
+
     }
 }

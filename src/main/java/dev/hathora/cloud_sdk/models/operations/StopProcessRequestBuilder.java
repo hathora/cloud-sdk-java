@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.StopProcess;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class StopProcessRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String processId;
-    private final SDKMethodInterfaces.MethodCallStopProcess sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public StopProcessRequestBuilder(SDKMethodInterfaces.MethodCallStopProcess sdk) {
-        this.sdk = sdk;
+    public StopProcessRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public StopProcessRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class StopProcessRequestBuilder {
         return this;
     }
 
-    public StopProcessResponse call() throws Exception {
 
-        return sdk.stopProcess(
-            appId,
+    private StopProcessRequest buildRequest() {
+
+        StopProcessRequest request = new StopProcessRequest(appId,
             processId);
+
+        return request;
+    }
+
+    public StopProcessResponse call() throws Exception {
+        
+        RequestOperation<StopProcessRequest, StopProcessResponse> operation
+              = new StopProcess.Sync(sdkConfiguration);
+        StopProcessRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

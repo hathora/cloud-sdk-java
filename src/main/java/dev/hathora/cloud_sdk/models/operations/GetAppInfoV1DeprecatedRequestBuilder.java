@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetAppInfoV1Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class GetAppInfoV1DeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetAppInfoV1Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetAppInfoV1DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallGetAppInfoV1Deprecated sdk) {
-        this.sdk = sdk;
+    public GetAppInfoV1DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetAppInfoV1DeprecatedRequestBuilder appId(String appId) {
@@ -29,9 +33,20 @@ public class GetAppInfoV1DeprecatedRequestBuilder {
         return this;
     }
 
-    public GetAppInfoV1DeprecatedResponse call() throws Exception {
 
-        return sdk.getAppInfoV1Deprecated(
-            appId);
+    private GetAppInfoV1DeprecatedRequest buildRequest() {
+
+        GetAppInfoV1DeprecatedRequest request = new GetAppInfoV1DeprecatedRequest(appId);
+
+        return request;
+    }
+
+    public GetAppInfoV1DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<GetAppInfoV1DeprecatedRequest, GetAppInfoV1DeprecatedResponse> operation
+              = new GetAppInfoV1Deprecated.Sync(sdkConfiguration);
+        GetAppInfoV1DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

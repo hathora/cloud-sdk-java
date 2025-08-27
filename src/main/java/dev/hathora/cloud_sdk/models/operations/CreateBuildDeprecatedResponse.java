@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateBuildDeprecatedResponse implements Response {
 
@@ -56,7 +56,8 @@ public class CreateBuildDeprecatedResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, statusCode, rawResponse);
+        this(Optional.empty(), contentType, statusCode,
+            rawResponse);
     }
 
     @SuppressWarnings("unchecked")
@@ -89,15 +90,17 @@ public class CreateBuildDeprecatedResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateBuildDeprecatedResponse withBuild(Build build) {
         Utils.checkNotNull(build, "build");
         this.build = Optional.ofNullable(build);
         return this;
     }
+
 
     public CreateBuildDeprecatedResponse withBuild(Optional<? extends Build> build) {
         Utils.checkNotNull(build, "build");
@@ -132,7 +135,6 @@ public class CreateBuildDeprecatedResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -143,18 +145,16 @@ public class CreateBuildDeprecatedResponse implements Response {
         }
         CreateBuildDeprecatedResponse other = (CreateBuildDeprecatedResponse) o;
         return 
-            Objects.deepEquals(this.build, other.build) &&
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.build, other.build) &&
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            build,
-            contentType,
-            statusCode,
+        return Utils.enhancedHash(
+            build, contentType, statusCode,
             rawResponse);
     }
     
@@ -166,20 +166,22 @@ public class CreateBuildDeprecatedResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Build> build = Optional.empty();
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder build(Build build) {
             Utils.checkNotNull(build, "build");
@@ -193,6 +195,7 @@ public class CreateBuildDeprecatedResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response content type for this operation
          */
@@ -201,6 +204,7 @@ public class CreateBuildDeprecatedResponse implements Response {
             this.contentType = contentType;
             return this;
         }
+
 
         /**
          * HTTP response status code for this operation
@@ -211,6 +215,7 @@ public class CreateBuildDeprecatedResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -219,13 +224,13 @@ public class CreateBuildDeprecatedResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public CreateBuildDeprecatedResponse build() {
+
             return new CreateBuildDeprecatedResponse(
-                build,
-                contentType,
-                statusCode,
+                build, contentType, statusCode,
                 rawResponse);
         }
+
     }
 }

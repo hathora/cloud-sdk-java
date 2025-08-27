@@ -3,6 +3,7 @@ generation:
   sdkClassName: Hathora-Cloud
   usageSnippets:
     optionalPropertyRendering: withExample
+    sdkInitStyle: constructor
   fixes:
     nameResolutionFeb2025: false
     parameterOrderingFeb2024: false
@@ -12,21 +13,28 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
+  tests:
+    generateTests: true
+    generateNewTests: false
+    skipResponseBodyAssertions: false
   baseServerURL: ""
   flattenGlobalSecurity: true
 java:
-  version: 3.1.10
+  version: 3.2.0
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter-api:5.8.1
     - testRuntimeOnly:org.junit.jupiter:junit-jupiter-engine:5.8.1
     - implementation:org.java-websocket:Java-WebSocket:1.5.6
   additionalPlugins: []
   artifactID: cloud-sdk
+  baseErrorName: HathoraCloudException
   clientServerStatusCodesAsErrors: true
   companyEmail: hello@hathora.dev
   companyName: Hathora
   companyURL: https://hathora.dev/
   defaultErrorName: SDKError
+  enableAsync: false
+  enableCustomCodeRegions: false
   flattenGlobalSecurity: false
   githubURL: github.com/hathora/cloud-sdk-java
   groupID: dev.hathora
@@ -39,11 +47,13 @@ java:
       shared: models/shared
       webhooks: models/webhooks
   inputModelSuffix: input
+  languageVersion: 11
   license:
     name: The MIT License (MIT)
     shortName: MIT
     url: https://mit-license.org/
   maxMethodParams: 3
+  nullFriendlyParameters: false
   outputModelSuffix: output
   projectName: Hathora-Cloud
   templateVersion: v2

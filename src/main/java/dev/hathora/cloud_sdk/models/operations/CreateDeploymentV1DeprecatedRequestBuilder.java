@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.DeploymentConfig;
+import dev.hathora.cloud_sdk.operations.CreateDeploymentV1Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.Integer;
@@ -15,10 +19,10 @@ public class CreateDeploymentV1DeprecatedRequestBuilder {
     private DeploymentConfig deploymentConfig;
     private Optional<String> appId = Optional.empty();
     private Integer buildId;
-    private final SDKMethodInterfaces.MethodCallCreateDeploymentV1Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateDeploymentV1DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallCreateDeploymentV1Deprecated sdk) {
-        this.sdk = sdk;
+    public CreateDeploymentV1DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateDeploymentV1DeprecatedRequestBuilder deploymentConfig(DeploymentConfig deploymentConfig) {
@@ -45,11 +49,22 @@ public class CreateDeploymentV1DeprecatedRequestBuilder {
         return this;
     }
 
-    public CreateDeploymentV1DeprecatedResponse call() throws Exception {
 
-        return sdk.createDeploymentV1Deprecated(
-            deploymentConfig,
+    private CreateDeploymentV1DeprecatedRequest buildRequest() {
+
+        CreateDeploymentV1DeprecatedRequest request = new CreateDeploymentV1DeprecatedRequest(deploymentConfig,
             appId,
             buildId);
+
+        return request;
+    }
+
+    public CreateDeploymentV1DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<CreateDeploymentV1DeprecatedRequest, CreateDeploymentV1DeprecatedResponse> operation
+              = new CreateDeploymentV1Deprecated.Sync(sdkConfiguration);
+        CreateDeploymentV1DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

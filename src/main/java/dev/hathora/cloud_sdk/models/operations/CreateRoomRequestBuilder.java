@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateRoomParams;
+import dev.hathora.cloud_sdk.operations.CreateRoom;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class CreateRoomRequestBuilder {
     private CreateRoomParams createRoomParams;
     private Optional<String> appId = Optional.empty();
     private Optional<String> roomId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateRoom sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateRoomRequestBuilder(SDKMethodInterfaces.MethodCallCreateRoom sdk) {
-        this.sdk = sdk;
+    public CreateRoomRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateRoomRequestBuilder createRoomParams(CreateRoomParams createRoomParams) {
@@ -50,11 +54,22 @@ public class CreateRoomRequestBuilder {
         return this;
     }
 
-    public CreateRoomResponse call() throws Exception {
 
-        return sdk.createRoom(
-            createRoomParams,
+    private CreateRoomRequest buildRequest() {
+
+        CreateRoomRequest request = new CreateRoomRequest(createRoomParams,
             appId,
             roomId);
+
+        return request;
+    }
+
+    public CreateRoomResponse call() throws Exception {
+        
+        RequestOperation<CreateRoomRequest, CreateRoomResponse> operation
+              = new CreateRoom.Sync(sdkConfiguration);
+        CreateRoomRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

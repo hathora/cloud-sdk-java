@@ -16,6 +16,7 @@ Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathor
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="CreateLobby" method="post" path="/lobby/v3/{appId}/create" -->
 ```java
 package hello.world;
 
@@ -31,7 +32,6 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         CreateLobbyRequest req = CreateLobbyRequest.builder()
@@ -40,7 +40,6 @@ public class Application {
                     .visibility(LobbyVisibility.PRIVATE)
                     .roomConfig("{\"name\":\"my-room\"}")
                     .build())
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .shortCode("LFG4")
                 .build();
@@ -48,7 +47,7 @@ public class Application {
         CreateLobbyResponse res = sdk.lobbiesV3().createLobby()
                 .request(req)
                 .security(CreateLobbySecurity.builder()
-                    .playerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                    .playerAuth(System.getenv().getOrDefault("PLAYER_AUTH", ""))
                     .build())
                 .call();
 
@@ -84,6 +83,7 @@ Get details for a lobby.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetLobbyInfoByRoomId" method="get" path="/lobby/v3/{appId}/info/roomid/{roomId}" -->
 ```java
 package hello.world;
 
@@ -98,11 +98,9 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetLobbyInfoByRoomIdResponse res = sdk.lobbiesV3().getLobbyInfoByRoomId()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .roomId("2swovpy1fnunu")
                 .call();
 
@@ -137,6 +135,7 @@ Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then th
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetLobbyInfoByShortCode" method="get" path="/lobby/v3/{appId}/info/shortcode/{shortCode}" -->
 ```java
 package hello.world;
 
@@ -151,11 +150,9 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetLobbyInfoByShortCodeResponse res = sdk.lobbiesV3().getLobbyInfoByShortCode()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .shortCode("LFG4")
                 .call();
 
@@ -190,6 +187,7 @@ Get all active lobbies for a given [application](https://hathora.dev/docs/concep
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ListActivePublicLobbies" method="get" path="/lobby/v3/{appId}/list/public" -->
 ```java
 package hello.world;
 
@@ -204,11 +202,9 @@ public class Application {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         ListActivePublicLobbiesResponse res = sdk.lobbiesV3().listActivePublicLobbies()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
                 .call();
 
         if (res.classes().isPresent()) {

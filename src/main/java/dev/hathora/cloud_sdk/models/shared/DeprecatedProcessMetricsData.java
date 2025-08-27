@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class DeprecatedProcessMetricsData {
 
@@ -22,17 +22,21 @@ public class DeprecatedProcessMetricsData {
     @JsonProperty("active_connections")
     private Optional<? extends List<MetricValue>> activeConnections;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cpu")
     private Optional<? extends List<MetricValue>> cpu;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("memory")
     private Optional<? extends List<MetricValue>> memory;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("rate_egress")
     private Optional<? extends List<MetricValue>> rateEgress;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_egress")
@@ -58,7 +62,8 @@ public class DeprecatedProcessMetricsData {
     }
     
     public DeprecatedProcessMetricsData() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -91,15 +96,17 @@ public class DeprecatedProcessMetricsData {
         return (Optional<List<MetricValue>>) totalEgress;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DeprecatedProcessMetricsData withActiveConnections(List<MetricValue> activeConnections) {
         Utils.checkNotNull(activeConnections, "activeConnections");
         this.activeConnections = Optional.ofNullable(activeConnections);
         return this;
     }
+
 
     public DeprecatedProcessMetricsData withActiveConnections(Optional<? extends List<MetricValue>> activeConnections) {
         Utils.checkNotNull(activeConnections, "activeConnections");
@@ -113,6 +120,7 @@ public class DeprecatedProcessMetricsData {
         return this;
     }
 
+
     public DeprecatedProcessMetricsData withCpu(Optional<? extends List<MetricValue>> cpu) {
         Utils.checkNotNull(cpu, "cpu");
         this.cpu = cpu;
@@ -124,6 +132,7 @@ public class DeprecatedProcessMetricsData {
         this.memory = Optional.ofNullable(memory);
         return this;
     }
+
 
     public DeprecatedProcessMetricsData withMemory(Optional<? extends List<MetricValue>> memory) {
         Utils.checkNotNull(memory, "memory");
@@ -137,6 +146,7 @@ public class DeprecatedProcessMetricsData {
         return this;
     }
 
+
     public DeprecatedProcessMetricsData withRateEgress(Optional<? extends List<MetricValue>> rateEgress) {
         Utils.checkNotNull(rateEgress, "rateEgress");
         this.rateEgress = rateEgress;
@@ -149,13 +159,13 @@ public class DeprecatedProcessMetricsData {
         return this;
     }
 
+
     public DeprecatedProcessMetricsData withTotalEgress(Optional<? extends List<MetricValue>> totalEgress) {
         Utils.checkNotNull(totalEgress, "totalEgress");
         this.totalEgress = totalEgress;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -166,21 +176,18 @@ public class DeprecatedProcessMetricsData {
         }
         DeprecatedProcessMetricsData other = (DeprecatedProcessMetricsData) o;
         return 
-            Objects.deepEquals(this.activeConnections, other.activeConnections) &&
-            Objects.deepEquals(this.cpu, other.cpu) &&
-            Objects.deepEquals(this.memory, other.memory) &&
-            Objects.deepEquals(this.rateEgress, other.rateEgress) &&
-            Objects.deepEquals(this.totalEgress, other.totalEgress);
+            Utils.enhancedDeepEquals(this.activeConnections, other.activeConnections) &&
+            Utils.enhancedDeepEquals(this.cpu, other.cpu) &&
+            Utils.enhancedDeepEquals(this.memory, other.memory) &&
+            Utils.enhancedDeepEquals(this.rateEgress, other.rateEgress) &&
+            Utils.enhancedDeepEquals(this.totalEgress, other.totalEgress);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            activeConnections,
-            cpu,
-            memory,
-            rateEgress,
-            totalEgress);
+        return Utils.enhancedHash(
+            activeConnections, cpu, memory,
+            rateEgress, totalEgress);
     }
     
     @Override
@@ -192,22 +199,24 @@ public class DeprecatedProcessMetricsData {
                 "rateEgress", rateEgress,
                 "totalEgress", totalEgress);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<MetricValue>> activeConnections = Optional.empty();
- 
+
         private Optional<? extends List<MetricValue>> cpu = Optional.empty();
- 
+
         private Optional<? extends List<MetricValue>> memory = Optional.empty();
- 
+
         private Optional<? extends List<MetricValue>> rateEgress = Optional.empty();
- 
+
         private Optional<? extends List<MetricValue>> totalEgress = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder activeConnections(List<MetricValue> activeConnections) {
             Utils.checkNotNull(activeConnections, "activeConnections");
@@ -221,6 +230,7 @@ public class DeprecatedProcessMetricsData {
             return this;
         }
 
+
         public Builder cpu(List<MetricValue> cpu) {
             Utils.checkNotNull(cpu, "cpu");
             this.cpu = Optional.ofNullable(cpu);
@@ -232,6 +242,7 @@ public class DeprecatedProcessMetricsData {
             this.cpu = cpu;
             return this;
         }
+
 
         public Builder memory(List<MetricValue> memory) {
             Utils.checkNotNull(memory, "memory");
@@ -245,6 +256,7 @@ public class DeprecatedProcessMetricsData {
             return this;
         }
 
+
         public Builder rateEgress(List<MetricValue> rateEgress) {
             Utils.checkNotNull(rateEgress, "rateEgress");
             this.rateEgress = Optional.ofNullable(rateEgress);
@@ -257,6 +269,7 @@ public class DeprecatedProcessMetricsData {
             return this;
         }
 
+
         public Builder totalEgress(List<MetricValue> totalEgress) {
             Utils.checkNotNull(totalEgress, "totalEgress");
             this.totalEgress = Optional.ofNullable(totalEgress);
@@ -268,14 +281,13 @@ public class DeprecatedProcessMetricsData {
             this.totalEgress = totalEgress;
             return this;
         }
-        
+
         public DeprecatedProcessMetricsData build() {
+
             return new DeprecatedProcessMetricsData(
-                activeConnections,
-                cpu,
-                memory,
-                rateEgress,
-                totalEgress);
+                activeConnections, cpu, memory,
+                rateEgress, totalEgress);
         }
+
     }
 }

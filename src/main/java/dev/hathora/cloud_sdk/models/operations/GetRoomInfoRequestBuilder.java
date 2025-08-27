@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetRoomInfo;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetRoomInfoRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String roomId;
-    private final SDKMethodInterfaces.MethodCallGetRoomInfo sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetRoomInfoRequestBuilder(SDKMethodInterfaces.MethodCallGetRoomInfo sdk) {
-        this.sdk = sdk;
+    public GetRoomInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetRoomInfoRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class GetRoomInfoRequestBuilder {
         return this;
     }
 
-    public GetRoomInfoResponse call() throws Exception {
 
-        return sdk.getRoomInfo(
-            appId,
+    private GetRoomInfoRequest buildRequest() {
+
+        GetRoomInfoRequest request = new GetRoomInfoRequest(appId,
             roomId);
+
+        return request;
+    }
+
+    public GetRoomInfoResponse call() throws Exception {
+        
+        RequestOperation<GetRoomInfoRequest, GetRoomInfoResponse> operation
+              = new GetRoomInfo.Sync(sdkConfiguration);
+        GetRoomInfoRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -10,12 +10,13 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class RescindInviteRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private RescindUserInvite rescindUserInvite;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=orgId")
     private String orgId;
@@ -40,9 +41,10 @@ public class RescindInviteRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RescindInviteRequest withRescindUserInvite(RescindUserInvite rescindUserInvite) {
         Utils.checkNotNull(rescindUserInvite, "rescindUserInvite");
@@ -56,7 +58,6 @@ public class RescindInviteRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -67,15 +68,14 @@ public class RescindInviteRequest {
         }
         RescindInviteRequest other = (RescindInviteRequest) o;
         return 
-            Objects.deepEquals(this.rescindUserInvite, other.rescindUserInvite) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.rescindUserInvite, other.rescindUserInvite) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            rescindUserInvite,
-            orgId);
+        return Utils.enhancedHash(
+            rescindUserInvite, orgId);
     }
     
     @Override
@@ -84,16 +84,18 @@ public class RescindInviteRequest {
                 "rescindUserInvite", rescindUserInvite,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private RescindUserInvite rescindUserInvite;
- 
+
         private String orgId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder rescindUserInvite(RescindUserInvite rescindUserInvite) {
             Utils.checkNotNull(rescindUserInvite, "rescindUserInvite");
@@ -101,16 +103,18 @@ public class RescindInviteRequest {
             return this;
         }
 
+
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
             this.orgId = orgId;
             return this;
         }
-        
+
         public RescindInviteRequest build() {
+
             return new RescindInviteRequest(
-                rescindUserInvite,
-                orgId);
+                rescindUserInvite, orgId);
         }
+
     }
 }

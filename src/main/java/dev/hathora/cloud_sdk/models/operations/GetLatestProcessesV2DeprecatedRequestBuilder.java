@@ -3,8 +3,12 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.operations.GetLatestProcessesV2Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -16,10 +20,10 @@ public class GetLatestProcessesV2DeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Optional<? extends List<Region>> region = Optional.empty();
     private Optional<? extends List<ProcessStatus>> status = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetLatestProcessesV2Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetLatestProcessesV2DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallGetLatestProcessesV2Deprecated sdk) {
-        this.sdk = sdk;
+    public GetLatestProcessesV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetLatestProcessesV2DeprecatedRequestBuilder appId(String appId) {
@@ -58,11 +62,22 @@ public class GetLatestProcessesV2DeprecatedRequestBuilder {
         return this;
     }
 
-    public GetLatestProcessesV2DeprecatedResponse call() throws Exception {
 
-        return sdk.getLatestProcessesV2Deprecated(
-            appId,
+    private GetLatestProcessesV2DeprecatedRequest buildRequest() {
+
+        GetLatestProcessesV2DeprecatedRequest request = new GetLatestProcessesV2DeprecatedRequest(appId,
             region,
             status);
+
+        return request;
+    }
+
+    public GetLatestProcessesV2DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<GetLatestProcessesV2DeprecatedRequest, GetLatestProcessesV2DeprecatedResponse> operation
+              = new GetLatestProcessesV2Deprecated.Sync(sdkConfiguration);
+        GetLatestProcessesV2DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

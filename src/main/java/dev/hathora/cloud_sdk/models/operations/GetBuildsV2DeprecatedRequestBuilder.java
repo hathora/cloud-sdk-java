@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetBuildsV2Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class GetBuildsV2DeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetBuildsV2Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetBuildsV2DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallGetBuildsV2Deprecated sdk) {
-        this.sdk = sdk;
+    public GetBuildsV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetBuildsV2DeprecatedRequestBuilder appId(String appId) {
@@ -29,9 +33,20 @@ public class GetBuildsV2DeprecatedRequestBuilder {
         return this;
     }
 
-    public GetBuildsV2DeprecatedResponse call() throws Exception {
 
-        return sdk.getBuildsV2Deprecated(
-            appId);
+    private GetBuildsV2DeprecatedRequest buildRequest() {
+
+        GetBuildsV2DeprecatedRequest request = new GetBuildsV2DeprecatedRequest(appId);
+
+        return request;
+    }
+
+    public GetBuildsV2DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<GetBuildsV2DeprecatedRequest, GetBuildsV2DeprecatedResponse> operation
+              = new GetBuildsV2Deprecated.Sync(sdkConfiguration);
+        GetBuildsV2DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

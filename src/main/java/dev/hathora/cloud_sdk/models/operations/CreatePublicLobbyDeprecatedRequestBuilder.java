@@ -3,8 +3,12 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
 import com.fasterxml.jackson.core.type.TypeReference;
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.operations.CreatePublicLobbyDeprecated;
 import dev.hathora.cloud_sdk.utils.LazySingletonValue;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Boolean;
@@ -21,10 +25,10 @@ public class CreatePublicLobbyDeprecatedRequestBuilder {
                             "false",
                             new TypeReference<Optional<Boolean>>() {});
     private Optional<? extends Region> region = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreatePublicLobbyDeprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreatePublicLobbyDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallCreatePublicLobbyDeprecated sdk) {
-        this.sdk = sdk;
+    public CreatePublicLobbyDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreatePublicLobbyDeprecatedRequestBuilder security(CreatePublicLobbyDeprecatedSecurity security) {
@@ -69,15 +73,26 @@ public class CreatePublicLobbyDeprecatedRequestBuilder {
         return this;
     }
 
-    public CreatePublicLobbyDeprecatedResponse call() throws Exception {
+
+    private CreatePublicLobbyDeprecatedRequest buildRequest() {
         if (local == null) {
             local = _SINGLETON_VALUE_Local.value();
         }
-        return sdk.createPublicLobbyDeprecated(
-            security,
-            appId,
+
+        CreatePublicLobbyDeprecatedRequest request = new CreatePublicLobbyDeprecatedRequest(appId,
             local,
             region);
+
+        return request;
+    }
+
+    public CreatePublicLobbyDeprecatedResponse call() throws Exception {
+        
+        RequestOperation<CreatePublicLobbyDeprecatedRequest, CreatePublicLobbyDeprecatedResponse> operation
+              = new CreatePublicLobbyDeprecated.Sync(sdkConfiguration, security);
+        CreatePublicLobbyDeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Local =

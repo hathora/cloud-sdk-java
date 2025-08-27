@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.operations.CreateProcess;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreateProcessRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private Region region;
-    private final SDKMethodInterfaces.MethodCallCreateProcess sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateProcessRequestBuilder(SDKMethodInterfaces.MethodCallCreateProcess sdk) {
-        this.sdk = sdk;
+    public CreateProcessRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public CreateProcessRequestBuilder appId(String appId) {
@@ -37,10 +41,21 @@ public class CreateProcessRequestBuilder {
         return this;
     }
 
-    public CreateProcessResponse call() throws Exception {
 
-        return sdk.createProcess(
-            appId,
+    private CreateProcessRequest buildRequest() {
+
+        CreateProcessRequest request = new CreateProcessRequest(appId,
             region);
+
+        return request;
+    }
+
+    public CreateProcessResponse call() throws Exception {
+        
+        RequestOperation<CreateProcessRequest, CreateProcessResponse> operation
+              = new CreateProcess.Sync(sdkConfiguration);
+        CreateProcessRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

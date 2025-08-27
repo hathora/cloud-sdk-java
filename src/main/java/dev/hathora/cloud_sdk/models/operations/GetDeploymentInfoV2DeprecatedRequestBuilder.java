@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetDeploymentInfoV2Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.Integer;
@@ -13,10 +17,10 @@ public class GetDeploymentInfoV2DeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private Integer deploymentId;
-    private final SDKMethodInterfaces.MethodCallGetDeploymentInfoV2Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetDeploymentInfoV2DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallGetDeploymentInfoV2Deprecated sdk) {
-        this.sdk = sdk;
+    public GetDeploymentInfoV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetDeploymentInfoV2DeprecatedRequestBuilder appId(String appId) {
@@ -37,10 +41,21 @@ public class GetDeploymentInfoV2DeprecatedRequestBuilder {
         return this;
     }
 
-    public GetDeploymentInfoV2DeprecatedResponse call() throws Exception {
 
-        return sdk.getDeploymentInfoV2Deprecated(
-            appId,
+    private GetDeploymentInfoV2DeprecatedRequest buildRequest() {
+
+        GetDeploymentInfoV2DeprecatedRequest request = new GetDeploymentInfoV2DeprecatedRequest(appId,
             deploymentId);
+
+        return request;
+    }
+
+    public GetDeploymentInfoV2DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<GetDeploymentInfoV2DeprecatedRequest, GetDeploymentInfoV2DeprecatedResponse> operation
+              = new GetDeploymentInfoV2Deprecated.Sync(sdkConfiguration);
+        GetDeploymentInfoV2DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

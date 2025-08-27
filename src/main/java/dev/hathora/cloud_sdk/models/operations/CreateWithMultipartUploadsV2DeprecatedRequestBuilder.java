@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams;
+import dev.hathora.cloud_sdk.operations.CreateWithMultipartUploadsV2Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreateWithMultipartUploadsV2DeprecatedRequestBuilder {
 
     private CreateMultipartBuildParams createMultipartBuildParams;
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateWithMultipartUploadsV2Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateWithMultipartUploadsV2DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallCreateWithMultipartUploadsV2Deprecated sdk) {
-        this.sdk = sdk;
+    public CreateWithMultipartUploadsV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateWithMultipartUploadsV2DeprecatedRequestBuilder createMultipartBuildParams(CreateMultipartBuildParams createMultipartBuildParams) {
@@ -37,10 +41,21 @@ public class CreateWithMultipartUploadsV2DeprecatedRequestBuilder {
         return this;
     }
 
-    public CreateWithMultipartUploadsV2DeprecatedResponse call() throws Exception {
 
-        return sdk.createWithMultipartUploadsV2Deprecated(
-            createMultipartBuildParams,
+    private CreateWithMultipartUploadsV2DeprecatedRequest buildRequest() {
+
+        CreateWithMultipartUploadsV2DeprecatedRequest request = new CreateWithMultipartUploadsV2DeprecatedRequest(createMultipartBuildParams,
             appId);
+
+        return request;
+    }
+
+    public CreateWithMultipartUploadsV2DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<CreateWithMultipartUploadsV2DeprecatedRequest, CreateWithMultipartUploadsV2DeprecatedResponse> operation
+              = new CreateWithMultipartUploadsV2Deprecated.Sync(sdkConfiguration);
+        CreateWithMultipartUploadsV2DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

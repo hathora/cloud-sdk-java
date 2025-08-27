@@ -3,16 +3,20 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetLogsForProcess;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetLogsForProcessRequestBuilder {
 
     private GetLogsForProcessRequest request;
-    private final SDKMethodInterfaces.MethodCallGetLogsForProcess sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetLogsForProcessRequestBuilder(SDKMethodInterfaces.MethodCallGetLogsForProcess sdk) {
-        this.sdk = sdk;
+    public GetLogsForProcessRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetLogsForProcessRequestBuilder request(GetLogsForProcessRequest request) {
@@ -22,8 +26,10 @@ public class GetLogsForProcessRequestBuilder {
     }
 
     public GetLogsForProcessResponse call() throws Exception {
+        
+        RequestOperation<GetLogsForProcessRequest, GetLogsForProcessResponse> operation
+              = new GetLogsForProcess.Sync(sdkConfiguration);
 
-        return sdk.getLogsForProcess(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetActiveRoomsForProcess;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetActiveRoomsForProcessRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String processId;
-    private final SDKMethodInterfaces.MethodCallGetActiveRoomsForProcess sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetActiveRoomsForProcessRequestBuilder(SDKMethodInterfaces.MethodCallGetActiveRoomsForProcess sdk) {
-        this.sdk = sdk;
+    public GetActiveRoomsForProcessRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetActiveRoomsForProcessRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class GetActiveRoomsForProcessRequestBuilder {
         return this;
     }
 
-    public GetActiveRoomsForProcessResponse call() throws Exception {
 
-        return sdk.getActiveRoomsForProcess(
-            appId,
+    private GetActiveRoomsForProcessRequest buildRequest() {
+
+        GetActiveRoomsForProcessRequest request = new GetActiveRoomsForProcessRequest(appId,
             processId);
+
+        return request;
+    }
+
+    public GetActiveRoomsForProcessResponse call() throws Exception {
+        
+        RequestOperation<GetActiveRoomsForProcessRequest, GetActiveRoomsForProcessResponse> operation
+              = new GetActiveRoomsForProcess.Sync(sdkConfiguration);
+        GetActiveRoomsForProcessRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

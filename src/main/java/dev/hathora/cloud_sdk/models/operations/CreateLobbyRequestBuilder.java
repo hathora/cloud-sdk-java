@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.CreateLobby;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -10,10 +14,10 @@ public class CreateLobbyRequestBuilder {
 
     private CreateLobbyRequest request;
     private CreateLobbySecurity security;
-    private final SDKMethodInterfaces.MethodCallCreateLobby sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateLobbyRequestBuilder(SDKMethodInterfaces.MethodCallCreateLobby sdk) {
-        this.sdk = sdk;
+    public CreateLobbyRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateLobbyRequestBuilder request(CreateLobbyRequest request) {
@@ -29,9 +33,10 @@ public class CreateLobbyRequestBuilder {
     }
 
     public CreateLobbyResponse call() throws Exception {
+        
+        RequestOperation<CreateLobbyRequest, CreateLobbyResponse> operation
+              = new CreateLobby.Sync(sdkConfiguration, security);
 
-        return sdk.createLobby(
-            request,
-            security);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -10,7 +10,6 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * ContainerPort
@@ -18,12 +17,12 @@ import java.util.Objects;
  * <p>A container port object represents the transport configruations for how your server will listen.
  */
 public class ContainerPort {
-
     /**
      * Readable name for the port.
      */
     @JsonProperty("name")
     private String name;
+
 
     @JsonProperty("port")
     private int port;
@@ -68,9 +67,10 @@ public class ContainerPort {
         return transportType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Readable name for the port.
@@ -96,7 +96,6 @@ public class ContainerPort {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -107,17 +106,15 @@ public class ContainerPort {
         }
         ContainerPort other = (ContainerPort) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.port, other.port) &&
-            Objects.deepEquals(this.transportType, other.transportType);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.port, other.port) &&
+            Utils.enhancedDeepEquals(this.transportType, other.transportType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            port,
-            transportType);
+        return Utils.enhancedHash(
+            name, port, transportType);
     }
     
     @Override
@@ -127,18 +124,20 @@ public class ContainerPort {
                 "port", port,
                 "transportType", transportType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private Integer port;
- 
+
         private TransportType transportType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Readable name for the port.
@@ -149,11 +148,13 @@ public class ContainerPort {
             return this;
         }
 
+
         public Builder port(int port) {
             Utils.checkNotNull(port, "port");
             this.port = port;
             return this;
         }
+
 
         /**
          * Transport type specifies the underlying communication protocol to the exposed port.
@@ -163,12 +164,12 @@ public class ContainerPort {
             this.transportType = transportType;
             return this;
         }
-        
+
         public ContainerPort build() {
+
             return new ContainerPort(
-                name,
-                port,
-                transportType);
+                name, port, transportType);
         }
+
     }
 }

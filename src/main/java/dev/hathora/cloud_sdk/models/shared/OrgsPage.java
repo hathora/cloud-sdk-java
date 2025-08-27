@@ -10,7 +10,7 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class OrgsPage {
 
@@ -29,9 +29,10 @@ public class OrgsPage {
         return orgs;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrgsPage withOrgs(List<Organization> orgs) {
         Utils.checkNotNull(orgs, "orgs");
@@ -39,7 +40,6 @@ public class OrgsPage {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class OrgsPage {
         }
         OrgsPage other = (OrgsPage) o;
         return 
-            Objects.deepEquals(this.orgs, other.orgs);
+            Utils.enhancedDeepEquals(this.orgs, other.orgs);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             orgs);
     }
     
@@ -64,24 +64,28 @@ public class OrgsPage {
         return Utils.toString(OrgsPage.class,
                 "orgs", orgs);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<Organization> orgs;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder orgs(List<Organization> orgs) {
             Utils.checkNotNull(orgs, "orgs");
             this.orgs = orgs;
             return this;
         }
-        
+
         public OrgsPage build() {
+
             return new OrgsPage(
                 orgs);
         }
+
     }
 }

@@ -5,14 +5,31 @@ package dev.hathora.cloud_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
+
 
 public class ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig {
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("loadBalancer")
+    private Optional<? extends LoadBalancerConfig> loadBalancer;
+
+    /**
+     * The configuration for the Process Autoscaler for this application.
+     * Autoscaling must be enabled on a per-region basis.
+     * EXPERIMENTAL - This feature is in closed beta.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("processAutoscalerConfig")
+    private Optional<? extends ProcessAutoscalerConfig> processAutoscalerConfig;
 
     /**
      * The headroom configuration for each region.
@@ -23,9 +40,37 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig {
 
     @JsonCreator
     public ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig(
+            @JsonProperty("loadBalancer") Optional<? extends LoadBalancerConfig> loadBalancer,
+            @JsonProperty("processAutoscalerConfig") Optional<? extends ProcessAutoscalerConfig> processAutoscalerConfig,
             @JsonProperty("staticProcessAllocation") List<StaticProcessAllocationConfig> staticProcessAllocation) {
+        Utils.checkNotNull(loadBalancer, "loadBalancer");
+        Utils.checkNotNull(processAutoscalerConfig, "processAutoscalerConfig");
         Utils.checkNotNull(staticProcessAllocation, "staticProcessAllocation");
+        this.loadBalancer = loadBalancer;
+        this.processAutoscalerConfig = processAutoscalerConfig;
         this.staticProcessAllocation = staticProcessAllocation;
+    }
+    
+    public ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig(
+            List<StaticProcessAllocationConfig> staticProcessAllocation) {
+        this(Optional.empty(), Optional.empty(), staticProcessAllocation);
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LoadBalancerConfig> loadBalancer() {
+        return (Optional<LoadBalancerConfig>) loadBalancer;
+    }
+
+    /**
+     * The configuration for the Process Autoscaler for this application.
+     * Autoscaling must be enabled on a per-region basis.
+     * EXPERIMENTAL - This feature is in closed beta.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ProcessAutoscalerConfig> processAutoscalerConfig() {
+        return (Optional<ProcessAutoscalerConfig>) processAutoscalerConfig;
     }
 
     /**
@@ -37,9 +82,46 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig {
         return staticProcessAllocation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
+
+    public ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig withLoadBalancer(LoadBalancerConfig loadBalancer) {
+        Utils.checkNotNull(loadBalancer, "loadBalancer");
+        this.loadBalancer = Optional.ofNullable(loadBalancer);
+        return this;
+    }
+
+
+    public ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig withLoadBalancer(Optional<? extends LoadBalancerConfig> loadBalancer) {
+        Utils.checkNotNull(loadBalancer, "loadBalancer");
+        this.loadBalancer = loadBalancer;
+        return this;
+    }
+
+    /**
+     * The configuration for the Process Autoscaler for this application.
+     * Autoscaling must be enabled on a per-region basis.
+     * EXPERIMENTAL - This feature is in closed beta.
+     */
+    public ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig withProcessAutoscalerConfig(ProcessAutoscalerConfig processAutoscalerConfig) {
+        Utils.checkNotNull(processAutoscalerConfig, "processAutoscalerConfig");
+        this.processAutoscalerConfig = Optional.ofNullable(processAutoscalerConfig);
+        return this;
+    }
+
+
+    /**
+     * The configuration for the Process Autoscaler for this application.
+     * Autoscaling must be enabled on a per-region basis.
+     * EXPERIMENTAL - This feature is in closed beta.
+     */
+    public ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig withProcessAutoscalerConfig(Optional<? extends ProcessAutoscalerConfig> processAutoscalerConfig) {
+        Utils.checkNotNull(processAutoscalerConfig, "processAutoscalerConfig");
+        this.processAutoscalerConfig = processAutoscalerConfig;
+        return this;
+    }
 
     /**
      * The headroom configuration for each region.
@@ -51,7 +133,6 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -62,28 +143,74 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig {
         }
         ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig other = (ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig) o;
         return 
-            Objects.deepEquals(this.staticProcessAllocation, other.staticProcessAllocation);
+            Utils.enhancedDeepEquals(this.loadBalancer, other.loadBalancer) &&
+            Utils.enhancedDeepEquals(this.processAutoscalerConfig, other.processAutoscalerConfig) &&
+            Utils.enhancedDeepEquals(this.staticProcessAllocation, other.staticProcessAllocation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            staticProcessAllocation);
+        return Utils.enhancedHash(
+            loadBalancer, processAutoscalerConfig, staticProcessAllocation);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig.class,
+                "loadBalancer", loadBalancer,
+                "processAutoscalerConfig", processAutoscalerConfig,
                 "staticProcessAllocation", staticProcessAllocation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
+        private Optional<? extends LoadBalancerConfig> loadBalancer = Optional.empty();
+
+        private Optional<? extends ProcessAutoscalerConfig> processAutoscalerConfig = Optional.empty();
+
         private List<StaticProcessAllocationConfig> staticProcessAllocation;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
+
+        public Builder loadBalancer(LoadBalancerConfig loadBalancer) {
+            Utils.checkNotNull(loadBalancer, "loadBalancer");
+            this.loadBalancer = Optional.ofNullable(loadBalancer);
+            return this;
+        }
+
+        public Builder loadBalancer(Optional<? extends LoadBalancerConfig> loadBalancer) {
+            Utils.checkNotNull(loadBalancer, "loadBalancer");
+            this.loadBalancer = loadBalancer;
+            return this;
+        }
+
+
+        /**
+         * The configuration for the Process Autoscaler for this application.
+         * Autoscaling must be enabled on a per-region basis.
+         * EXPERIMENTAL - This feature is in closed beta.
+         */
+        public Builder processAutoscalerConfig(ProcessAutoscalerConfig processAutoscalerConfig) {
+            Utils.checkNotNull(processAutoscalerConfig, "processAutoscalerConfig");
+            this.processAutoscalerConfig = Optional.ofNullable(processAutoscalerConfig);
+            return this;
+        }
+
+        /**
+         * The configuration for the Process Autoscaler for this application.
+         * Autoscaling must be enabled on a per-region basis.
+         * EXPERIMENTAL - This feature is in closed beta.
+         */
+        public Builder processAutoscalerConfig(Optional<? extends ProcessAutoscalerConfig> processAutoscalerConfig) {
+            Utils.checkNotNull(processAutoscalerConfig, "processAutoscalerConfig");
+            this.processAutoscalerConfig = processAutoscalerConfig;
+            return this;
+        }
+
 
         /**
          * The headroom configuration for each region.
@@ -94,10 +221,12 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig {
             this.staticProcessAllocation = staticProcessAllocation;
             return this;
         }
-        
+
         public ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig build() {
+
             return new ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig(
-                staticProcessAllocation);
+                loadBalancer, processAutoscalerConfig, staticProcessAllocation);
         }
+
     }
 }

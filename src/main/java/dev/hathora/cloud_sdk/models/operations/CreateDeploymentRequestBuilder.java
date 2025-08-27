@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.DeploymentConfigV3;
+import dev.hathora.cloud_sdk.operations.CreateDeployment;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreateDeploymentRequestBuilder {
 
     private DeploymentConfigV3 deploymentConfigV3;
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateDeployment sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateDeploymentRequestBuilder(SDKMethodInterfaces.MethodCallCreateDeployment sdk) {
-        this.sdk = sdk;
+    public CreateDeploymentRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateDeploymentRequestBuilder deploymentConfigV3(DeploymentConfigV3 deploymentConfigV3) {
@@ -37,10 +41,21 @@ public class CreateDeploymentRequestBuilder {
         return this;
     }
 
-    public CreateDeploymentResponse call() throws Exception {
 
-        return sdk.createDeployment(
-            deploymentConfigV3,
+    private CreateDeploymentRequest buildRequest() {
+
+        CreateDeploymentRequest request = new CreateDeploymentRequest(deploymentConfigV3,
             appId);
+
+        return request;
+    }
+
+    public CreateDeploymentResponse call() throws Exception {
+        
+        RequestOperation<CreateDeploymentRequest, CreateDeploymentResponse> operation
+              = new CreateDeployment.Sync(sdkConfiguration);
+        CreateDeploymentRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

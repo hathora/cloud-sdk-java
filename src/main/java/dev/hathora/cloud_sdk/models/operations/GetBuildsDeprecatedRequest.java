@@ -9,8 +9,8 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetBuildsDeprecatedRequest {
 
@@ -33,9 +33,10 @@ public class GetBuildsDeprecatedRequest {
         return appId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetBuildsDeprecatedRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
@@ -43,13 +44,13 @@ public class GetBuildsDeprecatedRequest {
         return this;
     }
 
+
     public GetBuildsDeprecatedRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -60,12 +61,12 @@ public class GetBuildsDeprecatedRequest {
         }
         GetBuildsDeprecatedRequest other = (GetBuildsDeprecatedRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId);
     }
     
@@ -74,14 +75,16 @@ public class GetBuildsDeprecatedRequest {
         return Utils.toString(GetBuildsDeprecatedRequest.class,
                 "appId", appId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -94,10 +97,12 @@ public class GetBuildsDeprecatedRequest {
             this.appId = appId;
             return this;
         }
-        
+
         public GetBuildsDeprecatedRequest build() {
+
             return new GetBuildsDeprecatedRequest(
                 appId);
         }
+
     }
 }

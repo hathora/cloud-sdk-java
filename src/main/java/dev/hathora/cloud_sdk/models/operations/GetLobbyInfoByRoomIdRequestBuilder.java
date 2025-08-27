@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetLobbyInfoByRoomId;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetLobbyInfoByRoomIdRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String roomId;
-    private final SDKMethodInterfaces.MethodCallGetLobbyInfoByRoomId sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetLobbyInfoByRoomIdRequestBuilder(SDKMethodInterfaces.MethodCallGetLobbyInfoByRoomId sdk) {
-        this.sdk = sdk;
+    public GetLobbyInfoByRoomIdRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetLobbyInfoByRoomIdRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class GetLobbyInfoByRoomIdRequestBuilder {
         return this;
     }
 
-    public GetLobbyInfoByRoomIdResponse call() throws Exception {
 
-        return sdk.getLobbyInfoByRoomId(
-            appId,
+    private GetLobbyInfoByRoomIdRequest buildRequest() {
+
+        GetLobbyInfoByRoomIdRequest request = new GetLobbyInfoByRoomIdRequest(appId,
             roomId);
+
+        return request;
+    }
+
+    public GetLobbyInfoByRoomIdResponse call() throws Exception {
+        
+        RequestOperation<GetLobbyInfoByRoomIdRequest, GetLobbyInfoByRoomIdResponse> operation
+              = new GetLobbyInfoByRoomId.Sync(sdkConfiguration);
+        GetLobbyInfoByRoomIdRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

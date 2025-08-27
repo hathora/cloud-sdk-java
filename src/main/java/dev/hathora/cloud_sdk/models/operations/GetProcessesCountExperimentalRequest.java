@@ -14,19 +14,22 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetProcessesCountExperimentalRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=before")
     private Optional<Double> before;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=region")
     private Optional<? extends List<Region>> region;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=status")
     private Optional<? extends List<ProcessStatus>> status;
@@ -48,7 +51,8 @@ public class GetProcessesCountExperimentalRequest {
     }
     
     public GetProcessesCountExperimentalRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -73,15 +77,17 @@ public class GetProcessesCountExperimentalRequest {
         return (Optional<List<ProcessStatus>>) status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetProcessesCountExperimentalRequest withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     public GetProcessesCountExperimentalRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
@@ -95,6 +101,7 @@ public class GetProcessesCountExperimentalRequest {
         return this;
     }
 
+
     public GetProcessesCountExperimentalRequest withBefore(Optional<Double> before) {
         Utils.checkNotNull(before, "before");
         this.before = before;
@@ -106,6 +113,7 @@ public class GetProcessesCountExperimentalRequest {
         this.region = Optional.ofNullable(region);
         return this;
     }
+
 
     public GetProcessesCountExperimentalRequest withRegion(Optional<? extends List<Region>> region) {
         Utils.checkNotNull(region, "region");
@@ -119,13 +127,13 @@ public class GetProcessesCountExperimentalRequest {
         return this;
     }
 
+
     public GetProcessesCountExperimentalRequest withStatus(Optional<? extends List<ProcessStatus>> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -136,18 +144,16 @@ public class GetProcessesCountExperimentalRequest {
         }
         GetProcessesCountExperimentalRequest other = (GetProcessesCountExperimentalRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.before, other.before) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.before, other.before) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            before,
-            region,
+        return Utils.enhancedHash(
+            appId, before, region,
             status);
     }
     
@@ -159,20 +165,22 @@ public class GetProcessesCountExperimentalRequest {
                 "region", region,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<Double> before = Optional.empty();
- 
+
         private Optional<? extends List<Region>> region = Optional.empty();
- 
+
         private Optional<? extends List<ProcessStatus>> status = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -186,6 +194,7 @@ public class GetProcessesCountExperimentalRequest {
             return this;
         }
 
+
         public Builder before(double before) {
             Utils.checkNotNull(before, "before");
             this.before = Optional.ofNullable(before);
@@ -197,6 +206,7 @@ public class GetProcessesCountExperimentalRequest {
             this.before = before;
             return this;
         }
+
 
         public Builder region(List<Region> region) {
             Utils.checkNotNull(region, "region");
@@ -210,6 +220,7 @@ public class GetProcessesCountExperimentalRequest {
             return this;
         }
 
+
         public Builder status(List<ProcessStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
@@ -221,13 +232,13 @@ public class GetProcessesCountExperimentalRequest {
             this.status = status;
             return this;
         }
-        
+
         public GetProcessesCountExperimentalRequest build() {
+
             return new GetProcessesCountExperimentalRequest(
-                appId,
-                before,
-                region,
+                appId, before, region,
                 status);
         }
+
     }
 }

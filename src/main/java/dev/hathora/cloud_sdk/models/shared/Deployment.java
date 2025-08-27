@@ -16,11 +16,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class Deployment {
 
+public class Deployment {
     /**
      * Additional ports your server listens on.
      */
@@ -57,6 +56,7 @@ public class Deployment {
      */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("createdBy")
     private String createdBy;
@@ -187,7 +187,12 @@ public class Deployment {
             double requestedCPU,
             double requestedMemoryMB,
             int roomsPerProcess) {
-        this(additionalContainerPorts, appId, build, buildId, Optional.empty(), createdAt, createdBy, defaultContainerPort, deploymentId, Optional.empty(), env, Optional.empty(), idleTimeoutEnabled, requestedCPU, requestedMemoryMB, roomsPerProcess);
+        this(additionalContainerPorts, appId, build,
+            buildId, Optional.empty(), createdAt,
+            createdBy, defaultContainerPort, deploymentId,
+            Optional.empty(), env, Optional.empty(),
+            idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
+            roomsPerProcess);
     }
 
     /**
@@ -319,9 +324,10 @@ public class Deployment {
         return roomsPerProcess;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Additional ports your server listens on.
@@ -367,6 +373,7 @@ public class Deployment {
         this.buildTag = Optional.ofNullable(buildTag);
         return this;
     }
+
 
     /**
      * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
@@ -419,6 +426,7 @@ public class Deployment {
         return this;
     }
 
+
     /**
      * Arbitrary metadata associated with a deployment.
      */
@@ -447,6 +455,7 @@ public class Deployment {
         this.experimentalRequestedGPU = Optional.ofNullable(experimentalRequestedGPU);
         return this;
     }
+
 
     /**
      * EXPERIMENTAL - this feature is in closed beta.
@@ -497,7 +506,6 @@ public class Deployment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -508,42 +516,32 @@ public class Deployment {
         }
         Deployment other = (Deployment) o;
         return 
-            Objects.deepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.build, other.build) &&
-            Objects.deepEquals(this.buildId, other.buildId) &&
-            Objects.deepEquals(this.buildTag, other.buildTag) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
-            Objects.deepEquals(this.deploymentId, other.deploymentId) &&
-            Objects.deepEquals(this.deploymentTag, other.deploymentTag) &&
-            Objects.deepEquals(this.env, other.env) &&
-            Objects.deepEquals(this.experimentalRequestedGPU, other.experimentalRequestedGPU) &&
-            Objects.deepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
-            Objects.deepEquals(this.requestedCPU, other.requestedCPU) &&
-            Objects.deepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
-            Objects.deepEquals(this.roomsPerProcess, other.roomsPerProcess);
+            Utils.enhancedDeepEquals(this.additionalContainerPorts, other.additionalContainerPorts) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.build, other.build) &&
+            Utils.enhancedDeepEquals(this.buildId, other.buildId) &&
+            Utils.enhancedDeepEquals(this.buildTag, other.buildTag) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.defaultContainerPort, other.defaultContainerPort) &&
+            Utils.enhancedDeepEquals(this.deploymentId, other.deploymentId) &&
+            Utils.enhancedDeepEquals(this.deploymentTag, other.deploymentTag) &&
+            Utils.enhancedDeepEquals(this.env, other.env) &&
+            Utils.enhancedDeepEquals(this.experimentalRequestedGPU, other.experimentalRequestedGPU) &&
+            Utils.enhancedDeepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
+            Utils.enhancedDeepEquals(this.requestedCPU, other.requestedCPU) &&
+            Utils.enhancedDeepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
+            Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            additionalContainerPorts,
-            appId,
-            build,
-            buildId,
-            buildTag,
-            createdAt,
-            createdBy,
-            defaultContainerPort,
-            deploymentId,
-            deploymentTag,
-            env,
-            experimentalRequestedGPU,
-            idleTimeoutEnabled,
-            requestedCPU,
-            requestedMemoryMB,
+        return Utils.enhancedHash(
+            additionalContainerPorts, appId, build,
+            buildId, buildTag, createdAt,
+            createdBy, defaultContainerPort, deploymentId,
+            deploymentTag, env, experimentalRequestedGPU,
+            idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
             roomsPerProcess);
     }
     
@@ -567,44 +565,46 @@ public class Deployment {
                 "requestedMemoryMB", requestedMemoryMB,
                 "roomsPerProcess", roomsPerProcess);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<ContainerPort> additionalContainerPorts;
- 
+
         private String appId;
- 
+
         private BuildV3 build;
- 
+
         private String buildId;
- 
+
         private Optional<String> buildTag = Optional.empty();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String createdBy;
- 
+
         private ContainerPort defaultContainerPort;
- 
+
         private String deploymentId;
- 
+
         private Optional<String> deploymentTag = Optional.empty();
- 
+
         private List<ApplicationWithLatestDeploymentAndBuildEnv> env;
- 
+
         private Optional<Double> experimentalRequestedGPU = Optional.empty();
- 
+
         private Boolean idleTimeoutEnabled;
- 
+
         private Double requestedCPU;
- 
+
         private Double requestedMemoryMB;
- 
+
         private Integer roomsPerProcess;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Additional ports your server listens on.
@@ -615,6 +615,7 @@ public class Deployment {
             return this;
         }
 
+
         /**
          * System generated unique identifier for an application.
          */
@@ -623,6 +624,7 @@ public class Deployment {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * A build represents a game server artifact and its associated metadata.
@@ -633,6 +635,7 @@ public class Deployment {
             return this;
         }
 
+
         /**
          * System generated id for a build. Can also be user defined when creating a build.
          */
@@ -641,6 +644,7 @@ public class Deployment {
             this.buildId = buildId;
             return this;
         }
+
 
         /**
          * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
@@ -660,6 +664,7 @@ public class Deployment {
             return this;
         }
 
+
         /**
          * When the deployment was created.
          */
@@ -669,11 +674,13 @@ public class Deployment {
             return this;
         }
 
+
         public Builder createdBy(String createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * A container port object represents the transport configruations for how your server will listen.
@@ -684,6 +691,7 @@ public class Deployment {
             return this;
         }
 
+
         /**
          * System generated id for a deployment.
          */
@@ -692,6 +700,7 @@ public class Deployment {
             this.deploymentId = deploymentId;
             return this;
         }
+
 
         /**
          * Arbitrary metadata associated with a deployment.
@@ -711,6 +720,7 @@ public class Deployment {
             return this;
         }
 
+
         /**
          * The environment variable that our process will have access to at runtime.
          */
@@ -719,6 +729,7 @@ public class Deployment {
             this.env = env;
             return this;
         }
+
 
         /**
          * EXPERIMENTAL - this feature is in closed beta.
@@ -742,6 +753,7 @@ public class Deployment {
             return this;
         }
 
+
         /**
          * Option to shut down processes that have had no new connections or rooms
          * for five minutes.
@@ -752,6 +764,7 @@ public class Deployment {
             return this;
         }
 
+
         /**
          * The number of cores allocated to your process.
          */
@@ -760,6 +773,7 @@ public class Deployment {
             this.requestedCPU = requestedCPU;
             return this;
         }
+
 
         /**
          * The amount of memory allocated to your process. By default, this is capped
@@ -771,6 +785,7 @@ public class Deployment {
             return this;
         }
 
+
         /**
          * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
          */
@@ -779,25 +794,17 @@ public class Deployment {
             this.roomsPerProcess = roomsPerProcess;
             return this;
         }
-        
+
         public Deployment build() {
+
             return new Deployment(
-                additionalContainerPorts,
-                appId,
-                build,
-                buildId,
-                buildTag,
-                createdAt,
-                createdBy,
-                defaultContainerPort,
-                deploymentId,
-                deploymentTag,
-                env,
-                experimentalRequestedGPU,
-                idleTimeoutEnabled,
-                requestedCPU,
-                requestedMemoryMB,
+                additionalContainerPorts, appId, build,
+                buildId, buildTag, createdAt,
+                createdBy, defaultContainerPort, deploymentId,
+                deploymentTag, env, experimentalRequestedGPU,
+                idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
                 roomsPerProcess);
         }
+
     }
 }

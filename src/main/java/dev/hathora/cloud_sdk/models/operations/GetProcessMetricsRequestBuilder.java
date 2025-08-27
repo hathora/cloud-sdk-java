@@ -3,16 +3,20 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetProcessMetrics;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetProcessMetricsRequestBuilder {
 
     private GetProcessMetricsRequest request;
-    private final SDKMethodInterfaces.MethodCallGetProcessMetrics sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetProcessMetricsRequestBuilder(SDKMethodInterfaces.MethodCallGetProcessMetrics sdk) {
-        this.sdk = sdk;
+    public GetProcessMetricsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetProcessMetricsRequestBuilder request(GetProcessMetricsRequest request) {
@@ -22,8 +26,10 @@ public class GetProcessMetricsRequestBuilder {
     }
 
     public GetProcessMetricsResponse call() throws Exception {
+        
+        RequestOperation<GetProcessMetricsRequest, GetProcessMetricsResponse> operation
+              = new GetProcessMetrics.Sync(sdkConfiguration);
 
-        return sdk.getProcessMetrics(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

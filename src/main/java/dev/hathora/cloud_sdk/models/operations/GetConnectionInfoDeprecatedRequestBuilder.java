@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetConnectionInfoDeprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class GetConnectionInfoDeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String roomId;
-    private final SDKMethodInterfaces.MethodCallGetConnectionInfoDeprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetConnectionInfoDeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallGetConnectionInfoDeprecated sdk) {
-        this.sdk = sdk;
+    public GetConnectionInfoDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetConnectionInfoDeprecatedRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class GetConnectionInfoDeprecatedRequestBuilder {
         return this;
     }
 
-    public GetConnectionInfoDeprecatedResponse call() throws Exception {
 
-        return sdk.getConnectionInfoDeprecated(
-            appId,
+    private GetConnectionInfoDeprecatedRequest buildRequest() {
+
+        GetConnectionInfoDeprecatedRequest request = new GetConnectionInfoDeprecatedRequest(appId,
             roomId);
+
+        return request;
+    }
+
+    public GetConnectionInfoDeprecatedResponse call() throws Exception {
+        
+        RequestOperation<GetConnectionInfoDeprecatedRequest, GetConnectionInfoDeprecatedResponse> operation
+              = new GetConnectionInfoDeprecated.Sync(sdkConfiguration);
+        GetConnectionInfoDeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

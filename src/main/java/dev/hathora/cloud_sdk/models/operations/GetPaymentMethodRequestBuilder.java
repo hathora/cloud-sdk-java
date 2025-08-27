@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.GetPaymentMethod;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class GetPaymentMethodRequestBuilder {
 
     private Optional<String> orgId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetPaymentMethod sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPaymentMethodRequestBuilder(SDKMethodInterfaces.MethodCallGetPaymentMethod sdk) {
-        this.sdk = sdk;
+    public GetPaymentMethodRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetPaymentMethodRequestBuilder orgId(String orgId) {
@@ -29,9 +33,20 @@ public class GetPaymentMethodRequestBuilder {
         return this;
     }
 
-    public GetPaymentMethodResponse call() throws Exception {
 
-        return sdk.getPaymentMethod(
-            orgId);
+    private GetPaymentMethodRequest buildRequest() {
+
+        GetPaymentMethodRequest request = new GetPaymentMethodRequest(orgId);
+
+        return request;
+    }
+
+    public GetPaymentMethodResponse call() throws Exception {
+        
+        RequestOperation<GetPaymentMethodRequest, GetPaymentMethodResponse> operation
+              = new GetPaymentMethod.Sync(sdkConfiguration);
+        GetPaymentMethodRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

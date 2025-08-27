@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
+import dev.hathora.cloud_sdk.operations.ListActivePublicLobbiesDeprecatedV2;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class ListActivePublicLobbiesDeprecatedV2RequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private Optional<? extends Region> region = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListActivePublicLobbiesDeprecatedV2 sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListActivePublicLobbiesDeprecatedV2RequestBuilder(SDKMethodInterfaces.MethodCallListActivePublicLobbiesDeprecatedV2 sdk) {
-        this.sdk = sdk;
+    public ListActivePublicLobbiesDeprecatedV2RequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ListActivePublicLobbiesDeprecatedV2RequestBuilder appId(String appId) {
@@ -43,10 +47,21 @@ public class ListActivePublicLobbiesDeprecatedV2RequestBuilder {
         return this;
     }
 
-    public ListActivePublicLobbiesDeprecatedV2Response call() throws Exception {
 
-        return sdk.listActivePublicLobbiesDeprecatedV2(
-            appId,
+    private ListActivePublicLobbiesDeprecatedV2Request buildRequest() {
+
+        ListActivePublicLobbiesDeprecatedV2Request request = new ListActivePublicLobbiesDeprecatedV2Request(appId,
             region);
+
+        return request;
+    }
+
+    public ListActivePublicLobbiesDeprecatedV2Response call() throws Exception {
+        
+        RequestOperation<ListActivePublicLobbiesDeprecatedV2Request, ListActivePublicLobbiesDeprecatedV2Response> operation
+              = new ListActivePublicLobbiesDeprecatedV2.Sync(sdkConfiguration);
+        ListActivePublicLobbiesDeprecatedV2Request request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

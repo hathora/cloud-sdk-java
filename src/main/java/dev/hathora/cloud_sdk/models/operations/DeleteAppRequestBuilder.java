@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.DeleteApp;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class DeleteAppRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallDeleteApp sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteAppRequestBuilder(SDKMethodInterfaces.MethodCallDeleteApp sdk) {
-        this.sdk = sdk;
+    public DeleteAppRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public DeleteAppRequestBuilder appId(String appId) {
@@ -29,9 +33,20 @@ public class DeleteAppRequestBuilder {
         return this;
     }
 
-    public DeleteAppResponse call() throws Exception {
 
-        return sdk.deleteApp(
-            appId);
+    private DeleteAppRequest buildRequest() {
+
+        DeleteAppRequest request = new DeleteAppRequest(appId);
+
+        return request;
+    }
+
+    public DeleteAppResponse call() throws Exception {
+        
+        RequestOperation<DeleteAppRequest, DeleteAppResponse> operation
+              = new DeleteApp.Sync(sdkConfiguration);
+        DeleteAppRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

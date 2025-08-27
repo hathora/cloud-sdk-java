@@ -9,16 +9,18 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreatePrivateLobbyRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CreatePrivateLobbyRequestBody requestBody;
 
+
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=appId")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=roomId")
     private Optional<String> roomId;
@@ -56,9 +58,10 @@ public class CreatePrivateLobbyRequest {
         return roomId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreatePrivateLobbyRequest withRequestBody(CreatePrivateLobbyRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -72,6 +75,7 @@ public class CreatePrivateLobbyRequest {
         return this;
     }
 
+
     public CreatePrivateLobbyRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
@@ -84,13 +88,13 @@ public class CreatePrivateLobbyRequest {
         return this;
     }
 
+
     public CreatePrivateLobbyRequest withRoomId(Optional<String> roomId) {
         Utils.checkNotNull(roomId, "roomId");
         this.roomId = roomId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -101,17 +105,15 @@ public class CreatePrivateLobbyRequest {
         }
         CreatePrivateLobbyRequest other = (CreatePrivateLobbyRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.roomId, other.roomId);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.roomId, other.roomId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            appId,
-            roomId);
+        return Utils.enhancedHash(
+            requestBody, appId, roomId);
     }
     
     @Override
@@ -121,24 +123,27 @@ public class CreatePrivateLobbyRequest {
                 "appId", appId,
                 "roomId", roomId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CreatePrivateLobbyRequestBody requestBody;
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> roomId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(CreatePrivateLobbyRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
+
 
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
@@ -152,6 +157,7 @@ public class CreatePrivateLobbyRequest {
             return this;
         }
 
+
         public Builder roomId(String roomId) {
             Utils.checkNotNull(roomId, "roomId");
             this.roomId = Optional.ofNullable(roomId);
@@ -163,12 +169,12 @@ public class CreatePrivateLobbyRequest {
             this.roomId = roomId;
             return this;
         }
-        
+
         public CreatePrivateLobbyRequest build() {
+
             return new CreatePrivateLobbyRequest(
-                requestBody,
-                appId,
-                roomId);
+                requestBody, appId, roomId);
         }
+
     }
 }

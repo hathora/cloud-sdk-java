@@ -10,7 +10,7 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class ApplicationsPage {
 
@@ -29,9 +29,10 @@ public class ApplicationsPage {
         return applications;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ApplicationsPage withApplications(List<ApplicationWithLatestDeploymentAndBuild> applications) {
         Utils.checkNotNull(applications, "applications");
@@ -39,7 +40,6 @@ public class ApplicationsPage {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class ApplicationsPage {
         }
         ApplicationsPage other = (ApplicationsPage) o;
         return 
-            Objects.deepEquals(this.applications, other.applications);
+            Utils.enhancedDeepEquals(this.applications, other.applications);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             applications);
     }
     
@@ -64,24 +64,28 @@ public class ApplicationsPage {
         return Utils.toString(ApplicationsPage.class,
                 "applications", applications);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<ApplicationWithLatestDeploymentAndBuild> applications;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder applications(List<ApplicationWithLatestDeploymentAndBuild> applications) {
             Utils.checkNotNull(applications, "applications");
             this.applications = applications;
             return this;
         }
-        
+
         public ApplicationsPage build() {
+
             return new ApplicationsPage(
                 applications);
         }
+
     }
 }

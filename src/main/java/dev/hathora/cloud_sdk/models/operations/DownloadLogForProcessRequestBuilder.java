@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.DownloadLogForProcess;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class DownloadLogForProcessRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String processId;
-    private final SDKMethodInterfaces.MethodCallDownloadLogForProcess sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DownloadLogForProcessRequestBuilder(SDKMethodInterfaces.MethodCallDownloadLogForProcess sdk) {
-        this.sdk = sdk;
+    public DownloadLogForProcessRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public DownloadLogForProcessRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class DownloadLogForProcessRequestBuilder {
         return this;
     }
 
-    public DownloadLogForProcessResponse call() throws Exception {
 
-        return sdk.downloadLogForProcess(
-            appId,
+    private DownloadLogForProcessRequest buildRequest() {
+
+        DownloadLogForProcessRequest request = new DownloadLogForProcessRequest(appId,
             processId);
+
+        return request;
+    }
+
+    public DownloadLogForProcessResponse call() throws Exception {
+        
+        RequestOperation<DownloadLogForProcessRequest, DownloadLogForProcessResponse> operation
+              = new DownloadLogForProcess.Sync(sdkConfiguration);
+        DownloadLogForProcessRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -10,13 +10,14 @@ import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class InitStripeCustomerPortalUrlRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CustomerPortalUrl customerPortalUrl;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
     private Optional<String> orgId;
@@ -46,9 +47,10 @@ public class InitStripeCustomerPortalUrlRequest {
         return orgId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public InitStripeCustomerPortalUrlRequest withCustomerPortalUrl(CustomerPortalUrl customerPortalUrl) {
         Utils.checkNotNull(customerPortalUrl, "customerPortalUrl");
@@ -62,13 +64,13 @@ public class InitStripeCustomerPortalUrlRequest {
         return this;
     }
 
+
     public InitStripeCustomerPortalUrlRequest withOrgId(Optional<String> orgId) {
         Utils.checkNotNull(orgId, "orgId");
         this.orgId = orgId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,15 +81,14 @@ public class InitStripeCustomerPortalUrlRequest {
         }
         InitStripeCustomerPortalUrlRequest other = (InitStripeCustomerPortalUrlRequest) o;
         return 
-            Objects.deepEquals(this.customerPortalUrl, other.customerPortalUrl) &&
-            Objects.deepEquals(this.orgId, other.orgId);
+            Utils.enhancedDeepEquals(this.customerPortalUrl, other.customerPortalUrl) &&
+            Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            customerPortalUrl,
-            orgId);
+        return Utils.enhancedHash(
+            customerPortalUrl, orgId);
     }
     
     @Override
@@ -96,22 +97,25 @@ public class InitStripeCustomerPortalUrlRequest {
                 "customerPortalUrl", customerPortalUrl,
                 "orgId", orgId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CustomerPortalUrl customerPortalUrl;
- 
+
         private Optional<String> orgId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder customerPortalUrl(CustomerPortalUrl customerPortalUrl) {
             Utils.checkNotNull(customerPortalUrl, "customerPortalUrl");
             this.customerPortalUrl = customerPortalUrl;
             return this;
         }
+
 
         public Builder orgId(String orgId) {
             Utils.checkNotNull(orgId, "orgId");
@@ -124,11 +128,12 @@ public class InitStripeCustomerPortalUrlRequest {
             this.orgId = orgId;
             return this;
         }
-        
+
         public InitStripeCustomerPortalUrlRequest build() {
+
             return new InitStripeCustomerPortalUrlRequest(
-                customerPortalUrl,
-                orgId);
+                customerPortalUrl, orgId);
         }
+
     }
 }

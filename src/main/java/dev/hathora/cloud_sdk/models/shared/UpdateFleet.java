@@ -5,22 +5,39 @@ package dev.hathora.cloud_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
+
 
 public class UpdateFleet {
 
     @JsonProperty("autoscalerConfig")
     private AutoscalerConfig autoscalerConfig;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("nodeShape")
+    private Optional<? extends NodeShape> nodeShape;
+
     @JsonCreator
     public UpdateFleet(
-            @JsonProperty("autoscalerConfig") AutoscalerConfig autoscalerConfig) {
+            @JsonProperty("autoscalerConfig") AutoscalerConfig autoscalerConfig,
+            @JsonProperty("nodeShape") Optional<? extends NodeShape> nodeShape) {
         Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
+        Utils.checkNotNull(nodeShape, "nodeShape");
         this.autoscalerConfig = autoscalerConfig;
+        this.nodeShape = nodeShape;
+    }
+    
+    public UpdateFleet(
+            AutoscalerConfig autoscalerConfig) {
+        this(autoscalerConfig, Optional.empty());
     }
 
     @JsonIgnore
@@ -28,9 +45,16 @@ public class UpdateFleet {
         return autoscalerConfig;
     }
 
-    public final static Builder builder() {
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<NodeShape> nodeShape() {
+        return (Optional<NodeShape>) nodeShape;
+    }
+
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateFleet withAutoscalerConfig(AutoscalerConfig autoscalerConfig) {
         Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
@@ -38,7 +62,19 @@ public class UpdateFleet {
         return this;
     }
 
-    
+    public UpdateFleet withNodeShape(NodeShape nodeShape) {
+        Utils.checkNotNull(nodeShape, "nodeShape");
+        this.nodeShape = Optional.ofNullable(nodeShape);
+        return this;
+    }
+
+
+    public UpdateFleet withNodeShape(Optional<? extends NodeShape> nodeShape) {
+        Utils.checkNotNull(nodeShape, "nodeShape");
+        this.nodeShape = nodeShape;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,38 +85,59 @@ public class UpdateFleet {
         }
         UpdateFleet other = (UpdateFleet) o;
         return 
-            Objects.deepEquals(this.autoscalerConfig, other.autoscalerConfig);
+            Utils.enhancedDeepEquals(this.autoscalerConfig, other.autoscalerConfig) &&
+            Utils.enhancedDeepEquals(this.nodeShape, other.nodeShape);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            autoscalerConfig);
+        return Utils.enhancedHash(
+            autoscalerConfig, nodeShape);
     }
     
     @Override
     public String toString() {
         return Utils.toString(UpdateFleet.class,
-                "autoscalerConfig", autoscalerConfig);
+                "autoscalerConfig", autoscalerConfig,
+                "nodeShape", nodeShape);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private AutoscalerConfig autoscalerConfig;
-        
+
+        private Optional<? extends NodeShape> nodeShape = Optional.empty();
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder autoscalerConfig(AutoscalerConfig autoscalerConfig) {
             Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
             this.autoscalerConfig = autoscalerConfig;
             return this;
         }
-        
-        public UpdateFleet build() {
-            return new UpdateFleet(
-                autoscalerConfig);
+
+
+        public Builder nodeShape(NodeShape nodeShape) {
+            Utils.checkNotNull(nodeShape, "nodeShape");
+            this.nodeShape = Optional.ofNullable(nodeShape);
+            return this;
         }
+
+        public Builder nodeShape(Optional<? extends NodeShape> nodeShape) {
+            Utils.checkNotNull(nodeShape, "nodeShape");
+            this.nodeShape = nodeShape;
+            return this;
+        }
+
+        public UpdateFleet build() {
+
+            return new UpdateFleet(
+                autoscalerConfig, nodeShape);
+        }
+
     }
 }

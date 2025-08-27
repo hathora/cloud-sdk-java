@@ -3,16 +3,20 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.UpdateFleetRegion;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class UpdateFleetRegionRequestBuilder {
 
     private UpdateFleetRegionRequest request;
-    private final SDKMethodInterfaces.MethodCallUpdateFleetRegion sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateFleetRegionRequestBuilder(SDKMethodInterfaces.MethodCallUpdateFleetRegion sdk) {
-        this.sdk = sdk;
+    public UpdateFleetRegionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateFleetRegionRequestBuilder request(UpdateFleetRegionRequest request) {
@@ -22,8 +26,10 @@ public class UpdateFleetRegionRequestBuilder {
     }
 
     public UpdateFleetRegionResponse call() throws Exception {
+        
+        RequestOperation<UpdateFleetRegionRequest, UpdateFleetRegionResponse> operation
+              = new UpdateFleetRegion.Sync(sdkConfiguration);
 
-        return sdk.updateFleetRegion(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

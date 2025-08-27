@@ -3,7 +3,11 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
-import dev.hathora.cloud_sdk.models.shared.AppConfig;
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.models.shared.CreateAppConfig;
+import dev.hathora.cloud_sdk.operations.UpdateAppV1Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -11,17 +15,17 @@ import java.util.Optional;
 
 public class UpdateAppV1DeprecatedRequestBuilder {
 
-    private AppConfig appConfig;
+    private CreateAppConfig createAppConfig;
     private Optional<String> appId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallUpdateAppV1Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateAppV1DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallUpdateAppV1Deprecated sdk) {
-        this.sdk = sdk;
+    public UpdateAppV1DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
-    public UpdateAppV1DeprecatedRequestBuilder appConfig(AppConfig appConfig) {
-        Utils.checkNotNull(appConfig, "appConfig");
-        this.appConfig = appConfig;
+    public UpdateAppV1DeprecatedRequestBuilder createAppConfig(CreateAppConfig createAppConfig) {
+        Utils.checkNotNull(createAppConfig, "createAppConfig");
+        this.createAppConfig = createAppConfig;
         return this;
     }
                 
@@ -37,10 +41,21 @@ public class UpdateAppV1DeprecatedRequestBuilder {
         return this;
     }
 
-    public UpdateAppV1DeprecatedResponse call() throws Exception {
 
-        return sdk.updateAppV1Deprecated(
-            appConfig,
+    private UpdateAppV1DeprecatedRequest buildRequest() {
+
+        UpdateAppV1DeprecatedRequest request = new UpdateAppV1DeprecatedRequest(createAppConfig,
             appId);
+
+        return request;
+    }
+
+    public UpdateAppV1DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<UpdateAppV1DeprecatedRequest, UpdateAppV1DeprecatedResponse> operation
+              = new UpdateAppV1Deprecated.Sync(sdkConfiguration);
+        UpdateAppV1DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

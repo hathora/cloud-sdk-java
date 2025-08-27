@@ -3,6 +3,10 @@
  */
 package dev.hathora.cloud_sdk.models.operations;
 
+import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+
+import dev.hathora.cloud_sdk.SDKConfiguration;
+import dev.hathora.cloud_sdk.operations.StopProcessV2Deprecated;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class StopProcessV2DeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private String processId;
-    private final SDKMethodInterfaces.MethodCallStopProcessV2Deprecated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public StopProcessV2DeprecatedRequestBuilder(SDKMethodInterfaces.MethodCallStopProcessV2Deprecated sdk) {
-        this.sdk = sdk;
+    public StopProcessV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public StopProcessV2DeprecatedRequestBuilder appId(String appId) {
@@ -36,10 +40,21 @@ public class StopProcessV2DeprecatedRequestBuilder {
         return this;
     }
 
-    public StopProcessV2DeprecatedResponse call() throws Exception {
 
-        return sdk.stopProcessV2Deprecated(
-            appId,
+    private StopProcessV2DeprecatedRequest buildRequest() {
+
+        StopProcessV2DeprecatedRequest request = new StopProcessV2DeprecatedRequest(appId,
             processId);
+
+        return request;
+    }
+
+    public StopProcessV2DeprecatedResponse call() throws Exception {
+        
+        RequestOperation<StopProcessV2DeprecatedRequest, StopProcessV2DeprecatedResponse> operation
+              = new StopProcessV2Deprecated.Sync(sdkConfiguration);
+        StopProcessV2DeprecatedRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

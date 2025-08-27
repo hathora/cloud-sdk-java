@@ -15,6 +15,7 @@ Returns an array of all regions with a host and port that a client can directly 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="GetPingServiceEndpoints" method="get" path="/discovery/v2/ping" -->
 ```java
 package hello.world;
 
@@ -27,8 +28,6 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
-                .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
-                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
             .build();
 
         GetPingServiceEndpointsResponse res = sdk.discoveryV2().getPingServiceEndpoints()
