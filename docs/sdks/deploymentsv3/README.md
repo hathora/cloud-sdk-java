@@ -71,6 +71,7 @@ public class Application {
                             .build()))
                     .deploymentTag("alpha")
                     .experimentalRequestedGPU(1d)
+                    .requestedGPU(1d)
                     .build())
                 .call();
 
