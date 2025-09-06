@@ -23,9 +23,20 @@ import java.lang.String;
 
 public class TokensV1 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncTokensV1 asyncSDK;
 
     TokensV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncTokensV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncTokensV1 async() {
+        return asyncSDK;
     }
 
     /**

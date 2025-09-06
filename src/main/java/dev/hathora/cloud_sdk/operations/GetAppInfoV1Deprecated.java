@@ -4,6 +4,7 @@
 package dev.hathora.cloud_sdk.operations;
 
 import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+import static dev.hathora.cloud_sdk.operations.Operations.AsyncRequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_sdk.SDKConfiguration;
@@ -13,6 +14,8 @@ import dev.hathora.cloud_sdk.models.errors.SDKError;
 import dev.hathora.cloud_sdk.models.operations.GetAppInfoV1DeprecatedRequest;
 import dev.hathora.cloud_sdk.models.operations.GetAppInfoV1DeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Application;
+import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Exceptions;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
@@ -21,11 +24,14 @@ import dev.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.RuntimeException;
 import java.lang.String;
+import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Optional;
-
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
 
 public class GetAppInfoV1Deprecated {
@@ -73,10 +79,9 @@ public class GetAppInfoV1Deprecated {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(GetAppInfoV1DeprecatedRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    GetAppInfoV1DeprecatedRequest.class,
+                    klass,
                     this.baseUrl,
                     "/apps/v1/info/{appId}",
                     request, this.sdkConfiguration.globals);
@@ -96,7 +101,7 @@ public class GetAppInfoV1Deprecated {
         }
 
         private HttpRequest onBuildRequest(GetAppInfoV1DeprecatedRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, GetAppInfoV1DeprecatedRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -201,6 +206,109 @@ public class GetAppInfoV1Deprecated {
                     response.statusCode(),
                     "Unexpected status code received: " + response.statusCode(),
                     Utils.extractByteArrayFromBody(response));
+        }
+    }
+    public static class Async extends Base
+            implements AsyncRequestOperation<GetAppInfoV1DeprecatedRequest, dev.hathora.cloud_sdk.models.operations.async.GetAppInfoV1DeprecatedResponse> {
+
+        public Async(SDKConfiguration sdkConfiguration) {
+            super(sdkConfiguration);
+        }
+
+        private CompletableFuture<HttpRequest> onBuildRequest(GetAppInfoV1DeprecatedRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, GetAppInfoV1DeprecatedRequest.class);
+            return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
+        }
+
+        private CompletableFuture<HttpResponse<Blob>> onError(HttpResponse<Blob> response, Throwable error) {
+            return this.sdkConfiguration.asyncHooks().afterError(createAfterErrorContext(), response, error);
+        }
+
+        private CompletableFuture<HttpResponse<Blob>> onSuccess(HttpResponse<Blob> response) {
+            return this.sdkConfiguration.asyncHooks().afterSuccess(createAfterSuccessContext(), response);
+        }
+
+        @Override
+        public CompletableFuture<HttpResponse<Blob>> doRequest(GetAppInfoV1DeprecatedRequest request) {
+            return Exceptions.unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
+                    .handle((resp, err) -> {
+                        if (err != null) {
+                            return onError(null, err);
+                        }
+                        if (Utils.statusCodeMatches(resp.statusCode(), "401", "404", "429", "4XX", "5XX")) {
+                            return onError(resp, null);
+                        }
+                        return CompletableFuture.completedFuture(resp);
+                    })
+                    .thenCompose(Function.identity())
+                    .thenCompose(this::onSuccess);
+        }
+
+        @Override
+        public CompletableFuture<dev.hathora.cloud_sdk.models.operations.async.GetAppInfoV1DeprecatedResponse> handleResponse(
+                HttpResponse<Blob> response) {
+            String contentType = response
+                    .headers()
+                    .firstValue("Content-Type")
+                    .orElse("application/octet-stream");
+            dev.hathora.cloud_sdk.models.operations.async.GetAppInfoV1DeprecatedResponse.Builder resBuilder =
+                    dev.hathora.cloud_sdk.models.operations.async.GetAppInfoV1DeprecatedResponse
+                            .builder()
+                            .contentType(contentType)
+                            .statusCode(response.statusCode())
+                            .rawResponse(response);
+
+            dev.hathora.cloud_sdk.models.operations.async.GetAppInfoV1DeprecatedResponse res = resBuilder.build();
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return response.body().toByteArray().thenApply(bodyBytes -> {
+                        try {
+                            Application out = Utils.mapper().readValue(
+                                    bodyBytes,
+                                    new TypeReference<>() {
+                                    });
+                            res.withApplication(out);
+                            return res;
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "401", "404", "429")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return response.body().toByteArray().thenApply(bodyBytes -> {
+                        dev.hathora.cloud_sdk.models.errors.async.ApiError out;
+                        try {
+                            out = Utils.mapper().readValue(
+                                    bodyBytes,
+                                    new TypeReference<>() {
+                                    });
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                        throw out;
+                    });
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
+                // no content
+                return Utils.createAsyncApiError(response, "API error occurred");
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
+                // no content
+                return Utils.createAsyncApiError(response, "API error occurred");
+            }
+            
+            return Utils.createAsyncApiError(response, "Unexpected status code received: " + response.statusCode());
         }
     }
 }

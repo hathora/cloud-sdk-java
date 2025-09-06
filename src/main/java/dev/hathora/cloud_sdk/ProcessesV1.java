@@ -28,9 +28,20 @@ import java.util.Optional;
  */
 public class ProcessesV1 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncProcessesV1 asyncSDK;
 
     ProcessesV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncProcessesV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncProcessesV1 async() {
+        return asyncSDK;
     }
 
     /**
