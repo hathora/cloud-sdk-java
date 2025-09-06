@@ -408,9 +408,6 @@ public class Application {
                 .buildId(1)
                 .call();
 
-        if (res.responseStream().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

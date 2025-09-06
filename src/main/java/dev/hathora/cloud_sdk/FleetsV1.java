@@ -35,9 +35,20 @@ import java.util.Optional;
  */
 public class FleetsV1 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncFleetsV1 asyncSDK;
 
     FleetsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncFleetsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncFleetsV1 async() {
+        return asyncSDK;
     }
 
     /**
