@@ -53,9 +53,20 @@ import java.util.Optional;
 
 public class OrganizationsV1 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncOrganizationsV1 asyncSDK;
 
     OrganizationsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncOrganizationsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncOrganizationsV1 async() {
+        return asyncSDK;
     }
 
     /**

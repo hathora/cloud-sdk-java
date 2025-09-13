@@ -280,6 +280,7 @@ public class HathoraCloud {
     }
 
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncHathoraCloud asyncSDK;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -465,5 +466,16 @@ public class HathoraCloud {
         this.roomsV1 = new RoomsV1(sdkConfiguration);
         this.roomsV2 = new RoomsV2(sdkConfiguration);
         this.tokensV1 = new TokensV1(sdkConfiguration);
+        this.asyncSDK = new AsyncHathoraCloud(this, sdkConfiguration);
     }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncHathoraCloud async() {
+        return asyncSDK;
+    }
+
 }

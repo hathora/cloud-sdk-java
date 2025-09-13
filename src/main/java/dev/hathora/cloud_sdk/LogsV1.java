@@ -20,9 +20,20 @@ import java.util.Optional;
 
 public class LogsV1 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncLogsV1 asyncSDK;
 
     LogsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncLogsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncLogsV1 async() {
+        return asyncSDK;
     }
 
     /**

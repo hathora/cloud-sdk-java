@@ -31,9 +31,20 @@ import java.util.Optional;
  */
 public class DeploymentsV3 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDeploymentsV3 asyncSDK;
 
     DeploymentsV3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDeploymentsV3(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDeploymentsV3 async() {
+        return asyncSDK;
     }
 
     /**

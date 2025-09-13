@@ -14,9 +14,20 @@ import java.lang.Exception;
 
 public class ManagementV1 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncManagementV1 asyncSDK;
 
     ManagementV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncManagementV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncManagementV1 async() {
+        return asyncSDK;
     }
 
     /**
