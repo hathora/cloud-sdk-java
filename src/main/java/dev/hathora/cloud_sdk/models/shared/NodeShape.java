@@ -59,6 +59,10 @@ public class NodeShape {
     public static final NodeShape GPU_L422496 = new NodeShape("gpu-l4-2-24-96");
     public static final NodeShape GPU_L4448192 = new NodeShape("gpu-l4-4-48-192");
     public static final NodeShape GPU_L4896384 = new NodeShape("gpu-l4-8-96-384");
+    public static final NodeShape GPU_H100126234 = new NodeShape("gpu-h100-1-26-234");
+    public static final NodeShape GPU_H100252468 = new NodeShape("gpu-h100-2-52-468");
+    public static final NodeShape GPU_H1004104936 = new NodeShape("gpu-h100-4-104-936");
+    public static final NodeShape GPU_H10082081872 = new NodeShape("gpu-h100-8-208-1872");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -144,6 +148,10 @@ public class NodeShape {
         map.put("gpu-l4-2-24-96", GPU_L422496);
         map.put("gpu-l4-4-48-192", GPU_L4448192);
         map.put("gpu-l4-8-96-384", GPU_L4896384);
+        map.put("gpu-h100-1-26-234", GPU_H100126234);
+        map.put("gpu-h100-2-52-468", GPU_H100252468);
+        map.put("gpu-h100-4-104-936", GPU_H1004104936);
+        map.put("gpu-h100-8-208-1872", GPU_H10082081872);
         return map;
     }
 
@@ -163,6 +171,10 @@ public class NodeShape {
         map.put("gpu-l4-2-24-96", NodeShapeEnum.GPU_L422496);
         map.put("gpu-l4-4-48-192", NodeShapeEnum.GPU_L4448192);
         map.put("gpu-l4-8-96-384", NodeShapeEnum.GPU_L4896384);
+        map.put("gpu-h100-1-26-234", NodeShapeEnum.GPU_H100126234);
+        map.put("gpu-h100-2-52-468", NodeShapeEnum.GPU_H100252468);
+        map.put("gpu-h100-4-104-936", NodeShapeEnum.GPU_H1004104936);
+        map.put("gpu-h100-8-208-1872", NodeShapeEnum.GPU_H10082081872);
         return map;
     }
     
@@ -211,7 +223,11 @@ public class NodeShape {
         GPU_L411248("gpu-l4-1-12-48"),
         GPU_L422496("gpu-l4-2-24-96"),
         GPU_L4448192("gpu-l4-4-48-192"),
-        GPU_L4896384("gpu-l4-8-96-384"),;
+        GPU_L4896384("gpu-l4-8-96-384"),
+        GPU_H100126234("gpu-h100-1-26-234"),
+        GPU_H100252468("gpu-h100-2-52-468"),
+        GPU_H1004104936("gpu-h100-4-104-936"),
+        GPU_H10082081872("gpu-h100-8-208-1872"),;
 
         private final String value;
 

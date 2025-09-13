@@ -17,9 +17,20 @@ import java.lang.Exception;
  */
 public class MetricsV1 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncMetricsV1 asyncSDK;
 
     MetricsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncMetricsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncMetricsV1 async() {
+        return asyncSDK;
     }
 
     /**

@@ -45,9 +45,20 @@ import java.util.Optional;
  */
 public class BuildsV3 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBuildsV3 asyncSDK;
 
     BuildsV3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBuildsV3(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBuildsV3 async() {
+        return asyncSDK;
     }
 
     /**

@@ -42,9 +42,20 @@ import java.util.Optional;
 
 public class RoomsV1 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncRoomsV1 asyncSDK;
 
     RoomsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncRoomsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncRoomsV1 async() {
+        return asyncSDK;
     }
 
     /**

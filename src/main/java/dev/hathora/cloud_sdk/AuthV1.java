@@ -28,9 +28,20 @@ import java.util.Optional;
  */
 public class AuthV1 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAuthV1 asyncSDK;
 
     AuthV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncAuthV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAuthV1 async() {
+        return asyncSDK;
     }
 
     /**

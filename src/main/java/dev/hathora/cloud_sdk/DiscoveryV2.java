@@ -15,9 +15,20 @@ import java.lang.Exception;
  */
 public class DiscoveryV2 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDiscoveryV2 asyncSDK;
 
     DiscoveryV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDiscoveryV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDiscoveryV2 async() {
+        return asyncSDK;
     }
 
     /**

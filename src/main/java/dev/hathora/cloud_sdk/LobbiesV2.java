@@ -51,9 +51,20 @@ import java.util.Optional;
 
 public class LobbiesV2 {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncLobbiesV2 asyncSDK;
 
     LobbiesV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncLobbiesV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncLobbiesV2 async() {
+        return asyncSDK;
     }
 
     /**

@@ -261,6 +261,7 @@ import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.*;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import dev.hathora.cloud_sdk.utils.Utils;
+import java.io.FileInputStream;
 import java.lang.Exception;
 
 public class Application {
@@ -277,16 +278,13 @@ public class Application {
         RunBuildDeprecatedResponse res = sdk.buildsV1().runBuildDeprecated()
                 .requestBody(RunBuildDeprecatedRequestBody.builder()
                     .file(File.builder()
-                        .content(Utils.readBytes("example.file"))
+                        .content(Utils.readBytesAndClose(new FileInputStream("example.file")))
                         .fileName("example.file")
                         .build())
                     .build())
                 .buildId(1)
                 .call();
 
-        if (res.res().isPresent()) {
-            // handle response
-        }
     }
 }
 ```
