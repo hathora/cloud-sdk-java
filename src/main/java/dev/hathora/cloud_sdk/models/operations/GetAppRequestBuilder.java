@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetApp;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -16,6 +17,7 @@ public class GetAppRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetAppRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -44,7 +46,7 @@ public class GetAppRequestBuilder {
     public GetAppResponse call() throws Exception {
         
         RequestOperation<GetAppRequest, GetAppResponse> operation
-              = new GetApp.Sync(sdkConfiguration);
+              = new GetApp.Sync(sdkConfiguration, _headers);
         GetAppRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

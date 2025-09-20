@@ -8,6 +8,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateRoomParams;
 import dev.hathora.cloud_sdk.operations.CreateRoom;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -19,6 +20,7 @@ public class CreateRoomRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Optional<String> roomId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateRoomRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -67,7 +69,7 @@ public class CreateRoomRequestBuilder {
     public CreateRoomResponse call() throws Exception {
         
         RequestOperation<CreateRoomRequest, CreateRoomResponse> operation
-              = new CreateRoom.Sync(sdkConfiguration);
+              = new CreateRoom.Sync(sdkConfiguration, _headers);
         CreateRoomRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

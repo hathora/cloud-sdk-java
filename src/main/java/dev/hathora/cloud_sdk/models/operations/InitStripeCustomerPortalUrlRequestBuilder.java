@@ -8,6 +8,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CustomerPortalUrl;
 import dev.hathora.cloud_sdk.operations.InitStripeCustomerPortalUrl;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -18,6 +19,7 @@ public class InitStripeCustomerPortalUrlRequestBuilder {
     private CustomerPortalUrl customerPortalUrl;
     private Optional<String> orgId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public InitStripeCustomerPortalUrlRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class InitStripeCustomerPortalUrlRequestBuilder {
     public InitStripeCustomerPortalUrlResponse call() throws Exception {
         
         RequestOperation<InitStripeCustomerPortalUrlRequest, InitStripeCustomerPortalUrlResponse> operation
-              = new InitStripeCustomerPortalUrl.Sync(sdkConfiguration);
+              = new InitStripeCustomerPortalUrl.Sync(sdkConfiguration, _headers);
         InitStripeCustomerPortalUrlRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

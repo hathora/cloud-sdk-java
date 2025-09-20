@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetConnectionInfoDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -17,6 +18,7 @@ public class GetConnectionInfoDeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String roomId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetConnectionInfoDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -52,7 +54,7 @@ public class GetConnectionInfoDeprecatedRequestBuilder {
     public GetConnectionInfoDeprecatedResponse call() throws Exception {
         
         RequestOperation<GetConnectionInfoDeprecatedRequest, GetConnectionInfoDeprecatedResponse> operation
-              = new GetConnectionInfoDeprecated.Sync(sdkConfiguration);
+              = new GetConnectionInfoDeprecated.Sync(sdkConfiguration, _headers);
         GetConnectionInfoDeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

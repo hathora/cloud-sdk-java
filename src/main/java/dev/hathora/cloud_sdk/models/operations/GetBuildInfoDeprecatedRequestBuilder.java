@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetBuildInfoDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.Integer;
@@ -18,6 +19,7 @@ public class GetBuildInfoDeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Integer buildId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetBuildInfoDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class GetBuildInfoDeprecatedRequestBuilder {
     public GetBuildInfoDeprecatedResponse call() throws Exception {
         
         RequestOperation<GetBuildInfoDeprecatedRequest, GetBuildInfoDeprecatedResponse> operation
-              = new GetBuildInfoDeprecated.Sync(sdkConfiguration);
+              = new GetBuildInfoDeprecated.Sync(sdkConfiguration, _headers);
         GetBuildInfoDeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -8,6 +8,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.operations.ListActivePublicLobbiesDeprecatedV2;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -18,6 +19,7 @@ public class ListActivePublicLobbiesDeprecatedV2RequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Optional<? extends Region> region = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListActivePublicLobbiesDeprecatedV2RequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -59,7 +61,7 @@ public class ListActivePublicLobbiesDeprecatedV2RequestBuilder {
     public ListActivePublicLobbiesDeprecatedV2Response call() throws Exception {
         
         RequestOperation<ListActivePublicLobbiesDeprecatedV2Request, ListActivePublicLobbiesDeprecatedV2Response> operation
-              = new ListActivePublicLobbiesDeprecatedV2.Sync(sdkConfiguration);
+              = new ListActivePublicLobbiesDeprecatedV2.Sync(sdkConfiguration, _headers);
         ListActivePublicLobbiesDeprecatedV2Request request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

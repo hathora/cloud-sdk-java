@@ -34,6 +34,7 @@ import dev.hathora.cloud_sdk.operations.GetConnectionInfoDeprecated;
 import dev.hathora.cloud_sdk.operations.GetInactiveRoomsForProcessDeprecated;
 import dev.hathora.cloud_sdk.operations.GetRoomInfoDeprecated;
 import dev.hathora.cloud_sdk.operations.SuspendRoomDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
@@ -41,10 +42,22 @@ import java.util.Optional;
 
 
 public class RoomsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncRoomsV1 asyncSDK;
 
     RoomsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncRoomsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncRoomsV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -93,7 +106,7 @@ public class RoomsV1 {
                 .roomId(roomId)
                 .build();
         RequestOperation<CreateRoomDeprecatedRequest, CreateRoomDeprecatedResponse> operation
-              = new CreateRoomDeprecated.Sync(sdkConfiguration);
+              = new CreateRoomDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -139,7 +152,7 @@ public class RoomsV1 {
                 .roomId(roomId)
                 .build();
         RequestOperation<DestroyRoomDeprecatedRequest, DestroyRoomDeprecatedResponse> operation
-              = new DestroyRoomDeprecated.Sync(sdkConfiguration);
+              = new DestroyRoomDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -185,7 +198,7 @@ public class RoomsV1 {
                 .processId(processId)
                 .build();
         RequestOperation<GetActiveRoomsForProcessDeprecatedRequest, GetActiveRoomsForProcessDeprecatedResponse> operation
-              = new GetActiveRoomsForProcessDeprecated.Sync(sdkConfiguration);
+              = new GetActiveRoomsForProcessDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -231,7 +244,7 @@ public class RoomsV1 {
                 .roomId(roomId)
                 .build();
         RequestOperation<GetConnectionInfoDeprecatedRequest, GetConnectionInfoDeprecatedResponse> operation
-              = new GetConnectionInfoDeprecated.Sync(sdkConfiguration);
+              = new GetConnectionInfoDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -277,7 +290,7 @@ public class RoomsV1 {
                 .processId(processId)
                 .build();
         RequestOperation<GetInactiveRoomsForProcessDeprecatedRequest, GetInactiveRoomsForProcessDeprecatedResponse> operation
-              = new GetInactiveRoomsForProcessDeprecated.Sync(sdkConfiguration);
+              = new GetInactiveRoomsForProcessDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -323,7 +336,7 @@ public class RoomsV1 {
                 .roomId(roomId)
                 .build();
         RequestOperation<GetRoomInfoDeprecatedRequest, GetRoomInfoDeprecatedResponse> operation
-              = new GetRoomInfoDeprecated.Sync(sdkConfiguration);
+              = new GetRoomInfoDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -369,7 +382,7 @@ public class RoomsV1 {
                 .roomId(roomId)
                 .build();
         RequestOperation<SuspendRoomDeprecatedRequest, SuspendRoomDeprecatedResponse> operation
-              = new SuspendRoomDeprecated.Sync(sdkConfiguration);
+              = new SuspendRoomDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

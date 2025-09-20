@@ -7,11 +7,133 @@ Operations to manage and view a [fleet](https://hathora.dev/docs/concepts/hathor
 
 ### Available Operations
 
+* [createFleet](#createfleet) - CreateFleet
+* [getFleet](#getfleet) - GetFleet
 * [getFleetMetrics](#getfleetmetrics) - GetFleetMetrics
 * [getFleetRegion](#getfleetregion) - GetFleetRegion
 * [getFleets](#getfleets) - GetFleets
 * [updateFleet](#updatefleet) - UpdateFleet
 * [updateFleetRegion](#updatefleetregion) - UpdateFleetRegion
+
+## createFleet
+
+CreateFleet
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="CreateFleet" method="post" path="/fleets/v1/fleets" -->
+```java
+package hello.world;
+
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.CreateFleetResponse;
+import dev.hathora.cloud_sdk.models.shared.*;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
+            .build();
+
+        CreateFleetResponse res = sdk.fleetsV1().createFleet()
+                .createFleet(CreateFleet.builder()
+                    .autoscalerConfig(AutoscalerConfig.builder()
+                        .scaleUpThreshold(599396)
+                        .build())
+                    .name("production")
+                    .nodeShape(NodeShape.CPU1664)
+                    .build())
+                .call();
+
+        if (res.fleet().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                         | Type                                              | Required                                          | Description                                       | Example                                           |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `createFleet`                                     | [CreateFleet](../../models/shared/CreateFleet.md) | :heavy_check_mark:                                | N/A                                               |                                                   |
+| `orgId`                                           | *Optional\<String>*                               | :heavy_minus_sign:                                | N/A                                               | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39          |
+
+### Response
+
+**[CreateFleetResponse](../../models/operations/CreateFleetResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
+| models/errors/ApiError | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## getFleet
+
+Returns a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="GetFleet" method="get" path="/fleets/v1/fleets/{fleetId}" -->
+```java
+package hello.world;
+
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.GetFleetResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ApiError, ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
+            .build();
+
+        GetFleetResponse res = sdk.fleetsV1().getFleet()
+                .fleetId("<id>")
+                .call();
+
+        if (res.fleet().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `fleetId`                                | *String*                                 | :heavy_check_mark:                       | N/A                                      |                                          |
+| `orgId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
+
+### Response
+
+**[GetFleetResponse](../../models/operations/GetFleetResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
+| models/errors/ApiError | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getFleetMetrics
 
@@ -221,6 +343,7 @@ public class Application {
                     .autoscalerConfig(AutoscalerConfig.builder()
                         .scaleUpThreshold(979840)
                         .build())
+                    .name("production")
                     .build())
                 .fleetId("<id>")
                 .call();

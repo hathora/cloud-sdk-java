@@ -20,6 +20,13 @@ public class UpdateFleet {
     @JsonProperty("autoscalerConfig")
     private AutoscalerConfig autoscalerConfig;
 
+    /**
+     * Readable name for a fleet. Must be unique within an organization.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("name")
+    private Optional<String> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nodeShape")
@@ -28,21 +35,32 @@ public class UpdateFleet {
     @JsonCreator
     public UpdateFleet(
             @JsonProperty("autoscalerConfig") AutoscalerConfig autoscalerConfig,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("nodeShape") Optional<? extends NodeShape> nodeShape) {
         Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
+        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(nodeShape, "nodeShape");
         this.autoscalerConfig = autoscalerConfig;
+        this.name = name;
         this.nodeShape = nodeShape;
     }
     
     public UpdateFleet(
             AutoscalerConfig autoscalerConfig) {
-        this(autoscalerConfig, Optional.empty());
+        this(autoscalerConfig, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
     public AutoscalerConfig autoscalerConfig() {
         return autoscalerConfig;
+    }
+
+    /**
+     * Readable name for a fleet. Must be unique within an organization.
+     */
+    @JsonIgnore
+    public Optional<String> name() {
+        return name;
     }
 
     @SuppressWarnings("unchecked")
@@ -59,6 +77,25 @@ public class UpdateFleet {
     public UpdateFleet withAutoscalerConfig(AutoscalerConfig autoscalerConfig) {
         Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
         this.autoscalerConfig = autoscalerConfig;
+        return this;
+    }
+
+    /**
+     * Readable name for a fleet. Must be unique within an organization.
+     */
+    public UpdateFleet withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+
+    /**
+     * Readable name for a fleet. Must be unique within an organization.
+     */
+    public UpdateFleet withName(Optional<String> name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
         return this;
     }
 
@@ -86,19 +123,21 @@ public class UpdateFleet {
         UpdateFleet other = (UpdateFleet) o;
         return 
             Utils.enhancedDeepEquals(this.autoscalerConfig, other.autoscalerConfig) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.nodeShape, other.nodeShape);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            autoscalerConfig, nodeShape);
+            autoscalerConfig, name, nodeShape);
     }
     
     @Override
     public String toString() {
         return Utils.toString(UpdateFleet.class,
                 "autoscalerConfig", autoscalerConfig,
+                "name", name,
                 "nodeShape", nodeShape);
     }
 
@@ -106,6 +145,8 @@ public class UpdateFleet {
     public final static class Builder {
 
         private AutoscalerConfig autoscalerConfig;
+
+        private Optional<String> name = Optional.empty();
 
         private Optional<? extends NodeShape> nodeShape = Optional.empty();
 
@@ -117,6 +158,25 @@ public class UpdateFleet {
         public Builder autoscalerConfig(AutoscalerConfig autoscalerConfig) {
             Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
             this.autoscalerConfig = autoscalerConfig;
+            return this;
+        }
+
+
+        /**
+         * Readable name for a fleet. Must be unique within an organization.
+         */
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * Readable name for a fleet. Must be unique within an organization.
+         */
+        public Builder name(Optional<String> name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
             return this;
         }
 
@@ -136,7 +196,7 @@ public class UpdateFleet {
         public UpdateFleet build() {
 
             return new UpdateFleet(
-                autoscalerConfig, nodeShape);
+                autoscalerConfig, name, nodeShape);
         }
 
     }

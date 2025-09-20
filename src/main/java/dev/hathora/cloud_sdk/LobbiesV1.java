@@ -20,6 +20,7 @@ import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.operations.CreatePrivateLobbyDeprecated;
 import dev.hathora.cloud_sdk.operations.CreatePublicLobbyDeprecated;
 import dev.hathora.cloud_sdk.operations.ListActivePublicLobbiesDeprecatedV1;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Exception;
@@ -28,10 +29,22 @@ import java.util.Optional;
 
 
 public class LobbiesV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncLobbiesV1 asyncSDK;
 
     LobbiesV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncLobbiesV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncLobbiesV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -82,7 +95,7 @@ public class LobbiesV1 {
                 .region(region)
                 .build();
         RequestOperation<CreatePrivateLobbyDeprecatedRequest, CreatePrivateLobbyDeprecatedResponse> operation
-              = new CreatePrivateLobbyDeprecated.Sync(sdkConfiguration, security);
+              = new CreatePrivateLobbyDeprecated.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -134,7 +147,7 @@ public class LobbiesV1 {
                 .region(region)
                 .build();
         RequestOperation<CreatePublicLobbyDeprecatedRequest, CreatePublicLobbyDeprecatedResponse> operation
-              = new CreatePublicLobbyDeprecated.Sync(sdkConfiguration, security);
+              = new CreatePublicLobbyDeprecated.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -183,7 +196,7 @@ public class LobbiesV1 {
                 .region(region)
                 .build();
         RequestOperation<ListActivePublicLobbiesDeprecatedV1Request, ListActivePublicLobbiesDeprecatedV1Response> operation
-              = new ListActivePublicLobbiesDeprecatedV1.Sync(sdkConfiguration);
+              = new ListActivePublicLobbiesDeprecatedV1.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

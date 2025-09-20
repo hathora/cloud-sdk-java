@@ -9,6 +9,7 @@ import dev.hathora.cloud_sdk.models.operations.GetMetricsDeprecatedRequest;
 import dev.hathora.cloud_sdk.models.operations.GetMetricsDeprecatedRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetMetricsDeprecatedResponse;
 import dev.hathora.cloud_sdk.operations.GetMetricsDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 
@@ -16,10 +17,22 @@ import java.lang.Exception;
  * Deprecated. Use [ProcessesV3#GetProcessMetrics](https://hathora.dev/api#tag/ProcessesV3/operation/GetProcessMetrics) to fetch metrics about a specific process.
  */
 public class MetricsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncMetricsV1 asyncSDK;
 
     MetricsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncMetricsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncMetricsV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -48,7 +61,7 @@ public class MetricsV1 {
     @Deprecated
     public GetMetricsDeprecatedResponse getMetricsDeprecated(GetMetricsDeprecatedRequest request) throws Exception {
         RequestOperation<GetMetricsDeprecatedRequest, GetMetricsDeprecatedResponse> operation
-              = new GetMetricsDeprecated.Sync(sdkConfiguration);
+              = new GetMetricsDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

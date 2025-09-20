@@ -7,11 +7,13 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetPingServiceEndpointsDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class GetPingServiceEndpointsDeprecatedRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetPingServiceEndpointsDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class GetPingServiceEndpointsDeprecatedRequestBuilder {
     public GetPingServiceEndpointsDeprecatedResponse call() throws Exception {
         
         RequestlessOperation<GetPingServiceEndpointsDeprecatedResponse> operation
-            = new GetPingServiceEndpointsDeprecated.Sync(sdkConfiguration);
+            = new GetPingServiceEndpointsDeprecated.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

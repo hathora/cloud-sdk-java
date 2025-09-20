@@ -22,6 +22,7 @@ import dev.hathora.cloud_sdk.operations.CreateDeployment;
 import dev.hathora.cloud_sdk.operations.GetDeployment;
 import dev.hathora.cloud_sdk.operations.GetDeployments;
 import dev.hathora.cloud_sdk.operations.GetLatestDeployment;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
@@ -30,10 +31,22 @@ import java.util.Optional;
  * Operations that allow you configure and manage an application's [build](https://hathora.dev/docs/concepts/hathora-entities#build) at runtime.
  */
 public class DeploymentsV3 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDeploymentsV3 asyncSDK;
 
     DeploymentsV3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDeploymentsV3(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDeploymentsV3 async() {
+        return asyncSDK;
     }
 
     /**
@@ -78,7 +91,7 @@ public class DeploymentsV3 {
                 .appId(appId)
                 .build();
         RequestOperation<CreateDeploymentRequest, CreateDeploymentResponse> operation
-              = new CreateDeployment.Sync(sdkConfiguration);
+              = new CreateDeployment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +137,7 @@ public class DeploymentsV3 {
                 .deploymentId(deploymentId)
                 .build();
         RequestOperation<GetDeploymentRequest, GetDeploymentResponse> operation
-              = new GetDeployment.Sync(sdkConfiguration);
+              = new GetDeployment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -173,7 +186,7 @@ public class DeploymentsV3 {
                 .deploymentTag(deploymentTag)
                 .build();
         RequestOperation<GetDeploymentsRequest, GetDeploymentsResponse> operation
-              = new GetDeployments.Sync(sdkConfiguration);
+              = new GetDeployments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -216,7 +229,7 @@ public class DeploymentsV3 {
                 .appId(appId)
                 .build();
         RequestOperation<GetLatestDeploymentRequest, GetLatestDeploymentResponse> operation
-              = new GetLatestDeployment.Sync(sdkConfiguration);
+              = new GetLatestDeployment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

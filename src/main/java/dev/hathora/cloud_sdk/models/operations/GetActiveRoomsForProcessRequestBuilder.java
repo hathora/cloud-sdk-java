@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetActiveRoomsForProcess;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -17,6 +18,7 @@ public class GetActiveRoomsForProcessRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String processId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetActiveRoomsForProcessRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -52,7 +54,7 @@ public class GetActiveRoomsForProcessRequestBuilder {
     public GetActiveRoomsForProcessResponse call() throws Exception {
         
         RequestOperation<GetActiveRoomsForProcessRequest, GetActiveRoomsForProcessResponse> operation
-              = new GetActiveRoomsForProcess.Sync(sdkConfiguration);
+              = new GetActiveRoomsForProcess.Sync(sdkConfiguration, _headers);
         GetActiveRoomsForProcessRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

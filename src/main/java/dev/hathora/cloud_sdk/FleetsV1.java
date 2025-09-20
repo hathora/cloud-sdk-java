@@ -5,12 +5,18 @@ package dev.hathora.cloud_sdk;
 
 import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
+import dev.hathora.cloud_sdk.models.operations.CreateFleetRequest;
+import dev.hathora.cloud_sdk.models.operations.CreateFleetRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.CreateFleetResponse;
 import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsRequest;
 import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsResponse;
 import dev.hathora.cloud_sdk.models.operations.GetFleetRegionRequest;
 import dev.hathora.cloud_sdk.models.operations.GetFleetRegionRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetFleetRegionResponse;
+import dev.hathora.cloud_sdk.models.operations.GetFleetRequest;
+import dev.hathora.cloud_sdk.models.operations.GetFleetRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.GetFleetResponse;
 import dev.hathora.cloud_sdk.models.operations.GetFleetsRequest;
 import dev.hathora.cloud_sdk.models.operations.GetFleetsRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetFleetsResponse;
@@ -20,12 +26,15 @@ import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionResponse;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetRequest;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetResponse;
+import dev.hathora.cloud_sdk.models.shared.CreateFleet;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.UpdateFleet;
+import dev.hathora.cloud_sdk.operations.GetFleet;
 import dev.hathora.cloud_sdk.operations.GetFleetMetrics;
 import dev.hathora.cloud_sdk.operations.GetFleetRegion;
 import dev.hathora.cloud_sdk.operations.GetFleets;
 import dev.hathora.cloud_sdk.operations.UpdateFleetRegion;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
@@ -34,10 +43,108 @@ import java.util.Optional;
  * Operations to manage and view a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
  */
 public class FleetsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncFleetsV1 asyncSDK;
 
     FleetsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncFleetsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncFleetsV1 async() {
+        return asyncSDK;
+    }
+
+    /**
+     * CreateFleet
+     * 
+     * @return The call builder
+     */
+    public CreateFleetRequestBuilder createFleet() {
+        return new CreateFleetRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * CreateFleet
+     * 
+     * @param createFleet 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public CreateFleetResponse createFleet(CreateFleet createFleet) throws Exception {
+        return createFleet(createFleet, Optional.empty());
+    }
+
+    /**
+     * CreateFleet
+     * 
+     * @param createFleet 
+     * @param orgId 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public CreateFleetResponse createFleet(CreateFleet createFleet, Optional<String> orgId) throws Exception {
+        CreateFleetRequest request =
+            CreateFleetRequest
+                .builder()
+                .createFleet(createFleet)
+                .orgId(orgId)
+                .build();
+        RequestOperation<CreateFleetRequest, CreateFleetResponse> operation
+              = new dev.hathora.cloud_sdk.operations.CreateFleet.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * GetFleet
+     * 
+     * <p>Returns a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
+     * @return The call builder
+     */
+    public GetFleetRequestBuilder getFleet() {
+        return new GetFleetRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * GetFleet
+     * 
+     * <p>Returns a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
+     * @param fleetId 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetFleetResponse getFleet(String fleetId) throws Exception {
+        return getFleet(fleetId, Optional.empty());
+    }
+
+    /**
+     * GetFleet
+     * 
+     * <p>Returns a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
+     * @param fleetId 
+     * @param orgId 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetFleetResponse getFleet(String fleetId, Optional<String> orgId) throws Exception {
+        GetFleetRequest request =
+            GetFleetRequest
+                .builder()
+                .fleetId(fleetId)
+                .orgId(orgId)
+                .build();
+        RequestOperation<GetFleetRequest, GetFleetResponse> operation
+              = new GetFleet.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
@@ -62,7 +169,7 @@ public class FleetsV1 {
      */
     public GetFleetMetricsResponse getFleetMetrics(GetFleetMetricsRequest request) throws Exception {
         RequestOperation<GetFleetMetricsRequest, GetFleetMetricsResponse> operation
-              = new GetFleetMetrics.Sync(sdkConfiguration);
+              = new GetFleetMetrics.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +220,7 @@ public class FleetsV1 {
                 .region(region)
                 .build();
         RequestOperation<GetFleetRegionRequest, GetFleetRegionResponse> operation
-              = new GetFleetRegion.Sync(sdkConfiguration);
+              = new GetFleetRegion.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -156,7 +263,7 @@ public class FleetsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetFleetsRequest, GetFleetsResponse> operation
-              = new GetFleets.Sync(sdkConfiguration);
+              = new GetFleets.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -207,7 +314,7 @@ public class FleetsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<UpdateFleetRequest, UpdateFleetResponse> operation
-              = new dev.hathora.cloud_sdk.operations.UpdateFleet.Sync(sdkConfiguration);
+              = new dev.hathora.cloud_sdk.operations.UpdateFleet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +340,7 @@ public class FleetsV1 {
      */
     public UpdateFleetRegionResponse updateFleetRegion(UpdateFleetRegionRequest request) throws Exception {
         RequestOperation<UpdateFleetRegionRequest, UpdateFleetRegionResponse> operation
-              = new UpdateFleetRegion.Sync(sdkConfiguration);
+              = new UpdateFleetRegion.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

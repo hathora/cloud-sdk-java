@@ -36,6 +36,7 @@ import dev.hathora.cloud_sdk.operations.GetBuild;
 import dev.hathora.cloud_sdk.operations.GetBuilds;
 import dev.hathora.cloud_sdk.operations.RunBuild;
 import dev.hathora.cloud_sdk.operations.RunBuildRegistry;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
@@ -44,10 +45,22 @@ import java.util.Optional;
  * Operations that allow you create and manage your [builds](https://hathora.dev/docs/concepts/hathora-entities#build).
  */
 public class BuildsV3 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBuildsV3 asyncSDK;
 
     BuildsV3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBuildsV3(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBuildsV3 async() {
+        return asyncSDK;
     }
 
     /**
@@ -92,7 +105,7 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<CreateBuildRequest, CreateBuildResponse> operation
-              = new CreateBuild.Sync(sdkConfiguration);
+              = new CreateBuild.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -138,7 +151,7 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<CreateBuildRegistryRequest, CreateBuildRegistryResponse> operation
-              = new CreateBuildRegistry.Sync(sdkConfiguration);
+              = new CreateBuildRegistry.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -190,7 +203,7 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<DeleteBuildRequest, DeleteBuildResponse> operation
-              = new DeleteBuild.Sync(sdkConfiguration);
+              = new DeleteBuild.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -236,7 +249,7 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetBuildRequest, GetBuildResponse> operation
-              = new GetBuild.Sync(sdkConfiguration);
+              = new GetBuild.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -279,7 +292,7 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetBuildsRequest, GetBuildsResponse> operation
-              = new GetBuilds.Sync(sdkConfiguration);
+              = new GetBuilds.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -325,7 +338,7 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<RunBuildRequest, RunBuildResponse> operation
-              = new RunBuild.Sync(sdkConfiguration);
+              = new RunBuild.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -376,7 +389,7 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<RunBuildRegistryRequest, RunBuildRegistryResponse> operation
-              = new RunBuildRegistry.Sync(sdkConfiguration);
+              = new RunBuildRegistry.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

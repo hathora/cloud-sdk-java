@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.operations.ListActivePublicLobbiesDeprecatedV1;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.LazySingletonValue;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Boolean;
@@ -25,6 +26,7 @@ public class ListActivePublicLobbiesDeprecatedV1RequestBuilder {
                             new TypeReference<Optional<Boolean>>() {});
     private Optional<? extends Region> region = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListActivePublicLobbiesDeprecatedV1RequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -82,7 +84,7 @@ public class ListActivePublicLobbiesDeprecatedV1RequestBuilder {
     public ListActivePublicLobbiesDeprecatedV1Response call() throws Exception {
         
         RequestOperation<ListActivePublicLobbiesDeprecatedV1Request, ListActivePublicLobbiesDeprecatedV1Response> operation
-              = new ListActivePublicLobbiesDeprecatedV1.Sync(sdkConfiguration);
+              = new ListActivePublicLobbiesDeprecatedV1.Sync(sdkConfiguration, _headers);
         ListActivePublicLobbiesDeprecatedV1Request request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

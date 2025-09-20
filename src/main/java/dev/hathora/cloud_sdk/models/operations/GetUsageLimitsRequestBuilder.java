@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetUsageLimits;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -16,6 +17,7 @@ public class GetUsageLimitsRequestBuilder {
 
     private Optional<String> orgId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetUsageLimitsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -44,7 +46,7 @@ public class GetUsageLimitsRequestBuilder {
     public GetUsageLimitsResponse call() throws Exception {
         
         RequestOperation<GetUsageLimitsRequest, GetUsageLimitsResponse> operation
-              = new GetUsageLimits.Sync(sdkConfiguration);
+              = new GetUsageLimits.Sync(sdkConfiguration, _headers);
         GetUsageLimitsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

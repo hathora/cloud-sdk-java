@@ -8,6 +8,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateAppConfig;
 import dev.hathora.cloud_sdk.operations.UpdateAppV1Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -18,6 +19,7 @@ public class UpdateAppV1DeprecatedRequestBuilder {
     private CreateAppConfig createAppConfig;
     private Optional<String> appId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateAppV1DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class UpdateAppV1DeprecatedRequestBuilder {
     public UpdateAppV1DeprecatedResponse call() throws Exception {
         
         RequestOperation<UpdateAppV1DeprecatedRequest, UpdateAppV1DeprecatedResponse> operation
-              = new UpdateAppV1Deprecated.Sync(sdkConfiguration);
+              = new UpdateAppV1Deprecated.Sync(sdkConfiguration, _headers);
         UpdateAppV1DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

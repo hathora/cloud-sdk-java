@@ -25,6 +25,7 @@ import dev.hathora.cloud_sdk.operations.DeleteAppV1Deprecated;
 import dev.hathora.cloud_sdk.operations.GetAppInfoV1Deprecated;
 import dev.hathora.cloud_sdk.operations.GetAppsV1Deprecated;
 import dev.hathora.cloud_sdk.operations.UpdateAppV1Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
@@ -32,10 +33,22 @@ import java.util.Optional;
 
 
 public class AppsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAppsV1 asyncSDK;
 
     AppsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncAppsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAppsV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -64,7 +77,7 @@ public class AppsV1 {
     @Deprecated
     public CreateAppV1DeprecatedResponse createAppV1Deprecated(CreateAppConfig request) throws Exception {
         RequestOperation<CreateAppConfig, CreateAppV1DeprecatedResponse> operation
-              = new CreateAppV1Deprecated.Sync(sdkConfiguration);
+              = new CreateAppV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +126,7 @@ public class AppsV1 {
                 .appId(appId)
                 .build();
         RequestOperation<DeleteAppV1DeprecatedRequest, DeleteAppV1DeprecatedResponse> operation
-              = new DeleteAppV1Deprecated.Sync(sdkConfiguration);
+              = new DeleteAppV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -162,7 +175,7 @@ public class AppsV1 {
                 .appId(appId)
                 .build();
         RequestOperation<GetAppInfoV1DeprecatedRequest, GetAppInfoV1DeprecatedResponse> operation
-              = new GetAppInfoV1Deprecated.Sync(sdkConfiguration);
+              = new GetAppInfoV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -191,7 +204,7 @@ public class AppsV1 {
     @Deprecated
     public GetAppsV1DeprecatedResponse getAppsV1DeprecatedDirect() throws Exception {
         RequestlessOperation<GetAppsV1DeprecatedResponse> operation
-            = new GetAppsV1Deprecated.Sync(sdkConfiguration);
+            = new GetAppsV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -243,7 +256,7 @@ public class AppsV1 {
                 .appId(appId)
                 .build();
         RequestOperation<UpdateAppV1DeprecatedRequest, UpdateAppV1DeprecatedResponse> operation
-              = new UpdateAppV1Deprecated.Sync(sdkConfiguration);
+              = new UpdateAppV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

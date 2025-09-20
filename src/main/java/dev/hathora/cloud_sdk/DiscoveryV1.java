@@ -8,6 +8,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
 import dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsDeprecatedRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsDeprecatedResponse;
 import dev.hathora.cloud_sdk.operations.GetPingServiceEndpointsDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 
@@ -15,10 +16,22 @@ import java.lang.Exception;
  * Deprecated. Does not include latest Regions (missing Dallas region). Use [DiscoveryV2](https://hathora.dev/api#tag/DiscoveryV2).
  */
 public class DiscoveryV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDiscoveryV1 asyncSDK;
 
     DiscoveryV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDiscoveryV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDiscoveryV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -46,7 +59,7 @@ public class DiscoveryV1 {
     @Deprecated
     public GetPingServiceEndpointsDeprecatedResponse getPingServiceEndpointsDeprecatedDirect() throws Exception {
         RequestlessOperation<GetPingServiceEndpointsDeprecatedResponse> operation
-            = new GetPingServiceEndpointsDeprecated.Sync(sdkConfiguration);
+            = new GetPingServiceEndpointsDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 

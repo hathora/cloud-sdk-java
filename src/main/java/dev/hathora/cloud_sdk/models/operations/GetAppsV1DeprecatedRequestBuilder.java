@@ -7,11 +7,13 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetAppsV1Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class GetAppsV1DeprecatedRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetAppsV1DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class GetAppsV1DeprecatedRequestBuilder {
     public GetAppsV1DeprecatedResponse call() throws Exception {
         
         RequestlessOperation<GetAppsV1DeprecatedResponse> operation
-            = new GetAppsV1Deprecated.Sync(sdkConfiguration);
+            = new GetAppsV1Deprecated.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

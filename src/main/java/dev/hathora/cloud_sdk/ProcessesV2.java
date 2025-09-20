@@ -27,6 +27,7 @@ import dev.hathora.cloud_sdk.operations.GetLatestProcessesV2Deprecated;
 import dev.hathora.cloud_sdk.operations.GetProcessInfoV2Deprecated;
 import dev.hathora.cloud_sdk.operations.GetProcessesCountExperimentalV2Deprecated;
 import dev.hathora.cloud_sdk.operations.StopProcessV2Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
@@ -37,10 +38,22 @@ import java.util.Optional;
  * Deprecated. Use [ProcessesV3](https://hathora.dev/api#tag/ProcessesV3).
  */
 public class ProcessesV2 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncProcessesV2 asyncSDK;
 
     ProcessesV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncProcessesV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncProcessesV2 async() {
+        return asyncSDK;
     }
 
     /**
@@ -91,7 +104,7 @@ public class ProcessesV2 {
                 .region(region)
                 .build();
         RequestOperation<CreateProcessV2DeprecatedRequest, CreateProcessV2DeprecatedResponse> operation
-              = new CreateProcessV2Deprecated.Sync(sdkConfiguration);
+              = new CreateProcessV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -146,7 +159,7 @@ public class ProcessesV2 {
                 .status(status)
                 .build();
         RequestOperation<GetLatestProcessesV2DeprecatedRequest, GetLatestProcessesV2DeprecatedResponse> operation
-              = new GetLatestProcessesV2Deprecated.Sync(sdkConfiguration);
+              = new GetLatestProcessesV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -198,7 +211,7 @@ public class ProcessesV2 {
                 .processId(processId)
                 .build();
         RequestOperation<GetProcessInfoV2DeprecatedRequest, GetProcessInfoV2DeprecatedResponse> operation
-              = new GetProcessInfoV2Deprecated.Sync(sdkConfiguration);
+              = new GetProcessInfoV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -253,7 +266,7 @@ public class ProcessesV2 {
                 .status(status)
                 .build();
         RequestOperation<GetProcessesCountExperimentalV2DeprecatedRequest, GetProcessesCountExperimentalV2DeprecatedResponse> operation
-              = new GetProcessesCountExperimentalV2Deprecated.Sync(sdkConfiguration);
+              = new GetProcessesCountExperimentalV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -305,7 +318,7 @@ public class ProcessesV2 {
                 .processId(processId)
                 .build();
         RequestOperation<StopProcessV2DeprecatedRequest, StopProcessV2DeprecatedResponse> operation
-              = new StopProcessV2Deprecated.Sync(sdkConfiguration);
+              = new StopProcessV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

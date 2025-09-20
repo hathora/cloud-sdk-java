@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetAppInfoV1Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -16,6 +17,7 @@ public class GetAppInfoV1DeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetAppInfoV1DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -44,7 +46,7 @@ public class GetAppInfoV1DeprecatedRequestBuilder {
     public GetAppInfoV1DeprecatedResponse call() throws Exception {
         
         RequestOperation<GetAppInfoV1DeprecatedRequest, GetAppInfoV1DeprecatedResponse> operation
-              = new GetAppInfoV1Deprecated.Sync(sdkConfiguration);
+              = new GetAppInfoV1Deprecated.Sync(sdkConfiguration, _headers);
         GetAppInfoV1DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

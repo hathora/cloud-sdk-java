@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.DestroyRoomDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -17,6 +18,7 @@ public class DestroyRoomDeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String roomId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DestroyRoomDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -52,7 +54,7 @@ public class DestroyRoomDeprecatedRequestBuilder {
     public DestroyRoomDeprecatedResponse call() throws Exception {
         
         RequestOperation<DestroyRoomDeprecatedRequest, DestroyRoomDeprecatedResponse> operation
-              = new DestroyRoomDeprecated.Sync(sdkConfiguration);
+              = new DestroyRoomDeprecated.Sync(sdkConfiguration, _headers);
         DestroyRoomDeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

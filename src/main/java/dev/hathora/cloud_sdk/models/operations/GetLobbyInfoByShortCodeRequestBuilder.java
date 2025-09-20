@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetLobbyInfoByShortCode;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -17,6 +18,7 @@ public class GetLobbyInfoByShortCodeRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String shortCode;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetLobbyInfoByShortCodeRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -52,7 +54,7 @@ public class GetLobbyInfoByShortCodeRequestBuilder {
     public GetLobbyInfoByShortCodeResponse call() throws Exception {
         
         RequestOperation<GetLobbyInfoByShortCodeRequest, GetLobbyInfoByShortCodeResponse> operation
-              = new GetLobbyInfoByShortCode.Sync(sdkConfiguration);
+              = new GetLobbyInfoByShortCode.Sync(sdkConfiguration, _headers);
         GetLobbyInfoByShortCodeRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

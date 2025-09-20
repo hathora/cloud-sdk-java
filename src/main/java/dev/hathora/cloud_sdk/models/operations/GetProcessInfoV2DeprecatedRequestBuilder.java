@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetProcessInfoV2Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -17,6 +18,7 @@ public class GetProcessInfoV2DeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String processId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetProcessInfoV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -52,7 +54,7 @@ public class GetProcessInfoV2DeprecatedRequestBuilder {
     public GetProcessInfoV2DeprecatedResponse call() throws Exception {
         
         RequestOperation<GetProcessInfoV2DeprecatedRequest, GetProcessInfoV2DeprecatedResponse> operation
-              = new GetProcessInfoV2Deprecated.Sync(sdkConfiguration);
+              = new GetProcessInfoV2Deprecated.Sync(sdkConfiguration, _headers);
         GetProcessInfoV2DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
