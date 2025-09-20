@@ -22,6 +22,7 @@ import dev.hathora.cloud_sdk.operations.CreateDeploymentV1Deprecated;
 import dev.hathora.cloud_sdk.operations.GetDeploymentInfoV1Deprecated;
 import dev.hathora.cloud_sdk.operations.GetDeploymentsV1Deprecated;
 import dev.hathora.cloud_sdk.operations.GetLatestDeploymentV1Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
@@ -29,10 +30,22 @@ import java.util.Optional;
 
 
 public class DeploymentsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDeploymentsV1 asyncSDK;
 
     DeploymentsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDeploymentsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDeploymentsV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -88,7 +101,7 @@ public class DeploymentsV1 {
                 .buildId(buildId)
                 .build();
         RequestOperation<CreateDeploymentV1DeprecatedRequest, CreateDeploymentV1DeprecatedResponse> operation
-              = new CreateDeploymentV1Deprecated.Sync(sdkConfiguration);
+              = new CreateDeploymentV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -140,7 +153,7 @@ public class DeploymentsV1 {
                 .deploymentId(deploymentId)
                 .build();
         RequestOperation<GetDeploymentInfoV1DeprecatedRequest, GetDeploymentInfoV1DeprecatedResponse> operation
-              = new GetDeploymentInfoV1Deprecated.Sync(sdkConfiguration);
+              = new GetDeploymentInfoV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -189,7 +202,7 @@ public class DeploymentsV1 {
                 .appId(appId)
                 .build();
         RequestOperation<GetDeploymentsV1DeprecatedRequest, GetDeploymentsV1DeprecatedResponse> operation
-              = new GetDeploymentsV1Deprecated.Sync(sdkConfiguration);
+              = new GetDeploymentsV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -238,7 +251,7 @@ public class DeploymentsV1 {
                 .appId(appId)
                 .build();
         RequestOperation<GetLatestDeploymentV1DeprecatedRequest, GetLatestDeploymentV1DeprecatedResponse> operation
-              = new GetLatestDeploymentV1Deprecated.Sync(sdkConfiguration);
+              = new GetLatestDeploymentV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

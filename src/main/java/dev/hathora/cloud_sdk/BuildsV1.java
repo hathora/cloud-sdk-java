@@ -27,6 +27,7 @@ import dev.hathora.cloud_sdk.operations.DeleteBuildDeprecated;
 import dev.hathora.cloud_sdk.operations.GetBuildInfoDeprecated;
 import dev.hathora.cloud_sdk.operations.GetBuildsDeprecated;
 import dev.hathora.cloud_sdk.operations.RunBuildDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
@@ -34,10 +35,22 @@ import java.util.Optional;
 
 
 public class BuildsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBuildsV1 asyncSDK;
 
     BuildsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBuildsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBuildsV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -88,7 +101,7 @@ public class BuildsV1 {
                 .appId(appId)
                 .build();
         RequestOperation<CreateBuildDeprecatedRequest, CreateBuildDeprecatedResponse> operation
-              = new CreateBuildDeprecated.Sync(sdkConfiguration);
+              = new CreateBuildDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -140,7 +153,7 @@ public class BuildsV1 {
                 .buildId(buildId)
                 .build();
         RequestOperation<DeleteBuildDeprecatedRequest, DeleteBuildDeprecatedResponse> operation
-              = new DeleteBuildDeprecated.Sync(sdkConfiguration);
+              = new DeleteBuildDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -192,7 +205,7 @@ public class BuildsV1 {
                 .buildId(buildId)
                 .build();
         RequestOperation<GetBuildInfoDeprecatedRequest, GetBuildInfoDeprecatedResponse> operation
-              = new GetBuildInfoDeprecated.Sync(sdkConfiguration);
+              = new GetBuildInfoDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -241,7 +254,7 @@ public class BuildsV1 {
                 .appId(appId)
                 .build();
         RequestOperation<GetBuildsDeprecatedRequest, GetBuildsDeprecatedResponse> operation
-              = new GetBuildsDeprecated.Sync(sdkConfiguration);
+              = new GetBuildsDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -298,7 +311,7 @@ public class BuildsV1 {
                 .buildId(buildId)
                 .build();
         RequestOperation<RunBuildDeprecatedRequest, RunBuildDeprecatedResponse> operation
-              = new RunBuildDeprecated.Sync(sdkConfiguration);
+              = new RunBuildDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

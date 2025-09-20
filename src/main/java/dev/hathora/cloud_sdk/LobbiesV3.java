@@ -23,16 +23,29 @@ import dev.hathora.cloud_sdk.operations.CreateLobby;
 import dev.hathora.cloud_sdk.operations.GetLobbyInfoByRoomId;
 import dev.hathora.cloud_sdk.operations.GetLobbyInfoByShortCode;
 import dev.hathora.cloud_sdk.operations.ListActivePublicLobbies;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class LobbiesV3 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncLobbiesV3 asyncSDK;
 
     LobbiesV3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncLobbiesV3(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncLobbiesV3 async() {
+        return asyncSDK;
     }
 
     /**
@@ -58,7 +71,7 @@ public class LobbiesV3 {
      */
     public CreateLobbyResponse createLobby(CreateLobbyRequest request, CreateLobbySecurity security) throws Exception {
         RequestOperation<CreateLobbyRequest, CreateLobbyResponse> operation
-              = new CreateLobby.Sync(sdkConfiguration, security);
+              = new CreateLobby.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -104,7 +117,7 @@ public class LobbiesV3 {
                 .roomId(roomId)
                 .build();
         RequestOperation<GetLobbyInfoByRoomIdRequest, GetLobbyInfoByRoomIdResponse> operation
-              = new GetLobbyInfoByRoomId.Sync(sdkConfiguration);
+              = new GetLobbyInfoByRoomId.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -150,7 +163,7 @@ public class LobbiesV3 {
                 .shortCode(shortCode)
                 .build();
         RequestOperation<GetLobbyInfoByShortCodeRequest, GetLobbyInfoByShortCodeResponse> operation
-              = new GetLobbyInfoByShortCode.Sync(sdkConfiguration);
+              = new GetLobbyInfoByShortCode.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -195,7 +208,7 @@ public class LobbiesV3 {
                 .region(region)
                 .build();
         RequestOperation<ListActivePublicLobbiesRequest, ListActivePublicLobbiesResponse> operation
-              = new ListActivePublicLobbies.Sync(sdkConfiguration);
+              = new ListActivePublicLobbies.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -32,6 +32,7 @@ import dev.hathora.cloud_sdk.operations.GetApp;
 import dev.hathora.cloud_sdk.operations.GetApps;
 import dev.hathora.cloud_sdk.operations.PatchApp;
 import dev.hathora.cloud_sdk.operations.UpdateApp;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
@@ -40,10 +41,22 @@ import java.util.Optional;
  * Operations that allow you manage your [applications](https://hathora.dev/docs/concepts/hathora-entities#application).
  */
 public class AppsV2 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAppsV2 asyncSDK;
 
     AppsV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncAppsV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAppsV2 async() {
+        return asyncSDK;
     }
 
     /**
@@ -88,7 +101,7 @@ public class AppsV2 {
                 .orgId(orgId)
                 .build();
         RequestOperation<CreateAppRequest, CreateAppResponse> operation
-              = new CreateApp.Sync(sdkConfiguration);
+              = new CreateApp.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -131,7 +144,7 @@ public class AppsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<DeleteAppRequest, DeleteAppResponse> operation
-              = new DeleteApp.Sync(sdkConfiguration);
+              = new DeleteApp.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -174,7 +187,7 @@ public class AppsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<GetAppRequest, GetAppResponse> operation
-              = new GetApp.Sync(sdkConfiguration);
+              = new GetApp.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -217,7 +230,7 @@ public class AppsV2 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetAppsRequest, GetAppsResponse> operation
-              = new GetApps.Sync(sdkConfiguration);
+              = new GetApps.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -263,7 +276,7 @@ public class AppsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<PatchAppRequest, PatchAppResponse> operation
-              = new PatchApp.Sync(sdkConfiguration);
+              = new PatchApp.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -309,7 +322,7 @@ public class AppsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<UpdateAppRequest, UpdateAppResponse> operation
-              = new UpdateApp.Sync(sdkConfiguration);
+              = new UpdateApp.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

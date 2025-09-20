@@ -36,6 +36,7 @@ import dev.hathora.cloud_sdk.operations.DeleteBuildV2Deprecated;
 import dev.hathora.cloud_sdk.operations.GetBuildInfoV2Deprecated;
 import dev.hathora.cloud_sdk.operations.GetBuildsV2Deprecated;
 import dev.hathora.cloud_sdk.operations.RunBuildV2Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
@@ -43,10 +44,22 @@ import java.util.Optional;
 
 
 public class BuildsV2 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBuildsV2 asyncSDK;
 
     BuildsV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBuildsV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBuildsV2 async() {
+        return asyncSDK;
     }
 
     /**
@@ -97,7 +110,7 @@ public class BuildsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<CreateBuildV2DeprecatedRequest, CreateBuildV2DeprecatedResponse> operation
-              = new CreateBuildV2Deprecated.Sync(sdkConfiguration);
+              = new CreateBuildV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -149,7 +162,7 @@ public class BuildsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<CreateBuildWithUploadUrlV2DeprecatedRequest, CreateBuildWithUploadUrlV2DeprecatedResponse> operation
-              = new CreateBuildWithUploadUrlV2Deprecated.Sync(sdkConfiguration);
+              = new CreateBuildWithUploadUrlV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -201,7 +214,7 @@ public class BuildsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<CreateWithMultipartUploadsV2DeprecatedRequest, CreateWithMultipartUploadsV2DeprecatedResponse> operation
-              = new CreateWithMultipartUploadsV2Deprecated.Sync(sdkConfiguration);
+              = new CreateWithMultipartUploadsV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -253,7 +266,7 @@ public class BuildsV2 {
                 .buildId(buildId)
                 .build();
         RequestOperation<DeleteBuildV2DeprecatedRequest, DeleteBuildV2DeprecatedResponse> operation
-              = new DeleteBuildV2Deprecated.Sync(sdkConfiguration);
+              = new DeleteBuildV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -305,7 +318,7 @@ public class BuildsV2 {
                 .buildId(buildId)
                 .build();
         RequestOperation<GetBuildInfoV2DeprecatedRequest, GetBuildInfoV2DeprecatedResponse> operation
-              = new GetBuildInfoV2Deprecated.Sync(sdkConfiguration);
+              = new GetBuildInfoV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -354,7 +367,7 @@ public class BuildsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<GetBuildsV2DeprecatedRequest, GetBuildsV2DeprecatedResponse> operation
-              = new GetBuildsV2Deprecated.Sync(sdkConfiguration);
+              = new GetBuildsV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -411,7 +424,7 @@ public class BuildsV2 {
                 .buildId(buildId)
                 .build();
         RequestOperation<RunBuildV2DeprecatedRequest, RunBuildV2DeprecatedResponse> operation
-              = new RunBuildV2Deprecated.Sync(sdkConfiguration);
+              = new RunBuildV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

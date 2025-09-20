@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetFleetMetrics;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class GetFleetMetricsRequestBuilder {
 
     private GetFleetMetricsRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetFleetMetricsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class GetFleetMetricsRequestBuilder {
     public GetFleetMetricsResponse call() throws Exception {
         
         RequestOperation<GetFleetMetricsRequest, GetFleetMetricsResponse> operation
-              = new GetFleetMetrics.Sync(sdkConfiguration);
+              = new GetFleetMetrics.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

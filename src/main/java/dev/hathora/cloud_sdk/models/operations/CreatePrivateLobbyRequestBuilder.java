@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.CreatePrivateLobby;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -19,6 +20,7 @@ public class CreatePrivateLobbyRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Optional<String> roomId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreatePrivateLobbyRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -73,7 +75,7 @@ public class CreatePrivateLobbyRequestBuilder {
     public CreatePrivateLobbyResponse call() throws Exception {
         
         RequestOperation<CreatePrivateLobbyRequest, CreatePrivateLobbyResponse> operation
-              = new CreatePrivateLobby.Sync(sdkConfiguration, security);
+              = new CreatePrivateLobby.Sync(sdkConfiguration, security, _headers);
         CreatePrivateLobbyRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

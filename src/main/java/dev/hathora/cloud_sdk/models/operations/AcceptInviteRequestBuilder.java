@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.AcceptInvite;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -15,6 +16,7 @@ public class AcceptInviteRequestBuilder {
 
     private String orgId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public AcceptInviteRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -37,7 +39,7 @@ public class AcceptInviteRequestBuilder {
     public AcceptInviteResponse call() throws Exception {
         
         RequestOperation<AcceptInviteRequest, AcceptInviteResponse> operation
-              = new AcceptInvite.Sync(sdkConfiguration);
+              = new AcceptInvite.Sync(sdkConfiguration, _headers);
         AcceptInviteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

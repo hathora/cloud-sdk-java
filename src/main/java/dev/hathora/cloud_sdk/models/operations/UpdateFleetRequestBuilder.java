@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.UpdateFleet;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -18,6 +19,7 @@ public class UpdateFleetRequestBuilder {
     private String fleetId;
     private Optional<String> orgId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateFleetRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -60,7 +62,7 @@ public class UpdateFleetRequestBuilder {
     public UpdateFleetResponse call() throws Exception {
         
         RequestOperation<UpdateFleetRequest, UpdateFleetResponse> operation
-              = new dev.hathora.cloud_sdk.operations.UpdateFleet.Sync(sdkConfiguration);
+              = new dev.hathora.cloud_sdk.operations.UpdateFleet.Sync(sdkConfiguration, _headers);
         UpdateFleetRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

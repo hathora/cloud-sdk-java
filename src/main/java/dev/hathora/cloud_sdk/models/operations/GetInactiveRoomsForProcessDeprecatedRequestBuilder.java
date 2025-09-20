@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetInactiveRoomsForProcessDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -17,6 +18,7 @@ public class GetInactiveRoomsForProcessDeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String processId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetInactiveRoomsForProcessDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -52,7 +54,7 @@ public class GetInactiveRoomsForProcessDeprecatedRequestBuilder {
     public GetInactiveRoomsForProcessDeprecatedResponse call() throws Exception {
         
         RequestOperation<GetInactiveRoomsForProcessDeprecatedRequest, GetInactiveRoomsForProcessDeprecatedResponse> operation
-              = new GetInactiveRoomsForProcessDeprecated.Sync(sdkConfiguration);
+              = new GetInactiveRoomsForProcessDeprecated.Sync(sdkConfiguration, _headers);
         GetInactiveRoomsForProcessDeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

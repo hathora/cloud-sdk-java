@@ -8,6 +8,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateRoomParams;
 import dev.hathora.cloud_sdk.operations.CreateRoomDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -19,6 +20,7 @@ public class CreateRoomDeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Optional<String> roomId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateRoomDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -67,7 +69,7 @@ public class CreateRoomDeprecatedRequestBuilder {
     public CreateRoomDeprecatedResponse call() throws Exception {
         
         RequestOperation<CreateRoomDeprecatedRequest, CreateRoomDeprecatedResponse> operation
-              = new CreateRoomDeprecated.Sync(sdkConfiguration);
+              = new CreateRoomDeprecated.Sync(sdkConfiguration, _headers);
         CreateRoomDeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

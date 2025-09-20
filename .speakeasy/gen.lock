@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: deb2b45350ba2195d5a88586355d73d1
+  docChecksum: 2b17a6dd7733ff261821b9ff2485ab09
   docVersion: 0.0.1
-  speakeasyVersion: 1.606.6
-  generationVersion: 2.687.11
-  releaseVersion: 3.2.0
-  configChecksum: 996fafffca752ddbdda19e8d5002620b
+  speakeasyVersion: 1.621.1
+  generationVersion: 2.708.2
+  releaseVersion: 3.3.0
+  configChecksum: c79e2ea1b52e1ea22246b41acda7e2e3
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,11 +14,11 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.46.0
+    core: 3.50.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
-    globalSecurity: 2.83.0
+    globalSecurity: 2.83.1
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
     globals: 2.82.2
@@ -28,6 +28,7 @@ features:
     openEnums: 0.2.0
     sdkHooks: 1.1.0
     unions: 0.0.6
+    uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
   - USAGE.md
@@ -54,6 +55,8 @@ generatedFiles:
   - docs/models/operations/CreateDeploymentV1DeprecatedResponse.md
   - docs/models/operations/CreateDeploymentV2DeprecatedRequest.md
   - docs/models/operations/CreateDeploymentV2DeprecatedResponse.md
+  - docs/models/operations/CreateFleetRequest.md
+  - docs/models/operations/CreateFleetResponse.md
   - docs/models/operations/CreateLobbyDeprecatedRequest.md
   - docs/models/operations/CreateLobbyDeprecatedResponse.md
   - docs/models/operations/CreateLobbyDeprecatedSecurity.md
@@ -152,6 +155,8 @@ generatedFiles:
   - docs/models/operations/GetFleetMetricsResponse.md
   - docs/models/operations/GetFleetRegionRequest.md
   - docs/models/operations/GetFleetRegionResponse.md
+  - docs/models/operations/GetFleetRequest.md
+  - docs/models/operations/GetFleetResponse.md
   - docs/models/operations/GetFleetsRequest.md
   - docs/models/operations/GetFleetsResponse.md
   - docs/models/operations/GetInactiveRoomsForProcessDeprecatedRequest.md
@@ -313,6 +318,7 @@ generatedFiles:
   - docs/models/shared/CreateAppConfig.md
   - docs/models/shared/CreateBuildParams.md
   - docs/models/shared/CreateBuildV3Params.md
+  - docs/models/shared/CreateFleet.md
   - docs/models/shared/CreateLobbyParams.md
   - docs/models/shared/CreateLobbyV3Params.md
   - docs/models/shared/CreateMultipartBuildParams.md
@@ -459,14 +465,50 @@ generatedFiles:
   - docs/sdks/roomsv1/README.md
   - docs/sdks/roomsv2/README.md
   - docs/sdks/tokensv1/README.md
+  - docs/utils/Blob.md
   - gradle.properties
   - gradle/wrapper/gradle-wrapper.jar
   - gradle/wrapper/gradle-wrapper.properties
   - gradlew
   - gradlew.bat
+  - publishing.gradle
   - settings.gradle
+  - spring/cloud-sdk-spring-boot-autoconfigure/build.gradle
+  - spring/cloud-sdk-spring-boot-autoconfigure/src/main/java/dev/hathora/cloud_sdk/CloudSDKAutoConfig.java
+  - spring/cloud-sdk-spring-boot-autoconfigure/src/main/java/dev/hathora/cloud_sdk/CloudSDKAutoConfigProperties.java
+  - spring/cloud-sdk-spring-boot-autoconfigure/src/main/java/dev/hathora/cloud_sdk/ConditionalOnPropertyPrefix.java
+  - spring/cloud-sdk-spring-boot-autoconfigure/src/main/java/dev/hathora/cloud_sdk/OnPropertyPrefixCondition.java
+  - spring/cloud-sdk-spring-boot-autoconfigure/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+  - spring/cloud-sdk-spring-boot-starter/build.gradle
   - src/main/java/dev/hathora/cloud_sdk/AppsV1.java
   - src/main/java/dev/hathora/cloud_sdk/AppsV2.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncAppsV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncAppsV2.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncAuthV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncBillingV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncBuildsV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncBuildsV2.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncBuildsV3.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncDeploymentsV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncDeploymentsV2.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncDeploymentsV3.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncDiscoveryV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncDiscoveryV2.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncFleetsV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncHathoraCloud.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncLobbiesV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncLobbiesV2.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncLobbiesV3.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncLogsV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncManagementV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncMetricsV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncOrganizationsV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncProcessesV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncProcessesV2.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncProcessesV3.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncRoomsV1.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncRoomsV2.java
+  - src/main/java/dev/hathora/cloud_sdk/AsyncTokensV1.java
   - src/main/java/dev/hathora/cloud_sdk/AuthV1.java
   - src/main/java/dev/hathora/cloud_sdk/BillingV1.java
   - src/main/java/dev/hathora/cloud_sdk/BuildsV1.java
@@ -497,6 +539,129 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/errors/ApiError.java
   - src/main/java/dev/hathora/cloud_sdk/models/errors/AuthException.java
   - src/main/java/dev/hathora/cloud_sdk/models/errors/SDKError.java
+  - src/main/java/dev/hathora/cloud_sdk/models/errors/UncheckedSDKError.java
+  - src/main/java/dev/hathora/cloud_sdk/models/errors/async/ApiError.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/AcceptInviteRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateAppRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateAppV1DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateBuildDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateBuildRegistryRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateBuildRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateBuildV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateBuildWithUploadUrlV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateDeploymentRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateDeploymentV1DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateDeploymentV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateFleetRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateLobbyDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateLobbyRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateLocalLobbyRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateOrgTokenRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreatePrivateLobbyDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreatePrivateLobbyRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateProcessV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreatePublicLobbyDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreatePublicLobbyRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateRoomDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateRoomRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/CreateWithMultipartUploadsV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DeleteAppRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DeleteAppV1DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DeleteBuildDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DeleteBuildRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DeleteBuildV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DestroyRoomDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DestroyRoomRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DownloadLogForProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetActiveRoomsForProcessDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetActiveRoomsForProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetAppInfoV1DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetAppRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetAppsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetAppsV1DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetBalanceRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetBuildInfoDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetBuildInfoV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetBuildRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetBuildsDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetBuildsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetBuildsV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetConnectionInfoDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetConnectionInfoRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetDeploymentInfoV1DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetDeploymentInfoV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetDeploymentRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetDeploymentsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetDeploymentsV1DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetDeploymentsV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetFleetMetricsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetFleetRegionRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetFleetRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetFleetsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetInactiveRoomsForProcessDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetInactiveRoomsForProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetInvoicesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetLatestDeploymentRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetLatestDeploymentV1DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetLatestDeploymentV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetLatestProcessesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetLatestProcessesV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetLobbyInfoByRoomIdRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetLobbyInfoByShortCodeRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetLobbyInfoRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetLogsForProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetMetricsDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetOrgMembersRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetOrgPendingInvitesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetOrgTokensRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetOrgsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetPaymentMethodRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetPingServiceEndpointsDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetPingServiceEndpointsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetProcessInfoDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetProcessInfoV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetProcessMetricsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetProcessesCountExperimentalRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetProcessesCountExperimentalV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetRoomInfoDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetRoomInfoRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetRunningProcessesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetStoppedProcessesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetUpcomingInvoiceItemsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetUpcomingInvoiceTotalRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetUsageLimitsRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/GetUserPendingInvitesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/InitStripeCustomerPortalUrlRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/InviteUserRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/ListActivePublicLobbiesDeprecatedV1RequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/ListActivePublicLobbiesDeprecatedV2RequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/ListActivePublicLobbiesRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/LoginAnonymousRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/LoginGoogleRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/LoginNicknameRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/PatchAppRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/RejectInviteRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/RescindInviteRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/ResumeRoomRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/RevokeOrgTokenRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/RunBuildDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/RunBuildRegistryRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/RunBuildRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/RunBuildV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/SendVerificationEmailRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/SetLobbyStateRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/StopProcessRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/StopProcessV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/SuspendRoomDeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/SuspendRoomV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/UpdateAppRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/UpdateAppV1DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/UpdateFleetRegionRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/UpdateFleetRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/UpdateRoomConfigRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/UpdateUserInviteRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/AcceptInviteRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/AcceptInviteRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/AcceptInviteResponse.java
@@ -529,6 +694,9 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/CreateDeploymentV2DeprecatedRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/CreateDeploymentV2DeprecatedRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/CreateDeploymentV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/CreateFleetRequest.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/CreateFleetRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/CreateFleetResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/CreateLobbyDeprecatedRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/CreateLobbyDeprecatedRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/CreateLobbyDeprecatedResponse.java
@@ -671,6 +839,9 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetFleetRegionRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetFleetRegionRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetFleetRegionResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetFleetRequest.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetFleetRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/GetFleetResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetFleetsRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetFleetsRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/GetFleetsResponse.java
@@ -864,6 +1035,127 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateUserInviteRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateUserInviteRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/UpdateUserInviteResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/AcceptInviteResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateAppResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateAppV1DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateBuildDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateBuildRegistryResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateBuildResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateBuildV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateBuildWithUploadUrlV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateDeploymentResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateDeploymentV1DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateDeploymentV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateFleetResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateLobbyDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateLobbyResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateLocalLobbyResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateOrgTokenResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreatePrivateLobbyDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreatePrivateLobbyResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateProcessResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateProcessV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreatePublicLobbyDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreatePublicLobbyResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateRoomDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateRoomResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/CreateWithMultipartUploadsV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DeleteAppResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DeleteAppV1DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DeleteBuildDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DeleteBuildResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DeleteBuildV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DestroyRoomDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DestroyRoomResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DownloadLogForProcessResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetActiveRoomsForProcessDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetActiveRoomsForProcessResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetAppInfoV1DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetAppResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetAppsResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetAppsV1DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetBalanceResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetBuildInfoDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetBuildInfoV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetBuildResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetBuildsDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetBuildsResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetBuildsV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetConnectionInfoDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetConnectionInfoResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetDeploymentInfoV1DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetDeploymentInfoV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetDeploymentResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetDeploymentsResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetDeploymentsV1DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetDeploymentsV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetFleetMetricsResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetFleetRegionResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetFleetResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetFleetsResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetInactiveRoomsForProcessDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetInactiveRoomsForProcessResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetInvoicesResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetLatestDeploymentResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetLatestDeploymentV1DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetLatestDeploymentV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetLatestProcessesResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetLatestProcessesV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetLobbyInfoByRoomIdResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetLobbyInfoByShortCodeResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetLobbyInfoResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetLogsForProcessResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetMetricsDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetOrgMembersResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetOrgPendingInvitesResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetOrgTokensResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetOrgsResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetPaymentMethodResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetPingServiceEndpointsDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetPingServiceEndpointsResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetProcessInfoDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetProcessInfoV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetProcessMetricsResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetProcessResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetProcessesCountExperimentalResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetProcessesCountExperimentalV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetRoomInfoDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetRoomInfoResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetRunningProcessesResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetStoppedProcessesResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetUpcomingInvoiceItemsResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetUpcomingInvoiceTotalResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetUsageLimitsResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/GetUserPendingInvitesResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/InitStripeCustomerPortalUrlResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/InviteUserResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/ListActivePublicLobbiesDeprecatedV1Response.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/ListActivePublicLobbiesDeprecatedV2Response.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/ListActivePublicLobbiesResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/LoginAnonymousResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/LoginGoogleResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/LoginNicknameResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/PatchAppResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/RejectInviteResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/RescindInviteResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/ResumeRoomResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/RevokeOrgTokenResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/RunBuildDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/RunBuildRegistryResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/RunBuildResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/RunBuildV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/SendVerificationEmailResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/SetLobbyStateResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/StopProcessResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/StopProcessV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/SuspendRoomDeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/SuspendRoomV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/UpdateAppResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/UpdateAppV1DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/UpdateFleetRegionResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/UpdateFleetResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/UpdateRoomConfigResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/UpdateUserInviteResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/AchPaymentMethod.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/ActiveConnectionInfo.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/AppConfigWithServiceConfig.java
@@ -896,6 +1188,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateAppConfig.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateBuildParams.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateBuildV3Params.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateFleet.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateLobbyParams.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateLobbyV3Params.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/CreateMultipartBuildParams.java
@@ -1026,6 +1319,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/operations/CreateDeployment.java
   - src/main/java/dev/hathora/cloud_sdk/operations/CreateDeploymentV1Deprecated.java
   - src/main/java/dev/hathora/cloud_sdk/operations/CreateDeploymentV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/CreateFleet.java
   - src/main/java/dev/hathora/cloud_sdk/operations/CreateLobby.java
   - src/main/java/dev/hathora/cloud_sdk/operations/CreateLobbyDeprecated.java
   - src/main/java/dev/hathora/cloud_sdk/operations/CreateLocalLobby.java
@@ -1068,6 +1362,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/operations/GetDeployments.java
   - src/main/java/dev/hathora/cloud_sdk/operations/GetDeploymentsV1Deprecated.java
   - src/main/java/dev/hathora/cloud_sdk/operations/GetDeploymentsV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/GetFleet.java
   - src/main/java/dev/hathora/cloud_sdk/operations/GetFleetMetrics.java
   - src/main/java/dev/hathora/cloud_sdk/operations/GetFleetRegion.java
   - src/main/java/dev/hathora/cloud_sdk/operations/GetFleets.java
@@ -1135,9 +1430,15 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/operations/UpdateFleetRegion.java
   - src/main/java/dev/hathora/cloud_sdk/operations/UpdateRoomConfig.java
   - src/main/java/dev/hathora/cloud_sdk/operations/UpdateUserInvite.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/AsyncHook.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/AsyncHooks.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/AsyncResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/AsyncRetries.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/AsyncRetryableException.java
   - src/main/java/dev/hathora/cloud_sdk/utils/BackoffStrategy.java
   - src/main/java/dev/hathora/cloud_sdk/utils/BigDecimalString.java
   - src/main/java/dev/hathora/cloud_sdk/utils/BigIntegerString.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/Blob.java
   - src/main/java/dev/hathora/cloud_sdk/utils/BlockingParser.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Constants.java
   - src/main/java/dev/hathora/cloud_sdk/utils/CopiableInputStream.java
@@ -1151,8 +1452,10 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/utils/HTTPRequest.java
   - src/main/java/dev/hathora/cloud_sdk/utils/HasSecurity.java
   - src/main/java/dev/hathora/cloud_sdk/utils/HeaderMetadata.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/Headers.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Helpers.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Hook.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/HookAdapters.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Hooks.java
   - src/main/java/dev/hathora/cloud_sdk/utils/JSON.java
   - src/main/java/dev/hathora/cloud_sdk/utils/LazySingletonValue.java
@@ -1160,6 +1463,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/utils/Multipart.java
   - src/main/java/dev/hathora/cloud_sdk/utils/MultipartFormMetadata.java
   - src/main/java/dev/hathora/cloud_sdk/utils/NameValue.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/NonRetryableException.java
   - src/main/java/dev/hathora/cloud_sdk/utils/OneOfDeserializer.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Options.java
   - src/main/java/dev/hathora/cloud_sdk/utils/PathParamsMetadata.java
@@ -1175,6 +1479,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/utils/ResponseWithBody.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Retries.java
   - src/main/java/dev/hathora/cloud_sdk/utils/RetryConfig.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/RetryableException.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Security.java
   - src/main/java/dev/hathora/cloud_sdk/utils/SecurityMetadata.java
   - src/main/java/dev/hathora/cloud_sdk/utils/SerializedBody.java
@@ -1186,6 +1491,8 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/utils/Types.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Utf8UrlEncoder.java
   - src/main/java/dev/hathora/cloud_sdk/utils/Utils.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/reactive/EventStream.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/reactive/ReactiveUtils.java
 examples:
   CreateAppV1Deprecated:
     speakeasy-default-create-app-v1-deprecated:
@@ -1761,10 +2068,10 @@ examples:
         path:
           appId: "app-af469a92-5b45-4565-b3c4-b79878de67d2"
       requestBody:
-        application/json: {"additionalContainerPorts": [{"name": "default", "port": 8000, "transportType": "udp"}, {"name": "default", "port": 8000, "transportType": "udp"}], "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "containerPort": 4000, "deploymentTag": "alpha", "env": [{"name": "EULA", "value": "TRUE"}, {"name": "EULA", "value": "TRUE"}], "experimentalRequestedGPU": 1, "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3, "transportType": "udp"}
+        application/json: {"additionalContainerPorts": [{"name": "default", "port": 8000, "transportType": "udp"}, {"name": "default", "port": 8000, "transportType": "udp"}], "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "containerPort": 4000, "deploymentTag": "alpha", "env": [{"name": "EULA", "value": "TRUE"}, {"name": "EULA", "value": "TRUE"}], "experimentalRequestedGPU": 1, "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedGPU": 1, "requestedMemoryMB": 1024, "roomsPerProcess": 3, "transportType": "udp"}
       responses:
         "201":
-          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2025-07-03T17:32:35.769Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tcp"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "deploymentTag": "alpha", "env": [{"name": "EULA", "value": "TRUE"}, {"name": "EULA", "value": "TRUE"}, {"name": "EULA", "value": "TRUE"}], "experimentalRequestedGPU": 1, "idleTimeoutEnabled": false, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
+          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2025-07-03T17:32:35.769Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tcp"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "deploymentTag": "alpha", "env": [{"name": "EULA", "value": "TRUE"}, {"name": "EULA", "value": "TRUE"}, {"name": "EULA", "value": "TRUE"}], "experimentalRequestedGPU": 1, "idleTimeoutEnabled": false, "requestedCPU": 0.5, "requestedGPU": 1, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
         "400":
           application/json: {"message": "<value>"}
         "500":
@@ -1777,7 +2084,7 @@ examples:
           deploymentId: "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5"
       responses:
         "200":
-          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2025-09-17T21:51:01.967Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "udp"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "deploymentTag": "alpha", "env": [{"name": "EULA", "value": "TRUE"}], "experimentalRequestedGPU": 1, "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
+          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2025-09-17T21:51:01.967Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "udp"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "deploymentTag": "alpha", "env": [{"name": "EULA", "value": "TRUE"}], "experimentalRequestedGPU": 1, "idleTimeoutEnabled": true, "requestedCPU": 0.5, "requestedGPU": 1, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
         "401":
           application/json: {"message": "<value>"}
   GetDeployments:
@@ -1800,7 +2107,7 @@ examples:
           appId: "app-af469a92-5b45-4565-b3c4-b79878de67d2"
       responses:
         "200":
-          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2024-02-03T17:28:09.046Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tls"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "deploymentTag": "alpha", "env": [], "experimentalRequestedGPU": 1, "idleTimeoutEnabled": false, "requestedCPU": 0.5, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
+          application/json: {"additionalContainerPorts": [{"name": "debug", "port": 4000, "transportType": "tcp"}], "appId": "app-af469a92-5b45-4565-b3c4-b79878de67d2", "buildId": "bld-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "buildTag": "0.1.14-14c793", "createdAt": "2024-02-03T17:28:09.046Z", "createdBy": "noreply@hathora.dev", "defaultContainerPort": {"name": "default", "port": 8000, "transportType": "tls"}, "deploymentId": "dep-6d4c6a71-2d75-4b42-94e1-f312f57f33c5", "deploymentTag": "alpha", "env": [], "experimentalRequestedGPU": 1, "idleTimeoutEnabled": false, "requestedCPU": 0.5, "requestedGPU": 1, "requestedMemoryMB": 1024, "roomsPerProcess": 3}
         "401":
           application/json: {"message": "<value>"}
   GetPingServiceEndpointsDeprecated:
@@ -1860,7 +2167,7 @@ examples:
         query:
           orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
-        application/json: {"autoscalerConfig": {"scaleUpThreshold": 979840}}
+        application/json: {"autoscalerConfig": {"scaleUpThreshold": 979840}, "name": "production"}
       responses:
         "401":
           application/json: {"message": "<value>"}
@@ -2603,6 +2910,34 @@ examples:
           application/json: true
         "401":
           application/json: {"message": "<value>"}
+  CreateFleet:
+    speakeasy-default-create-fleet:
+      parameters:
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      requestBody:
+        application/json: {"autoscalerConfig": {"scaleUpThreshold": 599396}, "name": "production", "nodeShape": "cpu-16-64"}
+      responses:
+        "200":
+          application/json: {"fleetId": "<id>", "name": "production", "nodeShape": "cpu-32-128", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}
+        "401":
+          application/json: {"message": "<value>"}
+        "500":
+          application/json: {"message": "<value>"}
+  GetFleet:
+    speakeasy-default-get-fleet:
+      parameters:
+        path:
+          fleetId: "<id>"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      responses:
+        "200":
+          application/json: {"fleetId": "<id>", "name": "production", "nodeShape": "gpu-h100-4-104-936", "orgId": "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"}
+        "401":
+          application/json: {"message": "<value>"}
+        "500":
+          application/json: {"message": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## SDK Changes Detected:\n* `hathora-cloud.appsV1.updateAppV1Deprecated()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response.serviceconfig` **Changed**\n* `hathora-cloud.appsV2.createApp()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response.serviceconfig` **Changed**\n* `hathora-cloud.appsV2.updateApp()`: \n  *  `request.appconfigwithserviceconfig.serviceConfig` **Changed**\n  *  `response.serviceconfig` **Changed**\n* `hathora-cloud.deploymentsV3.getDeployments()`:  `request.buildtag` **Added**\n* `hathora-cloud.appsV1.getAppInfoV1Deprecated()`:  `response.serviceconfig` **Changed**\n* `hathora-cloud.appsV2.getApp()`:  `response.serviceconfig` **Changed**\n* `hathora-cloud.appsV2.getApps()`:  `response.applications.[].serviceConfig` **Changed**\n* `hathora-cloud.appsV2.patchApp()`: \n  *  `request.partial_appconfigwithserviceconfig_.serviceConfig` **Changed**\n  *  `response.serviceconfig` **Changed**\n* `hathora-cloud.appsV1.createAppV1Deprecated()`: \n  *  `request.loadBalancer` **Added**\n  *  `response.serviceconfig` **Changed**\n  *  `error.status[404]` **Added**\n* `hathora-cloud.appsV1.getAppsV1Deprecated()`:  `response.[].serviceConfig` **Changed**\n* `hathora-cloud.fleetsV1.getFleets()`:  `response.fleets.[].nodeShape` **Added**\n* `hathora-cloud.fleetsV1.updateFleet()`: \n  *  `request.updatefleet.nodeShape` **Added**\n* `hathora-cloud.organizationsV1.getOrgs()`:  `response.orgs.[].maxCloudBaseline` **Added**\n* `hathora-cloud.processesV3.createProcess()`:  `response.summaryexitreason` **Added**\n* `hathora-cloud.processesV3.getLatestProcesses()`:  `response.[].summaryExitReason` **Added**\n* `hathora-cloud.processesV3.getProcess()`:  `response.summaryexitreason` **Added**\n"
+releaseNotes: "## Java SDK Changes Detected:\n* `hathora-cloud.fleetsV1.createFleet()`: **Added**\n* `hathora-cloud.fleetsV1.getFleet()`: **Added**\n* `hathora-cloud.appsV2.getApps()`:  `response.applications.[].deployment` **Changed**\n* `hathora-cloud.deploymentsV3.createDeployment()`: \n  *  `request.deploymentconfigv3` **Changed**\n  *  `response` **Changed**\n* `hathora-cloud.deploymentsV3.getDeployment()`:  `response` **Changed**\n* `hathora-cloud.deploymentsV3.getDeployments()`:  `response.deployments.[]` **Changed**\n* `hathora-cloud.deploymentsV3.getLatestDeployment()`:  `response` **Changed**\n* `hathora-cloud.fleetsV1.getFleets()`:  `response.fleets.[].name` **Added**\n* `hathora-cloud.fleetsV1.updateFleet()`: \n  *  `request.updatefleet.name` **Added**\n* `hathora-cloud.lobbiesV3.listActivePublicLobbies()`:  `error.status[422]` **Added**\n* `hathora-cloud.organizationsV1.getOrgs()`:  `response.orgs.[].defaultFleetId` **Added**\n"

@@ -9,14 +9,27 @@ import dev.hathora.cloud_sdk.models.operations.SendVerificationEmailRequestBuild
 import dev.hathora.cloud_sdk.models.operations.SendVerificationEmailResponse;
 import dev.hathora.cloud_sdk.models.shared.VerificationEmailRequest;
 import dev.hathora.cloud_sdk.operations.SendVerificationEmail;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Exception;
 
 
 public class ManagementV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncManagementV1 asyncSDK;
 
     ManagementV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncManagementV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncManagementV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -37,7 +50,7 @@ public class ManagementV1 {
      */
     public SendVerificationEmailResponse sendVerificationEmail(VerificationEmailRequest request) throws Exception {
         RequestOperation<VerificationEmailRequest, SendVerificationEmailResponse> operation
-              = new SendVerificationEmail.Sync(sdkConfiguration);
+              = new SendVerificationEmail.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

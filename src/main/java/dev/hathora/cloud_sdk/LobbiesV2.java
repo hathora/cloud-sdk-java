@@ -43,6 +43,7 @@ import dev.hathora.cloud_sdk.operations.CreatePublicLobby;
 import dev.hathora.cloud_sdk.operations.GetLobbyInfo;
 import dev.hathora.cloud_sdk.operations.ListActivePublicLobbiesDeprecatedV2;
 import dev.hathora.cloud_sdk.operations.SetLobbyState;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
@@ -50,10 +51,22 @@ import java.util.Optional;
 
 
 public class LobbiesV2 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncLobbiesV2 asyncSDK;
 
     LobbiesV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncLobbiesV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncLobbiesV2 async() {
+        return asyncSDK;
     }
 
     /**
@@ -111,7 +124,7 @@ public class LobbiesV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<CreateLobbyDeprecatedRequest, CreateLobbyDeprecatedResponse> operation
-              = new CreateLobbyDeprecated.Sync(sdkConfiguration, security);
+              = new CreateLobbyDeprecated.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +177,7 @@ public class LobbiesV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<CreateLocalLobbyRequest, CreateLocalLobbyResponse> operation
-              = new CreateLocalLobby.Sync(sdkConfiguration, security);
+              = new CreateLocalLobby.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -217,7 +230,7 @@ public class LobbiesV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<CreatePrivateLobbyRequest, CreatePrivateLobbyResponse> operation
-              = new CreatePrivateLobby.Sync(sdkConfiguration, security);
+              = new CreatePrivateLobby.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -270,7 +283,7 @@ public class LobbiesV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<CreatePublicLobbyRequest, CreatePublicLobbyResponse> operation
-              = new CreatePublicLobby.Sync(sdkConfiguration, security);
+              = new CreatePublicLobby.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -322,7 +335,7 @@ public class LobbiesV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<GetLobbyInfoRequest, GetLobbyInfoResponse> operation
-              = new GetLobbyInfo.Sync(sdkConfiguration);
+              = new GetLobbyInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -373,7 +386,7 @@ public class LobbiesV2 {
                 .region(region)
                 .build();
         RequestOperation<ListActivePublicLobbiesDeprecatedV2Request, ListActivePublicLobbiesDeprecatedV2Response> operation
-              = new ListActivePublicLobbiesDeprecatedV2.Sync(sdkConfiguration);
+              = new ListActivePublicLobbiesDeprecatedV2.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -430,7 +443,7 @@ public class LobbiesV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<SetLobbyStateRequest, SetLobbyStateResponse> operation
-              = new SetLobbyState.Sync(sdkConfiguration);
+              = new SetLobbyState.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

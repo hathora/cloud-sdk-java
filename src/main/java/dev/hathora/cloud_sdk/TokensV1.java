@@ -17,15 +17,28 @@ import dev.hathora.cloud_sdk.models.operations.RevokeOrgTokenResponse;
 import dev.hathora.cloud_sdk.models.shared.CreateOrgToken;
 import dev.hathora.cloud_sdk.operations.GetOrgTokens;
 import dev.hathora.cloud_sdk.operations.RevokeOrgToken;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 
 
 public class TokensV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncTokensV1 asyncSDK;
 
     TokensV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncTokensV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncTokensV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -57,7 +70,7 @@ public class TokensV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<CreateOrgTokenRequest, CreateOrgTokenResponse> operation
-              = new dev.hathora.cloud_sdk.operations.CreateOrgToken.Sync(sdkConfiguration);
+              = new dev.hathora.cloud_sdk.operations.CreateOrgToken.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -88,7 +101,7 @@ public class TokensV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetOrgTokensRequest, GetOrgTokensResponse> operation
-              = new GetOrgTokens.Sync(sdkConfiguration);
+              = new GetOrgTokens.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -121,7 +134,7 @@ public class TokensV1 {
                 .orgTokenId(orgTokenId)
                 .build();
         RequestOperation<RevokeOrgTokenRequest, RevokeOrgTokenResponse> operation
-              = new RevokeOrgToken.Sync(sdkConfiguration);
+              = new RevokeOrgToken.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

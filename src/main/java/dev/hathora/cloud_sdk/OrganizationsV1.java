@@ -46,16 +46,29 @@ import dev.hathora.cloud_sdk.operations.GetUserPendingInvites;
 import dev.hathora.cloud_sdk.operations.InviteUser;
 import dev.hathora.cloud_sdk.operations.RejectInvite;
 import dev.hathora.cloud_sdk.operations.RescindInvite;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class OrganizationsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncOrganizationsV1 asyncSDK;
 
     OrganizationsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncOrganizationsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncOrganizationsV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -81,7 +94,7 @@ public class OrganizationsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<AcceptInviteRequest, AcceptInviteResponse> operation
-              = new AcceptInvite.Sync(sdkConfiguration);
+              = new AcceptInvite.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -108,7 +121,7 @@ public class OrganizationsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetOrgMembersRequest, GetOrgMembersResponse> operation
-              = new GetOrgMembers.Sync(sdkConfiguration);
+              = new GetOrgMembers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -135,7 +148,7 @@ public class OrganizationsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetOrgPendingInvitesRequest, GetOrgPendingInvitesResponse> operation
-              = new GetOrgPendingInvites.Sync(sdkConfiguration);
+              = new GetOrgPendingInvites.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -160,7 +173,7 @@ public class OrganizationsV1 {
      */
     public GetOrgsResponse getOrgsDirect() throws Exception {
         RequestlessOperation<GetOrgsResponse> operation
-            = new GetOrgs.Sync(sdkConfiguration);
+            = new GetOrgs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -197,7 +210,7 @@ public class OrganizationsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetUsageLimitsRequest, GetUsageLimitsResponse> operation
-              = new GetUsageLimits.Sync(sdkConfiguration);
+              = new GetUsageLimits.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -218,7 +231,7 @@ public class OrganizationsV1 {
      */
     public GetUserPendingInvitesResponse getUserPendingInvitesDirect() throws Exception {
         RequestlessOperation<GetUserPendingInvitesResponse> operation
-            = new GetUserPendingInvites.Sync(sdkConfiguration);
+            = new GetUserPendingInvites.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -247,7 +260,7 @@ public class OrganizationsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<InviteUserRequest, InviteUserResponse> operation
-              = new InviteUser.Sync(sdkConfiguration);
+              = new InviteUser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -274,7 +287,7 @@ public class OrganizationsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<RejectInviteRequest, RejectInviteResponse> operation
-              = new RejectInvite.Sync(sdkConfiguration);
+              = new RejectInvite.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -303,7 +316,7 @@ public class OrganizationsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<RescindInviteRequest, RescindInviteResponse> operation
-              = new RescindInvite.Sync(sdkConfiguration);
+              = new RescindInvite.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -332,7 +345,7 @@ public class OrganizationsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<UpdateUserInviteRequest, UpdateUserInviteResponse> operation
-              = new dev.hathora.cloud_sdk.operations.UpdateUserInvite.Sync(sdkConfiguration);
+              = new dev.hathora.cloud_sdk.operations.UpdateUserInvite.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

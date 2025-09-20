@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetLatestProcesses;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class GetLatestProcessesRequestBuilder {
 
     private GetLatestProcessesRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetLatestProcessesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class GetLatestProcessesRequestBuilder {
     public GetLatestProcessesResponse call() throws Exception {
         
         RequestOperation<GetLatestProcessesRequest, GetLatestProcessesResponse> operation
-              = new GetLatestProcesses.Sync(sdkConfiguration);
+              = new GetLatestProcesses.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

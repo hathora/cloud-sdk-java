@@ -4,6 +4,7 @@
 package dev.hathora.cloud_sdk.operations;
 
 import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+import static dev.hathora.cloud_sdk.operations.Operations.AsyncRequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_sdk.SDKConfiguration;
@@ -12,8 +13,11 @@ import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.errors.SDKError;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionRequest;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionResponse;
+import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Exceptions;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import dev.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import dev.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
@@ -23,11 +27,14 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.Object;
+import java.lang.RuntimeException;
 import java.lang.String;
+import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Optional;
-
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
 
 public class UpdateFleetRegion {
@@ -37,9 +44,11 @@ public class UpdateFleetRegion {
         final String baseUrl;
         final SecuritySource securitySource;
         final HTTPClient client;
+        final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration) {
+        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
+            this._headers =_headers;
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
@@ -75,10 +84,9 @@ public class UpdateFleetRegion {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(UpdateFleetRegionRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
-                    UpdateFleetRegionRequest.class,
+                    klass,
                     this.baseUrl,
                     "/fleets/v1/fleets/{fleetId}/regions/{region}",
                     request, this.sdkConfiguration.globals);
@@ -86,8 +94,7 @@ public class UpdateFleetRegion {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<UpdateFleetRegionRequest>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "fleetRegionConfig",
@@ -99,9 +106,10 @@ public class UpdateFleetRegion {
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
 
             req.addQueryParams(Utils.getQueryParams(
-                    UpdateFleetRegionRequest.class,
+                    klass,
                     request,
                     this.sdkConfiguration.globals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
@@ -112,12 +120,12 @@ public class UpdateFleetRegion {
 
     public static class Sync extends Base
             implements RequestOperation<UpdateFleetRegionRequest, UpdateFleetRegionResponse> {
-        public Sync(SDKConfiguration sdkConfiguration) {
-            super(sdkConfiguration);
+        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
         }
 
         private HttpRequest onBuildRequest(UpdateFleetRegionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, UpdateFleetRegionRequest.class, new TypeReference<UpdateFleetRegionRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -226,6 +234,114 @@ public class UpdateFleetRegion {
                     response.statusCode(),
                     "Unexpected status code received: " + response.statusCode(),
                     Utils.extractByteArrayFromBody(response));
+        }
+    }
+    public static class Async extends Base
+            implements AsyncRequestOperation<UpdateFleetRegionRequest, dev.hathora.cloud_sdk.models.operations.async.UpdateFleetRegionResponse> {
+
+        public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
+        }
+
+        private CompletableFuture<HttpRequest> onBuildRequest(UpdateFleetRegionRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, UpdateFleetRegionRequest.class, new TypeReference<UpdateFleetRegionRequest>() {});
+            return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
+        }
+
+        private CompletableFuture<HttpResponse<Blob>> onError(HttpResponse<Blob> response, Throwable error) {
+            return this.sdkConfiguration.asyncHooks().afterError(createAfterErrorContext(), response, error);
+        }
+
+        private CompletableFuture<HttpResponse<Blob>> onSuccess(HttpResponse<Blob> response) {
+            return this.sdkConfiguration.asyncHooks().afterSuccess(createAfterSuccessContext(), response);
+        }
+
+        @Override
+        public CompletableFuture<HttpResponse<Blob>> doRequest(UpdateFleetRegionRequest request) {
+            return Exceptions.unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
+                    .handle((resp, err) -> {
+                        if (err != null) {
+                            return onError(null, err);
+                        }
+                        if (Utils.statusCodeMatches(resp.statusCode(), "401", "404", "422", "429", "4XX", "500", "5XX")) {
+                            return onError(resp, null);
+                        }
+                        return CompletableFuture.completedFuture(resp);
+                    })
+                    .thenCompose(Function.identity())
+                    .thenCompose(this::onSuccess);
+        }
+
+        @Override
+        public CompletableFuture<dev.hathora.cloud_sdk.models.operations.async.UpdateFleetRegionResponse> handleResponse(
+                HttpResponse<Blob> response) {
+            String contentType = response
+                    .headers()
+                    .firstValue("Content-Type")
+                    .orElse("application/octet-stream");
+            dev.hathora.cloud_sdk.models.operations.async.UpdateFleetRegionResponse.Builder resBuilder =
+                    dev.hathora.cloud_sdk.models.operations.async.UpdateFleetRegionResponse
+                            .builder()
+                            .contentType(contentType)
+                            .statusCode(response.statusCode())
+                            .rawResponse(response);
+
+            dev.hathora.cloud_sdk.models.operations.async.UpdateFleetRegionResponse res = resBuilder.build();
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "204")) {
+                // no content
+                return CompletableFuture.completedFuture(res);
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "401", "404", "422", "429")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return response.body().toByteArray().thenApply(bodyBytes -> {
+                        dev.hathora.cloud_sdk.models.errors.async.ApiError out;
+                        try {
+                            out = Utils.mapper().readValue(
+                                    bodyBytes,
+                                    new TypeReference<>() {
+                                    });
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                        throw out;
+                    });
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "500")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return response.body().toByteArray().thenApply(bodyBytes -> {
+                        dev.hathora.cloud_sdk.models.errors.async.ApiError out;
+                        try {
+                            out = Utils.mapper().readValue(
+                                    bodyBytes,
+                                    new TypeReference<>() {
+                                    });
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                        throw out;
+                    });
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
+                // no content
+                return Utils.createAsyncApiError(response, "API error occurred");
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
+                // no content
+                return Utils.createAsyncApiError(response, "API error occurred");
+            }
+            
+            return Utils.createAsyncApiError(response, "Unexpected status code received: " + response.statusCode());
         }
     }
 }

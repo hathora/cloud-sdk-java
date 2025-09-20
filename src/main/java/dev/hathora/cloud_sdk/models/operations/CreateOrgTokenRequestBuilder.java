@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateOrgToken;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -16,6 +17,7 @@ public class CreateOrgTokenRequestBuilder {
     private CreateOrgToken createOrgToken;
     private String orgId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateOrgTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -45,7 +47,7 @@ public class CreateOrgTokenRequestBuilder {
     public CreateOrgTokenResponse call() throws Exception {
         
         RequestOperation<CreateOrgTokenRequest, CreateOrgTokenResponse> operation
-              = new dev.hathora.cloud_sdk.operations.CreateOrgToken.Sync(sdkConfiguration);
+              = new dev.hathora.cloud_sdk.operations.CreateOrgToken.Sync(sdkConfiguration, _headers);
         CreateOrgTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

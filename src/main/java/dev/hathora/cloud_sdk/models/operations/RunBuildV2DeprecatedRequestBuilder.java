@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.RunBuildV2Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.Integer;
@@ -19,6 +20,7 @@ public class RunBuildV2DeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Integer buildId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public RunBuildV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -61,7 +63,7 @@ public class RunBuildV2DeprecatedRequestBuilder {
     public RunBuildV2DeprecatedResponse call() throws Exception {
         
         RequestOperation<RunBuildV2DeprecatedRequest, RunBuildV2DeprecatedResponse> operation
-              = new RunBuildV2Deprecated.Sync(sdkConfiguration);
+              = new RunBuildV2Deprecated.Sync(sdkConfiguration, _headers);
         RunBuildV2DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

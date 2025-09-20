@@ -7,6 +7,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetDeploymentInfoV2Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.Integer;
@@ -18,6 +19,7 @@ public class GetDeploymentInfoV2DeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Integer deploymentId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetDeploymentInfoV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class GetDeploymentInfoV2DeprecatedRequestBuilder {
     public GetDeploymentInfoV2DeprecatedResponse call() throws Exception {
         
         RequestOperation<GetDeploymentInfoV2DeprecatedRequest, GetDeploymentInfoV2DeprecatedResponse> operation
-              = new GetDeploymentInfoV2Deprecated.Sync(sdkConfiguration);
+              = new GetDeploymentInfoV2Deprecated.Sync(sdkConfiguration, _headers);
         GetDeploymentInfoV2DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

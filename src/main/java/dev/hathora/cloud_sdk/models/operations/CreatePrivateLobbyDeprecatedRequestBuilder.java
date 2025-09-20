@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.operations.CreatePrivateLobbyDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.LazySingletonValue;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Boolean;
@@ -26,6 +27,7 @@ public class CreatePrivateLobbyDeprecatedRequestBuilder {
                             new TypeReference<Optional<Boolean>>() {});
     private Optional<? extends Region> region = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreatePrivateLobbyDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -89,7 +91,7 @@ public class CreatePrivateLobbyDeprecatedRequestBuilder {
     public CreatePrivateLobbyDeprecatedResponse call() throws Exception {
         
         RequestOperation<CreatePrivateLobbyDeprecatedRequest, CreatePrivateLobbyDeprecatedResponse> operation
-              = new CreatePrivateLobbyDeprecated.Sync(sdkConfiguration, security);
+              = new CreatePrivateLobbyDeprecated.Sync(sdkConfiguration, security, _headers);
         CreatePrivateLobbyDeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

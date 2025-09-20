@@ -18,6 +18,7 @@ import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.operations.GetProcessInfoDeprecated;
 import dev.hathora.cloud_sdk.operations.GetRunningProcesses;
 import dev.hathora.cloud_sdk.operations.GetStoppedProcesses;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
@@ -27,10 +28,22 @@ import java.util.Optional;
  * Deprecated. Use [ProcessesV3](https://hathora.dev/api#tag/ProcessesV3).
  */
 public class ProcessesV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncProcessesV1 asyncSDK;
 
     ProcessesV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncProcessesV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncProcessesV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -81,7 +94,7 @@ public class ProcessesV1 {
                 .processId(processId)
                 .build();
         RequestOperation<GetProcessInfoDeprecatedRequest, GetProcessInfoDeprecatedResponse> operation
-              = new GetProcessInfoDeprecated.Sync(sdkConfiguration);
+              = new GetProcessInfoDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -132,7 +145,7 @@ public class ProcessesV1 {
                 .region(region)
                 .build();
         RequestOperation<GetRunningProcessesRequest, GetRunningProcessesResponse> operation
-              = new GetRunningProcesses.Sync(sdkConfiguration);
+              = new GetRunningProcesses.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -183,7 +196,7 @@ public class ProcessesV1 {
                 .region(region)
                 .build();
         RequestOperation<GetStoppedProcessesRequest, GetStoppedProcessesResponse> operation
-              = new GetStoppedProcesses.Sync(sdkConfiguration);
+              = new GetStoppedProcesses.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -8,6 +8,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateLobbyParams;
 import dev.hathora.cloud_sdk.operations.CreateLobbyDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ public class CreateLobbyDeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Optional<String> roomId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateLobbyDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -74,7 +76,7 @@ public class CreateLobbyDeprecatedRequestBuilder {
     public CreateLobbyDeprecatedResponse call() throws Exception {
         
         RequestOperation<CreateLobbyDeprecatedRequest, CreateLobbyDeprecatedResponse> operation
-              = new CreateLobbyDeprecated.Sync(sdkConfiguration, security);
+              = new CreateLobbyDeprecated.Sync(sdkConfiguration, security, _headers);
         CreateLobbyDeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

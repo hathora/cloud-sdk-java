@@ -30,6 +30,7 @@ import dev.hathora.cloud_sdk.operations.GetPaymentMethod;
 import dev.hathora.cloud_sdk.operations.GetUpcomingInvoiceItems;
 import dev.hathora.cloud_sdk.operations.GetUpcomingInvoiceTotal;
 import dev.hathora.cloud_sdk.operations.InitStripeCustomerPortalUrl;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
@@ -37,10 +38,22 @@ import java.util.Optional;
 
 
 public class BillingV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBillingV1 asyncSDK;
 
     BillingV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBillingV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBillingV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -82,7 +95,7 @@ public class BillingV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
-              = new GetBalance.Sync(sdkConfiguration);
+              = new GetBalance.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -119,7 +132,7 @@ public class BillingV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetInvoicesRequest, GetInvoicesResponse> operation
-              = new GetInvoices.Sync(sdkConfiguration);
+              = new GetInvoices.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -156,7 +169,7 @@ public class BillingV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetPaymentMethodRequest, GetPaymentMethodResponse> operation
-              = new GetPaymentMethod.Sync(sdkConfiguration);
+              = new GetPaymentMethod.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +206,7 @@ public class BillingV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetUpcomingInvoiceItemsRequest, GetUpcomingInvoiceItemsResponse> operation
-              = new GetUpcomingInvoiceItems.Sync(sdkConfiguration);
+              = new GetUpcomingInvoiceItems.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -230,7 +243,7 @@ public class BillingV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetUpcomingInvoiceTotalRequest, GetUpcomingInvoiceTotalResponse> operation
-              = new GetUpcomingInvoiceTotal.Sync(sdkConfiguration);
+              = new GetUpcomingInvoiceTotal.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -270,7 +283,7 @@ public class BillingV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<InitStripeCustomerPortalUrlRequest, InitStripeCustomerPortalUrlResponse> operation
-              = new InitStripeCustomerPortalUrl.Sync(sdkConfiguration);
+              = new InitStripeCustomerPortalUrl.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

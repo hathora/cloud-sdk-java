@@ -8,6 +8,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateBuildParams;
 import dev.hathora.cloud_sdk.operations.CreateBuildDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -18,6 +19,7 @@ public class CreateBuildDeprecatedRequestBuilder {
     private CreateBuildParams createBuildParams;
     private Optional<String> appId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateBuildDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class CreateBuildDeprecatedRequestBuilder {
     public CreateBuildDeprecatedResponse call() throws Exception {
         
         RequestOperation<CreateBuildDeprecatedRequest, CreateBuildDeprecatedResponse> operation
-              = new CreateBuildDeprecated.Sync(sdkConfiguration);
+              = new CreateBuildDeprecated.Sync(sdkConfiguration, _headers);
         CreateBuildDeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

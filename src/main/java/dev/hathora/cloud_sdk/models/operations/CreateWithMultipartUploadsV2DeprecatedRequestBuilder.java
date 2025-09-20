@@ -8,6 +8,7 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateMultipartBuildParams;
 import dev.hathora.cloud_sdk.operations.CreateWithMultipartUploadsV2Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -18,6 +19,7 @@ public class CreateWithMultipartUploadsV2DeprecatedRequestBuilder {
     private CreateMultipartBuildParams createMultipartBuildParams;
     private Optional<String> appId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateWithMultipartUploadsV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class CreateWithMultipartUploadsV2DeprecatedRequestBuilder {
     public CreateWithMultipartUploadsV2DeprecatedResponse call() throws Exception {
         
         RequestOperation<CreateWithMultipartUploadsV2DeprecatedRequest, CreateWithMultipartUploadsV2DeprecatedResponse> operation
-              = new CreateWithMultipartUploadsV2Deprecated.Sync(sdkConfiguration);
+              = new CreateWithMultipartUploadsV2Deprecated.Sync(sdkConfiguration, _headers);
         CreateWithMultipartUploadsV2DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -43,6 +43,7 @@ import dev.hathora.cloud_sdk.operations.GetRoomInfo;
 import dev.hathora.cloud_sdk.operations.ResumeRoom;
 import dev.hathora.cloud_sdk.operations.SuspendRoomV2Deprecated;
 import dev.hathora.cloud_sdk.operations.UpdateRoomConfig;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
@@ -50,10 +51,22 @@ import java.util.Optional;
 
 
 public class RoomsV2 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncRoomsV2 asyncSDK;
 
     RoomsV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncRoomsV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncRoomsV2 async() {
+        return asyncSDK;
     }
 
     /**
@@ -102,7 +115,7 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<CreateRoomRequest, CreateRoomResponse> operation
-              = new CreateRoom.Sync(sdkConfiguration);
+              = new CreateRoom.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -148,7 +161,7 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<DestroyRoomRequest, DestroyRoomResponse> operation
-              = new DestroyRoom.Sync(sdkConfiguration);
+              = new DestroyRoom.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -194,7 +207,7 @@ public class RoomsV2 {
                 .processId(processId)
                 .build();
         RequestOperation<GetActiveRoomsForProcessRequest, GetActiveRoomsForProcessResponse> operation
-              = new GetActiveRoomsForProcess.Sync(sdkConfiguration);
+              = new GetActiveRoomsForProcess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -240,7 +253,7 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<GetConnectionInfoRequest, GetConnectionInfoResponse> operation
-              = new GetConnectionInfo.Sync(sdkConfiguration);
+              = new GetConnectionInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -286,7 +299,7 @@ public class RoomsV2 {
                 .processId(processId)
                 .build();
         RequestOperation<GetInactiveRoomsForProcessRequest, GetInactiveRoomsForProcessResponse> operation
-              = new GetInactiveRoomsForProcess.Sync(sdkConfiguration);
+              = new GetInactiveRoomsForProcess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -332,7 +345,7 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<GetRoomInfoRequest, GetRoomInfoResponse> operation
-              = new GetRoomInfo.Sync(sdkConfiguration);
+              = new GetRoomInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -372,7 +385,7 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<ResumeRoomRequest, ResumeRoomResponse> operation
-              = new ResumeRoom.Sync(sdkConfiguration);
+              = new ResumeRoom.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -424,7 +437,7 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<SuspendRoomV2DeprecatedRequest, SuspendRoomV2DeprecatedResponse> operation
-              = new SuspendRoomV2Deprecated.Sync(sdkConfiguration);
+              = new SuspendRoomV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -469,7 +482,7 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<UpdateRoomConfigRequest, UpdateRoomConfigResponse> operation
-              = new UpdateRoomConfig.Sync(sdkConfiguration);
+              = new UpdateRoomConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

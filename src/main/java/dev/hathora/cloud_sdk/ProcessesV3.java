@@ -30,6 +30,7 @@ import dev.hathora.cloud_sdk.operations.GetProcess;
 import dev.hathora.cloud_sdk.operations.GetProcessMetrics;
 import dev.hathora.cloud_sdk.operations.GetProcessesCountExperimental;
 import dev.hathora.cloud_sdk.operations.StopProcess;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
@@ -38,10 +39,22 @@ import java.util.Optional;
  * Operations to get data on active and stopped [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
  */
 public class ProcessesV3 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncProcessesV3 asyncSDK;
 
     ProcessesV3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncProcessesV3(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncProcessesV3 async() {
+        return asyncSDK;
     }
 
     /**
@@ -86,7 +99,7 @@ public class ProcessesV3 {
                 .region(region)
                 .build();
         RequestOperation<CreateProcessRequest, CreateProcessResponse> operation
-              = new CreateProcess.Sync(sdkConfiguration);
+              = new CreateProcess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -112,7 +125,7 @@ public class ProcessesV3 {
      */
     public GetLatestProcessesResponse getLatestProcesses(GetLatestProcessesRequest request) throws Exception {
         RequestOperation<GetLatestProcessesRequest, GetLatestProcessesResponse> operation
-              = new GetLatestProcesses.Sync(sdkConfiguration);
+              = new GetLatestProcesses.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -158,7 +171,7 @@ public class ProcessesV3 {
                 .processId(processId)
                 .build();
         RequestOperation<GetProcessRequest, GetProcessResponse> operation
-              = new GetProcess.Sync(sdkConfiguration);
+              = new GetProcess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -180,7 +193,7 @@ public class ProcessesV3 {
      */
     public GetProcessMetricsResponse getProcessMetrics(GetProcessMetricsRequest request) throws Exception {
         RequestOperation<GetProcessMetricsRequest, GetProcessMetricsResponse> operation
-              = new GetProcessMetrics.Sync(sdkConfiguration);
+              = new GetProcessMetrics.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -206,7 +219,7 @@ public class ProcessesV3 {
      */
     public GetProcessesCountExperimentalResponse getProcessesCountExperimental(GetProcessesCountExperimentalRequest request) throws Exception {
         RequestOperation<GetProcessesCountExperimentalRequest, GetProcessesCountExperimentalResponse> operation
-              = new GetProcessesCountExperimental.Sync(sdkConfiguration);
+              = new GetProcessesCountExperimental.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -252,7 +265,7 @@ public class ProcessesV3 {
                 .processId(processId)
                 .build();
         RequestOperation<StopProcessRequest, StopProcessResponse> operation
-              = new StopProcess.Sync(sdkConfiguration);
+              = new StopProcess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -4,6 +4,7 @@
 package dev.hathora.cloud_sdk;
 
 import dev.hathora.cloud_sdk.utils.HTTPClient;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.RetryConfig;
 import dev.hathora.cloud_sdk.utils.SpeakeasyHTTPClient;
 import dev.hathora.cloud_sdk.utils.Utils;
@@ -15,6 +16,7 @@ import java.util.Optional;
  * Hathora Cloud API: Welcome to the Hathora Cloud API documentation! Learn how to use the Hathora Cloud APIs to build and scale your game servers globally.
  */
 public class HathoraCloud {
+    private static final Headers _headers = Headers.EMPTY;
 
 
     /**
@@ -280,6 +282,7 @@ public class HathoraCloud {
     }
 
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncHathoraCloud asyncSDK;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -390,6 +393,7 @@ public class HathoraCloud {
             return this;
         }
 
+
         /**
          * Allows setting the appId parameter for all supported operations.
          *
@@ -400,7 +404,7 @@ public class HathoraCloud {
             this.sdkConfiguration.globals.putParam("pathParam", "appId", appId);
             return this;
         }
-        
+
         /**
          * Allows setting the orgId parameter for all supported operations.
          *
@@ -411,7 +415,7 @@ public class HathoraCloud {
             this.sdkConfiguration.globals.putParam("queryParam", "orgId", orgId);
             return this;
         }
-        
+
         /**
          * Builds a new instance of the SDK.
          *
@@ -426,7 +430,7 @@ public class HathoraCloud {
             return new HathoraCloud(sdkConfiguration);
         }
     }
-    
+
     /**
      * Get a new instance of the SDK builder to configure a new instance of the SDK.
      *
@@ -436,7 +440,7 @@ public class HathoraCloud {
         return new Builder();
     }
 
-    private HathoraCloud(SDKConfiguration sdkConfiguration) {
+    public HathoraCloud(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.sdkConfiguration.initialize();
         this.appsV1 = new AppsV1(sdkConfiguration);
@@ -465,5 +469,16 @@ public class HathoraCloud {
         this.roomsV1 = new RoomsV1(sdkConfiguration);
         this.roomsV2 = new RoomsV2(sdkConfiguration);
         this.tokensV1 = new TokensV1(sdkConfiguration);
+        this.asyncSDK = new AsyncHathoraCloud(this, sdkConfiguration);
     }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncHathoraCloud async() {
+        return asyncSDK;
+    }
+
 }

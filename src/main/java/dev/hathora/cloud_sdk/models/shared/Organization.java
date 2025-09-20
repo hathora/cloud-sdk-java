@@ -17,6 +17,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Organization {
@@ -29,7 +30,14 @@ public class Organization {
     private Optional<Double> concurrentProcessVcpusLimit;
 
     /**
-     * The features enabled for this org and user.
+     * The default fleet ID for this organization.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("defaultFleetId")
+    private JsonNullable<String> defaultFleetId;
+
+    /**
+     * The features enabled for this organization and user.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("enabledFeatureFlags")
@@ -64,7 +72,7 @@ public class Organization {
     private Optional<Double> maxProcessConnections;
 
     /**
-     * The maximum memory in MB that can be used by any process in this org.
+     * The maximum memory in MB that can be used by any process in this organization.
      */
     @JsonProperty("maxRequestedMemoryMB")
     private double maxRequestedMemoryMB;
@@ -98,7 +106,7 @@ public class Organization {
     private Optional<Double> podMaxLifespanHrs;
 
     /**
-     * The scopes the user who loaded this has on this org.
+     * The scopes the user who loaded this has on this organization.
      */
     @JsonProperty("scopes")
     private List<Scope> scopes;
@@ -110,6 +118,7 @@ public class Organization {
     @JsonCreator
     public Organization(
             @JsonProperty("concurrentProcessVcpusLimit") Optional<Double> concurrentProcessVcpusLimit,
+            @JsonProperty("defaultFleetId") JsonNullable<String> defaultFleetId,
             @JsonProperty("enabledFeatureFlags") Optional<? extends List<String>> enabledFeatureFlags,
             @JsonProperty("isSingleTenant") boolean isSingleTenant,
             @JsonProperty("logRetentionPeriodHours") Optional<Integer> logRetentionPeriodHours,
@@ -123,6 +132,7 @@ public class Organization {
             @JsonProperty("scopes") List<Scope> scopes,
             @JsonProperty("stripeCustomerId") String stripeCustomerId) {
         Utils.checkNotNull(concurrentProcessVcpusLimit, "concurrentProcessVcpusLimit");
+        Utils.checkNotNull(defaultFleetId, "defaultFleetId");
         Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
         Utils.checkNotNull(isSingleTenant, "isSingleTenant");
         Utils.checkNotNull(logRetentionPeriodHours, "logRetentionPeriodHours");
@@ -136,6 +146,7 @@ public class Organization {
         Utils.checkNotNull(scopes, "scopes");
         Utils.checkNotNull(stripeCustomerId, "stripeCustomerId");
         this.concurrentProcessVcpusLimit = concurrentProcessVcpusLimit;
+        this.defaultFleetId = defaultFleetId;
         this.enabledFeatureFlags = enabledFeatureFlags;
         this.isSingleTenant = isSingleTenant;
         this.logRetentionPeriodHours = logRetentionPeriodHours;
@@ -156,11 +167,11 @@ public class Organization {
             String orgId,
             List<Scope> scopes,
             String stripeCustomerId) {
-        this(Optional.empty(), Optional.empty(), isSingleTenant,
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            maxRequestedMemoryMB, Optional.empty(), Optional.empty(),
-            orgId, Optional.empty(), scopes,
-            stripeCustomerId);
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            isSingleTenant, Optional.empty(), Optional.empty(),
+            Optional.empty(), maxRequestedMemoryMB, Optional.empty(),
+            Optional.empty(), orgId, Optional.empty(),
+            scopes, stripeCustomerId);
     }
 
     /**
@@ -173,7 +184,15 @@ public class Organization {
     }
 
     /**
-     * The features enabled for this org and user.
+     * The default fleet ID for this organization.
+     */
+    @JsonIgnore
+    public JsonNullable<String> defaultFleetId() {
+        return defaultFleetId;
+    }
+
+    /**
+     * The features enabled for this organization and user.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -214,7 +233,7 @@ public class Organization {
     }
 
     /**
-     * The maximum memory in MB that can be used by any process in this org.
+     * The maximum memory in MB that can be used by any process in this organization.
      */
     @JsonIgnore
     public double maxRequestedMemoryMB() {
@@ -255,7 +274,7 @@ public class Organization {
     }
 
     /**
-     * The scopes the user who loaded this has on this org.
+     * The scopes the user who loaded this has on this organization.
      */
     @JsonIgnore
     public List<Scope> scopes() {
@@ -294,7 +313,25 @@ public class Organization {
     }
 
     /**
-     * The features enabled for this org and user.
+     * The default fleet ID for this organization.
+     */
+    public Organization withDefaultFleetId(String defaultFleetId) {
+        Utils.checkNotNull(defaultFleetId, "defaultFleetId");
+        this.defaultFleetId = JsonNullable.of(defaultFleetId);
+        return this;
+    }
+
+    /**
+     * The default fleet ID for this organization.
+     */
+    public Organization withDefaultFleetId(JsonNullable<String> defaultFleetId) {
+        Utils.checkNotNull(defaultFleetId, "defaultFleetId");
+        this.defaultFleetId = defaultFleetId;
+        return this;
+    }
+
+    /**
+     * The features enabled for this organization and user.
      */
     public Organization withEnabledFeatureFlags(List<String> enabledFeatureFlags) {
         Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
@@ -304,7 +341,7 @@ public class Organization {
 
 
     /**
-     * The features enabled for this org and user.
+     * The features enabled for this organization and user.
      */
     public Organization withEnabledFeatureFlags(Optional<? extends List<String>> enabledFeatureFlags) {
         Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
@@ -382,7 +419,7 @@ public class Organization {
     }
 
     /**
-     * The maximum memory in MB that can be used by any process in this org.
+     * The maximum memory in MB that can be used by any process in this organization.
      */
     public Organization withMaxRequestedMemoryMB(double maxRequestedMemoryMB) {
         Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
@@ -459,7 +496,7 @@ public class Organization {
     }
 
     /**
-     * The scopes the user who loaded this has on this org.
+     * The scopes the user who loaded this has on this organization.
      */
     public Organization withScopes(List<Scope> scopes) {
         Utils.checkNotNull(scopes, "scopes");
@@ -484,6 +521,7 @@ public class Organization {
         Organization other = (Organization) o;
         return 
             Utils.enhancedDeepEquals(this.concurrentProcessVcpusLimit, other.concurrentProcessVcpusLimit) &&
+            Utils.enhancedDeepEquals(this.defaultFleetId, other.defaultFleetId) &&
             Utils.enhancedDeepEquals(this.enabledFeatureFlags, other.enabledFeatureFlags) &&
             Utils.enhancedDeepEquals(this.isSingleTenant, other.isSingleTenant) &&
             Utils.enhancedDeepEquals(this.logRetentionPeriodHours, other.logRetentionPeriodHours) &&
@@ -501,17 +539,18 @@ public class Organization {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            concurrentProcessVcpusLimit, enabledFeatureFlags, isSingleTenant,
-            logRetentionPeriodHours, maxCloudBaseline, maxProcessConnections,
-            maxRequestedMemoryMB, monthlyProcessVcpuHoursLimit, name,
-            orgId, podMaxLifespanHrs, scopes,
-            stripeCustomerId);
+            concurrentProcessVcpusLimit, defaultFleetId, enabledFeatureFlags,
+            isSingleTenant, logRetentionPeriodHours, maxCloudBaseline,
+            maxProcessConnections, maxRequestedMemoryMB, monthlyProcessVcpuHoursLimit,
+            name, orgId, podMaxLifespanHrs,
+            scopes, stripeCustomerId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Organization.class,
                 "concurrentProcessVcpusLimit", concurrentProcessVcpusLimit,
+                "defaultFleetId", defaultFleetId,
                 "enabledFeatureFlags", enabledFeatureFlags,
                 "isSingleTenant", isSingleTenant,
                 "logRetentionPeriodHours", logRetentionPeriodHours,
@@ -530,6 +569,8 @@ public class Organization {
     public final static class Builder {
 
         private Optional<Double> concurrentProcessVcpusLimit = Optional.empty();
+
+        private JsonNullable<String> defaultFleetId = JsonNullable.undefined();
 
         private Optional<? extends List<String>> enabledFeatureFlags = Optional.empty();
 
@@ -582,7 +623,26 @@ public class Organization {
 
 
         /**
-         * The features enabled for this org and user.
+         * The default fleet ID for this organization.
+         */
+        public Builder defaultFleetId(String defaultFleetId) {
+            Utils.checkNotNull(defaultFleetId, "defaultFleetId");
+            this.defaultFleetId = JsonNullable.of(defaultFleetId);
+            return this;
+        }
+
+        /**
+         * The default fleet ID for this organization.
+         */
+        public Builder defaultFleetId(JsonNullable<String> defaultFleetId) {
+            Utils.checkNotNull(defaultFleetId, "defaultFleetId");
+            this.defaultFleetId = defaultFleetId;
+            return this;
+        }
+
+
+        /**
+         * The features enabled for this organization and user.
          */
         public Builder enabledFeatureFlags(List<String> enabledFeatureFlags) {
             Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
@@ -591,7 +651,7 @@ public class Organization {
         }
 
         /**
-         * The features enabled for this org and user.
+         * The features enabled for this organization and user.
          */
         public Builder enabledFeatureFlags(Optional<? extends List<String>> enabledFeatureFlags) {
             Utils.checkNotNull(enabledFeatureFlags, "enabledFeatureFlags");
@@ -671,7 +731,7 @@ public class Organization {
 
 
         /**
-         * The maximum memory in MB that can be used by any process in this org.
+         * The maximum memory in MB that can be used by any process in this organization.
          */
         public Builder maxRequestedMemoryMB(double maxRequestedMemoryMB) {
             Utils.checkNotNull(maxRequestedMemoryMB, "maxRequestedMemoryMB");
@@ -750,7 +810,7 @@ public class Organization {
 
 
         /**
-         * The scopes the user who loaded this has on this org.
+         * The scopes the user who loaded this has on this organization.
          */
         public Builder scopes(List<Scope> scopes) {
             Utils.checkNotNull(scopes, "scopes");
@@ -768,11 +828,11 @@ public class Organization {
         public Organization build() {
 
             return new Organization(
-                concurrentProcessVcpusLimit, enabledFeatureFlags, isSingleTenant,
-                logRetentionPeriodHours, maxCloudBaseline, maxProcessConnections,
-                maxRequestedMemoryMB, monthlyProcessVcpuHoursLimit, name,
-                orgId, podMaxLifespanHrs, scopes,
-                stripeCustomerId);
+                concurrentProcessVcpusLimit, defaultFleetId, enabledFeatureFlags,
+                isSingleTenant, logRetentionPeriodHours, maxCloudBaseline,
+                maxProcessConnections, maxRequestedMemoryMB, monthlyProcessVcpuHoursLimit,
+                name, orgId, podMaxLifespanHrs,
+                scopes, stripeCustomerId);
         }
 
     }
