@@ -8,8 +8,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.PartialAppConfigWithServiceConfig;
 import dev.hathora.cloud_sdk.operations.PatchApp;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -18,6 +18,7 @@ public class PatchAppRequestBuilder {
     private PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig;
     private Optional<String> appId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public PatchAppRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -50,10 +51,10 @@ public class PatchAppRequestBuilder {
         return request;
     }
 
-    public PatchAppResponse call() throws Exception {
+    public PatchAppResponse call() {
         
         RequestOperation<PatchAppRequest, PatchAppResponse> operation
-              = new PatchApp.Sync(sdkConfiguration);
+              = new PatchApp.Sync(sdkConfiguration, _headers);
         PatchAppRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

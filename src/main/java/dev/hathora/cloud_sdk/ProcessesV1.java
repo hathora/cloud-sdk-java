@@ -18,8 +18,8 @@ import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.operations.GetProcessInfoDeprecated;
 import dev.hathora.cloud_sdk.operations.GetRunningProcesses;
 import dev.hathora.cloud_sdk.operations.GetStoppedProcesses;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -27,10 +27,22 @@ import java.util.Optional;
  * Deprecated. Use [ProcessesV3](https://hathora.dev/api#tag/ProcessesV3).
  */
 public class ProcessesV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncProcessesV1 asyncSDK;
 
     ProcessesV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncProcessesV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncProcessesV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -53,11 +65,11 @@ public class ProcessesV1 {
      * 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetProcessInfoDeprecatedResponse getProcessInfoDeprecated(String processId) throws Exception {
+    public GetProcessInfoDeprecatedResponse getProcessInfoDeprecated(String processId) {
         return getProcessInfoDeprecated(Optional.empty(), processId);
     }
 
@@ -69,11 +81,11 @@ public class ProcessesV1 {
      * @param appId 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetProcessInfoDeprecatedResponse getProcessInfoDeprecated(Optional<String> appId, String processId) throws Exception {
+    public GetProcessInfoDeprecatedResponse getProcessInfoDeprecated(Optional<String> appId, String processId) {
         GetProcessInfoDeprecatedRequest request =
             GetProcessInfoDeprecatedRequest
                 .builder()
@@ -81,14 +93,17 @@ public class ProcessesV1 {
                 .processId(processId)
                 .build();
         RequestOperation<GetProcessInfoDeprecatedRequest, GetProcessInfoDeprecatedResponse> operation
-              = new GetProcessInfoDeprecated.Sync(sdkConfiguration);
+              = new GetProcessInfoDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetRunningProcesses
      * 
-     * <p>Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
+     * <p>Retrieve 10 most recently started
+     * [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by
+     * optionally passing in a `region`.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -101,30 +116,36 @@ public class ProcessesV1 {
     /**
      * GetRunningProcesses
      * 
-     * <p>Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
+     * <p>Retrieve 10 most recently started
+     * [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by
+     * optionally passing in a `region`.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetRunningProcessesResponse getRunningProcessesDirect() throws Exception {
+    public GetRunningProcessesResponse getRunningProcessesDirect() {
         return getRunningProcesses(Optional.empty(), Optional.empty());
     }
 
     /**
      * GetRunningProcesses
      * 
-     * <p>Retrieve 10 most recently started [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
+     * <p>Retrieve 10 most recently started
+     * [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by
+     * optionally passing in a `region`.
      * 
      * @param appId 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetRunningProcessesResponse getRunningProcesses(Optional<String> appId, Optional<? extends Region> region) throws Exception {
+    public GetRunningProcessesResponse getRunningProcesses(Optional<String> appId, Optional<? extends Region> region) {
         GetRunningProcessesRequest request =
             GetRunningProcessesRequest
                 .builder()
@@ -132,14 +153,17 @@ public class ProcessesV1 {
                 .region(region)
                 .build();
         RequestOperation<GetRunningProcessesRequest, GetRunningProcessesResponse> operation
-              = new GetRunningProcesses.Sync(sdkConfiguration);
+              = new GetRunningProcesses.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetStoppedProcesses
      * 
-     * <p>Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
+     * <p>Retrieve 10 most recently stopped
+     * [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by
+     * optionally passing in a `region`.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -152,30 +176,36 @@ public class ProcessesV1 {
     /**
      * GetStoppedProcesses
      * 
-     * <p>Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
+     * <p>Retrieve 10 most recently stopped
+     * [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by
+     * optionally passing in a `region`.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetStoppedProcessesResponse getStoppedProcessesDirect() throws Exception {
+    public GetStoppedProcessesResponse getStoppedProcessesDirect() {
         return getStoppedProcesses(Optional.empty(), Optional.empty());
     }
 
     /**
      * GetStoppedProcesses
      * 
-     * <p>Retrieve 10 most recently stopped [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`.
+     * <p>Retrieve 10 most recently stopped
+     * [process](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by
+     * optionally passing in a `region`.
      * 
      * @param appId 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetStoppedProcessesResponse getStoppedProcesses(Optional<String> appId, Optional<? extends Region> region) throws Exception {
+    public GetStoppedProcessesResponse getStoppedProcesses(Optional<String> appId, Optional<? extends Region> region) {
         GetStoppedProcessesRequest request =
             GetStoppedProcessesRequest
                 .builder()
@@ -183,7 +213,7 @@ public class ProcessesV1 {
                 .region(region)
                 .build();
         RequestOperation<GetStoppedProcessesRequest, GetStoppedProcessesResponse> operation
-              = new GetStoppedProcesses.Sync(sdkConfiguration);
+              = new GetStoppedProcesses.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

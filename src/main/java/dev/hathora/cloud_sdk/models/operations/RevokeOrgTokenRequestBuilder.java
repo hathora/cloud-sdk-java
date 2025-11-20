@@ -7,8 +7,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.RevokeOrgToken;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 
 public class RevokeOrgTokenRequestBuilder {
@@ -16,6 +16,7 @@ public class RevokeOrgTokenRequestBuilder {
     private String orgId;
     private String orgTokenId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public RevokeOrgTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -42,10 +43,10 @@ public class RevokeOrgTokenRequestBuilder {
         return request;
     }
 
-    public RevokeOrgTokenResponse call() throws Exception {
+    public RevokeOrgTokenResponse call() {
         
         RequestOperation<RevokeOrgTokenRequest, RevokeOrgTokenResponse> operation
-              = new RevokeOrgToken.Sync(sdkConfiguration);
+              = new RevokeOrgToken.Sync(sdkConfiguration, _headers);
         RevokeOrgTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

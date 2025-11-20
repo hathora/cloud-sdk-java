@@ -20,7 +20,7 @@ import java.util.List;
 public class OrgMemberScopes {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private OrgMemberScopes(TypedObject value) {
         this.value = value;
@@ -28,12 +28,12 @@ public class OrgMemberScopes {
 
     public static OrgMemberScopes of(UserRole value) {
         Utils.checkNotNull(value, "value");
-        return new OrgMemberScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<UserRole>(){}));
+        return new OrgMemberScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static OrgMemberScopes of(List<Scope> value) {
         Utils.checkNotNull(value, "value");
-        return new OrgMemberScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<Scope>>(){}));
+        return new OrgMemberScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -56,7 +56,7 @@ public class OrgMemberScopes {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -67,7 +67,7 @@ public class OrgMemberScopes {
             return false;
         }
         OrgMemberScopes other = (OrgMemberScopes) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -90,6 +90,6 @@ public class OrgMemberScopes {
         return Utils.toString(OrgMemberScopes.class,
                 "value", value);
     }
- 
+
 }
 

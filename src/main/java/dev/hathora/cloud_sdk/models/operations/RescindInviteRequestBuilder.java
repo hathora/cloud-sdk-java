@@ -8,8 +8,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.RescindUserInvite;
 import dev.hathora.cloud_sdk.operations.RescindInvite;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 
 public class RescindInviteRequestBuilder {
@@ -17,6 +17,7 @@ public class RescindInviteRequestBuilder {
     private RescindUserInvite rescindUserInvite;
     private String orgId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public RescindInviteRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -43,10 +44,10 @@ public class RescindInviteRequestBuilder {
         return request;
     }
 
-    public RescindInviteResponse call() throws Exception {
+    public RescindInviteResponse call() {
         
         RequestOperation<RescindInviteRequest, RescindInviteResponse> operation
-              = new RescindInvite.Sync(sdkConfiguration);
+              = new RescindInvite.Sync(sdkConfiguration, _headers);
         RescindInviteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

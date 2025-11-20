@@ -7,13 +7,14 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.UpdateFleetRegion;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class UpdateFleetRegionRequestBuilder {
 
     private UpdateFleetRegionRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateFleetRegionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -25,10 +26,10 @@ public class UpdateFleetRegionRequestBuilder {
         return this;
     }
 
-    public UpdateFleetRegionResponse call() throws Exception {
+    public UpdateFleetRegionResponse call() {
         
         RequestOperation<UpdateFleetRegionRequest, UpdateFleetRegionResponse> operation
-              = new UpdateFleetRegion.Sync(sdkConfiguration);
+              = new UpdateFleetRegion.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

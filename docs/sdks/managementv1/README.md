@@ -27,7 +27,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
             .build();
@@ -61,6 +61,6 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 429               | application/json       |
+| models/errors/ApiError | 401, 408, 429          | application/json       |
 | models/errors/ApiError | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

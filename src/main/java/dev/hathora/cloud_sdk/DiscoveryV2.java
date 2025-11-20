@@ -8,22 +8,36 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
 import dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsResponse;
 import dev.hathora.cloud_sdk.operations.GetPingServiceEndpoints;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 
 /**
  * Service that allows clients to directly ping all Hathora regions to get latency information
  */
 public class DiscoveryV2 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDiscoveryV2 asyncSDK;
 
     DiscoveryV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDiscoveryV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDiscoveryV2 async() {
+        return asyncSDK;
     }
 
     /**
      * GetPingServiceEndpoints
      * 
-     * <p>Returns an array of all regions with a host and port that a client can directly ping. Open a websocket connection to `wss://&lt;host&gt;:&lt;port&gt;/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back.
+     * <p>Returns an array of all regions with a host and port that a client can directly ping. Open a
+     * websocket connection to `wss://&lt;host&gt;:<port>/ws` and send a packet. To calculate ping, measure
+     * the time it takes to get an echo packet back.
      * 
      * @return The call builder
      */
@@ -34,14 +48,16 @@ public class DiscoveryV2 {
     /**
      * GetPingServiceEndpoints
      * 
-     * <p>Returns an array of all regions with a host and port that a client can directly ping. Open a websocket connection to `wss://&lt;host&gt;:&lt;port&gt;/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back.
+     * <p>Returns an array of all regions with a host and port that a client can directly ping. Open a
+     * websocket connection to `wss://&lt;host&gt;:<port>/ws` and send a packet. To calculate ping, measure
+     * the time it takes to get an echo packet back.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPingServiceEndpointsResponse getPingServiceEndpointsDirect() throws Exception {
+    public GetPingServiceEndpointsResponse getPingServiceEndpointsDirect() {
         RequestlessOperation<GetPingServiceEndpointsResponse> operation
-            = new GetPingServiceEndpoints.Sync(sdkConfiguration);
+            = new GetPingServiceEndpoints.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 

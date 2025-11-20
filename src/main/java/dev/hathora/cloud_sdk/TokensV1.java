@@ -17,15 +17,27 @@ import dev.hathora.cloud_sdk.models.operations.RevokeOrgTokenResponse;
 import dev.hathora.cloud_sdk.models.shared.CreateOrgToken;
 import dev.hathora.cloud_sdk.operations.GetOrgTokens;
 import dev.hathora.cloud_sdk.operations.RevokeOrgToken;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.String;
 
 
 public class TokensV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncTokensV1 asyncSDK;
 
     TokensV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncTokensV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncTokensV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -47,9 +59,9 @@ public class TokensV1 {
      * @param createOrgToken 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateOrgTokenResponse createOrgToken(CreateOrgToken createOrgToken, String orgId) throws Exception {
+    public CreateOrgTokenResponse createOrgToken(CreateOrgToken createOrgToken, String orgId) {
         CreateOrgTokenRequest request =
             CreateOrgTokenRequest
                 .builder()
@@ -57,7 +69,7 @@ public class TokensV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<CreateOrgTokenRequest, CreateOrgTokenResponse> operation
-              = new dev.hathora.cloud_sdk.operations.CreateOrgToken.Sync(sdkConfiguration);
+              = new dev.hathora.cloud_sdk.operations.CreateOrgToken.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -79,16 +91,16 @@ public class TokensV1 {
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetOrgTokensResponse getOrgTokens(String orgId) throws Exception {
+    public GetOrgTokensResponse getOrgTokens(String orgId) {
         GetOrgTokensRequest request =
             GetOrgTokensRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<GetOrgTokensRequest, GetOrgTokensResponse> operation
-              = new GetOrgTokens.Sync(sdkConfiguration);
+              = new GetOrgTokens.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -111,9 +123,9 @@ public class TokensV1 {
      * @param orgId 
      * @param orgTokenId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RevokeOrgTokenResponse revokeOrgToken(String orgId, String orgTokenId) throws Exception {
+    public RevokeOrgTokenResponse revokeOrgToken(String orgId, String orgTokenId) {
         RevokeOrgTokenRequest request =
             RevokeOrgTokenRequest
                 .builder()
@@ -121,7 +133,7 @@ public class TokensV1 {
                 .orgTokenId(orgTokenId)
                 .build();
         RequestOperation<RevokeOrgTokenRequest, RevokeOrgTokenResponse> operation
-              = new RevokeOrgToken.Sync(sdkConfiguration);
+              = new RevokeOrgToken.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

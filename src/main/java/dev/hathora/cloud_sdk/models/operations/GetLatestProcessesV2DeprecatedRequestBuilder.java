@@ -9,8 +9,8 @@ import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.operations.GetLatestProcessesV2Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +21,7 @@ public class GetLatestProcessesV2DeprecatedRequestBuilder {
     private Optional<? extends List<Region>> region = Optional.empty();
     private Optional<? extends List<ProcessStatus>> status = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetLatestProcessesV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -72,10 +73,10 @@ public class GetLatestProcessesV2DeprecatedRequestBuilder {
         return request;
     }
 
-    public GetLatestProcessesV2DeprecatedResponse call() throws Exception {
+    public GetLatestProcessesV2DeprecatedResponse call() {
         
         RequestOperation<GetLatestProcessesV2DeprecatedRequest, GetLatestProcessesV2DeprecatedResponse> operation
-              = new GetLatestProcessesV2Deprecated.Sync(sdkConfiguration);
+              = new GetLatestProcessesV2Deprecated.Sync(sdkConfiguration, _headers);
         GetLatestProcessesV2DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

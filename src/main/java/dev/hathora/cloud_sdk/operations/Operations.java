@@ -3,8 +3,11 @@
  */
 package dev.hathora.cloud_sdk.operations;
 
+import dev.hathora.cloud_sdk.utils.Blob;
+
 import java.io.InputStream;
 import java.net.http.HttpResponse;
+import java.util.concurrent.CompletableFuture;
 
 // Internal API only
 
@@ -13,20 +16,41 @@ public class Operations {
     * Base interface for all operations
     */
     public interface Operation<ResT> {
-        ResT handleResponse(HttpResponse<InputStream> response) throws Exception;
+        ResT handleResponse(HttpResponse<InputStream> response);
     }
 
     /**
     * Interface for operations that require a request parameter
     */
     public interface RequestOperation<ReqT, ResT> extends Operation<ResT> {
-        HttpResponse<InputStream> doRequest(ReqT request) throws Exception;
+        HttpResponse<InputStream> doRequest(ReqT request);
     }
 
     /**
     * Interface for operations that don't require a request parameter
     */
     public interface RequestlessOperation<ResT> extends Operation<ResT> {
-        HttpResponse<InputStream> doRequest() throws Exception;
+        HttpResponse<InputStream> doRequest();
+    }
+
+    /**
+    * Base interface for all async operations
+    */
+    public interface AsyncOperation<ResT> {
+        CompletableFuture<ResT> handleResponse(HttpResponse<Blob> response);
+    }
+
+    /**
+    * Interface for async operations that require a request parameter
+    */
+    public interface AsyncRequestOperation<ReqT, ResT> extends AsyncOperation<ResT> {
+        CompletableFuture<HttpResponse<Blob>> doRequest(ReqT request);
+    }
+
+    /**
+    * Interface for async operations that don't require a request parameter
+    */
+    public interface AsyncRequestlessOperation<ResT> extends AsyncOperation<ResT> {
+        CompletableFuture<HttpResponse<Blob>> doRequest();
     }
 }

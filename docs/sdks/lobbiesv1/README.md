@@ -29,7 +29,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -64,11 +64,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| models/errors/ApiError       | 400, 401, 402, 404, 422, 429 | application/json             |
-| models/errors/ApiError       | 500                          | application/json             |
-| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ApiError            | 400, 401, 402, 404, 408, 422, 429 | application/json                  |
+| models/errors/ApiError            | 500                               | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## ~~createPublicLobbyDeprecated~~
 
@@ -90,7 +90,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -125,11 +125,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| models/errors/ApiError       | 400, 401, 402, 404, 422, 429 | application/json             |
-| models/errors/ApiError       | 500                          | application/json             |
-| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ApiError            | 400, 401, 402, 404, 408, 422, 429 | application/json                  |
+| models/errors/ApiError            | 500                               | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## ~~listActivePublicLobbiesDeprecatedV1~~
 
@@ -183,5 +183,5 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 404, 422, 429          | application/json       |
+| models/errors/ApiError | 404, 408, 422, 429     | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

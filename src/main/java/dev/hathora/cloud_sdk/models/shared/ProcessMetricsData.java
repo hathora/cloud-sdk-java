@@ -29,6 +29,16 @@ public class ProcessMetricsData {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("gpuMemory")
+    private Optional<? extends List<MetricValue>> gpuMemory;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("gpuUtilization")
+    private Optional<? extends List<MetricValue>> gpuUtilization;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("memory")
     private Optional<? extends List<MetricValue>> memory;
 
@@ -46,16 +56,22 @@ public class ProcessMetricsData {
     public ProcessMetricsData(
             @JsonProperty("activeConnections") Optional<? extends List<MetricValue>> activeConnections,
             @JsonProperty("cpu") Optional<? extends List<MetricValue>> cpu,
+            @JsonProperty("gpuMemory") Optional<? extends List<MetricValue>> gpuMemory,
+            @JsonProperty("gpuUtilization") Optional<? extends List<MetricValue>> gpuUtilization,
             @JsonProperty("memory") Optional<? extends List<MetricValue>> memory,
             @JsonProperty("rateEgress") Optional<? extends List<MetricValue>> rateEgress,
             @JsonProperty("totalEgress") Optional<? extends List<MetricValue>> totalEgress) {
         Utils.checkNotNull(activeConnections, "activeConnections");
         Utils.checkNotNull(cpu, "cpu");
+        Utils.checkNotNull(gpuMemory, "gpuMemory");
+        Utils.checkNotNull(gpuUtilization, "gpuUtilization");
         Utils.checkNotNull(memory, "memory");
         Utils.checkNotNull(rateEgress, "rateEgress");
         Utils.checkNotNull(totalEgress, "totalEgress");
         this.activeConnections = activeConnections;
         this.cpu = cpu;
+        this.gpuMemory = gpuMemory;
+        this.gpuUtilization = gpuUtilization;
         this.memory = memory;
         this.rateEgress = rateEgress;
         this.totalEgress = totalEgress;
@@ -63,7 +79,8 @@ public class ProcessMetricsData {
     
     public ProcessMetricsData() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -76,6 +93,18 @@ public class ProcessMetricsData {
     @JsonIgnore
     public Optional<List<MetricValue>> cpu() {
         return (Optional<List<MetricValue>>) cpu;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<MetricValue>> gpuMemory() {
+        return (Optional<List<MetricValue>>) gpuMemory;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<MetricValue>> gpuUtilization() {
+        return (Optional<List<MetricValue>>) gpuUtilization;
     }
 
     @SuppressWarnings("unchecked")
@@ -124,6 +153,32 @@ public class ProcessMetricsData {
     public ProcessMetricsData withCpu(Optional<? extends List<MetricValue>> cpu) {
         Utils.checkNotNull(cpu, "cpu");
         this.cpu = cpu;
+        return this;
+    }
+
+    public ProcessMetricsData withGpuMemory(List<MetricValue> gpuMemory) {
+        Utils.checkNotNull(gpuMemory, "gpuMemory");
+        this.gpuMemory = Optional.ofNullable(gpuMemory);
+        return this;
+    }
+
+
+    public ProcessMetricsData withGpuMemory(Optional<? extends List<MetricValue>> gpuMemory) {
+        Utils.checkNotNull(gpuMemory, "gpuMemory");
+        this.gpuMemory = gpuMemory;
+        return this;
+    }
+
+    public ProcessMetricsData withGpuUtilization(List<MetricValue> gpuUtilization) {
+        Utils.checkNotNull(gpuUtilization, "gpuUtilization");
+        this.gpuUtilization = Optional.ofNullable(gpuUtilization);
+        return this;
+    }
+
+
+    public ProcessMetricsData withGpuUtilization(Optional<? extends List<MetricValue>> gpuUtilization) {
+        Utils.checkNotNull(gpuUtilization, "gpuUtilization");
+        this.gpuUtilization = gpuUtilization;
         return this;
     }
 
@@ -178,6 +233,8 @@ public class ProcessMetricsData {
         return 
             Utils.enhancedDeepEquals(this.activeConnections, other.activeConnections) &&
             Utils.enhancedDeepEquals(this.cpu, other.cpu) &&
+            Utils.enhancedDeepEquals(this.gpuMemory, other.gpuMemory) &&
+            Utils.enhancedDeepEquals(this.gpuUtilization, other.gpuUtilization) &&
             Utils.enhancedDeepEquals(this.memory, other.memory) &&
             Utils.enhancedDeepEquals(this.rateEgress, other.rateEgress) &&
             Utils.enhancedDeepEquals(this.totalEgress, other.totalEgress);
@@ -186,8 +243,9 @@ public class ProcessMetricsData {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            activeConnections, cpu, memory,
-            rateEgress, totalEgress);
+            activeConnections, cpu, gpuMemory,
+            gpuUtilization, memory, rateEgress,
+            totalEgress);
     }
     
     @Override
@@ -195,6 +253,8 @@ public class ProcessMetricsData {
         return Utils.toString(ProcessMetricsData.class,
                 "activeConnections", activeConnections,
                 "cpu", cpu,
+                "gpuMemory", gpuMemory,
+                "gpuUtilization", gpuUtilization,
                 "memory", memory,
                 "rateEgress", rateEgress,
                 "totalEgress", totalEgress);
@@ -206,6 +266,10 @@ public class ProcessMetricsData {
         private Optional<? extends List<MetricValue>> activeConnections = Optional.empty();
 
         private Optional<? extends List<MetricValue>> cpu = Optional.empty();
+
+        private Optional<? extends List<MetricValue>> gpuMemory = Optional.empty();
+
+        private Optional<? extends List<MetricValue>> gpuUtilization = Optional.empty();
 
         private Optional<? extends List<MetricValue>> memory = Optional.empty();
 
@@ -240,6 +304,32 @@ public class ProcessMetricsData {
         public Builder cpu(Optional<? extends List<MetricValue>> cpu) {
             Utils.checkNotNull(cpu, "cpu");
             this.cpu = cpu;
+            return this;
+        }
+
+
+        public Builder gpuMemory(List<MetricValue> gpuMemory) {
+            Utils.checkNotNull(gpuMemory, "gpuMemory");
+            this.gpuMemory = Optional.ofNullable(gpuMemory);
+            return this;
+        }
+
+        public Builder gpuMemory(Optional<? extends List<MetricValue>> gpuMemory) {
+            Utils.checkNotNull(gpuMemory, "gpuMemory");
+            this.gpuMemory = gpuMemory;
+            return this;
+        }
+
+
+        public Builder gpuUtilization(List<MetricValue> gpuUtilization) {
+            Utils.checkNotNull(gpuUtilization, "gpuUtilization");
+            this.gpuUtilization = Optional.ofNullable(gpuUtilization);
+            return this;
+        }
+
+        public Builder gpuUtilization(Optional<? extends List<MetricValue>> gpuUtilization) {
+            Utils.checkNotNull(gpuUtilization, "gpuUtilization");
+            this.gpuUtilization = gpuUtilization;
             return this;
         }
 
@@ -285,8 +375,9 @@ public class ProcessMetricsData {
         public ProcessMetricsData build() {
 
             return new ProcessMetricsData(
-                activeConnections, cpu, memory,
-                rateEgress, totalEgress);
+                activeConnections, cpu, gpuMemory,
+                gpuUtilization, memory, rateEgress,
+                totalEgress);
         }
 
     }

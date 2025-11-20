@@ -6,26 +6,28 @@ package dev.hathora.cloud_sdk.models.operations;
 import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
-import dev.hathora.cloud_sdk.models.shared.UpdateFleet;
+import dev.hathora.cloud_sdk.models.shared.UpdateFleetV2;
+import dev.hathora.cloud_sdk.operations.UpdateFleet;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
 public class UpdateFleetRequestBuilder {
 
-    private UpdateFleet updateFleet;
+    private UpdateFleetV2 updateFleetV2;
     private String fleetId;
     private Optional<String> orgId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateFleetRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public UpdateFleetRequestBuilder updateFleet(UpdateFleet updateFleet) {
-        Utils.checkNotNull(updateFleet, "updateFleet");
-        this.updateFleet = updateFleet;
+    public UpdateFleetRequestBuilder updateFleetV2(UpdateFleetV2 updateFleetV2) {
+        Utils.checkNotNull(updateFleetV2, "updateFleetV2");
+        this.updateFleetV2 = updateFleetV2;
         return this;
     }
 
@@ -50,17 +52,17 @@ public class UpdateFleetRequestBuilder {
 
     private UpdateFleetRequest buildRequest() {
 
-        UpdateFleetRequest request = new UpdateFleetRequest(updateFleet,
+        UpdateFleetRequest request = new UpdateFleetRequest(updateFleetV2,
             fleetId,
             orgId);
 
         return request;
     }
 
-    public UpdateFleetResponse call() throws Exception {
+    public UpdateFleetResponse call() {
         
         RequestOperation<UpdateFleetRequest, UpdateFleetResponse> operation
-              = new dev.hathora.cloud_sdk.operations.UpdateFleet.Sync(sdkConfiguration);
+              = new UpdateFleet.Sync(sdkConfiguration, _headers);
         UpdateFleetRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

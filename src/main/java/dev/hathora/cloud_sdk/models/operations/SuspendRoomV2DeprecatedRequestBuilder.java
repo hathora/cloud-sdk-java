@@ -7,8 +7,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.SuspendRoomV2Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -17,6 +17,7 @@ public class SuspendRoomV2DeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String roomId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public SuspendRoomV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,10 +50,10 @@ public class SuspendRoomV2DeprecatedRequestBuilder {
         return request;
     }
 
-    public SuspendRoomV2DeprecatedResponse call() throws Exception {
+    public SuspendRoomV2DeprecatedResponse call() {
         
         RequestOperation<SuspendRoomV2DeprecatedRequest, SuspendRoomV2DeprecatedResponse> operation
-              = new SuspendRoomV2Deprecated.Sync(sdkConfiguration);
+              = new SuspendRoomV2Deprecated.Sync(sdkConfiguration, _headers);
         SuspendRoomV2DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -8,8 +8,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.SetLobbyStateParams;
 import dev.hathora.cloud_sdk.operations.SetLobbyState;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -19,6 +19,7 @@ public class SetLobbyStateRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String roomId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public SetLobbyStateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -58,10 +59,10 @@ public class SetLobbyStateRequestBuilder {
         return request;
     }
 
-    public SetLobbyStateResponse call() throws Exception {
+    public SetLobbyStateResponse call() {
         
         RequestOperation<SetLobbyStateRequest, SetLobbyStateResponse> operation
-              = new SetLobbyState.Sync(sdkConfiguration);
+              = new SetLobbyState.Sync(sdkConfiguration, _headers);
         SetLobbyStateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

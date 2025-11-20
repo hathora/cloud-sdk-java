@@ -8,8 +8,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateBuildV3Params;
 import dev.hathora.cloud_sdk.operations.CreateBuildRegistry;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -18,6 +18,7 @@ public class CreateBuildRegistryRequestBuilder {
     private CreateBuildV3Params createBuildV3Params;
     private Optional<String> orgId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateBuildRegistryRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -50,10 +51,10 @@ public class CreateBuildRegistryRequestBuilder {
         return request;
     }
 
-    public CreateBuildRegistryResponse call() throws Exception {
+    public CreateBuildRegistryResponse call() {
         
         RequestOperation<CreateBuildRegistryRequest, CreateBuildRegistryResponse> operation
-              = new CreateBuildRegistry.Sync(sdkConfiguration);
+              = new CreateBuildRegistry.Sync(sdkConfiguration, _headers);
         CreateBuildRegistryRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

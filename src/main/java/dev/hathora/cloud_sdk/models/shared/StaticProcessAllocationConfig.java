@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class StaticProcessAllocationConfig {
     /**
-     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the
+     * Process Autoscaler
      * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -79,7 +80,8 @@ public class StaticProcessAllocationConfig {
     }
 
     /**
-     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the
+     * Process Autoscaler
      * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
      */
     @JsonIgnore
@@ -125,7 +127,8 @@ public class StaticProcessAllocationConfig {
 
 
     /**
-     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the
+     * Process Autoscaler
      * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
      */
     public StaticProcessAllocationConfig withAutoscalingEnabled(boolean autoscalingEnabled) {
@@ -136,7 +139,8 @@ public class StaticProcessAllocationConfig {
 
 
     /**
-     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the
+     * Process Autoscaler
      * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
      */
     public StaticProcessAllocationConfig withAutoscalingEnabled(Optional<Boolean> autoscalingEnabled) {
@@ -234,7 +238,8 @@ public class StaticProcessAllocationConfig {
 
 
         /**
-         * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+         * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the
+         * Process Autoscaler
          * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
          */
         public Builder autoscalingEnabled(boolean autoscalingEnabled) {
@@ -244,7 +249,8 @@ public class StaticProcessAllocationConfig {
         }
 
         /**
-         * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+         * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the
+         * Process Autoscaler
          * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
          */
         public Builder autoscalingEnabled(Optional<Boolean> autoscalingEnabled) {

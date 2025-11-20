@@ -17,7 +17,7 @@ import java.util.Optional;
 /**
  * Fleet
  * 
- * <p>A fleet is a collection of vCPUs across your regions that can scale up and down based on demand.
+ * <p>A fleet is a collection of nodes across your regions that can scale up and down based on demand.
  */
 public class Fleet {
 
@@ -26,10 +26,17 @@ public class Fleet {
     private Optional<? extends AutoscalerConfig> autoscalerConfig;
 
     /**
-     * the id of the fleet
+     * The id of the fleet.
      */
     @JsonProperty("fleetId")
     private String fleetId;
+
+    /**
+     * Readable name for a fleet. Must be unique within an organization.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("name")
+    private Optional<String> name;
 
 
     @JsonProperty("nodeShape")
@@ -45,14 +52,17 @@ public class Fleet {
     public Fleet(
             @JsonProperty("autoscalerConfig") Optional<? extends AutoscalerConfig> autoscalerConfig,
             @JsonProperty("fleetId") String fleetId,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("nodeShape") NodeShape nodeShape,
             @JsonProperty("orgId") String orgId) {
         Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
         Utils.checkNotNull(fleetId, "fleetId");
+        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(nodeShape, "nodeShape");
         Utils.checkNotNull(orgId, "orgId");
         this.autoscalerConfig = autoscalerConfig;
         this.fleetId = fleetId;
+        this.name = name;
         this.nodeShape = nodeShape;
         this.orgId = orgId;
     }
@@ -61,8 +71,8 @@ public class Fleet {
             String fleetId,
             NodeShape nodeShape,
             String orgId) {
-        this(Optional.empty(), fleetId, nodeShape,
-            orgId);
+        this(Optional.empty(), fleetId, Optional.empty(),
+            nodeShape, orgId);
     }
 
     @SuppressWarnings("unchecked")
@@ -72,11 +82,19 @@ public class Fleet {
     }
 
     /**
-     * the id of the fleet
+     * The id of the fleet.
      */
     @JsonIgnore
     public String fleetId() {
         return fleetId;
+    }
+
+    /**
+     * Readable name for a fleet. Must be unique within an organization.
+     */
+    @JsonIgnore
+    public Optional<String> name() {
+        return name;
     }
 
     @JsonIgnore
@@ -111,11 +129,30 @@ public class Fleet {
     }
 
     /**
-     * the id of the fleet
+     * The id of the fleet.
      */
     public Fleet withFleetId(String fleetId) {
         Utils.checkNotNull(fleetId, "fleetId");
         this.fleetId = fleetId;
+        return this;
+    }
+
+    /**
+     * Readable name for a fleet. Must be unique within an organization.
+     */
+    public Fleet withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+
+    /**
+     * Readable name for a fleet. Must be unique within an organization.
+     */
+    public Fleet withName(Optional<String> name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
         return this;
     }
 
@@ -146,6 +183,7 @@ public class Fleet {
         return 
             Utils.enhancedDeepEquals(this.autoscalerConfig, other.autoscalerConfig) &&
             Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.nodeShape, other.nodeShape) &&
             Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
@@ -153,8 +191,8 @@ public class Fleet {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            autoscalerConfig, fleetId, nodeShape,
-            orgId);
+            autoscalerConfig, fleetId, name,
+            nodeShape, orgId);
     }
     
     @Override
@@ -162,6 +200,7 @@ public class Fleet {
         return Utils.toString(Fleet.class,
                 "autoscalerConfig", autoscalerConfig,
                 "fleetId", fleetId,
+                "name", name,
                 "nodeShape", nodeShape,
                 "orgId", orgId);
     }
@@ -172,6 +211,8 @@ public class Fleet {
         private Optional<? extends AutoscalerConfig> autoscalerConfig = Optional.empty();
 
         private String fleetId;
+
+        private Optional<String> name = Optional.empty();
 
         private NodeShape nodeShape;
 
@@ -196,11 +237,30 @@ public class Fleet {
 
 
         /**
-         * the id of the fleet
+         * The id of the fleet.
          */
         public Builder fleetId(String fleetId) {
             Utils.checkNotNull(fleetId, "fleetId");
             this.fleetId = fleetId;
+            return this;
+        }
+
+
+        /**
+         * Readable name for a fleet. Must be unique within an organization.
+         */
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * Readable name for a fleet. Must be unique within an organization.
+         */
+        public Builder name(Optional<String> name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
             return this;
         }
 
@@ -224,8 +284,8 @@ public class Fleet {
         public Fleet build() {
 
             return new Fleet(
-                autoscalerConfig, fleetId, nodeShape,
-                orgId);
+                autoscalerConfig, fleetId, name,
+                nodeShape, orgId);
         }
 
     }

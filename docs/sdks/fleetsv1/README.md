@@ -7,33 +7,34 @@ Operations to manage and view a [fleet](https://hathora.dev/docs/concepts/hathor
 
 ### Available Operations
 
-* [getFleetMetrics](#getfleetmetrics) - GetFleetMetrics
-* [getFleetRegion](#getfleetregion) - GetFleetRegion
-* [getFleets](#getfleets) - GetFleets
-* [updateFleet](#updatefleet) - UpdateFleet
-* [updateFleetRegion](#updatefleetregion) - UpdateFleetRegion
+* [createFleetDeprecated](#createfleetdeprecated) - CreateFleetDeprecated
+* [getFleetDeprecated](#getfleetdeprecated) - GetFleetDeprecated
+* [getFleetMetricsDeprecated](#getfleetmetricsdeprecated) - GetFleetMetricsDeprecated
+* [getFleetRegionDeprecated](#getfleetregiondeprecated) - GetFleetRegionDeprecated
+* [getFleetRegionMetricsDeprecated](#getfleetregionmetricsdeprecated) - GetFleetRegionMetricsDeprecated
+* [getFleetsDeprecated](#getfleetsdeprecated) - GetFleetsDeprecated
+* [updateFleetDeprecated](#updatefleetdeprecated) - UpdateFleetDeprecated
+* [updateFleetRegionDeprecated](#updatefleetregiondeprecated) - UpdateFleetRegionDeprecated
 
-## getFleetMetrics
+## createFleetDeprecated
 
-Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+CreateFleetDeprecated
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="GetFleetMetrics" method="get" path="/fleets/v1/fleets/{fleetId}/regions/{region}/metrics" -->
+<!-- UsageSnippet language="java" operationID="CreateFleetDeprecated" method="post" path="/fleets/v1/fleets" -->
 ```java
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsRequest;
-import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsResponse;
-import dev.hathora.cloud_sdk.models.shared.Region;
-import dev.hathora.cloud_sdk.models.shared.Security;
+import dev.hathora.cloud_sdk.models.operations.CreateFleetDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
@@ -42,12 +43,132 @@ public class Application {
                     .build())
             .build();
 
-        GetFleetMetricsRequest req = GetFleetMetricsRequest.builder()
+        CreateFleetDeprecatedResponse res = sdk.fleetsV1().createFleetDeprecated()
+                .createFleet(CreateFleet.builder()
+                    .autoscalerConfig(AutoscalerConfig.builder()
+                        .scaleUpThreshold(78718)
+                        .build())
+                    .name("production")
+                    .nodeShape(NodeShape.GPU_H100252468)
+                    .build())
+                .call();
+
+        if (res.fleet().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                         | Type                                              | Required                                          | Description                                       | Example                                           |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `createFleet`                                     | [CreateFleet](../../models/shared/CreateFleet.md) | :heavy_check_mark:                                | N/A                                               |                                                   |
+| `orgId`                                           | *Optional\<String>*                               | :heavy_minus_sign:                                | N/A                                               | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39          |
+
+### Response
+
+**[CreateFleetDeprecatedResponse](../../models/operations/CreateFleetDeprecatedResponse.md)**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 408, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
+
+## getFleetDeprecated
+
+Returns a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="GetFleetDeprecated" method="get" path="/fleets/v1/fleets/{fleetId}" -->
+```java
+package hello.world;
+
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.GetFleetDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
+            .build();
+
+        GetFleetDeprecatedResponse res = sdk.fleetsV1().getFleetDeprecated()
                 .fleetId("<id>")
-                .region(Region.WASHINGTON_DC)
+                .call();
+
+        if (res.fleet().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `fleetId`                                | *String*                                 | :heavy_check_mark:                       | N/A                                      |                                          |
+| `orgId`                                  | *Optional\<String>*                      | :heavy_minus_sign:                       | N/A                                      | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39 |
+
+### Response
+
+**[GetFleetDeprecatedResponse](../../models/operations/GetFleetDeprecatedResponse.md)**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 408, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
+
+## getFleetMetricsDeprecated
+
+Gets aggregate metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="GetFleetMetricsDeprecated" method="get" path="/fleets/v1/fleets/{fleetId}/metrics" -->
+```java
+package hello.world;
+
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsDeprecatedRequest;
+import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
+            .build();
+
+        GetFleetMetricsDeprecatedRequest req = GetFleetMetricsDeprecatedRequest.builder()
+                .fleetId("<id>")
                 .build();
 
-        GetFleetMetricsResponse res = sdk.fleetsV1().getFleetMetrics()
+        GetFleetMetricsDeprecatedResponse res = sdk.fleetsV1().getFleetMetricsDeprecated()
                 .request(req)
                 .call();
 
@@ -60,35 +181,35 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `request`                                                                   | [GetFleetMetricsRequest](../../models/operations/GetFleetMetricsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `request`                                                                                       | [GetFleetMetricsDeprecatedRequest](../../models/operations/GetFleetMetricsDeprecatedRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
 
 ### Response
 
-**[GetFleetMetricsResponse](../../models/operations/GetFleetMetricsResponse.md)**
+**[GetFleetMetricsDeprecatedResponse](../../models/operations/GetFleetMetricsDeprecatedResponse.md)**
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
-| models/errors/ApiError | 500                    | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 408, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
-## getFleetRegion
+## getFleetRegionDeprecated
 
 Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="GetFleetRegion" method="get" path="/fleets/v1/fleets/{fleetId}/regions/{region}" -->
+<!-- UsageSnippet language="java" operationID="GetFleetRegionDeprecated" method="get" path="/fleets/v1/fleets/{fleetId}/regions/{region}" -->
 ```java
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.operations.GetFleetRegionResponse;
+import dev.hathora.cloud_sdk.models.operations.GetFleetRegionDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
@@ -104,9 +225,9 @@ public class Application {
                     .build())
             .build();
 
-        GetFleetRegionResponse res = sdk.fleetsV1().getFleetRegion()
+        GetFleetRegionDeprecatedResponse res = sdk.fleetsV1().getFleetRegionDeprecated()
                 .fleetId("<id>")
-                .region(Region.SINGAPORE)
+                .region(Region.SAO_PAULO)
                 .call();
 
         if (res.fleetRegion().isPresent()) {
@@ -126,28 +247,30 @@ public class Application {
 
 ### Response
 
-**[GetFleetRegionResponse](../../models/operations/GetFleetRegionResponse.md)**
+**[GetFleetRegionDeprecatedResponse](../../models/operations/GetFleetRegionDeprecatedResponse.md)**
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 408, 422, 429 | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
-## getFleets
+## getFleetRegionMetricsDeprecated
 
-Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+Gets metrics for a region in a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="GetFleets" method="get" path="/fleets/v1/fleets" -->
+<!-- UsageSnippet language="java" operationID="GetFleetRegionMetricsDeprecated" method="get" path="/fleets/v1/fleets/{fleetId}/regions/{region}/metrics" -->
 ```java
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.operations.GetFleetsResponse;
+import dev.hathora.cloud_sdk.models.operations.GetFleetRegionMetricsDeprecatedRequest;
+import dev.hathora.cloud_sdk.models.operations.GetFleetRegionMetricsDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -162,7 +285,68 @@ public class Application {
                     .build())
             .build();
 
-        GetFleetsResponse res = sdk.fleetsV1().getFleets()
+        GetFleetRegionMetricsDeprecatedRequest req = GetFleetRegionMetricsDeprecatedRequest.builder()
+                .fleetId("<id>")
+                .region(Region.DUBAI)
+                .build();
+
+        GetFleetRegionMetricsDeprecatedResponse res = sdk.fleetsV1().getFleetRegionMetricsDeprecated()
+                .request(req)
+                .call();
+
+        if (res.fleetMetricsData().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                   | [GetFleetRegionMetricsDeprecatedRequest](../../models/operations/GetFleetRegionMetricsDeprecatedRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+
+### Response
+
+**[GetFleetRegionMetricsDeprecatedResponse](../../models/operations/GetFleetRegionMetricsDeprecatedResponse.md)**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 408, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
+
+## getFleetsDeprecated
+
+Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="GetFleetsDeprecated" method="get" path="/fleets/v1/fleets" -->
+```java
+package hello.world;
+
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.GetFleetsDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
+            .build();
+
+        GetFleetsDeprecatedResponse res = sdk.fleetsV1().getFleetsDeprecated()
                 .call();
 
         if (res.fleetsPage().isPresent()) {
@@ -180,34 +364,35 @@ public class Application {
 
 ### Response
 
-**[GetFleetsResponse](../../models/operations/GetFleetsResponse.md)**
+**[GetFleetsDeprecatedResponse](../../models/operations/GetFleetsDeprecatedResponse.md)**
 
 ### Errors
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/ApiError | 401, 404, 408, 429     | application/json       |
+| models/errors/ApiError | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
-## updateFleet
+## updateFleetDeprecated
 
 Updates a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet)'s configuration.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="UpdateFleet" method="post" path="/fleets/v1/fleets/{fleetId}" -->
+<!-- UsageSnippet language="java" operationID="UpdateFleetDeprecated" method="post" path="/fleets/v1/fleets/{fleetId}" -->
 ```java
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.operations.UpdateFleetResponse;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
@@ -216,11 +401,12 @@ public class Application {
                     .build())
             .build();
 
-        UpdateFleetResponse res = sdk.fleetsV1().updateFleet()
+        UpdateFleetDeprecatedResponse res = sdk.fleetsV1().updateFleetDeprecated()
                 .updateFleet(UpdateFleet.builder()
                     .autoscalerConfig(AutoscalerConfig.builder()
-                        .scaleUpThreshold(979840)
+                        .scaleUpThreshold(638855)
                         .build())
+                    .name("production")
                     .build())
                 .fleetId("<id>")
                 .call();
@@ -240,36 +426,36 @@ public class Application {
 
 ### Response
 
-**[UpdateFleetResponse](../../models/operations/UpdateFleetResponse.md)**
+**[UpdateFleetDeprecatedResponse](../../models/operations/UpdateFleetDeprecatedResponse.md)**
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
-| models/errors/ApiError | 500                    | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 408, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
-## updateFleetRegion
+## updateFleetRegionDeprecated
 
 Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="UpdateFleetRegion" method="put" path="/fleets/v1/fleets/{fleetId}/regions/{region}" -->
+<!-- UsageSnippet language="java" operationID="UpdateFleetRegionDeprecated" method="put" path="/fleets/v1/fleets/{fleetId}/regions/{region}" -->
 ```java
 package hello.world;
 
 import dev.hathora.cloud_sdk.HathoraCloud;
 import dev.hathora.cloud_sdk.models.errors.ApiError;
-import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionRequest;
-import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionResponse;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionDeprecatedRequest;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
@@ -278,15 +464,15 @@ public class Application {
                     .build())
             .build();
 
-        UpdateFleetRegionRequest req = UpdateFleetRegionRequest.builder()
+        UpdateFleetRegionDeprecatedRequest req = UpdateFleetRegionDeprecatedRequest.builder()
                 .fleetRegionConfig(FleetRegionConfig.builder()
-                    .cloudMinVcpus(503995)
+                    .cloudMinVcpus(122781)
                     .build())
                 .fleetId("<id>")
-                .region(Region.CHICAGO)
+                .region(Region.JOHANNESBURG)
                 .build();
 
-        UpdateFleetRegionResponse res = sdk.fleetsV1().updateFleetRegion()
+        UpdateFleetRegionDeprecatedResponse res = sdk.fleetsV1().updateFleetRegionDeprecated()
                 .request(req)
                 .call();
 
@@ -297,18 +483,18 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `request`                                                                       | [UpdateFleetRegionRequest](../../models/operations/UpdateFleetRegionRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `request`                                                                                           | [UpdateFleetRegionDeprecatedRequest](../../models/operations/UpdateFleetRegionDeprecatedRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
 
 ### Response
 
-**[UpdateFleetRegionResponse](../../models/operations/UpdateFleetRegionResponse.md)**
+**[UpdateFleetRegionDeprecatedResponse](../../models/operations/UpdateFleetRegionDeprecatedResponse.md)**
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
-| models/errors/ApiError | 500                    | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 408, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |

@@ -30,24 +30,39 @@ import dev.hathora.cloud_sdk.operations.GetProcess;
 import dev.hathora.cloud_sdk.operations.GetProcessMetrics;
 import dev.hathora.cloud_sdk.operations.GetProcessesCountExperimental;
 import dev.hathora.cloud_sdk.operations.StopProcess;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.String;
 import java.util.Optional;
 
 /**
- * Operations to get data on active and stopped [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
+ * Operations to get data on active and stopped
+ * [processes](https://hathora.dev/docs/concepts/hathora-entities#process).
  */
 public class ProcessesV3 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncProcessesV3 asyncSDK;
 
     ProcessesV3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncProcessesV3(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncProcessesV3 async() {
+        return asyncSDK;
     }
 
     /**
      * CreateProcess
      * 
-     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
+     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use
+     * this to pre-allocate processes ahead of time so that subsequent room assignment via
+     * [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
      * 
      * @return The call builder
      */
@@ -58,27 +73,31 @@ public class ProcessesV3 {
     /**
      * CreateProcess
      * 
-     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
+     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use
+     * this to pre-allocate processes ahead of time so that subsequent room assignment via
+     * [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
      * 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateProcessResponse createProcess(Region region) throws Exception {
+    public CreateProcessResponse createProcess(Region region) {
         return createProcess(Optional.empty(), region);
     }
 
     /**
      * CreateProcess
      * 
-     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
+     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use
+     * this to pre-allocate processes ahead of time so that subsequent room assignment via
+     * [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
      * 
      * @param appId 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateProcessResponse createProcess(Optional<String> appId, Region region) throws Exception {
+    public CreateProcessResponse createProcess(Optional<String> appId, Region region) {
         CreateProcessRequest request =
             CreateProcessRequest
                 .builder()
@@ -86,14 +105,16 @@ public class ProcessesV3 {
                 .region(region)
                 .build();
         RequestOperation<CreateProcessRequest, CreateProcessResponse> operation
-              = new CreateProcess.Sync(sdkConfiguration);
+              = new CreateProcess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetLatestProcesses
      * 
-     * <p>Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
+     * <p>Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process)
+     * objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter
+     * the array by optionally passing in a `status` or `region`.
      * 
      * @return The call builder
      */
@@ -104,15 +125,17 @@ public class ProcessesV3 {
     /**
      * GetLatestProcesses
      * 
-     * <p>Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
+     * <p>Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process)
+     * objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter
+     * the array by optionally passing in a `status` or `region`.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetLatestProcessesResponse getLatestProcesses(GetLatestProcessesRequest request) throws Exception {
+    public GetLatestProcessesResponse getLatestProcesses(GetLatestProcessesRequest request) {
         RequestOperation<GetLatestProcessesRequest, GetLatestProcessesResponse> operation
-              = new GetLatestProcesses.Sync(sdkConfiguration);
+              = new GetLatestProcesses.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -134,9 +157,9 @@ public class ProcessesV3 {
      * 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetProcessResponse getProcess(String processId) throws Exception {
+    public GetProcessResponse getProcess(String processId) {
         return getProcess(Optional.empty(), processId);
     }
 
@@ -148,9 +171,9 @@ public class ProcessesV3 {
      * @param appId 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetProcessResponse getProcess(Optional<String> appId, String processId) throws Exception {
+    public GetProcessResponse getProcess(Optional<String> appId, String processId) {
         GetProcessRequest request =
             GetProcessRequest
                 .builder()
@@ -158,7 +181,7 @@ public class ProcessesV3 {
                 .processId(processId)
                 .build();
         RequestOperation<GetProcessRequest, GetProcessResponse> operation
-              = new GetProcess.Sync(sdkConfiguration);
+              = new GetProcess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -176,18 +199,20 @@ public class ProcessesV3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetProcessMetricsResponse getProcessMetrics(GetProcessMetricsRequest request) throws Exception {
+    public GetProcessMetricsResponse getProcessMetrics(GetProcessMetricsRequest request) {
         RequestOperation<GetProcessMetricsRequest, GetProcessMetricsResponse> operation
-              = new GetProcessMetrics.Sync(sdkConfiguration);
+              = new GetProcessMetrics.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetProcessesCountExperimental
      * 
-     * <p>Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+     * <p>Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects
+     * for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by
+     * optionally passing in a `status` or `region`.
      * 
      * @return The call builder
      */
@@ -198,15 +223,17 @@ public class ProcessesV3 {
     /**
      * GetProcessesCountExperimental
      * 
-     * <p>Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+     * <p>Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects
+     * for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by
+     * optionally passing in a `status` or `region`.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetProcessesCountExperimentalResponse getProcessesCountExperimental(GetProcessesCountExperimentalRequest request) throws Exception {
+    public GetProcessesCountExperimentalResponse getProcessesCountExperimental(GetProcessesCountExperimentalRequest request) {
         RequestOperation<GetProcessesCountExperimentalRequest, GetProcessesCountExperimentalResponse> operation
-              = new GetProcessesCountExperimental.Sync(sdkConfiguration);
+              = new GetProcessesCountExperimental.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -228,9 +255,9 @@ public class ProcessesV3 {
      * 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public StopProcessResponse stopProcess(String processId) throws Exception {
+    public StopProcessResponse stopProcess(String processId) {
         return stopProcess(Optional.empty(), processId);
     }
 
@@ -242,9 +269,9 @@ public class ProcessesV3 {
      * @param appId 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public StopProcessResponse stopProcess(Optional<String> appId, String processId) throws Exception {
+    public StopProcessResponse stopProcess(Optional<String> appId, String processId) {
         StopProcessRequest request =
             StopProcessRequest
                 .builder()
@@ -252,7 +279,7 @@ public class ProcessesV3 {
                 .processId(processId)
                 .build();
         RequestOperation<StopProcessRequest, StopProcessResponse> operation
-              = new StopProcess.Sync(sdkConfiguration);
+              = new StopProcess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

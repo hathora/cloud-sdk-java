@@ -36,23 +36,38 @@ import dev.hathora.cloud_sdk.operations.DeleteBuildV2Deprecated;
 import dev.hathora.cloud_sdk.operations.GetBuildInfoV2Deprecated;
 import dev.hathora.cloud_sdk.operations.GetBuildsV2Deprecated;
 import dev.hathora.cloud_sdk.operations.RunBuildV2Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class BuildsV2 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBuildsV2 asyncSDK;
 
     BuildsV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBuildsV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBuildsV2 async() {
+        return asyncSDK;
     }
 
     /**
      * CreateBuildV2Deprecated
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a
+     * `buildId` that you must pass to
+     * [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server
+     * artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -65,31 +80,37 @@ public class BuildsV2 {
     /**
      * CreateBuildV2Deprecated
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a
+     * `buildId` that you must pass to
+     * [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server
+     * artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * 
      * @param createBuildParams 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateBuildV2DeprecatedResponse createBuildV2Deprecated(CreateBuildParams createBuildParams) throws Exception {
+    public CreateBuildV2DeprecatedResponse createBuildV2Deprecated(CreateBuildParams createBuildParams) {
         return createBuildV2Deprecated(createBuildParams, Optional.empty());
     }
 
     /**
      * CreateBuildV2Deprecated
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build). Responds with a
+     * `buildId` that you must pass to
+     * [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server
+     * artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * 
      * @param createBuildParams 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateBuildV2DeprecatedResponse createBuildV2Deprecated(CreateBuildParams createBuildParams, Optional<String> appId) throws Exception {
+    public CreateBuildV2DeprecatedResponse createBuildV2Deprecated(CreateBuildParams createBuildParams, Optional<String> appId) {
         CreateBuildV2DeprecatedRequest request =
             CreateBuildV2DeprecatedRequest
                 .builder()
@@ -97,14 +118,18 @@ public class BuildsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<CreateBuildV2DeprecatedRequest, CreateBuildV2DeprecatedResponse> operation
-              = new CreateBuildV2Deprecated.Sync(sdkConfiguration);
+              = new CreateBuildV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * CreateBuildWithUploadUrlV2Deprecated
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with `uploadUrl` that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with `uploadUrl`
+     * that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that
+     * you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the
+     * game server artifact. You can optionally pass in a `buildTag` to associate an external version with
+     * a build.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -117,31 +142,39 @@ public class BuildsV2 {
     /**
      * CreateBuildWithUploadUrlV2Deprecated
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with `uploadUrl` that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with `uploadUrl`
+     * that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that
+     * you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the
+     * game server artifact. You can optionally pass in a `buildTag` to associate an external version with
+     * a build.
      * 
      * @param createBuildParams 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateBuildWithUploadUrlV2DeprecatedResponse createBuildWithUploadUrlV2Deprecated(CreateBuildParams createBuildParams) throws Exception {
+    public CreateBuildWithUploadUrlV2DeprecatedResponse createBuildWithUploadUrlV2Deprecated(CreateBuildParams createBuildParams) {
         return createBuildWithUploadUrlV2Deprecated(createBuildParams, Optional.empty());
     }
 
     /**
      * CreateBuildWithUploadUrlV2Deprecated
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with `uploadUrl` that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with `uploadUrl`
+     * that can be used to upload the build to before calling `runBuild`. Responds with a `buildId` that
+     * you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the
+     * game server artifact. You can optionally pass in a `buildTag` to associate an external version with
+     * a build.
      * 
      * @param createBuildParams 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateBuildWithUploadUrlV2DeprecatedResponse createBuildWithUploadUrlV2Deprecated(CreateBuildParams createBuildParams, Optional<String> appId) throws Exception {
+    public CreateBuildWithUploadUrlV2DeprecatedResponse createBuildWithUploadUrlV2Deprecated(CreateBuildParams createBuildParams, Optional<String> appId) {
         CreateBuildWithUploadUrlV2DeprecatedRequest request =
             CreateBuildWithUploadUrlV2DeprecatedRequest
                 .builder()
@@ -149,14 +182,18 @@ public class BuildsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<CreateBuildWithUploadUrlV2DeprecatedRequest, CreateBuildWithUploadUrlV2DeprecatedResponse> operation
-              = new CreateBuildWithUploadUrlV2Deprecated.Sync(sdkConfiguration);
+              = new CreateBuildWithUploadUrlV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * CreateWithMultipartUploadsV2Deprecated
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional
+     * `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`.
+     * Responds with a `buildId` that you must pass to
+     * [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server
+     * artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -169,31 +206,39 @@ public class BuildsV2 {
     /**
      * CreateWithMultipartUploadsV2Deprecated
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional
+     * `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`.
+     * Responds with a `buildId` that you must pass to
+     * [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server
+     * artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * 
      * @param createMultipartBuildParams 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateWithMultipartUploadsV2DeprecatedResponse createWithMultipartUploadsV2Deprecated(CreateMultipartBuildParams createMultipartBuildParams) throws Exception {
+    public CreateWithMultipartUploadsV2DeprecatedResponse createWithMultipartUploadsV2Deprecated(CreateMultipartBuildParams createMultipartBuildParams) {
         return createWithMultipartUploadsV2Deprecated(createMultipartBuildParams, Optional.empty());
     }
 
     /**
      * CreateWithMultipartUploadsV2Deprecated
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional
+     * `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`.
+     * Responds with a `buildId` that you must pass to
+     * [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server
+     * artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * 
      * @param createMultipartBuildParams 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateWithMultipartUploadsV2DeprecatedResponse createWithMultipartUploadsV2Deprecated(CreateMultipartBuildParams createMultipartBuildParams, Optional<String> appId) throws Exception {
+    public CreateWithMultipartUploadsV2DeprecatedResponse createWithMultipartUploadsV2Deprecated(CreateMultipartBuildParams createMultipartBuildParams, Optional<String> appId) {
         CreateWithMultipartUploadsV2DeprecatedRequest request =
             CreateWithMultipartUploadsV2DeprecatedRequest
                 .builder()
@@ -201,14 +246,15 @@ public class BuildsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<CreateWithMultipartUploadsV2DeprecatedRequest, CreateWithMultipartUploadsV2DeprecatedResponse> operation
-              = new CreateWithMultipartUploadsV2Deprecated.Sync(sdkConfiguration);
+              = new CreateWithMultipartUploadsV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * DeleteBuildV2Deprecated
      * 
-     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
+     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata
+     * is deleted.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -221,31 +267,33 @@ public class BuildsV2 {
     /**
      * DeleteBuildV2Deprecated
      * 
-     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
+     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata
+     * is deleted.
      * 
      * @param buildId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public DeleteBuildV2DeprecatedResponse deleteBuildV2Deprecated(int buildId) throws Exception {
+    public DeleteBuildV2DeprecatedResponse deleteBuildV2Deprecated(int buildId) {
         return deleteBuildV2Deprecated(Optional.empty(), buildId);
     }
 
     /**
      * DeleteBuildV2Deprecated
      * 
-     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
+     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata
+     * is deleted.
      * 
      * @param appId 
      * @param buildId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public DeleteBuildV2DeprecatedResponse deleteBuildV2Deprecated(Optional<String> appId, int buildId) throws Exception {
+    public DeleteBuildV2DeprecatedResponse deleteBuildV2Deprecated(Optional<String> appId, int buildId) {
         DeleteBuildV2DeprecatedRequest request =
             DeleteBuildV2DeprecatedRequest
                 .builder()
@@ -253,7 +301,7 @@ public class BuildsV2 {
                 .buildId(buildId)
                 .build();
         RequestOperation<DeleteBuildV2DeprecatedRequest, DeleteBuildV2DeprecatedResponse> operation
-              = new DeleteBuildV2Deprecated.Sync(sdkConfiguration);
+              = new DeleteBuildV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -277,11 +325,11 @@ public class BuildsV2 {
      * 
      * @param buildId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetBuildInfoV2DeprecatedResponse getBuildInfoV2Deprecated(int buildId) throws Exception {
+    public GetBuildInfoV2DeprecatedResponse getBuildInfoV2Deprecated(int buildId) {
         return getBuildInfoV2Deprecated(Optional.empty(), buildId);
     }
 
@@ -293,11 +341,11 @@ public class BuildsV2 {
      * @param appId 
      * @param buildId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetBuildInfoV2DeprecatedResponse getBuildInfoV2Deprecated(Optional<String> appId, int buildId) throws Exception {
+    public GetBuildInfoV2DeprecatedResponse getBuildInfoV2Deprecated(Optional<String> appId, int buildId) {
         GetBuildInfoV2DeprecatedRequest request =
             GetBuildInfoV2DeprecatedRequest
                 .builder()
@@ -305,14 +353,15 @@ public class BuildsV2 {
                 .buildId(buildId)
                 .build();
         RequestOperation<GetBuildInfoV2DeprecatedRequest, GetBuildInfoV2DeprecatedResponse> operation
-              = new GetBuildInfoV2Deprecated.Sync(sdkConfiguration);
+              = new GetBuildInfoV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetBuildsV2Deprecated
      * 
-     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -325,43 +374,46 @@ public class BuildsV2 {
     /**
      * GetBuildsV2Deprecated
      * 
-     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetBuildsV2DeprecatedResponse getBuildsV2DeprecatedDirect() throws Exception {
+    public GetBuildsV2DeprecatedResponse getBuildsV2DeprecatedDirect() {
         return getBuildsV2Deprecated(Optional.empty());
     }
 
     /**
      * GetBuildsV2Deprecated
      * 
-     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetBuildsV2DeprecatedResponse getBuildsV2Deprecated(Optional<String> appId) throws Exception {
+    public GetBuildsV2DeprecatedResponse getBuildsV2Deprecated(Optional<String> appId) {
         GetBuildsV2DeprecatedRequest request =
             GetBuildsV2DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .build();
         RequestOperation<GetBuildsV2DeprecatedRequest, GetBuildsV2DeprecatedResponse> operation
-              = new GetBuildsV2Deprecated.Sync(sdkConfiguration);
+              = new GetBuildsV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * RunBuildV2Deprecated
      * 
-     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from
+     * [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -374,35 +426,37 @@ public class BuildsV2 {
     /**
      * RunBuildV2Deprecated
      * 
-     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from
+     * [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * 
      * @param requestBody 
      * @param buildId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public RunBuildV2DeprecatedResponse runBuildV2Deprecated(RunBuildV2DeprecatedRequestBody requestBody, int buildId) throws Exception {
+    public RunBuildV2DeprecatedResponse runBuildV2Deprecated(RunBuildV2DeprecatedRequestBody requestBody, int buildId) {
         return runBuildV2Deprecated(requestBody, Optional.empty(), buildId);
     }
 
     /**
      * RunBuildV2Deprecated
      * 
-     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from
+     * [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * 
      * @param requestBody 
      * @param appId 
      * @param buildId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public RunBuildV2DeprecatedResponse runBuildV2Deprecated(
             RunBuildV2DeprecatedRequestBody requestBody, Optional<String> appId,
-            int buildId) throws Exception {
+            int buildId) {
         RunBuildV2DeprecatedRequest request =
             RunBuildV2DeprecatedRequest
                 .builder()
@@ -411,7 +465,7 @@ public class BuildsV2 {
                 .buildId(buildId)
                 .build();
         RequestOperation<RunBuildV2DeprecatedRequest, RunBuildV2DeprecatedResponse> operation
-              = new RunBuildV2Deprecated.Sync(sdkConfiguration);
+              = new RunBuildV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

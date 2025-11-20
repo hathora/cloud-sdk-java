@@ -25,7 +25,7 @@ import java.util.List;
 public class Scopes {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Scopes(TypedObject value) {
         this.value = value;
@@ -33,12 +33,12 @@ public class Scopes {
 
     public static Scopes of(List<Scope> value) {
         Utils.checkNotNull(value, "value");
-        return new Scopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<Scope>>(){}));
+        return new Scopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Scopes of(Two value) {
         Utils.checkNotNull(value, "value");
-        return new Scopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Two>(){}));
+        return new Scopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -61,7 +61,7 @@ public class Scopes {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -72,7 +72,7 @@ public class Scopes {
             return false;
         }
         Scopes other = (Scopes) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -95,6 +95,6 @@ public class Scopes {
         return Utils.toString(Scopes.class,
                 "value", value);
     }
- 
+
 }
 

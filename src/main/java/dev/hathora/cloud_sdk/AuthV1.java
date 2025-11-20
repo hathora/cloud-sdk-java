@@ -19,18 +19,31 @@ import dev.hathora.cloud_sdk.models.shared.NicknameObject;
 import dev.hathora.cloud_sdk.operations.LoginAnonymous;
 import dev.hathora.cloud_sdk.operations.LoginGoogle;
 import dev.hathora.cloud_sdk.operations.LoginNickname;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.String;
 import java.util.Optional;
 
 /**
- * Operations that allow you to generate a Hathora-signed [JSON web token (JWT)](https://jwt.io/) for [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service).
+ * Operations that allow you to generate a Hathora-signed [JSON web token (JWT)](https://jwt.io/) for
+ * [player authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service).
  */
 public class AuthV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAuthV1 asyncSDK;
 
     AuthV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncAuthV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAuthV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -50,9 +63,9 @@ public class AuthV1 {
      * <p>Returns a unique player token for an anonymous user.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public LoginAnonymousResponse loginAnonymousDirect() throws Exception {
+    public LoginAnonymousResponse loginAnonymousDirect() {
         return loginAnonymous(Optional.empty());
     }
 
@@ -63,16 +76,16 @@ public class AuthV1 {
      * 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public LoginAnonymousResponse loginAnonymous(Optional<String> appId) throws Exception {
+    public LoginAnonymousResponse loginAnonymous(Optional<String> appId) {
         LoginAnonymousRequest request =
             LoginAnonymousRequest
                 .builder()
                 .appId(appId)
                 .build();
         RequestOperation<LoginAnonymousRequest, LoginAnonymousResponse> operation
-              = new LoginAnonymous.Sync(sdkConfiguration);
+              = new LoginAnonymous.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -94,9 +107,9 @@ public class AuthV1 {
      * 
      * @param googleIdTokenObject 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public LoginGoogleResponse loginGoogle(GoogleIdTokenObject googleIdTokenObject) throws Exception {
+    public LoginGoogleResponse loginGoogle(GoogleIdTokenObject googleIdTokenObject) {
         return loginGoogle(googleIdTokenObject, Optional.empty());
     }
 
@@ -108,9 +121,9 @@ public class AuthV1 {
      * @param googleIdTokenObject 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public LoginGoogleResponse loginGoogle(GoogleIdTokenObject googleIdTokenObject, Optional<String> appId) throws Exception {
+    public LoginGoogleResponse loginGoogle(GoogleIdTokenObject googleIdTokenObject, Optional<String> appId) {
         LoginGoogleRequest request =
             LoginGoogleRequest
                 .builder()
@@ -118,7 +131,7 @@ public class AuthV1 {
                 .appId(appId)
                 .build();
         RequestOperation<LoginGoogleRequest, LoginGoogleResponse> operation
-              = new LoginGoogle.Sync(sdkConfiguration);
+              = new LoginGoogle.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -140,9 +153,9 @@ public class AuthV1 {
      * 
      * @param nicknameObject 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public LoginNicknameResponse loginNickname(NicknameObject nicknameObject) throws Exception {
+    public LoginNicknameResponse loginNickname(NicknameObject nicknameObject) {
         return loginNickname(nicknameObject, Optional.empty());
     }
 
@@ -154,9 +167,9 @@ public class AuthV1 {
      * @param nicknameObject 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public LoginNicknameResponse loginNickname(NicknameObject nicknameObject, Optional<String> appId) throws Exception {
+    public LoginNicknameResponse loginNickname(NicknameObject nicknameObject, Optional<String> appId) {
         LoginNicknameRequest request =
             LoginNicknameRequest
                 .builder()
@@ -164,7 +177,7 @@ public class AuthV1 {
                 .appId(appId)
                 .build();
         RequestOperation<LoginNicknameRequest, LoginNicknameResponse> operation
-              = new LoginNickname.Sync(sdkConfiguration);
+              = new LoginNickname.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

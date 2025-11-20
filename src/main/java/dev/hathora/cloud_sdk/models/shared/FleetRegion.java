@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -28,8 +29,14 @@ public class FleetRegion {
     @JsonProperty("cloudMinVcpusUpdatedAt")
     private OffsetDateTime cloudMinVcpusUpdatedAt;
 
-
+    /**
+     * This field is deprecated and may contain the value -1. For node increment values, refer to nodeShape
+     * on the Fleet.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
     @JsonProperty("scaleIncrementVcpus")
+    @Deprecated
     private int scaleIncrementVcpus;
 
     @JsonCreator
@@ -55,6 +62,13 @@ public class FleetRegion {
         return cloudMinVcpusUpdatedAt;
     }
 
+    /**
+     * This field is deprecated and may contain the value -1. For node increment values, refer to nodeShape
+     * on the Fleet.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     @JsonIgnore
     public int scaleIncrementVcpus() {
         return scaleIncrementVcpus;
@@ -77,6 +91,13 @@ public class FleetRegion {
         return this;
     }
 
+    /**
+     * This field is deprecated and may contain the value -1. For node increment values, refer to nodeShape
+     * on the Fleet.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public FleetRegion withScaleIncrementVcpus(int scaleIncrementVcpus) {
         Utils.checkNotNull(scaleIncrementVcpus, "scaleIncrementVcpus");
         this.scaleIncrementVcpus = scaleIncrementVcpus;
@@ -119,6 +140,7 @@ public class FleetRegion {
 
         private OffsetDateTime cloudMinVcpusUpdatedAt;
 
+        @Deprecated
         private Integer scaleIncrementVcpus;
 
         private Builder() {
@@ -140,6 +162,13 @@ public class FleetRegion {
         }
 
 
+        /**
+         * This field is deprecated and may contain the value -1. For node increment values, refer to nodeShape
+         * on the Fleet.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder scaleIncrementVcpus(int scaleIncrementVcpus) {
             Utils.checkNotNull(scaleIncrementVcpus, "scaleIncrementVcpus");
             this.scaleIncrementVcpus = scaleIncrementVcpus;

@@ -7,8 +7,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetBalance;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -16,6 +16,7 @@ public class GetBalanceRequestBuilder {
 
     private Optional<String> orgId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetBalanceRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -41,10 +42,10 @@ public class GetBalanceRequestBuilder {
         return request;
     }
 
-    public GetBalanceResponse call() throws Exception {
+    public GetBalanceResponse call() {
         
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
-              = new GetBalance.Sync(sdkConfiguration);
+              = new GetBalance.Sync(sdkConfiguration, _headers);
         GetBalanceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

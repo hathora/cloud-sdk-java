@@ -17,7 +17,8 @@ import java.util.Optional;
 
 public class UsageLimits {
     /**
-     * The maximum number of concurrent processes that have been run by the organization in the last 7 days.
+     * The maximum number of concurrent processes that have been run by the organization in the last 7
+     * days.
      */
     @JsonProperty("concurrentProcessVcpus7DayMax")
     private double concurrentProcessVcpus7DayMax;
@@ -68,7 +69,8 @@ public class UsageLimits {
     }
 
     /**
-     * The maximum number of concurrent processes that have been run by the organization in the last 7 days.
+     * The maximum number of concurrent processes that have been run by the organization in the last 7
+     * days.
      */
     @JsonIgnore
     public double concurrentProcessVcpus7DayMax() {
@@ -107,7 +109,8 @@ public class UsageLimits {
 
 
     /**
-     * The maximum number of concurrent processes that have been run by the organization in the last 7 days.
+     * The maximum number of concurrent processes that have been run by the organization in the last 7
+     * days.
      */
     public UsageLimits withConcurrentProcessVcpus7DayMax(double concurrentProcessVcpus7DayMax) {
         Utils.checkNotNull(concurrentProcessVcpus7DayMax, "concurrentProcessVcpus7DayMax");
@@ -215,7 +218,8 @@ public class UsageLimits {
 
 
         /**
-         * The maximum number of concurrent processes that have been run by the organization in the last 7 days.
+         * The maximum number of concurrent processes that have been run by the organization in the last 7
+         * days.
          */
         public Builder concurrentProcessVcpus7DayMax(double concurrentProcessVcpus7DayMax) {
             Utils.checkNotNull(concurrentProcessVcpus7DayMax, "concurrentProcessVcpus7DayMax");

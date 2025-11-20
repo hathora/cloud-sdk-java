@@ -7,8 +7,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetDeploymentsV1Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -16,6 +16,7 @@ public class GetDeploymentsV1DeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetDeploymentsV1DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -41,10 +42,10 @@ public class GetDeploymentsV1DeprecatedRequestBuilder {
         return request;
     }
 
-    public GetDeploymentsV1DeprecatedResponse call() throws Exception {
+    public GetDeploymentsV1DeprecatedResponse call() {
         
         RequestOperation<GetDeploymentsV1DeprecatedRequest, GetDeploymentsV1DeprecatedResponse> operation
-              = new GetDeploymentsV1Deprecated.Sync(sdkConfiguration);
+              = new GetDeploymentsV1Deprecated.Sync(sdkConfiguration, _headers);
         GetDeploymentsV1DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

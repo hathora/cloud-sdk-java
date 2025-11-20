@@ -7,8 +7,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetInvoices;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -16,6 +16,7 @@ public class GetInvoicesRequestBuilder {
 
     private Optional<String> orgId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetInvoicesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -41,10 +42,10 @@ public class GetInvoicesRequestBuilder {
         return request;
     }
 
-    public GetInvoicesResponse call() throws Exception {
+    public GetInvoicesResponse call() {
         
         RequestOperation<GetInvoicesRequest, GetInvoicesResponse> operation
-              = new GetInvoices.Sync(sdkConfiguration);
+              = new GetInvoices.Sync(sdkConfiguration, _headers);
         GetInvoicesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

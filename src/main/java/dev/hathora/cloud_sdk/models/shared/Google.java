@@ -17,7 +17,10 @@ import java.lang.String;
  */
 public class Google {
     /**
-     * A Google generated token representing the developer's credentials for [Google's API Console](https://console.cloud.google.com/apis/dashboard?pli=1&amp;project=discourse-login-388921). Learn how to get a `clientId` [here](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
+     * A Google generated token representing the developer's credentials for [Google's API
+     * Console](https://console.cloud.google.com/apis/dashboard?pli=1&amp;project=discourse-login-388921).
+     * Learn how to get a `clientId`
+     * [here](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
      */
     @JsonProperty("clientId")
     private String clientId;
@@ -30,7 +33,10 @@ public class Google {
     }
 
     /**
-     * A Google generated token representing the developer's credentials for [Google's API Console](https://console.cloud.google.com/apis/dashboard?pli=1&amp;project=discourse-login-388921). Learn how to get a `clientId` [here](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
+     * A Google generated token representing the developer's credentials for [Google's API
+     * Console](https://console.cloud.google.com/apis/dashboard?pli=1&amp;project=discourse-login-388921).
+     * Learn how to get a `clientId`
+     * [here](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
      */
     @JsonIgnore
     public String clientId() {
@@ -43,7 +49,10 @@ public class Google {
 
 
     /**
-     * A Google generated token representing the developer's credentials for [Google's API Console](https://console.cloud.google.com/apis/dashboard?pli=1&amp;project=discourse-login-388921). Learn how to get a `clientId` [here](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
+     * A Google generated token representing the developer's credentials for [Google's API
+     * Console](https://console.cloud.google.com/apis/dashboard?pli=1&amp;project=discourse-login-388921).
+     * Learn how to get a `clientId`
+     * [here](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
      */
     public Google withClientId(String clientId) {
         Utils.checkNotNull(clientId, "clientId");
@@ -87,7 +96,10 @@ public class Google {
 
 
         /**
-         * A Google generated token representing the developer's credentials for [Google's API Console](https://console.cloud.google.com/apis/dashboard?pli=1&amp;project=discourse-login-388921). Learn how to get a `clientId` [here](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
+         * A Google generated token representing the developer's credentials for [Google's API
+         * Console](https://console.cloud.google.com/apis/dashboard?pli=1&amp;project=discourse-login-388921).
+         * Learn how to get a `clientId`
+         * [here](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
          */
         public Builder clientId(String clientId) {
             Utils.checkNotNull(clientId, "clientId");

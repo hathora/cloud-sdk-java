@@ -55,6 +55,8 @@ public class ProcessMetricName {
     public static final ProcessMetricName RATE_EGRESS = new ProcessMetricName("rateEgress");
     public static final ProcessMetricName TOTAL_EGRESS = new ProcessMetricName("totalEgress");
     public static final ProcessMetricName ACTIVE_CONNECTIONS = new ProcessMetricName("activeConnections");
+    public static final ProcessMetricName GPU_MEMORY = new ProcessMetricName("gpuMemory");
+    public static final ProcessMetricName GPU_UTILIZATION = new ProcessMetricName("gpuUtilization");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -131,6 +133,8 @@ public class ProcessMetricName {
         map.put("rateEgress", RATE_EGRESS);
         map.put("totalEgress", TOTAL_EGRESS);
         map.put("activeConnections", ACTIVE_CONNECTIONS);
+        map.put("gpuMemory", GPU_MEMORY);
+        map.put("gpuUtilization", GPU_UTILIZATION);
         return map;
     }
 
@@ -141,6 +145,8 @@ public class ProcessMetricName {
         map.put("rateEgress", ProcessMetricNameEnum.RATE_EGRESS);
         map.put("totalEgress", ProcessMetricNameEnum.TOTAL_EGRESS);
         map.put("activeConnections", ProcessMetricNameEnum.ACTIVE_CONNECTIONS);
+        map.put("gpuMemory", ProcessMetricNameEnum.GPU_MEMORY);
+        map.put("gpuUtilization", ProcessMetricNameEnum.GPU_UTILIZATION);
         return map;
     }
     
@@ -180,7 +186,9 @@ public class ProcessMetricName {
         MEMORY("memory"),
         RATE_EGRESS("rateEgress"),
         TOTAL_EGRESS("totalEgress"),
-        ACTIVE_CONNECTIONS("activeConnections"),;
+        ACTIVE_CONNECTIONS("activeConnections"),
+        GPU_MEMORY("gpuMemory"),
+        GPU_UTILIZATION("gpuUtilization"),;
 
         private final String value;
 

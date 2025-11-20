@@ -13,7 +13,9 @@ import java.lang.String;
 
 public class UpdateRoomConfigParams {
     /**
-     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
+     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is
+     * accessible from the room via
+     * [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
     @JsonProperty("roomConfig")
     private String roomConfig;
@@ -26,7 +28,9 @@ public class UpdateRoomConfigParams {
     }
 
     /**
-     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
+     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is
+     * accessible from the room via
+     * [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
     @JsonIgnore
     public String roomConfig() {
@@ -39,7 +43,9 @@ public class UpdateRoomConfigParams {
 
 
     /**
-     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
+     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is
+     * accessible from the room via
+     * [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
     public UpdateRoomConfigParams withRoomConfig(String roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
@@ -83,7 +89,9 @@ public class UpdateRoomConfigParams {
 
 
         /**
-         * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
+         * Optional configuration parameters for the room. Can be any string including stringified JSON. It is
+         * accessible from the room via
+         * [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
          */
         public Builder roomConfig(String roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");

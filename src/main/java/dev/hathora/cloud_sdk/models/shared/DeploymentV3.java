@@ -39,7 +39,8 @@ public class DeploymentV3 {
     private String buildId;
 
     /**
-     * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
+     * Tag to associate an external version with a build. It is accessible via
+     * [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buildTag")
@@ -90,6 +91,13 @@ public class DeploymentV3 {
     private Optional<Double> experimentalRequestedGPU;
 
     /**
+     * The id of the fleet.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("fleetId")
+    private Optional<String> fleetId;
+
+    /**
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
@@ -103,6 +111,14 @@ public class DeploymentV3 {
     private double requestedCPU;
 
     /**
+     * The number of GPUs allocated to your process. Must be an integer.
+     * If not provided, the requested GPU is 0.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("requestedGPU")
+    private Optional<Double> requestedGPU;
+
+    /**
      * The amount of memory allocated to your process. By default, this is capped
      * at 8192 MB, but can be increased further on the Enterprise tier.
      */
@@ -110,7 +126,8 @@ public class DeploymentV3 {
     private double requestedMemoryMB;
 
     /**
-     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+     * in a process.
      */
     @JsonProperty("roomsPerProcess")
     private int roomsPerProcess;
@@ -128,8 +145,10 @@ public class DeploymentV3 {
             @JsonProperty("deploymentTag") Optional<String> deploymentTag,
             @JsonProperty("env") List<DeploymentV3Env> env,
             @JsonProperty("experimentalRequestedGPU") Optional<Double> experimentalRequestedGPU,
+            @JsonProperty("fleetId") Optional<String> fleetId,
             @JsonProperty("idleTimeoutEnabled") boolean idleTimeoutEnabled,
             @JsonProperty("requestedCPU") double requestedCPU,
+            @JsonProperty("requestedGPU") Optional<Double> requestedGPU,
             @JsonProperty("requestedMemoryMB") double requestedMemoryMB,
             @JsonProperty("roomsPerProcess") int roomsPerProcess) {
         Utils.checkNotNull(additionalContainerPorts, "additionalContainerPorts");
@@ -143,8 +162,10 @@ public class DeploymentV3 {
         Utils.checkNotNull(deploymentTag, "deploymentTag");
         Utils.checkNotNull(env, "env");
         Utils.checkNotNull(experimentalRequestedGPU, "experimentalRequestedGPU");
+        Utils.checkNotNull(fleetId, "fleetId");
         Utils.checkNotNull(idleTimeoutEnabled, "idleTimeoutEnabled");
         Utils.checkNotNull(requestedCPU, "requestedCPU");
+        Utils.checkNotNull(requestedGPU, "requestedGPU");
         Utils.checkNotNull(requestedMemoryMB, "requestedMemoryMB");
         Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
         this.additionalContainerPorts = additionalContainerPorts;
@@ -158,8 +179,10 @@ public class DeploymentV3 {
         this.deploymentTag = deploymentTag;
         this.env = env;
         this.experimentalRequestedGPU = experimentalRequestedGPU;
+        this.fleetId = fleetId;
         this.idleTimeoutEnabled = idleTimeoutEnabled;
         this.requestedCPU = requestedCPU;
+        this.requestedGPU = requestedGPU;
         this.requestedMemoryMB = requestedMemoryMB;
         this.roomsPerProcess = roomsPerProcess;
     }
@@ -180,8 +203,9 @@ public class DeploymentV3 {
         this(additionalContainerPorts, appId, buildId,
             Optional.empty(), createdAt, createdBy,
             defaultContainerPort, deploymentId, Optional.empty(),
-            env, Optional.empty(), idleTimeoutEnabled,
-            requestedCPU, requestedMemoryMB, roomsPerProcess);
+            env, Optional.empty(), Optional.empty(),
+            idleTimeoutEnabled, requestedCPU, Optional.empty(),
+            requestedMemoryMB, roomsPerProcess);
     }
 
     /**
@@ -209,7 +233,8 @@ public class DeploymentV3 {
     }
 
     /**
-     * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
+     * Tag to associate an external version with a build. It is accessible via
+     * [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
      */
     @JsonIgnore
     public Optional<String> buildTag() {
@@ -272,6 +297,14 @@ public class DeploymentV3 {
     }
 
     /**
+     * The id of the fleet.
+     */
+    @JsonIgnore
+    public Optional<String> fleetId() {
+        return fleetId;
+    }
+
+    /**
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
@@ -289,6 +322,15 @@ public class DeploymentV3 {
     }
 
     /**
+     * The number of GPUs allocated to your process. Must be an integer.
+     * If not provided, the requested GPU is 0.
+     */
+    @JsonIgnore
+    public Optional<Double> requestedGPU() {
+        return requestedGPU;
+    }
+
+    /**
      * The amount of memory allocated to your process. By default, this is capped
      * at 8192 MB, but can be increased further on the Enterprise tier.
      */
@@ -298,7 +340,8 @@ public class DeploymentV3 {
     }
 
     /**
-     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+     * in a process.
      */
     @JsonIgnore
     public int roomsPerProcess() {
@@ -338,7 +381,8 @@ public class DeploymentV3 {
     }
 
     /**
-     * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
+     * Tag to associate an external version with a build. It is accessible via
+     * [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
      */
     public DeploymentV3 withBuildTag(String buildTag) {
         Utils.checkNotNull(buildTag, "buildTag");
@@ -348,7 +392,8 @@ public class DeploymentV3 {
 
 
     /**
-     * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
+     * Tag to associate an external version with a build. It is accessible via
+     * [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
      */
     public DeploymentV3 withBuildTag(Optional<String> buildTag) {
         Utils.checkNotNull(buildTag, "buildTag");
@@ -441,6 +486,25 @@ public class DeploymentV3 {
     }
 
     /**
+     * The id of the fleet.
+     */
+    public DeploymentV3 withFleetId(String fleetId) {
+        Utils.checkNotNull(fleetId, "fleetId");
+        this.fleetId = Optional.ofNullable(fleetId);
+        return this;
+    }
+
+
+    /**
+     * The id of the fleet.
+     */
+    public DeploymentV3 withFleetId(Optional<String> fleetId) {
+        Utils.checkNotNull(fleetId, "fleetId");
+        this.fleetId = fleetId;
+        return this;
+    }
+
+    /**
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
@@ -460,6 +524,27 @@ public class DeploymentV3 {
     }
 
     /**
+     * The number of GPUs allocated to your process. Must be an integer.
+     * If not provided, the requested GPU is 0.
+     */
+    public DeploymentV3 withRequestedGPU(double requestedGPU) {
+        Utils.checkNotNull(requestedGPU, "requestedGPU");
+        this.requestedGPU = Optional.ofNullable(requestedGPU);
+        return this;
+    }
+
+
+    /**
+     * The number of GPUs allocated to your process. Must be an integer.
+     * If not provided, the requested GPU is 0.
+     */
+    public DeploymentV3 withRequestedGPU(Optional<Double> requestedGPU) {
+        Utils.checkNotNull(requestedGPU, "requestedGPU");
+        this.requestedGPU = requestedGPU;
+        return this;
+    }
+
+    /**
      * The amount of memory allocated to your process. By default, this is capped
      * at 8192 MB, but can be increased further on the Enterprise tier.
      */
@@ -470,7 +555,8 @@ public class DeploymentV3 {
     }
 
     /**
-     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+     * in a process.
      */
     public DeploymentV3 withRoomsPerProcess(int roomsPerProcess) {
         Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
@@ -499,8 +585,10 @@ public class DeploymentV3 {
             Utils.enhancedDeepEquals(this.deploymentTag, other.deploymentTag) &&
             Utils.enhancedDeepEquals(this.env, other.env) &&
             Utils.enhancedDeepEquals(this.experimentalRequestedGPU, other.experimentalRequestedGPU) &&
+            Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
             Utils.enhancedDeepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
             Utils.enhancedDeepEquals(this.requestedCPU, other.requestedCPU) &&
+            Utils.enhancedDeepEquals(this.requestedGPU, other.requestedGPU) &&
             Utils.enhancedDeepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
             Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess);
     }
@@ -511,8 +599,9 @@ public class DeploymentV3 {
             additionalContainerPorts, appId, buildId,
             buildTag, createdAt, createdBy,
             defaultContainerPort, deploymentId, deploymentTag,
-            env, experimentalRequestedGPU, idleTimeoutEnabled,
-            requestedCPU, requestedMemoryMB, roomsPerProcess);
+            env, experimentalRequestedGPU, fleetId,
+            idleTimeoutEnabled, requestedCPU, requestedGPU,
+            requestedMemoryMB, roomsPerProcess);
     }
     
     @Override
@@ -529,8 +618,10 @@ public class DeploymentV3 {
                 "deploymentTag", deploymentTag,
                 "env", env,
                 "experimentalRequestedGPU", experimentalRequestedGPU,
+                "fleetId", fleetId,
                 "idleTimeoutEnabled", idleTimeoutEnabled,
                 "requestedCPU", requestedCPU,
+                "requestedGPU", requestedGPU,
                 "requestedMemoryMB", requestedMemoryMB,
                 "roomsPerProcess", roomsPerProcess);
     }
@@ -560,9 +651,13 @@ public class DeploymentV3 {
 
         private Optional<Double> experimentalRequestedGPU = Optional.empty();
 
+        private Optional<String> fleetId = Optional.empty();
+
         private Boolean idleTimeoutEnabled;
 
         private Double requestedCPU;
+
+        private Optional<Double> requestedGPU = Optional.empty();
 
         private Double requestedMemoryMB;
 
@@ -604,7 +699,8 @@ public class DeploymentV3 {
 
 
         /**
-         * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
+         * Tag to associate an external version with a build. It is accessible via
+         * [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
          */
         public Builder buildTag(String buildTag) {
             Utils.checkNotNull(buildTag, "buildTag");
@@ -613,7 +709,8 @@ public class DeploymentV3 {
         }
 
         /**
-         * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
+         * Tag to associate an external version with a build. It is accessible via
+         * [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
          */
         public Builder buildTag(Optional<String> buildTag) {
             Utils.checkNotNull(buildTag, "buildTag");
@@ -712,6 +809,25 @@ public class DeploymentV3 {
 
 
         /**
+         * The id of the fleet.
+         */
+        public Builder fleetId(String fleetId) {
+            Utils.checkNotNull(fleetId, "fleetId");
+            this.fleetId = Optional.ofNullable(fleetId);
+            return this;
+        }
+
+        /**
+         * The id of the fleet.
+         */
+        public Builder fleetId(Optional<String> fleetId) {
+            Utils.checkNotNull(fleetId, "fleetId");
+            this.fleetId = fleetId;
+            return this;
+        }
+
+
+        /**
          * Option to shut down processes that have had no new connections or rooms
          * for five minutes.
          */
@@ -733,6 +849,27 @@ public class DeploymentV3 {
 
 
         /**
+         * The number of GPUs allocated to your process. Must be an integer.
+         * If not provided, the requested GPU is 0.
+         */
+        public Builder requestedGPU(double requestedGPU) {
+            Utils.checkNotNull(requestedGPU, "requestedGPU");
+            this.requestedGPU = Optional.ofNullable(requestedGPU);
+            return this;
+        }
+
+        /**
+         * The number of GPUs allocated to your process. Must be an integer.
+         * If not provided, the requested GPU is 0.
+         */
+        public Builder requestedGPU(Optional<Double> requestedGPU) {
+            Utils.checkNotNull(requestedGPU, "requestedGPU");
+            this.requestedGPU = requestedGPU;
+            return this;
+        }
+
+
+        /**
          * The amount of memory allocated to your process. By default, this is capped
          * at 8192 MB, but can be increased further on the Enterprise tier.
          */
@@ -744,7 +881,8 @@ public class DeploymentV3 {
 
 
         /**
-         * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+         * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+         * in a process.
          */
         public Builder roomsPerProcess(int roomsPerProcess) {
             Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
@@ -758,8 +896,9 @@ public class DeploymentV3 {
                 additionalContainerPorts, appId, buildId,
                 buildTag, createdAt, createdBy,
                 defaultContainerPort, deploymentId, deploymentTag,
-                env, experimentalRequestedGPU, idleTimeoutEnabled,
-                requestedCPU, requestedMemoryMB, roomsPerProcess);
+                env, experimentalRequestedGPU, fleetId,
+                idleTimeoutEnabled, requestedCPU, requestedGPU,
+                requestedMemoryMB, roomsPerProcess);
         }
 
     }

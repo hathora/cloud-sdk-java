@@ -23,7 +23,8 @@ public class CreateBuildV3Params {
     private Optional<String> buildId;
 
     /**
-     * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
+     * Tag to associate an external version with a build. It is accessible via
+     * [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buildTag")
@@ -52,7 +53,8 @@ public class CreateBuildV3Params {
     }
 
     /**
-     * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
+     * Tag to associate an external version with a build. It is accessible via
+     * [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
      */
     @JsonIgnore
     public Optional<String> buildTag() {
@@ -84,7 +86,8 @@ public class CreateBuildV3Params {
     }
 
     /**
-     * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
+     * Tag to associate an external version with a build. It is accessible via
+     * [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
      */
     public CreateBuildV3Params withBuildTag(String buildTag) {
         Utils.checkNotNull(buildTag, "buildTag");
@@ -94,7 +97,8 @@ public class CreateBuildV3Params {
 
 
     /**
-     * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
+     * Tag to associate an external version with a build. It is accessible via
+     * [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
      */
     public CreateBuildV3Params withBuildTag(Optional<String> buildTag) {
         Utils.checkNotNull(buildTag, "buildTag");
@@ -161,7 +165,8 @@ public class CreateBuildV3Params {
 
 
         /**
-         * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
+         * Tag to associate an external version with a build. It is accessible via
+         * [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
          */
         public Builder buildTag(String buildTag) {
             Utils.checkNotNull(buildTag, "buildTag");
@@ -170,7 +175,8 @@ public class CreateBuildV3Params {
         }
 
         /**
-         * Tag to associate an external version with a build. It is accessible via [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
+         * Tag to associate an external version with a build. It is accessible via
+         * [`GetBuild()`](https://hathora.dev/api#tag/BuildsV3/operation/GetBuild).
          */
         public Builder buildTag(Optional<String> buildTag) {
             Utils.checkNotNull(buildTag, "buildTag");

@@ -46,16 +46,28 @@ import dev.hathora.cloud_sdk.operations.GetUserPendingInvites;
 import dev.hathora.cloud_sdk.operations.InviteUser;
 import dev.hathora.cloud_sdk.operations.RejectInvite;
 import dev.hathora.cloud_sdk.operations.RescindInvite;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class OrganizationsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncOrganizationsV1 asyncSDK;
 
     OrganizationsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncOrganizationsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncOrganizationsV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -72,16 +84,16 @@ public class OrganizationsV1 {
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AcceptInviteResponse acceptInvite(String orgId) throws Exception {
+    public AcceptInviteResponse acceptInvite(String orgId) {
         AcceptInviteRequest request =
             AcceptInviteRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<AcceptInviteRequest, AcceptInviteResponse> operation
-              = new AcceptInvite.Sync(sdkConfiguration);
+              = new AcceptInvite.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -99,16 +111,16 @@ public class OrganizationsV1 {
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetOrgMembersResponse getOrgMembers(String orgId) throws Exception {
+    public GetOrgMembersResponse getOrgMembers(String orgId) {
         GetOrgMembersRequest request =
             GetOrgMembersRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<GetOrgMembersRequest, GetOrgMembersResponse> operation
-              = new GetOrgMembers.Sync(sdkConfiguration);
+              = new GetOrgMembers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -126,23 +138,24 @@ public class OrganizationsV1 {
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetOrgPendingInvitesResponse getOrgPendingInvites(String orgId) throws Exception {
+    public GetOrgPendingInvitesResponse getOrgPendingInvites(String orgId) {
         GetOrgPendingInvitesRequest request =
             GetOrgPendingInvitesRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<GetOrgPendingInvitesRequest, GetOrgPendingInvitesResponse> operation
-              = new GetOrgPendingInvites.Sync(sdkConfiguration);
+              = new GetOrgPendingInvites.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetOrgs
      * 
-     * <p>Returns an unsorted list of all organizations that you are a member of (an accepted membership invite). An organization is uniquely identified by an `orgId`.
+     * <p>Returns an unsorted list of all organizations that you are a member of (an accepted membership
+     * invite). An organization is uniquely identified by an `orgId`.
      * 
      * @return The call builder
      */
@@ -153,14 +166,15 @@ public class OrganizationsV1 {
     /**
      * GetOrgs
      * 
-     * <p>Returns an unsorted list of all organizations that you are a member of (an accepted membership invite). An organization is uniquely identified by an `orgId`.
+     * <p>Returns an unsorted list of all organizations that you are a member of (an accepted membership
+     * invite). An organization is uniquely identified by an `orgId`.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetOrgsResponse getOrgsDirect() throws Exception {
+    public GetOrgsResponse getOrgsDirect() {
         RequestlessOperation<GetOrgsResponse> operation
-            = new GetOrgs.Sync(sdkConfiguration);
+            = new GetOrgs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -177,9 +191,9 @@ public class OrganizationsV1 {
      * GetUsageLimits
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetUsageLimitsResponse getUsageLimitsDirect() throws Exception {
+    public GetUsageLimitsResponse getUsageLimitsDirect() {
         return getUsageLimits(Optional.empty());
     }
 
@@ -188,16 +202,16 @@ public class OrganizationsV1 {
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetUsageLimitsResponse getUsageLimits(Optional<String> orgId) throws Exception {
+    public GetUsageLimitsResponse getUsageLimits(Optional<String> orgId) {
         GetUsageLimitsRequest request =
             GetUsageLimitsRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<GetUsageLimitsRequest, GetUsageLimitsResponse> operation
-              = new GetUsageLimits.Sync(sdkConfiguration);
+              = new GetUsageLimits.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -214,11 +228,11 @@ public class OrganizationsV1 {
      * GetUserPendingInvites
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetUserPendingInvitesResponse getUserPendingInvitesDirect() throws Exception {
+    public GetUserPendingInvitesResponse getUserPendingInvitesDirect() {
         RequestlessOperation<GetUserPendingInvitesResponse> operation
-            = new GetUserPendingInvites.Sync(sdkConfiguration);
+            = new GetUserPendingInvites.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -237,9 +251,9 @@ public class OrganizationsV1 {
      * @param createUserInvite 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public InviteUserResponse inviteUser(CreateUserInvite createUserInvite, String orgId) throws Exception {
+    public InviteUserResponse inviteUser(CreateUserInvite createUserInvite, String orgId) {
         InviteUserRequest request =
             InviteUserRequest
                 .builder()
@@ -247,7 +261,7 @@ public class OrganizationsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<InviteUserRequest, InviteUserResponse> operation
-              = new InviteUser.Sync(sdkConfiguration);
+              = new InviteUser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -265,16 +279,16 @@ public class OrganizationsV1 {
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RejectInviteResponse rejectInvite(String orgId) throws Exception {
+    public RejectInviteResponse rejectInvite(String orgId) {
         RejectInviteRequest request =
             RejectInviteRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<RejectInviteRequest, RejectInviteResponse> operation
-              = new RejectInvite.Sync(sdkConfiguration);
+              = new RejectInvite.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -293,9 +307,9 @@ public class OrganizationsV1 {
      * @param rescindUserInvite 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RescindInviteResponse rescindInvite(RescindUserInvite rescindUserInvite, String orgId) throws Exception {
+    public RescindInviteResponse rescindInvite(RescindUserInvite rescindUserInvite, String orgId) {
         RescindInviteRequest request =
             RescindInviteRequest
                 .builder()
@@ -303,7 +317,7 @@ public class OrganizationsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<RescindInviteRequest, RescindInviteResponse> operation
-              = new RescindInvite.Sync(sdkConfiguration);
+              = new RescindInvite.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -322,9 +336,9 @@ public class OrganizationsV1 {
      * @param updateUserInvite 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateUserInviteResponse updateUserInvite(UpdateUserInvite updateUserInvite, String orgId) throws Exception {
+    public UpdateUserInviteResponse updateUserInvite(UpdateUserInvite updateUserInvite, String orgId) {
         UpdateUserInviteRequest request =
             UpdateUserInviteRequest
                 .builder()
@@ -332,7 +346,7 @@ public class OrganizationsV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<UpdateUserInviteRequest, UpdateUserInviteResponse> operation
-              = new dev.hathora.cloud_sdk.operations.UpdateUserInvite.Sync(sdkConfiguration);
+              = new dev.hathora.cloud_sdk.operations.UpdateUserInvite.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

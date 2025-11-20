@@ -5,28 +5,42 @@ package dev.hathora.cloud_sdk;
 
 import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
-import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsRequest;
-import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsRequestBuilder;
-import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsResponse;
-import dev.hathora.cloud_sdk.models.operations.GetFleetRegionRequest;
-import dev.hathora.cloud_sdk.models.operations.GetFleetRegionRequestBuilder;
-import dev.hathora.cloud_sdk.models.operations.GetFleetRegionResponse;
-import dev.hathora.cloud_sdk.models.operations.GetFleetsRequest;
-import dev.hathora.cloud_sdk.models.operations.GetFleetsRequestBuilder;
-import dev.hathora.cloud_sdk.models.operations.GetFleetsResponse;
-import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionRequest;
-import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionRequestBuilder;
-import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionResponse;
-import dev.hathora.cloud_sdk.models.operations.UpdateFleetRequest;
-import dev.hathora.cloud_sdk.models.operations.UpdateFleetRequestBuilder;
-import dev.hathora.cloud_sdk.models.operations.UpdateFleetResponse;
+import dev.hathora.cloud_sdk.models.operations.CreateFleetDeprecatedRequest;
+import dev.hathora.cloud_sdk.models.operations.CreateFleetDeprecatedRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.CreateFleetDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.operations.GetFleetDeprecatedRequest;
+import dev.hathora.cloud_sdk.models.operations.GetFleetDeprecatedRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.GetFleetDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsDeprecatedRequest;
+import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsDeprecatedRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.operations.GetFleetRegionDeprecatedRequest;
+import dev.hathora.cloud_sdk.models.operations.GetFleetRegionDeprecatedRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.GetFleetRegionDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.operations.GetFleetRegionMetricsDeprecatedRequest;
+import dev.hathora.cloud_sdk.models.operations.GetFleetRegionMetricsDeprecatedRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.GetFleetRegionMetricsDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.operations.GetFleetsDeprecatedRequest;
+import dev.hathora.cloud_sdk.models.operations.GetFleetsDeprecatedRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.GetFleetsDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetDeprecatedRequest;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetDeprecatedRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionDeprecatedRequest;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionDeprecatedRequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionDeprecatedResponse;
+import dev.hathora.cloud_sdk.models.shared.CreateFleet;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.UpdateFleet;
-import dev.hathora.cloud_sdk.operations.GetFleetMetrics;
-import dev.hathora.cloud_sdk.operations.GetFleetRegion;
-import dev.hathora.cloud_sdk.operations.GetFleets;
-import dev.hathora.cloud_sdk.operations.UpdateFleetRegion;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.operations.CreateFleetDeprecated;
+import dev.hathora.cloud_sdk.operations.GetFleetDeprecated;
+import dev.hathora.cloud_sdk.operations.GetFleetMetricsDeprecated;
+import dev.hathora.cloud_sdk.operations.GetFleetRegionDeprecated;
+import dev.hathora.cloud_sdk.operations.GetFleetRegionMetricsDeprecated;
+import dev.hathora.cloud_sdk.operations.GetFleetsDeprecated;
+import dev.hathora.cloud_sdk.operations.UpdateFleetDeprecated;
+import dev.hathora.cloud_sdk.operations.UpdateFleetRegionDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.String;
 import java.util.Optional;
 
@@ -34,159 +48,286 @@ import java.util.Optional;
  * Operations to manage and view a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
  */
 public class FleetsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncFleetsV1 asyncSDK;
 
     FleetsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncFleetsV1(this, sdkConfiguration);
     }
 
     /**
-     * GetFleetMetrics
+     * Switches to the async SDK.
      * 
-     * <p>Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * @return The async SDK
+     */
+    public AsyncFleetsV1 async() {
+        return asyncSDK;
+    }
+
+    /**
+     * CreateFleetDeprecated
      * 
      * @return The call builder
      */
-    public GetFleetMetricsRequestBuilder getFleetMetrics() {
-        return new GetFleetMetricsRequestBuilder(sdkConfiguration);
+    public CreateFleetDeprecatedRequestBuilder createFleetDeprecated() {
+        return new CreateFleetDeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * GetFleetMetrics
+     * CreateFleetDeprecated
      * 
-     * <p>Gets metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
-     * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param createFleet 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetFleetMetricsResponse getFleetMetrics(GetFleetMetricsRequest request) throws Exception {
-        RequestOperation<GetFleetMetricsRequest, GetFleetMetricsResponse> operation
-              = new GetFleetMetrics.Sync(sdkConfiguration);
+    public CreateFleetDeprecatedResponse createFleetDeprecated(CreateFleet createFleet) {
+        return createFleetDeprecated(createFleet, Optional.empty());
+    }
+
+    /**
+     * CreateFleetDeprecated
+     * 
+     * @param createFleet 
+     * @param orgId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateFleetDeprecatedResponse createFleetDeprecated(CreateFleet createFleet, Optional<String> orgId) {
+        CreateFleetDeprecatedRequest request =
+            CreateFleetDeprecatedRequest
+                .builder()
+                .createFleet(createFleet)
+                .orgId(orgId)
+                .build();
+        RequestOperation<CreateFleetDeprecatedRequest, CreateFleetDeprecatedResponse> operation
+              = new CreateFleetDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * GetFleetRegion
+     * GetFleetDeprecated
      * 
-     * <p>Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * <p>Returns a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
      * 
      * @return The call builder
      */
-    public GetFleetRegionRequestBuilder getFleetRegion() {
-        return new GetFleetRegionRequestBuilder(sdkConfiguration);
+    public GetFleetDeprecatedRequestBuilder getFleetDeprecated() {
+        return new GetFleetDeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * GetFleetRegion
+     * GetFleetDeprecated
      * 
-     * <p>Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * <p>Returns a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
+     * @param fleetId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetFleetDeprecatedResponse getFleetDeprecated(String fleetId) {
+        return getFleetDeprecated(fleetId, Optional.empty());
+    }
+
+    /**
+     * GetFleetDeprecated
+     * 
+     * <p>Returns a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
+     * @param fleetId 
+     * @param orgId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetFleetDeprecatedResponse getFleetDeprecated(String fleetId, Optional<String> orgId) {
+        GetFleetDeprecatedRequest request =
+            GetFleetDeprecatedRequest
+                .builder()
+                .fleetId(fleetId)
+                .orgId(orgId)
+                .build();
+        RequestOperation<GetFleetDeprecatedRequest, GetFleetDeprecatedResponse> operation
+              = new GetFleetDeprecated.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * GetFleetMetricsDeprecated
+     * 
+     * <p>Gets aggregate metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
+     * @return The call builder
+     */
+    public GetFleetMetricsDeprecatedRequestBuilder getFleetMetricsDeprecated() {
+        return new GetFleetMetricsDeprecatedRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * GetFleetMetricsDeprecated
+     * 
+     * <p>Gets aggregate metrics for a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetFleetMetricsDeprecatedResponse getFleetMetricsDeprecated(GetFleetMetricsDeprecatedRequest request) {
+        RequestOperation<GetFleetMetricsDeprecatedRequest, GetFleetMetricsDeprecatedResponse> operation
+              = new GetFleetMetricsDeprecated.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * GetFleetRegionDeprecated
+     * 
+     * <p>Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet)
+     * in a region.
+     * 
+     * @return The call builder
+     */
+    public GetFleetRegionDeprecatedRequestBuilder getFleetRegionDeprecated() {
+        return new GetFleetRegionDeprecatedRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * GetFleetRegionDeprecated
+     * 
+     * <p>Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet)
+     * in a region.
      * 
      * @param fleetId 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetFleetRegionResponse getFleetRegion(String fleetId, Region region) throws Exception {
-        return getFleetRegion(fleetId, Optional.empty(), region);
+    public GetFleetRegionDeprecatedResponse getFleetRegionDeprecated(String fleetId, Region region) {
+        return getFleetRegionDeprecated(fleetId, Optional.empty(), region);
     }
 
     /**
-     * GetFleetRegion
+     * GetFleetRegionDeprecated
      * 
-     * <p>Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * <p>Gets the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet)
+     * in a region.
      * 
      * @param fleetId 
      * @param orgId 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetFleetRegionResponse getFleetRegion(
+    public GetFleetRegionDeprecatedResponse getFleetRegionDeprecated(
             String fleetId, Optional<String> orgId,
-            Region region) throws Exception {
-        GetFleetRegionRequest request =
-            GetFleetRegionRequest
+            Region region) {
+        GetFleetRegionDeprecatedRequest request =
+            GetFleetRegionDeprecatedRequest
                 .builder()
                 .fleetId(fleetId)
                 .orgId(orgId)
                 .region(region)
                 .build();
-        RequestOperation<GetFleetRegionRequest, GetFleetRegionResponse> operation
-              = new GetFleetRegion.Sync(sdkConfiguration);
+        RequestOperation<GetFleetRegionDeprecatedRequest, GetFleetRegionDeprecatedResponse> operation
+              = new GetFleetRegionDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * GetFleets
+     * GetFleetRegionMetricsDeprecated
+     * 
+     * <p>Gets metrics for a region in a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
+     * @return The call builder
+     */
+    public GetFleetRegionMetricsDeprecatedRequestBuilder getFleetRegionMetricsDeprecated() {
+        return new GetFleetRegionMetricsDeprecatedRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * GetFleetRegionMetricsDeprecated
+     * 
+     * <p>Gets metrics for a region in a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet).
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetFleetRegionMetricsDeprecatedResponse getFleetRegionMetricsDeprecated(GetFleetRegionMetricsDeprecatedRequest request) {
+        RequestOperation<GetFleetRegionMetricsDeprecatedRequest, GetFleetRegionMetricsDeprecatedResponse> operation
+              = new GetFleetRegionMetricsDeprecated.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * GetFleetsDeprecated
      * 
      * <p>Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
      * 
      * @return The call builder
      */
-    public GetFleetsRequestBuilder getFleets() {
-        return new GetFleetsRequestBuilder(sdkConfiguration);
+    public GetFleetsDeprecatedRequestBuilder getFleetsDeprecated() {
+        return new GetFleetsDeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * GetFleets
+     * GetFleetsDeprecated
      * 
      * <p>Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetFleetsResponse getFleetsDirect() throws Exception {
-        return getFleets(Optional.empty());
+    public GetFleetsDeprecatedResponse getFleetsDeprecatedDirect() {
+        return getFleetsDeprecated(Optional.empty());
     }
 
     /**
-     * GetFleets
+     * GetFleetsDeprecated
      * 
      * <p>Returns an array of [fleets](https://hathora.dev/docs/concepts/hathora-entities#fleet).
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetFleetsResponse getFleets(Optional<String> orgId) throws Exception {
-        GetFleetsRequest request =
-            GetFleetsRequest
+    public GetFleetsDeprecatedResponse getFleetsDeprecated(Optional<String> orgId) {
+        GetFleetsDeprecatedRequest request =
+            GetFleetsDeprecatedRequest
                 .builder()
                 .orgId(orgId)
                 .build();
-        RequestOperation<GetFleetsRequest, GetFleetsResponse> operation
-              = new GetFleets.Sync(sdkConfiguration);
+        RequestOperation<GetFleetsDeprecatedRequest, GetFleetsDeprecatedResponse> operation
+              = new GetFleetsDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * UpdateFleet
+     * UpdateFleetDeprecated
      * 
      * <p>Updates a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet)'s configuration.
      * 
      * @return The call builder
      */
-    public UpdateFleetRequestBuilder updateFleet() {
-        return new UpdateFleetRequestBuilder(sdkConfiguration);
+    public UpdateFleetDeprecatedRequestBuilder updateFleetDeprecated() {
+        return new UpdateFleetDeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * UpdateFleet
+     * UpdateFleetDeprecated
      * 
      * <p>Updates a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet)'s configuration.
      * 
      * @param updateFleet 
      * @param fleetId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateFleetResponse updateFleet(UpdateFleet updateFleet, String fleetId) throws Exception {
-        return updateFleet(updateFleet, fleetId, Optional.empty());
+    public UpdateFleetDeprecatedResponse updateFleetDeprecated(UpdateFleet updateFleet, String fleetId) {
+        return updateFleetDeprecated(updateFleet, fleetId, Optional.empty());
     }
 
     /**
-     * UpdateFleet
+     * UpdateFleetDeprecated
      * 
      * <p>Updates a [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet)'s configuration.
      * 
@@ -194,46 +335,48 @@ public class FleetsV1 {
      * @param fleetId 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateFleetResponse updateFleet(
+    public UpdateFleetDeprecatedResponse updateFleetDeprecated(
             UpdateFleet updateFleet, String fleetId,
-            Optional<String> orgId) throws Exception {
-        UpdateFleetRequest request =
-            UpdateFleetRequest
+            Optional<String> orgId) {
+        UpdateFleetDeprecatedRequest request =
+            UpdateFleetDeprecatedRequest
                 .builder()
                 .updateFleet(updateFleet)
                 .fleetId(fleetId)
                 .orgId(orgId)
                 .build();
-        RequestOperation<UpdateFleetRequest, UpdateFleetResponse> operation
-              = new dev.hathora.cloud_sdk.operations.UpdateFleet.Sync(sdkConfiguration);
+        RequestOperation<UpdateFleetDeprecatedRequest, UpdateFleetDeprecatedResponse> operation
+              = new UpdateFleetDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * UpdateFleetRegion
+     * UpdateFleetRegionDeprecated
      * 
-     * <p>Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * <p>Updates the configuration for a given
+     * [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
      * 
      * @return The call builder
      */
-    public UpdateFleetRegionRequestBuilder updateFleetRegion() {
-        return new UpdateFleetRegionRequestBuilder(sdkConfiguration);
+    public UpdateFleetRegionDeprecatedRequestBuilder updateFleetRegionDeprecated() {
+        return new UpdateFleetRegionDeprecatedRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * UpdateFleetRegion
+     * UpdateFleetRegionDeprecated
      * 
-     * <p>Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * <p>Updates the configuration for a given
+     * [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateFleetRegionResponse updateFleetRegion(UpdateFleetRegionRequest request) throws Exception {
-        RequestOperation<UpdateFleetRegionRequest, UpdateFleetRegionResponse> operation
-              = new UpdateFleetRegion.Sync(sdkConfiguration);
+    public UpdateFleetRegionDeprecatedResponse updateFleetRegionDeprecated(UpdateFleetRegionDeprecatedRequest request) {
+        RequestOperation<UpdateFleetRegionDeprecatedRequest, UpdateFleetRegionDeprecatedResponse> operation
+              = new UpdateFleetRegionDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

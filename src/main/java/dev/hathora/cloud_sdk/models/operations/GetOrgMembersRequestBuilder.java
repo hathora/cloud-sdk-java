@@ -7,14 +7,15 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetOrgMembers;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 
 public class GetOrgMembersRequestBuilder {
 
     private String orgId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetOrgMembersRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -34,10 +35,10 @@ public class GetOrgMembersRequestBuilder {
         return request;
     }
 
-    public GetOrgMembersResponse call() throws Exception {
+    public GetOrgMembersResponse call() {
         
         RequestOperation<GetOrgMembersRequest, GetOrgMembersResponse> operation
-              = new GetOrgMembers.Sync(sdkConfiguration);
+              = new GetOrgMembers.Sync(sdkConfiguration, _headers);
         GetOrgMembersRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

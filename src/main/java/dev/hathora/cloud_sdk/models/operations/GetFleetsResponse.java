@@ -5,7 +5,7 @@ package dev.hathora.cloud_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.hathora.cloud_sdk.models.shared.FleetsPage;
+import dev.hathora.cloud_sdk.models.shared.FleetsPageV2;
 import dev.hathora.cloud_sdk.utils.Response;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
@@ -26,7 +26,7 @@ public class GetFleetsResponse implements Response {
     /**
      * Ok
      */
-    private Optional<? extends FleetsPage> fleetsPage;
+    private Optional<? extends FleetsPageV2> fleetsPageV2;
 
     /**
      * HTTP response status code for this operation
@@ -41,15 +41,15 @@ public class GetFleetsResponse implements Response {
     @JsonCreator
     public GetFleetsResponse(
             String contentType,
-            Optional<? extends FleetsPage> fleetsPage,
+            Optional<? extends FleetsPageV2> fleetsPageV2,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(fleetsPage, "fleetsPage");
+        Utils.checkNotNull(fleetsPageV2, "fleetsPageV2");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.fleetsPage = fleetsPage;
+        this.fleetsPageV2 = fleetsPageV2;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -75,8 +75,8 @@ public class GetFleetsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<FleetsPage> fleetsPage() {
-        return (Optional<FleetsPage>) fleetsPage;
+    public Optional<FleetsPageV2> fleetsPageV2() {
+        return (Optional<FleetsPageV2>) fleetsPageV2;
     }
 
     /**
@@ -112,9 +112,9 @@ public class GetFleetsResponse implements Response {
     /**
      * Ok
      */
-    public GetFleetsResponse withFleetsPage(FleetsPage fleetsPage) {
-        Utils.checkNotNull(fleetsPage, "fleetsPage");
-        this.fleetsPage = Optional.ofNullable(fleetsPage);
+    public GetFleetsResponse withFleetsPageV2(FleetsPageV2 fleetsPageV2) {
+        Utils.checkNotNull(fleetsPageV2, "fleetsPageV2");
+        this.fleetsPageV2 = Optional.ofNullable(fleetsPageV2);
         return this;
     }
 
@@ -122,9 +122,9 @@ public class GetFleetsResponse implements Response {
     /**
      * Ok
      */
-    public GetFleetsResponse withFleetsPage(Optional<? extends FleetsPage> fleetsPage) {
-        Utils.checkNotNull(fleetsPage, "fleetsPage");
-        this.fleetsPage = fleetsPage;
+    public GetFleetsResponse withFleetsPageV2(Optional<? extends FleetsPageV2> fleetsPageV2) {
+        Utils.checkNotNull(fleetsPageV2, "fleetsPageV2");
+        this.fleetsPageV2 = fleetsPageV2;
         return this;
     }
 
@@ -157,7 +157,7 @@ public class GetFleetsResponse implements Response {
         GetFleetsResponse other = (GetFleetsResponse) o;
         return 
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
-            Utils.enhancedDeepEquals(this.fleetsPage, other.fleetsPage) &&
+            Utils.enhancedDeepEquals(this.fleetsPageV2, other.fleetsPageV2) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
@@ -165,7 +165,7 @@ public class GetFleetsResponse implements Response {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType, fleetsPage, statusCode,
+            contentType, fleetsPageV2, statusCode,
             rawResponse);
     }
     
@@ -173,7 +173,7 @@ public class GetFleetsResponse implements Response {
     public String toString() {
         return Utils.toString(GetFleetsResponse.class,
                 "contentType", contentType,
-                "fleetsPage", fleetsPage,
+                "fleetsPageV2", fleetsPageV2,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -183,7 +183,7 @@ public class GetFleetsResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends FleetsPage> fleetsPage = Optional.empty();
+        private Optional<? extends FleetsPageV2> fleetsPageV2 = Optional.empty();
 
         private Integer statusCode;
 
@@ -207,18 +207,18 @@ public class GetFleetsResponse implements Response {
         /**
          * Ok
          */
-        public Builder fleetsPage(FleetsPage fleetsPage) {
-            Utils.checkNotNull(fleetsPage, "fleetsPage");
-            this.fleetsPage = Optional.ofNullable(fleetsPage);
+        public Builder fleetsPageV2(FleetsPageV2 fleetsPageV2) {
+            Utils.checkNotNull(fleetsPageV2, "fleetsPageV2");
+            this.fleetsPageV2 = Optional.ofNullable(fleetsPageV2);
             return this;
         }
 
         /**
          * Ok
          */
-        public Builder fleetsPage(Optional<? extends FleetsPage> fleetsPage) {
-            Utils.checkNotNull(fleetsPage, "fleetsPage");
-            this.fleetsPage = fleetsPage;
+        public Builder fleetsPageV2(Optional<? extends FleetsPageV2> fleetsPageV2) {
+            Utils.checkNotNull(fleetsPageV2, "fleetsPageV2");
+            this.fleetsPageV2 = fleetsPageV2;
             return this;
         }
 
@@ -245,7 +245,7 @@ public class GetFleetsResponse implements Response {
         public GetFleetsResponse build() {
 
             return new GetFleetsResponse(
-                contentType, fleetsPage, statusCode,
+                contentType, fleetsPageV2, statusCode,
                 rawResponse);
         }
 

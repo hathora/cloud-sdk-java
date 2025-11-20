@@ -7,8 +7,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.CreateLocalLobby;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -19,6 +19,7 @@ public class CreateLocalLobbyRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Optional<String> roomId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateLocalLobbyRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -70,10 +71,10 @@ public class CreateLocalLobbyRequestBuilder {
         return request;
     }
 
-    public CreateLocalLobbyResponse call() throws Exception {
+    public CreateLocalLobbyResponse call() {
         
         RequestOperation<CreateLocalLobbyRequest, CreateLocalLobbyResponse> operation
-              = new CreateLocalLobby.Sync(sdkConfiguration, security);
+              = new CreateLocalLobby.Sync(sdkConfiguration, security, _headers);
         CreateLocalLobbyRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

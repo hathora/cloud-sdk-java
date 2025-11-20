@@ -7,8 +7,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.StopProcess;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -17,6 +17,7 @@ public class StopProcessRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String processId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public StopProcessRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,10 +50,10 @@ public class StopProcessRequestBuilder {
         return request;
     }
 
-    public StopProcessResponse call() throws Exception {
+    public StopProcessResponse call() {
         
         RequestOperation<StopProcessRequest, StopProcessResponse> operation
-              = new StopProcess.Sync(sdkConfiguration);
+              = new StopProcess.Sync(sdkConfiguration, _headers);
         StopProcessRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

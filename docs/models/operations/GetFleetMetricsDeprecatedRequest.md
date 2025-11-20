@@ -1,0 +1,13 @@
+# GetFleetMetricsDeprecatedRequest
+
+
+## Fields
+
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      | Example                                                          |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `end`                                                            | *Optional\<Double>*                                              | :heavy_minus_sign:                                               | N/A                                                              |                                                                  |
+| `fleetId`                                                        | *String*                                                         | :heavy_check_mark:                                               | N/A                                                              |                                                                  |
+| `metrics`                                                        | List\<[FleetMetricName](../../models/shared/FleetMetricName.md)> | :heavy_minus_sign:                                               | Available metrics to query over time.                            |                                                                  |
+| `orgId`                                                          | *Optional\<String>*                                              | :heavy_minus_sign:                                               | N/A                                                              | org-6f706e83-0ec1-437a-9a46-7d4281eb2f39                         |
+| `start`                                                          | *Optional\<Double>*                                              | :heavy_minus_sign:                                               | Unix timestamp. Default is -1 hour from `end`.                   |                                                                  |
+| `step`                                                           | *Optional\<Integer>*                                             | :heavy_minus_sign:                                               | N/A                                                              |                                                                  |
