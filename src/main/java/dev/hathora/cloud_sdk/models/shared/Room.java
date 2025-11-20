@@ -43,7 +43,8 @@ public class Room {
     private JsonNullable<String> roomConfig;
 
     /**
-     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it
+     * with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
     @JsonProperty("roomId")
@@ -117,7 +118,8 @@ public class Room {
     }
 
     /**
-     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it
+     * with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
     @JsonIgnore
@@ -185,7 +187,8 @@ public class Room {
     }
 
     /**
-     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it
+     * with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
     public Room withRoomId(String roomId) {
@@ -309,7 +312,8 @@ public class Room {
 
 
         /**
-         * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+         * Unique identifier to a game session or match. Use the default system generated ID or overwrite it
+         * with your own.
          * Note: error will be returned if `roomId` is not globally unique.
          */
         public Builder roomId(String roomId) {

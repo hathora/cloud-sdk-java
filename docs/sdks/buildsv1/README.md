@@ -32,7 +32,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -67,11 +67,11 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
-| models/errors/ApiError | 500                    | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 408, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
 ## ~~deleteBuildDeprecated~~
 
@@ -93,7 +93,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -124,11 +124,11 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
-| models/errors/ApiError | 500                    | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 408, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
 ## ~~getBuildInfoDeprecated~~
 
@@ -185,7 +185,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/ApiError | 401, 404, 408, 429     | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~getBuildsDeprecated~~
@@ -241,7 +241,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/ApiError | 401, 404, 408, 429     | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## ~~runBuildDeprecated~~
@@ -261,11 +261,12 @@ import dev.hathora.cloud_sdk.models.errors.ApiError;
 import dev.hathora.cloud_sdk.models.operations.*;
 import dev.hathora.cloud_sdk.models.shared.Security;
 import dev.hathora.cloud_sdk.utils.Utils;
+import java.io.FileInputStream;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .appId("app-af469a92-5b45-4565-b3c4-b79878de67d2")
@@ -277,16 +278,13 @@ public class Application {
         RunBuildDeprecatedResponse res = sdk.buildsV1().runBuildDeprecated()
                 .requestBody(RunBuildDeprecatedRequestBody.builder()
                     .file(File.builder()
-                        .content(Utils.readBytes("example.file"))
+                        .content(Utils.readBytesAndClose(new FileInputStream("example.file")))
                         .fileName("example.file")
                         .build())
                     .build())
                 .buildId(1)
                 .call();
 
-        if (res.res().isPresent()) {
-            // handle response
-        }
     }
 }
 ```
@@ -305,8 +303,8 @@ public class Application {
 
 ### Errors
 
-| Error Type              | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| models/errors/ApiError  | 400, 401, 404, 422, 429 | application/json        |
-| models/errors/ApiError  | 500                     | application/json        |
-| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 400, 401, 404, 408, 422, 429 | application/json             |
+| models/errors/ApiError       | 500                          | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |

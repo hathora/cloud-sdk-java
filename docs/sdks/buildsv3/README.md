@@ -34,7 +34,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
@@ -71,11 +71,11 @@ public class Application {
 
 ### Errors
 
-| Error Type              | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| models/errors/ApiError  | 400, 401, 404, 422, 429 | application/json        |
-| models/errors/ApiError  | 500                     | application/json        |
-| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 400, 401, 404, 408, 422, 429 | application/json             |
+| models/errors/ApiError       | 500                          | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
 
 ## createBuildRegistry
 
@@ -96,7 +96,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
@@ -132,11 +132,11 @@ public class Application {
 
 ### Errors
 
-| Error Type              | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| models/errors/ApiError  | 400, 401, 404, 422, 429 | application/json        |
-| models/errors/ApiError  | 500                     | application/json        |
-| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 400, 401, 404, 408, 422, 429 | application/json             |
+| models/errors/ApiError       | 500                          | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
 
 ## deleteBuild
 
@@ -158,7 +158,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
@@ -191,11 +191,11 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
-| models/errors/ApiError | 500                    | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 408, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
 ## getBuild
 
@@ -250,7 +250,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 429          | application/json       |
+| models/errors/ApiError | 401, 404, 408, 429     | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getBuilds
@@ -302,10 +302,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/ApiError | 401, 404, 422, 429     | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 408, 422, 429 | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
 
 ## runBuild
 
@@ -325,7 +325,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
@@ -358,11 +358,11 @@ public class Application {
 
 ### Errors
 
-| Error Type              | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| models/errors/ApiError  | 400, 401, 404, 422, 429 | application/json        |
-| models/errors/ApiError  | 500                     | application/json        |
-| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 400, 401, 404, 408, 422, 429 | application/json             |
+| models/errors/ApiError       | 500                          | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |
 
 ## runBuildRegistry
 
@@ -383,7 +383,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ApiError, ApiError, Exception {
+    public static void main(String[] args) throws ApiError, Exception {
 
         HathoraCloud sdk = HathoraCloud.builder()
                 .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
@@ -420,8 +420,8 @@ public class Application {
 
 ### Errors
 
-| Error Type              | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| models/errors/ApiError  | 400, 401, 404, 422, 429 | application/json        |
-| models/errors/ApiError  | 500                     | application/json        |
-| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ApiError       | 400, 401, 404, 408, 422, 429 | application/json             |
+| models/errors/ApiError       | 500                          | application/json             |
+| models/errors/SDKError       | 4XX, 5XX                     | \*/\*                        |

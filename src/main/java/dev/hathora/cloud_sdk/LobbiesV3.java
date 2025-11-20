@@ -23,22 +23,38 @@ import dev.hathora.cloud_sdk.operations.CreateLobby;
 import dev.hathora.cloud_sdk.operations.GetLobbyInfoByRoomId;
 import dev.hathora.cloud_sdk.operations.GetLobbyInfoByShortCode;
 import dev.hathora.cloud_sdk.operations.ListActivePublicLobbies;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class LobbiesV3 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncLobbiesV3 asyncSDK;
 
     LobbiesV3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncLobbiesV3(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncLobbiesV3 async() {
+        return asyncSDK;
     }
 
     /**
      * CreateLobby
      * 
-     * <p>Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
+     * <p>Create a new lobby for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a
+     * wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a
+     * lobby, you get additional functionality like configuring the visibility of the room, managing the
+     * state of a match, and retrieving a list of public lobbies to display to players.
      * 
      * @return The call builder
      */
@@ -49,16 +65,20 @@ public class LobbiesV3 {
     /**
      * CreateLobby
      * 
-     * <p>Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
+     * <p>Create a new lobby for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a
+     * wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a
+     * lobby, you get additional functionality like configuring the visibility of the room, managing the
+     * state of a match, and retrieving a list of public lobbies to display to players.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param security The security details to use for authentication.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateLobbyResponse createLobby(CreateLobbyRequest request, CreateLobbySecurity security) throws Exception {
+    public CreateLobbyResponse createLobby(CreateLobbyRequest request, CreateLobbySecurity security) {
         RequestOperation<CreateLobbyRequest, CreateLobbyResponse> operation
-              = new CreateLobby.Sync(sdkConfiguration, security);
+              = new CreateLobby.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -80,9 +100,9 @@ public class LobbiesV3 {
      * 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetLobbyInfoByRoomIdResponse getLobbyInfoByRoomId(String roomId) throws Exception {
+    public GetLobbyInfoByRoomIdResponse getLobbyInfoByRoomId(String roomId) {
         return getLobbyInfoByRoomId(Optional.empty(), roomId);
     }
 
@@ -94,9 +114,9 @@ public class LobbiesV3 {
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetLobbyInfoByRoomIdResponse getLobbyInfoByRoomId(Optional<String> appId, String roomId) throws Exception {
+    public GetLobbyInfoByRoomIdResponse getLobbyInfoByRoomId(Optional<String> appId, String roomId) {
         GetLobbyInfoByRoomIdRequest request =
             GetLobbyInfoByRoomIdRequest
                 .builder()
@@ -104,14 +124,15 @@ public class LobbiesV3 {
                 .roomId(roomId)
                 .build();
         RequestOperation<GetLobbyInfoByRoomIdRequest, GetLobbyInfoByRoomIdResponse> operation
-              = new GetLobbyInfoByRoomId.Sync(sdkConfiguration);
+              = new GetLobbyInfoByRoomId.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetLobbyInfoByShortCode
      * 
-     * <p>Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then the most recently created lobby will be returned.
+     * <p>Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then the most recently
+     * created lobby will be returned.
      * 
      * @return The call builder
      */
@@ -122,27 +143,29 @@ public class LobbiesV3 {
     /**
      * GetLobbyInfoByShortCode
      * 
-     * <p>Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then the most recently created lobby will be returned.
+     * <p>Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then the most recently
+     * created lobby will be returned.
      * 
      * @param shortCode 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetLobbyInfoByShortCodeResponse getLobbyInfoByShortCode(String shortCode) throws Exception {
+    public GetLobbyInfoByShortCodeResponse getLobbyInfoByShortCode(String shortCode) {
         return getLobbyInfoByShortCode(Optional.empty(), shortCode);
     }
 
     /**
      * GetLobbyInfoByShortCode
      * 
-     * <p>Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then the most recently created lobby will be returned.
+     * <p>Get details for a lobby. If 2 or more lobbies have the same `shortCode`, then the most recently
+     * created lobby will be returned.
      * 
      * @param appId 
      * @param shortCode 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetLobbyInfoByShortCodeResponse getLobbyInfoByShortCode(Optional<String> appId, String shortCode) throws Exception {
+    public GetLobbyInfoByShortCodeResponse getLobbyInfoByShortCode(Optional<String> appId, String shortCode) {
         GetLobbyInfoByShortCodeRequest request =
             GetLobbyInfoByShortCodeRequest
                 .builder()
@@ -150,14 +173,17 @@ public class LobbiesV3 {
                 .shortCode(shortCode)
                 .build();
         RequestOperation<GetLobbyInfoByShortCodeRequest, GetLobbyInfoByShortCodeResponse> operation
-              = new GetLobbyInfoByShortCode.Sync(sdkConfiguration);
+              = new GetLobbyInfoByShortCode.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * ListActivePublicLobbies
      * 
-     * <p>Get all active lobbies for a given [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
+     * <p>Get all active lobbies for a given
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by
+     * optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can
+     * join in the game client.
      * 
      * @return The call builder
      */
@@ -168,26 +194,32 @@ public class LobbiesV3 {
     /**
      * ListActivePublicLobbies
      * 
-     * <p>Get all active lobbies for a given [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
+     * <p>Get all active lobbies for a given
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by
+     * optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can
+     * join in the game client.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListActivePublicLobbiesResponse listActivePublicLobbiesDirect() throws Exception {
+    public ListActivePublicLobbiesResponse listActivePublicLobbiesDirect() {
         return listActivePublicLobbies(Optional.empty(), Optional.empty());
     }
 
     /**
      * ListActivePublicLobbies
      * 
-     * <p>Get all active lobbies for a given [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
+     * <p>Get all active lobbies for a given
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by
+     * optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can
+     * join in the game client.
      * 
      * @param appId 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListActivePublicLobbiesResponse listActivePublicLobbies(Optional<String> appId, Optional<? extends Region> region) throws Exception {
+    public ListActivePublicLobbiesResponse listActivePublicLobbies(Optional<String> appId, Optional<? extends Region> region) {
         ListActivePublicLobbiesRequest request =
             ListActivePublicLobbiesRequest
                 .builder()
@@ -195,7 +227,7 @@ public class LobbiesV3 {
                 .region(region)
                 .build();
         RequestOperation<ListActivePublicLobbiesRequest, ListActivePublicLobbiesResponse> operation
-              = new ListActivePublicLobbies.Sync(sdkConfiguration);
+              = new ListActivePublicLobbies.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

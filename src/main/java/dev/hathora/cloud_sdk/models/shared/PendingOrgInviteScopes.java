@@ -20,7 +20,7 @@ import java.util.List;
 public class PendingOrgInviteScopes {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private PendingOrgInviteScopes(TypedObject value) {
         this.value = value;
@@ -28,12 +28,12 @@ public class PendingOrgInviteScopes {
 
     public static PendingOrgInviteScopes of(UserRole value) {
         Utils.checkNotNull(value, "value");
-        return new PendingOrgInviteScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<UserRole>(){}));
+        return new PendingOrgInviteScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static PendingOrgInviteScopes of(List<Scope> value) {
         Utils.checkNotNull(value, "value");
-        return new PendingOrgInviteScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<Scope>>(){}));
+        return new PendingOrgInviteScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -56,7 +56,7 @@ public class PendingOrgInviteScopes {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -67,7 +67,7 @@ public class PendingOrgInviteScopes {
             return false;
         }
         PendingOrgInviteScopes other = (PendingOrgInviteScopes) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -90,6 +90,6 @@ public class PendingOrgInviteScopes {
         return Utils.toString(PendingOrgInviteScopes.class,
                 "value", value);
     }
- 
+
 }
 

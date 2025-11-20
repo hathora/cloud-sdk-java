@@ -8,8 +8,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.CreateAppConfig;
 import dev.hathora.cloud_sdk.operations.CreateApp;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -18,6 +18,7 @@ public class CreateAppRequestBuilder {
     private CreateAppConfig createAppConfig;
     private Optional<String> orgId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateAppRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -50,10 +51,10 @@ public class CreateAppRequestBuilder {
         return request;
     }
 
-    public CreateAppResponse call() throws Exception {
+    public CreateAppResponse call() {
         
         RequestOperation<CreateAppRequest, CreateAppResponse> operation
-              = new CreateApp.Sync(sdkConfiguration);
+              = new CreateApp.Sync(sdkConfiguration, _headers);
         CreateAppRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

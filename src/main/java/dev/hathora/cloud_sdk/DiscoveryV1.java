@@ -8,23 +8,38 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
 import dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsDeprecatedRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetPingServiceEndpointsDeprecatedResponse;
 import dev.hathora.cloud_sdk.operations.GetPingServiceEndpointsDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 
 /**
- * Deprecated. Does not include latest Regions (missing Dallas region). Use [DiscoveryV2](https://hathora.dev/api#tag/DiscoveryV2).
+ * Deprecated. Does not include latest Regions (missing Dallas region). Use
+ * [DiscoveryV2](https://hathora.dev/api#tag/DiscoveryV2).
  */
 public class DiscoveryV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDiscoveryV1 asyncSDK;
 
     DiscoveryV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDiscoveryV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDiscoveryV1 async() {
+        return asyncSDK;
     }
 
     /**
      * GetPingServiceEndpointsDeprecated
      * 
-     * <p>Returns an array of V1 regions with a host and port that a client can directly ping. Open a websocket connection to `wss://&lt;host&gt;:&lt;port&gt;/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back.
+     * <p>Returns an array of V1 regions with a host and port that a client can directly ping. Open a
+     * websocket connection to `wss://&lt;host&gt;:<port>/ws` and send a packet. To calculate ping, measure
+     * the time it takes to get an echo packet back.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -37,16 +52,18 @@ public class DiscoveryV1 {
     /**
      * GetPingServiceEndpointsDeprecated
      * 
-     * <p>Returns an array of V1 regions with a host and port that a client can directly ping. Open a websocket connection to `wss://&lt;host&gt;:&lt;port&gt;/ws` and send a packet. To calculate ping, measure the time it takes to get an echo packet back.
+     * <p>Returns an array of V1 regions with a host and port that a client can directly ping. Open a
+     * websocket connection to `wss://&lt;host&gt;:<port>/ws` and send a packet. To calculate ping, measure
+     * the time it takes to get an echo packet back.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetPingServiceEndpointsDeprecatedResponse getPingServiceEndpointsDeprecatedDirect() throws Exception {
+    public GetPingServiceEndpointsDeprecatedResponse getPingServiceEndpointsDeprecatedDirect() {
         RequestlessOperation<GetPingServiceEndpointsDeprecatedResponse> operation
-            = new GetPingServiceEndpointsDeprecated.Sync(sdkConfiguration);
+            = new GetPingServiceEndpointsDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 

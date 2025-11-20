@@ -25,7 +25,7 @@ import java.lang.SuppressWarnings;
 public class CreatedBy {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private CreatedBy(TypedObject value) {
         this.value = value;
@@ -33,12 +33,11 @@ public class CreatedBy {
 
     public static CreatedBy of(String value) {
         Utils.checkNotNull(value, "value");
-        return new CreatedBy(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new CreatedBy(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static CreatedBy of(double value) {
-        Utils.checkNotNull(value, "value");
-        return new CreatedBy(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Double>(){}));
+        return new CreatedBy(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -61,7 +60,7 @@ public class CreatedBy {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -72,7 +71,7 @@ public class CreatedBy {
             return false;
         }
         CreatedBy other = (CreatedBy) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -95,6 +94,6 @@ public class CreatedBy {
         return Utils.toString(CreatedBy.class,
                 "value", value);
     }
- 
+
 }
 

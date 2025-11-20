@@ -32,18 +32,31 @@ import dev.hathora.cloud_sdk.operations.GetApp;
 import dev.hathora.cloud_sdk.operations.GetApps;
 import dev.hathora.cloud_sdk.operations.PatchApp;
 import dev.hathora.cloud_sdk.operations.UpdateApp;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.String;
 import java.util.Optional;
 
 /**
- * Operations that allow you manage your [applications](https://hathora.dev/docs/concepts/hathora-entities#application).
+ * Operations that allow you manage your
+ * [applications](https://hathora.dev/docs/concepts/hathora-entities#application).
  */
 public class AppsV2 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAppsV2 asyncSDK;
 
     AppsV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncAppsV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAppsV2 async() {
+        return asyncSDK;
     }
 
     /**
@@ -64,9 +77,9 @@ public class AppsV2 {
      * 
      * @param createAppConfig 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateAppResponse createApp(CreateAppConfig createAppConfig) throws Exception {
+    public CreateAppResponse createApp(CreateAppConfig createAppConfig) {
         return createApp(createAppConfig, Optional.empty());
     }
 
@@ -78,9 +91,9 @@ public class AppsV2 {
      * @param createAppConfig 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateAppResponse createApp(CreateAppConfig createAppConfig, Optional<String> orgId) throws Exception {
+    public CreateAppResponse createApp(CreateAppConfig createAppConfig, Optional<String> orgId) {
         CreateAppRequest request =
             CreateAppRequest
                 .builder()
@@ -88,14 +101,15 @@ public class AppsV2 {
                 .orgId(orgId)
                 .build();
         RequestOperation<CreateAppRequest, CreateAppResponse> operation
-              = new CreateApp.Sync(sdkConfiguration);
+              = new CreateApp.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * DeleteApp
      * 
-     * <p>Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * <p>Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using
+     * `appId`. Your organization will lose access to this application.
      * 
      * @return The call builder
      */
@@ -106,39 +120,42 @@ public class AppsV2 {
     /**
      * DeleteApp
      * 
-     * <p>Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * <p>Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using
+     * `appId`. Your organization will lose access to this application.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteAppResponse deleteAppDirect() throws Exception {
+    public DeleteAppResponse deleteAppDirect() {
         return deleteApp(Optional.empty());
     }
 
     /**
      * DeleteApp
      * 
-     * <p>Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`. Your organization will lose access to this application.
+     * <p>Delete an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using
+     * `appId`. Your organization will lose access to this application.
      * 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteAppResponse deleteApp(Optional<String> appId) throws Exception {
+    public DeleteAppResponse deleteApp(Optional<String> appId) {
         DeleteAppRequest request =
             DeleteAppRequest
                 .builder()
                 .appId(appId)
                 .build();
         RequestOperation<DeleteAppRequest, DeleteAppResponse> operation
-              = new DeleteApp.Sync(sdkConfiguration);
+              = new DeleteApp.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetApp
      * 
-     * <p>Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * <p>Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application)
+     * using `appId`.
      * 
      * @return The call builder
      */
@@ -149,39 +166,43 @@ public class AppsV2 {
     /**
      * GetApp
      * 
-     * <p>Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * <p>Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application)
+     * using `appId`.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetAppResponse getAppDirect() throws Exception {
+    public GetAppResponse getAppDirect() {
         return getApp(Optional.empty());
     }
 
     /**
      * GetApp
      * 
-     * <p>Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * <p>Get details for an [application](https://hathora.dev/docs/concepts/hathora-entities#application)
+     * using `appId`.
      * 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetAppResponse getApp(Optional<String> appId) throws Exception {
+    public GetAppResponse getApp(Optional<String> appId) {
         GetAppRequest request =
             GetAppRequest
                 .builder()
                 .appId(appId)
                 .build();
         RequestOperation<GetAppRequest, GetAppResponse> operation
-              = new GetApp.Sync(sdkConfiguration);
+              = new GetApp.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetApps
      * 
-     * <p>Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+     * <p>Returns an unsorted list of your organization’s
+     * [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is
+     * uniquely identified by an `appId`.
      * 
      * @return The call builder
      */
@@ -192,39 +213,44 @@ public class AppsV2 {
     /**
      * GetApps
      * 
-     * <p>Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+     * <p>Returns an unsorted list of your organization’s
+     * [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is
+     * uniquely identified by an `appId`.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetAppsResponse getAppsDirect() throws Exception {
+    public GetAppsResponse getAppsDirect() {
         return getApps(Optional.empty());
     }
 
     /**
      * GetApps
      * 
-     * <p>Returns an unsorted list of your organization’s [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is uniquely identified by an `appId`.
+     * <p>Returns an unsorted list of your organization’s
+     * [applications](https://hathora.dev/docs/concepts/hathora-entities#application). An application is
+     * uniquely identified by an `appId`.
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetAppsResponse getApps(Optional<String> orgId) throws Exception {
+    public GetAppsResponse getApps(Optional<String> orgId) {
         GetAppsRequest request =
             GetAppsRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<GetAppsRequest, GetAppsResponse> operation
-              = new GetApps.Sync(sdkConfiguration);
+              = new GetApps.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * PatchApp
      * 
-     * <p>Patch data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * <p>Patch data for an existing
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * 
      * @return The call builder
      */
@@ -235,27 +261,29 @@ public class AppsV2 {
     /**
      * PatchApp
      * 
-     * <p>Patch data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * <p>Patch data for an existing
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * 
      * @param partialAppConfigWithServiceConfig Make all properties in T optional
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PatchAppResponse patchApp(PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig) throws Exception {
+    public PatchAppResponse patchApp(PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig) {
         return patchApp(partialAppConfigWithServiceConfig, Optional.empty());
     }
 
     /**
      * PatchApp
      * 
-     * <p>Patch data for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * <p>Patch data for an existing
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * 
      * @param partialAppConfigWithServiceConfig Make all properties in T optional
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PatchAppResponse patchApp(PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig, Optional<String> appId) throws Exception {
+    public PatchAppResponse patchApp(PartialAppConfigWithServiceConfig partialAppConfigWithServiceConfig, Optional<String> appId) {
         PatchAppRequest request =
             PatchAppRequest
                 .builder()
@@ -263,14 +291,15 @@ public class AppsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<PatchAppRequest, PatchAppResponse> operation
-              = new PatchApp.Sync(sdkConfiguration);
+              = new PatchApp.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * UpdateApp
      * 
-     * <p>Set application config (will override all fields) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * <p>Set application config (will override all fields) for an existing
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * 
      * @return The call builder
      */
@@ -281,27 +310,29 @@ public class AppsV2 {
     /**
      * UpdateApp
      * 
-     * <p>Set application config (will override all fields) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * <p>Set application config (will override all fields) for an existing
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * 
      * @param appConfigWithServiceConfig 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateAppResponse updateApp(AppConfigWithServiceConfig appConfigWithServiceConfig) throws Exception {
+    public UpdateAppResponse updateApp(AppConfigWithServiceConfig appConfigWithServiceConfig) {
         return updateApp(appConfigWithServiceConfig, Optional.empty());
     }
 
     /**
      * UpdateApp
      * 
-     * <p>Set application config (will override all fields) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
+     * <p>Set application config (will override all fields) for an existing
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application) using `appId`.
      * 
      * @param appConfigWithServiceConfig 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateAppResponse updateApp(AppConfigWithServiceConfig appConfigWithServiceConfig, Optional<String> appId) throws Exception {
+    public UpdateAppResponse updateApp(AppConfigWithServiceConfig appConfigWithServiceConfig, Optional<String> appId) {
         UpdateAppRequest request =
             UpdateAppRequest
                 .builder()
@@ -309,7 +340,7 @@ public class AppsV2 {
                 .appId(appId)
                 .build();
         RequestOperation<UpdateAppRequest, UpdateAppResponse> operation
-              = new UpdateApp.Sync(sdkConfiguration);
+              = new UpdateApp.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

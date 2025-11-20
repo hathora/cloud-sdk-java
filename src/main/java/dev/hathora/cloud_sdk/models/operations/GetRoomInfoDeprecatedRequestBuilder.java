@@ -7,8 +7,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetRoomInfoDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -17,6 +17,7 @@ public class GetRoomInfoDeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String roomId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetRoomInfoDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,10 +50,10 @@ public class GetRoomInfoDeprecatedRequestBuilder {
         return request;
     }
 
-    public GetRoomInfoDeprecatedResponse call() throws Exception {
+    public GetRoomInfoDeprecatedResponse call() {
         
         RequestOperation<GetRoomInfoDeprecatedRequest, GetRoomInfoDeprecatedResponse> operation
-              = new GetRoomInfoDeprecated.Sync(sdkConfiguration);
+              = new GetRoomInfoDeprecated.Sync(sdkConfiguration, _headers);
         GetRoomInfoDeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

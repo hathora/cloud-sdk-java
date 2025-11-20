@@ -25,7 +25,7 @@ import java.lang.SuppressWarnings;
 public class LobbyV3CreatedBy {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private LobbyV3CreatedBy(TypedObject value) {
         this.value = value;
@@ -33,12 +33,11 @@ public class LobbyV3CreatedBy {
 
     public static LobbyV3CreatedBy of(String value) {
         Utils.checkNotNull(value, "value");
-        return new LobbyV3CreatedBy(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new LobbyV3CreatedBy(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static LobbyV3CreatedBy of(double value) {
-        Utils.checkNotNull(value, "value");
-        return new LobbyV3CreatedBy(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Double>(){}));
+        return new LobbyV3CreatedBy(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -61,7 +60,7 @@ public class LobbyV3CreatedBy {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -72,7 +71,7 @@ public class LobbyV3CreatedBy {
             return false;
         }
         LobbyV3CreatedBy other = (LobbyV3CreatedBy) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -95,6 +94,6 @@ public class LobbyV3CreatedBy {
         return Utils.toString(LobbyV3CreatedBy.class,
                 "value", value);
     }
- 
+
 }
 

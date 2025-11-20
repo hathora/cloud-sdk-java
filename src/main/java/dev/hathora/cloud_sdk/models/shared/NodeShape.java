@@ -59,6 +59,20 @@ public class NodeShape {
     public static final NodeShape GPU_L422496 = new NodeShape("gpu-l4-2-24-96");
     public static final NodeShape GPU_L4448192 = new NodeShape("gpu-l4-4-48-192");
     public static final NodeShape GPU_L4896384 = new NodeShape("gpu-l4-8-96-384");
+    public static final NodeShape GPU_H100126234 = new NodeShape("gpu-h100-1-26-234");
+    public static final NodeShape GPU_H100252468 = new NodeShape("gpu-h100-2-52-468");
+    public static final NodeShape GPU_H1004104936 = new NodeShape("gpu-h100-4-104-936");
+    public static final NodeShape GPU_H10082081872 = new NodeShape("gpu-h100-8-208-1872");
+    public static final NodeShape GPU_H100128180 = new NodeShape("gpu-h100-1-28-180");
+    public static final NodeShape GPU_H100260360 = new NodeShape("gpu-h100-2-60-360");
+    public static final NodeShape GPU_H1004124720 = new NodeShape("gpu-h100-4-124-720");
+    public static final NodeShape GPU_H10082521440 = new NodeShape("gpu-h100-8-252-1440");
+    public static final NodeShape GPU_H10081921800 = new NodeShape("gpu-h100-8-192-1800");
+    public static final NodeShape GPU_H1008192960 = new NodeShape("gpu-h100-8-192-960");
+    public static final NodeShape GPU_H100116200 = new NodeShape("gpu-h100-1-16-200");
+    public static final NodeShape GPU_H10081281600 = new NodeShape("gpu-h100-8-128-1600");
+    public static final NodeShape GPU_H200116200 = new NodeShape("gpu-h200-1-16-200");
+    public static final NodeShape GPU_H20081281600 = new NodeShape("gpu-h200-8-128-1600");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -144,6 +158,20 @@ public class NodeShape {
         map.put("gpu-l4-2-24-96", GPU_L422496);
         map.put("gpu-l4-4-48-192", GPU_L4448192);
         map.put("gpu-l4-8-96-384", GPU_L4896384);
+        map.put("gpu-h100-1-26-234", GPU_H100126234);
+        map.put("gpu-h100-2-52-468", GPU_H100252468);
+        map.put("gpu-h100-4-104-936", GPU_H1004104936);
+        map.put("gpu-h100-8-208-1872", GPU_H10082081872);
+        map.put("gpu-h100-1-28-180", GPU_H100128180);
+        map.put("gpu-h100-2-60-360", GPU_H100260360);
+        map.put("gpu-h100-4-124-720", GPU_H1004124720);
+        map.put("gpu-h100-8-252-1440", GPU_H10082521440);
+        map.put("gpu-h100-8-192-1800", GPU_H10081921800);
+        map.put("gpu-h100-8-192-960", GPU_H1008192960);
+        map.put("gpu-h100-1-16-200", GPU_H100116200);
+        map.put("gpu-h100-8-128-1600", GPU_H10081281600);
+        map.put("gpu-h200-1-16-200", GPU_H200116200);
+        map.put("gpu-h200-8-128-1600", GPU_H20081281600);
         return map;
     }
 
@@ -163,6 +191,20 @@ public class NodeShape {
         map.put("gpu-l4-2-24-96", NodeShapeEnum.GPU_L422496);
         map.put("gpu-l4-4-48-192", NodeShapeEnum.GPU_L4448192);
         map.put("gpu-l4-8-96-384", NodeShapeEnum.GPU_L4896384);
+        map.put("gpu-h100-1-26-234", NodeShapeEnum.GPU_H100126234);
+        map.put("gpu-h100-2-52-468", NodeShapeEnum.GPU_H100252468);
+        map.put("gpu-h100-4-104-936", NodeShapeEnum.GPU_H1004104936);
+        map.put("gpu-h100-8-208-1872", NodeShapeEnum.GPU_H10082081872);
+        map.put("gpu-h100-1-28-180", NodeShapeEnum.GPU_H100128180);
+        map.put("gpu-h100-2-60-360", NodeShapeEnum.GPU_H100260360);
+        map.put("gpu-h100-4-124-720", NodeShapeEnum.GPU_H1004124720);
+        map.put("gpu-h100-8-252-1440", NodeShapeEnum.GPU_H10082521440);
+        map.put("gpu-h100-8-192-1800", NodeShapeEnum.GPU_H10081921800);
+        map.put("gpu-h100-8-192-960", NodeShapeEnum.GPU_H1008192960);
+        map.put("gpu-h100-1-16-200", NodeShapeEnum.GPU_H100116200);
+        map.put("gpu-h100-8-128-1600", NodeShapeEnum.GPU_H10081281600);
+        map.put("gpu-h200-1-16-200", NodeShapeEnum.GPU_H200116200);
+        map.put("gpu-h200-8-128-1600", NodeShapeEnum.GPU_H20081281600);
         return map;
     }
     
@@ -211,7 +253,21 @@ public class NodeShape {
         GPU_L411248("gpu-l4-1-12-48"),
         GPU_L422496("gpu-l4-2-24-96"),
         GPU_L4448192("gpu-l4-4-48-192"),
-        GPU_L4896384("gpu-l4-8-96-384"),;
+        GPU_L4896384("gpu-l4-8-96-384"),
+        GPU_H100126234("gpu-h100-1-26-234"),
+        GPU_H100252468("gpu-h100-2-52-468"),
+        GPU_H1004104936("gpu-h100-4-104-936"),
+        GPU_H10082081872("gpu-h100-8-208-1872"),
+        GPU_H100128180("gpu-h100-1-28-180"),
+        GPU_H100260360("gpu-h100-2-60-360"),
+        GPU_H1004124720("gpu-h100-4-124-720"),
+        GPU_H10082521440("gpu-h100-8-252-1440"),
+        GPU_H10081921800("gpu-h100-8-192-1800"),
+        GPU_H1008192960("gpu-h100-8-192-960"),
+        GPU_H100116200("gpu-h100-1-16-200"),
+        GPU_H10081281600("gpu-h100-8-128-1600"),
+        GPU_H200116200("gpu-h200-1-16-200"),
+        GPU_H20081281600("gpu-h200-8-128-1600"),;
 
         private final String value;
 

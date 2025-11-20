@@ -20,18 +20,30 @@ import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.operations.CreatePrivateLobbyDeprecated;
 import dev.hathora.cloud_sdk.operations.CreatePublicLobbyDeprecated;
 import dev.hathora.cloud_sdk.operations.ListActivePublicLobbiesDeprecatedV1;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Boolean;
 import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class LobbiesV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncLobbiesV1 asyncSDK;
 
     LobbiesV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncLobbiesV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncLobbiesV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -50,11 +62,11 @@ public class LobbiesV1 {
      * 
      * @param security The security details to use for authentication.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreatePrivateLobbyDeprecatedResponse createPrivateLobbyDeprecated(CreatePrivateLobbyDeprecatedSecurity security) throws Exception {
+    public CreatePrivateLobbyDeprecatedResponse createPrivateLobbyDeprecated(CreatePrivateLobbyDeprecatedSecurity security) {
         return createPrivateLobbyDeprecated(security, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -67,13 +79,13 @@ public class LobbiesV1 {
      * @param local 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public CreatePrivateLobbyDeprecatedResponse createPrivateLobbyDeprecated(
             CreatePrivateLobbyDeprecatedSecurity security, Optional<String> appId,
-            Optional<Boolean> local, Optional<? extends Region> region) throws Exception {
+            Optional<Boolean> local, Optional<? extends Region> region) {
         CreatePrivateLobbyDeprecatedRequest request =
             CreatePrivateLobbyDeprecatedRequest
                 .builder()
@@ -82,7 +94,7 @@ public class LobbiesV1 {
                 .region(region)
                 .build();
         RequestOperation<CreatePrivateLobbyDeprecatedRequest, CreatePrivateLobbyDeprecatedResponse> operation
-              = new CreatePrivateLobbyDeprecated.Sync(sdkConfiguration, security);
+              = new CreatePrivateLobbyDeprecated.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -102,11 +114,11 @@ public class LobbiesV1 {
      * 
      * @param security The security details to use for authentication.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreatePublicLobbyDeprecatedResponse createPublicLobbyDeprecated(CreatePublicLobbyDeprecatedSecurity security) throws Exception {
+    public CreatePublicLobbyDeprecatedResponse createPublicLobbyDeprecated(CreatePublicLobbyDeprecatedSecurity security) {
         return createPublicLobbyDeprecated(security, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -119,13 +131,13 @@ public class LobbiesV1 {
      * @param local 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public CreatePublicLobbyDeprecatedResponse createPublicLobbyDeprecated(
             CreatePublicLobbyDeprecatedSecurity security, Optional<String> appId,
-            Optional<Boolean> local, Optional<? extends Region> region) throws Exception {
+            Optional<Boolean> local, Optional<? extends Region> region) {
         CreatePublicLobbyDeprecatedRequest request =
             CreatePublicLobbyDeprecatedRequest
                 .builder()
@@ -134,7 +146,7 @@ public class LobbiesV1 {
                 .region(region)
                 .build();
         RequestOperation<CreatePublicLobbyDeprecatedRequest, CreatePublicLobbyDeprecatedResponse> operation
-              = new CreatePublicLobbyDeprecated.Sync(sdkConfiguration, security);
+              = new CreatePublicLobbyDeprecated.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,11 +165,11 @@ public class LobbiesV1 {
      * ListActivePublicLobbiesDeprecatedV1
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public ListActivePublicLobbiesDeprecatedV1Response listActivePublicLobbiesDeprecatedV1Direct() throws Exception {
+    public ListActivePublicLobbiesDeprecatedV1Response listActivePublicLobbiesDeprecatedV1Direct() {
         return listActivePublicLobbiesDeprecatedV1(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -168,13 +180,13 @@ public class LobbiesV1 {
      * @param local 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public ListActivePublicLobbiesDeprecatedV1Response listActivePublicLobbiesDeprecatedV1(
             Optional<String> appId, Optional<Boolean> local,
-            Optional<? extends Region> region) throws Exception {
+            Optional<? extends Region> region) {
         ListActivePublicLobbiesDeprecatedV1Request request =
             ListActivePublicLobbiesDeprecatedV1Request
                 .builder()
@@ -183,7 +195,7 @@ public class LobbiesV1 {
                 .region(region)
                 .build();
         RequestOperation<ListActivePublicLobbiesDeprecatedV1Request, ListActivePublicLobbiesDeprecatedV1Response> operation
-              = new ListActivePublicLobbiesDeprecatedV1.Sync(sdkConfiguration);
+              = new ListActivePublicLobbiesDeprecatedV1.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

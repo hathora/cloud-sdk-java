@@ -8,8 +8,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.DeploymentConfig;
 import dev.hathora.cloud_sdk.operations.CreateDeploymentV1Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Optional;
@@ -20,6 +20,7 @@ public class CreateDeploymentV1DeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Integer buildId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateDeploymentV1DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -59,10 +60,10 @@ public class CreateDeploymentV1DeprecatedRequestBuilder {
         return request;
     }
 
-    public CreateDeploymentV1DeprecatedResponse call() throws Exception {
+    public CreateDeploymentV1DeprecatedResponse call() {
         
         RequestOperation<CreateDeploymentV1DeprecatedRequest, CreateDeploymentV1DeprecatedResponse> operation
-              = new CreateDeploymentV1Deprecated.Sync(sdkConfiguration);
+              = new CreateDeploymentV1Deprecated.Sync(sdkConfiguration, _headers);
         CreateDeploymentV1DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

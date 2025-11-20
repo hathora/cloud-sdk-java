@@ -3,6 +3,7 @@
  */
 package dev.hathora.cloud_sdk;
 
+import dev.hathora.cloud_sdk.utils.AsyncHooks;
 import dev.hathora.cloud_sdk.utils.Globals;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.Hooks;
@@ -12,13 +13,15 @@ import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "0.0.1";
-    public static final String SDK_VERSION = "3.2.0";
-    public static final String GEN_VERSION = "2.687.11";
+    public static final String SDK_VERSION = "3.3.0";
+    public static final String GEN_VERSION = "2.755.9";
     private static final String BASE_PACKAGE = "dev.hathora.cloud_sdk";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
@@ -105,6 +108,15 @@ public class SDKConfiguration {
 
     @SuppressWarnings("serial")
     public Globals globals = new Globals();
+    /**
+     * Sets the globals configuration. Used by Spring Boot auto-configuration.
+     *
+     * @param globals The globals configuration to set.
+     */
+    public void setGlobals(Globals globals) {
+        Utils.checkNotNull(globals, "globals");
+        this.globals = globals;
+    }
     
     private Optional<RetryConfig> retryConfig = Optional.empty();
     
@@ -115,5 +127,26 @@ public class SDKConfiguration {
     public void setRetryConfig(Optional<RetryConfig> retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = retryConfig;
+    }
+    private ScheduledExecutorService retryScheduler = Executors.newSingleThreadScheduledExecutor();
+    
+    public ScheduledExecutorService retryScheduler() {
+        return retryScheduler;
+    }
+
+    public void setAsyncRetryScheduler(ScheduledExecutorService retryScheduler) {
+        Utils.checkNotNull(retryScheduler, "retryScheduler");
+        this.retryScheduler = retryScheduler;
+    }
+
+    private AsyncHooks _asyncHooks = new AsyncHooks();
+
+    public AsyncHooks asyncHooks() {
+        return _asyncHooks;
+    }
+
+    public void setAsyncHooks(AsyncHooks asyncHooks) {
+        Utils.checkNotNull(asyncHooks, "asyncHooks");
+        this._asyncHooks = asyncHooks;
     }
 }

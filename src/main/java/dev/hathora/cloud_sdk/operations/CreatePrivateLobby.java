@@ -4,6 +4,8 @@
 package dev.hathora.cloud_sdk.operations;
 
 import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
+import static dev.hathora.cloud_sdk.utils.Exceptions.unchecked;
+import static dev.hathora.cloud_sdk.operations.Operations.AsyncRequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_sdk.SDKConfiguration;
@@ -14,8 +16,10 @@ import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyRequest;
 import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyResponse;
 import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbySecurity;
 import dev.hathora.cloud_sdk.models.shared.Lobby;
+import dev.hathora.cloud_sdk.utils.Blob;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Hook.AfterErrorContextImpl;
 import dev.hathora.cloud_sdk.utils.Hook.AfterSuccessContextImpl;
 import dev.hathora.cloud_sdk.utils.Hook.BeforeRequestContextImpl;
@@ -24,12 +28,15 @@ import dev.hathora.cloud_sdk.utils.Utils.JsonShape;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.IllegalArgumentException;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Optional;
-
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
 
 public class CreatePrivateLobby {
@@ -40,9 +47,13 @@ public class CreatePrivateLobby {
         final CreatePrivateLobbySecurity security;
         final SecuritySource securitySource;
         final HTTPClient client;
+        final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, CreatePrivateLobbySecurity security) {
+        public Base(
+                SDKConfiguration sdkConfiguration, CreatePrivateLobbySecurity security,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
+            this._headers =_headers;
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.security = security;
             // hooks will be passed method level security only
@@ -80,10 +91,9 @@ public class CreatePrivateLobby {
                     java.util.Optional.empty(),
                     securitySource());
         }
-
-        HttpRequest buildRequest(CreatePrivateLobbyRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
-                    CreatePrivateLobbyRequest.class,
+                    klass,
                     this.baseUrl,
                     "/lobby/v2/{appId}/create/private",
                     request, this.sdkConfiguration.globals);
@@ -91,22 +101,22 @@ public class CreatePrivateLobby {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "requestBody",
                     "json",
                     false);
             if (serializedRequestBody == null) {
-                throw new Exception("Request body is required");
+                throw new IllegalArgumentException("Request body is required");
             }
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
 
             req.addQueryParams(Utils.getQueryParams(
-                    CreatePrivateLobbyRequest.class,
+                    klass,
                     request,
                     this.sdkConfiguration.globals));
             Utils.configureSecurity(req, security);
@@ -117,12 +127,16 @@ public class CreatePrivateLobby {
 
     public static class Sync extends Base
             implements RequestOperation<CreatePrivateLobbyRequest, CreatePrivateLobbyResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, CreatePrivateLobbySecurity security) {
-            super(sdkConfiguration, security);
+        public Sync(
+                SDKConfiguration sdkConfiguration, CreatePrivateLobbySecurity security,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, security,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(CreatePrivateLobbyRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, CreatePrivateLobbyRequest.class, new TypeReference<CreatePrivateLobbyRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -138,18 +152,18 @@ public class CreatePrivateLobby {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(CreatePrivateLobbyRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(CreatePrivateLobbyRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
-                if (Utils.statusCodeMatches(httpRes.statusCode(), "400", "401", "402", "404", "422", "429", "4XX", "500", "5XX")) {
+                if (Utils.statusCodeMatches(httpRes.statusCode(), "400", "401", "402", "404", "408", "422", "429", "4XX", "500", "5XX")) {
                     httpRes = onError(httpRes, null);
                 } else {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -157,7 +171,7 @@ public class CreatePrivateLobby {
 
 
         @Override
-        public CreatePrivateLobbyResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public CreatePrivateLobbyResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -173,76 +187,125 @@ public class CreatePrivateLobby {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    Lobby out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withLobby(out);
-                    return res;
+                    return res.withLobby(Utils.unmarshal(response, new TypeReference<Lobby>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "402", "404", "422", "429")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "402", "404", "408", "422", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    ApiError out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw ApiError.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "500")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    ApiError out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw ApiError.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
                 // no content
-                throw new SDKError(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw SDKError.from("API error occurred", response);
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 // no content
-                throw new SDKError(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw SDKError.from("API error occurred", response);
             }
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
+        }
+    }
+    public static class Async extends Base
+            implements AsyncRequestOperation<CreatePrivateLobbyRequest, dev.hathora.cloud_sdk.models.operations.async.CreatePrivateLobbyResponse> {
+
+        public Async(
+                SDKConfiguration sdkConfiguration, CreatePrivateLobbySecurity security,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, security,
+                  _headers);
+        }
+
+        private CompletableFuture<HttpRequest> onBuildRequest(CreatePrivateLobbyRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, CreatePrivateLobbyRequest.class, new TypeReference<CreatePrivateLobbyRequest>() {});
+            return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
+        }
+
+        private CompletableFuture<HttpResponse<Blob>> onError(HttpResponse<Blob> response, Throwable error) {
+            return this.sdkConfiguration.asyncHooks().afterError(createAfterErrorContext(), response, error);
+        }
+
+        private CompletableFuture<HttpResponse<Blob>> onSuccess(HttpResponse<Blob> response) {
+            return this.sdkConfiguration.asyncHooks().afterSuccess(createAfterSuccessContext(), response);
+        }
+
+        @Override
+        public CompletableFuture<HttpResponse<Blob>> doRequest(CreatePrivateLobbyRequest request) {
+            return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
+                    .handle((resp, err) -> {
+                        if (err != null) {
+                            return onError(null, err);
+                        }
+                        if (Utils.statusCodeMatches(resp.statusCode(), "400", "401", "402", "404", "408", "422", "429", "4XX", "500", "5XX")) {
+                            return onError(resp, null);
+                        }
+                        return CompletableFuture.completedFuture(resp);
+                    })
+                    .thenCompose(Function.identity())
+                    .thenCompose(this::onSuccess);
+        }
+
+        @Override
+        public CompletableFuture<dev.hathora.cloud_sdk.models.operations.async.CreatePrivateLobbyResponse> handleResponse(
+                HttpResponse<Blob> response) {
+            String contentType = response
+                    .headers()
+                    .firstValue("Content-Type")
+                    .orElse("application/octet-stream");
+            dev.hathora.cloud_sdk.models.operations.async.CreatePrivateLobbyResponse.Builder resBuilder =
+                    dev.hathora.cloud_sdk.models.operations.async.CreatePrivateLobbyResponse
+                            .builder()
+                            .contentType(contentType)
+                            .statusCode(response.statusCode())
+                            .rawResponse(response);
+
+            dev.hathora.cloud_sdk.models.operations.async.CreatePrivateLobbyResponse res = resBuilder.build();
             
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return Utils.unmarshalAsync(response, new TypeReference<Lobby>() {})
+                            .thenApply(res::withLobby);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "402", "404", "408", "422", "429")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return ApiError.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "500")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return ApiError.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
+                // no content
+                return Utils.createAsyncApiError(response, "API error occurred");
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
+                // no content
+                return Utils.createAsyncApiError(response, "API error occurred");
+            }
+            return Utils.createAsyncApiError(response, "Unexpected status code received: " + response.statusCode());
         }
     }
 }

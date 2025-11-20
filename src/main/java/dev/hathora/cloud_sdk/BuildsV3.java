@@ -36,24 +36,41 @@ import dev.hathora.cloud_sdk.operations.GetBuild;
 import dev.hathora.cloud_sdk.operations.GetBuilds;
 import dev.hathora.cloud_sdk.operations.RunBuild;
 import dev.hathora.cloud_sdk.operations.RunBuildRegistry;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.String;
 import java.util.Optional;
 
 /**
- * Operations that allow you create and manage your [builds](https://hathora.dev/docs/concepts/hathora-entities#build).
+ * Operations that allow you create and manage your
+ * [builds](https://hathora.dev/docs/concepts/hathora-entities#build).
  */
 public class BuildsV3 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBuildsV3 asyncSDK;
 
     BuildsV3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBuildsV3(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBuildsV3 async() {
+        return asyncSDK;
     }
 
     /**
      * CreateBuild
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional
+     * `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`.
+     * Responds with a `buildId` that you must pass to
+     * [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server
+     * artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * 
      * @return The call builder
      */
@@ -64,27 +81,35 @@ public class BuildsV3 {
     /**
      * CreateBuild
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional
+     * `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`.
+     * Responds with a `buildId` that you must pass to
+     * [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server
+     * artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * 
      * @param createMultipartBuildParams 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateBuildResponse createBuild(CreateMultipartBuildParams createMultipartBuildParams) throws Exception {
+    public CreateBuildResponse createBuild(CreateMultipartBuildParams createMultipartBuildParams) {
         return createBuild(createMultipartBuildParams, Optional.empty());
     }
 
     /**
      * CreateBuild
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`. Responds with a `buildId` that you must pass to [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) with optional
+     * `multipartUploadUrls` that can be used to upload larger builds in parts before calling `runBuild`.
+     * Responds with a `buildId` that you must pass to
+     * [`RunBuild()`](https://hathora.dev/api#tag/BuildV1/operation/RunBuild) to build the game server
+     * artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
      * 
      * @param createMultipartBuildParams 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateBuildResponse createBuild(CreateMultipartBuildParams createMultipartBuildParams, Optional<String> orgId) throws Exception {
+    public CreateBuildResponse createBuild(CreateMultipartBuildParams createMultipartBuildParams, Optional<String> orgId) {
         CreateBuildRequest request =
             CreateBuildRequest
                 .builder()
@@ -92,14 +117,18 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<CreateBuildRequest, CreateBuildResponse> operation
-              = new CreateBuild.Sync(sdkConfiguration);
+              = new CreateBuild.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * CreateBuildRegistry
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) to be used with `runBuildRegistry`. Responds with a `buildId` that you must pass to [`RunBuildRegistry()`](https://hathora.dev/api#tag/BuildV3/operation/RunBuildRegistry) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) to be used with
+     * `runBuildRegistry`. Responds with a `buildId` that you must pass to
+     * [`RunBuildRegistry()`](https://hathora.dev/api#tag/BuildV3/operation/RunBuildRegistry) to build the
+     * game server artifact. You can optionally pass in a `buildTag` to associate an external version with
+     * a build.
      * 
      * @return The call builder
      */
@@ -110,27 +139,35 @@ public class BuildsV3 {
     /**
      * CreateBuildRegistry
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) to be used with `runBuildRegistry`. Responds with a `buildId` that you must pass to [`RunBuildRegistry()`](https://hathora.dev/api#tag/BuildV3/operation/RunBuildRegistry) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) to be used with
+     * `runBuildRegistry`. Responds with a `buildId` that you must pass to
+     * [`RunBuildRegistry()`](https://hathora.dev/api#tag/BuildV3/operation/RunBuildRegistry) to build the
+     * game server artifact. You can optionally pass in a `buildTag` to associate an external version with
+     * a build.
      * 
      * @param createBuildV3Params 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateBuildRegistryResponse createBuildRegistry(CreateBuildV3Params createBuildV3Params) throws Exception {
+    public CreateBuildRegistryResponse createBuildRegistry(CreateBuildV3Params createBuildV3Params) {
         return createBuildRegistry(createBuildV3Params, Optional.empty());
     }
 
     /**
      * CreateBuildRegistry
      * 
-     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) to be used with `runBuildRegistry`. Responds with a `buildId` that you must pass to [`RunBuildRegistry()`](https://hathora.dev/api#tag/BuildV3/operation/RunBuildRegistry) to build the game server artifact. You can optionally pass in a `buildTag` to associate an external version with a build.
+     * <p>Creates a new [build](https://hathora.dev/docs/concepts/hathora-entities#build) to be used with
+     * `runBuildRegistry`. Responds with a `buildId` that you must pass to
+     * [`RunBuildRegistry()`](https://hathora.dev/api#tag/BuildV3/operation/RunBuildRegistry) to build the
+     * game server artifact. You can optionally pass in a `buildTag` to associate an external version with
+     * a build.
      * 
      * @param createBuildV3Params 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateBuildRegistryResponse createBuildRegistry(CreateBuildV3Params createBuildV3Params, Optional<String> orgId) throws Exception {
+    public CreateBuildRegistryResponse createBuildRegistry(CreateBuildV3Params createBuildV3Params, Optional<String> orgId) {
         CreateBuildRegistryRequest request =
             CreateBuildRegistryRequest
                 .builder()
@@ -138,16 +175,19 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<CreateBuildRegistryRequest, CreateBuildRegistryResponse> operation
-              = new CreateBuildRegistry.Sync(sdkConfiguration);
+              = new CreateBuildRegistry.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * DeleteBuild
      * 
-     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
-     * Be careful which builds you delete. This endpoint does not prevent you from deleting actively used builds.
-     * Deleting a build that is actively build used by an app's deployment will cause failures when creating rooms.
+     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata
+     * is deleted.
+     * Be careful which builds you delete. This endpoint does not prevent you from deleting actively used
+     * builds.
+     * Deleting a build that is actively build used by an app's deployment will cause failures when
+     * creating rooms.
      * 
      * @return The call builder
      */
@@ -158,31 +198,37 @@ public class BuildsV3 {
     /**
      * DeleteBuild
      * 
-     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
-     * Be careful which builds you delete. This endpoint does not prevent you from deleting actively used builds.
-     * Deleting a build that is actively build used by an app's deployment will cause failures when creating rooms.
+     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata
+     * is deleted.
+     * Be careful which builds you delete. This endpoint does not prevent you from deleting actively used
+     * builds.
+     * Deleting a build that is actively build used by an app's deployment will cause failures when
+     * creating rooms.
      * 
      * @param buildId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteBuildResponse deleteBuild(String buildId) throws Exception {
+    public DeleteBuildResponse deleteBuild(String buildId) {
         return deleteBuild(buildId, Optional.empty());
     }
 
     /**
      * DeleteBuild
      * 
-     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata is deleted.
-     * Be careful which builds you delete. This endpoint does not prevent you from deleting actively used builds.
-     * Deleting a build that is actively build used by an app's deployment will cause failures when creating rooms.
+     * <p>Delete a [build](https://hathora.dev/docs/concepts/hathora-entities#build). All associated metadata
+     * is deleted.
+     * Be careful which builds you delete. This endpoint does not prevent you from deleting actively used
+     * builds.
+     * Deleting a build that is actively build used by an app's deployment will cause failures when
+     * creating rooms.
      * 
      * @param buildId 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteBuildResponse deleteBuild(String buildId, Optional<String> orgId) throws Exception {
+    public DeleteBuildResponse deleteBuild(String buildId, Optional<String> orgId) {
         DeleteBuildRequest request =
             DeleteBuildRequest
                 .builder()
@@ -190,7 +236,7 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<DeleteBuildRequest, DeleteBuildResponse> operation
-              = new DeleteBuild.Sync(sdkConfiguration);
+              = new DeleteBuild.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -212,9 +258,9 @@ public class BuildsV3 {
      * 
      * @param buildId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetBuildResponse getBuild(String buildId) throws Exception {
+    public GetBuildResponse getBuild(String buildId) {
         return getBuild(buildId, Optional.empty());
     }
 
@@ -226,9 +272,9 @@ public class BuildsV3 {
      * @param buildId 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetBuildResponse getBuild(String buildId, Optional<String> orgId) throws Exception {
+    public GetBuildResponse getBuild(String buildId, Optional<String> orgId) {
         GetBuildRequest request =
             GetBuildRequest
                 .builder()
@@ -236,14 +282,15 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<GetBuildRequest, GetBuildResponse> operation
-              = new GetBuild.Sync(sdkConfiguration);
+              = new GetBuild.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetBuilds
      * 
-     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @return The call builder
      */
@@ -254,39 +301,42 @@ public class BuildsV3 {
     /**
      * GetBuilds
      * 
-     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetBuildsResponse getBuildsDirect() throws Exception {
+    public GetBuildsResponse getBuildsDirect() {
         return getBuilds(Optional.empty());
     }
 
     /**
      * GetBuilds
      * 
-     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Returns an array of [builds](https://hathora.dev/docs/concepts/hathora-entities#build) for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetBuildsResponse getBuilds(Optional<String> orgId) throws Exception {
+    public GetBuildsResponse getBuilds(Optional<String> orgId) {
         GetBuildsRequest request =
             GetBuildsRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<GetBuildsRequest, GetBuildsResponse> operation
-              = new GetBuilds.Sync(sdkConfiguration);
+              = new GetBuilds.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * RunBuild
      * 
-     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from
+     * [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * 
      * @return The call builder
      */
@@ -297,27 +347,29 @@ public class BuildsV3 {
     /**
      * RunBuild
      * 
-     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from
+     * [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * 
      * @param buildId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RunBuildResponse runBuild(String buildId) throws Exception {
+    public RunBuildResponse runBuild(String buildId) {
         return runBuild(buildId, Optional.empty());
     }
 
     /**
      * RunBuild
      * 
-     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * <p>Builds a game server artifact from a tarball you provide. Pass in the `buildId` generated from
+     * [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * 
      * @param buildId 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RunBuildResponse runBuild(String buildId, Optional<String> orgId) throws Exception {
+    public RunBuildResponse runBuild(String buildId, Optional<String> orgId) {
         RunBuildRequest request =
             RunBuildRequest
                 .builder()
@@ -325,14 +377,15 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<RunBuildRequest, RunBuildResponse> operation
-              = new RunBuild.Sync(sdkConfiguration);
+              = new RunBuild.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * RunBuildRegistry
      * 
-     * <p>Builds a game server artifact from a public or private registry. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * <p>Builds a game server artifact from a public or private registry. Pass in the `buildId` generated
+     * from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * 
      * @return The call builder
      */
@@ -343,31 +396,33 @@ public class BuildsV3 {
     /**
      * RunBuildRegistry
      * 
-     * <p>Builds a game server artifact from a public or private registry. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * <p>Builds a game server artifact from a public or private registry. Pass in the `buildId` generated
+     * from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * 
      * @param registryConfig 
      * @param buildId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RunBuildRegistryResponse runBuildRegistry(RegistryConfig registryConfig, String buildId) throws Exception {
+    public RunBuildRegistryResponse runBuildRegistry(RegistryConfig registryConfig, String buildId) {
         return runBuildRegistry(registryConfig, buildId, Optional.empty());
     }
 
     /**
      * RunBuildRegistry
      * 
-     * <p>Builds a game server artifact from a public or private registry. Pass in the `buildId` generated from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
+     * <p>Builds a game server artifact from a public or private registry. Pass in the `buildId` generated
+     * from [`CreateBuild()`](https://hathora.dev/api#tag/BuildV1/operation/CreateBuild).
      * 
      * @param registryConfig 
      * @param buildId 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public RunBuildRegistryResponse runBuildRegistry(
             RegistryConfig registryConfig, String buildId,
-            Optional<String> orgId) throws Exception {
+            Optional<String> orgId) {
         RunBuildRegistryRequest request =
             RunBuildRegistryRequest
                 .builder()
@@ -376,7 +431,7 @@ public class BuildsV3 {
                 .orgId(orgId)
                 .build();
         RequestOperation<RunBuildRegistryRequest, RunBuildRegistryResponse> operation
-              = new RunBuildRegistry.Sync(sdkConfiguration);
+              = new RunBuildRegistry.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -33,7 +33,6 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig {
 
     /**
      * The headroom configuration for each region.
-     * EXPERIMENTAL - this feature is in closed beta.
      */
     @JsonProperty("staticProcessAllocation")
     private List<StaticProcessAllocationConfig> staticProcessAllocation;
@@ -75,7 +74,6 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig {
 
     /**
      * The headroom configuration for each region.
-     * EXPERIMENTAL - this feature is in closed beta.
      */
     @JsonIgnore
     public List<StaticProcessAllocationConfig> staticProcessAllocation() {
@@ -125,7 +123,6 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig {
 
     /**
      * The headroom configuration for each region.
-     * EXPERIMENTAL - this feature is in closed beta.
      */
     public ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig withStaticProcessAllocation(List<StaticProcessAllocationConfig> staticProcessAllocation) {
         Utils.checkNotNull(staticProcessAllocation, "staticProcessAllocation");
@@ -214,7 +211,6 @@ public class ApplicationWithLatestDeploymentAndBuildDeprecatedServiceConfig {
 
         /**
          * The headroom configuration for each region.
-         * EXPERIMENTAL - this feature is in closed beta.
          */
         public Builder staticProcessAllocation(List<StaticProcessAllocationConfig> staticProcessAllocation) {
             Utils.checkNotNull(staticProcessAllocation, "staticProcessAllocation");

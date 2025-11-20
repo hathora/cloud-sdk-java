@@ -9,23 +9,38 @@ import dev.hathora.cloud_sdk.models.operations.GetMetricsDeprecatedRequest;
 import dev.hathora.cloud_sdk.models.operations.GetMetricsDeprecatedRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetMetricsDeprecatedResponse;
 import dev.hathora.cloud_sdk.operations.GetMetricsDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 
 /**
- * Deprecated. Use [ProcessesV3#GetProcessMetrics](https://hathora.dev/api#tag/ProcessesV3/operation/GetProcessMetrics) to fetch metrics about a specific process.
+ * Deprecated. Use
+ * [ProcessesV3#GetProcessMetrics](https://hathora.dev/api#tag/ProcessesV3/operation/GetProcessMetrics)
+ * to fetch metrics about a specific process.
  */
 public class MetricsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncMetricsV1 asyncSDK;
 
     MetricsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncMetricsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncMetricsV1 async() {
+        return asyncSDK;
     }
 
     /**
      * GetMetricsDeprecated
      * 
-     * <p>Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
+     * <p>Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using
+     * `appId` and `processId`.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -38,17 +53,18 @@ public class MetricsV1 {
     /**
      * GetMetricsDeprecated
      * 
-     * <p>Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
+     * <p>Get metrics for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using
+     * `appId` and `processId`.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetMetricsDeprecatedResponse getMetricsDeprecated(GetMetricsDeprecatedRequest request) throws Exception {
+    public GetMetricsDeprecatedResponse getMetricsDeprecated(GetMetricsDeprecatedRequest request) {
         RequestOperation<GetMetricsDeprecatedRequest, GetMetricsDeprecatedResponse> operation
-              = new GetMetricsDeprecated.Sync(sdkConfiguration);
+              = new GetMetricsDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

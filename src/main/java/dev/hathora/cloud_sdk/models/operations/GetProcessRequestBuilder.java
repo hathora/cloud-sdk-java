@@ -7,8 +7,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetProcess;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -17,6 +17,7 @@ public class GetProcessRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String processId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetProcessRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,10 +50,10 @@ public class GetProcessRequestBuilder {
         return request;
     }
 
-    public GetProcessResponse call() throws Exception {
+    public GetProcessResponse call() {
         
         RequestOperation<GetProcessRequest, GetProcessResponse> operation
-              = new GetProcess.Sync(sdkConfiguration);
+              = new GetProcess.Sync(sdkConfiguration, _headers);
         GetProcessRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

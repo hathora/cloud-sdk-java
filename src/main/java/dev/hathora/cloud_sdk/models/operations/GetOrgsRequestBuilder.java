@@ -7,20 +7,21 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetOrgs;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 
 public class GetOrgsRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetOrgsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetOrgsResponse call() throws Exception {
+    public GetOrgsResponse call() {
         
         RequestlessOperation<GetOrgsResponse> operation
-            = new GetOrgs.Sync(sdkConfiguration);
+            = new GetOrgs.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

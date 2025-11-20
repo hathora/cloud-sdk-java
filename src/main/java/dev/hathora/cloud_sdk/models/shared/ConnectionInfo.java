@@ -24,7 +24,7 @@ import java.lang.SuppressWarnings;
 public class ConnectionInfo {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private ConnectionInfo(TypedObject value) {
         this.value = value;
@@ -32,12 +32,12 @@ public class ConnectionInfo {
 
     public static ConnectionInfo of(StartingConnectionInfo value) {
         Utils.checkNotNull(value, "value");
-        return new ConnectionInfo(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<StartingConnectionInfo>(){}));
+        return new ConnectionInfo(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ConnectionInfo of(ActiveConnectionInfo value) {
         Utils.checkNotNull(value, "value");
-        return new ConnectionInfo(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ActiveConnectionInfo>(){}));
+        return new ConnectionInfo(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -60,7 +60,7 @@ public class ConnectionInfo {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -71,7 +71,7 @@ public class ConnectionInfo {
             return false;
         }
         ConnectionInfo other = (ConnectionInfo) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -94,6 +94,6 @@ public class ConnectionInfo {
         return Utils.toString(ConnectionInfo.class,
                 "value", value);
     }
- 
+
 }
 

@@ -7,8 +7,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.DeleteAppV1Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -16,6 +16,7 @@ public class DeleteAppV1DeprecatedRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeleteAppV1DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -41,10 +42,10 @@ public class DeleteAppV1DeprecatedRequestBuilder {
         return request;
     }
 
-    public DeleteAppV1DeprecatedResponse call() throws Exception {
+    public DeleteAppV1DeprecatedResponse call() {
         
         RequestOperation<DeleteAppV1DeprecatedRequest, DeleteAppV1DeprecatedResponse> operation
-              = new DeleteAppV1Deprecated.Sync(sdkConfiguration);
+              = new DeleteAppV1Deprecated.Sync(sdkConfiguration, _headers);
         DeleteAppV1DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

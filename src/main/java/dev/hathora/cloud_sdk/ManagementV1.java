@@ -9,14 +9,26 @@ import dev.hathora.cloud_sdk.models.operations.SendVerificationEmailRequestBuild
 import dev.hathora.cloud_sdk.models.operations.SendVerificationEmailResponse;
 import dev.hathora.cloud_sdk.models.shared.VerificationEmailRequest;
 import dev.hathora.cloud_sdk.operations.SendVerificationEmail;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 
 
 public class ManagementV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncManagementV1 asyncSDK;
 
     ManagementV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncManagementV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncManagementV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -33,11 +45,11 @@ public class ManagementV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SendVerificationEmailResponse sendVerificationEmail(VerificationEmailRequest request) throws Exception {
+    public SendVerificationEmailResponse sendVerificationEmail(VerificationEmailRequest request) {
         RequestOperation<VerificationEmailRequest, SendVerificationEmailResponse> operation
-              = new SendVerificationEmail.Sync(sdkConfiguration);
+              = new SendVerificationEmail.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

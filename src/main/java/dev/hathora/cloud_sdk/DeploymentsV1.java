@@ -22,23 +22,37 @@ import dev.hathora.cloud_sdk.operations.CreateDeploymentV1Deprecated;
 import dev.hathora.cloud_sdk.operations.GetDeploymentInfoV1Deprecated;
 import dev.hathora.cloud_sdk.operations.GetDeploymentsV1Deprecated;
 import dev.hathora.cloud_sdk.operations.GetLatestDeploymentV1Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class DeploymentsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDeploymentsV1 asyncSDK;
 
     DeploymentsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDeploymentsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDeploymentsV1 async() {
+        return asyncSDK;
     }
 
     /**
      * CreateDeploymentV1Deprecated
      * 
-     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a
+     * new deployment means all new rooms created will use the latest deployment configuration, but
+     * existing games in progress will not be affected.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -51,35 +65,39 @@ public class DeploymentsV1 {
     /**
      * CreateDeploymentV1Deprecated
      * 
-     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a
+     * new deployment means all new rooms created will use the latest deployment configuration, but
+     * existing games in progress will not be affected.
      * 
      * @param deploymentConfig User specified deployment configuration for your application at runtime.
      * @param buildId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateDeploymentV1DeprecatedResponse createDeploymentV1Deprecated(DeploymentConfig deploymentConfig, int buildId) throws Exception {
+    public CreateDeploymentV1DeprecatedResponse createDeploymentV1Deprecated(DeploymentConfig deploymentConfig, int buildId) {
         return createDeploymentV1Deprecated(deploymentConfig, Optional.empty(), buildId);
     }
 
     /**
      * CreateDeploymentV1Deprecated
      * 
-     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a
+     * new deployment means all new rooms created will use the latest deployment configuration, but
+     * existing games in progress will not be affected.
      * 
      * @param deploymentConfig User specified deployment configuration for your application at runtime.
      * @param appId 
      * @param buildId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public CreateDeploymentV1DeprecatedResponse createDeploymentV1Deprecated(
             DeploymentConfig deploymentConfig, Optional<String> appId,
-            int buildId) throws Exception {
+            int buildId) {
         CreateDeploymentV1DeprecatedRequest request =
             CreateDeploymentV1DeprecatedRequest
                 .builder()
@@ -88,7 +106,7 @@ public class DeploymentsV1 {
                 .buildId(buildId)
                 .build();
         RequestOperation<CreateDeploymentV1DeprecatedRequest, CreateDeploymentV1DeprecatedResponse> operation
-              = new CreateDeploymentV1Deprecated.Sync(sdkConfiguration);
+              = new CreateDeploymentV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -112,11 +130,11 @@ public class DeploymentsV1 {
      * 
      * @param deploymentId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetDeploymentInfoV1DeprecatedResponse getDeploymentInfoV1Deprecated(int deploymentId) throws Exception {
+    public GetDeploymentInfoV1DeprecatedResponse getDeploymentInfoV1Deprecated(int deploymentId) {
         return getDeploymentInfoV1Deprecated(Optional.empty(), deploymentId);
     }
 
@@ -128,11 +146,11 @@ public class DeploymentsV1 {
      * @param appId 
      * @param deploymentId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetDeploymentInfoV1DeprecatedResponse getDeploymentInfoV1Deprecated(Optional<String> appId, int deploymentId) throws Exception {
+    public GetDeploymentInfoV1DeprecatedResponse getDeploymentInfoV1Deprecated(Optional<String> appId, int deploymentId) {
         GetDeploymentInfoV1DeprecatedRequest request =
             GetDeploymentInfoV1DeprecatedRequest
                 .builder()
@@ -140,14 +158,15 @@ public class DeploymentsV1 {
                 .deploymentId(deploymentId)
                 .build();
         RequestOperation<GetDeploymentInfoV1DeprecatedRequest, GetDeploymentInfoV1DeprecatedResponse> operation
-              = new GetDeploymentInfoV1Deprecated.Sync(sdkConfiguration);
+              = new GetDeploymentInfoV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetDeploymentsV1Deprecated
      * 
-     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for
+     * an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -160,43 +179,46 @@ public class DeploymentsV1 {
     /**
      * GetDeploymentsV1Deprecated
      * 
-     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for
+     * an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetDeploymentsV1DeprecatedResponse getDeploymentsV1DeprecatedDirect() throws Exception {
+    public GetDeploymentsV1DeprecatedResponse getDeploymentsV1DeprecatedDirect() {
         return getDeploymentsV1Deprecated(Optional.empty());
     }
 
     /**
      * GetDeploymentsV1Deprecated
      * 
-     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for
+     * an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetDeploymentsV1DeprecatedResponse getDeploymentsV1Deprecated(Optional<String> appId) throws Exception {
+    public GetDeploymentsV1DeprecatedResponse getDeploymentsV1Deprecated(Optional<String> appId) {
         GetDeploymentsV1DeprecatedRequest request =
             GetDeploymentsV1DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .build();
         RequestOperation<GetDeploymentsV1DeprecatedRequest, GetDeploymentsV1DeprecatedResponse> operation
-              = new GetDeploymentsV1Deprecated.Sync(sdkConfiguration);
+              = new GetDeploymentsV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetLatestDeploymentV1Deprecated
      * 
-     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -209,36 +231,38 @@ public class DeploymentsV1 {
     /**
      * GetLatestDeploymentV1Deprecated
      * 
-     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetLatestDeploymentV1DeprecatedResponse getLatestDeploymentV1DeprecatedDirect() throws Exception {
+    public GetLatestDeploymentV1DeprecatedResponse getLatestDeploymentV1DeprecatedDirect() {
         return getLatestDeploymentV1Deprecated(Optional.empty());
     }
 
     /**
      * GetLatestDeploymentV1Deprecated
      * 
-     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetLatestDeploymentV1DeprecatedResponse getLatestDeploymentV1Deprecated(Optional<String> appId) throws Exception {
+    public GetLatestDeploymentV1DeprecatedResponse getLatestDeploymentV1Deprecated(Optional<String> appId) {
         GetLatestDeploymentV1DeprecatedRequest request =
             GetLatestDeploymentV1DeprecatedRequest
                 .builder()
                 .appId(appId)
                 .build();
         RequestOperation<GetLatestDeploymentV1DeprecatedRequest, GetLatestDeploymentV1DeprecatedResponse> operation
-              = new GetLatestDeploymentV1Deprecated.Sync(sdkConfiguration);
+              = new GetLatestDeploymentV1Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -5,17 +5,25 @@ package dev.hathora.cloud_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class InvoiceItem {
 
     @JsonProperty("amount")
     private double amount;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("discount")
+    private Optional<Double> discount;
 
 
     @JsonProperty("productName")
@@ -36,25 +44,43 @@ public class InvoiceItem {
     @JsonCreator
     public InvoiceItem(
             @JsonProperty("amount") double amount,
+            @JsonProperty("discount") Optional<Double> discount,
             @JsonProperty("productName") String productName,
             @JsonProperty("quantity") double quantity,
             @JsonProperty("unit") String unit,
             @JsonProperty("unitPrice") double unitPrice) {
         Utils.checkNotNull(amount, "amount");
+        Utils.checkNotNull(discount, "discount");
         Utils.checkNotNull(productName, "productName");
         Utils.checkNotNull(quantity, "quantity");
         Utils.checkNotNull(unit, "unit");
         Utils.checkNotNull(unitPrice, "unitPrice");
         this.amount = amount;
+        this.discount = discount;
         this.productName = productName;
         this.quantity = quantity;
         this.unit = unit;
         this.unitPrice = unitPrice;
     }
+    
+    public InvoiceItem(
+            double amount,
+            String productName,
+            double quantity,
+            String unit,
+            double unitPrice) {
+        this(amount, Optional.empty(), productName,
+            quantity, unit, unitPrice);
+    }
 
     @JsonIgnore
     public double amount() {
         return amount;
+    }
+
+    @JsonIgnore
+    public Optional<Double> discount() {
+        return discount;
     }
 
     @JsonIgnore
@@ -85,6 +111,19 @@ public class InvoiceItem {
     public InvoiceItem withAmount(double amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
+        return this;
+    }
+
+    public InvoiceItem withDiscount(double discount) {
+        Utils.checkNotNull(discount, "discount");
+        this.discount = Optional.ofNullable(discount);
+        return this;
+    }
+
+
+    public InvoiceItem withDiscount(Optional<Double> discount) {
+        Utils.checkNotNull(discount, "discount");
+        this.discount = discount;
         return this;
     }
 
@@ -123,6 +162,7 @@ public class InvoiceItem {
         InvoiceItem other = (InvoiceItem) o;
         return 
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.discount, other.discount) &&
             Utils.enhancedDeepEquals(this.productName, other.productName) &&
             Utils.enhancedDeepEquals(this.quantity, other.quantity) &&
             Utils.enhancedDeepEquals(this.unit, other.unit) &&
@@ -132,14 +172,15 @@ public class InvoiceItem {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount, productName, quantity,
-            unit, unitPrice);
+            amount, discount, productName,
+            quantity, unit, unitPrice);
     }
     
     @Override
     public String toString() {
         return Utils.toString(InvoiceItem.class,
                 "amount", amount,
+                "discount", discount,
                 "productName", productName,
                 "quantity", quantity,
                 "unit", unit,
@@ -150,6 +191,8 @@ public class InvoiceItem {
     public final static class Builder {
 
         private Double amount;
+
+        private Optional<Double> discount = Optional.empty();
 
         private String productName;
 
@@ -167,6 +210,19 @@ public class InvoiceItem {
         public Builder amount(double amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
+            return this;
+        }
+
+
+        public Builder discount(double discount) {
+            Utils.checkNotNull(discount, "discount");
+            this.discount = Optional.ofNullable(discount);
+            return this;
+        }
+
+        public Builder discount(Optional<Double> discount) {
+            Utils.checkNotNull(discount, "discount");
+            this.discount = discount;
             return this;
         }
 
@@ -201,8 +257,8 @@ public class InvoiceItem {
         public InvoiceItem build() {
 
             return new InvoiceItem(
-                amount, productName, quantity,
-                unit, unitPrice);
+                amount, discount, productName,
+                quantity, unit, unitPrice);
         }
 
     }

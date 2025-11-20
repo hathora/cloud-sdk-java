@@ -13,7 +13,8 @@ import java.lang.String;
 
 public class GoogleIdTokenObject {
     /**
-     * A Google-signed OIDC ID token representing a player's authenticated identity. Learn how to get an `idToken` [here](https://cloud.google.com/docs/authentication/get-id-token).
+     * A Google-signed OIDC ID token representing a player's authenticated identity. Learn how to get an
+     * `idToken` [here](https://cloud.google.com/docs/authentication/get-id-token).
      */
     @JsonProperty("idToken")
     private String idToken;
@@ -26,7 +27,8 @@ public class GoogleIdTokenObject {
     }
 
     /**
-     * A Google-signed OIDC ID token representing a player's authenticated identity. Learn how to get an `idToken` [here](https://cloud.google.com/docs/authentication/get-id-token).
+     * A Google-signed OIDC ID token representing a player's authenticated identity. Learn how to get an
+     * `idToken` [here](https://cloud.google.com/docs/authentication/get-id-token).
      */
     @JsonIgnore
     public String idToken() {
@@ -39,7 +41,8 @@ public class GoogleIdTokenObject {
 
 
     /**
-     * A Google-signed OIDC ID token representing a player's authenticated identity. Learn how to get an `idToken` [here](https://cloud.google.com/docs/authentication/get-id-token).
+     * A Google-signed OIDC ID token representing a player's authenticated identity. Learn how to get an
+     * `idToken` [here](https://cloud.google.com/docs/authentication/get-id-token).
      */
     public GoogleIdTokenObject withIdToken(String idToken) {
         Utils.checkNotNull(idToken, "idToken");
@@ -83,7 +86,8 @@ public class GoogleIdTokenObject {
 
 
         /**
-         * A Google-signed OIDC ID token representing a player's authenticated identity. Learn how to get an `idToken` [here](https://cloud.google.com/docs/authentication/get-id-token).
+         * A Google-signed OIDC ID token representing a player's authenticated identity. Learn how to get an
+         * `idToken` [here](https://cloud.google.com/docs/authentication/get-id-token).
          */
         public Builder idToken(String idToken) {
             Utils.checkNotNull(idToken, "idToken");

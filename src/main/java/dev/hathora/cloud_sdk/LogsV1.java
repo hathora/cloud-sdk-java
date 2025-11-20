@@ -13,16 +13,28 @@ import dev.hathora.cloud_sdk.models.operations.GetLogsForProcessRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetLogsForProcessResponse;
 import dev.hathora.cloud_sdk.operations.DownloadLogForProcess;
 import dev.hathora.cloud_sdk.operations.GetLogsForProcess;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class LogsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncLogsV1 asyncSDK;
 
     LogsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncLogsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncLogsV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -43,9 +55,9 @@ public class LogsV1 {
      * 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DownloadLogForProcessResponse downloadLogForProcess(String processId) throws Exception {
+    public DownloadLogForProcessResponse downloadLogForProcess(String processId) {
         return downloadLogForProcess(Optional.empty(), processId);
     }
 
@@ -57,9 +69,9 @@ public class LogsV1 {
      * @param appId 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DownloadLogForProcessResponse downloadLogForProcess(Optional<String> appId, String processId) throws Exception {
+    public DownloadLogForProcessResponse downloadLogForProcess(Optional<String> appId, String processId) {
         DownloadLogForProcessRequest request =
             DownloadLogForProcessRequest
                 .builder()
@@ -67,14 +79,15 @@ public class LogsV1 {
                 .processId(processId)
                 .build();
         RequestOperation<DownloadLogForProcessRequest, DownloadLogForProcessResponse> operation
-              = new DownloadLogForProcess.Sync(sdkConfiguration);
+              = new DownloadLogForProcess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetLogsForProcess
      * 
-     * <p>Returns a stream of logs for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
+     * <p>Returns a stream of logs for a [process](https://hathora.dev/docs/concepts/hathora-entities#process)
+     * using `appId` and `processId`.
      * 
      * @return The call builder
      */
@@ -85,15 +98,16 @@ public class LogsV1 {
     /**
      * GetLogsForProcess
      * 
-     * <p>Returns a stream of logs for a [process](https://hathora.dev/docs/concepts/hathora-entities#process) using `appId` and `processId`.
+     * <p>Returns a stream of logs for a [process](https://hathora.dev/docs/concepts/hathora-entities#process)
+     * using `appId` and `processId`.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetLogsForProcessResponse getLogsForProcess(GetLogsForProcessRequest request) throws Exception {
+    public GetLogsForProcessResponse getLogsForProcess(GetLogsForProcessRequest request) {
         RequestOperation<GetLogsForProcessRequest, GetLogsForProcessResponse> operation
-              = new GetLogsForProcess.Sync(sdkConfiguration);
+              = new GetLogsForProcess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

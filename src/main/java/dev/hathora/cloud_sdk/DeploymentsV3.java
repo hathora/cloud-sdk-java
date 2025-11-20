@@ -22,24 +22,39 @@ import dev.hathora.cloud_sdk.operations.CreateDeployment;
 import dev.hathora.cloud_sdk.operations.GetDeployment;
 import dev.hathora.cloud_sdk.operations.GetDeployments;
 import dev.hathora.cloud_sdk.operations.GetLatestDeployment;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.String;
 import java.util.Optional;
 
 /**
- * Operations that allow you configure and manage an application's [build](https://hathora.dev/docs/concepts/hathora-entities#build) at runtime.
+ * Operations that allow you configure and manage an application's
+ * [build](https://hathora.dev/docs/concepts/hathora-entities#build) at runtime.
  */
 public class DeploymentsV3 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDeploymentsV3 asyncSDK;
 
     DeploymentsV3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDeploymentsV3(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDeploymentsV3 async() {
+        return asyncSDK;
     }
 
     /**
      * CreateDeployment
      * 
-     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a
+     * new deployment means all new rooms created will use the latest deployment configuration, but
+     * existing games in progress will not be affected.
      * 
      * @return The call builder
      */
@@ -50,27 +65,31 @@ public class DeploymentsV3 {
     /**
      * CreateDeployment
      * 
-     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a
+     * new deployment means all new rooms created will use the latest deployment configuration, but
+     * existing games in progress will not be affected.
      * 
      * @param deploymentConfigV3 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateDeploymentResponse createDeployment(DeploymentConfigV3 deploymentConfigV3) throws Exception {
+    public CreateDeploymentResponse createDeployment(DeploymentConfigV3 deploymentConfigV3) {
         return createDeployment(deploymentConfigV3, Optional.empty());
     }
 
     /**
      * CreateDeployment
      * 
-     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a new deployment means all new rooms created will use the latest deployment configuration, but existing games in progress will not be affected.
+     * <p>Create a new [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment). Creating a
+     * new deployment means all new rooms created will use the latest deployment configuration, but
+     * existing games in progress will not be affected.
      * 
      * @param deploymentConfigV3 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateDeploymentResponse createDeployment(DeploymentConfigV3 deploymentConfigV3, Optional<String> appId) throws Exception {
+    public CreateDeploymentResponse createDeployment(DeploymentConfigV3 deploymentConfigV3, Optional<String> appId) {
         CreateDeploymentRequest request =
             CreateDeploymentRequest
                 .builder()
@@ -78,7 +97,7 @@ public class DeploymentsV3 {
                 .appId(appId)
                 .build();
         RequestOperation<CreateDeploymentRequest, CreateDeploymentResponse> operation
-              = new CreateDeployment.Sync(sdkConfiguration);
+              = new CreateDeployment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -100,9 +119,9 @@ public class DeploymentsV3 {
      * 
      * @param deploymentId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetDeploymentResponse getDeployment(String deploymentId) throws Exception {
+    public GetDeploymentResponse getDeployment(String deploymentId) {
         return getDeployment(Optional.empty(), deploymentId);
     }
 
@@ -114,9 +133,9 @@ public class DeploymentsV3 {
      * @param appId 
      * @param deploymentId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetDeploymentResponse getDeployment(Optional<String> appId, String deploymentId) throws Exception {
+    public GetDeploymentResponse getDeployment(Optional<String> appId, String deploymentId) {
         GetDeploymentRequest request =
             GetDeploymentRequest
                 .builder()
@@ -124,14 +143,16 @@ public class DeploymentsV3 {
                 .deploymentId(deploymentId)
                 .build();
         RequestOperation<GetDeploymentRequest, GetDeploymentResponse> operation
-              = new GetDeployment.Sync(sdkConfiguration);
+              = new GetDeployment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetDeployments
      * 
-     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag or buildTag.
+     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for
+     * an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally
+     * filtered by deploymentTag or buildTag.
      * 
      * @return The call builder
      */
@@ -142,29 +163,33 @@ public class DeploymentsV3 {
     /**
      * GetDeployments
      * 
-     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag or buildTag.
+     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for
+     * an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally
+     * filtered by deploymentTag or buildTag.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetDeploymentsResponse getDeploymentsDirect() throws Exception {
+    public GetDeploymentsResponse getDeploymentsDirect() {
         return getDeployments(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
      * GetDeployments
      * 
-     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally filtered by deploymentTag or buildTag.
+     * <p>Returns an array of [deployments](https://hathora.dev/docs/concepts/hathora-entities#deployment) for
+     * an [application](https://hathora.dev/docs/concepts/hathora-entities#application), optionally
+     * filtered by deploymentTag or buildTag.
      * 
      * @param appId 
      * @param buildTag 
      * @param deploymentTag 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetDeploymentsResponse getDeployments(
             Optional<String> appId, Optional<String> buildTag,
-            Optional<String> deploymentTag) throws Exception {
+            Optional<String> deploymentTag) {
         GetDeploymentsRequest request =
             GetDeploymentsRequest
                 .builder()
@@ -173,14 +198,15 @@ public class DeploymentsV3 {
                 .deploymentTag(deploymentTag)
                 .build();
         RequestOperation<GetDeploymentsRequest, GetDeploymentsResponse> operation
-              = new GetDeployments.Sync(sdkConfiguration);
+              = new GetDeployments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetLatestDeployment
      * 
-     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @return The call builder
      */
@@ -191,32 +217,34 @@ public class DeploymentsV3 {
     /**
      * GetLatestDeployment
      * 
-     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetLatestDeploymentResponse getLatestDeploymentDirect() throws Exception {
+    public GetLatestDeploymentResponse getLatestDeploymentDirect() {
         return getLatestDeployment(Optional.empty());
     }
 
     /**
      * GetLatestDeployment
      * 
-     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an [application](https://hathora.dev/docs/concepts/hathora-entities#application).
+     * <p>Get the latest [deployment](https://hathora.dev/docs/concepts/hathora-entities#deployment) for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application).
      * 
      * @param appId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetLatestDeploymentResponse getLatestDeployment(Optional<String> appId) throws Exception {
+    public GetLatestDeploymentResponse getLatestDeployment(Optional<String> appId) {
         GetLatestDeploymentRequest request =
             GetLatestDeploymentRequest
                 .builder()
                 .appId(appId)
                 .build();
         RequestOperation<GetLatestDeploymentRequest, GetLatestDeploymentResponse> operation
-              = new GetLatestDeployment.Sync(sdkConfiguration);
+              = new GetLatestDeployment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

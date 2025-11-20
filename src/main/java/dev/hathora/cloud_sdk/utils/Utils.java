@@ -69,6 +69,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
+import dev.hathora.cloud_sdk.models.errors.AsyncSDKError;
+import dev.hathora.cloud_sdk.models.errors.SDKError;
+
+
 public final class Utils {
     
     private Utils() {
@@ -1408,11 +1412,16 @@ public final class Utils {
     public static <T> T valueOrElse(T value, T valueIfNotPresent) {
         return value != null ? value : valueIfNotPresent;
     }
-        
+
     public static <T> T valueOrElse(Optional<T> value, T valueIfNotPresent) {
+        if (value == null) {
+            // this defensive check is used in custom exception class constructors
+            // to simplify calling code
+            return valueIfNotPresent;
+        }
         return value.orElse(valueIfNotPresent);
     }
-    
+
     public static <T> T valueOrElse(JsonNullable<T> value, T valueIfNotPresent) {
         if (value.isPresent()) {
             return value.get();
@@ -1420,15 +1429,15 @@ public final class Utils {
             return valueIfNotPresent;
         }
     }
-    
+
     public static <T> T valueOrNull(T value) {
         return valueOrElse(value, null);
     }
-    
+
     public static <T> T valueOrNull(Optional<T> value) {
         return valueOrElse(value, null);
     }
-    
+
     public static <T> T valueOrNull(JsonNullable<T> value) {
         return valueOrElse(value, null);
     }
@@ -1596,5 +1605,59 @@ public final class Utils {
             // Fallback: treat as double
             return BigDecimal.valueOf(number.doubleValue());
         }
+    }
+
+    /**
+     * Creates a failed CompletableFuture with an async API exception.
+     * Uses the Blob to read the response body asynchronously.
+     */
+    public static <T> CompletableFuture<T> createAsyncApiError(
+            HttpResponse<dev.hathora.cloud_sdk.utils.Blob> response,
+            String reason) {
+        return response.body().toByteArray()
+                .thenApply(bodyBytes -> {
+                    throw new AsyncSDKError(
+                            reason,
+                            response.statusCode(),
+                            bodyBytes,
+                            response,
+                            null);
+                });
+    }
+
+        public static <T> T unmarshal(HttpResponse<InputStream> response, TypeReference<T> typeReference) {
+        try {
+            return mapper().readValue(
+                    Utils.extractByteArrayFromBody(response),
+                    typeReference);
+        } catch (Exception e) {
+            throw SDKError.from(
+                    "Error deserializing response body: " + e.getMessage(), response, e);
+        }
+    }
+    public static <T> CompletableFuture<T> unmarshalAsync(HttpResponse<Blob> response, TypeReference<T> typeReference) {
+        return response.body()
+                .toByteArray()
+                .handle((bytes, err) -> {
+                    // if a body read error occurs, we want to transform the exception
+                    if (err != null) {
+                        throw new AsyncSDKError(
+                                "Error reading response body: " + err.getMessage(),
+                                response.statusCode(),
+                                null,
+                                response,
+                                err);
+                    }
+                    try {
+                        return mapper().readValue(bytes, typeReference);
+                    } catch (Exception e) {
+                        throw new AsyncSDKError(
+                                "Error deserializing response body: " + e.getMessage(),
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                e);
+                    }
+                });
     }
 }

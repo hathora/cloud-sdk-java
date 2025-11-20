@@ -25,7 +25,7 @@ import java.util.List;
 public class OrgTokenScopes {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private OrgTokenScopes(TypedObject value) {
         this.value = value;
@@ -33,12 +33,12 @@ public class OrgTokenScopes {
 
     public static OrgTokenScopes of(List<Scope> value) {
         Utils.checkNotNull(value, "value");
-        return new OrgTokenScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<Scope>>(){}));
+        return new OrgTokenScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static OrgTokenScopes of(OrgToken2 value) {
         Utils.checkNotNull(value, "value");
-        return new OrgTokenScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<OrgToken2>(){}));
+        return new OrgTokenScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -61,7 +61,7 @@ public class OrgTokenScopes {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -72,7 +72,7 @@ public class OrgTokenScopes {
             return false;
         }
         OrgTokenScopes other = (OrgTokenScopes) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -95,6 +95,6 @@ public class OrgTokenScopes {
         return Utils.toString(OrgTokenScopes.class,
                 "value", value);
     }
- 
+
 }
 

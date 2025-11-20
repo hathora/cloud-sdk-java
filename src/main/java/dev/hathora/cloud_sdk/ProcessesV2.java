@@ -27,8 +27,8 @@ import dev.hathora.cloud_sdk.operations.GetLatestProcessesV2Deprecated;
 import dev.hathora.cloud_sdk.operations.GetProcessInfoV2Deprecated;
 import dev.hathora.cloud_sdk.operations.GetProcessesCountExperimentalV2Deprecated;
 import dev.hathora.cloud_sdk.operations.StopProcessV2Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -37,16 +37,30 @@ import java.util.Optional;
  * Deprecated. Use [ProcessesV3](https://hathora.dev/api#tag/ProcessesV3).
  */
 public class ProcessesV2 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncProcessesV2 asyncSDK;
 
     ProcessesV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncProcessesV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncProcessesV2 async() {
+        return asyncSDK;
     }
 
     /**
      * CreateProcessV2Deprecated
      * 
-     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
+     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use
+     * this to pre-allocate processes ahead of time so that subsequent room assignment via
+     * [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -59,31 +73,35 @@ public class ProcessesV2 {
     /**
      * CreateProcessV2Deprecated
      * 
-     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
+     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use
+     * this to pre-allocate processes ahead of time so that subsequent room assignment via
+     * [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
      * 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateProcessV2DeprecatedResponse createProcessV2Deprecated(Region region) throws Exception {
+    public CreateProcessV2DeprecatedResponse createProcessV2Deprecated(Region region) {
         return createProcessV2Deprecated(Optional.empty(), region);
     }
 
     /**
      * CreateProcessV2Deprecated
      * 
-     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use this to pre-allocate processes ahead of time so that subsequent room assignment via [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
+     * <p>Creates a [process](https://hathora.dev/docs/concepts/hathora-entities#process) without a room. Use
+     * this to pre-allocate processes ahead of time so that subsequent room assignment via
+     * [CreateRoom()](https://hathora.dev/api#tag/RoomV2/operation/CreateRoom) can be instant.
      * 
      * @param appId 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateProcessV2DeprecatedResponse createProcessV2Deprecated(Optional<String> appId, Region region) throws Exception {
+    public CreateProcessV2DeprecatedResponse createProcessV2Deprecated(Optional<String> appId, Region region) {
         CreateProcessV2DeprecatedRequest request =
             CreateProcessV2DeprecatedRequest
                 .builder()
@@ -91,14 +109,16 @@ public class ProcessesV2 {
                 .region(region)
                 .build();
         RequestOperation<CreateProcessV2DeprecatedRequest, CreateProcessV2DeprecatedResponse> operation
-              = new CreateProcessV2Deprecated.Sync(sdkConfiguration);
+              = new CreateProcessV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetLatestProcessesV2Deprecated
      * 
-     * <p>Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
+     * <p>Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process)
+     * objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter
+     * the array by optionally passing in a `status` or `region`.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -111,33 +131,37 @@ public class ProcessesV2 {
     /**
      * GetLatestProcessesV2Deprecated
      * 
-     * <p>Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
+     * <p>Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process)
+     * objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter
+     * the array by optionally passing in a `status` or `region`.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetLatestProcessesV2DeprecatedResponse getLatestProcessesV2DeprecatedDirect() throws Exception {
+    public GetLatestProcessesV2DeprecatedResponse getLatestProcessesV2DeprecatedDirect() {
         return getLatestProcessesV2Deprecated(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
      * GetLatestProcessesV2Deprecated
      * 
-     * <p>Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter the array by optionally passing in a `status` or `region`.
+     * <p>Retrieve the 10 most recent [processes](https://hathora.dev/docs/concepts/hathora-entities#process)
+     * objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter
+     * the array by optionally passing in a `status` or `region`.
      * 
      * @param appId 
      * @param region 
      * @param status 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public GetLatestProcessesV2DeprecatedResponse getLatestProcessesV2Deprecated(
             Optional<String> appId, Optional<? extends List<Region>> region,
-            Optional<? extends List<ProcessStatus>> status) throws Exception {
+            Optional<? extends List<ProcessStatus>> status) {
         GetLatestProcessesV2DeprecatedRequest request =
             GetLatestProcessesV2DeprecatedRequest
                 .builder()
@@ -146,7 +170,7 @@ public class ProcessesV2 {
                 .status(status)
                 .build();
         RequestOperation<GetLatestProcessesV2DeprecatedRequest, GetLatestProcessesV2DeprecatedResponse> operation
-              = new GetLatestProcessesV2Deprecated.Sync(sdkConfiguration);
+              = new GetLatestProcessesV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -170,11 +194,11 @@ public class ProcessesV2 {
      * 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(String processId) throws Exception {
+    public GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(String processId) {
         return getProcessInfoV2Deprecated(Optional.empty(), processId);
     }
 
@@ -186,11 +210,11 @@ public class ProcessesV2 {
      * @param appId 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(Optional<String> appId, String processId) throws Exception {
+    public GetProcessInfoV2DeprecatedResponse getProcessInfoV2Deprecated(Optional<String> appId, String processId) {
         GetProcessInfoV2DeprecatedRequest request =
             GetProcessInfoV2DeprecatedRequest
                 .builder()
@@ -198,14 +222,16 @@ public class ProcessesV2 {
                 .processId(processId)
                 .build();
         RequestOperation<GetProcessInfoV2DeprecatedRequest, GetProcessInfoV2DeprecatedResponse> operation
-              = new GetProcessInfoV2Deprecated.Sync(sdkConfiguration);
+              = new GetProcessInfoV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetProcessesCountExperimentalV2Deprecated
      * 
-     * <p>Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+     * <p>Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects
+     * for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by
+     * optionally passing in a `status` or `region`.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -218,33 +244,37 @@ public class ProcessesV2 {
     /**
      * GetProcessesCountExperimentalV2Deprecated
      * 
-     * <p>Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+     * <p>Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects
+     * for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by
+     * optionally passing in a `status` or `region`.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetProcessesCountExperimentalV2DeprecatedResponse getProcessesCountExperimentalV2DeprecatedDirect() throws Exception {
+    public GetProcessesCountExperimentalV2DeprecatedResponse getProcessesCountExperimentalV2DeprecatedDirect() {
         return getProcessesCountExperimentalV2Deprecated(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
      * GetProcessesCountExperimentalV2Deprecated
      * 
-     * <p>Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `status` or `region`.
+     * <p>Count the number of [processes](https://hathora.dev/docs/concepts/hathora-entities#process) objects
+     * for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by
+     * optionally passing in a `status` or `region`.
      * 
      * @param appId 
      * @param region 
      * @param status 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public GetProcessesCountExperimentalV2DeprecatedResponse getProcessesCountExperimentalV2Deprecated(
             Optional<String> appId, Optional<? extends List<Region>> region,
-            Optional<? extends List<ProcessStatus>> status) throws Exception {
+            Optional<? extends List<ProcessStatus>> status) {
         GetProcessesCountExperimentalV2DeprecatedRequest request =
             GetProcessesCountExperimentalV2DeprecatedRequest
                 .builder()
@@ -253,7 +283,7 @@ public class ProcessesV2 {
                 .status(status)
                 .build();
         RequestOperation<GetProcessesCountExperimentalV2DeprecatedRequest, GetProcessesCountExperimentalV2DeprecatedResponse> operation
-              = new GetProcessesCountExperimentalV2Deprecated.Sync(sdkConfiguration);
+              = new GetProcessesCountExperimentalV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -277,11 +307,11 @@ public class ProcessesV2 {
      * 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public StopProcessV2DeprecatedResponse stopProcessV2Deprecated(String processId) throws Exception {
+    public StopProcessV2DeprecatedResponse stopProcessV2Deprecated(String processId) {
         return stopProcessV2Deprecated(Optional.empty(), processId);
     }
 
@@ -293,11 +323,11 @@ public class ProcessesV2 {
      * @param appId 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public StopProcessV2DeprecatedResponse stopProcessV2Deprecated(Optional<String> appId, String processId) throws Exception {
+    public StopProcessV2DeprecatedResponse stopProcessV2Deprecated(Optional<String> appId, String processId) {
         StopProcessV2DeprecatedRequest request =
             StopProcessV2DeprecatedRequest
                 .builder()
@@ -305,7 +335,7 @@ public class ProcessesV2 {
                 .processId(processId)
                 .build();
         RequestOperation<StopProcessV2DeprecatedRequest, StopProcessV2DeprecatedResponse> operation
-              = new StopProcessV2Deprecated.Sync(sdkConfiguration);
+              = new StopProcessV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -59,7 +59,8 @@ public class DeploymentConfigV2 {
     private double requestedMemoryMB;
 
     /**
-     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+     * in a process.
      */
     @JsonProperty("roomsPerProcess")
     private int roomsPerProcess;
@@ -162,7 +163,8 @@ public class DeploymentConfigV2 {
     }
 
     /**
-     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+     * in a process.
      */
     @JsonIgnore
     public int roomsPerProcess() {
@@ -248,7 +250,8 @@ public class DeploymentConfigV2 {
     }
 
     /**
-     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+     * in a process.
      */
     public DeploymentConfigV2 withRoomsPerProcess(int roomsPerProcess) {
         Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
@@ -401,7 +404,8 @@ public class DeploymentConfigV2 {
 
 
         /**
-         * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+         * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+         * in a process.
          */
         public Builder roomsPerProcess(int roomsPerProcess) {
             Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");

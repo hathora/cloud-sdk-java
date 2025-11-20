@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class StaticProcessAllocationConfigWrite {
     /**
-     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the
+     * Process Autoscaler
      * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
      * There MUST be a `processAutoscalerConfig` for the application in order to enable autoscaling.
      * EXPERIMENTAL - this feature is in closed beta.
@@ -82,7 +83,8 @@ public class StaticProcessAllocationConfigWrite {
     }
 
     /**
-     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the
+     * Process Autoscaler
      * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
      * There MUST be a `processAutoscalerConfig` for the application in order to enable autoscaling.
      * EXPERIMENTAL - this feature is in closed beta.
@@ -131,7 +133,8 @@ public class StaticProcessAllocationConfigWrite {
 
 
     /**
-     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the
+     * Process Autoscaler
      * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
      * There MUST be a `processAutoscalerConfig` for the application in order to enable autoscaling.
      * EXPERIMENTAL - this feature is in closed beta.
@@ -144,7 +147,8 @@ public class StaticProcessAllocationConfigWrite {
 
 
     /**
-     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+     * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the
+     * Process Autoscaler
      * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
      * There MUST be a `processAutoscalerConfig` for the application in order to enable autoscaling.
      * EXPERIMENTAL - this feature is in closed beta.
@@ -268,7 +272,8 @@ public class StaticProcessAllocationConfigWrite {
 
 
         /**
-         * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+         * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the
+         * Process Autoscaler
          * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
          * There MUST be a `processAutoscalerConfig` for the application in order to enable autoscaling.
          * EXPERIMENTAL - this feature is in closed beta.
@@ -280,7 +285,8 @@ public class StaticProcessAllocationConfigWrite {
         }
 
         /**
-         * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the Process Autoscaler
+         * Whether autoscaling is enabled in this region. When enabled, `targetProcesses` is managed by the
+         * Process Autoscaler
          * in accordance with the `processAutoscalerConfig` field set on the application's `serviceConfig`.
          * There MUST be a `processAutoscalerConfig` for the application in order to enable autoscaling.
          * EXPERIMENTAL - this feature is in closed beta.

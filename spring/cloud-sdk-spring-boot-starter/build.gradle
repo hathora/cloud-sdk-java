@@ -1,0 +1,29 @@
+description = 'Hathora-Cloud Spring Boot Starter'
+
+// Publishing configuration overrides
+ext {
+    publishingConfig = [
+        groupId: rootProject.group,
+        artifactId: 'cloud-sdk-spring-boot-starter',
+        version: rootProject.version,
+        name: 'Hathora Java SDK - Spring Boot Starter',
+        description: 'Spring Boot starter for the Hathora Java SDK.',
+    ]
+}
+
+dependencies {
+    api project(':')
+    api project(':cloud-sdk-spring-boot-autoconfigure')
+    api "org.springframework.boot:spring-boot-starter:${rootProject.springBootVersion}"
+}
+
+jar {
+    dependsOn 'generatePomFileForMavenPublication'
+    archiveBaseName = 'cloud-sdk-spring-boot-starter'
+    into("META-INF/maven/dev.hathora/cloud-sdk-spring-boot-starter") {
+        from(layout.buildDirectory.file("pom.xml")) {
+            // Only include if it exists to avoid build ordering issues
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+    }
+}

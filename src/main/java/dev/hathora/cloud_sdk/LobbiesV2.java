@@ -43,23 +43,39 @@ import dev.hathora.cloud_sdk.operations.CreatePublicLobby;
 import dev.hathora.cloud_sdk.operations.GetLobbyInfo;
 import dev.hathora.cloud_sdk.operations.ListActivePublicLobbiesDeprecatedV2;
 import dev.hathora.cloud_sdk.operations.SetLobbyState;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class LobbiesV2 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncLobbiesV2 asyncSDK;
 
     LobbiesV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncLobbiesV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncLobbiesV2 async() {
+        return asyncSDK;
     }
 
     /**
      * CreateLobbyDeprecated
      * 
-     * <p>Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
+     * <p>Create a new lobby for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a
+     * wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a
+     * lobby, you get additional functionality like configuring the visibility of the room, managing the
+     * state of a match, and retrieving a list of public lobbies to display to players.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -72,16 +88,20 @@ public class LobbiesV2 {
     /**
      * CreateLobbyDeprecated
      * 
-     * <p>Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
+     * <p>Create a new lobby for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a
+     * wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a
+     * lobby, you get additional functionality like configuring the visibility of the room, managing the
+     * state of a match, and retrieving a list of public lobbies to display to players.
      * 
      * @param security The security details to use for authentication.
      * @param createLobbyParams 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateLobbyDeprecatedResponse createLobbyDeprecated(CreateLobbyDeprecatedSecurity security, CreateLobbyParams createLobbyParams) throws Exception {
+    public CreateLobbyDeprecatedResponse createLobbyDeprecated(CreateLobbyDeprecatedSecurity security, CreateLobbyParams createLobbyParams) {
         return createLobbyDeprecated(security, createLobbyParams, Optional.empty(),
             Optional.empty());
     }
@@ -89,20 +109,24 @@ public class LobbiesV2 {
     /**
      * CreateLobbyDeprecated
      * 
-     * <p>Create a new lobby for an [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a lobby, you get additional functionality like configuring the visibility of the room, managing the state of a match, and retrieving a list of public lobbies to display to players.
+     * <p>Create a new lobby for an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). A lobby object is a
+     * wrapper around a [room](https://hathora.dev/docs/concepts/hathora-entities#room) object. With a
+     * lobby, you get additional functionality like configuring the visibility of the room, managing the
+     * state of a match, and retrieving a list of public lobbies to display to players.
      * 
      * @param security The security details to use for authentication.
      * @param createLobbyParams 
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public CreateLobbyDeprecatedResponse createLobbyDeprecated(
             CreateLobbyDeprecatedSecurity security, CreateLobbyParams createLobbyParams,
-            Optional<String> appId, Optional<String> roomId) throws Exception {
+            Optional<String> appId, Optional<String> roomId) {
         CreateLobbyDeprecatedRequest request =
             CreateLobbyDeprecatedRequest
                 .builder()
@@ -111,7 +135,7 @@ public class LobbiesV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<CreateLobbyDeprecatedRequest, CreateLobbyDeprecatedResponse> operation
-              = new CreateLobbyDeprecated.Sync(sdkConfiguration, security);
+              = new CreateLobbyDeprecated.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -132,11 +156,11 @@ public class LobbiesV2 {
      * @param security The security details to use for authentication.
      * @param requestBody 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateLocalLobbyResponse createLocalLobby(CreateLocalLobbySecurity security, CreateLocalLobbyRequestBody requestBody) throws Exception {
+    public CreateLocalLobbyResponse createLocalLobby(CreateLocalLobbySecurity security, CreateLocalLobbyRequestBody requestBody) {
         return createLocalLobby(security, requestBody, Optional.empty(),
             Optional.empty());
     }
@@ -149,13 +173,13 @@ public class LobbiesV2 {
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public CreateLocalLobbyResponse createLocalLobby(
             CreateLocalLobbySecurity security, CreateLocalLobbyRequestBody requestBody,
-            Optional<String> appId, Optional<String> roomId) throws Exception {
+            Optional<String> appId, Optional<String> roomId) {
         CreateLocalLobbyRequest request =
             CreateLocalLobbyRequest
                 .builder()
@@ -164,7 +188,7 @@ public class LobbiesV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<CreateLocalLobbyRequest, CreateLocalLobbyResponse> operation
-              = new CreateLocalLobby.Sync(sdkConfiguration, security);
+              = new CreateLocalLobby.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -185,11 +209,11 @@ public class LobbiesV2 {
      * @param security The security details to use for authentication.
      * @param requestBody 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreatePrivateLobbyResponse createPrivateLobby(CreatePrivateLobbySecurity security, CreatePrivateLobbyRequestBody requestBody) throws Exception {
+    public CreatePrivateLobbyResponse createPrivateLobby(CreatePrivateLobbySecurity security, CreatePrivateLobbyRequestBody requestBody) {
         return createPrivateLobby(security, requestBody, Optional.empty(),
             Optional.empty());
     }
@@ -202,13 +226,13 @@ public class LobbiesV2 {
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public CreatePrivateLobbyResponse createPrivateLobby(
             CreatePrivateLobbySecurity security, CreatePrivateLobbyRequestBody requestBody,
-            Optional<String> appId, Optional<String> roomId) throws Exception {
+            Optional<String> appId, Optional<String> roomId) {
         CreatePrivateLobbyRequest request =
             CreatePrivateLobbyRequest
                 .builder()
@@ -217,7 +241,7 @@ public class LobbiesV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<CreatePrivateLobbyRequest, CreatePrivateLobbyResponse> operation
-              = new CreatePrivateLobby.Sync(sdkConfiguration, security);
+              = new CreatePrivateLobby.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -238,11 +262,11 @@ public class LobbiesV2 {
      * @param security The security details to use for authentication.
      * @param requestBody 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreatePublicLobbyResponse createPublicLobby(CreatePublicLobbySecurity security, CreatePublicLobbyRequestBody requestBody) throws Exception {
+    public CreatePublicLobbyResponse createPublicLobby(CreatePublicLobbySecurity security, CreatePublicLobbyRequestBody requestBody) {
         return createPublicLobby(security, requestBody, Optional.empty(),
             Optional.empty());
     }
@@ -255,13 +279,13 @@ public class LobbiesV2 {
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public CreatePublicLobbyResponse createPublicLobby(
             CreatePublicLobbySecurity security, CreatePublicLobbyRequestBody requestBody,
-            Optional<String> appId, Optional<String> roomId) throws Exception {
+            Optional<String> appId, Optional<String> roomId) {
         CreatePublicLobbyRequest request =
             CreatePublicLobbyRequest
                 .builder()
@@ -270,7 +294,7 @@ public class LobbiesV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<CreatePublicLobbyRequest, CreatePublicLobbyResponse> operation
-              = new CreatePublicLobby.Sync(sdkConfiguration, security);
+              = new CreatePublicLobby.Sync(sdkConfiguration, security, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -294,11 +318,11 @@ public class LobbiesV2 {
      * 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetLobbyInfoResponse getLobbyInfo(String roomId) throws Exception {
+    public GetLobbyInfoResponse getLobbyInfo(String roomId) {
         return getLobbyInfo(Optional.empty(), roomId);
     }
 
@@ -310,11 +334,11 @@ public class LobbiesV2 {
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetLobbyInfoResponse getLobbyInfo(Optional<String> appId, String roomId) throws Exception {
+    public GetLobbyInfoResponse getLobbyInfo(Optional<String> appId, String roomId) {
         GetLobbyInfoRequest request =
             GetLobbyInfoRequest
                 .builder()
@@ -322,14 +346,17 @@ public class LobbiesV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<GetLobbyInfoRequest, GetLobbyInfoResponse> operation
-              = new GetLobbyInfo.Sync(sdkConfiguration);
+              = new GetLobbyInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * ListActivePublicLobbiesDeprecatedV2
      * 
-     * <p>Get all active lobbies for a an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
+     * <p>Get all active lobbies for a an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally
+     * passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the
+     * game client.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -342,30 +369,36 @@ public class LobbiesV2 {
     /**
      * ListActivePublicLobbiesDeprecatedV2
      * 
-     * <p>Get all active lobbies for a an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
+     * <p>Get all active lobbies for a an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally
+     * passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the
+     * game client.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public ListActivePublicLobbiesDeprecatedV2Response listActivePublicLobbiesDeprecatedV2Direct() throws Exception {
+    public ListActivePublicLobbiesDeprecatedV2Response listActivePublicLobbiesDeprecatedV2Direct() {
         return listActivePublicLobbiesDeprecatedV2(Optional.empty(), Optional.empty());
     }
 
     /**
      * ListActivePublicLobbiesDeprecatedV2
      * 
-     * <p>Get all active lobbies for a an [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the game client.
+     * <p>Get all active lobbies for a an
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Filter by optionally
+     * passing in a `region`. Use this endpoint to display all public lobbies that a player can join in the
+     * game client.
      * 
      * @param appId 
      * @param region 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public ListActivePublicLobbiesDeprecatedV2Response listActivePublicLobbiesDeprecatedV2(Optional<String> appId, Optional<? extends Region> region) throws Exception {
+    public ListActivePublicLobbiesDeprecatedV2Response listActivePublicLobbiesDeprecatedV2(Optional<String> appId, Optional<? extends Region> region) {
         ListActivePublicLobbiesDeprecatedV2Request request =
             ListActivePublicLobbiesDeprecatedV2Request
                 .builder()
@@ -373,14 +406,18 @@ public class LobbiesV2 {
                 .region(region)
                 .build();
         RequestOperation<ListActivePublicLobbiesDeprecatedV2Request, ListActivePublicLobbiesDeprecatedV2Response> operation
-              = new ListActivePublicLobbiesDeprecatedV2.Sync(sdkConfiguration);
+              = new ListActivePublicLobbiesDeprecatedV2.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * SetLobbyState
      * 
-     * <p>Set the state of a lobby. State is intended to be set by the server and must be smaller than 1MB. Use this endpoint to store match data like live player count to enforce max number of clients or persist end-game data (i.e. winner or final scores).
+     * <p>Set the state of a lobby. State is intended to be set by the server and must be smaller than 1MB.
+     * Use this endpoint to store match data like live player count to enforce max number of clients or
+     * persist end-game data (i.e.
+     * 
+     * <p>winner or final scores).
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -393,35 +430,43 @@ public class LobbiesV2 {
     /**
      * SetLobbyState
      * 
-     * <p>Set the state of a lobby. State is intended to be set by the server and must be smaller than 1MB. Use this endpoint to store match data like live player count to enforce max number of clients or persist end-game data (i.e. winner or final scores).
+     * <p>Set the state of a lobby. State is intended to be set by the server and must be smaller than 1MB.
+     * Use this endpoint to store match data like live player count to enforce max number of clients or
+     * persist end-game data (i.e.
+     * 
+     * <p>winner or final scores).
      * 
      * @param setLobbyStateParams 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public SetLobbyStateResponse setLobbyState(SetLobbyStateParams setLobbyStateParams, String roomId) throws Exception {
+    public SetLobbyStateResponse setLobbyState(SetLobbyStateParams setLobbyStateParams, String roomId) {
         return setLobbyState(setLobbyStateParams, Optional.empty(), roomId);
     }
 
     /**
      * SetLobbyState
      * 
-     * <p>Set the state of a lobby. State is intended to be set by the server and must be smaller than 1MB. Use this endpoint to store match data like live player count to enforce max number of clients or persist end-game data (i.e. winner or final scores).
+     * <p>Set the state of a lobby. State is intended to be set by the server and must be smaller than 1MB.
+     * Use this endpoint to store match data like live player count to enforce max number of clients or
+     * persist end-game data (i.e.
+     * 
+     * <p>winner or final scores).
      * 
      * @param setLobbyStateParams 
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public SetLobbyStateResponse setLobbyState(
             SetLobbyStateParams setLobbyStateParams, Optional<String> appId,
-            String roomId) throws Exception {
+            String roomId) {
         SetLobbyStateRequest request =
             SetLobbyStateRequest
                 .builder()
@@ -430,7 +475,7 @@ public class LobbiesV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<SetLobbyStateRequest, SetLobbyStateResponse> operation
-              = new SetLobbyState.Sync(sdkConfiguration);
+              = new SetLobbyState.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

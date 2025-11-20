@@ -20,7 +20,9 @@ public class CreateLobbyV3Params {
     private Region region;
 
     /**
-     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
+     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is
+     * accessible from the room via
+     * [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("roomConfig")
@@ -63,7 +65,9 @@ public class CreateLobbyV3Params {
     }
 
     /**
-     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
+     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is
+     * accessible from the room via
+     * [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
     @JsonIgnore
     public Optional<String> roomConfig() {
@@ -96,7 +100,9 @@ public class CreateLobbyV3Params {
     }
 
     /**
-     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
+     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is
+     * accessible from the room via
+     * [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
     public CreateLobbyV3Params withRoomConfig(String roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
@@ -106,7 +112,9 @@ public class CreateLobbyV3Params {
 
 
     /**
-     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
+     * Optional configuration parameters for the room. Can be any string including stringified JSON. It is
+     * accessible from the room via
+     * [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
      */
     public CreateLobbyV3Params withRoomConfig(Optional<String> roomConfig) {
         Utils.checkNotNull(roomConfig, "roomConfig");
@@ -180,7 +188,9 @@ public class CreateLobbyV3Params {
 
 
         /**
-         * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
+         * Optional configuration parameters for the room. Can be any string including stringified JSON. It is
+         * accessible from the room via
+         * [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
          */
         public Builder roomConfig(String roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");
@@ -189,7 +199,9 @@ public class CreateLobbyV3Params {
         }
 
         /**
-         * Optional configuration parameters for the room. Can be any string including stringified JSON. It is accessible from the room via [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
+         * Optional configuration parameters for the room. Can be any string including stringified JSON. It is
+         * accessible from the room via
+         * [`GetRoomInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetRoomInfo).
          */
         public Builder roomConfig(Optional<String> roomConfig) {
             Utils.checkNotNull(roomConfig, "roomConfig");

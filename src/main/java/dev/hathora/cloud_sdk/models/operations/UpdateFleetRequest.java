@@ -5,7 +5,7 @@ package dev.hathora.cloud_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.hathora.cloud_sdk.models.shared.UpdateFleet;
+import dev.hathora.cloud_sdk.models.shared.UpdateFleetV2;
 import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
 import java.lang.Override;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class UpdateFleetRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private UpdateFleet updateFleet;
+    private UpdateFleetV2 updateFleetV2;
 
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=fleetId")
@@ -28,26 +28,26 @@ public class UpdateFleetRequest {
 
     @JsonCreator
     public UpdateFleetRequest(
-            UpdateFleet updateFleet,
+            UpdateFleetV2 updateFleetV2,
             String fleetId,
             Optional<String> orgId) {
-        Utils.checkNotNull(updateFleet, "updateFleet");
+        Utils.checkNotNull(updateFleetV2, "updateFleetV2");
         Utils.checkNotNull(fleetId, "fleetId");
         Utils.checkNotNull(orgId, "orgId");
-        this.updateFleet = updateFleet;
+        this.updateFleetV2 = updateFleetV2;
         this.fleetId = fleetId;
         this.orgId = orgId;
     }
     
     public UpdateFleetRequest(
-            UpdateFleet updateFleet,
+            UpdateFleetV2 updateFleetV2,
             String fleetId) {
-        this(updateFleet, fleetId, Optional.empty());
+        this(updateFleetV2, fleetId, Optional.empty());
     }
 
     @JsonIgnore
-    public UpdateFleet updateFleet() {
-        return updateFleet;
+    public UpdateFleetV2 updateFleetV2() {
+        return updateFleetV2;
     }
 
     @JsonIgnore
@@ -65,9 +65,9 @@ public class UpdateFleetRequest {
     }
 
 
-    public UpdateFleetRequest withUpdateFleet(UpdateFleet updateFleet) {
-        Utils.checkNotNull(updateFleet, "updateFleet");
-        this.updateFleet = updateFleet;
+    public UpdateFleetRequest withUpdateFleetV2(UpdateFleetV2 updateFleetV2) {
+        Utils.checkNotNull(updateFleetV2, "updateFleetV2");
+        this.updateFleetV2 = updateFleetV2;
         return this;
     }
 
@@ -100,7 +100,7 @@ public class UpdateFleetRequest {
         }
         UpdateFleetRequest other = (UpdateFleetRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.updateFleet, other.updateFleet) &&
+            Utils.enhancedDeepEquals(this.updateFleetV2, other.updateFleetV2) &&
             Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
             Utils.enhancedDeepEquals(this.orgId, other.orgId);
     }
@@ -108,13 +108,13 @@ public class UpdateFleetRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updateFleet, fleetId, orgId);
+            updateFleetV2, fleetId, orgId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(UpdateFleetRequest.class,
-                "updateFleet", updateFleet,
+                "updateFleetV2", updateFleetV2,
                 "fleetId", fleetId,
                 "orgId", orgId);
     }
@@ -122,7 +122,7 @@ public class UpdateFleetRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private UpdateFleet updateFleet;
+        private UpdateFleetV2 updateFleetV2;
 
         private String fleetId;
 
@@ -133,9 +133,9 @@ public class UpdateFleetRequest {
         }
 
 
-        public Builder updateFleet(UpdateFleet updateFleet) {
-            Utils.checkNotNull(updateFleet, "updateFleet");
-            this.updateFleet = updateFleet;
+        public Builder updateFleetV2(UpdateFleetV2 updateFleetV2) {
+            Utils.checkNotNull(updateFleetV2, "updateFleetV2");
+            this.updateFleetV2 = updateFleetV2;
             return this;
         }
 
@@ -162,7 +162,7 @@ public class UpdateFleetRequest {
         public UpdateFleetRequest build() {
 
             return new UpdateFleetRequest(
-                updateFleet, fleetId, orgId);
+                updateFleetV2, fleetId, orgId);
         }
 
     }

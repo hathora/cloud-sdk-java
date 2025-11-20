@@ -26,7 +26,10 @@ public class PartialAppConfigWithServiceConfig {
     private Optional<String> appName;
 
     /**
-     * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     * Configure [player
+     * authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service)
+     * for your application. Use Hathora's built-in auth providers or use your own [custom
+     * authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("authConfiguration")
@@ -60,7 +63,10 @@ public class PartialAppConfigWithServiceConfig {
     }
 
     /**
-     * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     * Configure [player
+     * authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service)
+     * for your application. Use Hathora's built-in auth providers or use your own [custom
+     * authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -93,7 +99,10 @@ public class PartialAppConfigWithServiceConfig {
     }
 
     /**
-     * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     * Configure [player
+     * authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service)
+     * for your application. Use Hathora's built-in auth providers or use your own [custom
+     * authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
     public PartialAppConfigWithServiceConfig withAuthConfiguration(AuthConfiguration authConfiguration) {
         Utils.checkNotNull(authConfiguration, "authConfiguration");
@@ -103,7 +112,10 @@ public class PartialAppConfigWithServiceConfig {
 
 
     /**
-     * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     * Configure [player
+     * authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service)
+     * for your application. Use Hathora's built-in auth providers or use your own [custom
+     * authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
     public PartialAppConfigWithServiceConfig withAuthConfiguration(Optional<? extends AuthConfiguration> authConfiguration) {
         Utils.checkNotNull(authConfiguration, "authConfiguration");
@@ -181,7 +193,10 @@ public class PartialAppConfigWithServiceConfig {
 
 
         /**
-         * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+         * Configure [player
+         * authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service)
+         * for your application. Use Hathora's built-in auth providers or use your own [custom
+         * authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
          */
         public Builder authConfiguration(AuthConfiguration authConfiguration) {
             Utils.checkNotNull(authConfiguration, "authConfiguration");
@@ -190,7 +205,10 @@ public class PartialAppConfigWithServiceConfig {
         }
 
         /**
-         * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+         * Configure [player
+         * authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service)
+         * for your application. Use Hathora's built-in auth providers or use your own [custom
+         * authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
          */
         public Builder authConfiguration(Optional<? extends AuthConfiguration> authConfiguration) {
             Utils.checkNotNull(authConfiguration, "authConfiguration");

@@ -13,6 +13,10 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: true
     generateNewTests: false
@@ -20,22 +24,26 @@ generation:
   baseServerURL: ""
   flattenGlobalSecurity: true
 java:
-  version: 3.2.0
+  version: 3.3.0
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter-api:5.8.1
     - testRuntimeOnly:org.junit.jupiter:junit-jupiter-engine:5.8.1
     - implementation:org.java-websocket:Java-WebSocket:1.5.6
   additionalPlugins: []
   artifactID: cloud-sdk
+  asyncMode: enabled
   baseErrorName: HathoraCloudException
   clientServerStatusCodesAsErrors: true
   companyEmail: hello@hathora.dev
   companyName: Hathora
   companyURL: https://hathora.dev/
   defaultErrorName: SDKError
-  enableAsync: false
   enableCustomCodeRegions: false
+  enableStreamingUploads: false
+  enhancedUnionMemberResolution: true
   flattenGlobalSecurity: false
+  generateOptionalUnionAccessors: false
+  generateSpringBootStarter: true
   githubURL: github.com/hathora/cloud-sdk-java
   groupID: dev.hathora
   imports:
@@ -54,6 +62,7 @@ java:
     url: https://mit-license.org/
   maxMethodParams: 3
   nullFriendlyParameters: false
+  openUnions: true
   outputModelSuffix: output
   projectName: Hathora-Cloud
   templateVersion: v2

@@ -7,20 +7,21 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestlessOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetUserPendingInvites;
-import java.lang.Exception;
+import dev.hathora.cloud_sdk.utils.Headers;
 
 public class GetUserPendingInvitesRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetUserPendingInvitesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetUserPendingInvitesResponse call() throws Exception {
+    public GetUserPendingInvitesResponse call() {
         
         RequestlessOperation<GetUserPendingInvitesResponse> operation
-            = new GetUserPendingInvites.Sync(sdkConfiguration);
+            = new GetUserPendingInvites.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

@@ -25,7 +25,7 @@ import java.util.List;
 public class CreateUserInviteScopes {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private CreateUserInviteScopes(TypedObject value) {
         this.value = value;
@@ -33,12 +33,12 @@ public class CreateUserInviteScopes {
 
     public static CreateUserInviteScopes of(UserRole value) {
         Utils.checkNotNull(value, "value");
-        return new CreateUserInviteScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<UserRole>(){}));
+        return new CreateUserInviteScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static CreateUserInviteScopes of(List<Scope> value) {
         Utils.checkNotNull(value, "value");
-        return new CreateUserInviteScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<Scope>>(){}));
+        return new CreateUserInviteScopes(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -61,7 +61,7 @@ public class CreateUserInviteScopes {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -72,7 +72,7 @@ public class CreateUserInviteScopes {
             return false;
         }
         CreateUserInviteScopes other = (CreateUserInviteScopes) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -95,6 +95,6 @@ public class CreateUserInviteScopes {
         return Utils.toString(CreateUserInviteScopes.class,
                 "value", value);
     }
- 
+
 }
 

@@ -9,8 +9,8 @@ import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.ProcessStatus;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.operations.GetProcessesCountExperimentalV2Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +21,7 @@ public class GetProcessesCountExperimentalV2DeprecatedRequestBuilder {
     private Optional<? extends List<Region>> region = Optional.empty();
     private Optional<? extends List<ProcessStatus>> status = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetProcessesCountExperimentalV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -72,10 +73,10 @@ public class GetProcessesCountExperimentalV2DeprecatedRequestBuilder {
         return request;
     }
 
-    public GetProcessesCountExperimentalV2DeprecatedResponse call() throws Exception {
+    public GetProcessesCountExperimentalV2DeprecatedResponse call() {
         
         RequestOperation<GetProcessesCountExperimentalV2DeprecatedRequest, GetProcessesCountExperimentalV2DeprecatedResponse> operation
-              = new GetProcessesCountExperimentalV2Deprecated.Sync(sdkConfiguration);
+              = new GetProcessesCountExperimentalV2Deprecated.Sync(sdkConfiguration, _headers);
         GetProcessesCountExperimentalV2DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

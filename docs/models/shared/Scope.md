@@ -22,3 +22,4 @@
 | `TOKENS_READ_WRITE`       | tokens:read-write         |
 | `TICKETS_READ`            | tickets:read              |
 | `TICKETS_READ_WRITE`      | tickets:read-write        |
+| `LOAD_BALANCER_ACCESS`    | load-balancer:access      |

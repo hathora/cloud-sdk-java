@@ -8,8 +8,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.operations.CreateProcessV2Deprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -18,6 +18,7 @@ public class CreateProcessV2DeprecatedRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Region region;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateProcessV2DeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -50,10 +51,10 @@ public class CreateProcessV2DeprecatedRequestBuilder {
         return request;
     }
 
-    public CreateProcessV2DeprecatedResponse call() throws Exception {
+    public CreateProcessV2DeprecatedResponse call() {
         
         RequestOperation<CreateProcessV2DeprecatedRequest, CreateProcessV2DeprecatedResponse> operation
-              = new CreateProcessV2Deprecated.Sync(sdkConfiguration);
+              = new CreateProcessV2Deprecated.Sync(sdkConfiguration, _headers);
         CreateProcessV2DeprecatedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

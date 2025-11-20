@@ -43,23 +43,38 @@ import dev.hathora.cloud_sdk.operations.GetRoomInfo;
 import dev.hathora.cloud_sdk.operations.ResumeRoom;
 import dev.hathora.cloud_sdk.operations.SuspendRoomV2Deprecated;
 import dev.hathora.cloud_sdk.operations.UpdateRoomConfig;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class RoomsV2 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncRoomsV2 asyncSDK;
 
     RoomsV2(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncRoomsV2(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncRoomsV2 async() {
+        return asyncSDK;
     }
 
     /**
      * CreateRoom
      * 
-     * <p>Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
+     * <p>Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the
+     * [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to
+     * get connection details for an active room.
      * 
      * @return The call builder
      */
@@ -70,30 +85,36 @@ public class RoomsV2 {
     /**
      * CreateRoom
      * 
-     * <p>Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
+     * <p>Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the
+     * [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to
+     * get connection details for an active room.
      * 
      * @param createRoomParams 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateRoomResponse createRoom(CreateRoomParams createRoomParams) throws Exception {
+    public CreateRoomResponse createRoom(CreateRoomParams createRoomParams) {
         return createRoom(createRoomParams, Optional.empty(), Optional.empty());
     }
 
     /**
      * CreateRoom
      * 
-     * <p>Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to get connection details for an active room.
+     * <p>Create a new [room](https://hathora.dev/docs/concepts/hathora-entities#room) for an existing
+     * [application](https://hathora.dev/docs/concepts/hathora-entities#application). Poll the
+     * [`GetConnectionInfo()`](https://hathora.dev/api#tag/RoomV2/operation/GetConnectionInfo) endpoint to
+     * get connection details for an active room.
      * 
      * @param createRoomParams 
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateRoomResponse createRoom(
             CreateRoomParams createRoomParams, Optional<String> appId,
-            Optional<String> roomId) throws Exception {
+            Optional<String> roomId) {
         CreateRoomRequest request =
             CreateRoomRequest
                 .builder()
@@ -102,14 +123,15 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<CreateRoomRequest, CreateRoomResponse> operation
-              = new CreateRoom.Sync(sdkConfiguration);
+              = new CreateRoom.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * DestroyRoom
      * 
-     * <p>Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
+     * <p>Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata
+     * is deleted.
      * 
      * @return The call builder
      */
@@ -120,27 +142,29 @@ public class RoomsV2 {
     /**
      * DestroyRoom
      * 
-     * <p>Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
+     * <p>Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata
+     * is deleted.
      * 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DestroyRoomResponse destroyRoom(String roomId) throws Exception {
+    public DestroyRoomResponse destroyRoom(String roomId) {
         return destroyRoom(Optional.empty(), roomId);
     }
 
     /**
      * DestroyRoom
      * 
-     * <p>Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata is deleted.
+     * <p>Destroy a [room](https://hathora.dev/docs/concepts/hathora-entities#room). All associated metadata
+     * is deleted.
      * 
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DestroyRoomResponse destroyRoom(Optional<String> appId, String roomId) throws Exception {
+    public DestroyRoomResponse destroyRoom(Optional<String> appId, String roomId) {
         DestroyRoomRequest request =
             DestroyRoomRequest
                 .builder()
@@ -148,14 +172,15 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<DestroyRoomRequest, DestroyRoomResponse> operation
-              = new DestroyRoom.Sync(sdkConfiguration);
+              = new DestroyRoom.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetActiveRoomsForProcess
      * 
-     * <p>Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * <p>Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given
+     * [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * 
      * @return The call builder
      */
@@ -166,27 +191,29 @@ public class RoomsV2 {
     /**
      * GetActiveRoomsForProcess
      * 
-     * <p>Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * <p>Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given
+     * [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetActiveRoomsForProcessResponse getActiveRoomsForProcess(String processId) throws Exception {
+    public GetActiveRoomsForProcessResponse getActiveRoomsForProcess(String processId) {
         return getActiveRoomsForProcess(Optional.empty(), processId);
     }
 
     /**
      * GetActiveRoomsForProcess
      * 
-     * <p>Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * <p>Get all active [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given
+     * [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * 
      * @param appId 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetActiveRoomsForProcessResponse getActiveRoomsForProcess(Optional<String> appId, String processId) throws Exception {
+    public GetActiveRoomsForProcessResponse getActiveRoomsForProcess(Optional<String> appId, String processId) {
         GetActiveRoomsForProcessRequest request =
             GetActiveRoomsForProcessRequest
                 .builder()
@@ -194,14 +221,16 @@ public class RoomsV2 {
                 .processId(processId)
                 .build();
         RequestOperation<GetActiveRoomsForProcessRequest, GetActiveRoomsForProcessResponse> operation
-              = new GetActiveRoomsForProcess.Sync(sdkConfiguration);
+              = new GetActiveRoomsForProcess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetConnectionInfo
      * 
-     * <p>Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
+     * <p>Poll this endpoint to get connection details to a
+     * [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint
+     * without authentication.
      * 
      * @return The call builder
      */
@@ -212,27 +241,31 @@ public class RoomsV2 {
     /**
      * GetConnectionInfo
      * 
-     * <p>Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
+     * <p>Poll this endpoint to get connection details to a
+     * [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint
+     * without authentication.
      * 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetConnectionInfoResponse getConnectionInfo(String roomId) throws Exception {
+    public GetConnectionInfoResponse getConnectionInfo(String roomId) {
         return getConnectionInfo(Optional.empty(), roomId);
     }
 
     /**
      * GetConnectionInfo
      * 
-     * <p>Poll this endpoint to get connection details to a [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint without authentication.
+     * <p>Poll this endpoint to get connection details to a
+     * [room](https://hathora.dev/docs/concepts/hathora-entities#room). Clients can call this endpoint
+     * without authentication.
      * 
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetConnectionInfoResponse getConnectionInfo(Optional<String> appId, String roomId) throws Exception {
+    public GetConnectionInfoResponse getConnectionInfo(Optional<String> appId, String roomId) {
         GetConnectionInfoRequest request =
             GetConnectionInfoRequest
                 .builder()
@@ -240,14 +273,15 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<GetConnectionInfoRequest, GetConnectionInfoResponse> operation
-              = new GetConnectionInfo.Sync(sdkConfiguration);
+              = new GetConnectionInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetInactiveRoomsForProcess
      * 
-     * <p>Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * <p>Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given
+     * [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * 
      * @return The call builder
      */
@@ -258,27 +292,29 @@ public class RoomsV2 {
     /**
      * GetInactiveRoomsForProcess
      * 
-     * <p>Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * <p>Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given
+     * [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(String processId) throws Exception {
+    public GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(String processId) {
         return getInactiveRoomsForProcess(Optional.empty(), processId);
     }
 
     /**
      * GetInactiveRoomsForProcess
      * 
-     * <p>Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given [process](https://hathora.dev/docs/concepts/hathora-entities#process).
+     * <p>Get all inactive [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) for a given
+     * [process](https://hathora.dev/docs/concepts/hathora-entities#process).
      * 
      * @param appId 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(Optional<String> appId, String processId) throws Exception {
+    public GetInactiveRoomsForProcessResponse getInactiveRoomsForProcess(Optional<String> appId, String processId) {
         GetInactiveRoomsForProcessRequest request =
             GetInactiveRoomsForProcessRequest
                 .builder()
@@ -286,14 +322,15 @@ public class RoomsV2 {
                 .processId(processId)
                 .build();
         RequestOperation<GetInactiveRoomsForProcessRequest, GetInactiveRoomsForProcessResponse> operation
-              = new GetInactiveRoomsForProcess.Sync(sdkConfiguration);
+              = new GetInactiveRoomsForProcess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * GetRoomInfo
      * 
-     * <p>Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
+     * <p>Retreive current and historical allocation data for a
+     * [room](https://hathora.dev/docs/concepts/hathora-entities#room).
      * 
      * @return The call builder
      */
@@ -304,27 +341,29 @@ public class RoomsV2 {
     /**
      * GetRoomInfo
      * 
-     * <p>Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
+     * <p>Retreive current and historical allocation data for a
+     * [room](https://hathora.dev/docs/concepts/hathora-entities#room).
      * 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetRoomInfoResponse getRoomInfo(String roomId) throws Exception {
+    public GetRoomInfoResponse getRoomInfo(String roomId) {
         return getRoomInfo(Optional.empty(), roomId);
     }
 
     /**
      * GetRoomInfo
      * 
-     * <p>Retreive current and historical allocation data for a [room](https://hathora.dev/docs/concepts/hathora-entities#room).
+     * <p>Retreive current and historical allocation data for a
+     * [room](https://hathora.dev/docs/concepts/hathora-entities#room).
      * 
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetRoomInfoResponse getRoomInfo(Optional<String> appId, String roomId) throws Exception {
+    public GetRoomInfoResponse getRoomInfo(Optional<String> appId, String roomId) {
         GetRoomInfoRequest request =
             GetRoomInfoRequest
                 .builder()
@@ -332,7 +371,7 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<GetRoomInfoRequest, GetRoomInfoResponse> operation
-              = new GetRoomInfo.Sync(sdkConfiguration);
+              = new GetRoomInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -350,9 +389,9 @@ public class RoomsV2 {
      * 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ResumeRoomResponse resumeRoom(String roomId) throws Exception {
+    public ResumeRoomResponse resumeRoom(String roomId) {
         return resumeRoom(Optional.empty(), roomId);
     }
 
@@ -362,9 +401,9 @@ public class RoomsV2 {
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ResumeRoomResponse resumeRoom(Optional<String> appId, String roomId) throws Exception {
+    public ResumeRoomResponse resumeRoom(Optional<String> appId, String roomId) {
         ResumeRoomRequest request =
             ResumeRoomRequest
                 .builder()
@@ -372,14 +411,15 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<ResumeRoomRequest, ResumeRoomResponse> operation
-              = new ResumeRoom.Sync(sdkConfiguration);
+              = new ResumeRoom.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * SuspendRoomV2Deprecated
      * 
-     * <p>Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
+     * <p>Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated
+     * from the process but can be rescheduled later using the same `roomId`.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -392,31 +432,33 @@ public class RoomsV2 {
     /**
      * SuspendRoomV2Deprecated
      * 
-     * <p>Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
+     * <p>Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated
+     * from the process but can be rescheduled later using the same `roomId`.
      * 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public SuspendRoomV2DeprecatedResponse suspendRoomV2Deprecated(String roomId) throws Exception {
+    public SuspendRoomV2DeprecatedResponse suspendRoomV2Deprecated(String roomId) {
         return suspendRoomV2Deprecated(Optional.empty(), roomId);
     }
 
     /**
      * SuspendRoomV2Deprecated
      * 
-     * <p>Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated from the process but can be rescheduled later using the same `roomId`.
+     * <p>Suspend a [room](https://hathora.dev/docs/concepts/hathora-entities#room). The room is unallocated
+     * from the process but can be rescheduled later using the same `roomId`.
      * 
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public SuspendRoomV2DeprecatedResponse suspendRoomV2Deprecated(Optional<String> appId, String roomId) throws Exception {
+    public SuspendRoomV2DeprecatedResponse suspendRoomV2Deprecated(Optional<String> appId, String roomId) {
         SuspendRoomV2DeprecatedRequest request =
             SuspendRoomV2DeprecatedRequest
                 .builder()
@@ -424,7 +466,7 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<SuspendRoomV2DeprecatedRequest, SuspendRoomV2DeprecatedResponse> operation
-              = new SuspendRoomV2Deprecated.Sync(sdkConfiguration);
+              = new SuspendRoomV2Deprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -443,9 +485,9 @@ public class RoomsV2 {
      * @param updateRoomConfigParams 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateRoomConfigResponse updateRoomConfig(UpdateRoomConfigParams updateRoomConfigParams, String roomId) throws Exception {
+    public UpdateRoomConfigResponse updateRoomConfig(UpdateRoomConfigParams updateRoomConfigParams, String roomId) {
         return updateRoomConfig(updateRoomConfigParams, Optional.empty(), roomId);
     }
 
@@ -456,11 +498,11 @@ public class RoomsV2 {
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateRoomConfigResponse updateRoomConfig(
             UpdateRoomConfigParams updateRoomConfigParams, Optional<String> appId,
-            String roomId) throws Exception {
+            String roomId) {
         UpdateRoomConfigRequest request =
             UpdateRoomConfigRequest
                 .builder()
@@ -469,7 +511,7 @@ public class RoomsV2 {
                 .roomId(roomId)
                 .build();
         RequestOperation<UpdateRoomConfigRequest, UpdateRoomConfigResponse> operation
-              = new UpdateRoomConfig.Sync(sdkConfiguration);
+              = new UpdateRoomConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

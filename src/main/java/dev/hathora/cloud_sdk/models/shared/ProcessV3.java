@@ -46,6 +46,13 @@ public class ProcessV3 {
     @JsonProperty("exposedPort")
     private Optional<? extends ProcessV3ExposedPort> exposedPort;
 
+    /**
+     * The id of the fleet.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("fleetId")
+    private Optional<String> fleetId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hosting")
@@ -68,7 +75,8 @@ public class ProcessV3 {
     private int roomsAllocated;
 
     /**
-     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+     * in a process.
      */
     @JsonProperty("roomsPerProcess")
     private int roomsPerProcess;
@@ -112,6 +120,7 @@ public class ProcessV3 {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("deploymentId") String deploymentId,
             @JsonProperty("exposedPort") Optional<? extends ProcessV3ExposedPort> exposedPort,
+            @JsonProperty("fleetId") Optional<String> fleetId,
             @JsonProperty("hosting") Optional<? extends Hosting> hosting,
             @JsonProperty("processId") String processId,
             @JsonProperty("region") Region region,
@@ -127,6 +136,7 @@ public class ProcessV3 {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(deploymentId, "deploymentId");
         Utils.checkNotNull(exposedPort, "exposedPort");
+        Utils.checkNotNull(fleetId, "fleetId");
         Utils.checkNotNull(hosting, "hosting");
         Utils.checkNotNull(processId, "processId");
         Utils.checkNotNull(region, "region");
@@ -142,6 +152,7 @@ public class ProcessV3 {
         this.createdAt = createdAt;
         this.deploymentId = deploymentId;
         this.exposedPort = exposedPort;
+        this.fleetId = fleetId;
         this.hosting = hosting;
         this.processId = processId;
         this.region = region;
@@ -166,9 +177,10 @@ public class ProcessV3 {
             ProcessStatus status) {
         this(additionalExposedPorts, appId, createdAt,
             deploymentId, Optional.empty(), Optional.empty(),
-            processId, region, roomsAllocated,
-            roomsPerProcess, Optional.empty(), status,
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), processId, region,
+            roomsAllocated, roomsPerProcess, Optional.empty(),
+            status, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -206,6 +218,14 @@ public class ProcessV3 {
         return (Optional<ProcessV3ExposedPort>) exposedPort;
     }
 
+    /**
+     * The id of the fleet.
+     */
+    @JsonIgnore
+    public Optional<String> fleetId() {
+        return fleetId;
+    }
+
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Hosting> hosting() {
@@ -234,7 +254,8 @@ public class ProcessV3 {
     }
 
     /**
-     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+     * in a process.
      */
     @JsonIgnore
     public int roomsPerProcess() {
@@ -329,6 +350,25 @@ public class ProcessV3 {
         return this;
     }
 
+    /**
+     * The id of the fleet.
+     */
+    public ProcessV3 withFleetId(String fleetId) {
+        Utils.checkNotNull(fleetId, "fleetId");
+        this.fleetId = Optional.ofNullable(fleetId);
+        return this;
+    }
+
+
+    /**
+     * The id of the fleet.
+     */
+    public ProcessV3 withFleetId(Optional<String> fleetId) {
+        Utils.checkNotNull(fleetId, "fleetId");
+        this.fleetId = fleetId;
+        return this;
+    }
+
     public ProcessV3 withHosting(Hosting hosting) {
         Utils.checkNotNull(hosting, "hosting");
         this.hosting = Optional.ofNullable(hosting);
@@ -367,7 +407,8 @@ public class ProcessV3 {
     }
 
     /**
-     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+     * in a process.
      */
     public ProcessV3 withRoomsPerProcess(int roomsPerProcess) {
         Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
@@ -472,6 +513,7 @@ public class ProcessV3 {
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.deploymentId, other.deploymentId) &&
             Utils.enhancedDeepEquals(this.exposedPort, other.exposedPort) &&
+            Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
             Utils.enhancedDeepEquals(this.hosting, other.hosting) &&
             Utils.enhancedDeepEquals(this.processId, other.processId) &&
             Utils.enhancedDeepEquals(this.region, other.region) &&
@@ -488,10 +530,11 @@ public class ProcessV3 {
     public int hashCode() {
         return Utils.enhancedHash(
             additionalExposedPorts, appId, createdAt,
-            deploymentId, exposedPort, hosting,
-            processId, region, roomsAllocated,
-            roomsPerProcess, startedAt, status,
-            stoppingAt, summaryExitReason, terminatedAt);
+            deploymentId, exposedPort, fleetId,
+            hosting, processId, region,
+            roomsAllocated, roomsPerProcess, startedAt,
+            status, stoppingAt, summaryExitReason,
+            terminatedAt);
     }
     
     @Override
@@ -502,6 +545,7 @@ public class ProcessV3 {
                 "createdAt", createdAt,
                 "deploymentId", deploymentId,
                 "exposedPort", exposedPort,
+                "fleetId", fleetId,
                 "hosting", hosting,
                 "processId", processId,
                 "region", region,
@@ -526,6 +570,8 @@ public class ProcessV3 {
         private String deploymentId;
 
         private Optional<? extends ProcessV3ExposedPort> exposedPort = Optional.empty();
+
+        private Optional<String> fleetId = Optional.empty();
 
         private Optional<? extends Hosting> hosting = Optional.empty();
 
@@ -602,6 +648,25 @@ public class ProcessV3 {
         }
 
 
+        /**
+         * The id of the fleet.
+         */
+        public Builder fleetId(String fleetId) {
+            Utils.checkNotNull(fleetId, "fleetId");
+            this.fleetId = Optional.ofNullable(fleetId);
+            return this;
+        }
+
+        /**
+         * The id of the fleet.
+         */
+        public Builder fleetId(Optional<String> fleetId) {
+            Utils.checkNotNull(fleetId, "fleetId");
+            this.fleetId = fleetId;
+            return this;
+        }
+
+
         public Builder hosting(Hosting hosting) {
             Utils.checkNotNull(hosting, "hosting");
             this.hosting = Optional.ofNullable(hosting);
@@ -643,7 +708,8 @@ public class ProcessV3 {
 
 
         /**
-         * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+         * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+         * in a process.
          */
         public Builder roomsPerProcess(int roomsPerProcess) {
             Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
@@ -738,10 +804,11 @@ public class ProcessV3 {
 
             return new ProcessV3(
                 additionalExposedPorts, appId, createdAt,
-                deploymentId, exposedPort, hosting,
-                processId, region, roomsAllocated,
-                roomsPerProcess, startedAt, status,
-                stoppingAt, summaryExitReason, terminatedAt);
+                deploymentId, exposedPort, fleetId,
+                hosting, processId, region,
+                roomsAllocated, roomsPerProcess, startedAt,
+                status, stoppingAt, summaryExitReason,
+                terminatedAt);
         }
 
     }

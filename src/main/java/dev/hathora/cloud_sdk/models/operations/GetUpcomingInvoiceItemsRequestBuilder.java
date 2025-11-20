@@ -7,8 +7,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetUpcomingInvoiceItems;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -16,6 +16,7 @@ public class GetUpcomingInvoiceItemsRequestBuilder {
 
     private Optional<String> orgId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetUpcomingInvoiceItemsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -41,10 +42,10 @@ public class GetUpcomingInvoiceItemsRequestBuilder {
         return request;
     }
 
-    public GetUpcomingInvoiceItemsResponse call() throws Exception {
+    public GetUpcomingInvoiceItemsResponse call() {
         
         RequestOperation<GetUpcomingInvoiceItemsRequest, GetUpcomingInvoiceItemsResponse> operation
-              = new GetUpcomingInvoiceItems.Sync(sdkConfiguration);
+              = new GetUpcomingInvoiceItems.Sync(sdkConfiguration, _headers);
         GetUpcomingInvoiceItemsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

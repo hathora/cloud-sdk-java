@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.hathora.cloud_sdk.models.shared.FleetMetricName;
-import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.utils.LazySingletonValue;
 import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
@@ -39,10 +38,6 @@ public class GetFleetMetricsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orgId")
     private Optional<String> orgId;
 
-
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=region")
-    private Region region;
-
     /**
      * Unix timestamp. Default is -1 hour from `end`.
      */
@@ -59,31 +54,26 @@ public class GetFleetMetricsRequest {
             String fleetId,
             Optional<? extends List<FleetMetricName>> metrics,
             Optional<String> orgId,
-            Region region,
             Optional<Double> start,
             Optional<Integer> step) {
         Utils.checkNotNull(end, "end");
         Utils.checkNotNull(fleetId, "fleetId");
         Utils.checkNotNull(metrics, "metrics");
         Utils.checkNotNull(orgId, "orgId");
-        Utils.checkNotNull(region, "region");
         Utils.checkNotNull(start, "start");
         Utils.checkNotNull(step, "step");
         this.end = end;
         this.fleetId = fleetId;
         this.metrics = metrics;
         this.orgId = orgId;
-        this.region = region;
         this.start = start;
         this.step = step;
     }
     
     public GetFleetMetricsRequest(
-            String fleetId,
-            Region region) {
+            String fleetId) {
         this(Optional.empty(), fleetId, Optional.empty(),
-            Optional.empty(), region, Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -108,11 +98,6 @@ public class GetFleetMetricsRequest {
     @JsonIgnore
     public Optional<String> orgId() {
         return orgId;
-    }
-
-    @JsonIgnore
-    public Region region() {
-        return region;
     }
 
     /**
@@ -184,12 +169,6 @@ public class GetFleetMetricsRequest {
         return this;
     }
 
-    public GetFleetMetricsRequest withRegion(Region region) {
-        Utils.checkNotNull(region, "region");
-        this.region = region;
-        return this;
-    }
-
     /**
      * Unix timestamp. Default is -1 hour from `end`.
      */
@@ -236,7 +215,6 @@ public class GetFleetMetricsRequest {
             Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
             Utils.enhancedDeepEquals(this.metrics, other.metrics) &&
             Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
-            Utils.enhancedDeepEquals(this.region, other.region) &&
             Utils.enhancedDeepEquals(this.start, other.start) &&
             Utils.enhancedDeepEquals(this.step, other.step);
     }
@@ -245,8 +223,7 @@ public class GetFleetMetricsRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             end, fleetId, metrics,
-            orgId, region, start,
-            step);
+            orgId, start, step);
     }
     
     @Override
@@ -256,7 +233,6 @@ public class GetFleetMetricsRequest {
                 "fleetId", fleetId,
                 "metrics", metrics,
                 "orgId", orgId,
-                "region", region,
                 "start", start,
                 "step", step);
     }
@@ -271,8 +247,6 @@ public class GetFleetMetricsRequest {
         private Optional<? extends List<FleetMetricName>> metrics = Optional.empty();
 
         private Optional<String> orgId = Optional.empty();
-
-        private Region region;
 
         private Optional<Double> start = Optional.empty();
 
@@ -335,13 +309,6 @@ public class GetFleetMetricsRequest {
         }
 
 
-        public Builder region(Region region) {
-            Utils.checkNotNull(region, "region");
-            this.region = region;
-            return this;
-        }
-
-
         /**
          * Unix timestamp. Default is -1 hour from `end`.
          */
@@ -380,8 +347,7 @@ public class GetFleetMetricsRequest {
 
             return new GetFleetMetricsRequest(
                 end, fleetId, metrics,
-                orgId, region, start,
-                step);
+                orgId, start, step);
         }
 
 

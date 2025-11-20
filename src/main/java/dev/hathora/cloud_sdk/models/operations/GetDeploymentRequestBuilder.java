@@ -7,8 +7,8 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetDeployment;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -17,6 +17,7 @@ public class GetDeploymentRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String deploymentId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetDeploymentRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,10 +50,10 @@ public class GetDeploymentRequestBuilder {
         return request;
     }
 
-    public GetDeploymentResponse call() throws Exception {
+    public GetDeploymentResponse call() {
         
         RequestOperation<GetDeploymentRequest, GetDeploymentResponse> operation
-              = new GetDeployment.Sync(sdkConfiguration);
+              = new GetDeployment.Sync(sdkConfiguration, _headers);
         GetDeploymentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -40,7 +40,10 @@ public class Application {
     private String appSecret;
 
     /**
-     * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     * Configure [player
+     * authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service)
+     * for your application. Use Hathora's built-in auth providers or use your own [custom
+     * authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
     @JsonProperty("authConfiguration")
     private AuthConfiguration authConfiguration;
@@ -153,7 +156,10 @@ public class Application {
     }
 
     /**
-     * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     * Configure [player
+     * authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service)
+     * for your application. Use Hathora's built-in auth providers or use your own [custom
+     * authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
     @JsonIgnore
     public AuthConfiguration authConfiguration() {
@@ -236,7 +242,10 @@ public class Application {
     }
 
     /**
-     * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+     * Configure [player
+     * authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service)
+     * for your application. Use Hathora's built-in auth providers or use your own [custom
+     * authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
      */
     public Application withAuthConfiguration(AuthConfiguration authConfiguration) {
         Utils.checkNotNull(authConfiguration, "authConfiguration");
@@ -424,7 +433,10 @@ public class Application {
 
 
         /**
-         * Configure [player authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service) for your application. Use Hathora's built-in auth providers or use your own [custom authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
+         * Configure [player
+         * authentication](https://hathora.dev/docs/backend-integrations/lobbies-and-matchmaking/auth-service)
+         * for your application. Use Hathora's built-in auth providers or use your own [custom
+         * authentication](https://hathora.dev/docs/lobbies-and-matchmaking/auth-service#custom-auth-provider).
          */
         public Builder authConfiguration(AuthConfiguration authConfiguration) {
             Utils.checkNotNull(authConfiguration, "authConfiguration");

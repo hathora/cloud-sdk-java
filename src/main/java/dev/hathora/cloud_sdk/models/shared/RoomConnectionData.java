@@ -39,7 +39,8 @@ public class RoomConnectionData {
     private String processId;
 
     /**
-     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it
+     * with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
     @JsonProperty("roomId")
@@ -100,7 +101,8 @@ public class RoomConnectionData {
     }
 
     /**
-     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it
+     * with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
     @JsonIgnore
@@ -153,7 +155,8 @@ public class RoomConnectionData {
     }
 
     /**
-     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+     * Unique identifier to a game session or match. Use the default system generated ID or overwrite it
+     * with your own.
      * Note: error will be returned if `roomId` is not globally unique.
      */
     public RoomConnectionData withRoomId(String roomId) {
@@ -257,7 +260,8 @@ public class RoomConnectionData {
 
 
         /**
-         * Unique identifier to a game session or match. Use the default system generated ID or overwrite it with your own.
+         * Unique identifier to a game session or match. Use the default system generated ID or overwrite it
+         * with your own.
          * Note: error will be returned if `roomId` is not globally unique.
          */
         public Builder roomId(String roomId) {

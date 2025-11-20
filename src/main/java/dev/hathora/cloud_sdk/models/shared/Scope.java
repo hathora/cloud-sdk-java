@@ -62,6 +62,7 @@ public class Scope {
     public static final Scope TOKENS_READ_WRITE = new Scope("tokens:read-write");
     public static final Scope TICKETS_READ = new Scope("tickets:read");
     public static final Scope TICKETS_READ_WRITE = new Scope("tickets:read-write");
+    public static final Scope LOAD_BALANCER_ACCESS = new Scope("load-balancer:access");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -150,6 +151,7 @@ public class Scope {
         map.put("tokens:read-write", TOKENS_READ_WRITE);
         map.put("tickets:read", TICKETS_READ);
         map.put("tickets:read-write", TICKETS_READ_WRITE);
+        map.put("load-balancer:access", LOAD_BALANCER_ACCESS);
         return map;
     }
 
@@ -172,6 +174,7 @@ public class Scope {
         map.put("tokens:read-write", ScopeEnum.TOKENS_READ_WRITE);
         map.put("tickets:read", ScopeEnum.TICKETS_READ);
         map.put("tickets:read-write", ScopeEnum.TICKETS_READ_WRITE);
+        map.put("load-balancer:access", ScopeEnum.LOAD_BALANCER_ACCESS);
         return map;
     }
     
@@ -223,7 +226,8 @@ public class Scope {
         TOKENS_READ("tokens:read"),
         TOKENS_READ_WRITE("tokens:read-write"),
         TICKETS_READ("tickets:read"),
-        TICKETS_READ_WRITE("tickets:read-write"),;
+        TICKETS_READ_WRITE("tickets:read-write"),
+        LOAD_BALANCER_ACCESS("load-balancer:access"),;
 
         private final String value;
 

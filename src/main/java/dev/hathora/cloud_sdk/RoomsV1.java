@@ -34,17 +34,29 @@ import dev.hathora.cloud_sdk.operations.GetConnectionInfoDeprecated;
 import dev.hathora.cloud_sdk.operations.GetInactiveRoomsForProcessDeprecated;
 import dev.hathora.cloud_sdk.operations.GetRoomInfoDeprecated;
 import dev.hathora.cloud_sdk.operations.SuspendRoomDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class RoomsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncRoomsV1 asyncSDK;
 
     RoomsV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncRoomsV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncRoomsV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -63,11 +75,11 @@ public class RoomsV1 {
      * 
      * @param createRoomParams 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public CreateRoomDeprecatedResponse createRoomDeprecated(CreateRoomParams createRoomParams) throws Exception {
+    public CreateRoomDeprecatedResponse createRoomDeprecated(CreateRoomParams createRoomParams) {
         return createRoomDeprecated(createRoomParams, Optional.empty(), Optional.empty());
     }
 
@@ -78,13 +90,13 @@ public class RoomsV1 {
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public CreateRoomDeprecatedResponse createRoomDeprecated(
             CreateRoomParams createRoomParams, Optional<String> appId,
-            Optional<String> roomId) throws Exception {
+            Optional<String> roomId) {
         CreateRoomDeprecatedRequest request =
             CreateRoomDeprecatedRequest
                 .builder()
@@ -93,7 +105,7 @@ public class RoomsV1 {
                 .roomId(roomId)
                 .build();
         RequestOperation<CreateRoomDeprecatedRequest, CreateRoomDeprecatedResponse> operation
-              = new CreateRoomDeprecated.Sync(sdkConfiguration);
+              = new CreateRoomDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,11 +125,11 @@ public class RoomsV1 {
      * 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public DestroyRoomDeprecatedResponse destroyRoomDeprecated(String roomId) throws Exception {
+    public DestroyRoomDeprecatedResponse destroyRoomDeprecated(String roomId) {
         return destroyRoomDeprecated(Optional.empty(), roomId);
     }
 
@@ -127,11 +139,11 @@ public class RoomsV1 {
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public DestroyRoomDeprecatedResponse destroyRoomDeprecated(Optional<String> appId, String roomId) throws Exception {
+    public DestroyRoomDeprecatedResponse destroyRoomDeprecated(Optional<String> appId, String roomId) {
         DestroyRoomDeprecatedRequest request =
             DestroyRoomDeprecatedRequest
                 .builder()
@@ -139,7 +151,7 @@ public class RoomsV1 {
                 .roomId(roomId)
                 .build();
         RequestOperation<DestroyRoomDeprecatedRequest, DestroyRoomDeprecatedResponse> operation
-              = new DestroyRoomDeprecated.Sync(sdkConfiguration);
+              = new DestroyRoomDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,11 +171,11 @@ public class RoomsV1 {
      * 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetActiveRoomsForProcessDeprecatedResponse getActiveRoomsForProcessDeprecated(String processId) throws Exception {
+    public GetActiveRoomsForProcessDeprecatedResponse getActiveRoomsForProcessDeprecated(String processId) {
         return getActiveRoomsForProcessDeprecated(Optional.empty(), processId);
     }
 
@@ -173,11 +185,11 @@ public class RoomsV1 {
      * @param appId 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetActiveRoomsForProcessDeprecatedResponse getActiveRoomsForProcessDeprecated(Optional<String> appId, String processId) throws Exception {
+    public GetActiveRoomsForProcessDeprecatedResponse getActiveRoomsForProcessDeprecated(Optional<String> appId, String processId) {
         GetActiveRoomsForProcessDeprecatedRequest request =
             GetActiveRoomsForProcessDeprecatedRequest
                 .builder()
@@ -185,7 +197,7 @@ public class RoomsV1 {
                 .processId(processId)
                 .build();
         RequestOperation<GetActiveRoomsForProcessDeprecatedRequest, GetActiveRoomsForProcessDeprecatedResponse> operation
-              = new GetActiveRoomsForProcessDeprecated.Sync(sdkConfiguration);
+              = new GetActiveRoomsForProcessDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -205,11 +217,11 @@ public class RoomsV1 {
      * 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetConnectionInfoDeprecatedResponse getConnectionInfoDeprecated(String roomId) throws Exception {
+    public GetConnectionInfoDeprecatedResponse getConnectionInfoDeprecated(String roomId) {
         return getConnectionInfoDeprecated(Optional.empty(), roomId);
     }
 
@@ -219,11 +231,11 @@ public class RoomsV1 {
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetConnectionInfoDeprecatedResponse getConnectionInfoDeprecated(Optional<String> appId, String roomId) throws Exception {
+    public GetConnectionInfoDeprecatedResponse getConnectionInfoDeprecated(Optional<String> appId, String roomId) {
         GetConnectionInfoDeprecatedRequest request =
             GetConnectionInfoDeprecatedRequest
                 .builder()
@@ -231,7 +243,7 @@ public class RoomsV1 {
                 .roomId(roomId)
                 .build();
         RequestOperation<GetConnectionInfoDeprecatedRequest, GetConnectionInfoDeprecatedResponse> operation
-              = new GetConnectionInfoDeprecated.Sync(sdkConfiguration);
+              = new GetConnectionInfoDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -251,11 +263,11 @@ public class RoomsV1 {
      * 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetInactiveRoomsForProcessDeprecatedResponse getInactiveRoomsForProcessDeprecated(String processId) throws Exception {
+    public GetInactiveRoomsForProcessDeprecatedResponse getInactiveRoomsForProcessDeprecated(String processId) {
         return getInactiveRoomsForProcessDeprecated(Optional.empty(), processId);
     }
 
@@ -265,11 +277,11 @@ public class RoomsV1 {
      * @param appId 
      * @param processId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetInactiveRoomsForProcessDeprecatedResponse getInactiveRoomsForProcessDeprecated(Optional<String> appId, String processId) throws Exception {
+    public GetInactiveRoomsForProcessDeprecatedResponse getInactiveRoomsForProcessDeprecated(Optional<String> appId, String processId) {
         GetInactiveRoomsForProcessDeprecatedRequest request =
             GetInactiveRoomsForProcessDeprecatedRequest
                 .builder()
@@ -277,7 +289,7 @@ public class RoomsV1 {
                 .processId(processId)
                 .build();
         RequestOperation<GetInactiveRoomsForProcessDeprecatedRequest, GetInactiveRoomsForProcessDeprecatedResponse> operation
-              = new GetInactiveRoomsForProcessDeprecated.Sync(sdkConfiguration);
+              = new GetInactiveRoomsForProcessDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -297,11 +309,11 @@ public class RoomsV1 {
      * 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetRoomInfoDeprecatedResponse getRoomInfoDeprecated(String roomId) throws Exception {
+    public GetRoomInfoDeprecatedResponse getRoomInfoDeprecated(String roomId) {
         return getRoomInfoDeprecated(Optional.empty(), roomId);
     }
 
@@ -311,11 +323,11 @@ public class RoomsV1 {
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetRoomInfoDeprecatedResponse getRoomInfoDeprecated(Optional<String> appId, String roomId) throws Exception {
+    public GetRoomInfoDeprecatedResponse getRoomInfoDeprecated(Optional<String> appId, String roomId) {
         GetRoomInfoDeprecatedRequest request =
             GetRoomInfoDeprecatedRequest
                 .builder()
@@ -323,7 +335,7 @@ public class RoomsV1 {
                 .roomId(roomId)
                 .build();
         RequestOperation<GetRoomInfoDeprecatedRequest, GetRoomInfoDeprecatedResponse> operation
-              = new GetRoomInfoDeprecated.Sync(sdkConfiguration);
+              = new GetRoomInfoDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -343,11 +355,11 @@ public class RoomsV1 {
      * 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public SuspendRoomDeprecatedResponse suspendRoomDeprecated(String roomId) throws Exception {
+    public SuspendRoomDeprecatedResponse suspendRoomDeprecated(String roomId) {
         return suspendRoomDeprecated(Optional.empty(), roomId);
     }
 
@@ -357,11 +369,11 @@ public class RoomsV1 {
      * @param appId 
      * @param roomId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public SuspendRoomDeprecatedResponse suspendRoomDeprecated(Optional<String> appId, String roomId) throws Exception {
+    public SuspendRoomDeprecatedResponse suspendRoomDeprecated(Optional<String> appId, String roomId) {
         SuspendRoomDeprecatedRequest request =
             SuspendRoomDeprecatedRequest
                 .builder()
@@ -369,7 +381,7 @@ public class RoomsV1 {
                 .roomId(roomId)
                 .build();
         RequestOperation<SuspendRoomDeprecatedRequest, SuspendRoomDeprecatedResponse> operation
-              = new SuspendRoomDeprecated.Sync(sdkConfiguration);
+              = new SuspendRoomDeprecated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

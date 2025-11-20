@@ -30,17 +30,29 @@ import dev.hathora.cloud_sdk.operations.GetPaymentMethod;
 import dev.hathora.cloud_sdk.operations.GetUpcomingInvoiceItems;
 import dev.hathora.cloud_sdk.operations.GetUpcomingInvoiceTotal;
 import dev.hathora.cloud_sdk.operations.InitStripeCustomerPortalUrl;
+import dev.hathora.cloud_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class BillingV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBillingV1 asyncSDK;
 
     BillingV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBillingV1(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBillingV1 async() {
+        return asyncSDK;
     }
 
     /**
@@ -58,11 +70,11 @@ public class BillingV1 {
      * GetBalance
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetBalanceResponse getBalanceDirect() throws Exception {
+    public GetBalanceResponse getBalanceDirect() {
         return getBalance(Optional.empty());
     }
 
@@ -71,18 +83,18 @@ public class BillingV1 {
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public GetBalanceResponse getBalance(Optional<String> orgId) throws Exception {
+    public GetBalanceResponse getBalance(Optional<String> orgId) {
         GetBalanceRequest request =
             GetBalanceRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
-              = new GetBalance.Sync(sdkConfiguration);
+              = new GetBalance.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -99,9 +111,9 @@ public class BillingV1 {
      * GetInvoices
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetInvoicesResponse getInvoicesDirect() throws Exception {
+    public GetInvoicesResponse getInvoicesDirect() {
         return getInvoices(Optional.empty());
     }
 
@@ -110,16 +122,16 @@ public class BillingV1 {
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetInvoicesResponse getInvoices(Optional<String> orgId) throws Exception {
+    public GetInvoicesResponse getInvoices(Optional<String> orgId) {
         GetInvoicesRequest request =
             GetInvoicesRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<GetInvoicesRequest, GetInvoicesResponse> operation
-              = new GetInvoices.Sync(sdkConfiguration);
+              = new GetInvoices.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -136,9 +148,9 @@ public class BillingV1 {
      * GetPaymentMethod
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPaymentMethodResponse getPaymentMethodDirect() throws Exception {
+    public GetPaymentMethodResponse getPaymentMethodDirect() {
         return getPaymentMethod(Optional.empty());
     }
 
@@ -147,16 +159,16 @@ public class BillingV1 {
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPaymentMethodResponse getPaymentMethod(Optional<String> orgId) throws Exception {
+    public GetPaymentMethodResponse getPaymentMethod(Optional<String> orgId) {
         GetPaymentMethodRequest request =
             GetPaymentMethodRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<GetPaymentMethodRequest, GetPaymentMethodResponse> operation
-              = new GetPaymentMethod.Sync(sdkConfiguration);
+              = new GetPaymentMethod.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -173,9 +185,9 @@ public class BillingV1 {
      * GetUpcomingInvoiceItems
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetUpcomingInvoiceItemsResponse getUpcomingInvoiceItemsDirect() throws Exception {
+    public GetUpcomingInvoiceItemsResponse getUpcomingInvoiceItemsDirect() {
         return getUpcomingInvoiceItems(Optional.empty());
     }
 
@@ -184,16 +196,16 @@ public class BillingV1 {
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetUpcomingInvoiceItemsResponse getUpcomingInvoiceItems(Optional<String> orgId) throws Exception {
+    public GetUpcomingInvoiceItemsResponse getUpcomingInvoiceItems(Optional<String> orgId) {
         GetUpcomingInvoiceItemsRequest request =
             GetUpcomingInvoiceItemsRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<GetUpcomingInvoiceItemsRequest, GetUpcomingInvoiceItemsResponse> operation
-              = new GetUpcomingInvoiceItems.Sync(sdkConfiguration);
+              = new GetUpcomingInvoiceItems.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -210,9 +222,9 @@ public class BillingV1 {
      * GetUpcomingInvoiceTotal
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetUpcomingInvoiceTotalResponse getUpcomingInvoiceTotalDirect() throws Exception {
+    public GetUpcomingInvoiceTotalResponse getUpcomingInvoiceTotalDirect() {
         return getUpcomingInvoiceTotal(Optional.empty());
     }
 
@@ -221,16 +233,16 @@ public class BillingV1 {
      * 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetUpcomingInvoiceTotalResponse getUpcomingInvoiceTotal(Optional<String> orgId) throws Exception {
+    public GetUpcomingInvoiceTotalResponse getUpcomingInvoiceTotal(Optional<String> orgId) {
         GetUpcomingInvoiceTotalRequest request =
             GetUpcomingInvoiceTotalRequest
                 .builder()
                 .orgId(orgId)
                 .build();
         RequestOperation<GetUpcomingInvoiceTotalRequest, GetUpcomingInvoiceTotalResponse> operation
-              = new GetUpcomingInvoiceTotal.Sync(sdkConfiguration);
+              = new GetUpcomingInvoiceTotal.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -248,9 +260,9 @@ public class BillingV1 {
      * 
      * @param customerPortalUrl 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(CustomerPortalUrl customerPortalUrl) throws Exception {
+    public InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(CustomerPortalUrl customerPortalUrl) {
         return initStripeCustomerPortalUrl(customerPortalUrl, Optional.empty());
     }
 
@@ -260,9 +272,9 @@ public class BillingV1 {
      * @param customerPortalUrl 
      * @param orgId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(CustomerPortalUrl customerPortalUrl, Optional<String> orgId) throws Exception {
+    public InitStripeCustomerPortalUrlResponse initStripeCustomerPortalUrl(CustomerPortalUrl customerPortalUrl, Optional<String> orgId) {
         InitStripeCustomerPortalUrlRequest request =
             InitStripeCustomerPortalUrlRequest
                 .builder()
@@ -270,7 +282,7 @@ public class BillingV1 {
                 .orgId(orgId)
                 .build();
         RequestOperation<InitStripeCustomerPortalUrlRequest, InitStripeCustomerPortalUrlResponse> operation
-              = new InitStripeCustomerPortalUrl.Sync(sdkConfiguration);
+              = new InitStripeCustomerPortalUrl.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

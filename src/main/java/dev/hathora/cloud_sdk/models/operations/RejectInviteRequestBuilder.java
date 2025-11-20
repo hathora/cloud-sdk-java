@@ -7,14 +7,15 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.RejectInvite;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 
 public class RejectInviteRequestBuilder {
 
     private String orgId;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public RejectInviteRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -34,10 +35,10 @@ public class RejectInviteRequestBuilder {
         return request;
     }
 
-    public RejectInviteResponse call() throws Exception {
+    public RejectInviteResponse call() {
         
         RequestOperation<RejectInviteRequest, RejectInviteResponse> operation
-              = new RejectInvite.Sync(sdkConfiguration);
+              = new RejectInvite.Sync(sdkConfiguration, _headers);
         RejectInviteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

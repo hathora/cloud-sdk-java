@@ -62,6 +62,13 @@ public class DeploymentConfigV3 {
     private Optional<Double> experimentalRequestedGPU;
 
     /**
+     * The id of the fleet.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("fleetId")
+    private Optional<String> fleetId;
+
+    /**
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
@@ -75,13 +82,22 @@ public class DeploymentConfigV3 {
     private double requestedCPU;
 
     /**
+     * The number of GPUs allocated to your process. Must be an integer.
+     * If not provided, the requested GPU is 0.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("requestedGPU")
+    private Optional<Double> requestedGPU;
+
+    /**
      * The amount of memory allocated to your process.
      */
     @JsonProperty("requestedMemoryMB")
     private double requestedMemoryMB;
 
     /**
-     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+     * in a process.
      */
     @JsonProperty("roomsPerProcess")
     private int roomsPerProcess;
@@ -100,8 +116,10 @@ public class DeploymentConfigV3 {
             @JsonProperty("deploymentTag") Optional<String> deploymentTag,
             @JsonProperty("env") List<DeploymentConfigV3Env> env,
             @JsonProperty("experimentalRequestedGPU") Optional<Double> experimentalRequestedGPU,
+            @JsonProperty("fleetId") Optional<String> fleetId,
             @JsonProperty("idleTimeoutEnabled") boolean idleTimeoutEnabled,
             @JsonProperty("requestedCPU") double requestedCPU,
+            @JsonProperty("requestedGPU") Optional<Double> requestedGPU,
             @JsonProperty("requestedMemoryMB") double requestedMemoryMB,
             @JsonProperty("roomsPerProcess") int roomsPerProcess,
             @JsonProperty("transportType") TransportType transportType) {
@@ -111,8 +129,10 @@ public class DeploymentConfigV3 {
         Utils.checkNotNull(deploymentTag, "deploymentTag");
         Utils.checkNotNull(env, "env");
         Utils.checkNotNull(experimentalRequestedGPU, "experimentalRequestedGPU");
+        Utils.checkNotNull(fleetId, "fleetId");
         Utils.checkNotNull(idleTimeoutEnabled, "idleTimeoutEnabled");
         Utils.checkNotNull(requestedCPU, "requestedCPU");
+        Utils.checkNotNull(requestedGPU, "requestedGPU");
         Utils.checkNotNull(requestedMemoryMB, "requestedMemoryMB");
         Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
         Utils.checkNotNull(transportType, "transportType");
@@ -122,8 +142,10 @@ public class DeploymentConfigV3 {
         this.deploymentTag = deploymentTag;
         this.env = env;
         this.experimentalRequestedGPU = experimentalRequestedGPU;
+        this.fleetId = fleetId;
         this.idleTimeoutEnabled = idleTimeoutEnabled;
         this.requestedCPU = requestedCPU;
+        this.requestedGPU = requestedGPU;
         this.requestedMemoryMB = requestedMemoryMB;
         this.roomsPerProcess = roomsPerProcess;
         this.transportType = transportType;
@@ -140,8 +162,9 @@ public class DeploymentConfigV3 {
             TransportType transportType) {
         this(Optional.empty(), buildId, containerPort,
             Optional.empty(), env, Optional.empty(),
-            idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
-            roomsPerProcess, transportType);
+            Optional.empty(), idleTimeoutEnabled, requestedCPU,
+            Optional.empty(), requestedMemoryMB, roomsPerProcess,
+            transportType);
     }
 
     /**
@@ -196,6 +219,14 @@ public class DeploymentConfigV3 {
     }
 
     /**
+     * The id of the fleet.
+     */
+    @JsonIgnore
+    public Optional<String> fleetId() {
+        return fleetId;
+    }
+
+    /**
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
@@ -213,6 +244,15 @@ public class DeploymentConfigV3 {
     }
 
     /**
+     * The number of GPUs allocated to your process. Must be an integer.
+     * If not provided, the requested GPU is 0.
+     */
+    @JsonIgnore
+    public Optional<Double> requestedGPU() {
+        return requestedGPU;
+    }
+
+    /**
      * The amount of memory allocated to your process.
      */
     @JsonIgnore
@@ -221,7 +261,8 @@ public class DeploymentConfigV3 {
     }
 
     /**
-     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+     * in a process.
      */
     @JsonIgnore
     public int roomsPerProcess() {
@@ -330,6 +371,25 @@ public class DeploymentConfigV3 {
     }
 
     /**
+     * The id of the fleet.
+     */
+    public DeploymentConfigV3 withFleetId(String fleetId) {
+        Utils.checkNotNull(fleetId, "fleetId");
+        this.fleetId = Optional.ofNullable(fleetId);
+        return this;
+    }
+
+
+    /**
+     * The id of the fleet.
+     */
+    public DeploymentConfigV3 withFleetId(Optional<String> fleetId) {
+        Utils.checkNotNull(fleetId, "fleetId");
+        this.fleetId = fleetId;
+        return this;
+    }
+
+    /**
      * Option to shut down processes that have had no new connections or rooms
      * for five minutes.
      */
@@ -349,6 +409,27 @@ public class DeploymentConfigV3 {
     }
 
     /**
+     * The number of GPUs allocated to your process. Must be an integer.
+     * If not provided, the requested GPU is 0.
+     */
+    public DeploymentConfigV3 withRequestedGPU(double requestedGPU) {
+        Utils.checkNotNull(requestedGPU, "requestedGPU");
+        this.requestedGPU = Optional.ofNullable(requestedGPU);
+        return this;
+    }
+
+
+    /**
+     * The number of GPUs allocated to your process. Must be an integer.
+     * If not provided, the requested GPU is 0.
+     */
+    public DeploymentConfigV3 withRequestedGPU(Optional<Double> requestedGPU) {
+        Utils.checkNotNull(requestedGPU, "requestedGPU");
+        this.requestedGPU = requestedGPU;
+        return this;
+    }
+
+    /**
      * The amount of memory allocated to your process.
      */
     public DeploymentConfigV3 withRequestedMemoryMB(double requestedMemoryMB) {
@@ -358,7 +439,8 @@ public class DeploymentConfigV3 {
     }
 
     /**
-     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+     * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+     * in a process.
      */
     public DeploymentConfigV3 withRoomsPerProcess(int roomsPerProcess) {
         Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
@@ -391,8 +473,10 @@ public class DeploymentConfigV3 {
             Utils.enhancedDeepEquals(this.deploymentTag, other.deploymentTag) &&
             Utils.enhancedDeepEquals(this.env, other.env) &&
             Utils.enhancedDeepEquals(this.experimentalRequestedGPU, other.experimentalRequestedGPU) &&
+            Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
             Utils.enhancedDeepEquals(this.idleTimeoutEnabled, other.idleTimeoutEnabled) &&
             Utils.enhancedDeepEquals(this.requestedCPU, other.requestedCPU) &&
+            Utils.enhancedDeepEquals(this.requestedGPU, other.requestedGPU) &&
             Utils.enhancedDeepEquals(this.requestedMemoryMB, other.requestedMemoryMB) &&
             Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
             Utils.enhancedDeepEquals(this.transportType, other.transportType);
@@ -403,8 +487,9 @@ public class DeploymentConfigV3 {
         return Utils.enhancedHash(
             additionalContainerPorts, buildId, containerPort,
             deploymentTag, env, experimentalRequestedGPU,
-            idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
-            roomsPerProcess, transportType);
+            fleetId, idleTimeoutEnabled, requestedCPU,
+            requestedGPU, requestedMemoryMB, roomsPerProcess,
+            transportType);
     }
     
     @Override
@@ -416,8 +501,10 @@ public class DeploymentConfigV3 {
                 "deploymentTag", deploymentTag,
                 "env", env,
                 "experimentalRequestedGPU", experimentalRequestedGPU,
+                "fleetId", fleetId,
                 "idleTimeoutEnabled", idleTimeoutEnabled,
                 "requestedCPU", requestedCPU,
+                "requestedGPU", requestedGPU,
                 "requestedMemoryMB", requestedMemoryMB,
                 "roomsPerProcess", roomsPerProcess,
                 "transportType", transportType);
@@ -438,9 +525,13 @@ public class DeploymentConfigV3 {
 
         private Optional<Double> experimentalRequestedGPU = Optional.empty();
 
+        private Optional<String> fleetId = Optional.empty();
+
         private Boolean idleTimeoutEnabled;
 
         private Double requestedCPU;
+
+        private Optional<Double> requestedGPU = Optional.empty();
 
         private Double requestedMemoryMB;
 
@@ -545,6 +636,25 @@ public class DeploymentConfigV3 {
 
 
         /**
+         * The id of the fleet.
+         */
+        public Builder fleetId(String fleetId) {
+            Utils.checkNotNull(fleetId, "fleetId");
+            this.fleetId = Optional.ofNullable(fleetId);
+            return this;
+        }
+
+        /**
+         * The id of the fleet.
+         */
+        public Builder fleetId(Optional<String> fleetId) {
+            Utils.checkNotNull(fleetId, "fleetId");
+            this.fleetId = fleetId;
+            return this;
+        }
+
+
+        /**
          * Option to shut down processes that have had no new connections or rooms
          * for five minutes.
          */
@@ -566,6 +676,27 @@ public class DeploymentConfigV3 {
 
 
         /**
+         * The number of GPUs allocated to your process. Must be an integer.
+         * If not provided, the requested GPU is 0.
+         */
+        public Builder requestedGPU(double requestedGPU) {
+            Utils.checkNotNull(requestedGPU, "requestedGPU");
+            this.requestedGPU = Optional.ofNullable(requestedGPU);
+            return this;
+        }
+
+        /**
+         * The number of GPUs allocated to your process. Must be an integer.
+         * If not provided, the requested GPU is 0.
+         */
+        public Builder requestedGPU(Optional<Double> requestedGPU) {
+            Utils.checkNotNull(requestedGPU, "requestedGPU");
+            this.requestedGPU = requestedGPU;
+            return this;
+        }
+
+
+        /**
          * The amount of memory allocated to your process.
          */
         public Builder requestedMemoryMB(double requestedMemoryMB) {
@@ -576,7 +707,8 @@ public class DeploymentConfigV3 {
 
 
         /**
-         * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled in a process.
+         * Governs how many [rooms](https://hathora.dev/docs/concepts/hathora-entities#room) can be scheduled
+         * in a process.
          */
         public Builder roomsPerProcess(int roomsPerProcess) {
             Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
@@ -599,8 +731,9 @@ public class DeploymentConfigV3 {
             return new DeploymentConfigV3(
                 additionalContainerPorts, buildId, containerPort,
                 deploymentTag, env, experimentalRequestedGPU,
-                idleTimeoutEnabled, requestedCPU, requestedMemoryMB,
-                roomsPerProcess, transportType);
+                fleetId, idleTimeoutEnabled, requestedCPU,
+                requestedGPU, requestedMemoryMB, roomsPerProcess,
+                transportType);
         }
 
     }

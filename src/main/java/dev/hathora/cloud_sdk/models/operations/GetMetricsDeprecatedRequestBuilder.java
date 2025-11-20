@@ -7,13 +7,14 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 
 import dev.hathora.cloud_sdk.SDKConfiguration;
 import dev.hathora.cloud_sdk.operations.GetMetricsDeprecated;
+import dev.hathora.cloud_sdk.utils.Headers;
 import dev.hathora.cloud_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class GetMetricsDeprecatedRequestBuilder {
 
     private GetMetricsDeprecatedRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetMetricsDeprecatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -25,10 +26,10 @@ public class GetMetricsDeprecatedRequestBuilder {
         return this;
     }
 
-    public GetMetricsDeprecatedResponse call() throws Exception {
+    public GetMetricsDeprecatedResponse call() {
         
         RequestOperation<GetMetricsDeprecatedRequest, GetMetricsDeprecatedResponse> operation
-              = new GetMetricsDeprecated.Sync(sdkConfiguration);
+              = new GetMetricsDeprecated.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }
