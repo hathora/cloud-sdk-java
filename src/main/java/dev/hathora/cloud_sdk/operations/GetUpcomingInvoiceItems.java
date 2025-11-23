@@ -16,6 +16,7 @@ import dev.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceItemsRequest;
 import dev.hathora.cloud_sdk.models.operations.GetUpcomingInvoiceItemsResponse;
 import dev.hathora.cloud_sdk.models.shared.InvoiceItemPage;
 import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Globals;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Headers;
@@ -42,6 +43,7 @@ public class GetUpcomingInvoiceItems {
         final SecuritySource securitySource;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
@@ -49,6 +51,9 @@ public class GetUpcomingInvoiceItems {
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("queryParam", "orgId")
+                .ifPresent(param -> operationGlobals.putParam("queryParam", "orgId", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -93,7 +98,7 @@ public class GetUpcomingInvoiceItems {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
+                    this.operationGlobals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

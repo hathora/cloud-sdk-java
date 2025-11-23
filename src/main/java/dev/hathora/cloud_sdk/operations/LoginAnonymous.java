@@ -16,6 +16,7 @@ import dev.hathora.cloud_sdk.models.operations.LoginAnonymousRequest;
 import dev.hathora.cloud_sdk.models.operations.LoginAnonymousResponse;
 import dev.hathora.cloud_sdk.models.shared.PlayerTokenObject;
 import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Globals;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Headers;
@@ -42,6 +43,7 @@ public class LoginAnonymous {
         final SecuritySource securitySource;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
@@ -49,6 +51,9 @@ public class LoginAnonymous {
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = null;
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("pathParam", "appId")
+                .ifPresent(param -> operationGlobals.putParam("pathParam", "appId", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -86,7 +91,7 @@ public class LoginAnonymous {
                     klass,
                     this.baseUrl,
                     "/auth/v1/{appId}/login/anonymous",
-                    request, this.sdkConfiguration.globals);
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "POST");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);

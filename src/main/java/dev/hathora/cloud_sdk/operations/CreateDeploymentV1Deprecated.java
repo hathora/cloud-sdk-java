@@ -16,6 +16,7 @@ import dev.hathora.cloud_sdk.models.operations.CreateDeploymentV1DeprecatedReque
 import dev.hathora.cloud_sdk.models.operations.CreateDeploymentV1DeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.DeploymentV1;
 import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Globals;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Headers;
@@ -46,6 +47,7 @@ public class CreateDeploymentV1Deprecated {
         final SecuritySource securitySource;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
@@ -53,6 +55,9 @@ public class CreateDeploymentV1Deprecated {
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("pathParam", "appId")
+                .ifPresent(param -> operationGlobals.putParam("pathParam", "appId", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -90,7 +95,7 @@ public class CreateDeploymentV1Deprecated {
                     klass,
                     this.baseUrl,
                     "/deployments/v1/{appId}/create/{buildId}",
-                    request, this.sdkConfiguration.globals);
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(
                     request,
