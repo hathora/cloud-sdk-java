@@ -84,7 +84,7 @@ public class AcceptInvite {
                     klass,
                     this.baseUrl,
                     "/orgs/v1/{orgId}/invites/accept",
-                    request, this.sdkConfiguration.globals);
+                    request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);

@@ -39,7 +39,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.hathora:cloud-sdk:3.3.0'
+implementation 'dev.hathora:cloud-sdk:3.3.1'
 ```
 
 Maven:
@@ -47,7 +47,7 @@ Maven:
 <dependency>
     <groupId>dev.hathora</groupId>
     <artifactId>cloud-sdk</artifactId>
-    <version>3.3.0</version>
+    <version>3.3.1</version>
 </dependency>
 ```
 
@@ -257,6 +257,7 @@ public class Application {
 ### [fleetsV2()](docs/sdks/fleetsv2/README.md)
 
 * [createFleet](docs/sdks/fleetsv2/README.md#createfleet) - CreateFleet
+* [~~deprecatedUpdateFleetRegionV2~~](docs/sdks/fleetsv2/README.md#deprecatedupdatefleetregionv2) - DeprecatedUpdateFleetRegionV2 :warning: **Deprecated**
 * [getFleet](docs/sdks/fleetsv2/README.md#getfleet) - GetFleet
 * [getFleetMetrics](docs/sdks/fleetsv2/README.md#getfleetmetrics) - GetFleetMetrics
 * [getFleetRegion](docs/sdks/fleetsv2/README.md#getfleetregion) - GetFleetRegion
@@ -929,9 +930,11 @@ public class Application {
 ## Debugging
 
 ### Debug
+
 You can setup your SDK to emit debug logs for SDK requests and responses.
 
 For request and response logging (especially json bodies), call `enableHTTPDebugLogging(boolean)` on the SDK builder like so:
+
 ```java
 SDK.builder()
     .enableHTTPDebugLogging(true)
@@ -949,9 +952,10 @@ Response body:
   "token": "global"
 }
 ```
-__WARNING__: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
+__WARNING__: This logging should only be used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
 
 __NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging()`. The `SpeakeasyHTTPClient` honors this setting. If you are using a custom HTTP client, it is up to the custom client to honor this setting.
+
 
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End Debugging [debug] -->

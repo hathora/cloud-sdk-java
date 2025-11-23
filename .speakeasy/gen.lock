@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7b361cb9-7960-4aa9-aefb-1d3ff2bbe54b
 management:
-  docChecksum: a7d08d8f377e1a32f9776afbe7abeefe
+  docChecksum: f90429a22a961e266581a3a788aab201
   docVersion: 0.0.1
-  speakeasyVersion: 1.658.2
-  generationVersion: 2.755.9
-  releaseVersion: 3.3.0
-  configChecksum: 3882e629e5ecd200c64de1ee66381971
+  speakeasyVersion: 1.660.0
+  generationVersion: 2.760.2
+  releaseVersion: 3.3.1
+  configChecksum: f447fe3db90ccc3c6fb1b64dbd3988d9
   repoURL: https://github.com/hathora/cloud-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,14 +14,14 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.55.2
+    core: 3.55.3
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
     globalSecurity: 2.83.1
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.83.0
-    globals: 2.82.2
+    globals: 2.82.4
     groups: 2.81.3
     methodSecurity: 2.82.2
     nullables: 0.1.0
@@ -105,6 +105,8 @@ generatedFiles:
   - docs/models/operations/DeleteBuildResponse.md
   - docs/models/operations/DeleteBuildV2DeprecatedRequest.md
   - docs/models/operations/DeleteBuildV2DeprecatedResponse.md
+  - docs/models/operations/DeprecatedUpdateFleetRegionV2Request.md
+  - docs/models/operations/DeprecatedUpdateFleetRegionV2Response.md
   - docs/models/operations/DestroyRoomDeprecatedRequest.md
   - docs/models/operations/DestroyRoomDeprecatedResponse.md
   - docs/models/operations/DestroyRoomRequest.md
@@ -380,6 +382,7 @@ generatedFiles:
   - docs/models/shared/FleetMetricsData.md
   - docs/models/shared/FleetRegion.md
   - docs/models/shared/FleetRegionConfig.md
+  - docs/models/shared/FleetRegionConfigV2.md
   - docs/models/shared/FleetV2.md
   - docs/models/shared/FleetsPage.md
   - docs/models/shared/FleetsPageV2.md
@@ -610,6 +613,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DeleteBuildDeprecatedRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DeleteBuildRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DeleteBuildV2DeprecatedRequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DeprecatedUpdateFleetRegionV2RequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DestroyRoomDeprecatedRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DestroyRoomRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations//async/DownloadLogForProcessRequestBuilder.java
@@ -814,6 +818,9 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/DeleteBuildV2DeprecatedRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/DeleteBuildV2DeprecatedRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/DeleteBuildV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/DeprecatedUpdateFleetRegionV2Request.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/DeprecatedUpdateFleetRegionV2RequestBuilder.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/DeprecatedUpdateFleetRegionV2Response.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/DestroyRoomDeprecatedRequest.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/DestroyRoomDeprecatedRequestBuilder.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/DestroyRoomDeprecatedResponse.java
@@ -1152,6 +1159,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DeleteBuildDeprecatedResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DeleteBuildResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DeleteBuildV2DeprecatedResponse.java
+  - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DeprecatedUpdateFleetRegionV2Response.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DestroyRoomDeprecatedResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DestroyRoomResponse.java
   - src/main/java/dev/hathora/cloud_sdk/models/operations/async/DownloadLogForProcessResponse.java
@@ -1324,6 +1332,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/models/shared/FleetMetricsData.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/FleetRegion.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/FleetRegionConfig.java
+  - src/main/java/dev/hathora/cloud_sdk/models/shared/FleetRegionConfigV2.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/FleetV2.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/FleetsPage.java
   - src/main/java/dev/hathora/cloud_sdk/models/shared/FleetsPageV2.java
@@ -1446,6 +1455,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/operations/DeleteBuild.java
   - src/main/java/dev/hathora/cloud_sdk/operations/DeleteBuildDeprecated.java
   - src/main/java/dev/hathora/cloud_sdk/operations/DeleteBuildV2Deprecated.java
+  - src/main/java/dev/hathora/cloud_sdk/operations/DeprecatedUpdateFleetRegionV2.java
   - src/main/java/dev/hathora/cloud_sdk/operations/DestroyRoom.java
   - src/main/java/dev/hathora/cloud_sdk/operations/DestroyRoomDeprecated.java
   - src/main/java/dev/hathora/cloud_sdk/operations/DownloadLogForProcess.java
@@ -1605,6 +1615,7 @@ generatedFiles:
   - src/main/java/dev/hathora/cloud_sdk/utils/SerializedBody.java
   - src/main/java/dev/hathora/cloud_sdk/utils/SessionManager.java
   - src/main/java/dev/hathora/cloud_sdk/utils/SpeakeasyHTTPClient.java
+  - src/main/java/dev/hathora/cloud_sdk/utils/SpeakeasyLogger.java
   - src/main/java/dev/hathora/cloud_sdk/utils/SpeakeasyMetadata.java
   - src/main/java/dev/hathora/cloud_sdk/utils/StreamingParser.java
   - src/main/java/dev/hathora/cloud_sdk/utils/TypedObject.java
@@ -2267,7 +2278,7 @@ examples:
           orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
-          application/json: {"cloudMinVcpus": 989408, "cloudMinVcpusUpdatedAt": "2024-06-09T22:13:41.280Z", "scaleIncrementVcpus": 979858}
+          application/json: {"cloudMinVcpus": 989408, "cloudMinVcpusUpdatedAt": "2024-06-09T22:13:41.280Z", "nodeBaseline": 538905, "scaleIncrementVcpus": 979858}
         "401":
           application/json: {"message": "<value>"}
   GetFleets:
@@ -2305,7 +2316,7 @@ examples:
         query:
           orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       requestBody:
-        application/json: {"cloudMinVcpus": 503995}
+        application/json: {"nodeBaseline": 503995}
       responses:
         "401":
           application/json: {"message": "<value>"}
@@ -3086,7 +3097,7 @@ examples:
           orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
       responses:
         "200":
-          application/json: {"cloudMinVcpus": 206641, "cloudMinVcpusUpdatedAt": "2024-05-26T23:13:47.262Z", "scaleIncrementVcpus": 588775}
+          application/json: {"cloudMinVcpus": 206641, "cloudMinVcpusUpdatedAt": "2024-05-26T23:13:47.262Z", "nodeBaseline": 753662, "scaleIncrementVcpus": 588775}
         "401":
           application/json: {"message": "<value>"}
   GetFleetRegionMetricsDeprecated:
@@ -3224,6 +3235,26 @@ examples:
           application/json: [{"cpu": 385.43, "gpu": 7277.24, "host": "spotless-rosemary.name", "hosting": "cloud", "memoryMb": 4260.02, "nodeId": "<id>", "region": "London", "startedAt": "2023-04-22T13:15:52.726Z", "status": "stopped", "stoppedAt": "2023-07-02T06:12:30.852Z"}]
         "401":
           application/json: {"message": "<value>"}
+  DeprecatedUpdateFleetRegionV2:
+    speakeasy-default-deprecated-update-fleet-region-v2:
+      parameters:
+        path:
+          fleetId: "<id>"
+          region: "Singapore"
+        query:
+          orgId: "org-6f706e83-0ec1-437a-9a46-7d4281eb2f39"
+      requestBody:
+        application/json: {"cloudMinVcpus": 735068}
+      responses:
+        "401":
+          application/json: {"message": "<value>"}
+        "500":
+          application/json: {"message": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `hathora-cloud.fleetsV1.createFleetDeprecated()`: **Added**\n* `hathora-cloud.fleetsV1.getFleetDeprecated()`: **Added**\n* `hathora-cloud.fleetsV1.getFleetMetricsDeprecated()`: **Added**\n* `hathora-cloud.fleetsV1.getFleetRegionDeprecated()`: **Added**\n* `hathora-cloud.fleetsV1.getFleetRegionMetricsDeprecated()`: **Added**\n* `hathora-cloud.fleetsV1.getFleetsDeprecated()`: **Added**\n* `hathora-cloud.fleetsV1.updateFleetDeprecated()`: **Added**\n* `hathora-cloud.fleetsV1.updateFleetRegionDeprecated()`: **Added**\n* `hathora-cloud.fleetsV2.createFleet()`: **Added**\n* `hathora-cloud.fleetsV2.getFleet()`: **Added**\n* `hathora-cloud.fleetsV2.getFleetMetrics()`: **Added**\n* `hathora-cloud.fleetsV2.getFleetRegion()`: **Added**\n* `hathora-cloud.fleetsV2.getFleetRegionMetrics()`: **Added**\n* `hathora-cloud.fleetsV2.getFleets()`: **Added**\n* `hathora-cloud.fleetsV2.getNodeShapes()`: **Added**\n* `hathora-cloud.fleetsV2.updateFleet()`: **Added**\n* `hathora-cloud.fleetsV2.updateFleetRegion()`: **Added**\n* `hathora-cloud.nodesV1.getNode()`: **Added**\n* `hathora-cloud.nodesV1.listProvisionedNodes()`: **Added**\n* `hathora-cloud.fleetsV1.getFleetMetrics()`: **Deleted** **Breaking** :warning:\n* `hathora-cloud.fleetsV1.getFleetRegion()`: **Deleted** **Breaking** :warning:\n* `hathora-cloud.fleetsV1.getFleets()`: **Deleted** **Breaking** :warning:\n* `hathora-cloud.fleetsV1.updateFleet()`: **Deleted** **Breaking** :warning:\n* `hathora-cloud.fleetsV1.updateFleetRegion()`: **Deleted** **Breaking** :warning:\n* `hathora-cloud.appsV1.createAppV1Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.appsV1.deleteAppV1Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.appsV1.getAppInfoV1Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.appsV1.getAppsV1Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.appsV1.updateAppV1Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.appsV2.createApp()`:  `error.status[408]` **Added**\n* `hathora-cloud.appsV2.deleteApp()`:  `error.status[408]` **Added**\n* `hathora-cloud.appsV2.getApp()`:  `error.status[408]` **Added**\n* `hathora-cloud.appsV2.getApps()`: \n  *  `response.applications.[].deployment` **Changed**\n  *  `error.status[408]` **Added**\n* `hathora-cloud.appsV2.patchApp()`:  `error.status[408]` **Added**\n* `hathora-cloud.appsV2.updateApp()`:  `error.status[408]` **Added**\n* `hathora-cloud.authV1.loginAnonymous()`:  `error.status[408]` **Added**\n* `hathora-cloud.authV1.loginGoogle()`:  `error.status[408]` **Added**\n* `hathora-cloud.authV1.loginNickname()`:  `error.status[408]` **Added**\n* `hathora-cloud.billingV1.getBalance()`:  `error.status[408]` **Added**\n* `hathora-cloud.billingV1.getInvoices()`:  `error.status[408]` **Added**\n* `hathora-cloud.billingV1.getPaymentMethod()`:  `error.status[408]` **Added**\n* `hathora-cloud.billingV1.getUpcomingInvoiceItems()`: \n  *  `response.invoiceitems.[].discount` **Added**\n  *  `error.status[408]` **Added**\n* `hathora-cloud.billingV1.getUpcomingInvoiceTotal()`:  `error.status[408]` **Added**\n* `hathora-cloud.billingV1.initStripeCustomerPortalUrl()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV1.createBuildDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV1.deleteBuildDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV1.getBuildInfoDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV1.getBuildsDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV1.runBuildDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV2.createBuildV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV2.createBuildWithUploadUrlV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV2.createWithMultipartUploadsV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV2.deleteBuildV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV2.getBuildInfoV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV2.getBuildsV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV2.runBuildV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV3.createBuild()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV3.createBuildRegistry()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV3.deleteBuild()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV3.getBuild()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV3.getBuilds()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV3.runBuild()`:  `error.status[408]` **Added**\n* `hathora-cloud.buildsV3.runBuildRegistry()`:  `error.status[408]` **Added**\n* `hathora-cloud.deploymentsV1.createDeploymentV1Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.deploymentsV1.getDeploymentInfoV1Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.deploymentsV1.getDeploymentsV1Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.deploymentsV1.getLatestDeploymentV1Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.deploymentsV2.createDeploymentV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.deploymentsV2.getDeploymentInfoV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.deploymentsV2.getDeploymentsV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.deploymentsV2.getLatestDeploymentV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.deploymentsV3.createDeployment()`: \n  *  `request.deploymentconfigv3` **Changed**\n  *  `response` **Changed**\n  *  `error.status[408]` **Added**\n* `hathora-cloud.deploymentsV3.getDeployment()`: \n  *  `response` **Changed**\n  *  `error.status[408]` **Added**\n* `hathora-cloud.deploymentsV3.getDeployments()`: \n  *  `response.deployments.[]` **Changed**\n  *  `error.status[408]` **Added**\n* `hathora-cloud.deploymentsV3.getLatestDeployment()`: \n  *  `response` **Changed**\n  *  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV1.createPrivateLobbyDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV1.createPublicLobbyDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV1.listActivePublicLobbiesDeprecatedV1()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV2.createLobbyDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV2.createLocalLobby()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV2.createPrivateLobby()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV2.createPublicLobby()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV2.getLobbyInfo()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV2.listActivePublicLobbiesDeprecatedV2()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV2.setLobbyState()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV3.createLobby()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV3.getLobbyInfoByRoomId()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV3.getLobbyInfoByShortCode()`:  `error.status[408]` **Added**\n* `hathora-cloud.lobbiesV3.listActivePublicLobbies()`:  `error` **Changed**\n* `hathora-cloud.logsV1.downloadLogForProcess()`:  `error.status[408]` **Added**\n* `hathora-cloud.managementV1.sendVerificationEmail()`:  `error.status[408]` **Added**\n* `hathora-cloud.metricsV1.getMetricsDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.organizationsV1.acceptInvite()`:  `error.status[408]` **Added**\n* `hathora-cloud.organizationsV1.getOrgMembers()`:  `error.status[408]` **Added**\n* `hathora-cloud.organizationsV1.getOrgPendingInvites()`:  `error.status[408]` **Added**\n* `hathora-cloud.organizationsV1.getOrgs()`: \n  *  `response.orgs.[].defaultFleetId` **Added**\n  *  `error.status[408]` **Added**\n* `hathora-cloud.organizationsV1.getUsageLimits()`:  `error.status[408]` **Added**\n* `hathora-cloud.organizationsV1.getUserPendingInvites()`:  `error.status[408]` **Added**\n* `hathora-cloud.organizationsV1.inviteUser()`:  `error.status[408]` **Added**\n* `hathora-cloud.organizationsV1.rejectInvite()`:  `error.status[408]` **Added**\n* `hathora-cloud.organizationsV1.rescindInvite()`:  `error.status[408]` **Added**\n* `hathora-cloud.organizationsV1.updateUserInvite()`:  `error.status[408]` **Added**\n* `hathora-cloud.processesV1.getProcessInfoDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.processesV1.getRunningProcesses()`:  `error.status[408]` **Added**\n* `hathora-cloud.processesV1.getStoppedProcesses()`:  `error.status[408]` **Added**\n* `hathora-cloud.processesV2.createProcessV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.processesV2.getLatestProcessesV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.processesV2.getProcessInfoV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.processesV2.getProcessesCountExperimentalV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.processesV2.stopProcessV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.processesV3.createProcess()`: \n  *  `response.fleetid` **Added**\n  *  `error.status[408]` **Added**\n* `hathora-cloud.processesV3.getLatestProcesses()`: \n  *  `response.[].fleetId` **Added**\n  *  `error.status[408]` **Added**\n* `hathora-cloud.processesV3.getProcess()`: \n  *  `response.fleetid` **Added**\n  *  `error.status[408]` **Added**\n* `hathora-cloud.processesV3.getProcessMetrics()`: \n  *  `request.metrics` **Changed**\n  *  `response` **Changed**\n  *  `error.status[408]` **Added**\n* `hathora-cloud.processesV3.getProcessesCountExperimental()`:  `error.status[408]` **Added**\n* `hathora-cloud.processesV3.stopProcess()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV1.createRoomDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV1.destroyRoomDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV1.getActiveRoomsForProcessDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV1.getConnectionInfoDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV1.getInactiveRoomsForProcessDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV1.getRoomInfoDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV1.suspendRoomDeprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV2.createRoom()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV2.destroyRoom()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV2.getActiveRoomsForProcess()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV2.getConnectionInfo()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV2.getInactiveRoomsForProcess()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV2.getRoomInfo()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV2.resumeRoom()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV2.suspendRoomV2Deprecated()`:  `error.status[408]` **Added**\n* `hathora-cloud.roomsV2.updateRoomConfig()`:  `error.status[408]` **Added**\n* `hathora-cloud.tokensV1.createOrgToken()`:  `error.status[408]` **Added**\n* `hathora-cloud.tokensV1.getOrgTokens()`:  `error.status[408]` **Added**\n* `hathora-cloud.tokensV1.revokeOrgToken()`:  `error.status[408]` **Added**\n"
+releaseNotes: |
+  ## Java SDK Changes Detected:
+  * `hathora-cloud.fleetsV2.updateFleetRegion()`:  `request` **Changed** **Breaking** :warning:
+  * `hathora-cloud.fleetsV2.deprecatedUpdateFleetRegionV2()`: **Added**
+  * `hathora-cloud.fleetsV1.getFleetRegionDeprecated()`:  `response.nodebaseline` **Added**
+  * `hathora-cloud.fleetsV2.getFleetRegion()`:  `response.nodebaseline` **Added**

@@ -16,6 +16,7 @@ import dev.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecated
 import dev.hathora.cloud_sdk.models.operations.ListActivePublicLobbiesDeprecatedV1Response;
 import dev.hathora.cloud_sdk.models.shared.Lobby;
 import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Globals;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Headers;
@@ -43,6 +44,7 @@ public class ListActivePublicLobbiesDeprecatedV1 {
         final SecuritySource securitySource;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
@@ -50,6 +52,9 @@ public class ListActivePublicLobbiesDeprecatedV1 {
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = null;
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("pathParam", "appId")
+                .ifPresent(param -> operationGlobals.putParam("pathParam", "appId", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -87,7 +92,7 @@ public class ListActivePublicLobbiesDeprecatedV1 {
                     klass,
                     this.baseUrl,
                     "/lobby/v1/{appId}/list",
-                    request, this.sdkConfiguration.globals);
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
@@ -96,7 +101,7 @@ public class ListActivePublicLobbiesDeprecatedV1 {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
+                    this.operationGlobals));
 
             return req.build();
         }
