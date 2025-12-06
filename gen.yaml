@@ -17,6 +17,7 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
+  persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
@@ -24,7 +25,7 @@ generation:
   baseServerURL: ""
   flattenGlobalSecurity: true
 java:
-  version: 3.3.0
+  version: 3.4.0
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter-api:5.8.1
     - testRuntimeOnly:org.junit.jupiter:junit-jupiter-engine:5.8.1
@@ -39,8 +40,8 @@ java:
   companyURL: https://hathora.dev/
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
+  enableSlf4jLogging: false
   enableStreamingUploads: false
-  enhancedUnionMemberResolution: true
   flattenGlobalSecurity: false
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
@@ -54,6 +55,7 @@ java:
       operations: models/operations
       shared: models/shared
       webhooks: models/webhooks
+  inferUnionDiscriminators: false
   inputModelSuffix: input
   languageVersion: 11
   license:
@@ -61,8 +63,11 @@ java:
     shortName: MIT
     url: https://mit-license.org/
   maxMethodParams: 3
+  multipartArrayFormat: legacy
   nullFriendlyParameters: false
   openUnions: true
+  operationScopedParams: true
   outputModelSuffix: output
   projectName: Hathora-Cloud
   templateVersion: v2
+  unionStrategy: populated-fields

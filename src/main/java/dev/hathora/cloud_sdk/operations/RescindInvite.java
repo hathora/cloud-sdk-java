@@ -89,7 +89,7 @@ public class RescindInvite {
                     klass,
                     this.baseUrl,
                     "/orgs/v1/{orgId}/invites/rescind",
-                    request, this.sdkConfiguration.globals);
+                    request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(
                     request,

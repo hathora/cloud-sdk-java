@@ -17,6 +17,7 @@ import dev.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.operations.CreateLobbyDeprecatedSecurity;
 import dev.hathora.cloud_sdk.models.shared.Lobby;
 import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Globals;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Headers;
@@ -48,6 +49,7 @@ public class CreateLobbyDeprecated {
         final SecuritySource securitySource;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(
                 SDKConfiguration sdkConfiguration, CreateLobbyDeprecatedSecurity security,
@@ -59,6 +61,9 @@ public class CreateLobbyDeprecated {
             // hooks will be passed method level security only
             this.securitySource = SecuritySource.of(security);
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("pathParam", "appId")
+                .ifPresent(param -> operationGlobals.putParam("pathParam", "appId", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -96,7 +101,7 @@ public class CreateLobbyDeprecated {
                     klass,
                     this.baseUrl,
                     "/lobby/v2/{appId}/create",
-                    request, this.sdkConfiguration.globals);
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(
                     request,
@@ -118,7 +123,7 @@ public class CreateLobbyDeprecated {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
+                    this.operationGlobals));
             Utils.configureSecurity(req, security);
 
             return req.build();

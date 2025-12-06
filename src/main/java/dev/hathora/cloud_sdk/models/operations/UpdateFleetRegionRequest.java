@@ -5,7 +5,7 @@ package dev.hathora.cloud_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.hathora.cloud_sdk.models.shared.FleetRegionConfig;
+import dev.hathora.cloud_sdk.models.shared.FleetRegionConfigV2;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.utils.SpeakeasyMetadata;
 import dev.hathora.cloud_sdk.utils.Utils;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class UpdateFleetRegionRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private FleetRegionConfig fleetRegionConfig;
+    private FleetRegionConfigV2 fleetRegionConfigV2;
 
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=fleetId")
@@ -33,31 +33,31 @@ public class UpdateFleetRegionRequest {
 
     @JsonCreator
     public UpdateFleetRegionRequest(
-            FleetRegionConfig fleetRegionConfig,
+            FleetRegionConfigV2 fleetRegionConfigV2,
             String fleetId,
             Optional<String> orgId,
             Region region) {
-        Utils.checkNotNull(fleetRegionConfig, "fleetRegionConfig");
+        Utils.checkNotNull(fleetRegionConfigV2, "fleetRegionConfigV2");
         Utils.checkNotNull(fleetId, "fleetId");
         Utils.checkNotNull(orgId, "orgId");
         Utils.checkNotNull(region, "region");
-        this.fleetRegionConfig = fleetRegionConfig;
+        this.fleetRegionConfigV2 = fleetRegionConfigV2;
         this.fleetId = fleetId;
         this.orgId = orgId;
         this.region = region;
     }
     
     public UpdateFleetRegionRequest(
-            FleetRegionConfig fleetRegionConfig,
+            FleetRegionConfigV2 fleetRegionConfigV2,
             String fleetId,
             Region region) {
-        this(fleetRegionConfig, fleetId, Optional.empty(),
+        this(fleetRegionConfigV2, fleetId, Optional.empty(),
             region);
     }
 
     @JsonIgnore
-    public FleetRegionConfig fleetRegionConfig() {
-        return fleetRegionConfig;
+    public FleetRegionConfigV2 fleetRegionConfigV2() {
+        return fleetRegionConfigV2;
     }
 
     @JsonIgnore
@@ -80,9 +80,9 @@ public class UpdateFleetRegionRequest {
     }
 
 
-    public UpdateFleetRegionRequest withFleetRegionConfig(FleetRegionConfig fleetRegionConfig) {
-        Utils.checkNotNull(fleetRegionConfig, "fleetRegionConfig");
-        this.fleetRegionConfig = fleetRegionConfig;
+    public UpdateFleetRegionRequest withFleetRegionConfigV2(FleetRegionConfigV2 fleetRegionConfigV2) {
+        Utils.checkNotNull(fleetRegionConfigV2, "fleetRegionConfigV2");
+        this.fleetRegionConfigV2 = fleetRegionConfigV2;
         return this;
     }
 
@@ -121,7 +121,7 @@ public class UpdateFleetRegionRequest {
         }
         UpdateFleetRegionRequest other = (UpdateFleetRegionRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.fleetRegionConfig, other.fleetRegionConfig) &&
+            Utils.enhancedDeepEquals(this.fleetRegionConfigV2, other.fleetRegionConfigV2) &&
             Utils.enhancedDeepEquals(this.fleetId, other.fleetId) &&
             Utils.enhancedDeepEquals(this.orgId, other.orgId) &&
             Utils.enhancedDeepEquals(this.region, other.region);
@@ -130,14 +130,14 @@ public class UpdateFleetRegionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            fleetRegionConfig, fleetId, orgId,
+            fleetRegionConfigV2, fleetId, orgId,
             region);
     }
     
     @Override
     public String toString() {
         return Utils.toString(UpdateFleetRegionRequest.class,
-                "fleetRegionConfig", fleetRegionConfig,
+                "fleetRegionConfigV2", fleetRegionConfigV2,
                 "fleetId", fleetId,
                 "orgId", orgId,
                 "region", region);
@@ -146,7 +146,7 @@ public class UpdateFleetRegionRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private FleetRegionConfig fleetRegionConfig;
+        private FleetRegionConfigV2 fleetRegionConfigV2;
 
         private String fleetId;
 
@@ -159,9 +159,9 @@ public class UpdateFleetRegionRequest {
         }
 
 
-        public Builder fleetRegionConfig(FleetRegionConfig fleetRegionConfig) {
-            Utils.checkNotNull(fleetRegionConfig, "fleetRegionConfig");
-            this.fleetRegionConfig = fleetRegionConfig;
+        public Builder fleetRegionConfigV2(FleetRegionConfigV2 fleetRegionConfigV2) {
+            Utils.checkNotNull(fleetRegionConfigV2, "fleetRegionConfigV2");
+            this.fleetRegionConfigV2 = fleetRegionConfigV2;
             return this;
         }
 
@@ -195,7 +195,7 @@ public class UpdateFleetRegionRequest {
         public UpdateFleetRegionRequest build() {
 
             return new UpdateFleetRegionRequest(
-                fleetRegionConfig, fleetId, orgId,
+                fleetRegionConfigV2, fleetId, orgId,
                 region);
         }
 

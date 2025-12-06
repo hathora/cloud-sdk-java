@@ -20,8 +20,8 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "0.0.1";
-    public static final String SDK_VERSION = "3.3.0";
-    public static final String GEN_VERSION = "2.755.9";
+    public static final String SDK_VERSION = "3.4.0";
+    public static final String GEN_VERSION = "2.772.0";
     private static final String BASE_PACKAGE = "dev.hathora.cloud_sdk";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",

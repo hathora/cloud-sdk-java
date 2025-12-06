@@ -90,7 +90,7 @@ public class CreateOrgToken {
                     klass,
                     this.baseUrl,
                     "/tokens/v1/orgs/{orgId}/create",
-                    request, this.sdkConfiguration.globals);
+                    request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(
                     request,

@@ -86,7 +86,7 @@ public class RevokeOrgToken {
                     klass,
                     this.baseUrl,
                     "/tokens/v1/orgs/{orgId}/tokens/{orgTokenId}/revoke",
-                    request, this.sdkConfiguration.globals);
+                    request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);

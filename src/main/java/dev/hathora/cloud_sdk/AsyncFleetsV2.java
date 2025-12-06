@@ -6,6 +6,7 @@ package dev.hathora.cloud_sdk;
 import static dev.hathora.cloud_sdk.operations.Operations.AsyncRequestOperation;
 
 import dev.hathora.cloud_sdk.models.operations.CreateFleetRequest;
+import dev.hathora.cloud_sdk.models.operations.DeprecatedUpdateFleetRegionV2Request;
 import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsRequest;
 import dev.hathora.cloud_sdk.models.operations.GetFleetRegionMetricsRequest;
 import dev.hathora.cloud_sdk.models.operations.GetFleetRegionRequest;
@@ -16,6 +17,8 @@ import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionRequest;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetRequest;
 import dev.hathora.cloud_sdk.models.operations.async.CreateFleetRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.async.CreateFleetResponse;
+import dev.hathora.cloud_sdk.models.operations.async.DeprecatedUpdateFleetRegionV2RequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.async.DeprecatedUpdateFleetRegionV2Response;
 import dev.hathora.cloud_sdk.models.operations.async.GetFleetMetricsRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.async.GetFleetMetricsResponse;
 import dev.hathora.cloud_sdk.models.operations.async.GetFleetRegionMetricsRequestBuilder;
@@ -36,6 +39,7 @@ import dev.hathora.cloud_sdk.models.shared.CreateFleetV2;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.UpdateFleetV2;
 import dev.hathora.cloud_sdk.operations.CreateFleet;
+import dev.hathora.cloud_sdk.operations.DeprecatedUpdateFleetRegionV2;
 import dev.hathora.cloud_sdk.operations.GetFleet;
 import dev.hathora.cloud_sdk.operations.GetFleetMetrics;
 import dev.hathora.cloud_sdk.operations.GetFleetRegion;
@@ -45,6 +49,7 @@ import dev.hathora.cloud_sdk.operations.GetNodeShapes;
 import dev.hathora.cloud_sdk.operations.UpdateFleet;
 import dev.hathora.cloud_sdk.operations.UpdateFleetRegion;
 import dev.hathora.cloud_sdk.utils.Headers;
+import java.lang.Deprecated;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -105,6 +110,39 @@ public class AsyncFleetsV2 {
                 .build();
         AsyncRequestOperation<CreateFleetRequest, CreateFleetResponse> operation
               = new CreateFleet.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * DeprecatedUpdateFleetRegionV2
+     * 
+     * <p>Updates the configuration for a given
+     * [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
+     * @return The async call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public DeprecatedUpdateFleetRegionV2RequestBuilder deprecatedUpdateFleetRegionV2() {
+        return new DeprecatedUpdateFleetRegionV2RequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * DeprecatedUpdateFleetRegionV2
+     * 
+     * <p>Updates the configuration for a given
+     * [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<DeprecatedUpdateFleetRegionV2Response>} - The async response
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public CompletableFuture<DeprecatedUpdateFleetRegionV2Response> deprecatedUpdateFleetRegionV2(DeprecatedUpdateFleetRegionV2Request request) {
+        AsyncRequestOperation<DeprecatedUpdateFleetRegionV2Request, DeprecatedUpdateFleetRegionV2Response> operation
+              = new DeprecatedUpdateFleetRegionV2.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
