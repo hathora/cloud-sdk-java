@@ -17,6 +17,7 @@ import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbyResponse;
 import dev.hathora.cloud_sdk.models.operations.CreatePrivateLobbySecurity;
 import dev.hathora.cloud_sdk.models.shared.Lobby;
 import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Globals;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Headers;
@@ -48,6 +49,7 @@ public class CreatePrivateLobby {
         final SecuritySource securitySource;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(
                 SDKConfiguration sdkConfiguration, CreatePrivateLobbySecurity security,
@@ -59,6 +61,9 @@ public class CreatePrivateLobby {
             // hooks will be passed method level security only
             this.securitySource = SecuritySource.of(security);
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("pathParam", "appId")
+                .ifPresent(param -> operationGlobals.putParam("pathParam", "appId", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -96,7 +101,7 @@ public class CreatePrivateLobby {
                     klass,
                     this.baseUrl,
                     "/lobby/v2/{appId}/create/private",
-                    request, this.sdkConfiguration.globals);
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(
                     request,
@@ -118,7 +123,7 @@ public class CreatePrivateLobby {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
+                    this.operationGlobals));
             Utils.configureSecurity(req, security);
 
             return req.build();

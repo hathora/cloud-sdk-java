@@ -16,6 +16,7 @@ import dev.hathora.cloud_sdk.models.operations.GetRoomInfoDeprecatedRequest;
 import dev.hathora.cloud_sdk.models.operations.GetRoomInfoDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.shared.Room;
 import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Globals;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Headers;
@@ -42,6 +43,7 @@ public class GetRoomInfoDeprecated {
         final SecuritySource securitySource;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
@@ -49,6 +51,9 @@ public class GetRoomInfoDeprecated {
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("pathParam", "appId")
+                .ifPresent(param -> operationGlobals.putParam("pathParam", "appId", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -86,7 +91,7 @@ public class GetRoomInfoDeprecated {
                     klass,
                     this.baseUrl,
                     "/rooms/v1/{appId}/info/{roomId}",
-                    request, this.sdkConfiguration.globals);
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);

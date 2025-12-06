@@ -16,6 +16,7 @@ import dev.hathora.cloud_sdk.models.operations.GetRunningProcessesRequest;
 import dev.hathora.cloud_sdk.models.operations.GetRunningProcessesResponse;
 import dev.hathora.cloud_sdk.models.shared.ProcessWithRooms;
 import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Globals;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Headers;
@@ -43,6 +44,7 @@ public class GetRunningProcesses {
         final SecuritySource securitySource;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
@@ -50,6 +52,9 @@ public class GetRunningProcesses {
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("pathParam", "appId")
+                .ifPresent(param -> operationGlobals.putParam("pathParam", "appId", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -87,7 +92,7 @@ public class GetRunningProcesses {
                     klass,
                     this.baseUrl,
                     "/processes/v1/{appId}/list/running",
-                    request, this.sdkConfiguration.globals);
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
@@ -96,7 +101,7 @@ public class GetRunningProcesses {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
+                    this.operationGlobals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

@@ -14,6 +14,7 @@ import dev.hathora.cloud_sdk.models.errors.SDKError;
 import dev.hathora.cloud_sdk.models.operations.RunBuildRequest;
 import dev.hathora.cloud_sdk.models.operations.RunBuildResponse;
 import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Globals;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Headers;
@@ -40,6 +41,7 @@ public class RunBuild {
         final SecuritySource securitySource;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
@@ -47,6 +49,9 @@ public class RunBuild {
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("queryParam", "orgId")
+                .ifPresent(param -> operationGlobals.putParam("queryParam", "orgId", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -84,7 +89,7 @@ public class RunBuild {
                     klass,
                     this.baseUrl,
                     "/builds/v3/builds/{buildId}/run",
-                    request, this.sdkConfiguration.globals);
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "POST");
             req.addHeader("Accept", "application/octet-stream")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
@@ -93,7 +98,7 @@ public class RunBuild {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
+                    this.operationGlobals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

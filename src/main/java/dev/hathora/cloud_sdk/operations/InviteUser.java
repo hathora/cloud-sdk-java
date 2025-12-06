@@ -90,7 +90,7 @@ public class InviteUser {
                     klass,
                     this.baseUrl,
                     "/orgs/v1/{orgId}/invites",
-                    request, this.sdkConfiguration.globals);
+                    request, null);
             HTTPRequest req = new HTTPRequest(url, "PUT");
             Object convertedRequest = Utils.convertToShape(
                     request,

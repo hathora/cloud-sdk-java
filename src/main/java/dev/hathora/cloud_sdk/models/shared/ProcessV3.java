@@ -30,6 +30,13 @@ public class ProcessV3 {
     private String appId;
 
     /**
+     * When the container was fully downloaded and started booting.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("bootedAt")
+    private Optional<OffsetDateTime> bootedAt;
+
+    /**
      * When the process started being provisioned.
      */
     @JsonProperty("createdAt")
@@ -82,7 +89,15 @@ public class ProcessV3 {
     private int roomsPerProcess;
 
     /**
-     * When the process bound to the specified port. We use this to determine when we should start billing.
+     * When the process was assigned to an available node.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("scheduledAt")
+    private Optional<OffsetDateTime> scheduledAt;
+
+    /**
+     * When the process bound to the specified port. We use this to determine when to register the process
+     * to the load balancer.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("startedAt")
@@ -93,7 +108,7 @@ public class ProcessV3 {
     private ProcessStatus status;
 
     /**
-     * When the process is issued to stop. We use this to determine when we should stop billing.
+     * When the process is issued to stop.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("stoppingAt")
@@ -117,6 +132,7 @@ public class ProcessV3 {
     public ProcessV3(
             @JsonProperty("additionalExposedPorts") List<ExposedPort> additionalExposedPorts,
             @JsonProperty("appId") String appId,
+            @JsonProperty("bootedAt") Optional<OffsetDateTime> bootedAt,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("deploymentId") String deploymentId,
             @JsonProperty("exposedPort") Optional<? extends ProcessV3ExposedPort> exposedPort,
@@ -126,6 +142,7 @@ public class ProcessV3 {
             @JsonProperty("region") Region region,
             @JsonProperty("roomsAllocated") int roomsAllocated,
             @JsonProperty("roomsPerProcess") int roomsPerProcess,
+            @JsonProperty("scheduledAt") Optional<OffsetDateTime> scheduledAt,
             @JsonProperty("startedAt") Optional<OffsetDateTime> startedAt,
             @JsonProperty("status") ProcessStatus status,
             @JsonProperty("stoppingAt") Optional<OffsetDateTime> stoppingAt,
@@ -133,6 +150,7 @@ public class ProcessV3 {
             @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(additionalExposedPorts, "additionalExposedPorts");
         Utils.checkNotNull(appId, "appId");
+        Utils.checkNotNull(bootedAt, "bootedAt");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(deploymentId, "deploymentId");
         Utils.checkNotNull(exposedPort, "exposedPort");
@@ -142,6 +160,7 @@ public class ProcessV3 {
         Utils.checkNotNull(region, "region");
         Utils.checkNotNull(roomsAllocated, "roomsAllocated");
         Utils.checkNotNull(roomsPerProcess, "roomsPerProcess");
+        Utils.checkNotNull(scheduledAt, "scheduledAt");
         Utils.checkNotNull(startedAt, "startedAt");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(stoppingAt, "stoppingAt");
@@ -149,6 +168,7 @@ public class ProcessV3 {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.additionalExposedPorts = additionalExposedPorts;
         this.appId = appId;
+        this.bootedAt = bootedAt;
         this.createdAt = createdAt;
         this.deploymentId = deploymentId;
         this.exposedPort = exposedPort;
@@ -158,6 +178,7 @@ public class ProcessV3 {
         this.region = region;
         this.roomsAllocated = roomsAllocated;
         this.roomsPerProcess = roomsPerProcess;
+        this.scheduledAt = scheduledAt;
         this.startedAt = startedAt;
         this.status = status;
         this.stoppingAt = stoppingAt;
@@ -175,12 +196,12 @@ public class ProcessV3 {
             int roomsAllocated,
             int roomsPerProcess,
             ProcessStatus status) {
-        this(additionalExposedPorts, appId, createdAt,
-            deploymentId, Optional.empty(), Optional.empty(),
-            Optional.empty(), processId, region,
-            roomsAllocated, roomsPerProcess, Optional.empty(),
-            status, Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(additionalExposedPorts, appId, Optional.empty(),
+            createdAt, deploymentId, Optional.empty(),
+            Optional.empty(), Optional.empty(), processId,
+            region, roomsAllocated, roomsPerProcess,
+            Optional.empty(), Optional.empty(), status,
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -194,6 +215,14 @@ public class ProcessV3 {
     @JsonIgnore
     public String appId() {
         return appId;
+    }
+
+    /**
+     * When the container was fully downloaded and started booting.
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> bootedAt() {
+        return bootedAt;
     }
 
     /**
@@ -263,7 +292,16 @@ public class ProcessV3 {
     }
 
     /**
-     * When the process bound to the specified port. We use this to determine when we should start billing.
+     * When the process was assigned to an available node.
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> scheduledAt() {
+        return scheduledAt;
+    }
+
+    /**
+     * When the process bound to the specified port. We use this to determine when to register the process
+     * to the load balancer.
      */
     @JsonIgnore
     public Optional<OffsetDateTime> startedAt() {
@@ -276,7 +314,7 @@ public class ProcessV3 {
     }
 
     /**
-     * When the process is issued to stop. We use this to determine when we should stop billing.
+     * When the process is issued to stop.
      */
     @JsonIgnore
     public Optional<OffsetDateTime> stoppingAt() {
@@ -316,6 +354,25 @@ public class ProcessV3 {
     public ProcessV3 withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
+        return this;
+    }
+
+    /**
+     * When the container was fully downloaded and started booting.
+     */
+    public ProcessV3 withBootedAt(OffsetDateTime bootedAt) {
+        Utils.checkNotNull(bootedAt, "bootedAt");
+        this.bootedAt = Optional.ofNullable(bootedAt);
+        return this;
+    }
+
+
+    /**
+     * When the container was fully downloaded and started booting.
+     */
+    public ProcessV3 withBootedAt(Optional<OffsetDateTime> bootedAt) {
+        Utils.checkNotNull(bootedAt, "bootedAt");
+        this.bootedAt = bootedAt;
         return this;
     }
 
@@ -417,7 +474,27 @@ public class ProcessV3 {
     }
 
     /**
-     * When the process bound to the specified port. We use this to determine when we should start billing.
+     * When the process was assigned to an available node.
+     */
+    public ProcessV3 withScheduledAt(OffsetDateTime scheduledAt) {
+        Utils.checkNotNull(scheduledAt, "scheduledAt");
+        this.scheduledAt = Optional.ofNullable(scheduledAt);
+        return this;
+    }
+
+
+    /**
+     * When the process was assigned to an available node.
+     */
+    public ProcessV3 withScheduledAt(Optional<OffsetDateTime> scheduledAt) {
+        Utils.checkNotNull(scheduledAt, "scheduledAt");
+        this.scheduledAt = scheduledAt;
+        return this;
+    }
+
+    /**
+     * When the process bound to the specified port. We use this to determine when to register the process
+     * to the load balancer.
      */
     public ProcessV3 withStartedAt(OffsetDateTime startedAt) {
         Utils.checkNotNull(startedAt, "startedAt");
@@ -427,7 +504,8 @@ public class ProcessV3 {
 
 
     /**
-     * When the process bound to the specified port. We use this to determine when we should start billing.
+     * When the process bound to the specified port. We use this to determine when to register the process
+     * to the load balancer.
      */
     public ProcessV3 withStartedAt(Optional<OffsetDateTime> startedAt) {
         Utils.checkNotNull(startedAt, "startedAt");
@@ -442,7 +520,7 @@ public class ProcessV3 {
     }
 
     /**
-     * When the process is issued to stop. We use this to determine when we should stop billing.
+     * When the process is issued to stop.
      */
     public ProcessV3 withStoppingAt(OffsetDateTime stoppingAt) {
         Utils.checkNotNull(stoppingAt, "stoppingAt");
@@ -452,7 +530,7 @@ public class ProcessV3 {
 
 
     /**
-     * When the process is issued to stop. We use this to determine when we should stop billing.
+     * When the process is issued to stop.
      */
     public ProcessV3 withStoppingAt(Optional<OffsetDateTime> stoppingAt) {
         Utils.checkNotNull(stoppingAt, "stoppingAt");
@@ -510,6 +588,7 @@ public class ProcessV3 {
         return 
             Utils.enhancedDeepEquals(this.additionalExposedPorts, other.additionalExposedPorts) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.bootedAt, other.bootedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.deploymentId, other.deploymentId) &&
             Utils.enhancedDeepEquals(this.exposedPort, other.exposedPort) &&
@@ -519,6 +598,7 @@ public class ProcessV3 {
             Utils.enhancedDeepEquals(this.region, other.region) &&
             Utils.enhancedDeepEquals(this.roomsAllocated, other.roomsAllocated) &&
             Utils.enhancedDeepEquals(this.roomsPerProcess, other.roomsPerProcess) &&
+            Utils.enhancedDeepEquals(this.scheduledAt, other.scheduledAt) &&
             Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.stoppingAt, other.stoppingAt) &&
@@ -529,12 +609,12 @@ public class ProcessV3 {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            additionalExposedPorts, appId, createdAt,
-            deploymentId, exposedPort, fleetId,
-            hosting, processId, region,
-            roomsAllocated, roomsPerProcess, startedAt,
-            status, stoppingAt, summaryExitReason,
-            terminatedAt);
+            additionalExposedPorts, appId, bootedAt,
+            createdAt, deploymentId, exposedPort,
+            fleetId, hosting, processId,
+            region, roomsAllocated, roomsPerProcess,
+            scheduledAt, startedAt, status,
+            stoppingAt, summaryExitReason, terminatedAt);
     }
     
     @Override
@@ -542,6 +622,7 @@ public class ProcessV3 {
         return Utils.toString(ProcessV3.class,
                 "additionalExposedPorts", additionalExposedPorts,
                 "appId", appId,
+                "bootedAt", bootedAt,
                 "createdAt", createdAt,
                 "deploymentId", deploymentId,
                 "exposedPort", exposedPort,
@@ -551,6 +632,7 @@ public class ProcessV3 {
                 "region", region,
                 "roomsAllocated", roomsAllocated,
                 "roomsPerProcess", roomsPerProcess,
+                "scheduledAt", scheduledAt,
                 "startedAt", startedAt,
                 "status", status,
                 "stoppingAt", stoppingAt,
@@ -564,6 +646,8 @@ public class ProcessV3 {
         private List<ExposedPort> additionalExposedPorts;
 
         private String appId;
+
+        private Optional<OffsetDateTime> bootedAt = Optional.empty();
 
         private OffsetDateTime createdAt;
 
@@ -582,6 +666,8 @@ public class ProcessV3 {
         private Integer roomsAllocated;
 
         private Integer roomsPerProcess;
+
+        private Optional<OffsetDateTime> scheduledAt = Optional.empty();
 
         private Optional<OffsetDateTime> startedAt = Optional.empty();
 
@@ -611,6 +697,25 @@ public class ProcessV3 {
         public Builder appId(String appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
+            return this;
+        }
+
+
+        /**
+         * When the container was fully downloaded and started booting.
+         */
+        public Builder bootedAt(OffsetDateTime bootedAt) {
+            Utils.checkNotNull(bootedAt, "bootedAt");
+            this.bootedAt = Optional.ofNullable(bootedAt);
+            return this;
+        }
+
+        /**
+         * When the container was fully downloaded and started booting.
+         */
+        public Builder bootedAt(Optional<OffsetDateTime> bootedAt) {
+            Utils.checkNotNull(bootedAt, "bootedAt");
+            this.bootedAt = bootedAt;
             return this;
         }
 
@@ -719,7 +824,27 @@ public class ProcessV3 {
 
 
         /**
-         * When the process bound to the specified port. We use this to determine when we should start billing.
+         * When the process was assigned to an available node.
+         */
+        public Builder scheduledAt(OffsetDateTime scheduledAt) {
+            Utils.checkNotNull(scheduledAt, "scheduledAt");
+            this.scheduledAt = Optional.ofNullable(scheduledAt);
+            return this;
+        }
+
+        /**
+         * When the process was assigned to an available node.
+         */
+        public Builder scheduledAt(Optional<OffsetDateTime> scheduledAt) {
+            Utils.checkNotNull(scheduledAt, "scheduledAt");
+            this.scheduledAt = scheduledAt;
+            return this;
+        }
+
+
+        /**
+         * When the process bound to the specified port. We use this to determine when to register the process
+         * to the load balancer.
          */
         public Builder startedAt(OffsetDateTime startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
@@ -728,7 +853,8 @@ public class ProcessV3 {
         }
 
         /**
-         * When the process bound to the specified port. We use this to determine when we should start billing.
+         * When the process bound to the specified port. We use this to determine when to register the process
+         * to the load balancer.
          */
         public Builder startedAt(Optional<OffsetDateTime> startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
@@ -745,7 +871,7 @@ public class ProcessV3 {
 
 
         /**
-         * When the process is issued to stop. We use this to determine when we should stop billing.
+         * When the process is issued to stop.
          */
         public Builder stoppingAt(OffsetDateTime stoppingAt) {
             Utils.checkNotNull(stoppingAt, "stoppingAt");
@@ -754,7 +880,7 @@ public class ProcessV3 {
         }
 
         /**
-         * When the process is issued to stop. We use this to determine when we should stop billing.
+         * When the process is issued to stop.
          */
         public Builder stoppingAt(Optional<OffsetDateTime> stoppingAt) {
             Utils.checkNotNull(stoppingAt, "stoppingAt");
@@ -803,12 +929,12 @@ public class ProcessV3 {
         public ProcessV3 build() {
 
             return new ProcessV3(
-                additionalExposedPorts, appId, createdAt,
-                deploymentId, exposedPort, fleetId,
-                hosting, processId, region,
-                roomsAllocated, roomsPerProcess, startedAt,
-                status, stoppingAt, summaryExitReason,
-                terminatedAt);
+                additionalExposedPorts, appId, bootedAt,
+                createdAt, deploymentId, exposedPort,
+                fleetId, hosting, processId,
+                region, roomsAllocated, roomsPerProcess,
+                scheduledAt, startedAt, status,
+                stoppingAt, summaryExitReason, terminatedAt);
         }
 
     }

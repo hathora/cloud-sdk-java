@@ -15,6 +15,7 @@ import dev.hathora.cloud_sdk.models.errors.SDKError;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionRequest;
 import dev.hathora.cloud_sdk.models.operations.UpdateFleetRegionResponse;
 import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Globals;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Headers;
@@ -45,6 +46,7 @@ public class UpdateFleetRegion {
         final SecuritySource securitySource;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
@@ -52,6 +54,9 @@ public class UpdateFleetRegion {
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("queryParam", "orgId")
+                .ifPresent(param -> operationGlobals.putParam("queryParam", "orgId", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -88,8 +93,8 @@ public class UpdateFleetRegion {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/fleets/v2/fleets/{fleetId}/regions/{region}",
-                    request, this.sdkConfiguration.globals);
+                    "/fleets/v2/fleets/{fleetId}/regions/{region}/v2",
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "PUT");
             Object convertedRequest = Utils.convertToShape(
                     request,
@@ -97,7 +102,7 @@ public class UpdateFleetRegion {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "fleetRegionConfig",
+                    "fleetRegionConfigV2",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -111,7 +116,7 @@ public class UpdateFleetRegion {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
+                    this.operationGlobals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

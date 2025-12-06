@@ -1,5 +1,4 @@
 # DeploymentsV3
-(*deploymentsV3()*)
 
 ## Overview
 

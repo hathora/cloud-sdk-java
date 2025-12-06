@@ -1,11 +1,11 @@
 # FleetsV2
-(*fleetsV2()*)
 
 ## Overview
 
 ### Available Operations
 
 * [createFleet](#createfleet) - CreateFleet
+* [~~deprecatedUpdateFleetRegionV2~~](#deprecatedupdatefleetregionv2) - DeprecatedUpdateFleetRegionV2 :warning: **Deprecated**
 * [getFleet](#getfleet) - GetFleet
 * [getFleetMetrics](#getfleetmetrics) - GetFleetMetrics
 * [getFleetRegion](#getfleetregion) - GetFleetRegion
@@ -69,6 +69,71 @@ public class Application {
 ### Response
 
 **[CreateFleetResponse](../../models/operations/CreateFleetResponse.md)**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| models/errors/ApiError  | 401, 404, 408, 422, 429 | application/json        |
+| models/errors/ApiError  | 500                     | application/json        |
+| models/errors/SDKError  | 4XX, 5XX                | \*/\*                   |
+
+## ~~deprecatedUpdateFleetRegionV2~~
+
+Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="DeprecatedUpdateFleetRegionV2" method="put" path="/fleets/v2/fleets/{fleetId}/regions/{region}" -->
+```java
+package hello.world;
+
+import dev.hathora.cloud_sdk.HathoraCloud;
+import dev.hathora.cloud_sdk.models.errors.ApiError;
+import dev.hathora.cloud_sdk.models.operations.DeprecatedUpdateFleetRegionV2Request;
+import dev.hathora.cloud_sdk.models.operations.DeprecatedUpdateFleetRegionV2Response;
+import dev.hathora.cloud_sdk.models.shared.*;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ApiError, Exception {
+
+        HathoraCloud sdk = HathoraCloud.builder()
+                .orgId("org-6f706e83-0ec1-437a-9a46-7d4281eb2f39")
+                .security(Security.builder()
+                    .hathoraDevToken(System.getenv().getOrDefault("HATHORA_DEV_TOKEN", ""))
+                    .build())
+            .build();
+
+        DeprecatedUpdateFleetRegionV2Request req = DeprecatedUpdateFleetRegionV2Request.builder()
+                .fleetRegionConfig(FleetRegionConfig.builder()
+                    .cloudMinVcpus(735068)
+                    .build())
+                .fleetId("<id>")
+                .region(Region.SINGAPORE)
+                .build();
+
+        DeprecatedUpdateFleetRegionV2Response res = sdk.fleetsV2().deprecatedUpdateFleetRegionV2()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                               | [DeprecatedUpdateFleetRegionV2Request](../../models/operations/DeprecatedUpdateFleetRegionV2Request.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+
+### Response
+
+**[DeprecatedUpdateFleetRegionV2Response](../../models/operations/DeprecatedUpdateFleetRegionV2Response.md)**
 
 ### Errors
 
@@ -496,7 +561,7 @@ Updates the configuration for a given [fleet](https://hathora.dev/docs/concepts/
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="UpdateFleetRegion" method="put" path="/fleets/v2/fleets/{fleetId}/regions/{region}" -->
+<!-- UsageSnippet language="java" operationID="UpdateFleetRegion" method="put" path="/fleets/v2/fleets/{fleetId}/regions/{region}/v2" -->
 ```java
 package hello.world;
 
@@ -519,8 +584,8 @@ public class Application {
             .build();
 
         UpdateFleetRegionRequest req = UpdateFleetRegionRequest.builder()
-                .fleetRegionConfig(FleetRegionConfig.builder()
-                    .cloudMinVcpus(503995)
+                .fleetRegionConfigV2(FleetRegionConfigV2.builder()
+                    .nodeBaseline(503995)
                     .build())
                 .fleetId("<id>")
                 .region(Region.CHICAGO)

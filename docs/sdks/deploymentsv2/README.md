@@ -1,5 +1,7 @@
-# DeploymentsV2
-(*deploymentsV2()*)
+# ~~DeploymentsV2~~
+
+> [!WARNING]
+> This SDK is **DEPRECATED**
 
 ## Overview
 

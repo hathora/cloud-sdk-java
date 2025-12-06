@@ -86,7 +86,7 @@ public class GetNode {
                     klass,
                     this.baseUrl,
                     "/nodes/v1/{nodeId}",
-                    request, this.sdkConfiguration.globals);
+                    request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);

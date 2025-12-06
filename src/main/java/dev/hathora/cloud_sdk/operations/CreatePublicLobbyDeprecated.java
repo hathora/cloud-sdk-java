@@ -16,6 +16,7 @@ import dev.hathora.cloud_sdk.models.operations.CreatePublicLobbyDeprecatedReques
 import dev.hathora.cloud_sdk.models.operations.CreatePublicLobbyDeprecatedResponse;
 import dev.hathora.cloud_sdk.models.operations.CreatePublicLobbyDeprecatedSecurity;
 import dev.hathora.cloud_sdk.utils.Blob;
+import dev.hathora.cloud_sdk.utils.Globals;
 import dev.hathora.cloud_sdk.utils.HTTPClient;
 import dev.hathora.cloud_sdk.utils.HTTPRequest;
 import dev.hathora.cloud_sdk.utils.Headers;
@@ -43,6 +44,7 @@ public class CreatePublicLobbyDeprecated {
         final SecuritySource securitySource;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(
                 SDKConfiguration sdkConfiguration, CreatePublicLobbyDeprecatedSecurity security,
@@ -54,6 +56,9 @@ public class CreatePublicLobbyDeprecated {
             // hooks will be passed method level security only
             this.securitySource = SecuritySource.of(security);
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("pathParam", "appId")
+                .ifPresent(param -> operationGlobals.putParam("pathParam", "appId", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -91,7 +96,7 @@ public class CreatePublicLobbyDeprecated {
                     klass,
                     this.baseUrl,
                     "/lobby/v1/{appId}/create/public",
-                    request, this.sdkConfiguration.globals);
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "POST");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
@@ -100,7 +105,7 @@ public class CreatePublicLobbyDeprecated {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
+                    this.operationGlobals));
             Utils.configureSecurity(req, security);
 
             return req.build();

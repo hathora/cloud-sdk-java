@@ -34,9 +34,8 @@ public class Fleet {
     /**
      * Readable name for a fleet. Must be unique within an organization.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
 
     @JsonProperty("nodeShape")
@@ -52,7 +51,7 @@ public class Fleet {
     public Fleet(
             @JsonProperty("autoscalerConfig") Optional<? extends AutoscalerConfig> autoscalerConfig,
             @JsonProperty("fleetId") String fleetId,
-            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("name") String name,
             @JsonProperty("nodeShape") NodeShape nodeShape,
             @JsonProperty("orgId") String orgId) {
         Utils.checkNotNull(autoscalerConfig, "autoscalerConfig");
@@ -69,9 +68,10 @@ public class Fleet {
     
     public Fleet(
             String fleetId,
+            String name,
             NodeShape nodeShape,
             String orgId) {
-        this(Optional.empty(), fleetId, Optional.empty(),
+        this(Optional.empty(), fleetId, name,
             nodeShape, orgId);
     }
 
@@ -93,7 +93,7 @@ public class Fleet {
      * Readable name for a fleet. Must be unique within an organization.
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public String name() {
         return name;
     }
 
@@ -141,16 +141,6 @@ public class Fleet {
      * Readable name for a fleet. Must be unique within an organization.
      */
     public Fleet withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * Readable name for a fleet. Must be unique within an organization.
-     */
-    public Fleet withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -212,7 +202,7 @@ public class Fleet {
 
         private String fleetId;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
         private NodeShape nodeShape;
 
@@ -250,15 +240,6 @@ public class Fleet {
          * Readable name for a fleet. Must be unique within an organization.
          */
         public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Readable name for a fleet. Must be unique within an organization.
-         */
-        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;

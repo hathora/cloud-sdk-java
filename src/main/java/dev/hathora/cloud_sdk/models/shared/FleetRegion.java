@@ -21,13 +21,23 @@ import java.time.OffsetDateTime;
  * scaleIncrementVcpus
  */
 public class FleetRegion {
-
+    /**
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
     @JsonProperty("cloudMinVcpus")
+    @Deprecated
     private int cloudMinVcpus;
 
 
     @JsonProperty("cloudMinVcpusUpdatedAt")
     private OffsetDateTime cloudMinVcpusUpdatedAt;
+
+    /**
+     * The minimum number of nodes that should be running.
+     */
+    @JsonProperty("nodeBaseline")
+    private int nodeBaseline;
 
     /**
      * This field is deprecated and may contain the value -1. For node increment values, refer to nodeShape
@@ -43,15 +53,23 @@ public class FleetRegion {
     public FleetRegion(
             @JsonProperty("cloudMinVcpus") int cloudMinVcpus,
             @JsonProperty("cloudMinVcpusUpdatedAt") OffsetDateTime cloudMinVcpusUpdatedAt,
+            @JsonProperty("nodeBaseline") int nodeBaseline,
             @JsonProperty("scaleIncrementVcpus") int scaleIncrementVcpus) {
         Utils.checkNotNull(cloudMinVcpus, "cloudMinVcpus");
         Utils.checkNotNull(cloudMinVcpusUpdatedAt, "cloudMinVcpusUpdatedAt");
+        Utils.checkNotNull(nodeBaseline, "nodeBaseline");
         Utils.checkNotNull(scaleIncrementVcpus, "scaleIncrementVcpus");
         this.cloudMinVcpus = cloudMinVcpus;
         this.cloudMinVcpusUpdatedAt = cloudMinVcpusUpdatedAt;
+        this.nodeBaseline = nodeBaseline;
         this.scaleIncrementVcpus = scaleIncrementVcpus;
     }
 
+    /**
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     @JsonIgnore
     public int cloudMinVcpus() {
         return cloudMinVcpus;
@@ -60,6 +78,14 @@ public class FleetRegion {
     @JsonIgnore
     public OffsetDateTime cloudMinVcpusUpdatedAt() {
         return cloudMinVcpusUpdatedAt;
+    }
+
+    /**
+     * The minimum number of nodes that should be running.
+     */
+    @JsonIgnore
+    public int nodeBaseline() {
+        return nodeBaseline;
     }
 
     /**
@@ -79,6 +105,11 @@ public class FleetRegion {
     }
 
 
+    /**
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public FleetRegion withCloudMinVcpus(int cloudMinVcpus) {
         Utils.checkNotNull(cloudMinVcpus, "cloudMinVcpus");
         this.cloudMinVcpus = cloudMinVcpus;
@@ -88,6 +119,15 @@ public class FleetRegion {
     public FleetRegion withCloudMinVcpusUpdatedAt(OffsetDateTime cloudMinVcpusUpdatedAt) {
         Utils.checkNotNull(cloudMinVcpusUpdatedAt, "cloudMinVcpusUpdatedAt");
         this.cloudMinVcpusUpdatedAt = cloudMinVcpusUpdatedAt;
+        return this;
+    }
+
+    /**
+     * The minimum number of nodes that should be running.
+     */
+    public FleetRegion withNodeBaseline(int nodeBaseline) {
+        Utils.checkNotNull(nodeBaseline, "nodeBaseline");
+        this.nodeBaseline = nodeBaseline;
         return this;
     }
 
@@ -116,13 +156,15 @@ public class FleetRegion {
         return 
             Utils.enhancedDeepEquals(this.cloudMinVcpus, other.cloudMinVcpus) &&
             Utils.enhancedDeepEquals(this.cloudMinVcpusUpdatedAt, other.cloudMinVcpusUpdatedAt) &&
+            Utils.enhancedDeepEquals(this.nodeBaseline, other.nodeBaseline) &&
             Utils.enhancedDeepEquals(this.scaleIncrementVcpus, other.scaleIncrementVcpus);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cloudMinVcpus, cloudMinVcpusUpdatedAt, scaleIncrementVcpus);
+            cloudMinVcpus, cloudMinVcpusUpdatedAt, nodeBaseline,
+            scaleIncrementVcpus);
     }
     
     @Override
@@ -130,15 +172,19 @@ public class FleetRegion {
         return Utils.toString(FleetRegion.class,
                 "cloudMinVcpus", cloudMinVcpus,
                 "cloudMinVcpusUpdatedAt", cloudMinVcpusUpdatedAt,
+                "nodeBaseline", nodeBaseline,
                 "scaleIncrementVcpus", scaleIncrementVcpus);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        @Deprecated
         private Integer cloudMinVcpus;
 
         private OffsetDateTime cloudMinVcpusUpdatedAt;
+
+        private Integer nodeBaseline;
 
         @Deprecated
         private Integer scaleIncrementVcpus;
@@ -148,6 +194,11 @@ public class FleetRegion {
         }
 
 
+        /**
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder cloudMinVcpus(int cloudMinVcpus) {
             Utils.checkNotNull(cloudMinVcpus, "cloudMinVcpus");
             this.cloudMinVcpus = cloudMinVcpus;
@@ -158,6 +209,16 @@ public class FleetRegion {
         public Builder cloudMinVcpusUpdatedAt(OffsetDateTime cloudMinVcpusUpdatedAt) {
             Utils.checkNotNull(cloudMinVcpusUpdatedAt, "cloudMinVcpusUpdatedAt");
             this.cloudMinVcpusUpdatedAt = cloudMinVcpusUpdatedAt;
+            return this;
+        }
+
+
+        /**
+         * The minimum number of nodes that should be running.
+         */
+        public Builder nodeBaseline(int nodeBaseline) {
+            Utils.checkNotNull(nodeBaseline, "nodeBaseline");
+            this.nodeBaseline = nodeBaseline;
             return this;
         }
 
@@ -178,7 +239,8 @@ public class FleetRegion {
         public FleetRegion build() {
 
             return new FleetRegion(
-                cloudMinVcpus, cloudMinVcpusUpdatedAt, scaleIncrementVcpus);
+                cloudMinVcpus, cloudMinVcpusUpdatedAt, nodeBaseline,
+                scaleIncrementVcpus);
         }
 
     }

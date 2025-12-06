@@ -8,6 +8,9 @@ import static dev.hathora.cloud_sdk.operations.Operations.RequestOperation;
 import dev.hathora.cloud_sdk.models.operations.CreateFleetRequest;
 import dev.hathora.cloud_sdk.models.operations.CreateFleetRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.CreateFleetResponse;
+import dev.hathora.cloud_sdk.models.operations.DeprecatedUpdateFleetRegionV2Request;
+import dev.hathora.cloud_sdk.models.operations.DeprecatedUpdateFleetRegionV2RequestBuilder;
+import dev.hathora.cloud_sdk.models.operations.DeprecatedUpdateFleetRegionV2Response;
 import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsRequest;
 import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsRequestBuilder;
 import dev.hathora.cloud_sdk.models.operations.GetFleetMetricsResponse;
@@ -36,6 +39,7 @@ import dev.hathora.cloud_sdk.models.shared.CreateFleetV2;
 import dev.hathora.cloud_sdk.models.shared.Region;
 import dev.hathora.cloud_sdk.models.shared.UpdateFleetV2;
 import dev.hathora.cloud_sdk.operations.CreateFleet;
+import dev.hathora.cloud_sdk.operations.DeprecatedUpdateFleetRegionV2;
 import dev.hathora.cloud_sdk.operations.GetFleet;
 import dev.hathora.cloud_sdk.operations.GetFleetMetrics;
 import dev.hathora.cloud_sdk.operations.GetFleetRegion;
@@ -45,6 +49,7 @@ import dev.hathora.cloud_sdk.operations.GetNodeShapes;
 import dev.hathora.cloud_sdk.operations.UpdateFleet;
 import dev.hathora.cloud_sdk.operations.UpdateFleetRegion;
 import dev.hathora.cloud_sdk.utils.Headers;
+import java.lang.Deprecated;
 import java.lang.String;
 import java.util.Optional;
 
@@ -105,6 +110,38 @@ public class FleetsV2 {
                 .build();
         RequestOperation<CreateFleetRequest, CreateFleetResponse> operation
               = new CreateFleet.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * DeprecatedUpdateFleetRegionV2
+     * 
+     * <p>Updates the configuration for a given
+     * [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
+     * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public DeprecatedUpdateFleetRegionV2RequestBuilder deprecatedUpdateFleetRegionV2() {
+        return new DeprecatedUpdateFleetRegionV2RequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * DeprecatedUpdateFleetRegionV2
+     * 
+     * <p>Updates the configuration for a given
+     * [fleet](https://hathora.dev/docs/concepts/hathora-entities#fleet) in a region.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public DeprecatedUpdateFleetRegionV2Response deprecatedUpdateFleetRegionV2(DeprecatedUpdateFleetRegionV2Request request) {
+        RequestOperation<DeprecatedUpdateFleetRegionV2Request, DeprecatedUpdateFleetRegionV2Response> operation
+              = new DeprecatedUpdateFleetRegionV2.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
